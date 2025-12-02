@@ -43,6 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             const response = await fetch(`https://bible-api.com/${reference}?translation=almeida`);
             const data = await response.json();
+            const cleanedReference = reference.replace(/\+/g, ' ');
+            modalTitle.textContent = cleanedReference;
 
             if (data.verses) {
                 let formattedContent = '<div class="space-y-2">';

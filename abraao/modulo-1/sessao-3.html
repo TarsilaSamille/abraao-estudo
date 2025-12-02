@@ -11,7 +11,8 @@
 <body class="bg-white font-sans text-slate-800">
     <div class="p-4">
         <a href="index.html" class="text-sky-600 hover:underline">← Voltar para o Índice</a>
-    </div>    <div id="sessao-3" class="min-h-screen p-8 md:px-16  flex flex-col justify-center">
+    </div>
+    <div id="sessao-3" class="min-h-screen p-8 md:px-16  flex flex-col justify-center">
         <div class="mx-auto max-w-4xl">
             <h1 class="text-4xl font-bold text-slate-900 mb-8 border-b pb-4">Sessão 3: O Design Literário de Gênesis
                 1-11 </h1>
@@ -229,7 +230,7 @@
                     para BibleProject Classroom: Abraão (2021).</p>
             </div>
             <div class="mx-auto mb-12 w-full max-w-max">
-                <div class="w-full">
+                <div class="space-y-3 px-3 pb-3">
                     <div class="p-3">
                         <div class="inline-block rounded-lg bg-gray-800 px-2 py-1 text-sm font-bold text-white"><a
                                 href="#" class="verse-link hover:underline text-white"
@@ -427,9 +428,7 @@
             </div>
         </div>
 
-    </div>
 
-    <div class="mx-auto mb-12 w-full max-w-max">
         <div class="w-full rounded-xl">
             <div class="p-3">
                 <div class="inline-block rounded-lg bg-gray-800 px-2 py-1 text-sm font-bold text-white"><a href="#"
@@ -574,8 +573,7 @@
         </div>
         <p class="mt-4 text-lg text-gray-600">Gênesis 11:1-12:5. Tradução e Design Literário por Tim Mackie para
             BibleProject Classroom: Abraão (2021).</p>
-    </div>
-    <div class="mx-auto max-w-4xl">
+
         <p class="mt-8 mb-6 text-lg text-slate-700">Esses ciclos temáticos estabelecem um padrão narrativo e uma melodia
             temática que recicla, desenvolve e avança a cada nova geração. A melodia básica é assim:</p>
         <div class="space-y-6 text-slate-700">
@@ -671,8 +669,9 @@
             </div>
         </div>
     </div>
-    <div class="mx-auto w-full max-w-4xl">
-        <p class="text_namestext-lg leading-relaxed text-slate-700">As histórias de Avraham são organizadas de acordo com essa
+    <div class="mx-auto w-full max-w-4xl mb-10">
+        <p class="text_namestext-lg leading-relaxed text-slate-700">As histórias de Avraham são organizadas de acordo
+            com essa
             mesma melodia temática, à medida que o ciclo se repete nos níveis macro, médio e micro de cada parte da
             história.</p>
         <h2 class="my-8 text-2xl font-bold text-slate-800">Questão para Reflexão</h2>
@@ -682,252 +681,10 @@
         </div>
     </div>
     </div>
-    </div>
-    <footer><a href="index.html" class="text-sky-600 hover:underline">Voltar ao Índice</a></footer>
-    </div>
-    <!-- Modal para exibir versículos -->
-    <div id="verseModal" class="fixed inset-0 z-50 hidden overflow-y-auto">
-        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:p-0">
-            <!-- Overlay escuro -->
-            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
-                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
-            </div>
-            <!-- Modal propriamente dito -->
-            <div
-                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-                <div class="border-b border-gray-200 bg-gradient-to-r from-sky-50 to-slate-50">
-                    <div class="flex justify-between items-center px-4 py-3">
-                        <h3 class="text-xl font-semibold text-sky-800" id="modalTitle">Versículo</h3>
-                        <button type="button" id="closeModalX" class="text-gray-400 hover:text-gray-500">
-                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-                <div class="bg-white px-4 py-5 sm:p-6">
-                    <div class="text-gray-700 text-base leading-relaxed" id="modalContent">
-                        <p class="text-center italic">Carregando...</p>
-                    </div>
-                </div>
-                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse border-t border-gray-200">
-                    <button type="button" id="closeModal"
-                        class="inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 sm:w-auto sm:text-sm transition-colors">
-                        Fechar </button>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <script>
-        // Função para buscar versículos para as seções fixas
-        async function fetchVerseForElement(reference, elementId) {
-            try {
-                const response = await fetch(`https://bible-api.com/${reference}?translation=almeida`);
-                const data = await response.json();
-                const verseElement = document.getElementById(elementId);
-                if (data.text) {
-                    verseElement.innerHTML = `<strong>${data.reference}:</strong> ${data.text}`;
-                } else {
-                    verseElement.innerHTML = "Versículo não encontrado.";
-                }
-            } catch (error) {
-                console.error("Erro ao buscar o versículo:", error);
-            }
-        }
 
-        // Funções para controlar o modal
-        function openModal() {
-            document.getElementById('verseModal').classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('verseModal').classList.add('hidden');
-        }
-
-        // Função para buscar versículo e exibir no modal
-        async function fetchVerse(reference) {
-            try {
-                // Abre o modal com mensagem de carregamento
-                document.getElementById('modalTitle').textContent = 'Carregando...';
-                document.getElementById('modalContent').innerHTML = '<p class="text-center italic">Buscando o versículo...</p>';
-                openModal();
-
-                // Busca o versículo na API
-                const response = await fetch(`https://bible-api.com/${reference}?translation=almeida`);
-                const data = await response.json();
-
-                if (data.verses && data.verses.length > 0) {
-                    // Formatação melhorada para múltiplos versículos
-                    document.getElementById('modalTitle').textContent = data.reference;
-
-                    let formattedContent = '<div class="space-y-2">';
-
-                    // Verifica se temos múltiplos versículos ou apenas um
-                    if (data.verses.length > 1) {
-                        // Múltiplos versículos - exibe cada um com seu número
-                        data.verses.forEach(verse => {
-                            formattedContent += `
-              <div class="flex">
-                <span class="font-bold text-sky-700 mr-2 min-w-[1.5rem]">${verse.verse}</span>
-                <p>${verse.text.trim()}</p>
-              </div>`;
-                        });
-                    } else {
-                        // Único versículo - formato simples
-                        formattedContent += `<p>${data.text.trim()}</p>`;
-                    }
-
-                    formattedContent += '</div>';
-
-                    document.getElementById('modalContent').innerHTML = formattedContent;
-                } else if (data.text) {
-                    // Fallback para quando não temos a estrutura de versículos
-                    document.getElementById('modalTitle').textContent = data.reference;
-                    document.getElementById('modalContent').innerHTML = `
-          <p>${data.text.trim()}</p>
-          `;
-                } else {
-                    document.getElementById('modalTitle').textContent = 'Erro';
-                    document.getElementById('modalContent').innerHTML = "<p>Versículo não encontrado.</p>";
-                }
-            } catch (error) {
-                console.error("Erro ao buscar o versículo:", error);
-                document.getElementById('modalTitle').textContent = 'Erro';
-                document.getElementById('modalContent').innerHTML = "<p>Erro ao buscar o versículo. Tente novamente mais tarde.</p>";
-            }
-        }
-
-        // Inicialização
-        document.addEventListener("DOMContentLoaded", () => {
-            // Função para converter todas as referências bíblicas em links clicáveis
-            function convertBibleReferences() {
-                // Lista de livros da Bíblia (inclui abreviações comuns)
-                const bibleBooks = [
-                    "Gênesis", "Genesis", "Gên", "Gen", "Êxodo", "Exodo", "Êx", "Ex",
-                    "Levítico", "Levitico", "Lev", "Números", "Numeros", "Num",
-                    "Deuteronômio", "Deuteronomio", "Deut", "Dt", "Josué", "Josue", "Jos",
-                    "Juízes", "Juizes", "Jz", "Rute", "Rt", "1 Samuel", "1Samuel", "1Sm", "1 Sm",
-                    "2 Samuel", "2Samuel", "2Sm", "2 Sm", "1 Reis", "1Reis", "1Rs", "1 Rs",
-                    "2 Reis", "2Reis", "2Rs", "2 Rs", "1 Crônicas", "1Cronicas", "1Cr", "1 Cr",
-                    "2 Crônicas", "2Cronicas", "2Cr", "2 Cr", "Esdras", "Ed", "Neemias", "Ne",
-                    "Ester", "Et", "Jó", "Jo", "Salmos", "Salmo", "Sl", "Provérbios", "Proverbios", "Pv",
-                    "Eclesiastes", "Ec", "Cantares", "Cânticos", "Canticos", "Ct",
-                    "Isaías", "Isaias", "Is", "Jeremias", "Jr", "Lamentações", "Lamentacoes", "Lm",
-                    "Ezequiel", "Ez", "Daniel", "Dn", "Oséias", "Oseias", "Os",
-                    "Joel", "Jl", "Amós", "Amos", "Am", "Obadias", "Ob", "Jonas", "Jn",
-                    "Miquéias", "Miqueias", "Mq", "Naum", "Na", "Habacuque", "Hc", "Sofonias", "Sf",
-                    "Ageu", "Ag", "Zacarias", "Zc", "Malaquias", "Ml",
-                    "Mateus", "Mt", "Marcos", "Mc", "Lucas", "Lc", "João", "Joao", "Jo",
-                    "Atos", "At", "Romanos", "Rm", "1 Coríntios", "1Corintios", "1Co", "1 Co",
-                    "2 Coríntios", "2Corintios", "2Co", "2 Co", "Gálatas", "Galatas", "Gl",
-                    "Efésios", "Efesios", "Ef", "Filipenses", "Fp", "Colossenses", "Cl",
-                    "1 Tessalonicenses", "1Tessalonicenses", "1Ts", "1 Ts",
-                    "2 Tessalonicenses", "2Tessalonicenses", "2Ts", "2 Ts",
-                    "1 Timóteo", "1Timoteo", "1Tm", "1 Tm", "2 Timóteo", "2Timoteo", "2Tm", "2 Tm",
-                    "Tito", "Tt", "Filemom", "Fm", "Hebreus", "Hb",
-                    "Tiago", "Tg", "1 Pedro", "1Pedro", "1Pe", "1 Pe", "2 Pedro", "2Pedro", "2Pe", "2 Pe",
-                    "1 João", "1Joao", "1Jo", "1 Jo", "2 João", "2Joao", "2Jo", "2 Jo",
-                    "3 João", "3Joao", "3Jo", "3 Jo", "Judas", "Jd", "Apocalipse", "Ap"
-                ];
-
-                // Busca todas as tags <p> com class="font-bold text-slate-800" que contêm referências bíblicas
-                const paragraphs = document.querySelectorAll('p.font-bold.text-slate-800');
-
-                paragraphs.forEach(p => {
-                    if (!p.querySelector('.verse-link')) { // Verifica se já não é um link
-                        const text = p.textContent.trim();
-
-                        // Verifica se o texto contém uma referência bíblica
-                        let found = false;
-                        for (let book of bibleBooks) {
-                            if (text.includes(book)) {
-                                // Extrai a referência do texto
-                                const regex = new RegExp(book + '\\s+([\\d\\:\\-]+)\\s*(?:NVI|NAA|ARA|NVT|ACF|NTLH)?', 'i');
-                                const match = text.match(regex);
-
-                                if (match) {
-                                    const bookName = book;
-                                    const reference = match[1]; // Capítulo:Versículo
-                                    const fullRef = bookName + ' ' + reference;
-                                    const apiRef = bookName.replace(' ', '+') + '+' + reference;
-
-                                    // Cria o link
-                                    const link = `<a href="#" class="verse-link hover:underline text-sky-600" data-reference="${apiRef}">${text}</a>`;
-                                    p.innerHTML = link;
-                                    found = true;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                });
-
-                // Busca todos os <li> que contêm números de capítulos/versículos
-                const listItems = document.querySelectorAll('li');
-                listItems.forEach(li => {
-                    if (!li.querySelector('.verse-link')) {
-                        const text = li.textContent.trim();
-
-                        // Regex para identificar padrões como "24:1-28"
-                        const regex = /^(\d+):(\d+)(?:-(\d+))?$/;
-                        const match = text.match(regex);
-
-                        if (match) {
-                            const chapter = match[1];
-                            const verse = match[2];
-                            const endVerse = match[3] || verse;
-                            const reference = chapter + ':' + verse + (endVerse !== verse ? '-' + endVerse : '');
-
-                            // Obtém o livro do contexto (pode precisar de ajustes)
-                            const heading = li.closest('div').querySelector('h2, h3');
-                            let book = "Gênesis"; // Livro padrão
-
-                            if (heading) {
-                                const headingText = heading.textContent.trim();
-                                for (let possibleBook of bibleBooks) {
-                                    if (headingText.includes(possibleBook)) {
-                                        book = possibleBook;
-                                        break;
-                                    }
-                                }
-                            }
-
-                            const apiRef = book.replace(' ', '+') + '+' + reference;
-                            const link = `<a href="#" class="verse-link hover:underline text-sky-600" data-reference="${apiRef}">${text}</a>`;
-                            li.innerHTML = link;
-                        }
-                    }
-                });
-            }
-
-            // Executa a função para converter referências
-            convertBibleReferences();
-
-            // Adiciona evento de clique para todos os links de versículos
-            const verseLinks = document.querySelectorAll(".verse-link");
-            verseLinks.forEach(link => {
-                link.addEventListener("click", (event) => {
-                    event.preventDefault();
-                    const reference = link.getAttribute("data-reference");
-                    fetchVerse(reference);
-                });
-            });
-
-            // Adiciona evento de clique para os botões de fechar o modal
-            document.getElementById('closeModal').addEventListener('click', closeModal);
-            document.getElementById('closeModalX').addEventListener('click', closeModal);
-
-            // Fecha o modal se o usuário clicar fora dele
-            document.getElementById('verseModal').addEventListener('click', function (event) {
-                if (event.target === this) {
-                    closeModal();
-                }
-            });
-
-            // Também permite fechar com tecla Esc
     <script src="../js/verse-modal.js"></script>
+
 </body>
+
 </html>
