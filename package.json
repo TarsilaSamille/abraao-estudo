@@ -7,7 +7,11 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "verify:grid": "node scripts/verify-grid.mjs",
+    "verify:session": "node scripts/verify-session.mjs",
+    "verify:diff": "python3 -m http.server 8000 & sleep 1; node scripts/verify-diff.mjs; kill %1 || true",
+    "verify:all": "python3 -m http.server 8000 & sleep 1; node scripts/verify-grid.mjs && node scripts/verify-session.mjs && node scripts/verify-diff.mjs || true; kill %1 || true"
   },
   "repository": {
     "type": "git",
@@ -22,6 +26,8 @@
   },
   "homepage": "https://github.com/TarsilaSamille/abraao-estudo#readme",
   "devDependencies": {
-    "playwright": "^1.57.0"
+    "playwright": "^1.57.0",
+    "pixelmatch": "^5.3.0",
+    "pngjs": "^7.0.0"
   }
 }
