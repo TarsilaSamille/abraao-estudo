@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="title">Anotações de Aula: José</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white font-sans text-slate-800">
+  <div class="fixed left-4 top-4 z-50">
+    <a href="../index.html"
+      class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+      <span>&larr;</span><span data-i18n="back">Voltar</span>
+    </a>
+  </div>
+  <div class="fixed right-4 top-4 z-50">
+    <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white shadow-sm">
+      <button id="lang-pt" onclick="setLang('pt')" class="px-4 py-1.5 text-sm font-semibold transition-colors">PT</button>
+      <button id="lang-en" onclick="setLang('en')" class="px-4 py-1.5 text-sm font-semibold transition-colors">EN</button>
+    </div>
+  </div>
+  <div class="min-h-screen">
+    <div class="flex min-h-screen flex-col items-center justify-center md:p-12">
+      <main class="flex flex-1 flex-col items-center justify-center text-center">
+        <div class="flex min-h-screen flex-col p-8 md:p-12">
+          <main class="flex flex-1 flex-col items-center justify-center text-center">
+            <img src="../assets/covers/joseph.jpg" alt="José" class="mb-8 h-48 w-48 rounded-2xl object-cover shadow-lg" />
+            <p class="mb-2 font-semibold text-slate-500" data-i18n="kicker">Anotações de Aula</p>
+            <h1 class="text-6xl font-bold text-slate-900" data-i18n="h1">José</h1>
+            <h2 class="mt-4 text-2xl text-slate-600" data-i18n="scripture">Gênesis 37:2-50:26</h2>
+            <h3 class="mt-2 text-xl text-slate-500">Dr. Tim Mackie</h3>
+            <p class="mt-3 text-base text-slate-400 font-medium">The Bible Project</p>
+            <p class="mt-8 max-w-2xl text-lg text-slate-700" data-i18n="desc">A disfunção de uma família gera divisão e dor que se espalham por muitos anos e centenas de quilômetros, mas as consequências do fracasso humano não são o fim da história.</p>
+            <div class="mt-6 p-4 bg-slate-50 rounded-lg border-l-4 border-slate-300">
+              <p class="text-xs text-slate-500" data-i18n="source"><strong>Fonte:</strong> Material baseado nas anotações de aula do curso "Joseph" do The Bible Project, ministrado por Dr. Tim Mackie. Conteúdo original disponível em <a href="https://bibleproject.com" class="text-sky-600 hover:underline" target="_blank">bibleproject.com</a></p>
+            </div>
+          </main>
+        </div>
+        <div id="modgrid" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-10"></div>
+      </main>
+    </div>
+  </div>
+  <script>
+    const MODULES = [{"pos": 1, "first": 1, "last": 4, "title_en": "Introduction to the Joseph Story", "title_pt": "Introdução à História de José"}, {"pos": 2, "first": 5, "last": 9, "title_en": "Joseph’s Dreams and Hostile Brothers", "title_pt": "Os Sonhos de José e os Irmãos Hostis"}, {"pos": 3, "first": 10, "last": 12, "title_en": "Rise and Fall and Rise Again", "title_pt": "Ascensão, Queda e Nova Ascensão"}, {"pos": 4, "first": 13, "last": 17, "title_en": "Joseph Tests His Brothers", "title_pt": "José Testa Seus Irmãos"}, {"pos": 5, "first": 18, "last": 20, "title_en": "Joseph Rescues Egypt and His Family", "title_pt": "José Resgata o Egito e Sua Família"}, {"pos": 6, "first": 21, "last": 25, "title_en": "Jacob’s Song of Blessing", "title_pt": "O Cântico de Bênção de Jacó"}, {"pos": 7, "first": 26, "last": 29, "title_en": "Going Up to Canaan", "title_pt": "Subindo para Canaã"}];
+    const I18N = {"pt": {"title": "Anotações de Aula: José", "kicker": "Anotações de Aula", "h1": "José", "scripture": "Gênesis 37:2-50:26", "desc": "A disfunção de uma família gera divisão e dor que se espalham por muitos anos e centenas de quilômetros, mas as consequências do fracasso humano não são o fim da história.", "source": "<strong>Fonte:</strong> Material baseado nas anotações de aula do curso \"Joseph\" do The Bible Project, ministrado por Dr. Tim Mackie. Conteúdo original disponível em <a href=\"https://bibleproject.com\" class=\"text-sky-600 hover:underline\" target=\"_blank\">bibleproject.com</a>", "module": "Módulo", "sessions": "Sessões", "back": "Voltar"}, "en": {"title": "Class Notes: Joseph", "kicker": "Class Notes", "h1": "Joseph", "scripture": "Genesis 37:2-50:26", "desc": "One family's dysfunction leads to division and hurt that spreads over many years and hundreds of miles, but the consequences of human failure aren't the end of the story.", "source": "<strong>Source:</strong> Material based on the class notes from the \"Joseph\" course by The Bible Project, taught by Dr. Tim Mackie. Original content available at <a href=\"https://bibleproject.com\" class=\"text-sky-600 hover:underline\" target=\"_blank\">bibleproject.com</a>", "module": "Module", "sessions": "Sessions", "back": "Back"}};
+    function render(lang){
+      const g=document.getElementById('modgrid');
+      g.innerHTML=MODULES.map(m=>`
+        <a href="modulo-${m.pos}/index.html"
+          class="group block rounded-xl border-2 border-slate-200 bg-white p-8 transition-all hover:-translate-y-1 hover:border-sky-500 hover:shadow-xl">
+          <div class="mb-4 flex justify-center">
+            <img src="image/img-${m.pos}.jpeg" alt="${lang==='pt'?m.title_pt:m.title_en}" loading="lazy" class="h-32 w-32 rounded-xl object-cover shadow-md" />
+          </div>
+          <h3 class="mb-2 text-2xl font-bold text-slate-900 group-hover:text-sky-600">${I18N[lang].module} ${m.pos}</h3>
+          <p class="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-500">${I18N[lang].sessions} ${m.first}-${m.last}</p>
+          <p class="text-slate-600">${lang==='pt'?m.title_pt:m.title_en}</p>
+        </a>`).join('');
+    }
+    function setLang(lang){
+      localStorage.setItem('bp_lang',lang);
+      document.documentElement.lang=lang==='pt'?'pt-BR':'en';
+      const t=I18N[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(t[k]!==undefined)el.innerHTML=t[k];});
+      document.title=t.title;
+      const on='bg-sky-600 text-white',off='bg-white text-slate-600 hover:bg-slate-100';
+      document.getElementById('lang-pt').className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='pt'?on:off);
+      document.getElementById('lang-en').className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='en'?on:off);
+      render(lang);
+    }
+    setLang(localStorage.getItem('bp_lang')||'pt');
+  </script>
+</body>
+</html>

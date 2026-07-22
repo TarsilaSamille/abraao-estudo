@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Session 10: The Beginning and Nothingness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media print {
+            @page { size: A4; margin: 1cm; }
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; background-color: white !important; }
+            .min-h-screen { min-height: auto !important; padding: 0 !important; }
+            .p-8, .p-4 { padding: 0 !important; }
+            .mb-10, .mb-12, .my-8 { margin-bottom: 1.5rem !important; margin-top: 1.5rem !important; }
+            .rounded-2xl, .rounded-xl { border-radius: 8px !important; border-width: 2px !important; }
+            .shadow-sm { box-shadow: none !important; }
+        }
+        .hl-seed   { background-color: #D3F2CD; color: #2B6146; font-weight: 700; padding: 0 5px; border-radius: 4px; }
+        .hl-sign   { background-color: #FAE4C4; color: #7a5a1e; font-weight: 700; padding: 0 5px; border-radius: 4px; }
+        .hl-mult   { background-color: #E8BEC9; color: #8a2d4a; font-weight: 700; padding: 0 5px; border-radius: 4px; }
+        .hl-action { background-color: #E9ECEF; color: #333333; font-weight: 700; padding: 0 5px; border-radius: 4px; }
+        .hl-divine { background-color: #5869CD; color: #ffffff; font-weight: 700; padding: 0 5px; border-radius: 4px; }
+        .box-hdr-grey { background-color: #6B7384; color: #ffffff; border-radius: 999px; }
+        .box-hdr-red   { background-color: #BE4967; color: #ffffff; border-radius: 999px; }
+        .badge-col1 { background-color: #DCE6F1; color: #4a5568; font-weight: 700; padding: 2px 10px; border-radius: 999px; display: inline-block; font-size: 13px; margin-bottom: 8px; }
+        .badge-col2 { background-color: #6B7384; color: #ffffff; font-weight: 700; padding: 2px 10px; border-radius: 999px; display: inline-block; font-size: 13px; margin-bottom: 8px; }
+        .badge-col3 { background-color: #645537; color: #ffffff; font-weight: 700; padding: 2px 10px; border-radius: 999px; display: inline-block; font-size: 13px; margin-bottom: 8px; }
+        .badge-col4 { background-color: #DCE6F1; color: #1e40af; font-weight: 700; padding: 2px 10px; border-radius: 999px; display: inline-block; font-size: 13px; margin-bottom: 8px; }
+        .heb { font-family: 'Ezra SIL', 'SBL Hebrew', serif; }
+        .verse-link { color: #365fa0; text-decoration: underline; cursor: pointer; }
+        .replay-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 1fr; gap: 0; border: 2px solid #94a3b8; border-radius: 10px; overflow: hidden; }
+        .replay-cell { border: 1px solid #94a3b8; padding: 14px 16px; font-size: 14px; line-height: 1.5; display: flex; flex-direction: column; }
+        .replay-cell .ttl { font-weight: 700; font-size: 15px; margin-bottom: 8px; }
+        .ptable { width: 100%; border-collapse: collapse; font-size: 14px; }
+        .ptable th, .ptable td { border: 1px solid #cbd5e1; padding: 9px 12px; vertical-align: top; text-align: left; }
+        .ptable th { background-color: #eef1f5; font-weight: 700; }
+        .ptable .av { background-color: #faf5ef; }
+        .ptable .no { background-color: #eef4f8; }
+        .lang-pt { display: none; }
+        .lang-toggle-pt .lang-en { display: none; }
+        .lang-toggle-pt .lang-pt { display: block; }
+
+    </style>
+</head>
+<body class="bg-white font-sans text-slate-800">
+    <div class="p-4 flex justify-between items-center print:hidden">
+        <a href="../index.html" class="text-sky-600 hover:underline">&larr; Back to Index</a>
+        <div class="flex items-center gap-2">
+            <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white shadow-sm print:hidden">
+                <button id="lang-en-btn" onclick="setLang('en')" class="px-4 py-1.5 text-sm font-semibold transition-colors hover:bg-slate-100">EN</button>
+                <button id="lang-pt-btn" onclick="setLang('pt')" class="px-4 py-1.5 text-sm font-semibold transition-colors hover:bg-slate-100">PT</button>
+            </div>
+            <a href="../heaven-and-earth-teacher-notes.pdf#page=32" target="_blank" class="flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg transition-colors border border-slate-300 shadow-sm print:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                PDF (EN)
+            </a>
+            <button onclick="window.print()" class="flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg transition-colors border border-slate-300 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                Print
+            </button>
+        </div>
+    </div>
+    <div class="min-h-screen p-8 lg:px-16">
+        <div id="sessao-10" class="max-w-4xl mx-auto">
+            <div class="lang-en">
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-8 border-b pb-4">Session 10: The Beginning and Nothingness</h1>
+<h2 class="text-2xl font-bold text-slate-800 mb-3">Key Takeaways</h2>
+<li>Ancient creation accounts are about function rather than material existence.</li>
+<li>Things are thought to exist only when they are given a purpose and a name.</li>
+<li>Genesis 1 then is mainly about the purpose of the universe rather than its material creation. (While Yahweh is the creator of all things out of nothing, this may not be what Genesis 1 is about.)</li>
+</ul>
+<h2 class="text-3xl font-bold text-slate-800 mt-10 mb-4 print:mt-0">Genesis 1:1-2: The Introduction and the Pre-Creation State
+Genesis 1:1 NASB*
+In the beginning, God created the skies and the land.
+*Key Words Adapted by Teacher In this verse, “beginning” (Hebrew: reshīt / ראשית) refers not to a first point in time but to a preliminary period of time.
+Job 8:6-7 NASB*
+6 If you are pure and upright, surely then [God] will rouse himself for you and restore your rightful habitation. 7 Even though your reshīt was insignificant, your end will be very great.
+*Key Words Adapted by Teacher Here, the entire period of Job’s life before his suffering is called the reshīt, the beginning period.
+Jeremiah 27:1 NASB*
+In the reshīt of the reign of Zedekiah the son of Josiah, king of Judah, this word came to Jeremiah from the LORD, saying ...
+*Key Words Adapted by Teacher
+Jeremiah 28:1 NASB*
+Now in the same year, in the reshīt of the reign of Zedekiah king of Judah, in the fourth year, in the fifth month, Hananiah the son of Azzur, the prophet, who was from Gibeon, spoke to me in the house of the LORD in the presence of the priests and all the people, saying ...
+*Key Words Adapted by Teacher Notice how the reshīt of Zedekiah’s reign extends over four years. The word here refers to the initial period of his reign before the crucial events of his downfall began.
+“In Genesis, the ‘beginning’ (reshīt) refers to a preliminary period of time rather than a first point in time … This leads us to conclude that the ‘beginning’ is a way of labeling the seven-day period of creation described in the remainder of Genesis 1 rather than a point in time prior to the seven days … It provides a literary introduction to the period of creativity that then flows into the … rest of the book.”</h2>
+<p class="text-sm text-slate-500 italic mb-4">Walton, John H. (2011). Genesis 1 as Ancient Cosmology. Eisenbrauns. 126-127.</p>
+<p class="text-lg text-slate-700 leading-relaxed mb-5">Genesis 1:2 as the pre-creation state is described by the use of waters, darkness, and wilderness. Specifically, the land is described as wild and waste or in Hebrew, tohu vavohu. What is meant by tohu vavohu?
+Other Uses of Tohu or Vohu: “Empty/Uninhabited/Wasteland”
+Deuteronomy 32:9-10 NASB*
+9 For the LORD’S portion is his people; Jacob is the allotment of his inheritance.
+10 He found him in a desert land, and in the howling tohu of a wilderness; he encircled him, he cared for him, he guarded him as the pupil of his eye.
+*Key Words Adapted by Teacher
+Isaiah 24:10-12 NASB*
+10 The city of tohu is broken down; every house is shut up so that none may enter.
+11 There is an outcry in the streets concerning the wine; all joy turns to gloom.
+The gaiety of the earth is banished.
+12 Desolation is left in the city and the gate is battered to ruins.
+*Key Words Adapted by Teacher
+Isaiah 45:18 NIV*
+For this is what the LORD says— he who created the heavens, he is God; he who fashioned and made the earth, he founded it; he did not create it to be tohu, but formed it to be inhabited—he says: “I am the LORD, and there is no other.” *Key Words Adapted by Teacher
+Psalm 107:40 Instructor’s Translation
+[Yahweh] pours contempt on nobles, and he makes them wander in a tohu that has no road.
+This verse is related to Job 12:21, 24.
+Uses of Tehom
+The text continues with “… and darkness was over the face of the deep abyss” (Hebrew: tehom, Gen. 1:2).
+Below are other biblical passages that use tehom.
+Job 38:16-17 NASB*
+16 Have you entered into the springs of the sea, or walked in the recesses of the tehom?
+17 Have the gates of death been revealed to you, or have you seen the gates of deep darkness?
+*Key Words Adapted by Teacher
+Jonah 2:5-6 NASB*
+5 Water encompassed me to the point of death.
+The tehom engulfed me,
+weeds were wrapped around my head.
+6 I descended to the roots of the mountains.
+The earth with its bars was around me forever,
+but you have brought up my life from the pit, O LORD my God.
+*Key Words Adapted by Teacher In modern cosmologies, water is “something,” but in ancient Near Eastern cosmology, the “cosmic sea” belongs to the pre-creation state, which is a neutral, functionless state of non-organization and lifelessness.
+The Pre-Creation State and Biblical Ontology
+Take a look at the following quotes from Dr. John Walton as he describes how the pre-creation state connects to biblical ontology.
+“Genesis 1:2 ... describes the pre-cosmic condition as it was understood in Israelite thought. As in the rest of the ancient world [the pre-creation state] is not absent of matter, as the primordial waters are already present … [T]hey are the functionless cosmic waters … where order has not yet been imposed, the desert and cosmic waters above and below.”</p>
+<p class="text-sm text-slate-500 italic mb-4">Walton, John H. (2011). Genesis 1 as Ancient Cosmology. Eisenbrauns. 139, 143.</p>
+<p class="text-lg text-slate-700 leading-relaxed mb-5">“Very little in ancient Near Easter cosmologies [including Genesis 1] relates to the manufacture of the material cosmos … Rather, they recount the organization and ordering of the elements of the cosmos as a functional whole. If we are going to understand ancient views about how the cosmos came into existence (creation cosmology), it is essential that we understand ancient views about what constitutes existence (creation ontology). In the ancient world, something came into existence when it was separated out as a distinct entity and given a function and a name … this is a function-oriented ontology. This is in stark contrast to modern ontology, which is focused on the material existence or structure of something. For us, the existence of the world is perceived in physical, material terms … this is a substance-oriented ontology.
+… [For the ancient biblical authors,] creation was about the establishment of the functioning cosmos, not about the origins of the material structure or substance of the cosmos.”</p>
+<p class="text-sm text-slate-500 italic mb-4">Walton, John H. (2006). Ancient Near Eastern Thought and The Old Testament. Baker Academic. 180-181.</p>
+<h2 class="text-3xl font-bold text-slate-800 mt-10 mb-4 print:mt-0">Three Elements of Disorder in Genesis 1 Solved
+In the chart below, notice that the three elements of disorder in Genesis 1:2 all find parallels in ancient Near Eastern cosmologies, and each one is separately addressed in days one through three of Genesis 1.
+Now, the land
+was wild and waste    and darkness was over       the face of the deep abyss
+Day 1: Light contains the darkness
+Day 2: Waters separated and ordered
+Day 3: Dry land and edible plants emerge from the waters
+Three Elements of Disorder in Genesis 1. Created by Tim Mackie for BibleProject Classroom: Heaven and</h2>
+<p class="text-sm text-slate-500 italic mb-4">Earth (2019).</p>
+<h2 class="text-2xl font-bold text-slate-800 mb-3 mt-8">Reflection Question</h2>
+<p class="text-lg text-slate-700 leading-relaxed mb-5">According to John Walton, what are ancient Near Eastern “beginnings” stories about? The universe’s material existence or something else? If something else, what?</p>
+            </div>
+            <div class="lang-pt">
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-8 border-b pb-4">Sessão 10: O Princípio e o Nada</h1>
+<h2 class="text-2xl font-bold text-slate-800 mb-3">Principais Lições</h2>
+<li>Relatos antigos de criação são sobre função em vez de existência material.</li>
+<li>As coisas são pensadas como existentes apenas quando recebem um propósito e um nome.</li>
+<li>Gênesis 1, portanto, é principalmente sobre o propósito do universo em vez de sua criação material. (Embora Yahweh seja o criador de todas as coisas do nada, este pode não ser o foco de Gênesis 1.)</li>
+</ul>
+<h2 class="text-3xl font-bold text-slate-800 mt-10 mb-4 print:mt-0">Genesis 1:1-2: The Introduction and the Pre-Creation State
+Gênesis 1:1 NASB
+No princípio, Deus criou os céus e a terra. A terra estava sem forma e vazia, e as trevas estavam sobre a face do abismo.
+Função Acima da Origem Material
+Nas cosmologias antigas, &quot;criar&quot; frequentemente significava atribuir função e ordem, não fabricar matéria a partir do nada. O foco estava em dar a cada parte da criação seu propósito e papel dentro da casa cósmica de Deus.
+The State of Tohu va-Vohu
+A frase hebraica tohu va-vohu (sem forma e vazia) descreve um estado de não-ordem. Não é &quot;nada&quot; no sentido de vácuo; é caos desordenado aguardando a ordem de Deus. As águas escuras e sem forma representam a ausência de propósito e estrutura.
+Criação como Nomear e Ordenar
+Quando Deus cria, ele nomeia, separa e dá função. A luz, o firmamento, a terra seca e os corpos celestes recebem seus papéis designados. Assim, Gênesis 1 é sobre Deus trazendo ordem funcional e propósito ao caos, estabelecendo o mundo como o lugar de sua presença e do florescimento humano.</h2>
+<h2 class="text-2xl font-bold text-slate-800 mb-3 mt-8">Pergunta de Reflexão</h2>
+<p class="text-lg text-slate-700 leading-relaxed mb-5">Por que a distinção entre &quot;criação material&quot; e &quot;criação funcional&quot; importa para como você lê Gênesis 1?</p>
+            </div>
+            <h2 class="text-2xl font-bold text-slate-800 mt-12 mb-4 border-t pt-6">Original PDF Pages</h2>
+            <figure class="mb-8 border rounded-xl overflow-hidden shadow-sm">
+              <img src="../pdf-images/page_31.png" alt="PDF page 32" class="w-full h-auto" />
+            </figure>
+            <figure class="mb-8 border rounded-xl overflow-hidden shadow-sm">
+              <img src="../pdf-images/page_32.png" alt="PDF page 33" class="w-full h-auto" />
+            </figure>
+            <figure class="mb-8 border rounded-xl overflow-hidden shadow-sm">
+              <img src="../pdf-images/page_33.png" alt="PDF page 34" class="w-full h-auto" />
+            </figure>
+            <figure class="mb-8 border rounded-xl overflow-hidden shadow-sm">
+              <img src="../pdf-images/page_34.png" alt="PDF page 35" class="w-full h-auto" />
+            </figure>
+        </div>
+    </div>
+    <script>
+        function setLang(l){
+            const body=document.body;
+            if(l==='pt'){ body.classList.add('lang-toggle-pt'); document.getElementById('lang-pt-btn').classList.add('bg-sky-600','text-white'); document.getElementById('lang-en-btn').classList.remove('bg-sky-600','text-white'); }
+            else { body.classList.remove('lang-toggle-pt'); document.getElementById('lang-en-btn').classList.add('bg-sky-600','text-white'); document.getElementById('lang-pt-btn').classList.remove('bg-sky-600','text-white'); }
+        }
+        setLang(localStorage.getItem('bp_lang')||'en');
+    </script>
+</body>
+</html>

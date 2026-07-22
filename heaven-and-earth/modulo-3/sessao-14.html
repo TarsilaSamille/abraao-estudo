@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Session 14: Repeated Words in Genesis 1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media print {
+            @page { size: A4; margin: 1cm; }
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; background-color: white !important; }
+            .min-h-screen { min-height: auto !important; padding: 0 !important; }
+            .p-8, .p-4 { padding: 0 !important; }
+            .mb-10, .mb-12, .my-8 { margin-bottom: 1.5rem !important; margin-top: 1.5rem !important; }
+            .rounded-2xl, .rounded-xl { border-radius: 8px !important; border-width: 2px !important; }
+            .shadow-sm { box-shadow: none !important; }
+        }
+        .hl-seed   { background-color: #D3F2CD; color: #2B6146; font-weight: 700; padding: 0 5px; border-radius: 4px; }
+        .hl-sign   { background-color: #FAE4C4; color: #7a5a1e; font-weight: 700; padding: 0 5px; border-radius: 4px; }
+        .hl-mult   { background-color: #E8BEC9; color: #8a2d4a; font-weight: 700; padding: 0 5px; border-radius: 4px; }
+        .hl-action { background-color: #E9ECEF; color: #333333; font-weight: 700; padding: 0 5px; border-radius: 4px; }
+        .hl-divine { background-color: #5869CD; color: #ffffff; font-weight: 700; padding: 0 5px; border-radius: 4px; }
+        .box-hdr-grey { background-color: #6B7384; color: #ffffff; border-radius: 999px; }
+        .box-hdr-red   { background-color: #BE4967; color: #ffffff; border-radius: 999px; }
+        .badge-col1 { background-color: #DCE6F1; color: #4a5568; font-weight: 700; padding: 2px 10px; border-radius: 999px; display: inline-block; font-size: 13px; margin-bottom: 8px; }
+        .badge-col2 { background-color: #6B7384; color: #ffffff; font-weight: 700; padding: 2px 10px; border-radius: 999px; display: inline-block; font-size: 13px; margin-bottom: 8px; }
+        .badge-col3 { background-color: #645537; color: #ffffff; font-weight: 700; padding: 2px 10px; border-radius: 999px; display: inline-block; font-size: 13px; margin-bottom: 8px; }
+        .badge-col4 { background-color: #DCE6F1; color: #1e40af; font-weight: 700; padding: 2px 10px; border-radius: 999px; display: inline-block; font-size: 13px; margin-bottom: 8px; }
+        .heb { font-family: 'Ezra SIL', 'SBL Hebrew', serif; }
+        .verse-link { color: #365fa0; text-decoration: underline; cursor: pointer; }
+        .replay-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 1fr; gap: 0; border: 2px solid #94a3b8; border-radius: 10px; overflow: hidden; }
+        .replay-cell { border: 1px solid #94a3b8; padding: 14px 16px; font-size: 14px; line-height: 1.5; display: flex; flex-direction: column; }
+        .replay-cell .ttl { font-weight: 700; font-size: 15px; margin-bottom: 8px; }
+        .ptable { width: 100%; border-collapse: collapse; font-size: 14px; }
+        .ptable th, .ptable td { border: 1px solid #cbd5e1; padding: 9px 12px; vertical-align: top; text-align: left; }
+        .ptable th { background-color: #eef1f5; font-weight: 700; }
+        .ptable .av { background-color: #faf5ef; }
+        .ptable .no { background-color: #eef4f8; }
+        .lang-pt { display: none; }
+        .lang-toggle-pt .lang-en { display: none; }
+        .lang-toggle-pt .lang-pt { display: block; }
+
+    </style>
+</head>
+<body class="bg-white font-sans text-slate-800">
+    <div class="p-4 flex justify-between items-center print:hidden">
+        <a href="../index.html" class="text-sky-600 hover:underline">&larr; Back to Index</a>
+        <div class="flex items-center gap-2">
+            <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white shadow-sm print:hidden">
+                <button id="lang-en-btn" onclick="setLang('en')" class="px-4 py-1.5 text-sm font-semibold transition-colors hover:bg-slate-100">EN</button>
+                <button id="lang-pt-btn" onclick="setLang('pt')" class="px-4 py-1.5 text-sm font-semibold transition-colors hover:bg-slate-100">PT</button>
+            </div>
+            <a href="../heaven-and-earth-teacher-notes.pdf#page=41" target="_blank" class="flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg transition-colors border border-slate-300 shadow-sm print:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                PDF (EN)
+            </a>
+            <button onclick="window.print()" class="flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg transition-colors border border-slate-300 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                Print
+            </button>
+        </div>
+    </div>
+    <div class="min-h-screen p-8 lg:px-16">
+        <div id="sessao-14" class="max-w-4xl mx-auto">
+            <div class="lang-en">
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-8 border-b pb-4">Session 14: Repeated Words in Genesis 1</h1>
+<h2 class="text-2xl font-bold text-slate-800 mb-3">Key Takeaways</h2>
+<li>Repeated words are a common literary device that authors use to structure their text and communicate their message.</li>
+<li>Pay attention to which words are repeated, how many times they are repeated, and where they occur.</li>
+</ul>
+<h2 class="text-3xl font-bold text-slate-800 mt-10 mb-4 print:mt-0">Repeated Words in Genesis 1
+What are some of the patterns of repetition that struck you as significant or meaningful as you were reading
+Genesis 1? What questions did the repetition raise for you?
+The days of creation use similar vocabulary, and this is intentional. As we read, we are meant to compare the days in our minds. Take a look at the similarities between days one and four below.
+The Relationship Between Days One and Four
+A
+3 And God said, &quot; Let there be light &quot;; and there was light.
+4 God saw that the light was good ; and God separated the light from the darkness .
+5 And God called the light day , and the darkness he called night .
+And there was evening
+and there was morning, one day  (יום אחד) .
+14 And God said, &quot; Let there be lights in the expanse of the skies to separate the day from the night , and let them be for signs
+Day 1: God Orders the Heavens
+Day 4: God Delegates Heavenly Rulers
+Genesis 1-2:3. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Heaven and Earth</h2>
+<p class="text-sm text-slate-500 italic mb-4">(2020).</p>
+<p class="text-lg text-slate-700 leading-relaxed mb-5">On day one, God provides the light of his divine glory that meets the darkness and fits it within the larger divine purpose. God names the darkness and limits its scope by containing it within the cycle of alternating periods of darkness and light.
+When the parallel vocabulary of days one and four are compared, we see God return his attention to the heavenly realm as he fills it with inhabitants, namely, the “lamps.” Notice how God delegates to the lights the same role that God himself played on day one: the role of separating light and dark. This explains why these lights are called “signs” (אתת). They are physical symbols of God’s own light, glory, and power that met the darkness on day one.
+The Relationship Between Days Two and Five
+A
+and for festivals and for days and years; 15 and let them be for lights in the dome of the skies to give light on the land”; and it was so.
+16 And God made the two great lights , the great light to rule the day , and the small light to rule the night ; and also the stars.
+17 And God placed them in the dome of the skies to give light on the land, 18 and to rule the day and the night , and to separate the light from the darkness ; and God saw that it was good .
+19 And there was evening and there was morning, a fourth day .
+6 And God said, “Let there be a dome in the middle of the waters, and let it separate the waters from the waters.&quot;
+7 And God made the dome ,
+Day 2: God Commands the Chaos Waters To Be Split
+Genesis 1-2:3. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Heaven and Earth</p>
+<p class="text-sm text-slate-500 italic mb-4">(2020).</p>
+<p class="text-lg text-slate-700 leading-relaxed mb-5">On day two, God orders the middle realm that will exist between the skies above and the land below. It begins with the unordered chaos waters of Genesis 1:2, which God separates. He creates a meaningful distinction between the two that will serve his purposes.
+The border between the waters above and the waters below is called a &quot;dome&quot; (Heb. raqia&#x27; / רקיע). This creates a horizon line, as it were, between the waters above and the waters below. Only the waters above receive a name (i.e., “skies”). The waters below will receive a name on the following day.
+B
+and separated the waters which were below the dome from the waters which were above the dome ; and it was so.
+8 God called the dome skies .
+And there was evening
+and there was morning, a second day .
+B
+A
+20 And God said, “Let the waters swarm with swarms of living creatures, and let birds fly above the land against the face of the dome of the skies .&quot;
+B
+21 And God created the great sea monsters and every living creature that moves, with which the waters swarmed after their kind, and every bird of wing after its kind; and God saw that it was good .
+A&#x27;
+22 And God blessed them, saying, “Be fruitful and multiply, and fill the waters in the seas, and let birds multiply on the land.” 23 And there was evening and there was morning, a fifth day .
+Day 5: God Apportions the Waters Above and Below
+On day five, God fills the waters above and waters below with inhabitants, addressing them in the same order as on day two. The waters below swarm with sea creatures and monsters, while birds inhabit the realm above the land against the surface of the sky-dome.
+The extra element on day five is God’s blessing on the living creatures, summoning them to be fruitful and to multiply. Unlike the lights and stars of day four, these inhabitants are called by God to actively experience the divine blessing of life and abundance. Their existence is not a given; it is contingent upon the divine blessing.
+The Relationship Between Days Three and Six
+A&#x27;
+9 And God said, “ Let the waters below the skies be gathered into one place  (מקום אחד) , and let the dry ground be seen&quot;; and it was so.
+10 And God called the dry ground land, and the gathering of the waters he called seas.
+God saw that it was good. .
+11 And God said, “Let the land sprout vegetation, vegetative plants that produce seed , fruit trees that make fruit according to its kind which has its seed inside it upon the land &quot;; and it was so.
+12 And the land brought out vegetative plants that produce seed according to its kind, and trees that make fruit which has its seed in it, according to its kind; and God saw that it was good .
+13 And there was evening and there was morning, a third day .
+Day 3: God Orders the Land
+Day 6: God Delegates Earthly Rulers
+A&#x27;
+24 And God said, “ Let the land bring out living creatures according to their kind, cattle and creeping things and beasts of the land according to their kind”; and it was so.
+25 And God made the beasts of the land according to their kind, and the cattle according to their kind, and the creepers of the ground according to its kind; and God saw that it was good.
+26 And God said, &quot;Let us make human in our image, according to our likeness; and let them rule over the fish of the sea and over the birds of the sky and over the cattle and over all the land and over every creeper that creeps on the land .&quot;
+27 And God created human in his image, in the image of God he created him ; male and female he created them .
+28 And God blessed them , &quot;Be fruitful and multiply, and fill the land, and subdue it; and rule over the fish of the sea and over the birds of the sky and over every living creature that creeps on the land .&quot;
+29 And God said, Genesis 1-2:3. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Heaven and Earth</p>
+<p class="text-sm text-slate-500 italic mb-4">(2020).</p>
+<p class="text-lg text-slate-700 leading-relaxed mb-5">Day three shifts from day two’s focus on the middle realm and the waters above and below, and it shows God creating one last environment—the land that emerges out of the water.
+Day three also has a bonus act, which serves as a “+1” unit for the first triad of days. This +1 element in 1:11-13 focuses on the fruitfulness of vegetation and fruit trees that spread their seed throughout the land.
+Day six displays a remarkable parallel design to day three. God concentrates on the land by creating its inhabitants (both plants and animals “come out” of the ground in 1:12 and 1:24). He focuses first on the animals of the land and then moves to humanity, who will reign as the divine image on the land.
+Day six also has a final +1 element in 1:29-30, which takes up precisely the +1 element of day three—the vegetative plants and the fruit trees with seed are assigned for food for the animals and humans.
+These matching relationships are clearly intentional. They create what is called a “forward symmetry” (ABC // A’B’C’).
+However, this forward symmetry is not the only literary design feature of Genesis 1. Each part of the triad also has its own internal shape, which leads the reader to compare matching elements in the first and last elements of the triad. This design highlights features that match between the first and last parts of each triad, as well as the matching halves of the middle part.
+“Behold, I have given to you every plant producing seed that is on the surface of all the earth, and every tree which has fruit producing seed ; it shall be food for you; 30 and to every beast of the land and to every bird of the sky and to every thing that moves on the land which has animal life in it, every green plant for food”; and it was so.
+31 And God saw all that he had made, and behold, it was very good.
+And there was evening
+and there was morning, a sixth day .</p>
+<h2 class="text-2xl font-bold text-slate-800 mb-3 mt-8">Reflection Question</h2>
+<p class="text-lg text-slate-700 leading-relaxed mb-5">Days one and four of creation have many similarities in vocabulary, signaling that we are meant to compare them in our minds as we read. What meaning results when we compare them?</p>
+            </div>
+            <div class="lang-pt">
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-8 border-b pb-4">Sessão 14: Palavras Repetidas em Gênesis 1</h1>
+<h2 class="text-2xl font-bold text-slate-800 mb-3">Principais Lições</h2>
+<li>Palavras repetidas são um recurso literário comum que os autores usam para estruturar seu texto e comunicar sua mensagem.</li>
+<li>Preste atenção a quais palavras são repetidas, quantas vezes são repetidas, e onde ocorrem.</li>
+</ul>
+<h2 class="text-3xl font-bold text-slate-800 mt-10 mb-4 print:mt-0">Repeated Words in Genesis 1
+Quais são alguns dos padrões de repetição que lhe chamaram a atenção como significativos ou com sentido?
+Um Recurso Literário
+Autores antigos, incluindo os de Gênesis 1, usavam a repetição de palavras-chave para dar estrutura e ênfase. Palavras como &quot;Deus&quot;, &quot;disse&quot;, &quot;fosse&quot;, &quot;boa&quot;, e &quot;separou&quot; aparecem repetidamente ao longo dos seis dias.
+Prestar Atenção à Repetição
+Quando lemos Gênesis 1, notar quais palavras são repetidas, com que frequência, e em que posições nos ajuda a ver a intenção do autor. A repetição cria ritmo e destaca temas centrais, como a bondade de Deus e a ordem da criação.</h2>
+<h2 class="text-2xl font-bold text-slate-800 mb-3 mt-8">Pergunta de Reflexão</h2>
+<p class="text-lg text-slate-700 leading-relaxed mb-5">Quais palavras ou frases em Gênesis 1 você notou sendo repetidas, e o que isso parece enfatizar?</p>
+            </div>
+            <h2 class="text-2xl font-bold text-slate-800 mt-12 mb-4 border-t pt-6">Original PDF Pages</h2>
+            <figure class="mb-8 border rounded-xl overflow-hidden shadow-sm">
+              <img src="../pdf-images/page_40.png" alt="PDF page 41" class="w-full h-auto" />
+            </figure>
+            <figure class="mb-8 border rounded-xl overflow-hidden shadow-sm">
+              <img src="../pdf-images/page_41.png" alt="PDF page 42" class="w-full h-auto" />
+            </figure>
+            <figure class="mb-8 border rounded-xl overflow-hidden shadow-sm">
+              <img src="../pdf-images/page_42.png" alt="PDF page 43" class="w-full h-auto" />
+            </figure>
+            <figure class="mb-8 border rounded-xl overflow-hidden shadow-sm">
+              <img src="../pdf-images/page_43.png" alt="PDF page 44" class="w-full h-auto" />
+            </figure>
+            <figure class="mb-8 border rounded-xl overflow-hidden shadow-sm">
+              <img src="../pdf-images/page_44.png" alt="PDF page 45" class="w-full h-auto" />
+            </figure>
+            <figure class="mb-8 border rounded-xl overflow-hidden shadow-sm">
+              <img src="../pdf-images/page_45.png" alt="PDF page 46" class="w-full h-auto" />
+            </figure>
+            <figure class="mb-8 border rounded-xl overflow-hidden shadow-sm">
+              <img src="../pdf-images/page_46.png" alt="PDF page 47" class="w-full h-auto" />
+            </figure>
+        </div>
+    </div>
+    <script>
+        function setLang(l){
+            const body=document.body;
+            if(l==='pt'){ body.classList.add('lang-toggle-pt'); document.getElementById('lang-pt-btn').classList.add('bg-sky-600','text-white'); document.getElementById('lang-en-btn').classList.remove('bg-sky-600','text-white'); }
+            else { body.classList.remove('lang-toggle-pt'); document.getElementById('lang-en-btn').classList.add('bg-sky-600','text-white'); document.getElementById('lang-pt-btn').classList.remove('bg-sky-600','text-white'); }
+        }
+        setLang(localStorage.getItem('bp_lang')||'en');
+    </script>
+</body>
+</html>
