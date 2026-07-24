@@ -9,661 +9,1112 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  /* Canonical style system per jacob.html (BibleProject Classroom) */
-  *, body, h1, h2, h3, p, li, span, a, div, ul, td, th, sup, em, strong{
-    font-family:'Inter',system-ui,-apple-system,sans-serif !important;
+  *, body, h1, h2, h3, p, li, span, a, div, ul, td, th, sup, em, strong {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
   }
-  body{font-size:15px;line-height:1.5;color:#374151;-webkit-font-smoothing:antialiased;}
+  body {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #374151;
+    -webkit-font-smoothing: antialiased;
+  }
+  @media print {
+    @page { size: A4; margin: 1.4cm; }
+    body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .print\:hidden { display: none !important; }
+  }
 
-  @media print{ @page{size:A4;margin:1.4cm} body{print-color-adjust:exact;-webkit-print-color-adjust:exact}
-    .print\:hidden{display:none!important} .shadow,.shadow-sm{box-shadow:none!important} }
-  /* ---- Highlight chips: MEASURED Abraham PDF palette (pixel-sampled) ----
-     TWO REGISTERS: light tints (overview p104-105) + dense (detailed p107-109) ---- */
-  .hl{display:inline;padding:.06rem .35rem;border-radius:.3rem;font-weight:400;line-height:inherit;white-space:nowrap;}
-  .hl-seed{background:#D3F2CD;color:#2B6146}      /* covenant / seed (light) */
-  .hl-sign{background:#EFE8DB;color:#7a5a1e}      /* circumcision / name change (beige) */
-  .hl-mult{background:#F7E0F5;color:#9855B5}      /* multiplication / fruitful (pink) */
-  .hl-action{background:#E4E8ED;color:#3E4054}    /* narrative action */
-  .hl-divine{background:#5869CD;color:#fff}       /* direct divine speech (blue) */
-  .hl-green{background:#D3F2CD;color:#2B6146}     /* covenant (light, overview alias) */
-  .hl-teal{background:#087C8D;color:#fff}         /* walk / blameless / as-for-you (dense) */
-  .hl-grey{background:#E4E8ED;color:#3E4054}      /* name change / neutral (light grey) */
-  .hl-purple{background:#7E62BC;color:#fff}       /* multiply / laugh (dense) */
-  .hl-red{background:#F6DFE4;color:#9b3a52}       /* cut off / circumcise emphasis (light red) */
-  .hl-blue{background:#5869CD;color:#fff}         /* Elohim-for-you (blue) */
-  .hl-orange{background:#B5543A;color:#fff}       /* land of sojourning (dense) */
-  .hl-pink{background:#F7E0F5;color:#9855B5}      /* multiplication (pink alias) */
-  .hl-cyan{background:#B9EFF7;color:#1b6b86}      /* kings / peoples (cyan) */
-  .hl-beige{background:#EFE8DB;color:#7a5a1e}     /* name change (beige alias) */
-  .hl-lightgrey{background:#E4E8ED;color:#3E4054} /* light grey alias */
-  /* DENSE overrides inside the detailed translation section (p107-109) */
-  .detailed .hl-green{background:#3A8060;color:#fff}
-  .detailed .hl-teal{background:#087C8D;color:#fff}
-  .detailed .hl-grey{background:#E4E8ED;color:#3E4054}
-  .detailed .hl-purple{background:#7E62BC;color:#fff}
-  .detailed .hl-red{background:#BD4867;color:#fff}
-  .detailed .hl-blue{background:#5869CD;color:#fff}
-  .detailed .hl-orange{background:#B5543A;color:#fff}
-  .detailed .hl-divine{background:#5869CD;color:#fff}
-  .detailed .hl-seed{background:#3A8060;color:#fff}
-  .detailed .hl-mult{background:#7E62BC;color:#fff}
-  .detailed .hl-cyan{background:#B9EFF7;color:#1b6b86}
+  /* ---- Highlight Chips (Structural Overview) ---- */
+  .hl-green-box { background-color: #e4eedb; color: #3e7235; padding: 2px 6px; border-radius: 4px; font-weight: 700; }
+  .hl-beige-box { background-color: #f2ead8; color: #8e6d3a; padding: 2px 6px; border-radius: 4px; font-weight: 700; }
+  .hl-purple-box { background-color: #f0e2f4; color: #8a3e9c; padding: 2px 6px; border-radius: 4px; font-weight: 700; }
+  .hl-purple-txt { color: #8a3e9c; font-weight: 700; }
+  .hl-grey-box { background-color: #e4e9f0; color: #4f596b; padding: 2px 6px; border-radius: 4px; font-weight: 700; }
+  .hl-blue-box { background-color: #4d61c5; color: #ffffff; padding: 2px 6px; border-radius: 4px; font-weight: 700; }
+  .hl-cyan-box { background-color: #d4f2f4; color: #0f7a85; padding: 2px 6px; border-radius: 4px; font-weight: 700; }
+  .hl-seed-box { background-color: #d2f2cd; color: #26623e; padding: 2px 6px; border-radius: 4px; font-weight: 700; }
 
-  /* ---- Speech / literary-design boxes: WHITE fill + colored border (measured) ---- */
-  .sp-red{border:1.5px solid #BE4967;border-radius:8px;padding:18px 20px;margin-bottom:14px;background:#fff;color:#374151;}
-  .sp-grey{border:1.5px solid #6B7384;border-radius:8px;padding:18px 20px;margin-bottom:14px;background:#fff;color:#374151;}
-  .sp-light{border:1.5px solid #E4E8ED;border-radius:8px;padding:18px 20px;margin-bottom:14px;background:#fff;color:#374151;}
-  .sp-dark{border:1.5px solid #3E4054;border-radius:8px;padding:22px 24px;margin-bottom:26px;background:#3E4054;color:#fff;}
-  .sp-lightgrey{border:1px solid #E4E8ED;border-radius:8px;padding:22px 24px;margin-bottom:26px;background:#fff;color:#374151;}
-  /* detailed-section discs: white + light #E4E8ED border (matches PDF p107-109) */
-  .detailed .sp-grey{border-color:#E4E8ED !important;}
-  .detailed .sp-light{border-color:#E4E8ED !important;}
-  .detailed .sp-red{border-color:#BE4967 !important;}
-  /* Page-101 scripture blocks: plain blockquote, thin grey left rule, no card */
-  .sp-plain{border-left:3px solid #cbd5e1;padding:6px 0 6px 18px;margin-bottom:20px;}
-  .it-label{color:#9ca3af;font-style:italic;font-size:.92rem;margin-bottom:6px;}
+  /* ---- Detailed Translation Highlights (Exact Palette) ---- */
+  .bg-hi-green { background-color: #3c7d5c; color: white; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+  .txt-hi-green { color: #3c7d5c; font-weight: 600; }
+  
+  .bg-hi-purple { background-color: #8865c3; color: white; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+  .txt-hi-purple { color: #8865c3; font-weight: 600; }
+  
+  .bg-hi-teal { background-color: #288b97; color: white; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+  .txt-hi-teal { color: #288b97; font-weight: 600; }
+  
+  .bg-hi-grey { background-color: #6c7484; color: white; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+  
+  .bg-hi-red { background-color: #c84869; color: white; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+  .txt-hi-red { color: #c84869; font-weight: 600; }
+  
+  .bg-hi-blue { background-color: #3d60ae; color: white; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+  
+  .bg-hi-orange { background-color: #c85638; color: white; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+  .txt-hi-orange { color: #c85638; font-weight: 600; }
+  
+  .txt-hi-olive { color: #80632a; font-weight: 600; }
 
-  /* ---- Reference badge INSIDE box: SOLID filled, matches box border color ---- */
-  .ref-pill{display:inline-block;padding:3px 12px;border-radius:999px;font-weight:700;font-size:.8rem;margin-bottom:12px;}
-  .ref-grey{display:inline-block;background:#6B7384;color:#fff;font-weight:700;font-size:.82rem;padding:3px 10px;border-radius:4px;margin-bottom:7px;}
-  .ref-red{display:inline-block;background:#BE4967;color:#fff;font-weight:700;font-size:.82rem;padding:3px 10px;border-radius:4px;margin-bottom:7px;}
-  .ref-dark{display:inline-block;background:#E4E8ED;color:#3E4054;font-weight:700;font-size:.82rem;padding:3px 10px;border-radius:4px;margin-bottom:7px;}
+  /* Additional colors for Genesis 9 block */
+  .bg-gen9-badge { background-color: #8b8476; color: white; }
+  .bg-gen9-orange { background-color: #fbe5cd; color: #c85638; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+  .bg-gen9-cyan { background-color: #bce3e6; color: #16646b; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+  .bg-gen9-pink { background-color: #f4d3e0; color: #a13251; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+  .bg-gen9-blue { background-color: #3a7ca5; color: white; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
 
-  /* ---- Replay badges (4 colors, measured) ---- */
-  .badge-col1{background:#E4E8ED;color:#333}
-  .badge-col2{background:#6B7384;color:#fff}
-  .badge-col3{background:#816F4D;color:#fff}
-  .badge-col4{background:#D9EBFC;color:#1e40af}
-  .badge{display:inline-block;padding:3px 10px;border-radius:4px;font-weight:700;font-size:.82rem;line-height:1.2;}
-  /* ---- Misc ---- */
-  .verse-link{color:inherit;cursor:pointer;}
-  .heb{font-family:'Ezra SIL','SBL Hebrew',serif;direction:rtl;unicode-bidi:embed;font-weight:400;}
-  .sq{list-style:none;padding-left:1.1rem;}
-  .sq li{position:relative;margin-bottom:.35rem;}
-  .sq li::before{content:"";position:absolute;left:-1.05rem;top:.55rem;width:5px;height:5px;background:#374151;}
-  .pl{display:block;padding-left:.5rem;margin-bottom:.1rem;}
-  .en-glosa{font-size:.82rem;font-style:italic;color:#94a3b8;font-weight:400;}
-  .macro-box{border:2px solid #E3E7EC;border-radius:8px;padding:14px 16px;margin-bottom:10px;font-size:14px;line-height:1.4;white-space:nowrap;background:#fff;color:#374151;}
-  .vlet{font-weight:700;color:#444;margin-right:.1rem;}
-  .vlet::after{content:" - ";font-weight:400;}
-  .vnum{font-size:.7rem;vertical-align:super;font-weight:600;color:#6b7280;margin-right:.15rem;}
-  .mbadge-blue{background:#5869CD;color:#fff;font-weight:700;font-size:.82rem;padding:3px 10px;border-radius:4px;}
-  .mbadge-grey{background:#6B7384;color:#fff;font-weight:700;font-size:.82rem;padding:3px 10px;border-radius:4px;}
+  /* ---- Custom Box Styles ---- */
+  .box-macro { border: 2px solid #94a3b8; border-radius: 10px; padding: 16px; margin-bottom: 12px; background: #fff; }
+  
+  .box-s1 { border: 2px solid #cc5274; border-radius: 12px; padding: 20px; margin-bottom: 24px; position: relative; background: #fff;}
+  .badge-s1 { background-color: #cc5274; color: white; }
+  
+  .box-s2 { border: 2px solid #7a8599; border-radius: 12px; padding: 20px; margin-bottom: 24px; position: relative; background: #fff;}
+  .badge-s2 { background-color: #7a8599; color: white; }
+  
+  .box-s3 { border: 2px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 24px; position: relative; background: #fff;}
+  .badge-s3 { background-color: #e2e8f0; color: #475569; }
+
+  /* Scripture blocks */
+  .sp-plain { border-left: 3px solid #cbd5e1; padding: 4px 0 4px 18px; margin-bottom: 20px; }
+  .it-label { color: #64748b; font-weight: 700; font-size: .95rem; margin-bottom: 4px; }
+  .it-label span { font-weight: 400; color: #94a3b8; }
+
+  /* Replay Grid Badges */
+  .badge-col1 { background: #f1f5f9; color: #334155; font-weight: 700; padding: 4px 8px; border-radius: 6px; }
+  .badge-col2 { background: #e2e8f0; color: #334155; font-weight: 700; padding: 4px 8px; border-radius: 6px; }
+  .badge-col3 { background: #fef3c7; color: #92400e; font-weight: 700; padding: 4px 8px; border-radius: 6px; }
+  .badge-col4 { background: #dbeafe; color: #1e40af; font-weight: 700; padding: 4px 8px; border-radius: 6px; }
+
+  .heb { font-family: 'Ezra SIL','SBL Hebrew',serif; direction: rtl; unicode-bidi: embed; font-weight: 400; font-size: 1.15rem; }
+  .sq { list-style: none; padding-left: 1.2rem; }
+  .sq li { position: relative; margin-bottom: .4rem; }
+  .sq li::before { content: "•"; position: absolute; left: -1.2rem; top: 0px; color: #475569; font-weight: bold; }
+  .vnum { font-size: .75rem; vertical-align: super; font-weight: 600; color: #9ca3af; margin-right: .25rem; }
 </style>
 </head>
 <body class="bg-white">
-<div class="print:hidden p-4 flex items-center justify-between">
-  <a href="index.html" class="text-slate-600 hover:underline text-sm">← Back to Index</a>
-  <button onclick="window.print()" class="inline-flex items-center gap-1 text-sm border border-slate-300 rounded px-3 py-1 hover:bg-slate-50">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-4a2 2 0 012-2h16a2 2 0 012 2v4a2 2 0 01-2 2h-2M6 14h12v8H6z"/></svg>
-    Print</button>
-</div>
-<div class="min-h-screen px-4 py-6 lg:px-8">
-  <div class="max-w-4xl mx-auto">
-    <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-2 border-b border-slate-200 pb-4">Session 15: The Covenant of Circumcision</h1>
 
-    <h2 class="text-2xl font-bold text-slate-800 mt-8 mb-3">Key Takeaways</h2>
-    <ul class="sq text-[15px] leading-relaxed text-slate-700 mb-8">
-      <li>Hagar plays out an an inverted prelude to the exodus. As an Egyptian slave fleeing oppression at the hands of Avram and Sarai, she meets God's mercy and blessing in the wilderness.</li>
-      <li>Both Hagar and Avram face a de-creation and re-creation moment in this narrative—Hagar in the wilderness and blessing, and Avram in circumcision and a new name.</li>
-      <li>The covenant of circumcision reflects the language of God's covenant with Noah in Genesis 9. It is a sign of both God's judgment and his grace.</li>
+
+
+
+
+<div class="font-sans text-[#1f2937] leading-relaxed pb-12">
+
+  <!-- PAGE 101 -->
+  <div class="max-w-[850px] mx-auto px-6 lg:px-8 pt-8 pb-4 relative">
+    
+    <!-- Header -->
+    <div class="border-b-[1.5px] border-gray-300 pb-4 mb-8">
+      <h1 class="text-[34px] font-extrabold text-gray-900 leading-tight">Session 15: The Covenant of Circumcision</h1>
+    </div>
+
+    <!-- Key Takeaways -->
+    <h2 class="text-[22px] font-bold text-gray-900 mb-5">Key Takeaways</h2>
+    <ul class="list-disc pl-[22px] space-y-2.5 mb-10 text-[15.5px] marker:text-gray-800">
+      <li>Hagar plays out an an inverted prelude to the exodus. As an Egyptian slave fleeing oppression at the hands of Avram and Sarai, she meets God’s mercy and blessing in the wilderness.</li>
+      <li>Both Hagar and Avram face a de-creation and re-creation moment in this narrative—Hagar in wilderness and blessing, and Avram in circumcision and a new name.</li>
+      <li>The covenant of circumcision reflects the language of God’s covenant with Noah in Genesis 9. It is a sign both of God’s judgment and his grace.</li>
     </ul>
-    <!-- ===================== PAGE 101 ===================== -->
-    <h2 class="text-2xl font-bold text-slate-800 mt-10 mb-3">Yahweh Hears the Cry</h2>
-    <p class="text-[15px] leading-relaxed text-slate-700 mb-4">The story of Yahweh hearing the cry of the oppressed and intervening to deliver and judge violent evil is an important template at work in Genesis 16. The hyperlinks to Genesis 4 and 6 portray Hagar among the righteous sufferers whose outcry reaches up to God.</p>
-    <p class="text-[15px] leading-relaxed text-slate-700 mb-4">At the spring <span class="heb">עין</span>, Yahweh hears of the oppression <span class="heb">עני</span> of Hagar, and sends his messenger to deliver the righteous (Gen. 16:7, 11).</p>
 
-    <div class="sp-plain">
-      <p class="it-label"><a href="#" class="verse-link" data-reference="Genesis 4:10">Genesis 4:10</a> Instructor's Translation</p>
-      <p class="text-[15px] leading-relaxed text-slate-700">... What have you done? The voice of the shed-blood of your brother is crying out (<span class="heb">צעק</span>) to me from the ground.</p>
+    <!-- Section: Yahweh Hears the Cry (1) -->
+    <h2 class="text-[22px] font-bold text-gray-900 mb-5">Yahweh Hears the Cry</h2>
+    <p class="text-[15.5px] mb-5">The story of Yahweh hearing the cry of the oppressed and intervening to deliver and judge violent evil is an important template at work in Genesis 16. The hyperlinks to Genesis 4 and 6 portray Hagar among the righteous sufferers whose outcry reaches up to God.</p>
+    
+    <p class="text-[15.5px] mb-6">At the spring (<span class="font-serif text-[18px]" dir="rtl">עין</span>), Yahweh hears of the oppression (<span class="font-serif text-[18px]" dir="rtl">עני</span>) of Hagar, and sends his messenger to deliver the righteous (<a href="#" class="underline underline-offset-2 decoration-gray-500 hover:text-gray-600">Gen. 16:7, 11</a>).</p>
+
+    <!-- Translation Blocks -->
+    <div class="border-l-[3px] border-[#cbd5e1] pl-4 mb-5">
+      <div class="mb-1.5 flex items-baseline gap-2">
+        <span class="font-bold text-black text-[15px]">Genesis 4:10</span>
+        <span class="font-bold text-[#64748b] text-[13.5px]">Instructor’s Translation</span>
+      </div>
+      <p class="text-[15.5px]">... What have you done? The voice of the shed-blood of your brother is crying out (<span class="font-serif text-[18px]" dir="rtl">צעק</span>) to me from the ground.</p>
     </div>
-    <div class="sp-plain">
-      <p class="it-label"><a href="#" class="verse-link" data-reference="Genesis 6:13">Genesis 6:13</a> Instructor's Translation</p>
-      <p class="text-[15px] leading-relaxed text-slate-700">An end of all flesh has come (<span class="heb">קץ … בא</span>) up before me ...</p>
+
+    <div class="border-l-[3px] border-[#cbd5e1] pl-4 mb-5">
+      <div class="mb-1.5 flex items-baseline gap-2">
+        <span class="font-bold text-black text-[15px]">Genesis 6:13</span>
+        <span class="font-bold text-[#64748b] text-[13.5px]">Instructor’s Translation</span>
+      </div>
+      <p class="text-[15.5px]">An end of all flesh has come (<span class="font-serif text-[18px]" dir="rtl">קץ … בא</span>) up before me ...</p>
     </div>
-    <div class="sp-plain">
-      <p class="it-label"><a href="#" class="verse-link" data-reference="Genesis 18:20-21">Genesis 18:20-21</a> Instructor's Translation</p>
-      <p class="text-[15px] leading-relaxed text-slate-700">The outcry (<span class="heb">זעקה</span>) against Sodom and Gomorrah is great ... the outcry (<span class="heb">צעקה</span>) has come up (<span class="heb">באה</span>) before me.</p>
+
+    <div class="border-l-[3px] border-[#cbd5e1] pl-4 mb-6">
+      <div class="mb-1.5 flex items-baseline gap-2">
+        <span class="font-bold text-black text-[15px]">Genesis 18:20-21</span>
+        <span class="font-bold text-[#64748b] text-[13.5px]">Instructor’s Translation</span>
+      </div>
+      <p class="text-[15.5px]">The outcry (<span class="font-serif text-[18px]" dir="rtl">זעקה</span>) against Sodom and Gomorrah is great ... the outcry (<span class="font-serif text-[18px]" dir="rtl">צעקה</span>) has come up (<span class="font-serif text-[18px]" dir="rtl">באה</span>) before me.</p>
     </div>
-    <p class="text-[15px] leading-relaxed text-slate-700 mb-4">And in <a href="#" class="verse-link" data-reference="Genesis 19:1">Genesis 19:1</a>, Yahweh sends his messengers to deliver the righteous.</p>
-    <p class="text-[15px] leading-relaxed text-slate-700 mb-4">This theme of the cry of the oppressed going up to God is at work in this story too. Avraham and Sarai are portrayed as doing "violence" and "oppression" to their Egyptian slave. In each case of this design pattern, Yahweh decrees some kind of judgment against human evil.</p>
-    <h2 class="text-2xl font-bold text-slate-800 mt-10 mb-3">Yahweh Hears the Cry</h2>
-    <p class="text-[15px] leading-relaxed text-slate-700 mb-4">This story is remarkable because it follows the first mention of Israel's future Egyptian slavery in Genesis. The wordplay links are significant.</p>
-    <!-- ===================== PAGE 102 ===================== -->
-    <div class="sp-plain">
-      <p class="it-label"><a href="#" class="verse-link" data-reference="Genesis 15:13-14">Genesis 15:13-14</a> Instructor's Translation</p>
-      <p class="text-[15px] leading-relaxed text-slate-700"><sup>13</sup> Know for certain that your seed will be immigrants (Heb. <em>ger</em> / <span class="heb">גר</span>) in a land that is not theirs, and they will be enslaved to them, and they will oppress (Heb. 'anah / <span class="heb">ענה</span>) them four hundred years. <sup>14</sup> But also that I myself will judge the nation whom to which they are slaves, and afterward they will come out with many possessions.</p>
+
+    <p class="text-[15.5px] mb-5">And in <a href="#" class="underline underline-offset-2 decoration-gray-500 hover:text-gray-600">Genesis 19:1</a>, Yahweh sends his messengers to deliver the righteous.</p>
+    
+    <p class="text-[15.5px] mb-10">This theme of the outcry of the oppressed rising up to God is at work in this story as well. Avraham and Sarai are portrayed as “doing violence” and “oppression” to their Egyptian slave. In each case of this design pattern, Yahweh enacts some kind of judgment against human evil.</p>
+
+    <!-- Section: Yahweh Hears the Cry (2) -->
+    <h2 class="text-[22px] font-bold text-gray-900 mb-5">Yahweh Hears the Cry</h2>
+    <p class="text-[15.5px] mb-20">This story is remarkable because it follows the first mention of the future Egyptian enslavement of Israel in Genesis. The wordplay linkages are significant.</p>
+
+
+    
+    <!-- Translation Blocks continued -->
+    <div class="border-l-[3px] border-[#cbd5e1] pl-4 mb-5">
+      <div class="mb-1.5 flex items-baseline gap-2">
+        <span class="font-bold text-black text-[15px]">Genesis 15:13-14</span>
+        <span class="font-bold text-[#64748b] text-[13.5px]">Instructor’s Translation</span>
+      </div>
+      <p class="text-[15.5px]"><sup>13</sup> Know for certain that your seed will be <strong>immigrants</strong> (Heb. <em>ger</em> / <span class="font-serif text-[18px]" dir="rtl">גר</span>) in a land that is not theirs, and they will be enslaved to them, and they will <strong>oppress</strong> (Heb. <em>‘anah</em> / <span class="font-serif text-[18px]" dir="rtl">ענה</span>) them four hundred years. <sup>14</sup> But also that I myself will judge the nation whom to which they are slaves, and afterward they will come out with many possessions.</p>
     </div>
-    <div class="sp-plain">
-      <p class="it-label"><a href="#" class="verse-link" data-reference="Genesis 16:1,6">Genesis 16:1, 6</a> Instructor's Translation</p>
-      <p class="text-[15px] leading-relaxed text-slate-700"><sup>1</sup> Now, Sarai ... had a slave-girl ... named Hagar (Heb. <em>ha-gar</em> / <span class="heb">הגר</span> = "The Immigrant")</p>
-      <p class="text-[15px] leading-relaxed text-slate-700"><sup>6</sup> And Sarai oppressed (Heb. 'anah / <span class="heb">ענה</span>) her, and she fled.</p>
+
+    <div class="border-l-[3px] border-[#cbd5e1] pl-4 mb-5">
+      <div class="mb-1.5 flex items-baseline gap-2">
+        <span class="font-bold text-black text-[15px]">Genesis 16:1, 6</span>
+        <span class="font-bold text-[#64748b] text-[13.5px]">Instructor’s Translation</span>
+      </div>
+      <p class="text-[15.5px] mb-2.5"><sup>1</sup> Now, Sarai ... had a slave-girl ... named <strong>Hagar</strong> (Heb. <em>ha-gar</em> / <span class="font-serif text-[18px]" dir="rtl">הגר</span> = “The Immigrant”)</p>
+      <p class="text-[15.5px]"><sup>6</sup> And Sarai <strong>oppressed</strong> (Heb. <em>‘anah</em> / <span class="font-serif text-[18px]" dir="rtl">ענה</span>) her, and she fled.</p>
     </div>
-    <div class="sp-plain">
-      <p class="it-label"><a href="#" class="verse-link" data-reference="Exodus 1:11">Exodus 1:11</a> Instructor's Translation</p>
-      <p class="text-[15px] leading-relaxed text-slate-700">And [the Egyptians] set over [the Israelites] captains of slave-labor, in order to oppress (<span class="heb">ענה</span>) them.</p>
+
+    <div class="border-l-[3px] border-[#cbd5e1] pl-4 mb-8">
+      <div class="mb-1.5 flex items-baseline gap-2">
+        <span class="font-bold text-black text-[15px]">Exodus 1:11</span>
+        <span class="font-bold text-[#64748b] text-[13.5px]">Instructor’s Translation</span>
+      </div>
+      <p class="text-[15.5px]">And [the Egyptians] set over [the Israelites] captains of slave-labor, in order to <strong>oppress</strong> (<span class="font-serif text-[18px]" dir="rtl">ענה</span>) them.</p>
     </div>
-    <p class="text-[15px] leading-relaxed text-slate-700 mb-4">Long before the Egyptians deceived the Israelites and oppressed them, Avraham deceived Pharaoh and Sarai oppressed an Egyptian. The fact that this story precedes the exodus story means that the Egyptian slavery of Avraham's descendants becomes a tragically ironic reversal: Egypt does to Israel what Israel first did to Egypt.</p>
-    <p class="text-[15px] leading-relaxed text-slate-700 mb-4">There is some connection here to the laws about the treatment of immigrants in the covenant code, and the relationship to the Cain story (see Exod. 22:21-23).</p>
-    <div class="sp-plain">
-      <p class="it-label"><a href="#" class="verse-link" data-reference="Exodus 22:21-23">Exodus 22:21-23</a> Instructor's Translation</p>
-      <p class="text-[15px] leading-relaxed text-slate-700"><sup>21</sup> You shall not wrong an immigrant (<span class="heb">גר</span>) or oppress him, for you were immigrants in the land of Egypt. <sup>22</sup> You shall not oppress (<span class="heb">ענה</span>) any widow or orphan. <sup>23</sup> If you intensely oppress (<span class="heb">ענה תענה</span>) him, and if he does cry out (<span class="heb">צעק</span>) to me, I will surely hear his outcry (<span class="heb">צעקה</span>); <sup>24</sup> and my anger will be hot (<span class="heb">חרה אפי</span>), and I will kill (<span class="heb">הרג</span>) you with the sword, and your wives shall become widows and your children fatherless.</p>
+
+    <p class="text-[15.5px] mb-6">Long before the Egyptians deceived the Israelites and oppressed them, Avraham deceived Pharaoh and Sarai oppressed an Egyptian. The fact that this story precedes the exodus story means that the Egyptian slavery of Avraham’s descendants becomes a tragically ironic reversal: Egypt does to Israel what Israel first did to Egypt.</p>
+
+    <p class="text-[15.5px] mb-6">There is some connection here to the laws about the treatment of immigrants in the covenant code, and the relationship to the Cain story (see <a href="#" class="underline underline-offset-2 decoration-gray-500 hover:text-gray-600">Exod. 22:21-23</a>).</p>
+
+    <div class="border-l-[3px] border-[#cbd5e1] pl-4 mb-6">
+      <div class="mb-1.5 flex items-baseline gap-2">
+        <span class="font-bold text-black text-[15px]">Exodus 22:21-23</span>
+        <span class="font-bold text-[#64748b] text-[13.5px]">Instructor’s Translation</span>
+      </div>
+      <p class="text-[15.5px] leading-relaxed"><sup>21</sup> You shall not wrong an immigrant (<span class="font-serif text-[18px]" dir="rtl">גר</span>) or oppress him, for you were immigrants in the land of Egypt. <sup>22</sup> You shall not oppress (<span class="font-serif text-[18px]" dir="rtl">ענה</span>) any widow or orphan. <sup>23</sup> If you intensely oppress (<span class="font-serif text-[18px]" dir="rtl">ענה תענה</span>) him, and if he does cry out (<span class="font-serif text-[18px]" dir="rtl">צעק</span>) to me, I will surely hear his outcry (<span class="font-serif text-[18px]" dir="rtl">צעקה</span>); <sup>24</sup> and my anger will be hot (<span class="font-serif text-[18px]" dir="rtl">חרה אפי</span>), and I will kill (<span class="font-serif text-[18px]" dir="rtl">הרג</span>) you with the sword, and your wives shall become widows and your children fatherless.</p>
     </div>
-    <p class="text-[15px] leading-relaxed text-slate-700 mb-4">Here are more links to the divided-brothers pattern.</p>
-    <ul class="sq text-[15px] leading-relaxed text-slate-700 mb-4">
-      <li><strong><a href="#" class="verse-link" data-reference="Genesis 16:12">Genesis 16:12</a></strong> "He shall be a wild donkey of a man (<span class="heb">פרא אדם</span>)" which recalls the "divided" (<span class="heb">פרד</span>) motif of Noah's sons in <a href="#" class="verse-link" data-reference="Genesis 10:5,32">Genesis 10:5, 32</a>.</li>
-      <li><strong>Genesis 16:12b</strong> "He shall dwell over against all his kinsmen" is recalled in <a href="#" class="verse-link" data-reference="Genesis 25:18">Genesis 25:18</a>, when Ishmael settles in the east.</li>
+
+    <p class="text-[15.5px] mb-5">Here are more links to the divided brothers pattern.</p>
+    <ul class="list-disc pl-[22px] space-y-2 mb-8 text-[15.5px] marker:text-gray-800">
+      <li><a href="#" class="underline underline-offset-2 decoration-gray-500 hover:text-gray-600">Genesis 16:12</a> "He will be a donkey of a man (<span class="font-serif text-[18px]" dir="rtl">פרא אדם</span>)" which recalls the “divided” (<span class="font-serif text-[18px]" dir="rtl">פרד</span>) motif of Noah’s sons from <a href="#" class="underline underline-offset-2 decoration-gray-500 hover:text-gray-600">Genesis 10:5, 32</a>.</li>
+      <li><a href="#" class="underline underline-offset-2 decoration-gray-500 hover:text-gray-600">Genesis 16:12b</a> “He will dwell against the face of all his brothers” is recalled in <a href="#" class="underline underline-offset-2 decoration-gray-500 hover:text-gray-600">Genesis 25:18</a>, when Yishmael (Ishmael) settles in the east.</li>
     </ul>
-    <p class="text-[15px] leading-relaxed text-slate-700 mb-4">A significant foundation is being laid here for the "righteous non-elect" of the covenant family who dwells in the east. Just like many of the non-elect in Genesis 10, they settle in the east. But now, Hagar and the non-elect are recipients of divine blessing (<a href="#" class="verse-link" data-reference="Genesis 16:10">Gn. 16:10</a> reverses <a href="#" class="verse-link" data-reference="Genesis 3:16">Gn. 3:16</a> and reaffirms <a href="#" class="verse-link" data-reference="Genesis 15:5">Gn. 15:5</a>, but now applied to Ishmael!). And while future conflict between the descendants of Ishmael and the other future sons of Avraham is anticipated, the oracle is not entirely negative. Ishmael is included in Avraham's blessing, however.</p>
-    <!-- ===================== PAGE 103: REPLAY GRID ===================== -->
-    <h2 class="text-2xl font-bold text-slate-800 mt-10 mb-3 text-center">Genesis 15-16 Replays Genesis 2-11 and 12-14</h2>
-    <div class="grid grid-cols-4 text-[13px] border border-slate-300 rounded-2xl overflow-hidden shadow-sm bg-white">
-      <!-- row 1 -->
-      <div class="border-r border-b border-slate-300 p-4">
-        <span class="badge badge-col1"><a href="#" class="verse-link" data-reference="Genesis 2">Genesis 2</a></span>
-        <ul class="sq mt-2 text-slate-600">
-          <li>God's blessing of fruitful seed</li>
-          <li>Garden abundance</li>
-          <li>Sacred space of God's presence by the tree of life on Mt. Eden</li>
-          <li>Deep sleep and the provision of the delivering-help (<span class="heb">עזר</span>)</li>
-        </ul>
-      </div>
-      <div class="border-r border-b border-slate-300 p-4">
-        <span class="badge badge-col2"><a href="#" class="verse-link" data-reference="Genesis 3">Genesis 3</a></span>
-        <ul class="sq mt-2 text-slate-600">
-          <li>Foolish failure at the tree of testing that is "good of sight"</li>
-          <li>She saw... and took and gave</li>
-          <li>Deception and lack of trust in God's word</li>
-          <li>Exile from Eden</li>
-        </ul>
-      </div>
-      <div class="border-r border-b border-slate-300 p-4">
-        <span class="badge badge-col3"><a href="#" class="verse-link" data-reference="Genesis 4-6">Genesis 4-6</a></span>
-        <ul class="sq mt-2 text-slate-600">
-          <li>Brothers with abundance</li>
-          <li>Jealousy and conflict</li>
-          <li>Brothers "separate" through violence</li>
-          <li>Non-chosen brother settles in the east, where violence is simmering, leading to a flood of judgment</li>
-        </ul>
-      </div>
-      <div class="border-b border-slate-300 p-4 flex items-center"><span class="badge badge-col4"><a href="#" class="verse-link" data-reference="Genesis 6-9">Violence, Flood, Remnant, Covenant (Gen. 6-9a)</a></span></div>
-      <!-- row 2 -->
-      <div class="border-r border-b border-slate-300 p-4">
-        <span class="badge badge-col1"><a href="#" class="verse-link" data-reference="Genesis 9:18-20">Genesis 9:18-20</a></span>
-        <ul class="sq mt-2 text-slate-600"><li>Human blessing and abundance in a garden</li></ul>
-      </div>
-      <div class="border-r border-b border-slate-300 p-4">
-        <span class="badge badge-col2"><a href="#" class="verse-link" data-reference="Genesis 9:21-29">Genesis 9:21-29</a></span>
-        <ul class="sq mt-2 text-slate-600">
-          <li>Human folly in the garden</li>
-          <li>Sexual abuse in the tent</li>
-          <li>Family division and curse</li>
-        </ul>
-      </div>
-      <div class="border-r border-b border-slate-300 p-4">
-        <span class="badge badge-col3"><a href="#" class="verse-link" data-reference="Genesis 10:1-32">Genesis 10:1-32</a></span>
-        <ul class="sq mt-2 text-slate-600">
-          <li>Family, brothers divide and separate</li>
-          <li>Building of Babylon in the east</li>
-          <li>Rebellion and conflict is simmering</li>
-        </ul>
-      </div>
-      <div class="border-b border-slate-300 p-4 flex items-center"><span class="badge badge-col4"><a href="#" class="verse-link" data-reference="Genesis 11">Rebellion, Scattering, Remnant, Promise (Gn. 11)</a></span></div>
-      <!-- row 3 -->
-      <div class="border-r border-b border-slate-300 p-4">
-        <span class="badge badge-col1"><a href="#" class="verse-link" data-reference="Genesis 12:1-9">Genesis 12:1-9</a></span>
-        <ul class="sq mt-2 text-slate-600">
-          <li>God's blessing of abundance and protection</li>
-          <li>Promise of fruitful seed</li>
-          <li>God's presence at tree and mountains</li>
-        </ul>
-      </div>
-      <div class="border-r border-b border-slate-300 p-4">
-        <span class="badge badge-col2"><a href="#" class="verse-link" data-reference="Genesis 12:10-20">Genesis 12:10-20</a></span>
-        <ul class="sq mt-2 text-slate-600">
-          <li>Foolish failure with Sarai in Egypt who is "beautiful to see"</li>
-          <li>Deception and lack of trust in God's word</li>
-          <li>Exile from the false-Eden (i.e., Egypt) results in getting a slave</li>
-        </ul>
-      </div>
-      <div class="border-r border-b border-slate-300 p-4">
-        <span class="badge badge-col3"><a href="#" class="verse-link" data-reference="Genesis 13">Genesis 13</a></span>
-        <ul class="sq mt-2 text-slate-600">
-          <li>Brother with abundance</li>
-          <li>Jealousy and conflict</li>
-          <li>Brothers separate through non-violence!</li>
-          <li>Non-chosen brother settles in the east, where violence is simmering, leading up to a flood of judgment</li>
-        </ul>
-      </div>
-      <div class="border-b border-slate-300 p-4 flex items-center"><span class="badge badge-col4"><a href="#" class="verse-link" data-reference="Genesis 17">Violence, Flood, Remnant, Covenant (Gen. 17)</a></span></div>
-      <!-- row 4 -->
-      <div class="border-r border-slate-300 p-4">
-        <span class="badge badge-col1"><a href="#" class="verse-link" data-reference="Genesis 15:1-21">Genesis 15:1-21</a></span>
-        <ul class="sq mt-2 text-slate-600">
-          <li>God's blessing and promise of seed and land</li>
-          <li>Deep sleep and the provision of the seed (<span class="heb">זרע</span>)</li>
-        </ul>
-      </div>
-      <div class="border-r border-slate-300 p-4">
-        <span class="badge badge-col2"><a href="#" class="verse-link" data-reference="Genesis 16:1-6">Genesis 16:1-6</a></span>
-        <ul class="sq mt-2 text-slate-600">
-          <li>Foolish failure with Hagar, the Egyptian slave-woman</li>
-          <li>Sarai takes and gives to her husband</li>
-          <li>And she saw...</li>
-          <li>"Do what is good in your eyes"</li>
-        </ul>
-      </div>
-      <div class="border-r border-slate-300 p-4">
-        <span class="badge badge-col3"><a href="#" class="verse-link" data-reference="Genesis 16:7-16">Genesis 16:7-16</a></span>
-        <ul class="sq mt-2 text-slate-600">
-          <li>Yahweh finds the non-chosen rival wife in the wilderness</li>
-          <li>Promise of a son whose hand will be against all his kinsmen</li>
-        </ul>
-      </div>
-      <div class="border-slate-300 p-4 flex items-center"><span class="badge badge-col4"><a href="#" class="verse-link" data-reference="Genesis 17">Violence, Flood, Remnant, Covenant (Gen. 17)</a></span></div>
-    </div>
-    <p class="credit text-center mt-2">Genesis 17:1-27 (3-Step). Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</p>
-    <p class="text-[15px] leading-relaxed text-slate-700 mt-6">The story portrayed both Avram and Sarai as humans who repeat their folly. Now, just as the sequence of Genesis 15-16 replays the key elements of Genesis 12-13, both Avram and Sarai replay the folly of humanity.</p>
-    <!-- ===================== PAGE 104 ===================== -->
-    <h2 class="text-2xl font-bold text-slate-800 mt-10 mb-3">Covenant #2 With Avraham: Sign of Circumcision</h2>
-    <p class="text-[15px] leading-relaxed text-slate-700 mb-4">This is the longest and most complicated speech so far in the book of Genesis. Before diving into its details, it's helpful to get an overview of its main content and literary organization.</p>
-    <h2 class="text-xl font-bold text-slate-800 mt-8 mb-3">Macro Design of Genesis 17</h2>
-    <p class="text-[15px] leading-relaxed text-slate-700 mb-4">At its most basic, the chapter is designed in a simple three-step progression.</p>
-    <div class="macro-box">
-      <span class="mbadge-grey mr-2">Genesis 17:1-16</span>
-      <strong>A</strong> - God's Speech to Avraham: Covenant, <span class="hl hl-green">Promise of Seed</span>, Summons to <span class="hl hl-sign">Circumcise Every Male</span>
-    </div>
-    <div class="macro-box ml-6">
-      <span class="mbadge-grey mr-2">Genesis 17:17-22</span>
-      <strong>B</strong> - God and Avraham Dialogue about the <span class="hl hl-green">Promise of Seed</span>
-    </div>
-    <div class="macro-box">
-      <span class="mbadge-grey mr-2">Genesis 17:23-27</span>
-      <strong>A'</strong> - Avraham <span class="hl hl-sign">Circumcises Every Male</span> <span class="hl hl-sign">in His House</span>
-    </div>
-    <p class="credit text-center mt-1 mb-4">Genesis 17:1-27 (3-Step). Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</p>
 
-    <!-- 5-discourse overview: Genesis 17:1-22 Literary Design (PDF p105) -->
-    <div class="sp-red">
-      <span class="ref-red"><a href="#" class="verse-link" data-reference="Genesis 17:1-3">Genesis 17:1-3</a></span>
-      <p class="font-bold text-[15px] text-slate-800 mb-2">Speech 1</p>
-      <ul class="sq text-[15px] text-slate-700">
-        <li>Avram is summoned to be faithful to Yahweh</li>
-        <li>Initial statement: I will set up a covenant between you and me and bless you</li>
-      </ul>
-    </div>
-    <div class="sp-grey">
-      <span class="ref-grey"><a href="#" class="verse-link" data-reference="Genesis 17:4-8">Genesis 17:4-8</a></span>
-      <p class="font-bold text-[15px] text-slate-800 mb-2">A – Speech 2</p>
-      <ul class="sq text-[15px] text-slate-700">
-        <li>Avram re-created into Avraham: father of many nations, including kings</li>
-        <li>Yahweh will be the Elohim of Avraham and his seed and they will inherit land</li>
-      </ul>
-    </div>
-    <div class="sp-light">
-      <span class="ref-dark"><a href="#" class="verse-link" data-reference="Genesis 17:9-14">Genesis 17:9-14</a></span>
-      <p class="font-bold text-[15px] text-slate-800 mb-2">B – Speech 3</p>
-      <ul class="sq text-[15px] text-slate-700">
-        <li>Avraham's covenant obligation: circumcision as covenant sign</li>
-      </ul>
-    </div>
-    <div class="sp-grey">
-      <span class="ref-grey"><a href="#" class="verse-link" data-reference="Genesis 17:15-16">Genesis 17:15-16</a></span>
-      <p class="font-bold text-[15px] text-slate-800 mb-2">A′ – Speech 4</p>
-      <ul class="sq text-[15px] text-slate-700">
-        <li>Sarai is re-created into Sarah: blessing, son, kings will come from her</li>
-      </ul>
-    </div>
-    <div class="sp-red">
-      <span class="ref-red"><a href="#" class="verse-link" data-reference="Genesis 17:17-22">Genesis 17:17-22</a></span>
-      <p class="font-bold text-[15px] text-slate-800 mb-2">Dialogue + Speech 5</p>
-      <ul class="sq text-[15px] text-slate-700">
-        <li>Avraham proposes Yishmael</li>
-        <li>God chooses Yitskhaq through Sarah as the chosen son</li>
-      </ul>
-    </div>
-    <!-- ===================== PAGE 106 ===================== -->
-    <p class="text-[15px] leading-relaxed text-slate-700 mt-10">The narrative of a divine command (Gen. 17:1-22) followed by a narrative of Avraham fulfilling the divine command exactly (Gen. 17:23-27) highlights Avraham's obedience and trust in Yahweh. Even though it must have been a painful experience, Avraham circumcised himself and every male in his household out of obedient trust in God's word.</p>
-    <p class="text-[15px] leading-relaxed text-slate-700 mb-4">The five speeches are designed in a symmetrical order, and each one has a distinct main point and rhetorical thrust.</p>
-    <p class="credit text-center mb-4">Genesis 17:1-22. Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</p>
+    <p class="text-[15.5px] mb-12">There is an important foundation being laid here for the “righteous non-elect” of the covenant family who dwells in the east. Just as many of the non-elect peoples in <a href="#" class="underline underline-offset-2 decoration-gray-500 hover:text-gray-600">Genesis 10</a> will later turn up as righteous gentiles or wicked gentiles, the same is true here with Yishmael. He and Hagar are the recipients of divine blessing (<a href="#" class="underline underline-offset-2 decoration-gray-500 hover:text-gray-600">Gen. 16:10</a> inverts <a href="#" class="underline underline-offset-2 decoration-gray-500 hover:text-gray-600">Gen. 3:16</a> and restates <a href="#" class="underline underline-offset-2 decoration-gray-500 hover:text-gray-600">Gen. 15:5</a>, but now applied to Yishmael!). And while future conflict between Yishmael’s descendants and Avraham’s other future sons is anticipated, the oracle isn’t entirely negative. Yishmael is included in the blessing of Avraham nonetheless.</p>
 
-    <h2 class="text-xl font-bold text-slate-800 mt-8 mb-3">Translation and Literary Design of Genesis 17:1-27</h2>
-    <div class="sp-red">
-      <span class="ref-red"><a href="#" class="verse-link" data-reference="Genesis 17:1-3">Genesis 17:1-3</a></span>
-      <p class="font-bold text-[15px] text-slate-800 mb-2">Speech 1</p>
-      <ul class="sq text-[15px] text-slate-700">
-        <li>Avram is summoned to be faithful to Yahweh</li>
-        <li>Initial statement: I will set up a covenant between you and me and bless you</li>
-      </ul>
-    </div>
-    <div class="sp-grey">
-      <span class="ref-grey"><a href="#" class="verse-link" data-reference="Genesis 17:4-8">Genesis 17:4-8</a></span>
-      <p class="font-bold text-[15px] text-slate-800 mb-2">A – Speech 2</p>
-      <ul class="sq text-[15px] text-slate-700">
-        <li>Avram re-created into Avraham: father of many nations, including kings</li>
-        <li>Yahweh will be the Elohim of Avraham and his seed and they will inherit land</li>
-      </ul>
-    </div>
-    <div class="sp-grey">
-      <span class="ref-grey"><a href="#" class="verse-link" data-reference="Genesis 17:9-14">Genesis 17:9-14</a></span>
-      <p class="font-bold text-[15px] text-slate-800 mb-2">B – Speech 3</p>
-      <ul class="sq text-[15px] text-slate-700">
-        <li>Avraham's covenant obligation: circumcision as covenant sign</li>
-      </ul>
-    </div>
-    <div class="sp-grey">
-      <span class="ref-grey"><a href="#" class="verse-link" data-reference="Genesis 17:15-16">Genesis 17:15-16</a></span>
-      <p class="font-bold text-[15px] text-slate-800 mb-2">A′ – Speech 4</p>
-      <ul class="sq text-[15px] text-slate-700">
-        <li>Sarai is re-created into Sarah: blessing, son, kings will come from her</li>
-      </ul>
-    </div>
-    <div class="sp-red">
-      <span class="ref-red"><a href="#" class="verse-link" data-reference="Genesis 17:17-22">Genesis 17:17-22</a></span>
-      <p class="font-bold text-[15px] text-slate-800 mb-2">Dialogue + Speech 5</p>
-      <ul class="sq text-[15px] text-slate-700">
-        <li>Avraham proposes Yishmael</li>
-        <li>God chooses Yitskhaq through Sarah as the chosen son</li>
-      </ul>
-    </div>
+    <!-- Pre-Grid Heading (Left aligned as per image) -->
+    <h2 class="text-[28px] font-bold text-gray-900 mb-14">Genesis 15-16 Replays Genesis 2-11 and 12-14</h2>
 
-    <!-- ===================== PAGE 107-109 DETAILED TRANSLATION ===================== -->
-    <div class="detailed">
-    <h2 class="text-xl font-bold text-slate-800 mt-10 mb-3">Genesis 17:1-27</h2>
-    <p class="credit text-center mb-4">Genesis 17:1-27 (Detailed). Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</p>
-    <div class="sp-red">
-      <span class="ref-red"><a href="#" class="verse-link" data-reference="Genesis 17:1-3">Genesis 17:1-3</a></span>
-      <p class="pl"><span class="vnum">1</span> And Avram was ninety nine years old,</p>
-      <p class="pl">and Yahweh became seen to Avram,</p>
-      <p class="pl">and he said to him,</p>
-      <p class="pl">"I am <span class="hl hl-divine">El-Shaddai</span>.</p>
-      <p class="pl"><span class="hl hl-teal">Walk before my face,</span></p>
-      <p class="pl"><span class="hl hl-teal">and be blameless;</span></p>
-      <p class="pl"><span class="vnum">2</span> then I will give <span class="hl hl-green">a covenant</span> between me and between you,</p>
-      <p class="pl">and I will <span class="hl hl-purple">multiply you very, very much</span>."</p>
-      <p class="pl"><span class="vnum">3</span> And Avram fell down upon his face.</p>
-    </div>
 
-    <div class="sp-grey">
-      <span class="ref-grey"><a href="#" class="verse-link" data-reference="Genesis 17:4-8">Genesis 17:4-8</a></span>
-      <p class="pl font-bold text-slate-700">A</p>
-      <p class="pl">And Elohim spoke to him, saying:</p>
-      <p class="pl"><span class="vnum">4</span> " <span class="hl hl-teal">As for me</span>, look, <span class="hl hl-green">my covenant is with you,</span></p>
-      <p class="pl">and you will become <span class="hl hl-grey">a father of a multitude of nations,</span></p>
-      <p class="pl"><span class="vnum">5</span> and no longer will your name be called, '<span class="hl hl-grey">Avram</span>,'</p>
-      <p class="pl">but your name will be '<span class="hl hl-grey">Avraham</span>,'</p>
-      <p class="pl">because I will give you to be a multitude of nations,</p>
-      <p class="pl"><span class="vnum">6</span> and I will make you <span class="hl hl-purple">fruitful, very very much,</span></p>
-      <p class="pl">and I will give you to become nations,</p>
-      <p class="pl">and <span class="hl hl-red">kings will come from you,</span></p>
-      <p class="pl"><span class="vnum">7</span> and I will establish <span class="hl hl-green">my covenant</span></p>
-      <p class="pl">between me and between you,</p>
-      <p class="pl">and between <span class="hl hl-green">your seed after you</span> for their generations,</p>
-      <p class="pl">as <span class="hl hl-green">an eternal covenant,</span></p>
-      <p class="pl">to be <span class="hl hl-blue">Elohim for you,</span></p>
-      <p class="pl">and for <span class="hl hl-green">your seed after you</span></p>
-      <p class="pl"><span class="vnum">8</span> and I will give to you and to <span class="hl hl-green">your seed after you,</span></p>
-      <p class="pl">the <span class="hl hl-orange">land of your sojourning,</span></p>
-      <p class="pl"><span class="hl hl-orange">all the land of Canaan,</span></p>
-      <p class="pl">for <span class="hl hl-orange">an eternal possession,</span></p>
-      <p class="pl">and I will be <span class="hl hl-blue">Elohim for them</span>."</p>
-    </div>
-
-    <div class="sp-grey">
-      <span class="ref-grey"><a href="#" class="verse-link" data-reference="Genesis 17:9-14">Genesis 17:9-14</a></span>
-      <p class="pl font-bold text-slate-700">B</p>
-      <p class="pl"><span class="vnum">9</span> And Elohim said to Avraham,</p>
-      <p class="pl">" <span class="hl hl-teal">And as for you</span>, you will keep <span class="hl hl-green">my covenant,</span></p>
-      <p class="pl">you and <span class="hl hl-green">your seed after you</span> for their generations.</p>
-      <p class="pl"><span class="vnum">10</span> This is <span class="hl hl-green">my covenant</span> that y'all will keep,</p>
-      <p class="pl">between me and between y'all,</p>
-      <p class="pl">and between <span class="hl hl-green">your seed after you:</span></p>
-      <p class="pl"><span class="hl hl-red">circumcise for yourselves every male.</span></p>
-      <p class="pl"><span class="vnum">11</span> And y'all will circumcise the flesh of your foreskin,</p>
-      <p class="pl">and that will be as <span class="hl hl-green">a symbol of the covenant,</span></p>
-      <p class="pl"><span class="vnum">12</span> between me and between y'all.</p>
-      <p class="pl">When there's a son of eight days,</p>
-      <p class="pl">he will be circumcised for you, every male for your generations;</p>
-      <p class="pl">one born of the house or purchased with silver,</p>
-      <p class="pl">from any son of a foreigner who is not from your seed;</p>
-      <p class="pl"><span class="vnum">13</span> he will certainly be <span class="hl hl-red">circumcised,</span></p>
-      <p class="pl">that one born of the house or purchased with silver;</p>
-      <p class="pl">and <span class="hl hl-green">my covenant</span> will be in your flesh,</p>
-      <p class="pl">for <span class="hl hl-green">an eternal covenant.</span></p>
-      <p class="pl"><span class="vnum">14</span> And a foreskinned male that is not circumcised in the flesh of his foreskin,</p>
-      <p class="pl">that person will be <span class="hl hl-red">cut off from his people,</span></p>
-      <p class="pl">he has violated <span class="hl hl-green">my covenant</span>."</p>
-    </div>
-
-    <div class="sp-grey">
-      <span class="ref-grey"><a href="#" class="verse-link" data-reference="Genesis 17:15-16">Genesis 17:15-16</a></span>
-      <p class="pl font-bold text-slate-700">A′</p>
-      <p class="pl"><span class="vnum">15</span> And Elohim said to Avraham,</p>
-      <p class="pl">" <span class="hl hl-teal">As for Sarai</span> your wife,</p>
-      <p class="pl">you will not call her name '<span class="hl hl-grey">Sarai</span>,'</p>
-      <p class="pl">because her name is '<span class="hl hl-grey">Sarah.</span>' [= "Queen"]</p>
-      <p class="pl"><span class="vnum">16</span> And I will bless her,</p>
-      <p class="pl">and also, I will give to you from her a son,</p>
-      <p class="pl">and I will bless her,</p>
-      <p class="pl">and she will become nations,</p>
-      <p class="pl"><span class="hl hl-red">kings of people groups will be from her.</span>"</p>
-    </div>
-
-    <div class="sp-red">
-      <span class="ref-red"><a href="#" class="verse-link" data-reference="Genesis 17:17-22">Genesis 17:17-22</a></span>
-      <p class="pl font-bold text-slate-700">B</p>
-      <p class="pl"><span class="vnum">17</span> And Avraham fell on his face,</p>
-      <p class="pl">and he <span class="hl hl-purple">laughed</span> (= <span class="heb">yitskhaq</span>) and said in his heart,</p>
-      <p class="pl">"Will there be a birth for a son of a hundred years?!</p>
-      <p class="pl">Or Sarah, a daughter of ninety years, she will give birth?!"</p>
-      <p class="pl"><span class="vnum">18</span> And Avraham said to Elohim,</p>
-      <p class="pl">"If only Yishmael could live before your face!"</p>
-      <p class="pl"><span class="vnum">19</span> And Elohim said,</p>
-      <p class="pl">"Nonetheless, Sarah your wife will birth for you a son,</p>
-      <p class="pl">and you will call his name, '<span class="hl hl-grey">Yitskhaq</span>' [= "Laughter"],</p>
-      <p class="pl">and I will establish <span class="hl hl-green">my covenant with him,</span></p>
-      <p class="pl">for <span class="hl hl-green">an eternal covenant</span> for his seed after him.</p>
-      <p class="pl"><span class="vnum">20</span> <span class="hl hl-teal">And as for Yishmael</span>, I have heard you.</p>
-      <p class="pl">look, I have blessed him,</p>
-      <p class="pl">and I will make him <span class="hl hl-purple">fruitful,</span></p>
-      <p class="pl"><span class="vnum">B</span> and I will make him <span class="hl hl-purple">multiply, very very much.</span></p>
-      <p class="pl">Twelve princes he will cause to be born,</p>
-      <p class="pl">and I will give him to be a great nation.</p>
-      <p class="pl"><span class="vnum">21</span> But I will establish <span class="hl hl-green">my covenant with Yitskhaq,</span></p>
-      <p class="pl">whom Sarah will birth for you at this appointed time in the year after."</p>
-      <p class="pl"><span class="vnum">22</span> And he finished speaking to him,</p>
-      <p class="pl">and Elohim went up from Avraham.</p>
-    </div>
-
-    <div class="sp-light">
-      <span class="ref-dark"><a href="#" class="verse-link" data-reference="Genesis 17:23-27">Genesis 17:23-27</a></span>
-      <p class="pl"><span class="vnum">23</span> And Avraham took Yishmael his son,</p>
-      <p class="pl">and all those born of his house,</p>
-      <p class="pl">and all those purchased with silver,</p>
-      <p class="pl">every male among the men of Avraham's house,</p>
-      <p class="pl">and he circumcised the flesh of their foreskin,</p>
-      <p class="pl">on that very day,</p>
-      <p class="pl">just as Elohim had spoken to him.</p>
-      <p class="pl"><span class="vnum">24</span> And Avraham was a son of ninety nine years,</p>
-      <p class="pl">a when he was circumcised in the flesh of his foreskin,</p>
-      <p class="pl"><span class="vnum">25</span> and Yishmael his son was a son of thirteen years,</p>
-      <p class="pl">a′ when he was circumcised in the flesh of his foreskin.</p>
-      <p class="pl"><span class="vnum">26</span> On that very day,</p>
-      <p class="pl">Avraham was circumcised, and Yishmael his son,</p>
-      <p class="pl"><span class="vnum">27</span> and all the men of his house,</p>
-      <p class="pl">those born of the house</p>
-      <p class="pl">and those purchased with silver from a foreigner,</p>
-      <p class="pl">they were circumcised with him.</p>
-    </div>
-    </div><!-- /detailed -->
-    <!-- ===================== PAGE 109: DE-CREATION HEADING ===================== -->
-    <p class="credit text-center mb-4">Genesis 17:1-27. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</p>
-    <h2 class="text-xl font-bold text-slate-800 mt-10 mb-3">The De-creation and Re-creation of Avram and Sarai</h2>
-    <p class="text-[15px] leading-relaxed text-slate-700 mb-4">This complex narrative is designed to culminate the themes at work so far in all of Genesis 1-17, and especially the earlier patterns of creation and Eden and of flood and covenant.</p>
-    <p class="text-[15px] leading-relaxed text-slate-700 mb-4">Numerous details in this chapter only make sense based on our ability to track the hyperlinks and analogies with these earlier narratives.</p>
-    <!-- ===================== PAGE 110-111: AVRAHAM & NOAH ===================== -->
-    <h2 class="text-xl font-bold text-slate-800 mt-10 mb-3">Avraham and Noah, Circumcision and Flood</h2>
-    <div class="overflow-x-auto mb-4">
-    <table class="w-full text-[13px] border-collapse border border-slate-300">
-      <thead><tr class="bg-slate-50">
-        <th class="border border-slate-300 p-2 text-left">Avraham</th>
-        <th class="border border-slate-300 p-2 text-left">Noah</th>
-      </tr></thead>
-      <tbody>
-        <tr><td class="border border-slate-300 p-2">Gen. 17:1 " <span class="heb">התהלך</span> Walk before me and be blameless (<span class="heb">תמים</span>)"</td>
-        <td class="border border-slate-300 p-2">Gen. 6:9b "Noah was a righteous man, blameless (<span class="heb">תמים</span>) in his generations, he walked (<span class="heb">התהלך</span>) with God."</td></tr>
-        <tr><td class="border border-slate-300 p-2">Gen. 17:4-5 "You will become the father of a multitude of nations (<span class="heb">אב ... גוים</span>)"</td>
-        <td class="border border-slate-300 p-2">Gen. 6:10 "Noah had three sons, Shem, Ham, and Japheth" who become the patriarchs of the 70 nations in Genesis 10.</td></tr>
-        <tr><td class="border border-slate-300 p-2">Gen. 17:7 "And I will establish <span class="hl hl-green">my covenant</span> (<span class="heb">והקמתי את בריתי</span>) between you and between you and between your seed after you (<span class="heb">זרעך אחריך</span>) for generations, as an eternal covenant."</td>
-        <td class="border border-slate-300 p-2">Gen. 6:18 "And I will establish <span class="hl hl-green">my covenant</span> (<span class="heb">והקמתי את בריתי</span>) with you" &nbsp; Gen. 9:9 "And I will establish <span class="hl hl-green">my covenant</span> (<span class="heb">מקים את בריתי</span>) with you and with your seed after you (<span class="heb">את זרעכם אחריכם</span>)"</td></tr>
-        <tr><td class="border border-slate-300 p-2">Gen. 17:11 "And you will circumcise the flesh of your foreskin, and it will be for a sign of the covenant between me and between you."</td>
-        <td class="border border-slate-300 p-2">Gen. 9:12 "This will be a sign of the covenant between me and between you" &nbsp; Gen. 9:17 "This is the sign of the covenant which I am establishing between me and between all flesh (<span class="heb">בשר</span>)"</td></tr>
-        <tr><td class="border border-slate-300 p-2">Gen. 17:13 "And <span class="hl hl-green">my covenant</span> will be in your flesh (<span class="heb">בבשרכם</span>) for an eternal covenant (<span class="heb">ברית עולם</span>)"</td>
-        <td class="border border-slate-300 p-2"></td></tr>
-        <tr><td class="border border-slate-300 p-2">Gen. 17:26 "on that very day (<span class="heb">בעצם היום הזה</span>), just as God spoke to him"</td>
-        <td class="border border-slate-300 p-2">Gen. 7:13 "On that very day (<span class="heb">בעצם היום הזה</span>) Noah went … into the ark." + Gen. 7:16 "just as God commanded him"</td></tr>
-      </tbody>
-    </table>
-    </div>
-    <p class="credit text-center mb-4">Avraham and Noah, Circumcision and Flood. Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</p>
-    <p class="text-[15px] leading-relaxed text-slate-700 mb-4">This linking of Noah and Avraham creates a clear set of similarities and contrasts between the two characters and God's covenant with them.</p>
-    <p class="text-[15px] leading-relaxed text-slate-700 mb-4">While Noah simply was "blameless" when God initiated the conversation, Avram, on the other hand, has just participated in a great sin against Hagar (on analogy with Gen. 3 and 6), resulting in the oppression of the immigrant, so he now has to be commanded: "be blameless."</p>
-    <p class="text-[15px] leading-relaxed text-slate-700 mb-4">The "sign" of the covenant for Noah and Avraham is crucial for understanding the nature and purpose of circumcision. In Genesis 9:12-17, the "sign" of the covenant is the rainbow which shines when the rain clouds come. Rain was the instrument of divine judgment, and so the rainbow is a reminder of humanity's evil that brought the flood. But rain was also the divine response of judgment combined with covenant love that spared a remnant. In a similar way, in Genesis 17:11, 13, the "sign" of the covenant marks the instrument of human failure, that is, Avraham's genitals (this seems hinted at in the design pattern of Gen. 9:17 "covenant with flesh"). But the judgment is on the part of Avraham's body that will become fruitful for the nation.</p>
-
-    <div class="grid grid-cols-2 gap-4 mb-4">
-      <div class="sp-light">
-        <p class="font-bold text-[15px] text-slate-800 mb-2">Rainbow</p>
-        <p class="text-[14px] leading-relaxed text-slate-700">A symbol of God's judgment and mercy that brought a remnant safely through death to new life before God.</p>
-      </div>
-      <div class="sp-light">
-        <p class="font-bold text-[15px] text-slate-800 mb-2">Circumcision</p>
-        <p class="text-[14px] leading-relaxed text-slate-700">A symbol of God's judgment on Avraham's penis, which he used to abuse Hagar. But also a symbol of mercy, for his future seed will come from his "cut off" genitals that belong to God alone.</p>
-      </div>
-    </div>
-
-    <div class="overflow-x-auto mb-2">
-    <table class="w-full text-[13px] border-collapse border border-slate-300">
-      <tbody>
-        <tr><td class="border border-slate-300 p-2 w-1/2">Gen. 9:9 God is going to "establish my covenant with you and your seed after you" (<span class="heb">זרע+ ברית+ הקים</span>)</td>
-        <td class="border border-slate-300 p-2">Gen. 17:7 God is going to "establish my covenant with you and your seed after you" (<span class="heb">זרע+ ברית+ הקים</span>)</td></tr>
-        <tr><td class="border border-slate-300 p-2">Gen. 9:12 The bow in the skies is the "sign of the covenant" (<span class="heb">אות הברית</span>)</td>
-        <td class="border border-slate-300 p-2">Gen. 17:11 Circumcision is the "sign of the covenant" (<span class="heb">אות ברית</span>)</td></tr>
-        <tr><td class="border border-slate-300 p-2">Gen. 9:10-12 The flood (<span class="heb">המבול</span>) "cut off all flesh" (<span class="heb">בשר+ כרת</span>), and so God's covenant is with Noah and "all living beings" (<span class="heb">כל נפש</span>), that they will not be "cut off by the flood" (<span class="heb">המבול+ כרת</span>).</td>
-        <td class="border border-slate-300 p-2">Gen. 17:10-14 Circumcision (<span class="heb">המול</span>) involves cutting off "flesh" (<span class="heb">בשר</span>) from "every male" (<span class="heb">כל זכר</span>), and every "living-person" (<span class="heb">נפש</span>) who is not circumcised will be "cut off from" (<span class="heb">כרת ... מן</span>) his people.</td></tr>
-      </tbody>
-    </table>
-    </div>
-    <p class="credit text-center mb-4">Rainbow and Circumcision. Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</p>
-    <p class="text-[15px] leading-relaxed text-slate-700 mb-4">Just as the flood (<span class="heb">המבול</span>) was a judgment of cutting off (<span class="heb">יכרת</span>) all flesh (<span class="heb">בשר</span>) in Genesis 9:11, so now circumcision (<span class="heb">המול</span>) is a "local flood" of judgment that cuts off (<span class="heb">נכרתה</span>) the flesh (<span class="heb">בשר</span>) of the foreskin of Avraham's family in Gen. 17:10-14. It is as if Avraham's sin "cuts off" all hope except for an Yitskhaq-remnant (Isaac-remnant) that God will miraculously bring into the world through Sarah's womb // the Noah-remnant that God miraculously saves through the ark. Both events happen "on the very day" (<span class="heb">בעצם היום הזה</span> in Gen. 7:13 and Gen. 17:24, 26) of the command.</p>
-
-    <!-- ===================== PAGE 112: GEN 9:8-17 ===================== -->
-    <div class="sp-grey">
-      <span class="ref-grey"><a href="#" class="verse-link" data-reference="Genesis 9:8-17">Genesis 9:8-17</a></span>
-      <p class="credit mb-2">Translation and Literary Design by Tim Mackie for BibleProject Classroom: Adam to Noah (2020).</p>
-      <p class="pl"><span class="vnum">8</span> And Elohim said to Noah and to his sons with him, saying,</p>
-      <p class="pl"><span class="vnum">9</span> "And I myself, behold, I set up <span class="hl hl-green">my covenant</span> with y'all,</p>
-      <p class="pl">and with <span class="hl hl-green">your seed after you;</span></p>
-      <p class="pl"><span class="vnum">10</span> and with every living creature that is with you,</p>
-      <p class="pl">the birds, the beasts, and every living creature of the land with you;</p>
-      <p class="pl">from everything that comes out of the ark,</p>
-      <p class="pl">even every living creature of the land.</p>
-      <p class="pl"><span class="vnum">11</span> And I set up <span class="hl hl-green">my covenant</span> with y'all;</p>
-      <p class="pl">and never again will all flesh</p>
-      <p class="pl">be cut off by the waters of the flood,</p>
-      <p class="pl">and never again will there be a flood to ruin the land."</p>
-      <p class="pl"><span class="vnum">12</span> And Elohim said,</p>
-      <p class="pl">"This is the sign of the covenant which I am giving</p>
-      <p class="pl">between me and between you</p>
-      <p class="pl">and between every living creature that is with you, for everlasting generations;</p>
-      <p class="pl"><span class="vnum">13</span> I give my bow in the cloud,</p>
-      <p class="pl">and it will be for a sign of a covenant</p>
-      <p class="pl">between me and between the land;</p>
-      <p class="pl"><span class="vnum">14</span> and it will come about when I cloud a cloud over the land,</p>
-      <p class="pl">that it will be seen, the bow in the cloud,</p>
-      <p class="pl"><span class="vnum">15</span> and I will remember <span class="hl hl-green">my covenant,</span></p>
-      <p class="pl">which is between me and between you</p>
-      <p class="pl">and between every living creature of all flesh;</p>
-      <p class="pl">and never again will the waters become a flood to ruin</p>
-      <p class="pl">all flesh.</p>
-      <p class="pl"><span class="vnum">16</span> And the bow is in the cloud,</p>
-      <p class="pl">then I will see it,</p>
-      <p class="pl">to remember the everlasting covenant</p>
-      <p class="pl">between Elohim and between every living creature,</p>
-      <p class="pl">with all flesh that is on the land."</p>
-      <p class="pl"><span class="vnum">17</span> And Elohim said to Noah,</p>
-      <p class="pl">"This is the sign of</p>
-      <p class="pl">the covenant which I have set up</p>
-      <p class="pl">between me and all flesh that is on the land."</p>
-    </div>
-    <p class="text-[15px] leading-relaxed text-slate-700 mb-4">Both covenants with Avraham and Noah have a universal scope. Noah's sons produce all the nations of Genesis 10, and Avraham will become the father of many nations. This aligns well with the fact that Yishmael is the first to be circumcised in Genesis 17, and that circumcision is associated with the inclusion of the nations into God's covenant with Avraham.</p>
-    <p class="text-[15px] leading-relaxed text-slate-700 mb-4">The blessed sons: Just as two of Noah's three sons found blessing and fruitfulness after the flood (Japheth and Shem), so also Avraham's two sons Yishmael and Yitskhaq (Isaac) will be blessed and become great nations. In both cases, only the younger of the two will become the line of the covenant (Shem and Yitskhaq), while the older (Japheth and Yishmael) will be blessed, but not as the carrier of covenant blessing.</p>
-
-    <!-- ===================== PAGE 113: ADAM & EVE ===================== -->
-    <h2 class="text-xl font-bold text-slate-800 mt-10 mb-3">Avraham and Sarah, Adam and Eve</h2>
-    <p class="text-[15px] leading-relaxed text-slate-700 mb-4">The role of Sarah in this story is like the ark (<span class="heb">תבה</span>). She is the vehicle of the future seed, but her distorted efforts to build her own Eden-blessing (remember "build" <span class="heb">בנה</span> in Gen. 16:2) have also replayed the fall and introduced division into Avraham's family. Her role in this way also recalls the ark's role as an analogy to the woman in Genesis 2 (Gen. 2:22 <span class="heb">בנה</span>). Note how Sarah here (Gen. 17:17) is also called "a daughter of 90 years" which is an anagram of the word "ark" (Gen 6:14 <span class="heb">הבת // תבה</span> Gen. 17:17)</p>
-    <p class="text-[15px] leading-relaxed text-slate-700 mb-4">The analogies to the Eden story are also important. God's covenant with Noah was a kind of re-creation of his identity, and God also remakes Avraham and Sarah's identity in a way similar to Adam and Eve.</p>
-    <div class="overflow-x-auto mb-2">
-    <table class="w-full text-[13px] border-collapse border border-slate-300">
-      <tbody>
-        <tr><td class="border border-slate-300 p-2 align-top w-1/2"><strong>God's blessing on Avraham and Sarah</strong><br/>
-          Gen. 17:2 "I will multiply (<span class="heb">רבה</span>) you very very much"<br/>
-          Gen. 17:6 "I will make you fruitful (<span class="heb">פרה</span>) very very much"<br/>
-          Gen. 17:16 "I will bless [Sarah]"</td>
-        <td class="border border-slate-300 p-2 align-top">God's blessing on humanity, male and female<br/>
-          Gen. 1:28 And Elohim blessed them, saying, "Be fruitful (<span class="heb">פרה</span>) and multiply (<span class="heb">רבה</span>), fill the land and subdue it …"</td></tr>
-        <tr><td class="border border-slate-300 p-2 align-top"><strong>God re-names Avram and Sarai</strong><br/>
-          Gen. 17:5 "No longer will your name be called, 'Avram,' but your name will be 'Avraham,' because I will make you a father of a multitude of nations."<br/>
-          Gen. 17:15 "Sarai your wife, you will not call her name 'Sarai,' because her name is 'Sarah.'"</td>
-        <td class="border border-slate-300 p-2 align-top"><strong>Humanity is named, then renamed</strong><br/>
-          Gen. 1:26 "Let us make 'human' (<span class="heb">אדם</span>) in our image … let them rule …"<br/>
-          Gen. 2:23 "She shall be called Woman (<span class="heb">אשה</span>), because she was taken out of man (<span class="heb">איש</span>)."<br/>
-          Gen. 3:20 Now the man called his wife's name "Khavvah" (<span class="heb">חוה</span>) because she was the mother of all living (<span class="heb">חי</span>).</td></tr>
-      </tbody>
-    </table>
-    </div>
-    <p class="credit text-center mb-4">Avraham and Sarah, Adam and Eve. Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</p>
-    <p class="text-[15px] leading-relaxed text-slate-700 mb-4">In Adam and Eve's story, she is named before their folly, and her name symbolizes the "two-in-one" union of man/woman. After the folly, she is named based on her reproductive function in their relationship, "Mother of All Living."</p>
-    <p class="text-[15px] leading-relaxed text-slate-700 mb-4">In Avraham and Sarah's story, both are renamed after their shared folly with Hagar. God will maintain his promise to them, but only after "cutting of flesh" from Avraham's genitals and marking them as belonging to God. The new names signify the new, God-given identity that Avraham and Sarah now have. Their lives and reproductive abilities belong wholly to God, and from them God will create a nation of seed and kings. Their new names reflect this: Avraham means Father of a Multitude; Sarah means Queen (i.e., mother of kings).</p>
-
-    <!-- ===================== PAGE 114: CHOSEN TABLE + REFLECTION ===================== -->
-    <h2 class="text-xl font-bold text-slate-800 mt-10 mb-3">Father and Mother of Many Nations: Yishmael and Yitskhaq</h2>
-    <p class="text-[15px] leading-relaxed text-slate-700 mb-4">This chapter carries forward the pattern of Yahweh selecting one chosen lineage from among a larger set of siblings. Now that Avraham and Sarah have abused Hagar and produced Yishmael, they will become the parents of a family made up of many nations, starting first with Yishmael.</p>
-    <p class="text-[15px] leading-relaxed text-slate-700 mb-4">This is one step in a larger design pattern that starts back with Cain and Abel.</p>
-    <div class="overflow-x-auto mb-2">
-    <table class="w-full text-[13px] border-collapse border border-slate-300">
-      <thead><tr class="bg-slate-50">
-        <th class="border border-slate-300 p-2 text-left">Chosen for Covenant</th>
-        <th class="border border-slate-300 p-2 text-left">Not Chosen</th>
-        <th class="border border-slate-300 p-2 text-left">Resulting People Group</th>
-      </tr></thead>
-      <tbody>
-        <tr><td class="border border-slate-300 p-2">Abel + Seth</td><td class="border border-slate-300 p-2">Cain</td><td class="border border-slate-300 p-2">Kenites</td></tr>
-        <tr><td class="border border-slate-300 p-2">Shem</td><td class="border border-slate-300 p-2">Japheth, Ham</td><td class="border border-slate-300 p-2">The island nations, Canaanites</td></tr>
-        <tr><td class="border border-slate-300 p-2">Avraham</td><td class="border border-slate-300 p-2">Nakhor, Lot</td><td class="border border-slate-300 p-2">Moabites, Ammonites</td></tr>
-        <tr><td class="border border-slate-300 p-2">Yitskhaq</td><td class="border border-slate-300 p-2">Yishmael, sons of Qeturah</td><td class="border border-slate-300 p-2">Ishmaelites, Midianites, eastern tribes</td></tr>
-        <tr><td class="border border-slate-300 p-2">Yaaqov</td><td class="border border-slate-300 p-2">Esau</td><td class="border border-slate-300 p-2">Edomites</td></tr>
-        <tr><td class="border border-slate-300 p-2">Judah</td><td class="border border-slate-300 p-2">11 brothers</td><td class="border border-slate-300 p-2">Northern tribes</td></tr>
-        <tr><td class="border border-slate-300 p-2">David</td><td class="border border-slate-300 p-2">Saul</td><td class="border border-slate-300 p-2">Benjaminite</td></tr>
-        <tr><td class="border border-slate-300 p-2">Family of Judah</td><td class="border border-slate-300 p-2">Northern tribes</td><td class="border border-slate-300 p-2">Samaritans</td></tr>
-      </tbody>
-    </table>
-    </div>
-    <p class="credit text-center mb-4">Father and Mother of Many Nations. Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</p>
-    <p class="text-[15px] leading-relaxed text-slate-700 mb-4">Notice, however, that even though Yishmael is not chosen as the lineage of the covenant and royal seed, God affirms that he will bless him and his family in precisely the language of the Eden blessing, but also in anticipation of the later 12 sons of Yaakov (Jacob).</p>
-    <div class="sp-light">
-      <span class="ref-dark"><a href="#" class="verse-link" data-reference="Genesis 17:20">Genesis 17:20</a></span>
-      <p class="text-[15px] leading-relaxed text-slate-700">Instructor's Translation</p>
-      <p class="pl">Look, I am going to bless [Yishmael], and I will make him fruitful, very very much. He will become the father of twelve princes, and I will make him a great nation.</p>
-    </div>
-    <h2 class="text-xl font-bold text-slate-800 mt-10 mb-2">Reflection Question</h2>
-    <p class="text-[15px] leading-relaxed text-slate-700">How is circumcision both an act of God's judgment and and act of grace?</p>
-<!--INSERT-->
-    <footer class="mt-12 pt-6 border-t border-slate-200 flex justify-between text-sm text-slate-500">
-      <p>Class Notes: Abraham</p>
-      <p>101–114 of 230</p>
-    </footer>
   </div>
+
+
+  <!-- PAGE 103 -->
+  <div class="max-w-[850px] mx-auto px-6 lg:px-8 pt-4 pb-4 relative">
+    
+    <!-- Replay Grid Table -->
+    <div class="border border-[#cbd5e1] rounded-[10px] overflow-hidden flex flex-col mb-6">
+      
+      <!-- Row 1 -->
+      <div class="grid grid-cols-[1fr_1fr_1fr_1fr] border-b border-[#cbd5e1]">
+        <div class="p-4 border-r border-[#cbd5e1] flex flex-col items-start bg-white">
+          <span class="inline-block px-2.5 py-0.5 bg-[#e2e8f0] text-[#1f2937] font-bold rounded-md text-[13.5px] mb-3">Genesis 2</span>
+          <ul class="list-disc pl-4 space-y-1 text-[13.5px] text-[#374151] marker:text-[#64748b]">
+            <li>God’s blessing of fruitful seed</li>
+            <li>Garden abundance</li>
+            <li>Sacred space of God’s presence by the tree of life on Mt. Eden</li>
+            <li>Deep sleep and the provision of the delivering-help (<span class="font-serif text-[15px]" dir="rtl">עזר</span>)</li>
+          </ul>
+        </div>
+        <div class="p-4 border-r border-[#cbd5e1] flex flex-col items-start bg-white">
+          <span class="inline-block px-2.5 py-0.5 bg-[#64748b] text-white font-bold rounded-md text-[13.5px] mb-3">Genesis 3</span>
+          <ul class="list-disc pl-4 space-y-1 text-[13.5px] text-[#374151] marker:text-[#64748b]">
+            <li>Foolish failure at the tree of testing that is “good of sight”</li>
+            <li>She saw ... and took and gave</li>
+            <li>Deception and lack of trust in God’s word</li>
+            <li>Exile from Eden</li>
+          </ul>
+        </div>
+        <div class="p-4 border-r border-[#cbd5e1] flex flex-col items-start bg-white">
+          <span class="inline-block px-2.5 py-0.5 bg-[#a68a64] text-white font-bold rounded-md text-[13.5px] mb-3">Genesis 4-6</span>
+          <ul class="list-disc pl-4 space-y-1 text-[13.5px] text-[#374151] marker:text-[#64748b]">
+            <li>Brothers with abundance</li>
+            <li>Jealousy and conflict</li>
+            <li>Brothers “separate” through violence</li>
+            <li>Non-chosen brother settles in the east, where violence is simmering, leading to a flood of judgment</li>
+          </ul>
+        </div>
+        <div class="p-4 flex items-center justify-center bg-white">
+          <span class="inline-block px-3 py-1.5 bg-[#dbeafe] text-[#1e40af] font-bold rounded-md text-[13px] leading-snug">Violence, Flood,<br>Remnant, Covenant<br>(Gen. 6-9a)</span>
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="grid grid-cols-[1fr_1fr_1fr_1fr] border-b border-[#cbd5e1]">
+        <div class="p-4 border-r border-[#cbd5e1] flex flex-col items-start bg-white">
+          <span class="inline-block px-2.5 py-0.5 bg-[#e2e8f0] text-[#1f2937] font-bold rounded-md text-[13.5px] mb-3">Genesis 9:18-20</span>
+          <ul class="list-disc pl-4 space-y-1 text-[13.5px] text-[#374151] marker:text-[#64748b]">
+            <li>Human blessing and abundance in a garden</li>
+          </ul>
+        </div>
+        <div class="p-4 border-r border-[#cbd5e1] flex flex-col items-start bg-white">
+          <span class="inline-block px-2.5 py-0.5 bg-[#64748b] text-white font-bold rounded-md text-[13.5px] mb-3">Genesis 9:21-29</span>
+          <ul class="list-disc pl-4 space-y-1 text-[13.5px] text-[#374151] marker:text-[#64748b]">
+            <li>Human folly in the garden</li>
+            <li>Sexual abuse in the tent</li>
+            <li>Family division and curse</li>
+          </ul>
+        </div>
+        <div class="p-4 border-r border-[#cbd5e1] flex flex-col items-start bg-white">
+          <span class="inline-block px-2.5 py-0.5 bg-[#a68a64] text-white font-bold rounded-md text-[13.5px] mb-3">Genesis 10:1-32</span>
+          <ul class="list-disc pl-4 space-y-1 text-[13.5px] text-[#374151] marker:text-[#64748b]">
+            <li>Family, brothers divide and separate</li>
+            <li>Building of Babylon in east</li>
+            <li>Rebellion is simmering</li>
+          </ul>
+        </div>
+        <div class="p-4 flex items-center justify-center bg-white">
+          <span class="inline-block px-3 py-1.5 bg-[#dbeafe] text-[#1e40af] font-bold rounded-md text-[13px] leading-snug">Rebellion, Scattering,<br>Remnant, Promise<br>(Gen. 11)</span>
+        </div>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="grid grid-cols-[1fr_1fr_1fr_1fr] border-b border-[#cbd5e1]">
+        <div class="p-4 border-r border-[#cbd5e1] flex flex-col items-start bg-white">
+          <span class="inline-block px-2.5 py-0.5 bg-[#e2e8f0] text-[#1f2937] font-bold rounded-md text-[13.5px] mb-3">Genesis 12:1-9</span>
+          <ul class="list-disc pl-4 space-y-1 text-[13.5px] text-[#374151] marker:text-[#64748b]">
+            <li>God’s blessing of abundance and protection</li>
+            <li>Promise of fruitful seed</li>
+            <li>God’s presence at tree and mountains</li>
+          </ul>
+        </div>
+        <div class="p-4 border-r border-[#cbd5e1] flex flex-col items-start bg-white">
+          <span class="inline-block px-2.5 py-0.5 bg-[#64748b] text-white font-bold rounded-md text-[13.5px] mb-3">Genesis 12:10-20</span>
+          <ul class="list-disc pl-4 space-y-1 text-[13.5px] text-[#374151] marker:text-[#64748b]">
+            <li>Foolish failure with Sarai in Egypt who is “beautiful of sight”</li>
+            <li>Deception and lack of trust in God’s word</li>
+            <li>Exile from false-Eden (i.e., Egypt) results in getting a slave</li>
+          </ul>
+        </div>
+        <div class="p-4 border-r border-[#cbd5e1] flex flex-col items-start bg-white">
+          <span class="inline-block px-2.5 py-0.5 bg-[#a68a64] text-white font-bold rounded-md text-[13.5px] mb-3">Genesis 13</span>
+          <ul class="list-disc pl-4 space-y-1 text-[13.5px] text-[#374151] marker:text-[#64748b]">
+            <li>Brother with abundance</li>
+            <li>Jealousy and conflict</li>
+            <li>Brothers separate through non-violence!</li>
+            <li>Non-chosen brother settles in the east, where violence is simmering, leading up to a flood of judgment</li>
+          </ul>
+        </div>
+        <div class="p-4 flex items-center justify-center bg-white">
+          <span class="inline-block px-3 py-1.5 bg-[#dbeafe] text-[#1e40af] font-bold rounded-md text-[13px] leading-snug">Violence, Flood,<br>Remnant, Covenant<br>(Gen. 14)</span>
+        </div>
+      </div>
+
+      <!-- Row 4 -->
+      <div class="grid grid-cols-[1fr_1fr_1fr_1fr] border-b border-[#cbd5e1]">
+        <div class="p-4 border-r border-[#cbd5e1] flex flex-col items-start bg-white">
+          <span class="inline-block px-2.5 py-0.5 bg-[#e2e8f0] text-[#1f2937] font-bold rounded-md text-[13.5px] mb-3">Genesis 15:1-21</span>
+          <ul class="list-disc pl-4 space-y-1 text-[13.5px] text-[#374151] marker:text-[#64748b]">
+            <li>God’s blessing and promise of seed and land</li>
+            <li>Deep sleep and the provision of the seed (<span class="font-serif text-[15px]" dir="rtl">זרע</span>)</li>
+          </ul>
+        </div>
+        <div class="p-4 border-r border-[#cbd5e1] flex flex-col items-start bg-white">
+          <span class="inline-block px-2.5 py-0.5 bg-[#64748b] text-white font-bold rounded-md text-[13.5px] mb-3">Genesis 16:1-6</span>
+          <ul class="list-disc pl-4 space-y-1 text-[13.5px] text-[#374151] marker:text-[#64748b]">
+            <li>Foolish failure with Hagar the Egyptian slave</li>
+            <li>Sarai takes and gives to her husband</li>
+            <li>And she saw ...</li>
+            <li>“Do what’s good in your eyes”</li>
+          </ul>
+        </div>
+        <div class="p-4 border-r border-[#cbd5e1] flex flex-col items-start bg-white">
+          <span class="inline-block px-2.5 py-0.5 bg-[#a68a64] text-white font-bold rounded-md text-[13.5px] mb-3">Genesis 16:7-16</span>
+          <ul class="list-disc pl-4 space-y-1 text-[13.5px] text-[#374151] marker:text-[#64748b]">
+            <li>Yahweh meets non-chosen rival wife in the wilderness</li>
+            <li>Promise of a son whose hand will be against all his brothers</li>
+          </ul>
+        </div>
+        <div class="p-4 flex items-center justify-center bg-white">
+          <span class="inline-block px-3 py-1.5 bg-[#dbeafe] text-[#1e40af] font-bold rounded-md text-[13px] leading-snug">Violence, Flood,<br>Remnant, Covenant<br>(Gen. 17)</span>
+        </div>
+      </div>
+
+      <!-- Grid Footer Row -->
+      <div class="p-3 bg-[#f8fafc] text-[13.5px] text-gray-500">
+        <em>Genesis 15-16 As a Replay.</em> Created by Tim Mackie for BibleProject Classroom: Abraham (2021).
+      </div>
+    </div>
+
+    <p class="text-[15.5px] mb-6">The story has portrayed both Avram and Sarai as humans who repeat their folly. Now, as the sequence of <a href="#" class="underline underline-offset-2 decoration-gray-500 hover:text-gray-600">Genesis 15-16</a> replays the key elements of <a href="#" class="underline underline-offset-2 decoration-gray-500 hover:text-gray-600">Genesis 12-13</a>, both Avram and Sarai replay the folly of humanity</p>
+
+
+
+  <!-- PAGE 104 CONTENT -->
+  <p class="text-[15.5px] leading-relaxed text-slate-800 mb-14">from <a href="#" class="underline hover:text-blue-600">Genesis 1-11</a>. And so, for the second time, we expect there to be some kind of divine judgment that confronts the sin of foolish, violent humans and stems the tide of their destructive choices. This is precisely the theme of <a href="#" class="underline hover:text-blue-600">Genesis 17</a>.</p>
+
+  <h2 class="text-[26px] font-bold text-slate-900 mb-5">Covenant #2 With Avraham: Sign of Circumcision</h2>
+  <p class="text-[15.5px] leading-relaxed text-slate-800 mb-10">This is the longest and most complicated speech so far in the book of Genesis. Before diving into its details, it’s helpful to get an overview of its main content and literary organization.</p>
+
+  <h3 class="text-[26px] font-bold text-slate-900 mb-6">Macro Design of Genesis 17</h3>
+  <p class="text-[15.5px] leading-relaxed text-slate-800 mb-6">At its most basic, the chapter is designed in a simple three-step progression.</p>
+
+  <div class="border-2 border-slate-400 rounded-[10px] p-4 mb-4 bg-white shadow-sm">
+    <span class="inline-block bg-[#7a8599] text-white font-bold text-[13.5px] px-2.5 py-0.5 rounded mb-2.5">Genesis 17:1-16</span>
+    <p class="font-bold text-slate-900 text-[15.5px]">A - God's Speech to Avraham: Covenant, <span class="bg-[#d2f2cd] text-[#26623e] px-1.5 py-0.5 rounded">Promise of Seed</span>, Summons to <span class="bg-[#f2ead8] text-[#8e6d3a] px-1.5 py-0.5 rounded">Circumcise Every Male</span></p>
+  </div>
+
+  <div class="border-2 border-slate-400 rounded-[10px] p-4 mb-4 bg-white shadow-sm ml-10">
+    <span class="inline-block bg-[#7a8599] text-white font-bold text-[13.5px] px-2.5 py-0.5 rounded mb-2.5">Genesis 17:17-22</span>
+    <p class="font-bold text-slate-900 text-[15.5px]">B - God and Avraham Dialogue about the <span class="bg-[#d2f2cd] text-[#26623e] px-1.5 py-0.5 rounded">Promise of Seed</span></p>
+  </div>
+
+  <div class="border-2 border-slate-400 rounded-[10px] p-4 mb-4 bg-white shadow-sm">
+    <span class="inline-block bg-[#7a8599] text-white font-bold text-[13.5px] px-2.5 py-0.5 rounded mb-2.5">Genesis 17:23-27</span>
+    <p class="font-bold text-slate-900 text-[15.5px]">A' - Avraham <span class="bg-[#f2ead8] text-[#8e6d3a] px-1.5 py-0.5 rounded">Circumcises Every Male</span> in His House</p>
+  </div>
+
+  <p class="text-[14px] text-slate-500 italic mb-10">Genesis 17:1-27 (3-Step). Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</p>
+
+  <div class="border-2 border-[#cc5274] rounded-xl p-5 mb-6 bg-white relative">
+    <span class="absolute -top-3 left-4 bg-[#cc5274] text-white font-bold text-[13.5px] px-2.5 py-0.5 rounded">Genesis 17:1-3</span>
+    <p class="font-bold text-slate-900 mb-4 text-[15.5px] mt-1">Speech 1, Initial Statement: Yahweh Will Make a Covenant With Avram</p>
+    <div class="pl-4 space-y-1.5 text-[15.5px] text-slate-800">
+      <p>a - When Avram was a son of ninety-nine years,</p>
+      <p>b - and Yahweh became visible to Avram, and said to him</p>
+      <p>c - "I will give <span class="bg-[#d2f2cd] text-[#26623e] px-1.5 py-0.5 rounded font-bold">my covenant</span> between me and between you</p>
+      <p>d - <span class="bg-[#f0e2f4] text-[#8a3e9c] px-1.5 py-0.5 rounded font-bold">I will multiply you very very much</span> "</p>
+      <p>e - <span class="bg-[#e4e9f0] text-[#4f596b] px-1.5 py-0.5 rounded font-bold">And Avram fell upon his face</span></p>
+    </div>
+  </div>
+
+  <div class="border-2 border-slate-600 rounded-xl p-5 mb-8 bg-white relative">
+    <span class="absolute -top-3 left-4 bg-[#475569] text-white font-bold text-[13.5px] px-2.5 py-0.5 rounded">Genesis 17:4-16</span>
+
+    <div class="border-2 border-slate-400 rounded-lg p-5 mb-5 bg-white mt-4 relative">
+      <span class="absolute -top-3 left-4 bg-[#7a8599] text-white font-bold text-[13.5px] px-2.5 py-0.5 rounded">17:4-8</span>
+      <p class="font-bold text-slate-900 mb-3 text-[15.5px] mt-1">A - Speech 2, The Covenant: New Name Blessing, Royal Seed, Land</p>
+      <ul class="list-disc pl-5 marker:text-slate-900 space-y-2 text-[15.5px] text-slate-800">
+        <li>“And Elohim spoke to him saying ...”
+          <div class="mt-2 space-y-2 leading-relaxed">
+            <span class="bg-[#4d61c5] text-white px-1.5 py-0.5 rounded font-bold">As for me [Yahweh] ...</span><br>
+            <span class="bg-[#d2f2cd] text-[#26623e] px-1.5 py-0.5 rounded font-bold">My covenant</span> is with you<br>
+            <span class="bg-[#f2ead8] text-[#8e6d3a] px-1.5 py-0.5 rounded font-bold">No longer will your name be called Avram, but "Avraham" will be your name</span><br>
+            <span class="text-[#8a3e9c] font-bold">I will make you a multitude of nations</span><br>
+            <span class="bg-[#f0e2f4] text-[#8a3e9c] px-1.5 py-0.5 rounded font-bold">I will make you fruitful, very very much</span><br>
+            <span class="bg-[#d4f2f4] text-[#0f7a85] px-1.5 py-0.5 rounded font-bold">and kings will come from you</span>
+          </div>
+        </li>
+      </ul>
+      <span class="absolute -top-3 left-4 bg-[#cbd5e1] text-[#475569] font-bold text-[13.5px] px-2.5 py-0.5 rounded">17:9-14</span>
+      <p class="font-bold text-slate-900 mb-3 text-[15.5px] mt-1">B - Speech 3, Sign of the Covenant: Circumcision, Cut Off Foreskin</p>
+      <ul class="list-disc pl-5 marker:text-slate-900 space-y-2 text-[15.5px] text-slate-800">
+        <li>“And Elohim said to Avraham ...”
+          <div class="mt-2 space-y-2 leading-relaxed">
+            <span class="bg-[#4d61c5] text-white px-1.5 py-0.5 rounded font-bold">As for you [Avraham] ...</span><br>
+            This is <span class="bg-[#d2f2cd] text-[#26623e] px-1.5 py-0.5 rounded font-bold">my covenant</span> that you will keep: <span class="bg-[#f2ead8] text-[#8e6d3a] px-1.5 py-0.5 rounded font-bold">Circumcise</span> every male ...<br>
+            Any son of eight days will be <span class="bg-[#f2ead8] text-[#8e6d3a] px-1.5 py-0.5 rounded font-bold">circumcised</span>, every male of your generations ...<br>
+            The foreskin of a male that is not <span class="bg-[#f2ead8] text-[#8e6d3a] px-1.5 py-0.5 rounded font-bold">circumcised</span> ... he will cut off from his people ...
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="border-2 border-slate-400 rounded-lg p-5 bg-white relative">
+      <span class="absolute -top-3 left-4 bg-[#7a8599] text-white font-bold text-[13.5px] px-2.5 py-0.5 rounded">17:15-16</span>
+      <p class="font-bold text-slate-900 mb-3 text-[15.5px] mt-1">A' - Speech 4, The Promise: New Name Blessing, Son, Royal Seed</p>
+      <ul class="list-disc pl-5 marker:text-slate-900 space-y-2 text-[15.5px] text-slate-800">
+        <li>“And Elohim said to Avraham ...”
+          <div class="mt-2 space-y-2 leading-relaxed">
+            <span class="bg-[#4d61c5] text-white px-1.5 py-0.5 rounded font-bold">As for Sarai ...</span><br>
+            <span class="bg-[#f2ead8] text-[#8e6d3a] px-1.5 py-0.5 rounded font-bold">Her name will not be called Sarai, but "Sarah" is her name</span><br>
+            <span class="text-[#8a3e9c] font-bold">And I will bless her</span><br>
+            <span class="text-[#8a3e9c] font-bold">and she will become nations</span><br>
+            <span class="bg-[#d4f2f4] text-[#0f7a85] px-1.5 py-0.5 rounded font-bold">kings of peoples will be from her</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-2 border-[#cc5274] rounded-xl p-5 mb-6 bg-white relative">
+    <span class="absolute -top-3 left-4 bg-[#cc5274] text-white font-bold text-[13.5px] px-2.5 py-0.5 rounded">Genesis 17:17-22</span>
+    <p class="font-bold text-slate-900 mb-4 text-[15.5px] mt-1">Yahweh's Appeal to Israel: Turn to Me and Live!</p>
+    <div class="pl-4 space-y-1.5 text-[15.5px] text-slate-800">
+      <p>e - <span class="bg-[#e4e9f0] text-[#4f596b] px-1.5 py-0.5 rounded font-bold">And Avram fell upon his face</span></p>
+      <p>d - "Will there be a birth for a son of one-hundred years?!"</p>
+      <p>c - "I will establish <span class="bg-[#d2f2cd] text-[#26623e] px-1.5 py-0.5 rounded font-bold">my covenant</span> with Yitskhaq ..."</p>
+      <p>b - <span class="bg-[#f0e2f4] text-[#8a3e9c] px-1.5 py-0.5 rounded font-bold">"I will multiply [Yishmael] very very much"</span></p>
+      <p>a - And he finished speaking to him, and Elohim went up from Avraham</p>
+    </div>
+  </div>
+
+  <div class="border-2 border-slate-400 rounded-lg p-5 mb-6 ml-10 relative">
+    <span class="absolute -top-3 left-4 bg-[#7a8599] text-white font-bold text-[13.5px] px-2.5 py-0.5 rounded">Genesis 17:23-27</span>
+    <p class="font-bold text-slate-900 mb-3 text-[15.5px] mt-1">Narrative: Fulfillment of the Circumcision Command</p>
+    <ul class="list-disc pl-5 marker:text-slate-900 space-y-2 text-[15.5px] text-slate-800">
+      <li>And Avraham took Yishmael ... everyone born of his house, every male ...<br>
+      and he <span class="bg-[#f2ead8] text-[#8e6d3a] px-1.5 py-0.5 rounded font-bold">circumcised</span> the flesh of their foreskin just as God said.</li>
+    </ul>
+  </div>
+
+  <p class="text-[14px] text-slate-500 italic mb-6">Genesis 17:1-27 (Detailed). Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</p>
+  <p class="text-[15.5px] leading-relaxed text-slate-800 mb-14">This literary organization highlights a number of key themes in the chapter.</p>
+
+
+  <!-- PAGE 106 CONTENT -->
+  <p class="text-[15.5px] leading-relaxed text-slate-800 mb-6">The narrative of a divine command (<a href="#" class="underline hover:text-blue-600">Gen. 17:1-22</a>) followed by a narrative of Avraham fulfilling the divine command exactly (<a href="#" class="underline hover:text-blue-600">Gen. 17:23-27</a>) highlights Avraham’s obedience and trust in Yahweh. Even though it must have been a painful experience, Avraham circumcised himself and every male in his household out of obedient trust in God’s word.</p>
+  <p class="text-[15.5px] leading-relaxed text-slate-800 mb-10">The five speeches are designed in a symmetrical order, and each one has a distinct main point and rhetorical thrust.</p>
+
+  <div class="border-2 border-[#cc5274] rounded-xl p-5 mb-6 relative">
+    <span class="absolute -top-3 left-4 bg-[#cc5274] text-white font-bold text-[13.5px] px-2.5 py-0.5 rounded">Genesis 17:1-3</span>
+    <p class="font-bold text-slate-900 mb-4 text-[15.5px] mt-1">Speech 1</p>
+    <ul class="list-disc pl-5 text-[15.5px] text-slate-800 space-y-1.5 marker:text-slate-900">
+      <li>Avram is summoned to be faithful to Yahweh</li>
+      <li>Initial statement: I will set up a covenant between you and me and bless you</li>
+    </ul>
+  </div>
+
+  <div class="border-2 border-[#7a8599] rounded-xl p-5 mb-6 relative">
+    <span class="absolute -top-3 left-4 bg-[#7a8599] text-white font-bold text-[13.5px] px-2.5 py-0.5 rounded">A- Genesis 17:4-8</span>
+    <p class="font-bold text-slate-900 mb-4 text-[15.5px] mt-1">Speech 2</p>
+    <ul class="list-disc pl-5 text-[15.5px] text-slate-800 space-y-1.5 marker:text-slate-900">
+      <li>Avram re-created into Avraham: father of many nations, including kings</li>
+      <li>Yahweh will be the <em>Elohim</em> of Avraham and his <span class="bg-[#d2f2cd] text-[#26623e] px-1.5 py-0.5 rounded font-bold">seed</span> and they will inherit <span class="bg-[#d2f2cd] text-[#26623e] px-1.5 py-0.5 rounded font-bold">land</span></li>
+    </ul>
+  </div>
+
+  <div class="border-2 border-[#e2e8f0] rounded-xl p-5 mb-6 relative ml-6">
+    <span class="absolute -top-3 left-4 bg-[#e2e8f0] text-[#475569] font-bold text-[13.5px] px-2.5 py-0.5 rounded">B- Genesis 17:9-14</span>
+    <p class="font-bold text-slate-900 mb-4 text-[15.5px] mt-1">Speech 3</p>
+    <ul class="list-disc pl-5 text-[15.5px] text-slate-800 space-y-1.5 marker:text-slate-900">
+      <li>Avraham's covenant obligation: circumcision as covenant sign</li>
+    </ul>
+  </div>
+
+  <div class="border-2 border-[#7a8599] rounded-xl p-5 mb-6 relative">
+    <span class="absolute -top-3 left-4 bg-[#7a8599] text-white font-bold text-[13.5px] px-2.5 py-0.5 rounded">A'- Genesis 17:15-16</span>
+    <p class="font-bold text-slate-900 mb-4 text-[15.5px] mt-1">Speech 4</p>
+    <ul class="list-disc pl-5 text-[15.5px] text-slate-800 space-y-1.5 marker:text-slate-900">
+      <li>Sarai is re-created into Sarah: blessing, son, kings will come from her</li>
+    </ul>
+  </div>
+
+  <div class="border-2 border-[#cc5274] rounded-xl p-5 mb-6 relative">
+    <span class="absolute -top-3 left-4 bg-[#cc5274] text-white font-bold text-[13.5px] px-2.5 py-0.5 rounded">Genesis 17:17-22</span>
+    <p class="font-bold text-slate-900 mb-4 text-[15.5px] mt-1">Dialogue + Speech 5</p>
+    <ul class="list-disc pl-5 text-[15.5px] text-slate-800 space-y-1.5 marker:text-slate-900">
+      <li>Avraham proposes Yishmael</li>
+      <li>God chooses Yitskhaq through Sarah as the chosen son</li>
+    </ul>
+  </div>
+
+  <p class="text-[14px] text-slate-500 italic mb-14">Genesis 17:1-22. Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</p>
+
+  <h2 class="text-[28px] font-bold text-slate-900 mb-10">Translation and Literary Design of Genesis 17:1-27</h2>
+
+  <span class="inline-block bg-[#e2e8f0] text-gray-900 font-bold text-[15px] px-3 py-1 rounded-md mb-8">Genesis 17:1-3</span>
+
 </div>
-<script src="../js/verse-modal.js"></script>
+<div class="max-w-[850px] mx-auto px-6 lg:px-8 py-8 relative font-sans text-[#1f2937]">
+
+  <!-- PAGE 106 CONTENT -->
+  <p class="text-[15.5px] leading-relaxed text-slate-800 mb-6">The narrative of a divine command (<a href="#" class="underline underline-offset-2 decoration-gray-400 hover:text-gray-600">Gen. 17:1-22</a>) followed by a narrative of Avraham fulfilling the divine command exactly (<a href="#" class="underline underline-offset-2 decoration-gray-400 hover:text-gray-600">Gen. 17:23-27</a>) highlights Avraham’s obedience and trust in Yahweh. Even though it must have been a painful experience, Avraham circumcised himself and every male in his household out of obedient trust in God’s word.</p>
+  <p class="text-[15.5px] leading-relaxed text-slate-800 mb-10">The five speeches are designed in a symmetrical order, and each one has a distinct main point and rhetorical thrust.</p>
+
+  <div class="border-2 border-[#cc5274] rounded-xl p-6 mb-6 relative bg-white">
+    <span class="absolute -top-3.5 left-4 bg-[#cc5274] text-white font-bold text-[13.5px] px-2.5 py-0.5 rounded">Genesis 17:1-3</span>
+    <p class="font-bold text-slate-900 mb-3 text-[15.5px]">Speech 1</p>
+    <ul class="list-disc pl-5 text-[15.5px] text-slate-800 space-y-1.5 marker:text-slate-800">
+      <li>Avram is summoned to be faithful to Yahweh</li>
+      <li>Initial statement: I will set up a covenant between you and me and bless you</li>
+    </ul>
+  </div>
+
+  <div class="border-2 border-[#7a8599] rounded-xl p-6 mb-6 relative bg-white">
+    <span class="absolute -top-3.5 left-4 bg-[#7a8599] text-white font-bold text-[13.5px] px-2.5 py-0.5 rounded">A- Genesis 17:4-8</span>
+    <p class="font-bold text-slate-900 mb-3 text-[15.5px]">Speech 2</p>
+    <ul class="list-disc pl-5 text-[15.5px] text-slate-800 space-y-1.5 marker:text-slate-800">
+      <li>Avram re-created into Avraham: father of many nations, including kings</li>
+      <li>Yahweh will be the <em>Elohim</em> of Avraham and his <span class="bg-[#d2f2cd] text-[#26623e] px-1.5 py-0.5 rounded font-bold">seed</span> and they will inherit <span class="bg-[#d2f2cd] text-[#26623e] px-1.5 py-0.5 rounded font-bold">land</span></li>
+    </ul>
+  </div>
+
+  <div class="border-2 border-[#e2e8f0] rounded-xl p-6 mb-6 relative bg-white ml-6">
+    <span class="absolute -top-3.5 left-4 bg-[#e2e8f0] text-[#475569] font-bold text-[13.5px] px-2.5 py-0.5 rounded">B- Genesis 17:9-14</span>
+    <p class="font-bold text-slate-900 mb-3 text-[15.5px]">Speech 3</p>
+    <ul class="list-disc pl-5 text-[15.5px] text-slate-800 space-y-1.5 marker:text-slate-800">
+      <li>Avraham's covenant obligation: circumcision as covenant sign</li>
+    </ul>
+  </div>
+
+  <div class="border-2 border-[#7a8599] rounded-xl p-6 mb-6 relative bg-white">
+    <span class="absolute -top-3.5 left-4 bg-[#7a8599] text-white font-bold text-[13.5px] px-2.5 py-0.5 rounded">A'- Genesis 17:15-16</span>
+    <p class="font-bold text-slate-900 mb-3 text-[15.5px]">Speech 4</p>
+    <ul class="list-disc pl-5 text-[15.5px] text-slate-800 space-y-1.5 marker:text-slate-800">
+      <li>Sarai is re-created into Sarah: blessing, son, kings will come from her</li>
+    </ul>
+  </div>
+
+  <div class="border-2 border-[#cc5274] rounded-xl p-6 mb-6 relative bg-white">
+    <span class="absolute -top-3.5 left-4 bg-[#cc5274] text-white font-bold text-[13.5px] px-2.5 py-0.5 rounded">Genesis 17:17-22</span>
+    <p class="font-bold text-slate-900 mb-3 text-[15.5px]">Dialogue + Speech 5</p>
+    <ul class="list-disc pl-5 text-[15.5px] text-slate-800 space-y-1.5 marker:text-slate-800">
+      <li>Avraham proposes Yishmael</li>
+      <li>God chooses Yitskhaq through Sarah as the chosen son</li>
+    </ul>
+  </div>
+
+  <p class="text-[14px] text-slate-500 italic mb-14 text-center">Genesis 17:1-22. Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</p>
+
+
+  <!-- PAGES 107-108: DETAILED TRANSLATION -->
+  <h2 class="text-[28px] font-bold text-slate-900 mb-10">Translation and Literary Design of Genesis 17:1-27</h2>
+
+  <!-- Block 1: Genesis 17:1-3 -->
+  <div class="border-[1.5px] border-slate-300 rounded-xl pt-8 pb-6 px-6 relative mb-8 bg-[#f8fafc]">
+    <span class="absolute -top-[14px] left-5 bg-[#e2e8f0] text-[#1f2937] font-bold text-[13.5px] px-3 py-1 rounded-md">Genesis 17:1-3</span>
+    
+    <div class="pl-2 space-y-1.5 text-[15.5px] text-slate-800 leading-relaxed">
+      <p><sup class="text-[11px] font-bold text-gray-500 mr-1">1</sup> And Avram was ninety nine years old,</p>
+      <p>and Yahweh became seen to Avram,</p>
+      <p>and he said to him,</p>
+      <p>“I am El-Shaddai.</p>
+      <p>Walk before my face,</p>
+      <p>and be blameless;</p>
+      <p><sup class="text-[11px] font-bold text-gray-500 mr-1">2</sup> then I will give a <span class="bg-[#3c7d5c] text-white px-1.5 py-0.5 rounded font-bold">covenant</span> <span class="text-[#3c7d5c] font-bold">between me and between you</span>,</p>
+      <p>and <span class="bg-[#8865c3] text-white px-1.5 py-0.5 rounded font-bold">I will multiply you very, very much</span>.”</p>
+      <p><sup class="text-[11px] font-bold text-gray-500 mr-1">3</sup> And Avram fell down upon his face.</p>
+    </div>
+  </div>
+
+  <!-- Block 2: Genesis 17:4-16 -->
+  <div class="border-[1.5px] border-slate-300 rounded-xl pt-8 pb-6 px-6 relative mb-8">
+    <span class="absolute -top-[14px] left-5 bg-[#e2e8f0] text-[#1f2937] font-bold text-[13.5px] px-3 py-1 rounded-md">Genesis 17:4-16</span>
+
+    <p class="text-[15.5px] text-slate-800 mb-5 ml-14">And Elohim spoke to him, saying:</p>
+
+    <!-- A -->
+    <div class="flex relative mb-8">
+      <div class="w-14 flex-shrink-0 text-right pr-4 text-gray-500 font-medium text-[15px] pt-1">A</div>
+      <div class="border-l-[3px] border-[#8865c3] pl-5 w-full">
+        <div class="space-y-1.5 text-[15.5px] text-slate-800 leading-relaxed">
+          <p><sup class="text-[11px] font-bold text-gray-500 mr-1">4</sup> “<span class="bg-[#288b97] text-white px-1.5 py-0.5 rounded font-bold">As for me</span>, look, <span class="bg-[#3c7d5c] text-white px-1.5 py-0.5 rounded font-bold">my covenant</span> <span class="text-[#3c7d5c] font-bold">is with you</span>,</p>
+          <p>and you will become a father of a multitude of nations,</p>
+          <p><sup class="text-[11px] font-bold text-gray-500 mr-1">5</sup> <span class="bg-[#7a8599] text-white px-1.5 py-0.5 rounded font-bold">and no longer will your name be called, ‘Avram,’</span></p>
+          <p><span class="bg-[#7a8599] text-white px-1.5 py-0.5 rounded font-bold">but your name will be ‘Avraham,’</span></p>
+          <p>because I will give you to be a multitude of nations,</p>
+          <p><sup class="text-[11px] font-bold text-gray-500 mr-1">6</sup> and <span class="bg-[#8865c3] text-white px-1.5 py-0.5 rounded font-bold">I will make you fruitful, very very much</span>,</p>
+          <p>and I will give you to become nations,</p>
+          <p>and <span class="bg-[#c84869] text-white px-1.5 py-0.5 rounded font-bold">kings will come from you</span>,</p>
+          <p><sup class="text-[11px] font-bold text-gray-500 mr-1">7</sup> and I will <span class="bg-[#3c7d5c] text-white px-1.5 py-0.5 rounded font-bold">establish my covenant</span></p>
+          <p><span class="text-[#3c7d5c] font-bold">between me and between you</span>,</p>
+          <p><span class="text-[#3c7d5c] font-bold">and between your seed after you</span> for their generations,</p>
+          <p>as <span class="bg-[#3c7d5c] text-white px-1.5 py-0.5 rounded font-bold">an eternal covenant</span>,</p>
+          <p><span class="bg-[#3d60ae] text-white px-1.5 py-0.5 rounded font-bold">to be Elohim for you</span>,</p>
+          <p>and for <span class="text-[#3c7d5c] font-bold">your seed after you</span></p>
+          <p><sup class="text-[11px] font-bold text-gray-500 mr-1">8</sup> and I will give to you and to <span class="text-[#3c7d5c] font-bold">your seed after you</span>,</p>
+          <p><span class="text-[#715c27] font-bold">the land</span> of your sojourning,</p>
+          <p>all <span class="text-[#715c27] font-bold">the land</span> of Canaan,</p>
+          <p>for <span class="bg-[#3c7d5c] text-white px-1.5 py-0.5 rounded font-bold">an eternal possession</span>,</p>
+          <p><span class="bg-[#3d60ae] text-white px-1.5 py-0.5 rounded font-bold">and I will be Elohim for them</span>.”</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- B (Nested Box) -->
+    <div class="flex relative mb-8 mt-6">
+      <div class="w-14 flex-shrink-0 text-right pr-4 text-gray-500 font-medium text-[15px] pt-1">B</div>
+      <div class="border-l-[3px] border-[#3c7d5c] pl-5 w-full">
+        <div class="border-[1.5px] border-slate-300 rounded-lg p-6 bg-[#f8fafc]">
+          <div class="space-y-1.5 text-[15.5px] text-slate-800 leading-relaxed">
+            <p><sup class="text-[11px] font-bold text-gray-500 mr-1">9</sup> And Elohim said to Avraham,</p>
+            <p>“<span class="bg-[#288b97] text-white px-1.5 py-0.5 rounded font-bold">And as for you</span>, you will keep <span class="bg-[#3c7d5c] text-white px-1.5 py-0.5 rounded font-bold">my covenant</span>,</p>
+            <p>you and <span class="text-[#3c7d5c] font-bold">your seed after you</span> for their generations.</p>
+            <p><sup class="text-[11px] font-bold text-gray-500 mr-1">10</sup> This is <span class="bg-[#3c7d5c] text-white px-1.5 py-0.5 rounded font-bold">my covenant</span> that y'all will keep,</p>
+            <p><span class="text-[#3c7d5c] font-bold">between me and between y'all</span>,</p>
+            <p><span class="text-[#3c7d5c] font-bold">and between your seed after you</span>:</p>
+            <p><span class="bg-[#c85638] text-white px-1.5 py-0.5 rounded font-bold">circumcise</span> for yourselves <span class="text-[#c85638] font-bold">every male</span>.</p>
+            <p><sup class="text-[11px] font-bold text-gray-500 mr-1">11</sup> And y'all will <span class="bg-[#c85638] text-white px-1.5 py-0.5 rounded font-bold">circumcise</span> the flesh of your foreskin,</p>
+            <p>and that will be as a symbol of <span class="bg-[#3c7d5c] text-white px-1.5 py-0.5 rounded font-bold">the covenant</span>,</p>
+            <p><span class="text-[#3c7d5c] font-bold">between me and between y'all.</span></p>
+            <p><sup class="text-[11px] font-bold text-gray-500 mr-1">12</sup> When there's a son of eight days,</p>
+            <p>he will be <span class="bg-[#c85638] text-white px-1.5 py-0.5 rounded font-bold">circumcised</span> for you, <span class="text-[#c85638] font-bold">every male</span> for your generations;</p>
+            <p>one born of the house or purchased with silver,</p>
+            <p>from any son of a foreigner who is not from your <span class="bg-[#3d60ae] text-white px-1.5 py-0.5 rounded font-bold">seed</span>;</p>
+            <p><sup class="text-[11px] font-bold text-gray-500 mr-1">13</sup> he will certainly be <span class="bg-[#c85638] text-white px-1.5 py-0.5 rounded font-bold">circumcised</span>,</p>
+            <p>that one born of the house or purchased with silver;</p>
+            <p>and <span class="bg-[#3c7d5c] text-white px-1.5 py-0.5 rounded font-bold">my covenant</span> will be <strong>in your flesh</strong>,</p>
+            <p>for <span class="bg-[#3c7d5c] text-white px-1.5 py-0.5 rounded font-bold">an eternal covenant</span>.</p>
+            <p><sup class="text-[11px] font-bold text-gray-500 mr-1">14</sup> And a foreskinned male that is not <span class="bg-[#c85638] text-white px-1.5 py-0.5 rounded font-bold">circumcised</span> <strong>in the flesh of his foreskin</strong>,</p>
+            <p>that person will be cut off from his people,</p>
+            <p>he has violated <span class="bg-[#3c7d5c] text-white px-1.5 py-0.5 rounded font-bold">my covenant</span>.”</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- A' -->
+    <div class="flex relative mt-6">
+      <div class="w-14 flex-shrink-0 text-right pr-4 text-gray-500 font-medium text-[15px] pt-1">A'</div>
+      <div class="border-l-[3px] border-[#8865c3] pl-5 w-full">
+        <div class="space-y-1.5 text-[15.5px] text-slate-800 leading-relaxed">
+          <p><sup class="text-[11px] font-bold text-gray-500 mr-1">15</sup> And Elohim said to Avraham,</p>
+          <p>“<span class="bg-[#288b97] text-white px-1.5 py-0.5 rounded font-bold">As for Sarai</span> your wife,</p>
+          <p><span class="bg-[#7a8599] text-white px-1.5 py-0.5 rounded font-bold">you will not call her name ‘Sarai,’</span></p>
+          <p><span class="bg-[#7a8599] text-white px-1.5 py-0.5 rounded font-bold">because her name is ‘Sarah.’ [= “Queen”]</span></p>
+          <p><sup class="text-[11px] font-bold text-gray-500 mr-1">16</sup> And I will <span class="bg-[#8865c3] text-white px-1.5 py-0.5 rounded font-bold">bless</span> her,</p>
+          <p>and also, I will give to you from her a son,</p>
+          <p>and I will <span class="bg-[#8865c3] text-white px-1.5 py-0.5 rounded font-bold">bless</span> her,</p>
+          <p>and she will become nations,</p>
+          <p><span class="bg-[#c84869] text-white px-1.5 py-0.5 rounded font-bold">kings of people groups will be from her</span>.”</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Block 3: Genesis 17:17-22 -->
+  <div class="border-[1.5px] border-slate-300 rounded-xl pt-8 pb-6 px-6 relative mb-8 bg-[#f8fafc]">
+    <span class="absolute -top-[14px] left-5 bg-[#e2e8f0] text-[#1f2937] font-bold text-[13.5px] px-3 py-1 rounded-md">Genesis 17:17-22</span>
+
+    <div class="ml-14 mb-6 space-y-1.5 text-[15.5px] text-slate-800 leading-relaxed">
+      <p><sup class="text-[11px] font-bold text-gray-500 mr-1">17</sup> And Avraham fell on his face,</p>
+      <p>and <span class="text-[#c84869] font-bold">he laughed</span> <span class="text-[#288b97] font-bold">(= yitskhaq)</span> and said in his heart,</p>
+      <p>“Will there <span class="text-[#288b97] font-bold">be a birth</span> for a son of a hundred years?!</p>
+      <p>Or Sarah, a daughter of ninety years, she will <span class="text-[#288b97] font-bold">give birth</span>?!”</p>
+      <p><sup class="text-[11px] font-bold text-gray-500 mr-1">18</sup> And Avraham said to Elohim,</p>
+      <p>“If only <span class="text-[#c84869] font-bold">Yishmael</span> could live before your face!”</p>
+    </div>
+
+    <!-- A (Nested Box) -->
+    <div class="flex relative mb-6 mt-6">
+      <div class="w-14 flex-shrink-0 text-right pr-4 text-gray-500 font-medium text-[15px] pt-1">A</div>
+      <div class="border-l-[3px] border-slate-300 pl-5 w-full">
+        <div class="border-[1.5px] border-slate-300 rounded-lg p-6 bg-white">
+          <div class="space-y-1.5 text-[15.5px] text-slate-800 leading-relaxed">
+            <p><sup class="text-[11px] font-bold text-gray-500 mr-1">19</sup> And Elohim said,</p>
+            <p>“Nonetheless, Sarah your wife will <span class="text-[#288b97] font-bold">birth</span> for you a son,</p>
+            <p>and you will call his name, '<span class="text-[#c84869] font-bold">Yitskhaq</span>' [= "Laughter"],</p>
+            <p>and <span class="text-[#3c7d5c] font-bold">I will establish</span> <span class="bg-[#3c7d5c] text-white px-1.5 py-0.5 rounded font-bold">my covenant</span> with him,</p>
+            <p>for <span class="bg-[#3c7d5c] text-white px-1.5 py-0.5 rounded font-bold">an eternal covenant</span> for his <span class="bg-[#3d60ae] text-white px-1.5 py-0.5 rounded font-bold">seed</span> after him.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B -->
+    <div class="flex relative mb-6">
+      <div class="w-14 flex-shrink-0 text-right pr-4 text-gray-500 font-medium text-[15px] pt-1"></div>
+      <div class="pl-5 w-full">
+        <div class="space-y-1.5 text-[15.5px] text-slate-800 leading-relaxed">
+          <p><sup class="text-[11px] font-bold text-gray-500 mr-1">20</sup> And as for <span class="text-[#c84869] font-bold">Yishmael</span>, I have <span class="text-[#c84869] font-bold">heard</span> you.</p>
+          <p>look, I have <span class="bg-[#8865c3] text-white px-1.5 py-0.5 rounded font-bold">blessed</span> him,</p>
+          <p>and I will make him <span class="bg-[#8865c3] text-white px-1.5 py-0.5 rounded font-bold">fruitful</span>,</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="max-w-[850px] mx-auto px-6 lg:px-8 py-8 relative font-sans text-[#1f2937]">
+
+  <!-- Continuation of Genesis 17 Translation -->
+  <div class="border-[1.5px] border-slate-300 rounded-xl pt-0 pb-6 px-6 relative mb-8">
+    <div class="flex relative mb-6 mt-6">
+      <div class="w-14 flex-shrink-0 text-right pr-4 text-gray-500 font-medium text-[15px] pt-1"></div>
+      <div class="border-l-[3px] border-[#8865c3] pl-5 w-full">
+        <div class="space-y-1.5 text-[15.5px] text-slate-800 leading-relaxed">
+          <p>and I will make him <span class="bg-[#8865c3] text-white px-1.5 py-0.5 rounded font-bold">multiply</span>, very very much.</p>
+          <p>Twelve princes he will <span class="text-[#288b97] font-bold">cause to be born</span>,</p>
+          <p>and I will give him to be a <span class="bg-[#8865c3] text-white px-1.5 py-0.5 rounded font-bold">great nation</span>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- A' -->
+    <div class="flex relative mb-2">
+      <div class="w-14 flex-shrink-0 text-right pr-4 text-gray-500 font-medium text-[15px] pt-1">A'</div>
+      <div class="border-l-[3px] border-slate-200 pl-5 w-full">
+        <div class="border-[1.5px] border-slate-200 rounded-lg p-6 bg-white">
+          <div class="space-y-1.5 text-[15.5px] text-slate-800 leading-relaxed">
+            <p><sup class="text-[11px] font-bold text-gray-500 mr-1">21</sup> But <span class="text-[#3c7d5c] font-bold">I will establish</span> <span class="bg-[#3c7d5c] text-white px-1.5 py-0.5 rounded font-bold">my covenant</span> with <span class="text-[#c84869] font-bold">Yitskhaq</span>,</p>
+            <p>whom Sarah will <span class="text-[#288b97] font-bold">birth</span> for you at this appointed time in the year after."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ml-14 mt-6 border-[1.5px] border-slate-200 rounded-lg p-6 bg-white">
+      <div class="space-y-1.5 text-[15.5px] text-slate-800 leading-relaxed">
+        <p><sup class="text-[11px] font-bold text-gray-500 mr-1">22</sup> And he finished speaking to him,</p>
+        <p>and Elohim went up from Avraham.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Block 4: Genesis 17:23-27 -->
+  <div class="border-[1.5px] border-slate-300 rounded-xl pt-8 pb-6 px-6 relative mb-8 bg-[#f8fafc]">
+    <span class="absolute -top-[14px] left-5 bg-[#e2e8f0] text-[#1f2937] font-bold text-[13.5px] px-3 py-1 rounded-md">Genesis 17:23-27</span>
+
+    <div class="border-[1.5px] border-slate-200 rounded-lg p-6 mb-5 bg-white">
+      <div class="space-y-1.5 text-[15.5px] text-slate-800 leading-relaxed">
+        <p><sup class="text-[11px] font-bold text-gray-500 mr-1">23</sup> And Avraham took <span class="text-[#c84869] font-bold">Yishmael</span> his son,</p>
+        <p class="text-[#c85638] font-bold">and all those born of his house,</p>
+        <p class="text-[#c85638] font-bold">and all those purchased with silver,</p>
+        <p class="text-[#c85638] font-bold">every male among the men of Avraham's house,</p>
+        <p>and he <span class="bg-[#c85638] text-white px-1.5 py-0.5 rounded font-bold">circumcised</span> <strong>the flesh of their foreskin,</strong></p>
+        <p class="text-[#c85638] font-bold">on that very day,</p>
+        <p>just as Elohim had spoken to him.</p>
+      </div>
+    </div>
+
+    <!-- Inner Box for a, b, a', b' -->
+    <div class="border-[1.5px] border-slate-200 rounded-lg p-6 mb-5 bg-white">
+      <div class="space-y-2 text-[15.5px] text-slate-800 leading-relaxed">
+        <div class="flex">
+          <div class="w-8 text-slate-500 font-medium text-right pr-3">a</div>
+          <div><sup class="text-[11px] font-bold text-gray-500 mr-1">24</sup> And Avraham was <span class="text-[#715c27] font-bold">a son of ninety nine years</span>,</div>
+        </div>
+        <div class="flex">
+          <div class="w-8 text-slate-500 font-medium text-right pr-3">b</div>
+          <div>when he was <span class="bg-[#c85638] text-white px-1.5 py-0.5 rounded font-bold">circumcised</span> <strong>in the flesh of his foreskin</strong>,</div>
+        </div>
+        <div class="flex mt-2">
+          <div class="w-8 text-slate-500 font-medium text-right pr-3">a'</div>
+          <div><sup class="text-[11px] font-bold text-gray-500 mr-1">25</sup> and Yishmael his son was <span class="text-[#715c27] font-bold">a son of thirteen years</span>,</div>
+        </div>
+        <div class="flex">
+          <div class="w-8 text-slate-500 font-medium text-right pr-3">b'</div>
+          <div>when he was <span class="bg-[#c85638] text-white px-1.5 py-0.5 rounded font-bold">circumcised</span> <strong>in the flesh of his foreskin</strong>.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-[1.5px] border-slate-200 rounded-lg p-6 bg-white">
+      <div class="space-y-1.5 text-[15.5px] text-slate-800 leading-relaxed">
+        <p><sup class="text-[11px] font-bold text-gray-500 mr-1">26</sup> <span class="text-[#715c27] font-bold">On that very day,</span></p>
+        <p>Avraham was <span class="bg-[#c85638] text-white px-1.5 py-0.5 rounded font-bold">circumcised</span>, and <span class="text-[#c84869] font-bold">Yishmael</span> his son,</p>
+        <p><sup class="text-[11px] font-bold text-gray-500 mr-1">27</sup> <span class="text-[#c85638] font-bold">and all the men of his house,</span></p>
+        <p class="text-[#c85638] font-bold">those born of the house</p>
+        <p class="text-[#c85638] font-bold">and those purchased with silver from a foreigner,</p>
+        <p>they were <span class="bg-[#c85638] text-white px-1.5 py-0.5 rounded font-bold">circumcised</span> with him.</p>
+      </div>
+    </div>
+  </div>
+  
+  <p class="text-[14px] text-slate-500 italic mb-14 text-center">Genesis 17:1-27. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</p>
+
+
+  <!-- DE-CREATION / NOAH COMPARISONS -->
+  <h2 class="text-[28px] font-bold text-slate-900 mt-12 mb-5">The De-creation and Re-creation of Avram and Sarai</h2>
+  <p class="text-[15.5px] leading-relaxed text-slate-800 mb-6">This complex narrative is designed to culminate the themes at work so far in all of Genesis 1-17, and especially the earlier patterns of creation and Eden and of flood and covenant.</p>
+  <p class="text-[15.5px] leading-relaxed text-slate-800 mb-10">Numerous details in this chapter only make sense based on our ability to track the hyperlinks and analogies with these earlier narratives.</p>
+
+  <!-- TABLE 1 -->
+  <h2 class="text-[26px] font-bold text-slate-900 mb-5">Avraham and Noah, Circumcision and Flood</h2>
+  
+  <div class="overflow-x-auto mb-6">
+    <table class="w-full text-[15px] border-collapse bg-white rounded-xl shadow-sm overflow-hidden border border-slate-200">
+      <thead class="bg-[#f1f5f9]">
+        <tr>
+          <th class="p-5 text-left font-bold text-slate-900 w-1/2 border-b border-r border-slate-200">Avraham</th>
+          <th class="p-5 text-left font-bold text-slate-900 w-1/2 border-b border-slate-200">Noah</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-200">
+        <tr>
+          <td class="p-5 border-r border-slate-200 leading-relaxed align-top">
+            <strong>Gen. 17:1</strong> “<span class="bg-[#e2e8f0] text-[#475569] font-bold px-1.5 py-0.5 rounded text-[14px]">Walk</span> (<span class="font-serif text-[18px]" dir="rtl">התהלך</span>) before me and be <span class="bg-[#e2e8f0] text-[#475569] font-bold px-1.5 py-0.5 rounded text-[14px]">blameless</span> (<span class="font-serif text-[18px]" dir="rtl">תמים</span>)”
+          </td>
+          <td class="p-5 leading-relaxed align-top">
+            <strong>Gen. 6:9b</strong> “Noah was a righteous man, <span class="bg-[#e2e8f0] text-[#475569] font-bold px-1.5 py-0.5 rounded text-[14px]">blameless</span> (<span class="font-serif text-[18px]" dir="rtl">תמים</span>) in his generations, he <span class="bg-[#e2e8f0] text-[#475569] font-bold px-1.5 py-0.5 rounded text-[14px]">walked</span> (<span class="font-serif text-[18px]" dir="rtl">התהלך</span>) with God.”
+          </td>
+        </tr>
+        <tr>
+          <td class="p-5 border-r border-slate-200 leading-relaxed align-top">
+            <strong>Gen. 17:4-5</strong> “You will become the <span class="bg-[#e2e8f0] text-[#475569] font-bold px-1.5 py-0.5 rounded text-[14px]">father of a</span> <span class="bg-[#e2e8f0] text-[#475569] font-bold px-1.5 py-0.5 rounded text-[14px]">multitude of nations</span> (<span class="font-serif text-[18px]" dir="rtl">אב ... גוים</span>)”
+          </td>
+          <td class="p-5 leading-relaxed align-top">
+            <strong>Gen. 6:10</strong> “Noah had three sons, Shem, Ham, and Japheth” who become the patriarchs of the 70 nations in Genesis 10.
+          </td>
+        </tr>
+        <tr>
+          <td class="p-5 border-r border-slate-200 leading-relaxed align-top">
+            <strong>Gen. 17:7</strong> “And I will establish my covenant (<span class="font-serif text-[18px]" dir="rtl">והקמתי את בריתי</span>) between you and between you and between your seed after you (<span class="font-serif text-[18px]" dir="rtl">זרעך אחריך</span>) for generations, as an eternal covenant.”
+          </td>
+          <td class="p-5 leading-relaxed align-top">
+            <strong>Gen. 6:18</strong> “And I will establish my covenant (<span class="font-serif text-[18px]" dir="rtl">והקמתי את בריתי</span>) with you”<br><br>
+            <strong>Gen. 9:9</strong> “And I will establish my covenant (<span class="font-serif text-[18px]" dir="rtl">מקים את בריתי</span>) with you and with your seed after you (<span class="font-serif text-[18px]" dir="rtl">את זרעכם אחריכם</span>)”
+          </td>
+        </tr>
+        <tr>
+          <td class="p-5 border-r border-slate-200 leading-relaxed align-top">
+            <strong>Gen. 17:11</strong> “And you will circumcise the flesh of your foreskin, and it will be <span class="bg-[#e2e8f0] text-[#475569] font-bold px-1.5 py-0.5 rounded text-[14px]">for a sign of the</span> <span class="bg-[#e2e8f0] text-[#475569] font-bold px-1.5 py-0.5 rounded text-[14px]">covenant</span> between me and between you.”<br><br>
+            <strong>Gen. 17:13</strong> “And my covenant will be <span class="bg-[#e2e8f0] text-[#475569] font-bold px-1.5 py-0.5 rounded text-[14px]">in your flesh</span> (<span class="font-serif text-[18px]" dir="rtl">בבשרכם</span>) for an <span class="bg-[#e2e8f0] text-[#475569] font-bold px-1.5 py-0.5 rounded text-[14px]">eternal covenant</span> (<span class="font-serif text-[18px]" dir="rtl">ברית עולם</span>)”
+          </td>
+          <td class="p-5 leading-relaxed align-top">
+            <strong>Gen. 9:12</strong> “This will be <span class="bg-[#e2e8f0] text-[#475569] font-bold px-1.5 py-0.5 rounded text-[14px]">a sign of the covenant</span> between me and between you”<br><br>
+            <strong>Gen. 9:17</strong> “This is the <span class="bg-[#e2e8f0] text-[#475569] font-bold px-1.5 py-0.5 rounded text-[14px]">sign of the covenant</span> which I am establishing between me and between <span class="bg-[#e2e8f0] text-[#475569] font-bold px-1.5 py-0.5 rounded text-[14px]">all</span> <span class="bg-[#e2e8f0] text-[#475569] font-bold px-1.5 py-0.5 rounded text-[14px]">flesh</span> (<span class="font-serif text-[18px]" dir="rtl">בשר</span>)”
+          </td>
+        </tr>
+        <tr>
+          <td class="p-5 border-r border-slate-200 leading-relaxed align-top">
+            <strong>Gen. 17:26</strong> “<span class="bg-[#e2e8f0] text-[#475569] font-bold px-1.5 py-0.5 rounded text-[14px]">on that very day (בעצם היום הזה)</span>, just as God spoke to him”
+          </td>
+          <td class="p-5 leading-relaxed align-top">
+            <strong>Gen. 7:13</strong> “<span class="bg-[#e2e8f0] text-[#475569] font-bold px-1.5 py-0.5 rounded text-[14px]">On that very day (בעצם היום הזה)</span> Noah went … into the ark.” + <strong>Gen. 7:16</strong> “just as God commanded him”
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <p class="text-[14px] text-center text-slate-500 italic mb-10">Avraham and Noah, Circumcision and Flood. Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</p>
+  
+  <p class="text-[15.5px] leading-relaxed text-slate-800 mb-6">This linking of Noah and Avraham creates a clear set of similarities and contrasts between the two characters and God's covenant with them.</p>
+  <p class="text-[15.5px] leading-relaxed text-slate-800 mb-6">While Noah simply was "blameless" when God initiated the conversation, Avram, on the other hand, has just participated in a great sin against Hagar (on analogy with <a href="#" class="underline underline-offset-2 decoration-gray-400 hover:text-gray-600">Gen. 3</a> and <a href="#" class="underline underline-offset-2 decoration-gray-400 hover:text-gray-600">6</a>), resulting in the oppression of the immigrant, so he now has to be commanded: "be blameless."</p>
+  <p class="text-[15.5px] leading-relaxed text-slate-800 mb-10">The "sign" of the covenant for Noah and Avraham is crucial for understanding the nature and purpose of circumcision. In Genesis <a href="#" class="underline underline-offset-2 decoration-gray-400 hover:text-gray-600">9:12-17</a>, the "sign" of the covenant is the rainbow which shines when the rain clouds come. Rain was the instrument of divine judgment, and so the rainbow is a reminder of humanity's evil that brought the flood. But rain was also the divine response of judgment combined with covenant love that spared a remnant. In a similar way, in Genesis <a href="#" class="underline underline-offset-2 decoration-gray-400 hover:text-gray-600">17:11</a>, <a href="#" class="underline underline-offset-2 decoration-gray-400 hover:text-gray-600">13</a>, the "sign" of the covenant marks the instrument of human failure, that is, Avraham's genitals (this seems hinted at in the design pattern of <a href="#" class="underline underline-offset-2 decoration-gray-400 hover:text-gray-600">Gen. 9:17</a> "covenant with flesh"). But the judgment is on the part of Avraham's body that will become fruitful for the nation.</p>
+
+  <!-- TABLE 2: RAINBOW VS CIRCUMCISION -->
+  <div class="overflow-x-auto mb-6">
+    <table class="w-full text-[15px] border-collapse bg-white rounded-xl shadow-sm overflow-hidden border border-slate-200">
+      <thead class="bg-[#f1f5f9]">
+        <tr>
+          <th class="p-5 text-left font-bold text-slate-900 w-1/2 border-b border-r border-slate-200">Rainbow</th>
+          <th class="p-5 text-left font-bold text-slate-900 w-1/2 border-b border-slate-200">Circumcision</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-200">
+        <tr>
+          <td class="p-5 border-r border-slate-200 leading-relaxed align-top">
+            A symbol of God's judgment and mercy that brought a remnant safely through death to new life before God.
+          </td>
+          <td class="p-5 leading-relaxed align-top">
+            A symbol of God's judgment on Avraham's penis, which he used to abuse Hagar. But also a symbol of mercy, for his future seed will come from his "cut off" genitals that belong to God alone.
+          </td>
+        </tr>
+        <tr>
+          <td class="p-5 border-r border-slate-200 leading-relaxed align-top">
+            <strong>Gen. 9:9</strong> God is going to "establish my covenant with you and your seed after you" (<span class="font-serif text-[18px]" dir="rtl">הקים + ברית + זרע</span>)
+          </td>
+          <td class="p-5 leading-relaxed align-top">
+            <strong>Gen. 17:7</strong> God is going to "establish my covenant with you and your seed after you" (<span class="font-serif text-[18px]" dir="rtl">הקים + ברית + זרע</span>)
+          </td>
+        </tr>
+        <tr>
+          <td class="p-5 border-r border-slate-200 leading-relaxed align-top">
+            <strong>Gen. 9:12</strong> The bow in the skies is the "sign of the covenant" (<span class="font-serif text-[18px]" dir="rtl">אות הברית</span>)
+          </td>
+          <td class="p-5 leading-relaxed align-top">
+            <strong>Gen. 17:11</strong> Circumcision is the "sign of the covenant" (<span class="font-serif text-[18px]" dir="rtl">אות ברית</span>)
+          </td>
+        </tr>
+        <tr>
+          <td class="p-5 border-r border-slate-200 leading-relaxed align-top">
+            <strong>Gen. 9:10-12</strong> The flood (<span class="font-serif text-[18px]" dir="rtl">המבול</span>) "cut off all flesh" (<span class="font-serif text-[18px]" dir="rtl">כרת + בשר</span>), and so God's covenant is with Noah and "all living beings" (<span class="font-serif text-[18px]" dir="rtl">כל נפש</span>) that they will not be "cut off by the flood" (<span class="font-serif text-[18px]" dir="rtl">כרת + המבול</span>).
+          </td>
+          <td class="p-5 leading-relaxed align-top">
+            <strong>Gen. 17:10-14</strong> Circumcision (<span class="font-serif text-[18px]" dir="rtl">המול</span>) involves cutting off "flesh" (<span class="font-serif text-[18px]" dir="rtl">בשר</span>) from "every male" (<span class="font-serif text-[18px]" dir="rtl">כל זכר</span>), and every "living-person" (<span class="font-serif text-[18px]" dir="rtl">נפש</span>) who is not circumcised will be "cut off from" (<span class="font-serif text-[18px]" dir="rtl">כרת ... מן</span>) his people.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <p class="text-[14px] text-center text-slate-500 italic mb-10">Rainbow and Circumcision. Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</p>
+  <p class="text-[15.5px] leading-relaxed text-slate-800 mb-10">Just as the flood (<span class="font-serif text-[18px]" dir="rtl">המבול</span>) was a judgment of cutting off (<span class="font-serif text-[18px]" dir="rtl">יכרת</span>) all flesh (<span class="font-serif text-[18px]" dir="rtl">בשר</span>) in <a href="#" class="underline underline-offset-2 decoration-gray-400 hover:text-gray-600">Genesis 9:11</a>, so now circumcision (<span class="font-serif text-[18px]" dir="rtl">המול</span>) is a "local flood" of judgment that cuts off (<span class="font-serif text-[18px]" dir="rtl">נכרתה</span>) the flesh (<span class="font-serif text-[18px]" dir="rtl">בשר</span>) of the foreskin of Avraham's family in <a href="#" class="underline underline-offset-2 decoration-gray-400 hover:text-gray-600">Gen. 17:10-14</a>. It is as if Avraham's sin "cuts off" all hope except for an Yitskhaq-remnant (Isaac-remnant) that God will miraculously bring into the world through Sarah's womb // the Noah-remnant that God miraculously saves through the ark. Both events happen "on the very day" (<span class="font-serif text-[18px]" dir="rtl">בעצם היום הזה</span>) in <a href="#" class="underline underline-offset-2 decoration-gray-400 hover:text-gray-600">Gen. 7:13</a> and <a href="#" class="underline underline-offset-2 decoration-gray-400 hover:text-gray-600">Gen. 17:24, 26</a> of the command.</p>
+
+
+  <!-- GENESIS 9 BOXES -->
+  
+  <!-- Cut-off box 1 (Top open bottom box) -->
+  <div class="border-[1.5px] border-slate-800 rounded-t-xl pt-4 pb-4 px-6 mb-8 border-b-0 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)] overflow-hidden">
+    <div class="text-[15.5px] text-slate-800 leading-relaxed">
+      <p><span class="bg-[#3a7ca5] text-white px-1.5 py-0.5 rounded font-bold">and never again will there be a flood to ruin the land</span>."</p>
+    </div>
+  </div>
+
+  <!-- Box 2: Genesis 9:12-16 -->
+  <div class="border-[1.5px] border-slate-800 rounded-xl pt-10 pb-6 px-6 relative mb-8 mt-12 bg-white">
+    <span class="absolute -top-[14px] left-5 flex items-center bg-white px-2">
+      <sup class="text-[11px] font-bold text-gray-600 mr-1.5 mt-1">12</sup>
+      <span class="bg-[#8b8476] text-white font-bold text-[13.5px] px-2.5 py-1 rounded">And Elohim said</span>,
+    </span>
+    
+    <div class="pl-5 space-y-1.5 text-[15.5px] text-slate-800 leading-[1.8]">
+      <p>"This is <span class="bg-[#3c7d5c] text-white px-1.5 py-0.5 rounded font-bold">the sign of</span> <span class="text-[#3c7d5c] font-bold">the covenant</span> which I am giving</p>
+      <p class="pl-5"><span class="text-[#c84869] font-bold">between me and between you</span></p>
+      <p class="pl-5"><span class="text-[#c84869] font-bold">and between every living creature</span> that is <span class="bg-[#fbe5cd] text-[#c85638] px-1.5 py-0.5 rounded font-bold">with you</span>, for everlasting generations;</p>
+      
+      <p class="mt-4"><sup class="text-[11px] font-bold text-gray-500 mr-1">13</sup> I give <span class="bg-[#bce3e6] text-[#16646b] px-1.5 py-0.5 rounded font-bold">my bow in the cloud</span>,</p>
+      <p>and it will be for <span class="bg-[#3c7d5c] text-white px-1.5 py-0.5 rounded font-bold">a sign of</span> <span class="text-[#3c7d5c] font-bold">a covenant</span></p>
+      <p class="pl-5"><span class="text-[#c84869] font-bold">between me and between the land;</span></p>
+      
+      <div class="h-px bg-slate-200 my-5 w-full"></div>
+      
+      <p><sup class="text-[11px] font-bold text-gray-500 mr-1">14</sup> and it will come about when <span class="bg-[#bce3e6] text-[#16646b] px-1.5 py-0.5 rounded font-bold">I cloud a cloud</span> over the land,</p>
+      <p>that <span class="bg-[#f4d3e0] text-[#a13251] px-1.5 py-0.5 rounded font-bold">it will be seen</span>, <span class="bg-[#bce3e6] text-[#16646b] px-1.5 py-0.5 rounded font-bold">the bow in the cloud</span>,</p>
+      
+      <p class="mt-4"><sup class="text-[11px] font-bold text-gray-500 mr-1">15</sup> and <span class="bg-[#f4d3e0] text-[#a13251] px-1.5 py-0.5 rounded font-bold">I will remember</span> <span class="text-[#3c7d5c] font-bold">my covenant,</span></p>
+      <p class="pl-5">which is <span class="text-[#c84869] font-bold">between me and between you</span></p>
+      <p class="pl-5"><span class="text-[#c84869] font-bold">and between every living creature of</span> <span class="bg-[#c84869] text-white px-1.5 py-0.5 rounded font-bold">all flesh</span>;</p>
+      <p><span class="bg-[#3a7ca5] text-white px-1.5 py-0.5 rounded font-bold">and never again will the waters become a flood to ruin</span> <span class="bg-[#c84869] text-white px-1.5 py-0.5 rounded font-bold">all flesh</span>.</p>
+      
+      <div class="h-px bg-slate-200 my-5 w-full"></div>
+      
+      <p><sup class="text-[11px] font-bold text-gray-500 mr-1">16</sup> And <span class="bg-[#bce3e6] text-[#16646b] px-1.5 py-0.5 rounded font-bold">the bow is in the cloud</span>,</p>
+      <p>then <span class="text-[#a13251] font-bold">I will see it</span>,</p>
+      <p>to remember <span class="text-[#3c7d5c] font-bold">the everlasting covenant</span></p>
+      <p class="pl-5"><span class="text-[#c84869] font-bold">between Elohim and between every living creature,</span></p>
+      <p class="pl-5">with all flesh that is on the land."</p>
+    </div>
+  </div>
+
+  <!-- Box 3: Genesis 9:17 -->
+  <div class="border-[1.5px] border-slate-800 rounded-xl pt-8 pb-6 px-6 relative mb-8 mt-12 bg-white">
+    <span class="absolute -top-[14px] left-5 flex items-center bg-white px-2">
+      <sup class="text-[11px] font-bold text-gray-600 mr-1.5 mt-1">17</sup>
+      <span class="bg-[#8b8476] text-white font-bold text-[13.5px] px-2.5 py-1 rounded">And Elohim said to Noah</span>,
+    </span>
+    
+    <div class="pl-5 space-y-1.5 text-[15.5px] text-slate-800 leading-[1.8]">
+      <p>"This is <span class="bg-[#3c7d5c] text-white px-1.5 py-0.5 rounded font-bold">the sign of</span> <span class="bg-[#d2f2cd] text-[#26623e] font-bold px-2 py-0.5 rounded">the covenant which I have set up</span></p>
+      <p class="pl-5"><span class="text-[#c84869] font-bold">between me and</span> <span class="bg-[#c84869] text-white px-1.5 py-0.5 rounded font-bold">all flesh</span> that is on the land."</p>
+    </div>
+  </div>
+  
+  <p class="text-[14px] text-slate-500 italic mb-8">Genesis 9:8-17. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Adam to Noah (2020).</p>
+
+  <p class="text-[15.5px] leading-relaxed text-slate-800 mb-6">Both covenants with Avraham and Noah have a universal scope. Noah's sons produce all the nations of <a href="#" class="underline underline-offset-2 decoration-gray-400 hover:text-gray-600">Genesis 10</a>, and Avraham will become the father of many nations. This aligns well with the fact that Yishmael is the first to be circumcised in <a href="#" class="underline underline-offset-2 decoration-gray-400 hover:text-gray-600">Genesis 17</a>, and that circumcision is associated with the inclusion of the nations into God's covenant with Avraham.</p>
+  <p class="text-[15.5px] leading-relaxed text-slate-800 mb-14">The blessed sons: Just as two of Noah's three sons found blessing and fruitfulness after the flood (Japheth and Shem), so also Avraham's two sons Yishmael and Yitskhaq (Isaac) will be blessed and become great nations. In both cases, only the younger of the two will become the line of the covenant (Shem and Yitskhaq), while the older (Japheth and Yishmael) will be blessed, but not as the carrier of covenant blessing.</p>
+
+  <!-- ADAM AND EVE ANALOGIES -->
+  <h2 class="text-[28px] font-bold text-slate-900 mb-5">Avraham and Sarah, Adam and Eve</h2>
+  <p class="text-[15.5px] leading-relaxed text-slate-800 mb-6">The analogies to the Eden story are also important. God's covenant with Noah was a kind of re-creation of his identity, and God also remakes Avraham and Sarah's identity in a way similar to Adam and Eve.</p>
+
+  <div class="overflow-x-auto mb-6">
+    <table class="w-full text-[15px] border-collapse bg-white rounded-xl shadow-sm overflow-hidden border border-slate-200">
+      <tbody class="divide-y divide-slate-200">
+        <tr>
+          <td class="border-r border-slate-200 p-6 align-top w-1/2">
+            <span class="inline-block bg-[#e0e7ff] text-[#1e40af] font-bold px-2.5 py-0.5 rounded text-[14px] mb-4">God's blessing on Avraham and Sarah</span>
+            <ul class="space-y-5 text-slate-800">
+              <li><strong>Gen. 17:2</strong> “I will multiply (<span class="font-serif text-[18px]" dir="rtl">רבה</span>) you very very much”</li>
+              <li><strong>Gen. 17:6</strong> “I will make you fruitful (<span class="font-serif text-[18px]" dir="rtl">פרה</span>) very very much”</li>
+              <li><strong>Gen. 17:16</strong> “I will bless [Sarah]”</li>
+            </ul>
+          </td>
+          <td class="p-6 align-top w-1/2">
+            <span class="inline-block bg-[#e0e7ff] text-[#1e40af] font-bold px-2.5 py-0.5 rounded text-[14px] mb-4">God's blessing on humanity, male and female</span>
+            <p class="text-slate-800 leading-relaxed"><strong>Gen. 1:28</strong> And Elohim blessed them, saying, “Be fruitful (<span class="font-serif text-[18px]" dir="rtl">פרה</span>) and multiply (<span class="font-serif text-[18px]" dir="rtl">רבה</span>), fill the land and subdue it ...”</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="border-r border-slate-200 p-6 align-top w-1/2">
+            <span class="inline-block bg-[#e0e7ff] text-[#1e40af] font-bold px-2.5 py-0.5 rounded text-[14px] mb-4">God re-names Avram and Sarai</span>
+            <ul class="space-y-5 text-slate-800">
+              <li><strong>Gen. 17:5</strong> “No longer will your name be called, 'Avram,' but your name will be 'Avraham,' because I will make you a father of a multitude of nations.”</li>
+              <li><strong>Gen. 17:15</strong> “Sarai your wife, you will not call her name 'Sarai,' because her name is 'Sarah.'”</li>
+            </ul>
+          </td>
+          <td class="p-6 align-top w-1/2">
+            <span class="inline-block bg-[#e0e7ff] text-[#1e40af] font-bold px-2.5 py-0.5 rounded text-[14px] mb-4">Humanity is named, then renamed</span>
+            <ul class="space-y-5 text-slate-800">
+              <li><strong>Gen. 1:26</strong> “Let us make 'human' (<span class="font-serif text-[18px]" dir="rtl">אדם</span>) in our image … let them rule ...”</li>
+              <li><strong>Gen. 2:23</strong> “She shall be called Woman (<span class="font-serif text-[18px]" dir="rtl">אשה</span>), because she was taken out of man (<span class="font-serif text-[18px]" dir="rtl">איש</span>).”</li>
+              <li><strong>Gen. 3:20</strong> Now the man called his wife's name “Khavvah” (<span class="font-serif text-[18px]" dir="rtl">חוה</span>) because she was the mother of all living (<span class="font-serif text-[18px]" dir="rtl">חי</span>).</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <p class="text-[14px] text-center text-slate-500 italic mb-8">Avraham and Sarah, Adam and Eve. Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</p>
+  <p class="text-[15.5px] leading-relaxed text-slate-800 mb-6">In Adam and Eve's story, she is named before their folly, and her name symbolizes the "two-in-one" union of man/woman. After the folly, she is named based on her reproductive function in their relationship, "Mother of All Living."</p>
+  <p class="text-[15.5px] leading-relaxed text-slate-800 mb-14">In Avraham and Sarah's story, both are renamed after their shared folly with Hagar. God will maintain his promise to them, but only after "cutting of flesh" from Avraham's genitals and marking them as belonging to God. The new names signify the new, God-given identity that Avraham and Sarah now have. Their lives and reproductive abilities belong wholly to God, and from them God will create a nation of seed and kings. Their new names reflect this: Avraham means Father of a Multitude; Sarah means Queen (i.e., mother of kings).</p>
+
+  <!-- SIBLING CHOSEN PATTERN -->
+  <h2 class="text-[28px] font-bold text-slate-900 mb-5">Father and Mother of Many Nations: Yishmael and Yitskhaq</h2>
+  
+  <p class="text-[15.5px] leading-relaxed text-slate-800 mb-6 border-l-[3px] border-slate-300 pl-4 py-1 italic bg-slate-50/50">
+    <span class="not-italic block mb-4">The role of Sarah in this story is like the ark (<span class="font-serif text-[18px]" dir="rtl">תבה</span>). She is the vehicle of the future seed, but her distorted efforts to build her own Eden-blessing (remember "build" <span class="font-serif text-[18px]" dir="rtl">בנה</span> in <a href="#" class="underline underline-offset-2 decoration-gray-400 hover:text-gray-600">Gen. 16:2</a>) have also replayed the fall and introduced division into Avraham's family. Her role in this way also recalls the ark's role as an analogy to the woman in Genesis 2 (<a href="#" class="underline underline-offset-2 decoration-gray-400 hover:text-gray-600">Gen. 2:22</a> <span class="font-serif text-[18px]" dir="rtl">בנה</span>). Note how Sarah here (<a href="#" class="underline underline-offset-2 decoration-gray-400 hover:text-gray-600">Gen. 17:17</a>) is also called "a daughter of 90 years" which is an anagram of the word "ark" (<a href="#" class="underline underline-offset-2 decoration-gray-400 hover:text-gray-600">Gen 6:14</a> <span class="font-serif text-[18px]" dir="rtl">הבת // תבה</span> <a href="#" class="underline underline-offset-2 decoration-gray-400 hover:text-gray-600">Gen. 17:17</a>)</span>
+  </p>
+
+  <p class="text-[15.5px] leading-relaxed text-slate-800 mb-6">This chapter carries forward the pattern of Yahweh selecting one chosen lineage from among a larger set of siblings. Now that Avraham and Sarah have abused Hagar and produced Yishmael, they will become the parents of a family made up of many nations, starting first with Yishmael.</p>
+  <p class="text-[15.5px] leading-relaxed text-slate-800 mb-6">This is one step in a larger design pattern that starts back with Cain and Abel.</p>
+
+  <div class="overflow-x-auto mb-6">
+    <table class="w-full text-[15.5px] border-collapse bg-white rounded-xl shadow-sm overflow-hidden border border-slate-200">
+      <thead class="bg-[#f1f5f9]">
+        <tr>
+          <th class="p-4 pl-5 text-left font-bold text-slate-900 border-b border-r border-slate-200 w-1/3">Chosen for Covenant</th>
+          <th class="p-4 text-left font-bold text-slate-900 border-b border-r border-slate-200 w-1/3">Not Chosen</th>
+          <th class="p-4 text-left font-bold text-slate-900 border-b border-slate-200 w-1/3">Resulting People Group</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-200">
+        <tr>
+          <td class="p-4 pl-5 border-r border-slate-200 text-slate-800">Abel + Seth</td>
+          <td class="p-4 border-r border-slate-200 text-slate-800">Cain</td>
+          <td class="p-4 text-slate-800">Kenites</td>
+        </tr>
+        <tr>
+          <td class="p-4 pl-5 border-r border-slate-200 text-slate-800">Shem</td>
+          <td class="p-4 border-r border-slate-200 text-slate-800">Japheth, Ham</td>
+          <td class="p-4 text-slate-800">The island nations, Canaanites</td>
+        </tr>
+        <tr>
+          <td class="p-4 pl-5 border-r border-slate-200 text-slate-800">Avraham</td>
+          <td class="p-4 border-r border-slate-200 text-slate-800">Nakhor, Lot</td>
+          <td class="p-4 text-slate-800">Moabites, Ammonites</td>
+        </tr>
+        <tr>
+          <td class="p-4 pl-5 border-r border-slate-200 text-slate-800">Yitskhaq</td>
+          <td class="p-4 border-r border-slate-200 text-slate-800">Yishmael, sons of Qeturah</td>
+          <td class="p-4 text-slate-800">Ishmaelites, Midianites, eastern tribes</td>
+        </tr>
+        <tr>
+          <td class="p-4 pl-5 border-r border-slate-200 text-slate-800">Yaaqov</td>
+          <td class="p-4 border-r border-slate-200 text-slate-800">Esau</td>
+          <td class="p-4 text-slate-800">Edomites</td>
+        </tr>
+        <tr>
+          <td class="p-4 pl-5 border-r border-slate-200 text-slate-800">Judah</td>
+          <td class="p-4 border-r border-slate-200 text-slate-800">11 brothers</td>
+          <td class="p-4 text-slate-800">Northern tribes</td>
+        </tr>
+        <tr>
+          <td class="p-4 pl-5 border-r border-slate-200 text-slate-800">David</td>
+          <td class="p-4 border-r border-slate-200 text-slate-800">Saul</td>
+          <td class="p-4 text-slate-800">Benjaminite</td>
+        </tr>
+        <tr>
+          <td class="p-4 pl-5 border-r border-slate-200 text-slate-800">Family of Judah</td>
+          <td class="p-4 border-r border-slate-200 text-slate-800">Northern tribes</td>
+          <td class="p-4 text-slate-800">Samaritans</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <p class="text-[14px] text-center text-slate-500 italic mb-8">Father and Mother of Many Nations. Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</p>
+  <p class="text-[15.5px] leading-relaxed text-slate-800 mb-6">Notice, however, that even though Yishmael is not chosen as the lineage of the covenant and royal seed, God affirms that he will bless him and his family in precisely the language of the Eden blessing, but also in anticipation of the later 12 sons of Yaakov (Jacob).</p>
+
+  <div class="border-l-[3px] border-[#cbd5e1] pl-5 mb-10">
+    <div class="mb-1.5 flex items-baseline gap-2">
+      <span class="font-bold text-black text-[15px]">Genesis 17:20</span>
+      <span class="font-bold text-[#64748b] text-[13.5px]">Instructor's Translation</span>
+    </div>
+    <p class="text-[15.5px] leading-relaxed text-slate-800">Look, I am going to bless [Yishmael], and I will make him fruitful, very very much. He will become the father of twelve princes, and I will make him a great nation.</p>
+  </div>
+
+  <!-- REFLECTION QUESTION -->
+  <h2 class="text-[26px] font-bold text-slate-900 mt-12 mb-5">Reflection Question</h2>
+  <p class="text-[15.5px] leading-relaxed text-slate-800 mb-8">How is circumcision both an act of God's judgment and an act of grace?</p>
+
+</div>
 </body>
 </html>
