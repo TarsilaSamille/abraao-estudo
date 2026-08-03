@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
             'Gênesis':'Genesis','Êxodo':'Exodus','Levítico':'Leviticus','Números':'Numbers','Deuteronômio':'Deuteronomy',
             'Josué':'Joshua','Juízes':'Judges','Rute':'Ruth','1 Samuel':'1 Samuel','2 Samuel':'2 Samuel','1 Reis':'1 Kings','2 Reis':'2 Kings',
             '1 Crônicas':'1 Chronicles','2 Crônicas':'2 Chronicles','Esdras':'Ezra','Neemias':'Nehemiah','Ester':'Esther','Jó':'Job',
-            'Salmos':'Psalms','Provérbios':'Proverbs','Eclesiastes':'Ecclesiastes','Cantares':'Song of Songs','Isaías':'Isaiah','Jeremias':'Jeremiah',
+            'Salmos':'PSA','Psalmos':'PSA','Psalm':'PSA','Psalms':'PSA','Provérbios':'Proverbs','Eclesiastes':'Ecclesiastes','Cantares':'Song of Songs','Isaías':'Isaiah','Jeremias':'Jeremiah',
             'Lamentações':'Lamentations','Ezequiel':'Ezekiel','Daniel':'Daniel','Oseias':'Hosea','Joel':'Joel','Amós':'Amos','Obadias':'Obadiah',
             'Jonas':'Jonah','Miqueias':'Micah','Naum':'Nahum','Habacuque':'Habakkuk','Sofonias':'Zephaniah','Ageu':'Haggai','Zacarias':'Zechariah',
             'Malaquias':'Malachi','Mateus':'Matthew','Marcos':'Mark','Lucas':'Luke','João':'John','Atos':'Acts','Romanos':'Romans',
@@ -114,8 +114,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const refs = parseReferences(reference);
             const results = [];
             for (const r of refs){
-                const encoded = encodeURIComponent(r);
-                const response = await fetch(`https://bible-api.com/${encoded}?translation=almeida`);
+                const encoded = encodeURIComponent(r).replace(/%3A/g, ':').replace(/%2C/g, ',');
+                const response = await fetch(`https://bible-api.com/${encoded}`);
                 const data = await response.json();
                 results.push({r, data});
             }
@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (data.verses) {
                     formattedContent += '<div class="space-y-1">';
                     for (const verse of data.verses) {
-                        formattedContent += `<p><span class="font-bold text-xs align-top mr-1">${verse.verse}</span> ${verse.text.trim()}</p>`;
+                        formattedContent += `<p><span class="font-bold text-xs align-top mr-1">${verse.verse}</span> <strong>${verse.text.trim()}</strong></p>`;
                     }
                     formattedContent += '</div>';
                 } else if (data.text) {
