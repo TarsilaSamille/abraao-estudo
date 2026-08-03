@@ -75,16 +75,34 @@ document.addEventListener("DOMContentLoaded", () => {
         // Handle comma-separated verses, e.g., "10:5,32" or "16:1,6"
         const parts = rest.split(',').map(p=>p.trim()).filter(Boolean);
         let lastChapter = null;
-        const refs = parts.map((p)=>{
+        const refs = [];
+        for (const p of parts){
+            // chapter range e.g. "8-9" -> fetch each chapter separately (API caps at 1 chapter)
+            if (/^\d+-\d+$/.test(p)){
+                const [a,b] = p.split('-').map(Number);
+                for (let ch=a; ch<=b; ch++) refs.push(`${bookEn} ${ch}`);
+                lastChapter = String(b);
+                continue;
+            }
+            // verse range / single verse e.g. "8:1-5" or "8:1"
             if (/^\d+:\d+(?:-\d+)?$/.test(p)){
                 lastChapter = p.split(':')[0];
-                return `${bookEn} ${p}`;
+                refs.push(`${bookEn} ${p}`);
+                continue;
             }
+            // bare verse number after a chapter:verse e.g. "6" -> "16:6"
             if (/^\d+$/.test(p) && lastChapter){
-                return `${bookEn} ${lastChapter}:${p}`;
+                refs.push(`${bookEn} ${lastChapter}:${p}`);
+                continue;
             }
-            return `${bookEn} ${p}`;
-        });
+            // bare chapter number e.g. "15" -> whole chapter
+            if (/^\d+$/.test(p)){
+                refs.push(`${bookEn} ${p}`);
+                lastChapter = p;
+                continue;
+            }
+            refs.push(`${bookEn} ${p}`);
+        }
         return refs.length ? refs : [`${bookEn} ${rest}`];
     }
 
