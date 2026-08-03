@@ -21,14 +21,14 @@
         h4.sub2 { font-weight: 700; font-size: 1.05rem; margin-top: 1.5rem; margin-bottom: .5rem; }
         p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
         .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
-        .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
-        .ref:hover { color: #2563eb; }
+        .ref { cursor: pointer; }
+        
         ul.bullets { list-style: none; padding: 0; }
         ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
         ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
         .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
 
-        /* Genesis 16 chips */
+        /* <span class="ref" data-reference="Genesis 16">Genesis 16</span> chips */
         .c { display: inline; padding: 2px 8px; border-radius: 6px; font-weight: 700; line-height: 1.85; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
         .c-lblue { background: #cfe2f3; color: #2b72b8; }
         .c-rust { background: #c05020; color: #fff; }
@@ -88,19 +88,25 @@
 
 <div id="reading-progress" aria-hidden="true"></div>
 
+<!-- NAVIGATION FLOATING BUTTONS -->
 <div class="fixed left-4 top-4 z-50 print:hidden">
-    <a href="session13.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
-        <span>&larr;</span><span class="lang-pt">Sessão 13</span><span class="lang-en">Session 13</span>
+    <a href="index.html"
+      class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+      <span>&larr;</span>
+      <span class="lang-pt">Voltar</span>
+      <span class="lang-en">Back</span>
     </a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
-    <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
-        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-        <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+    <button onclick="window.print()" title="Imprimir / Print"
+      class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+      <span class="lang-pt">Imprimir</span>
+      <span class="lang-en">Print</span>
     </button>
-    <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm shadow-sm">
-        <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
-        <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+    <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+      <button id="lang-pt" onclick="setLang('pt')" class="px-4 py-1.5 text-sm font-semibold transition-colors">PT</button>
+      <button id="lang-en" onclick="setLang('en')" class="px-4 py-1.5 text-sm font-semibold transition-colors">EN</button>
     </div>
 </div>
 
@@ -116,7 +122,7 @@
         <li><span class="lang-pt">O texto liga as ações de Abrão e Sarai às narrativas de fracasso de Gênesis 3, 4 e 6.</span><span class="lang-en">The text links Avram and Sarai&rsquo;s actions to the failure narratives of Genesis 3, 4, and 6.</span></li>
     </ul>
 
-    <h2 class="section reveal" style="margin-top:1.5rem;"><span class="lang-pt">Tradução e Design Literário de Gênesis 16:1-16</span><span class="lang-en">Translation and Literary Design of Genesis 16:1-16</span></h2>
+    <h2 class="section reveal" style="margin-top:1.5rem;"><span class="lang-pt">Tradução e Design Literário de <span class="ref" data-reference="Genesis 16:1-16">Gênesis 16:1-16</span></span><span class="lang-en">Translation and Literary Design of <span class="ref" data-reference="Genesis 16:1-16">Genesis 16:1-16</span></span></h2>
 
     <div class="g-outer reveal">
         <p class="g-line"><span class="lbl">a</span><sup class="vs">1</sup> <span class="lang-pt">Ora, <span class="t-teal2">Sarai, mulher de Abrão</span>, não lhe <span class="c c-lblue">gerava filhos</span>,</span><span class="lang-en">Now, <span class="t-teal2">Sarai the wife of Avram</span> had not <span class="c c-lblue">given birth</span> for him,</span></p>
@@ -197,19 +203,19 @@
             <p class="g-line"><span class="lang-pt">quando Hagar <span class="c c-lblue">deu</span> <span class="c c-rose-s">Ismael</span> a Abrão.</span><span class="lang-en">when Hagar <span class="c c-lblue">birthed</span> <span class="c c-rose-s">Yishmael</span> for Avram.</span></p>
         </div>
     </div>
-    <p class="caption reveal"><span class="lang-pt"><em>Gênesis 16:1-16</em>. Tradução e Design Literário por Tim Mackie para o BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Genesis 16:1-16</em>. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
+    <p class="caption reveal"><span class="lang-pt"><em><span class="ref" data-reference="Genesis 16:1-16">Gênesis 16:1-16</span></em>. Tradução e Design Literário por Tim Mackie para o BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em><span class="ref" data-reference="Genesis 16:1-16">Genesis 16:1-16</span></em>. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
 
     <h2 class="section reveal"><span class="lang-pt">A Crise da Promessa de Deus: Sem Semente</span><span class="lang-en">The Crisis of God&rsquo;s Promise: No Seed</span></h2>
-    <p class="body reveal"><span class="lang-pt">Agora que as promessas de semente e terra foram repetidas a Abrão (primeiro em <span class="ref">Gn 12</span>, depois no <span class="ref">capítulo 13</span>, e novamente no <span class="ref">capítulo 15</span>), a história volta seu foco para o problema da infertilidade de Sarai introduzido em <span class="ref">Gênesis 11:30</span>: “E Sarai era estéril, e não tinha filhos.”</span><span class="lang-en">Now that the promises of both seed and land have been repeated to Avram (first in <span class="ref">Gen. 12</span>, then <span class="ref">chapter 13</span>, and again in <span class="ref">chapter 15</span>), the story returns its focus to the problem of Sarai&rsquo;s infertility introduced back in <span class="ref">Genesis 11:30</span>: &ldquo;And Sarai was infertile, and she had no child.&rdquo;</span></p>
-    <p class="body reveal"><span class="lang-pt">Em contraste com o <span class="ref">capítulo 15</span>, que foca na luta de Abrão para confiar em Deus, o <span class="ref">capítulo 16</span> se volta para a luta de Sarai.</span><span class="lang-en">In contrast to <span class="ref">chapter 15</span>, which focuses on Avram&rsquo;s struggle to trust God, <span class="ref">chapter 16</span> turns to Sarai&rsquo;s struggle.</span></p>
+    <p class="body reveal"><span class="lang-pt">Agora que as promessas de semente e terra foram repetidas a Abrão (primeiro em <span class="ref" data-reference="Genesis 12">Gn 12</span>, depois no <span class="ref" data-reference="Genesis 13">capítulo 13</span>, e novamente no <span class="ref" data-reference="Genesis 15">capítulo 15</span>), a história volta seu foco para o problema da infertilidade de Sarai introduzido em <span class="ref" data-reference="Genesis 11:30">Gênesis 11:30</span>: “E Sarai era estéril, e não tinha filhos.”</span><span class="lang-en">Now that the promises of both seed and land have been repeated to Avram (first in <span class="ref" data-reference="Genesis 12">Gen. 12</span>, then <span class="ref" data-reference="Genesis 13">chapter 13</span>, and again in <span class="ref" data-reference="Genesis 15">chapter 15</span>), the story returns its focus to the problem of Sarai&rsquo;s infertility introduced back in <span class="ref" data-reference="Genesis 11:30">Genesis 11:30</span>: &ldquo;And Sarai was infertile, and she had no child.&rdquo;</span></p>
+    <p class="body reveal"><span class="lang-pt">Em contraste com o <span class="ref" data-reference="Genesis 15">capítulo 15</span>, que foca na luta de Abrão para confiar em Deus, o <span class="ref" data-reference="Genesis 16">capítulo 16</span> se volta para a luta de Sarai.</span><span class="lang-en">In contrast to <span class="ref" data-reference="Genesis 15">chapter 15</span>, which focuses on Avram&rsquo;s struggle to trust God, <span class="ref" data-reference="Genesis 16">chapter 16</span> turns to Sarai&rsquo;s struggle.</span></p>
 
     <h2 class="section reveal"><span class="lang-pt">O Incidente de Hagar e Gênesis 1-6</span><span class="lang-en">The Hagar Incident and Genesis 1-6</span></h2>
-    <p class="body reveal"><span class="lang-pt">Abrão e Sarai adquiriram despojos egípcios, incluindo escravos, em <span class="ref">Gênesis 12:10-20</span>, como resultado do engano de Abrão ao Faraó. Esse despojo acaba dividindo os irmãos, e Abrão e Ló se separam por causa de posses demais. O estabelecimento de Ló em Sodoma leva à sua captura na batalha semelhante a um dilúvio dos reis. Toda essa sequência em Gênesis 12-14 é construída em analogia com Gênesis 1-9, e por isso esperamos o mesmo aqui. Esta história em <span class="ref">Gênesis 16</span> está repleta de alusões, jogos de palavras e hiperlinks para Gênesis 2-9, todos cruciais para a interpretação dos detalhes da história.</span><span class="lang-en">Avram and Sarai acquired Egyptian plunder, including slaves, back in <span class="ref">Genesis 12:10-20</span>, as a result of Avram&rsquo;s deception of Pharaoh. This plunder eventually divides the brothers, and Avram and Lot part ways because of too many possessions. Lot&rsquo;s settlement in Sodom leads to his capture in the flood-like battle of the kings. This entire sequence in Genesis 12-14 is set on analogy with Genesis 1-9, and so we expect the same here. This story in <span class="ref">Genesis 16</span> is riddled with allusions, wordplays, and hyperlinks to Genesis 2-9, all of which are crucial to interpreting of the story&rsquo;s details.</span></p>
+    <p class="body reveal"><span class="lang-pt">Abrão e Sarai adquiriram despojos egípcios, incluindo escravos, em <span class="ref" data-reference="Genesis 12:10-20">Gênesis 12:10-20</span>, como resultado do engano de Abrão ao Faraó. Esse despojo acaba dividindo os irmãos, e Abrão e Ló se separam por causa de posses demais. O estabelecimento de Ló em Sodoma leva à sua captura na batalha semelhante a um dilúvio dos reis. Toda essa sequência em Gênesis 12-14 é construída em analogia com Gênesis 1-9, e por isso esperamos o mesmo aqui. Esta história em <span class="ref" data-reference="Genesis 16">Gênesis 16</span> está repleta de alusões, jogos de palavras e hiperlinks para Gênesis 2-9, todos cruciais para a interpretação dos detalhes da história.</span><span class="lang-en">Avram and Sarai acquired Egyptian plunder, including slaves, back in <span class="ref" data-reference="Genesis 12:10-20">Genesis 12:10-20</span>, as a result of Avram&rsquo;s deception of Pharaoh. This plunder eventually divides the brothers, and Avram and Lot part ways because of too many possessions. Lot&rsquo;s settlement in Sodom leads to his capture in the flood-like battle of the kings. This entire sequence in Genesis 12-14 is set on analogy with Genesis 1-9, and so we expect the same here. This story in <span class="ref" data-reference="Genesis 16">Genesis 16</span> is riddled with allusions, wordplays, and hyperlinks to Genesis 2-9, all of which are crucial to interpreting of the story&rsquo;s details.</span></p>
 
     <h3 class="sub reveal"><span class="lang-pt">Hiperlinks para Gênesis 2-3</span><span class="lang-en">Hyperlinks to Genesis 2-3</span></h3>
     <div class="overflow-x-auto reveal" style="margin:1rem 0;">
         <table class="doc-table" style="min-width:640px;">
-            <thead><tr><th style="width:50%;">Genesis 16:1-16</th><th style="width:50%;">Genesis 2-3</th></tr></thead>
+            <thead><tr><th style="width:50%;"><span class="ref" data-reference="Genesis 16:1-16">Genesis 16:1-16</span></th><th style="width:50%;">Genesis 2-3</th></tr></thead>
             <tbody>
                 <tr>
                     <td><p style="margin-bottom:.7rem;"><strong>Gen. 16:2</strong> <span class="lang-pt">“Iavé me impediu (<span class="heb">עצר</span>) de dar à luz.”</span><span class="lang-en">&ldquo;Yahweh has restrained (<span class="heb">עצר</span>) me from giving birth.&rdquo;</span></p>
@@ -235,7 +241,7 @@
                 </tr>
                 <tr>
                     <td><strong>Gen. 16:7</strong> <span class="lang-pt">Deus visita Hagar junto a uma fonte de águas no deserto</span><span class="lang-en">God visits Hagar by a spring of water in the wilderness</span></td>
-                    <td><strong>Gen. 3:8</strong> <span class="lang-pt">Deus visita Adão e Eva junto à árvore no meio do jardim (de onde o rio tem sua fonte, veja Gn 2:10-14)</span><span class="lang-en">God visits Adam and Eve by the tree in the middle of the garden (from which the river is sourced, see Gen. 2:10-14)</span></td>
+                    <td><strong>Gen. 3:8</strong> <span class="lang-pt">Deus visita Adão e Eva junto à árvore no meio do jardim (de onde o rio tem sua fonte, veja <span class="ref" data-reference="Gênesis 2:10-14">Gn 2:10-14</span>)</span><span class="lang-en">God visits Adam and Eve by the tree in the middle of the garden (from which the river is sourced, see Gen. 2:10-14)</span></td>
                 </tr>
                 <tr>
                     <td><strong>Gen. 16:8</strong> <span class="lang-pt">“E [o anjo] disse a Hagar … ‘<span class="kgray">De onde</span> (<span class="heb">אי מזה</span>) vens, e para onde vais?’”</span><span class="lang-en">&ldquo;And [the angel] said to Hagar &hellip; &lsquo;From <span class="kgray">where</span> (<span class="heb">אי מזה</span>) have you come, and to where do you go?&rsquo;&rdquo;</span></td>
@@ -250,7 +256,7 @@
         </table>
     </div>
 
-    <p class="body reveal"><span class="lang-pt">As analogias com <span class="ref">Gênesis 3</span> são dinâmicas nesta história:</span><span class="lang-en">Analogies with <span class="ref">Genesis 3</span> are dynamic in this story.</span></p>
+    <p class="body reveal"><span class="lang-pt">As analogias com <span class="ref" data-reference="Genesis 3">Gênesis 3</span> são dinâmicas nesta história:</span><span class="lang-en">Analogies with <span class="ref" data-reference="Genesis 3">Genesis 3</span> are dynamic in this story.</span></p>
     <ul class="bullets reveal" style="margin-bottom:2rem;">
         <li><span class="lang-pt"><strong>Sarai e Eva:</strong> Ela não confia na promessa divina, então cria um plano alternativo para garantir semente (<span class="heb">זרע</span>) para si mesma.</span><span class="lang-en"><strong>Sarai and Eve:</strong> She doesn&rsquo;t trust the divine promise, so she comes up with an alternative plan to secure seed (<span class="heb">זרע</span>) for herself.</span></li>
         <li><span class="lang-pt"><strong>Hagar e a árvore do conhecimento do bem e do mal:</strong> Hagar, sem culpa própria, foi dada a esta família pelo Faraó, e agora se vê objeto de desejo tanto de Sarai (como útero substituto) quanto de Abrão (para prazer sexual). A existência de Hagar apresenta a Abrão e Sarai um teste de fé: confiarão em Deus para prover um filho de seus corpos, ou criarão seu próprio plano para garantir bênção e semente por conta própria?</span><span class="lang-en"><strong>Hagar and the tree of knowing good and bad:</strong> Hagar, through no fault of her own, was given to this family by Pharaoh, and now finds herself the object of desire for both Sarai (as a surrogate womb) and Avram (for sexual pleasure). Hagar&rsquo;s existence presents Avram and Sarai with a test of faith: Will they trust God to provide a child from their bodies or will they come up with their own plan to secure blessing and seed on their own?</span></li>
@@ -260,7 +266,7 @@
     <h3 class="sub reveal"><span class="lang-pt">Hiperlinks para Gênesis 4</span><span class="lang-en">Hyperlinks to Genesis 4</span></h3>
     <div class="overflow-x-auto reveal" style="margin:1rem 0;">
         <table class="doc-table" style="min-width:640px;">
-            <thead><tr><th style="width:50%;">Genesis 16:1-16</th><th style="width:50%;">Genesis 4</th></tr></thead>
+            <thead><tr><th style="width:50%;"><span class="ref" data-reference="Genesis 16:1-16">Genesis 16:1-16</span></th><th style="width:50%;">Genesis 4</th></tr></thead>
             <tbody>
                 <tr>
                     <td><p style="margin-bottom:.7rem;"><strong>Gen. 16:3</strong> <span class="lang-pt">“do fim de dez anos (<span class="heb">מקץ … שנים</span>) que Abrão habitava na terra”</span><span class="lang-en">&ldquo;from the end of ten years (<span class="heb">מקץ … שנים</span>) of Avram dwelling in the land&rdquo;</span></p>
@@ -299,8 +305,8 @@
         </table>
     </div>
 
-    <p class="body reveal"><span class="lang-pt">Enquanto o abuso de Hagar por Abrão e Sarai é retratado em analogia à loucura de Adão e Eva em <span class="ref">Gênesis 3</span>, esta história também retrata a divisão de Sarai e Hagar (esposas rivais) em analogia com a divisão de Caim e Abel (irmãos rivais). Observe como ambos os conjuntos de hiperlinks estão sobrepostos na exata mesma história.</span><span class="lang-en">While Avram and Sarai&rsquo;s abuse of Hagar is portrayed on analogy to the folly of Adam and Eve in <span class="ref">Genesis 3</span>, this story also portrays the division of Sarai and Hagar (rival wives) on analogy with the division of Cain and Abel (rival brothers). Notice how both sets of hyperlinks are overlaid and overlapping in the exact same story.</span></p>
-    <p class="body reveal"><span class="lang-pt">A história da rivalidade entre irmãos em <span class="ref">Gênesis 4</span> é aqui desenvolvida em uma história de esposas rivais.</span><span class="lang-en">The story of the sibling rivalry in <span class="ref">Genesis 4</span> is here developed into a story of rival wives.</span></p>
+    <p class="body reveal"><span class="lang-pt">Enquanto o abuso de Hagar por Abrão e Sarai é retratado em analogia à loucura de Adão e Eva em <span class="ref" data-reference="Genesis 3">Gênesis 3</span>, esta história também retrata a divisão de Sarai e Hagar (esposas rivais) em analogia com a divisão de Caim e Abel (irmãos rivais). Observe como ambos os conjuntos de hiperlinks estão sobrepostos na exata mesma história.</span><span class="lang-en">While Avram and Sarai&rsquo;s abuse of Hagar is portrayed on analogy to the folly of Adam and Eve in <span class="ref" data-reference="Genesis 3">Genesis 3</span>, this story also portrays the division of Sarai and Hagar (rival wives) on analogy with the division of Cain and Abel (rival brothers). Notice how both sets of hyperlinks are overlaid and overlapping in the exact same story.</span></p>
+    <p class="body reveal"><span class="lang-pt">A história da rivalidade entre irmãos em <span class="ref" data-reference="Genesis 4">Gênesis 4</span> é aqui desenvolvida em uma história de esposas rivais.</span><span class="lang-en">The story of the sibling rivalry in <span class="ref" data-reference="Genesis 4">Genesis 4</span> is here developed into a story of rival wives.</span></p>
 
     <h3 class="sub reveal"><span class="lang-pt">Hiperlinks para Gênesis 6</span><span class="lang-en">Hyperlinks to Genesis 6</span></h3>
     <div class="overflow-x-auto reveal" style="margin:1rem 0;">
@@ -334,7 +340,7 @@
     </div>
 
     <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
-    <p class="body reveal"><span class="lang-pt">Que palavras e temas ligam <span class="ref">Gênesis 16:1-6</span> a <span class="ref">Gênesis 3</span>, <span class="ref">4</span> e <span class="ref">6</span>?</span><span class="lang-en">What words and themes link <span class="ref">Genesis 16:1-6</span> to <span class="ref">Genesis 3</span>, <span class="ref">4</span>, and <span class="ref">6</span>?</span></p>
+    <p class="body reveal"><span class="lang-pt">Que palavras e temas ligam <span class="ref" data-reference="Genesis 16:1-6">Gênesis 16:1-6</span> a <span class="ref" data-reference="Genesis 3">Gênesis 3</span>, <span class="ref" data-reference="Genesis 4">4</span> e <span class="ref" data-reference="Genesis 6">6</span>?</span><span class="lang-en">What words and themes link <span class="ref" data-reference="Genesis 16:1-6">Genesis 16:1-6</span> to <span class="ref" data-reference="Genesis 3">Genesis 3</span>, <span class="ref" data-reference="Genesis 4">4</span>, and <span class="ref" data-reference="Genesis 6">6</span>?</span></p>
 
     <div class="page-footer">
         <span>Class Notes: Abraham</span>
@@ -381,5 +387,7 @@
     })();
 </script>
 
+
+<script src="../js/verse-modal.js"></script>
 </body>
 </html>

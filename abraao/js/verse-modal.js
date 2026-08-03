@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Event delegation to catch clicks even on nested elements
     document.addEventListener('click', (event) => {
-        const link = event.target.closest('.verse-link');
+        const link = event.target.closest('.verse-link, .ref');
         if (!link) return;
         event.preventDefault();
         const reference = link.getAttribute('data-reference') || link.textContent.trim();
