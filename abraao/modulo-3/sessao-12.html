@@ -133,22 +133,25 @@
 
 <div id="reading-progress" aria-hidden="true"></div>
 
-<div class="fixed left-4 top-4 z-50 print:hidden flex items-center gap-2">
-    <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
-        <span>&larr;</span><span class="lang-pt">Sessão 15</span><span class="lang-en">Session 15</span>
-    </a>
-    <a href="session13.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
-        <span class="lang-pt">Sessão 13</span><span class="lang-en">Session 13</span><span>&rarr;</span>
+<!-- NAVIGATION FLOATING BUTTONS -->
+<div class="fixed left-4 top-4 z-50 print:hidden">
+    <a href="index.html"
+      class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+      <span>&larr;</span>
+      <span class="lang-pt">Voltar</span>
+      <span class="lang-en">Back</span>
     </a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
-    <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
-        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-        <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+    <button onclick="window.print()" title="Imprimir / Print"
+      class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+      <span class="lang-pt">Imprimir</span>
+      <span class="lang-en">Print</span>
     </button>
-    <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm shadow-sm">
-        <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
-        <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+    <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+      <button id="lang-pt" onclick="setLang('pt')" class="px-4 py-1.5 text-sm font-semibold transition-colors">PT</button>
+      <button id="lang-en" onclick="setLang('en')" class="px-4 py-1.5 text-sm font-semibold transition-colors">EN</button>
     </div>
 </div>
 
@@ -586,5 +589,139 @@
     })();
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.createElement("div");
+    modal.id = "verse-modal";
+    modal.className = "fixed inset-0 z-50 flex items-center justify-center bg-black/50 hidden";
+    modal.innerHTML = `
+        <div class="w-full max-w-lg rounded-lg bg-white p-6 shadow-xl">
+            <div class="mb-4 flex items-center justify-between">
+                <h3 id="modal-title" class="text-xl font-bold text-slate-900"></h3>
+                <button id="close-modal" class="text-slate-500 hover:text-slate-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div id="modal-content" class="max-h-[60vh] overflow-y-auto text-slate-700">
+                <p>Carregando...</p>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+
+    const modalTitle = modal.querySelector("#modal-title");
+    const modalContent = modal.querySelector("#modal-content");
+    const closeModal = modal.querySelector("#close-modal");
+
+    function openModal() {
+        modal.classList.remove("hidden");
+    }
+
+    function closeModalFunc() {
+        modal.classList.add("hidden");
+        modalContent.innerHTML = '<p>Carregando...</p>';
+    }
+
+    closeModal.addEventListener("click", closeModalFunc);
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeModalFunc();
+    });
+
+    function normalizeReference(reference){
+        const cleaned = reference.replace(/\+/g, ' ');
+        const m = cleaned.match(/^([^0-9]+)\s*(.*)$/);
+        if (!m) return cleaned;
+        let book = m[1].trim();
+        const rest = m[2].trim();
+        const map = {
+            'Gênesis':'Genesis','Êxodo':'Exodus','Levítico':'Leviticus','Números':'Numbers','Deuteronômio':'Deuteronomy',
+            'Josué':'Joshua','Juízes':'Judges','Rute':'Ruth','1 Samuel':'1 Samuel','2 Samuel':'2 Samuel','1 Reis':'1 Kings','2 Reis':'2 Kings',
+            '1 Crônicas':'1 Chronicles','2 Crônicas':'2 Chronicles','Esdras':'Ezra','Neemias':'Nehemiah','Ester':'Esther','Jó':'Job',
+            'Salmos':'Psalms','Provérbios':'Proverbs','Eclesiastes':'Ecclesiastes','Cantares':'Song of Songs','Isaías':'Isaiah','Jeremias':'Jeremiah',
+            'Lamentações':'Lamentations','Ezequiel':'Ezekiel','Daniel':'Daniel','Oseias':'Hosea','Joel':'Joel','Amós':'Amos','Obadias':'Obadiah',
+            'Jonas':'Jonah','Miqueias':'Micah','Naum':'Nahum','Habacuque':'Habakkuk','Sofonias':'Zephaniah','Ageu':'Haggai','Zacarias':'Zechariah',
+            'Malaquias':'Malachi','Mateus':'Matthew','Marcos':'Mark','Lucas':'Luke','João':'John','Atos':'Acts','Romanos':'Romans',
+            '1 Coríntios':'1 Corinthians','2 Coríntios':'2 Corinthians','Gálatas':'Galatians','Efésios':'Ephesians','Filipenses':'Philippians',
+            'Colossenses':'Colossians','1 Tessalonicenses':'1 Thessalonians','2 Tessalonicenses':'2 Thessalonians','1 Timóteo':'1 Timothy',
+            '2 Timóteo':'2 Timothy','Tito':'Titus','Filemom':'Philemon','Hebreus':'Hebrews','Tiago':'James','1 Pedro':'1 Peter','2 Pedro':'2 Peter',
+            '1 João':'1 John','2 João':'2 John','3 João':'3 John','Judas':'Jude','Apocalipse':'Revelation'
+        };
+        const abbr = {'Gn':'Gênesis','Gn.':'Gênesis','Ex':'Êxodo','Ex.':'Êxodo'};
+        if (abbr[book]) book = abbr[book];
+        if (map[book]) book = map[book];
+        return `${book} ${rest}`.trim();
+    }
+
+    function parseReferences(reference){
+        const cleaned = reference.replace(/\+/g, ' ').trim();
+        const m = cleaned.match(/^([^0-9]+)\s+(.+)$/);
+        if (!m) return [normalizeReference(reference)];
+        const bookPt = m[1].trim();
+        const rest = m[2].trim();
+        const normalizedBook = normalizeReference(`${bookPt} `).trim();
+        const bookEn = normalizedBook;
+        const parts = rest.split(',').map(p=>p.trim()).filter(Boolean);
+        let lastChapter = null;
+        const refs = parts.map((p)=>{
+            if (/^\d+:\d+(?:-\d+)?$/.test(p)){
+                lastChapter = p.split(':')[0];
+                return `${bookEn} ${p}`;
+            }
+            if (/^\d+$/.test(p) && lastChapter){
+                return `${bookEn} ${lastChapter}:${p}`;
+            }
+            return `${bookEn} ${p}`;
+        });
+        return refs.length ? refs : [`${bookEn} ${rest}`];
+    }
+
+    async function fetchVerse(reference) {
+        openModal();
+        const cleanedReference = reference.replace(/\+/g, ' ');
+        modalTitle.textContent = cleanedReference;
+        try {
+            const refs = parseReferences(reference);
+            const results = [];
+            for (const r of refs){
+                const encoded = encodeURIComponent(r);
+                const response = await fetch(`https://bible-api.com/${encoded}?translation=almeida`);
+                const data = await response.json();
+                results.push({r, data});
+            }
+            let formattedContent = '<div class="space-y-3">';
+            for (const {data} of results){
+                if (data.verses) {
+                    formattedContent += '<div class="space-y-1">';
+                    for (const verse of data.verses) {
+                        formattedContent += `<p><span class="font-bold text-xs align-top mr-1">${verse.verse}</span> ${verse.text.trim()}</p>`;
+                    }
+                    formattedContent += '</div>';
+                } else if (data.text) {
+                    formattedContent += `<p>${data.text.trim()}</p>`;
+                }
+            }
+            if (formattedContent === '<div class="space-y-3">'){
+                formattedContent += '<p>Versículo não encontrado.</p>';
+            }
+            formattedContent += '</div>';
+            modalContent.innerHTML = formattedContent;
+        } catch (error) {
+            console.error('Erro ao buscar o versículo:', error);
+            modalContent.innerHTML = '<p>Erro ao buscar o versículo.</p>';
+        }
+    }
+
+    // Event delegation to catch clicks even on nested elements
+    document.addEventListener('click', (event) => {
+        const link = event.target.closest('.verse-link, .ref');
+        if (!link) return;
+        event.preventDefault();
+        const reference = link.getAttribute('data-reference') || link.textContent.trim();
+        if (reference) fetchVerse(reference);
+    });
+});
+</script>
 </body>
 </html>
