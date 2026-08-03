@@ -389,6 +389,48 @@
         @media (prefers-reduced-motion: reduce) {
             .reveal { opacity: 1; transform: none; transition: none; }
         }
+
+        /* ---------- PRINT ---------- */
+        @media print {
+            @page { margin: 14mm 12mm; }
+            html, body { background: #fff !important; }
+            #reading-progress { display: none !important; }
+            .print\:hidden { display: none !important; }
+
+            /* make sure everything hidden by scroll-reveal is visible on paper */
+            .reveal { opacity: 1 !important; transform: none !important; }
+
+            /* keep all highlight colors when printing */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .max-w-4xl { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
+
+            /* avoid awkward page splits */
+            h1.title, h2.section, h3.sub { break-after: avoid-page; page-break-after: avoid; }
+            .scripture, .diagram-box, .diagram-box-red, .diagram-box-outer, .diagram-box-inner,
+            .gen-row, .gen-card, .flood-box, .flood-box-light, .doc-table tr {
+                break-inside: avoid; page-break-inside: avoid;
+            }
+            .doc-table { break-inside: auto; }
+
+            /* tables/diagrams shouldn't need scrollbars on paper */
+            .overflow-x-auto { overflow: visible !important; }
+            .min-w-\[720px\] { min-width: 0 !important; }
+            .doc-table, table.rt { min-width: 0 !important; font-size: 9.5pt; }
+            .rt td { padding: .4rem .45rem; font-size: 9pt; line-height: 1.35; }
+
+            body { font-size: 10.5pt; }
+            p.body, .doc-li, .gen-card { font-size: 10.5pt; line-height: 1.5; }
+            .gen-card { padding: .9rem 1rem; }
+            h1.title { font-size: 20pt; }
+            h2.section { font-size: 14pt; margin-top: 1.4rem; }
+
+            a, .ref { color: #000 !important; text-decoration: underline; }
+            .page-footer { margin-top: 1.5rem; }
+        }
     </style>
 </head>
 <body>
@@ -404,7 +446,13 @@
       <span class="lang-en">Back</span>
     </a>
 </div>
-<div class="fixed right-4 top-4 z-50 print:hidden">
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+    <button onclick="window.print()" title="Imprimir / Print"
+      class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+      <span class="lang-pt">Imprimir</span>
+      <span class="lang-en">Print</span>
+    </button>
     <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
       <button id="lang-pt" onclick="setLang('pt')" class="px-4 py-1.5 text-sm font-semibold transition-colors">PT</button>
       <button id="lang-en" onclick="setLang('en')" class="px-4 py-1.5 text-sm font-semibold transition-colors">EN</button>
