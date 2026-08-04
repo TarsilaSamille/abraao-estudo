@@ -1,232 +1,345 @@
-<!DOCTYPE html>
-<html lang="pt">
+<!doctype html>
+<html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Melquisedeque, o Sacerdote Real</title>
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
-<style>
-  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
-  html[lang="pt"] .lang-en { display: none !important; }
-  html[lang="en"] .lang-pt { display: none !important; }
-  .heb { font-family: 'SBL Hebrew','Times New Roman',serif; font-size: 1.05em; direction: rtl; unicode-bidi: embed; }
-
-  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
-  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
-  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
-  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
-  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
-  .ref:hover { color: #2563eb; }
-  ul.bullets { list-style: none; padding: 0; }
-  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
-  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
-  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-
-  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
-  .scripture:hover { border-left-color: #9aa7b8; }
-  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
-  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
-  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
-  .scripture .innerbox { background: #f6f8fa; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1rem; }
-  .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem; }
-
-  /* ---------- Macro design (3 columns) ---------- */
-  .macro { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; align-items: start; margin: 2rem 0 .75rem; }
-  .mcol { border: 3px solid #2e7d4e; border-radius: 12px; padding: .9rem .9rem 1rem; background: #fff; }
-  .mcol.dark { border-color: #3d4453; margin-top: 1.3rem; }
-  .mtag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 3px 10px; border-radius: 5px; }
-  .mtag-green { background: #2e7d4e; } .mtag-dark { background: #3d4453; }
-  .mcol-title { font-size: 1rem; font-weight: 800; color: #17181a; margin: .55rem 0 .8rem; line-height: 1.3; }
-  .mboxes { display: flex; gap: .55rem; }
-  .mbox { flex: 1; border: 3px solid #b9c2cf; border-radius: 9px; background: #fff; min-height: 15.5rem; position: relative; transition: box-shadow .25s, transform .25s; }
-  .mbox:hover { box-shadow: 0 8px 20px -10px rgba(30,41,59,.4); transform: translateY(-3px); }
-  .mbox .mhdr { position: absolute; top: .55rem; left: .55rem; right: .55rem; background: #7d8697; color: #fff; font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 5px; }
-  .mbox.s1 { margin-top: 0; } .mbox.s2 { margin-top: 2.4rem; min-height: 13rem; } .mbox.s3 { margin-top: 2.4rem; min-height: 13rem; }
-  @media (max-width: 860px) { .macro { grid-template-columns: 1fr; } .mcol.dark { margin-top: 0; } .mbox, .mbox.s2, .mbox.s3 { min-height: 7.5rem; margin-top: 0; } }
-
-  /* ---------- Chiasm staircase boxes ---------- */
-  .cx { border: 3px solid; border-radius: 12px; padding: 1.35rem 1.5rem 1.2rem; margin: 1.15rem 0; transition: box-shadow .25s, transform .25s; }
-  .cx:hover { box-shadow: 0 12px 26px -16px rgba(23,24,26,.45); transform: translateY(-2px); }
-  .cx-tag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 1px 13px; border-radius: 6px; margin-bottom: .7rem; }
-  .cx h4 { font-weight: 800; font-size: 1.06rem; color: #17181a; margin-bottom: .7rem; }
-  .cx ul.bullets > li { font-size: .99rem; margin-bottom: .45rem; }
-  .cx-slate  { border-color: #6b7280; background: #e9ebee; } .cx-slate  .cx-tag { background: #6b7280; }
-  .cx-rust   { border-color: #c0562f; background: #f7e6dd; } .cx-rust   .cx-tag { background: #c0562f; }
-  .cx-rose   { border-color: #c04a63; background: #f7e0e5; } .cx-rose   .cx-tag { background: #c04a63; }
-  .cx-blue   { border-color: #5468d4; background: #e4e8f9; } .cx-blue   .cx-tag { background: #5468d4; }
-  .cx-green  { border-color: #2e7d4e; background: #dfeee2; } .cx-green  .cx-tag { background: #2e7d4e; }
-  .cx-purple { border-color: #8b5cf6; background: #efe2f8; } .cx-purple .cx-tag { background: #8b5cf6; }
-  .cx-tan    { border-color: #8a6d3b; background: #ece7dc; } .cx-tan    .cx-tag { background: #8a6d3b; }
-
-  /* ---------- verse chips (Gen 18 translation) ---------- */
-  .k { display: inline; padding: 3px 9px; border-radius: 6px; font-weight: 700; color: #fff; line-height: 1.85; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
-  .k-blue   { background: #3b82c4; } .k-green  { background: #2e7d4e; } .k-rose { background: #c04a63; }
-  .k-gray   { background: #6b7280; } .k-rust   { background: #bf5a2b; } .k-teal { background: #0d7d8c; }
-  .k-purple { background: #7c5ad0; } .k-brown  { background: #8a6d3b; }
-  .t-teal { color: #0d8aa0; font-weight: 700; }
-
-  .v-outer { border: 3px solid #e3e7ee; border-radius: 20px; padding: 1.4rem 1.5rem; margin: 1.4rem 0; }
-  .v-black { border: 3px solid #17181a; border-radius: 16px; padding: 1.3rem 1.5rem; margin: 1.1rem 0; }
-  .v-light { border: 3px solid #e3e7ee; border-radius: 16px; padding: 1.2rem 1.4rem; margin: 1.1rem 0; }
-  .v-line { font-size: 1.06rem; line-height: 2.1; color: #1f2937; }
-  .v-div { border: 0; border-top: 1px solid #e6eaf0; margin: 1.1rem 0; }
-  .vbar-b { border-left: 5px solid #5468d4; padding-left: .8rem; }
-  .lbl { color: #6b7280; font-weight: 600; font-size: .85rem; margin-right: .2rem; }
-  sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px; }
-  .i1 { padding-left: 1.6rem; } .i2 { padding-left: 3.2rem; } .i3 { padding-left: 4.8rem; }
-
-  /* ---------- tables ---------- */
-  .doc-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 3px solid #d9dee6; border-radius: 14px; overflow: hidden; background: #fff; }
-  .doc-table th { background: #e2e6eb; text-align: left; padding: 1rem 1.3rem; font-weight: 800; font-size: 1.02rem; color: #17181a; }
-  .doc-table td { padding: 1.1rem 1.3rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.78; font-size: .97rem; color: #24262a; transition: background .2s; }
-  .doc-table td + td { border-left: 1px solid #e5e7eb; }
-  .doc-table tbody tr:hover td { background: #f8fafc; }
-  .doc-table tfoot td { border-top: 1px solid #d1d5db; background: #fbfcfd; color: #5b6472; font-size: .92rem; }
-  .kblue-soft { background: #cddcf5; color: #2b5fb0; padding: 2px 8px; border-radius: 6px; font-weight: 700; }
-
-  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
-  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
-  .reveal.visible { opacity: 1; transform: none; }
-
-  @media print {
-    @page { margin: 14mm 12mm; }
-    #reading-progress, .print\:hidden { display: none !important; }
-    .reveal { opacity: 1 !important; transform: none !important; }
-    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-    .max-w-4xl { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
-    h1.title, h2.section, h3.sub { break-after: avoid-page; }
-    .cx, .v-outer, .v-black, .v-light, .doc-table tr, .scripture, .mcol { break-inside: avoid; }
-  }
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .cx, .mbox { transition: none; } }
-</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sessão 10: Melquisedeque, o Sacerdote Real</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
 
-<div id="reading-progress" aria-hidden="true"></div>
+<body class="bg-white font-sans text-slate-800">
+    <div class="p-4">
+        <a href="index.html" class="text-sky-600 hover:underline">← Voltar para o Índice</a>
+    </div>    <div id="sessao-10" class="min-h-screen p-8 md:px-16">
+        <div class="mx-auto max-w-4xl">
+            <h1 class="text-4xl font-bold text-slate-900 mb-8 border-b pb-4">Sessão 10: Melquisedeque, o
+                Sacerdote Real</h1>
 
-<div class="fixed left-4 top-4 z-50 print:hidden">
-  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
-    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
-  </a>
-</div>
-<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
-  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
-    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
-  </button>
-  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm shadow-sm">
-    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
-    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
-  </div>
-</div>
+            <h2 class="text-2xl font-bold text-slate-800 mb-3">Pontos-Chave</h2>
+            <ul class="list-disc list-inside space-y-2 mb-10 text-lg text-slate-700">
+                <li>Esta narrativa nos oferece a primeira imagem da transformação de Avram à medida que ele
+                    reflete mais fielmente a imagem de Deus.</li>
+                <li>Os reis de Salém e Sodoma estão em forte contraste um com o outro. O rei de Salém vem com
+                    festa e bênção, enquanto o rei de Sodoma vem para tomar.</li>
+                <li>Os autores bíblicos apresentam Melquisedeque como um ideal, sacerdote real intocado.</li>
+            </ul>
 
-<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
-<h1 class="title reveal"><span class="lang-pt">Sessão 10: Melquisedeque, o Sacerdote Real</span><span class="lang-en">Session 10: Melchizedek the Royal Priest</span></h1>
-  <hr class="rule">
+            <div class="mx-auto max-w-4xl bg-white p-6 font-sans text-slate-900">
+                <!-- Título Principal -->
+                <h2 class="mb-8 text-3xl font-bold tracking-tight text-slate-900">Tradução e Design Literário de Gênesis
+                    14:17-24
+                </h2>
 
-  <h3 class="sub reveal" style="margin-top:0;"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
-  <ul class="bullets reveal" style="margin-bottom:2.5rem;">
-    <li><span class="lang-pt">Esta narrativa nos oferece a primeira imagem da transformação de Avram, à medida que ele reflete mais fielmente a imagem de Deus.</span><span class="lang-en">This narrative offers us the first picture of Avram&rsquo;s transformation as he more faithfully reflects God&rsquo;s image.</span></li>
-    <li><span class="lang-pt">Os reis de Salem e de Sodoma contrastam radicalmente entre si. O rei de Salem vem com festa e bênção, enquanto o rei de Sodoma vem para tomar.</span><span class="lang-en">The kings of Salem and Sodom stand in stark contrast to one another. The king of Salem comes with feast and blessing, whereas the king of Sodom comes to take.</span></li>
-    <li><span class="lang-pt">Os autores bíblicos apresentam Melquisedeque como um sacerdote real ideal, imaculado.</span><span class="lang-en">Biblical authors hold up Melchizedek as an ideal, untainted royal priest.</span></li>
-  </ul>
+                <!-- Container Geral -->
+                <div
+                    class="space-y-6 rounded-2xl border-2 border-slate-300 bg-white p-6 text-[1.05rem] leading-relaxed shadow-sm">
+                    <!-- BLOCO 1: Verso 17 (Borda Preta) -->
+                    <div class="rounded-2xl border-2 border-slate-800 bg-white p-6 shadow-sm">
+                        <div class="mb-1 grid grid-cols-[25px_1fr] gap-1">
+                            <div class="pt-1 text-right font-mono text-sm text-slate-500">a</div>
+                            <div>
+                                <sup class="mr-0.5 text-xs font-bold text-slate-500">17</sup>
+                                E <span class="rounded bg-[#e2dcf5] px-1.5 py-0.5 font-bold text-[#674ea7]">o rei de
+                                    Sodoma</span>
+                                <span class="font-bold text-[#a64d79]">saiu ao encontro dele</span>,
+                            </div>
+                        </div>
+                        <div class="mb-1 grid grid-cols-[25px_1fr] gap-1">
+                            <div class="pt-1 pl-8 text-right font-mono text-sm text-slate-500">b</div>
+                            <div class="pl-8">depois que voltou de <span class="font-bold text-[#d13a6e]">ferir</span> a
+                                Quedorlaomer e aos reis com ele,</div>
+                        </div>
+                        <div class="grid grid-cols-[25px_1fr] gap-1">
+                            <div class="pt-1 pl-4 text-right font-mono text-sm text-slate-500">a'</div>
+                            <div class="pl-4">no vale de Savé [este é o vale do rei].</div>
+                        </div>
+                    </div>
 
-  <h2 class="section reveal"><span class="lang-pt">Tradução e Design Literário de Gênesis 14:17-24</span><span class="lang-en">Translation and Literary Design of Genesis 14:17-24</span></h2>
-  <div class="v-outer reveal">
-    <div class="v-line" style="display:flex; gap:.9rem;">
-      <span class="lbl" style="padding-top:.35rem;">17</span>
-      <div>
-        <p><span class="lang-pt">E o rei de Sodoma saiu ao seu encontro, depois que ele voltou de ferir a Quedorlaomer e os reis com ele, no vale da planície [este é o vale do rei].</span><span class="lang-en">And the king of Sodom went out to meet him, after he returned from striking Kedorlaomer, and the kings with him, into the valley of the plain [this is the valley of the king].</span></p>
-        <p><sup class="vs">18</sup> <span class="lang-pt">E Melquisedeque, rei de Salém, tirou pão e vinho &mdash; ora, ele era sacerdote do Deus Altíssimo &mdash;</span><span class="lang-en">Now (just then), Melchizedek, king of Shalem, brought out bread and wine &mdash; now, he was the priest of El-Most High &mdash;</span></p>
-        <p class="i1"><sup class="vs">19</sup> <span class="lang-pt">e abençoou-o, e disse: &ldquo;Bendito seja Avram pelo Deus Altíssimo (<span class="heb">אל עליון</span>), o possuidor de céus e terra;</span><span class="lang-en">and he blessed him, and he said: &ldquo;May Avram be blessed by El-Most High (<span class="heb">אל עליון</span>), the possessor of skies and land.</span></p>
-        <p class="i1"><sup class="vs">20</sup> <span class="lang-pt">e bendito seja o Deus Altíssimo, que entregou os teus inimigos na tua mão.&rdquo; E deu-lhe o dízimo de tudo.</span><span class="lang-en">And may El-Most High be blessed, who has delivered your adversaries into your hand.&rdquo; And he gave to him (<span class="heb">נתן</span>) a tenth (<span class="heb">עשר</span>) of everything.</span></p>
-        <p><sup class="vs">21</sup> <span class="lang-pt">E o rei de Sodoma disse a Avram: &ldquo;Dá-me (<span class="heb">נתן</span>) as pessoas, e toma (<span class="heb">לקח</span>) para ti os bens.&rdquo;</span><span class="lang-en">And the king of Sodom said to Avram, &ldquo;Give to me (<span class="heb">נתן</span>) the people, and take (<span class="heb">לקח</span>) for yourself the possessions.&rdquo;</span></p>
-        <p><sup class="vs">22</sup> <span class="lang-pt">E Avram disse ao rei de Sodoma: &ldquo;Levanto a minha mão a Iavé, o Deus Altíssimo, o possuidor de céus e terra:</span><span class="lang-en">And Avram said to the king of Sodom, &ldquo;I lift up my hand to Yahweh, El-Most High, possessor of skies and land:</span></p>
-        <p class="i1"><sup class="vs">23</sup> <span class="lang-pt">desde um fio até a correia de uma sandália, não tomarei (<span class="heb">לקח</span>) de tudo o que é teu, para que não digas: &lsquo;Eu enriqueci (<span class="heb">עשר</span>) Avram!&rsquo;</span><span class="lang-en">Not from a strap or sole of a sandal will I take (<span class="heb">לקח</span>) from all that is yours, so that you can&rsquo;t say, &lsquo;I made Avram wealthy (<span class="heb">עשר</span>)!&rsquo;</span></p>
-        <p class="i1"><sup class="vs">24</sup> <span class="lang-pt">Somente o que os jovens comeram, e a porção (<span class="heb">חלק</span>) dos homens que foram comigo, Aner, Escole e Manre &mdash; eles podem tomar (<span class="heb">לקח</span>) a sua porção (<span class="heb">חלק</span>).&rdquo;</span><span class="lang-en">Only what the young men have eaten, and the portion (<span class="heb">חלק</span>) of the men who went with me, Aner, Eshkol, and Mamre &mdash; they can take (<span class="heb">לקח</span>) their portion (<span class="heb">חלק</span>).&rdquo;</span></p>
-      </div>
+                    <!-- BLOCO 2: Versos 18-20 (Borda Cinza - Melquisedeque) -->
+                    <div class="rounded-2xl border-2 border-slate-300 bg-white p-6 shadow-sm">
+                        <div class="mb-1 grid grid-cols-[25px_1fr] gap-1">
+                            <div class="pt-1 text-right font-mono text-sm text-slate-500 uppercase">A</div>
+                            <div>
+                                <sup class="mr-0.5 text-xs font-bold text-slate-500">18</sup>
+                                Ora (logo então), <span
+                                    class="rounded bg-[#e2dcf5] px-1.5 py-0.5 font-bold text-[#674ea7]">Melquisedeque,
+                                    rei de
+                                    Salém</span>, <span class="font-bold text-[#986f24]">trouxe pão e vinho</span>.
+                            </div>
+                        </div>
+                        <div class="mb-1 pl-8">Ora, ele era <span
+                                class="rounded bg-[#e2dcf5] px-1.5 py-0.5 font-bold text-[#674ea7]">sacerdote</span> do
+                            <span class="rounded bg-[#cfe2f3] px-1.5 py-0.5 font-bold text-[#0b5394]">Deus
+                                Altíssimo</span></div>
+                        <div class="mb-1 pl-12">
+                            <sup class="mr-0.5 text-xs font-bold text-slate-500">19</sup>
+                            E ele o <span
+                                class="rounded bg-[#e2dcf5] px-1.5 py-0.5 font-bold text-[#674ea7]">abençoou</span>, e
+                            disse:
+                        </div>
+                        <div class="mb-1 pl-12">Que Abrão seja <span
+                                class="rounded bg-[#e2dcf5] px-1.5 py-0.5 font-bold text-[#674ea7]">abençoado</span>
+                            pelo <span class="rounded bg-[#cfe2f3] px-1.5 py-0.5 font-bold text-[#0b5394]">Deus
+                                Altíssimo</span>,</div>
+                        <div class="mb-1 grid grid-cols-[25px_1fr] gap-1 pl-8">
+                            <div class="pt-1 text-right font-mono text-sm text-slate-500 uppercase">B</div>
+                            <div class="pl-2">o <span
+                                    class="rounded bg-[#0c7c99] px-1.5 py-0.5 font-bold text-white shadow-sm">Possuidor
+                                    dos céus e
+                                    da terra</span>.</div>
+                        </div>
+                        <div class="mb-1 pl-12">
+                            <sup class="mr-0.5 text-xs font-bold text-slate-500">20</sup>
+                            E que o <span class="rounded bg-[#cfe2f3] px-1.5 py-0.5 font-bold text-[#0b5394]">Deus
+                                Altíssimo</span>
+                            seja <span
+                                class="rounded bg-[#e2dcf5] px-1.5 py-0.5 font-bold text-[#674ea7]">abençoado</span>,
+                        </div>
+                        <div class="mb-1 pl-12">que entregou os teus adversários na tua mão.</div>
+                        <div class="grid grid-cols-[25px_1fr] gap-1">
+                            <div class="pt-1 text-right font-mono text-sm text-slate-500 uppercase">A</div>
+                            <div><span class="font-bold text-[#986f24]">E ele deu a ele (נתן)</span> o dízimo <span
+                                    class="font-bold text-[#986f24]">(עשר)</span> de tudo.</div>
+                        </div>
+                    </div>
+
+                    <!-- BLOCO 3: Versos 21-24 (Borda Preta - Diálogo com Rei de Sodoma) -->
+                    <div class="rounded-2xl border-2 border-slate-800 bg-white p-6 shadow-sm">
+                        <!-- Verso 21 -->
+                        <div class="mb-1 pl-6">
+                            <sup class="mr-0.5 text-xs font-bold text-slate-500">21</sup>
+                            E <span class="rounded bg-[#e2dcf5] px-1.5 py-0.5 font-bold text-[#674ea7]">o rei de
+                                Sodoma</span> <span class="font-bold text-[#9555af]">disse a Abrão</span>,
+                        </div>
+                        <div class="mb-4 grid grid-cols-[25px_1fr] gap-1">
+                            <div class="pt-1 text-right font-mono text-sm text-slate-500 uppercase">A</div>
+                            <div>
+                                “<span class="font-bold text-[#986f24]">Dá-me (נתן)</span> as pessoas,<br />
+                                e os bens, <span
+                                    class="rounded bg-[#a64d79] px-1.5 py-0.5 font-bold text-white shadow-sm">toma
+                                    (לקח)</span> para ti.”
+                            </div>
+                        </div>
+
+                        <div class="mb-6 w-full border-t border-slate-200"></div>
+
+                        <!-- Verso 22-23 -->
+                        <div class="mb-1 pl-8">
+                            <sup class="mr-0.5 text-xs font-bold text-slate-500">22</sup>
+                            E <span class="font-bold text-[#9555af]">Abrão disse ao</span> <span
+                                class="rounded bg-[#e2dcf5] px-1.5 py-0.5 font-bold text-[#674ea7]">rei de
+                                Sodoma</span>,
+                        </div>
+                        <div class="mb-1 pl-8">“Levantei minha mão ao Senhor, <span
+                                class="rounded bg-[#cfe2f3] px-1.5 py-0.5 font-bold text-[#0b5394]">Deus
+                                Altíssimo</span>,</div>
+                        <div class="mb-1 pl-8"><span
+                                class="rounded bg-[#0c7c99] px-1.5 py-0.5 font-bold text-white shadow-sm">Possuidor dos
+                                céus e da
+                                terra</span>:</div>
+
+                        <div class="mb-1 grid grid-cols-[25px_1fr] gap-1 pl-8">
+                            <div class="pt-1 text-right font-mono text-sm text-slate-500 uppercase">B</div>
+                            <div class="pl-2">
+                                <sup class="mr-0.5 text-xs font-bold text-slate-500">23</sup>
+                                Nem de um fio a uma correia de sandália
+                            </div>
+                        </div>
+                        <div class="mb-1 pl-16">eu <span
+                                class="rounded bg-[#a64d79] px-1.5 py-0.5 font-bold text-white shadow-sm">tomarei
+                                (לקח)</span> de
+                            tudo o que é teu,</div>
+                        <div class="mb-1 pl-16">para que não digas,</div>
+                        <div class="mb-1 pl-16">'Eu <span class="font-bold text-[#986f24]">enriqueci (עשר)</span> a
+                            Abrão!'</div>
+
+                        <!-- Verso 24 -->
+                        <div class="mb-1 grid grid-cols-[25px_1fr] gap-1 pl-8">
+                            <div class="pt-1 text-right font-mono text-sm text-slate-500">a</div>
+                            <div>
+                                <sup class="mr-0.5 text-xs font-bold text-slate-500">24</sup>
+                                Salvo apenas o que os <span class="font-bold text-[#134f5c]">jovens</span> comeram,
+                            </div>
+                        </div>
+                        <div class="mb-1 grid grid-cols-[25px_1fr] gap-1 pl-10">
+                            <div class="pt-1 pl-10 text-right font-mono text-sm text-slate-500">b</div>
+                            <div class="pl-10">e <span
+                                    class="rounded bg-[#a64d79] px-1.5 py-0.5 font-bold text-white shadow-sm">a
+                                    parte (חלק)</span> dos homens que foram comigo,</div>
+                        </div>
+                        <div class="mb-1 grid grid-cols-[25px_1fr] gap-1 pl-4">
+                            <div class="pt-1 text-right font-mono text-sm text-slate-500 uppercase">A</div>
+                            <div class="grid grid-cols-[25px_1fr] gap-1">
+                                <div class="pt-1 text-right font-mono text-sm text-slate-500">a'</div>
+                                <div><span class="font-bold text-[#134f5c]">Aner, Escol e Manre</span>,</div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-[25px_1fr] gap-1 pl-[4.5rem]">
+                            <div class="pt-1 text-right font-mono text-sm text-slate-500">b'</div>
+                            <div class="pl-4">que eles <span
+                                    class="rounded bg-[#a64d79] px-1.5 py-0.5 font-bold text-white shadow-sm">tomem
+                                    (לקח)</span> a
+                                sua <span
+                                    class="rounded bg-[#a64d79] px-1.5 py-0.5 font-bold text-white shadow-sm">parte
+                                    (חלק)</span>.”</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rodapé -->
+                <p class="mt-8 text-center font-serif text-[0.9rem] text-slate-500 italic">Genesis 14:1-24. Translation
+                    and Literary
+                    Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</p>
+            </div>
+
+            <h2 class="text-3xl font-bold text-slate-800 mb-4">Um Conto de Dois Reis</h2>
+            <p class="text-lg leading-relaxed text-slate-700 mb-6">Esta história precisa ser entendida de
+                múltiplas perspectivas, como um círculo concêntrico com cada camada se movendo para fora e
+                ficando maior: Gênesis 14:17-24 dentro de Gênesis 14:1-24, dentro de 11:27-14:24, dentro de
+                11:27-25:18, dentro de Gênesis como um todo, dentro da Torá como um todo, e em relação aos
+                Profetas e Escritos.</p>
+
+            <p class="text-lg leading-relaxed text-slate-700 mb-6">Com Melquisedeque, chegamos ao 10º rei na
+                história! Em contraste com o rei de Sodoma, cujo nome é "Mal" (ברע), agora temos o "Rei da
+                Justiça" (מלכי־צדק)! O contraste em seus nomes simboliza seus caracteres e o que eles querem
+                para ou de Avram.</p>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-red-50 p-6 rounded-lg border border-red-200">
+                    <h3 class="text-xl font-bold text-red-800 mb-3">Bera, Rei de Sodoma</h3>
+                    <p class="text-sm text-red-600 mb-2 font-semibold uppercase">Sodoma / Mal</p>
+                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                        <li>Ele exige que Avram <b>dê</b> (נתן) a ele os cativos de guerra, mas Avram pode
+                            <b>tomar</b> (לקח) o saque.
+                        </li>
+                        <li>Ele quer ter Avram em sua dívida tornando-o rico (עשר).</li>
+                    </ul>
+                </div>
+                <div class="bg-green-50 p-6 rounded-lg border border-green-200">
+                    <h3 class="text-xl font-bold text-green-800 mb-3">Melquisedeque, Rei-Sacerdote</h3>
+                    <p class="text-sm text-green-600 mb-2 font-semibold uppercase">Salém = Jerusalém / Justiça
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                        <li>Ele oferece comida e bênção a Avram e não exige nada em troca.</li>
+                        <li>Ele dá generosamente a Avram, então Avram alegremente <b>dá</b> (נתן) um décimo
+                            (מעשר) como um presente em retorno.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p class="text-lg leading-relaxed text-slate-700 mb-10">Bera e Melquisedeque representam duas
+                maneiras pelas quais os governantes das nações se relacionam com o escolhido de Deus, que foi
+                selecionado para ser o canal da bênção de Deus para as nações.</p>
+
+            <h2 class="text-3xl font-bold text-slate-800 mb-4">Um Sacerdote Real Que Abençoa o Abençoado</h2>
+            <p class="text-lg leading-relaxed text-slate-700 mb-6">Melquisedeque é o primeiro "sacerdote real"
+                explícito no livro de Gênesis. Adão e Eva são implicitamente sacerdotes reais, mas Melquisedeque
+                é claramente um sacerdote real, e não da linhagem de Sete, Noé ou Sem (ou pelo menos, não no
+                texto).</p>
+
+            <p class="text-lg leading-relaxed text-slate-700 mb-6">Ele governa Salém (lit. shalem / שלם), que
+                mais tarde na Bíblia Hebraica é identificado como JeruSALÉM (ver Sl. 76:1-2, onde "a tenda de
+                Deus está em Salém, sua morada está em Sião").</p>
+
+            <p class="text-lg leading-relaxed text-slate-700 mb-6">Melquisedeque pronuncia uma bênção sobre
+                Avraham em nome de El-Elyon, o criador/possuidor dos céus e da terra. Este título divino, e a
+                declaração de Avraham em 14:22 de que El-Elyon é Yahweh, liga o Deus de Melquisedeque a "Yahweh
+                Elohim" de Gênesis 1-2.</p>
+
+            <div class="space-y-4 mb-8">
+                <blockquote class="border-l-4 border-slate-400 bg-slate-50 p-4 rounded-r-lg text-lg italic">
+                    <b>Gênesis 14:19-20</b><br>
+                    Ele o abençoou e disse: "Bendito seja Abrão do Deus Altíssimo, possuidor do céu e da terra;
+                    e bendito seja o Deus Altíssimo, que entregou seus inimigos em sua mão." E ele lhe deu um
+                    décimo de tudo.
+                </blockquote>
+                <blockquote class="border-l-4 border-slate-400 bg-slate-50 p-4 rounded-r-lg text-lg italic">
+                    <b>Gênesis 12:2-3</b><br>
+                    E eu farei de você uma grande nação, e eu o abençoarei, e farei grande o seu nome; e assim
+                    você será uma bênção; e eu abençoarei aqueles que o abençoarem, e o que o amaldiçoar eu
+                    amaldiçoarei. E em você todas as famílias da terra serão abençoadas.
+                </blockquote>
+            </div>
+
+            <p class="text-lg leading-relaxed text-slate-700 mb-10">Note como a bênção de Melquisedeque
+                desenvolve a própria bênção de Deus sobre Avram. Deus prometeu semente e terra, e agora
+                Melquisedeque adiciona libertação dos inimigos. Deus abençoará Avram com descendentes abundantes
+                e uma terra prometida, e ele libertará os descendentes de Avram de seus inimigos.</p>
+
+            <h2 class="text-3xl font-bold text-slate-800 mb-4">A Promessa de Bênção de Deus</h2>
+            <p class="text-lg leading-relaxed text-slate-700 mb-6">Um tema importante em ação em Gênesis 14 é a
+                bênção de Deus sobre Avram, e como os vários personagens na história se relacionam com Avram.
+            </p>
+
+            <p class="text-lg leading-relaxed text-slate-700 mb-6">Esses amoritas que fizeram uma aliança com
+                Avram, o escolhido de Deus, experimentaram a bênção da proteção de Deus e também compartilharam
+                da vitória de Avram. Em contraste, os reis gentios que se opõem ao escolhido de Deus são
+                derrotados apesar das probabilidades a seu favor.</p>
+
+            <p class="text-lg leading-relaxed text-slate-700 mb-6">Gênesis 14 mostra o cumprimento da promessa
+                de Deus em Gênesis 12:2-3. Avram se torna uma bênção para as nações ao lutar contra reis
+                violentos e pagãos e resgatar os inocentes. E aqueles que o "amaldiçoaram" (sequestrando seu
+                sobrinho) se encontram amaldiçoados.</p>
+
+            <p class="text-lg leading-relaxed text-slate-700 mb-6">Melquisedeque abençoa Avram, e então
+                esperamos que Deus abençoe Melquisedeque em retorno. O pagamento de um dízimo a Melquisedeque
+                mostra que Avram o honra como um superior.</p>
+
+            <p class="text-lg leading-relaxed text-slate-700 mb-8">O leitor não se surpreende quando, muito mais
+                tarde na história, Davi é feito rei de Israel e estabelece esta mesma cidade como a capital
+                sagrada de Israel. Davi move a arca da aliança para Jerusalém e assume o papel de um sacerdote
+                real exatamente como Melquisedeque! Veja 2 Samuel 5-8.</p>
+
+            <h2 class="text-2xl font-bold text-slate-800 my-8">Questão para Reflexão</h2>
+            <div class="bg-slate-50 border border-slate-200 rounded-lg p-6">
+                <p class="text-lg text-slate-700">Como Gênesis 14:17-24 começa a demonstrar uma transformação no
+                    caráter de Avram?</p>
+            </div>
+        </div>
     </div>
-  </div>
-  <p class="caption reveal"><span class="lang-pt"><em>Gênesis 14:17-24</em>. Tradução e Design Literário por Tim Mackie para a BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Genesis 14:17-24</em>. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
 
-  <h3 class="sub reveal"><span class="lang-pt">Uma História de Dois Reis</span><span class="lang-en">A Tale of Two Kings</span></h3>
-  <p class="body reveal"><span class="lang-pt">Esta história precisa ser entendida de múltiplas perspectivas, como um círculo concêntrico com cada camada se movendo para fora e se ampliando: Gênesis 14:17-24 dentro de 14:1-24, dentro de 11:27-14:24, dentro de 11:27-25:18, dentro de Gênesis como um todo, dentro da Torá como um todo, e em relação aos Profetas e Escritos. Com Melquisedeque, chegamos ao 10º rei da história! Em contraste com o rei de Sodoma, cujo nome é &ldquo;Mau&rdquo; (<span class="heb">ברע</span>), agora temos o &ldquo;Rei de Justiça&rdquo; (<span class="heb">מלכי־צדק</span>). O contraste em seus nomes simboliza seus caracteres e o que querem para ou de Avram.</span><span class="lang-en">This story needs to be understood from multiple perspectives, like a concentric circle with each layer moving outward and getting larger: Genesis 14:17-24 within Genesis 14:1-24, within 11:27-14:24, within 11:27-25:18, within Genesis as a whole, within the Torah as a whole, and in relationship to the Prophets and Writings. With Melchizedek, we come to the 10th king in the story! In contrast to the king of Sodom, whose name is &ldquo;Evil&rdquo; (<span class="heb">ברע</span>), we now have the &ldquo;King of Righteousness&rdquo; (<span class="heb">מלכי־צדק</span>). The contrast in their names symbolizes their characters and what they want for or from Avram.</span></p>
-  <div class="overflow-x-auto reveal" style="margin:1.5rem 0;">
-    <table class="doc-table" style="min-width:600px;">
-      <thead><tr><th style="width:50%;">Bera, Rei de Sodoma</th><th style="width:50%;">Melquisedeque, Rei-Sacerdote de Salem</th></tr></thead>
-      <tbody>
-        <tr>
-          <td><span class="lang-pt">Sodoma / Mau (<span class="heb">ברע</span>). Ele exige que Avram dê (<span class="heb">נתן</span>) a ele os cativos de guerra, mas Avram pode tomar (<span class="heb">לקח</span>) os despojos. Quer ter Avram em dívida consigo, tornando-o rico (<span class="heb">עשר</span>).</span><span class="lang-en">Sodom / Evil (<span class="heb">ברע</span>). He demands that Avram give (<span class="heb">נתן</span>) him the war captives, but Avram can take (<span class="heb">לקח</span>) the plunder. He wants to have Avram in his debt by making him wealthy (<span class="heb">עשר</span>).</span></td>
-          <td><span class="lang-pt">Salém (= Jerusalém) / Justiça (<span class="heb">מלכי־צדק</span>). Ele oferece comida e bênção a Avram e nada exige em troca. Dá generosamente a Avram, e Avram, feliz, dá (<span class="heb">נתן</span>) um décimo (<span class="heb">מעשר</span>) como dom em retorno.</span><span class="lang-en">Salem (= Jerusalem) / Righteousness (<span class="heb">מלכי־צדק</span>). He offers food and blessing to Avram and demands nothing in return. He gives generously to Avram, so Avram happily gives (<span class="heb">נתן</span>) one-tenth (<span class="heb">מעשר</span>) as a gift in return.</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="body reveal"><span class="lang-pt">Bera e Melquisedeque representam dois modos pelos quais os governantes das nações se relacionam com o escolhido de Deus, que foi selecionado para ser o canal da bênção de Deus às nações. Recordemos a promessa de Deus a Avram em Gênesis 12:3: &ldquo;Aqueles que te abençoam serão abençoados, aqueles que te tratam como insignificante serão amaldiçoados, e por ti todas as famílias da terra encontrarão bênção.&rdquo;</span><span class="lang-en">Bera and Melchizedek represent two ways that the rulers of nations relate to God&rsquo;s chosen one, who was selected to be the conduit of God&rsquo;s blessing to the nations. Recall God&rsquo;s promise to Avram in Genesis 12:3: &ldquo;Those who bless you will be blessed, those who treat you as insignificant will be cursed, and through you, all the families of the land will find blessing.&rdquo;</span></p>
 
-  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Questão para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
-  <p class="body reveal"><span class="lang-pt">Como a resposta de Avram ao rei de Sodoma mostra sua transformação e confiança em Deus?</span><span class="lang-en">How does Avram&rsquo;s response to the king of Sodom show his transformation and trust in God?</span></p>
+    <footer class="text-center p-8 border-t"><a href="index.html" class="text-sky-600 hover:underline">Voltar ao
+            Índice</a></footer>
 
-  
-    <section class="scripture reveal">
-    <h2 class="section"><span class="lang-pt">Traduções dos Versículos (Inglês)</span><span class="lang-en">Verse Translations (English)</span></h2>
-    <div class="v-outer"><span class="ref">GEN 14:17-24</span><div class="v-line"><span class="lang-en">a 17 And the king of Sodom went out to meet him, b after he returned from striking Kedorlaomer, and the kings with him, a' into the valley of the plain [this is the valley of the king]. 18 Now (just then), Melchizedek, king of Shalem , brought out bread and wine. A Now, he was the priest of El-Most High 19 And he blessed him, and he said: May Avram be blessed by El-Most High , B the possessor of skies and land . 20 And may El-Most High be blessed , who has delivered your adversaries into your hand. A And he gave to him (‫ )נתן‬a tenth (‫ )עשר‬of everything. 21 And the king of Sodom said to Avram, A “Give to me (‫ )נתן‬the people, and the possessions, take (‫ )לקח‬for yourself.” 22 And Avram said to the king of Sodom , “I lift up my hand to Yahweh, El-Most High , possessor of skies and land : B 23 Not from a strap or sole of a sandal will I take (‫ )לקח‬from all that is yours, so that you can’t say,</span></div></div>
-    <div class="v-outer"><span class="ref">GEN 14:1-24</span><div class="v-line"><span class="lang-en">A Tale of Two Kings This story needs to be understood from multiple perspectives, like a concentric circle with each layer moving outward and getting larger: Genesis 14:17-24 within Genesis 14:1-24, within 11:27-14:24, within 11:27-25:18, within Genesis as a whole, within the Torah as a whole, and in relationship to the Prophets and Writings. With Melchizedek, we come to the 10th king in the story! In contrast to the king of Sodom, whose name is “Evil” )‫(ברע‬, we now have the "King of Righteousness” )‫ !(מלכי־צדק‬The contrast in their names symbolizes their characters and what they want for or from Avram. Bera King of Sodom Sodom / Evil He demands that Avram give )‫ (נתן‬him the war captives, but Avram can take )‫ (לקח‬the plunder. He wants to have Avram in his debt by making him wealthy )‫(עשר‬. Mekhizedeq King-Priest of Salem Salem (= Jerusalem) / Righteousness He offers food and blessing to Avram and demands nothing in return. He gives generously to Avram, so Avram happily gives )‫ (נתן‬one-tenth )‫ (מעשר‬as a gift in return. Bera and Melchizedek represent two ways that the rulers of nations relate to God’s chosen one, who was selected to be the conduit of God’s blessing to the nations. Recall God’s promise to Avram in Genesis 12:3.</span></div></div>
-    <div class="v-outer"><span class="ref">GEN 12:3</span><div class="v-line"><span class="lang-en">Those who bless you will be blessed, those who treat you as insignificant will be cursed and through you, all the families of the land will find blessing. “It is perfectly natural that a returning hero, whose victory has also benefited the entire region, should be officially greeted by a distinguished personage. But the intrusive nature of the report here, interrupting the smooth sequence of verses 17 and 21, is obvious, and was noted by Rashi, Abravanel, and Ḥizkuni. Its position, which is original and not a later insertion, heightens the tension produced by the sudden appearance of the king of Sodom, whose very name is redolent of evil. It also transforms into a spiritual experience what was up to now a secular incident. Victory in war is not attributed to Abram’s skill and valor but to the will of God, who is the ultimate arbiter of human destiny. It is inconceivable that the biblical</span></div></div>
-    <div class="v-outer"><span class="ref">GEN 14:19-20</span><div class="v-line"><span class="lang-en">19 He blessed him and said, “Blessed be Abram of God Most High, possessor of heaven and earth; 20 And blessed be God Most High, who has delivered your enemies into your hand.” And he gave him a tenth of all. Genesis 12:2-3 NASB 2 And I will make you a great nation, and I will bless you, and make your name great; and so you shall be a blessing; 3 and I will bless those who bless you,</span></div></div>
-    <div class="v-outer"><span class="ref">GEN 14:13-14</span><div class="v-line"><span class="lang-en">13 Then a fugitive came and told Abram the Hebrew. Now, he was living by the oaks of Mamre the Amorite, brother of Eshcol and brother of Aner, and these were in a covenant with Abram. 14 When Abram heard that his relative had been taken captive, he led out his trained men, born in his house, three hundred and eighteen, and went in pursuit as far as Dan. *Key Words Adapted by Teacher These Amorites who had made a covenant with Avram, God’s chosen one, experienced the blessing of God’s protection and also shared in the victory of Avram. In contrast, the gentile kings who oppose God’s chosen one are defeated despite the odds in their favor. This contrast bears an important message: God’s blessing upon Avram can be experienced by the nations if they relate peaceably with God’s chosen one, like Mamre and his crew, or like Melchizedek. Genesis 14 shows the outworking of God’s promise in Genesis 12:2-3. Avram becomes a blessing to the nations as he fights against violent, pagan kings and rescues the innocent. And those who “cursed” him (by kidnapping his nephew) find themselves cursed. Melchizedek blesses Avram, and so we expect God will bless Melchizedek in return. The payment of a tithe to Melchizedek shows that Avram honors him as a superior. The sudden introduction and disappearance of Melchizedek leaves a great impression on the reader. The reader is unsurprised when, much later in the story, David is made king of Israel and establishes this same city as Israel’s sacred capitol. David moves the ark of the covenant to Jerusalem and assumes the role of a royal priest just like Mekchizedek! See 2 Samuel 5-8. Avram and Melchizedek</span></div></div>
-  </section>
 
-  <div class="page-footer">
-    <span>Class Notes: Abraham</span>
-    <span><span class="lang-pt">Sessão 10 · Melquisedeque, o Sacerdote Real</span><span class="lang-en">Session 10 · Melchizedek the Royal Priest</span></span>
-  </div>
-</div>
-<script>
-  function setLang(lang) {
-    document.documentElement.setAttribute('lang', lang);
-    try { localStorage.setItem('s10-lang', lang); } catch(e) {}
-    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
-    if (lang === 'pt') {
-      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
-      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
-    } else {
-      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
-      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
-    }
-  }
-  var saved = 'pt'; try { saved = localStorage.getItem('s10-lang') || 'pt'; } catch(e) {}
-  setLang(saved);
+    <!-- Modal para exibir versículos -->
+    <div id="verseModal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:p-0">
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+            <div
+                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="border-b border-gray-200 bg-gradient-to-r from-sky-50 to-slate-50">
+                    <div class="flex justify-between items-center px-4 py-3">
+                        <h3 class="text-xl font-semibold text-sky-800" id="modalTitle">Versículo</h3>
+                        <button type="button" id="closeModalX" class="text-gray-400 hover:text-gray-500">
+                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-white px-4 py-5 sm:p-6">
+                    <div class="text-gray-700 text-base leading-relaxed" id="modalContent">
+                        <p class="text-center italic">Carregando...</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse border-t border-gray-200">
+                    <button type="button" id="closeModal"
+                        class="inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 sm:w-auto sm:text-sm transition-colors">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  (function () {
-    var bar = document.getElementById('reading-progress');
-    function update() {
-      var h = document.documentElement;
-      var max = h.scrollHeight - h.clientHeight;
-      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
-    }
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
-  })();
 
-  (function () {
-    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var targets = document.querySelectorAll('.reveal');
-    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
-    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
-    targets.forEach(function (el) { io.observe(el); });
-  })();
-</script>
 
-  <script src="../js/verse-modal.js"></script>
+    </div>
+    <script src="../js/verse-modal.js"></script>
 </body>
 </html>

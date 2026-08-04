@@ -1,226 +1,570 @@
-<!DOCTYPE html>
-<html lang="pt">
+<!doctype html>
+<html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Segunda Promessa de Deus a Abrao</title>
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
-<style>
-  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
-  html[lang="pt"] .lang-en { display: none !important; }
-  html[lang="en"] .lang-pt { display: none !important; }
-  .heb { font-family: 'SBL Hebrew','Times New Roman',serif; font-size: 1.05em; direction: rtl; unicode-bidi: embed; }
-
-  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
-  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
-  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
-  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
-  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
-  .ref:hover { color: #2563eb; }
-  ul.bullets { list-style: none; padding: 0; }
-  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
-  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
-  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-
-  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
-  .scripture:hover { border-left-color: #9aa7b8; }
-  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
-  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
-  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
-  .scripture .innerbox { background: #f6f8fa; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1rem; }
-  .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem; }
-
-  /* ---------- Macro design (3 columns) ---------- */
-  .macro { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; align-items: start; margin: 2rem 0 .75rem; }
-  .mcol { border: 3px solid #2e7d4e; border-radius: 12px; padding: .9rem .9rem 1rem; background: #fff; }
-  .mcol.dark { border-color: #3d4453; margin-top: 1.3rem; }
-  .mtag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 3px 10px; border-radius: 5px; }
-  .mtag-green { background: #2e7d4e; } .mtag-dark { background: #3d4453; }
-  .mcol-title { font-size: 1rem; font-weight: 800; color: #17181a; margin: .55rem 0 .8rem; line-height: 1.3; }
-  .mboxes { display: flex; gap: .55rem; }
-  .mbox { flex: 1; border: 3px solid #b9c2cf; border-radius: 9px; background: #fff; min-height: 15.5rem; position: relative; transition: box-shadow .25s, transform .25s; }
-  .mbox:hover { box-shadow: 0 8px 20px -10px rgba(30,41,59,.4); transform: translateY(-3px); }
-  .mbox .mhdr { position: absolute; top: .55rem; left: .55rem; right: .55rem; background: #7d8697; color: #fff; font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 5px; }
-  .mbox.s1 { margin-top: 0; } .mbox.s2 { margin-top: 2.4rem; min-height: 13rem; } .mbox.s3 { margin-top: 2.4rem; min-height: 13rem; }
-  @media (max-width: 860px) { .macro { grid-template-columns: 1fr; } .mcol.dark { margin-top: 0; } .mbox, .mbox.s2, .mbox.s3 { min-height: 7.5rem; margin-top: 0; } }
-
-  /* ---------- Chiasm staircase boxes ---------- */
-  .cx { border: 3px solid; border-radius: 12px; padding: 1.35rem 1.5rem 1.2rem; margin: 1.15rem 0; transition: box-shadow .25s, transform .25s; }
-  .cx:hover { box-shadow: 0 12px 26px -16px rgba(23,24,26,.45); transform: translateY(-2px); }
-  .cx-tag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 1px 13px; border-radius: 6px; margin-bottom: .7rem; }
-  .cx h4 { font-weight: 800; font-size: 1.06rem; color: #17181a; margin-bottom: .7rem; }
-  .cx ul.bullets > li { font-size: .99rem; margin-bottom: .45rem; }
-  .cx-slate  { border-color: #6b7280; background: #e9ebee; } .cx-slate  .cx-tag { background: #6b7280; }
-  .cx-rust   { border-color: #c0562f; background: #f7e6dd; } .cx-rust   .cx-tag { background: #c0562f; }
-  .cx-rose   { border-color: #c04a63; background: #f7e0e5; } .cx-rose   .cx-tag { background: #c04a63; }
-  .cx-blue   { border-color: #5468d4; background: #e4e8f9; } .cx-blue   .cx-tag { background: #5468d4; }
-  .cx-green  { border-color: #2e7d4e; background: #dfeee2; } .cx-green  .cx-tag { background: #2e7d4e; }
-  .cx-purple { border-color: #8b5cf6; background: #efe2f8; } .cx-purple .cx-tag { background: #8b5cf6; }
-  .cx-tan    { border-color: #8a6d3b; background: #ece7dc; } .cx-tan    .cx-tag { background: #8a6d3b; }
-
-  /* ---------- verse chips (Gen 18 translation) ---------- */
-  .k { display: inline; padding: 3px 9px; border-radius: 6px; font-weight: 700; color: #fff; line-height: 1.85; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
-  .k-blue   { background: #3b82c4; } .k-green  { background: #2e7d4e; } .k-rose { background: #c04a63; }
-  .k-gray   { background: #6b7280; } .k-rust   { background: #bf5a2b; } .k-teal { background: #0d7d8c; }
-  .k-purple { background: #7c5ad0; } .k-brown  { background: #8a6d3b; }
-  .t-teal { color: #0d8aa0; font-weight: 700; }
-
-  .v-outer { border: 3px solid #e3e7ee; border-radius: 20px; padding: 1.4rem 1.5rem; margin: 1.4rem 0; }
-  .v-black { border: 3px solid #17181a; border-radius: 16px; padding: 1.3rem 1.5rem; margin: 1.1rem 0; }
-  .v-light { border: 3px solid #e3e7ee; border-radius: 16px; padding: 1.2rem 1.4rem; margin: 1.1rem 0; }
-  .v-line { font-size: 1.06rem; line-height: 2.1; color: #1f2937; }
-  .v-div { border: 0; border-top: 1px solid #e6eaf0; margin: 1.1rem 0; }
-  .vbar-b { border-left: 5px solid #5468d4; padding-left: .8rem; }
-  .lbl { color: #6b7280; font-weight: 600; font-size: .85rem; margin-right: .2rem; }
-  sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px; }
-  .i1 { padding-left: 1.6rem; } .i2 { padding-left: 3.2rem; } .i3 { padding-left: 4.8rem; }
-
-  /* ---------- tables ---------- */
-  .doc-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 3px solid #d9dee6; border-radius: 14px; overflow: hidden; background: #fff; }
-  .doc-table th { background: #e2e6eb; text-align: left; padding: 1rem 1.3rem; font-weight: 800; font-size: 1.02rem; color: #17181a; }
-  .doc-table td { padding: 1.1rem 1.3rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.78; font-size: .97rem; color: #24262a; transition: background .2s; }
-  .doc-table td + td { border-left: 1px solid #e5e7eb; }
-  .doc-table tbody tr:hover td { background: #f8fafc; }
-  .doc-table tfoot td { border-top: 1px solid #d1d5db; background: #fbfcfd; color: #5b6472; font-size: .92rem; }
-  .kblue-soft { background: #cddcf5; color: #2b5fb0; padding: 2px 8px; border-radius: 6px; font-weight: 700; }
-
-  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
-  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
-  .reveal.visible { opacity: 1; transform: none; }
-
-  @media print {
-    @page { margin: 14mm 12mm; }
-    #reading-progress, .print\:hidden { display: none !important; }
-    .reveal { opacity: 1 !important; transform: none !important; }
-    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-    .max-w-4xl { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
-    h1.title, h2.section, h3.sub { break-after: avoid-page; }
-    .cx, .v-outer, .v-black, .v-light, .doc-table tr, .scripture, .mcol { break-inside: avoid; }
-  }
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .cx, .mbox { transition: none; } }
-</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sessão 8: A Segunda Promessa de Deus a Abrão</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
 
-<div id="reading-progress" aria-hidden="true"></div>
-
-<div class="fixed left-4 top-4 z-50 print:hidden">
-  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
-    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
-  </a>
-</div>
-<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
-  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
-    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
-  </button>
-  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm shadow-sm">
-    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
-    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
-  </div>
-</div>
-
-<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
-<h1 class="title reveal"><span class="lang-pt">Sessão 8: A Segunda Promessa de Deus a Abrão</span><span class="lang-en">Session 8: God&rsquo;s Second Promise to Abram</span></h1>
-  <hr class="rule">
-
-  <h3 class="sub reveal" style="margin-top:0;"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
-  <ul class="bullets reveal" style="margin-bottom:2.5rem;">
-    <li><span class="lang-pt">A promessa de Deus de tornar a descendência de Avram &ldquo;como o pó&rdquo; evoca a criação do humano em Gênesis 2.</span><span class="lang-en">God&rsquo;s promise to make Avram&rsquo;s descendants &ldquo;like the dust&rdquo; evokes the creation of the human in Genesis 2.</span></li>
-    <li><span class="lang-pt">O convite de Deus para Avram &ldquo;perambular&rdquo; pela terra dá continuidade ao tema do justo que caminha em intimidade com Deus.</span><span class="lang-en">God&rsquo;s invitation for Avram to &ldquo;walk about&rdquo; the land carries on the theme of the righteous one walking in intimacy with God.</span></li>
-    <li><span class="lang-pt">Deus provê a terra como um refúgio semelhante a uma arca de segurança para Avram nos outeiros do Éden, enquanto Ló escolhe um falso Éden lá embaixo, o que levará à ruína.</span><span class="lang-en">God provides the land as an ark-like refuge of safety for Avram in the Eden hills while Lot chooses a false Eden down below, which will lead to ruin.</span></li>
-  </ul>
-
-  <h2 class="section reveal"><span class="lang-pt">Tradução e Design Literário de Gênesis 13:12-18</span><span class="lang-en">Translation and Literary Design of Genesis 13:12-18</span></h2>
-  <div class="v-outer reveal">
-    <div class="v-line" style="display:flex; gap:.9rem;">
-      <span class="lbl" style="padding-top:.35rem;">12</span>
-      <div>
-        <p><span class="lang-pt">E Avram habitou na terra de Canaã, e quanto a Ló, habitou nas cidades do vale, e armou a sua tenda junto a Sodoma.</span><span class="lang-en">Avram dwelt in the land of Canaan, and as for Lot, he dwelt in the cities of the valley, and he set up his tent by Sodom.</span></p>
-        <p class="i1"><span class="lang-pt">(13 Ora, os homens de Sodoma eram maus (<span class="heb">רע</span>) para com Iavé, e pecadores (<span class="heb">חטאים</span>), grandemente.)</span><span class="lang-en">(Now, to Yahweh the men of Sodom were bad (<span class="heb">רע</span>) and moral-failures (<span class="heb">חטאים</span>), very much.)</span></p>
-        <p><sup class="vs">14</sup> <span class="lang-pt">E Iavé disse a Avram, depois que Ló se separou dele:</span><span class="lang-en">And Yahweh said to Avram, after Lot separated from him,</span></p>
-        <p class="i1"><sup class="vs">15</sup> <span class="lang-pt">&ldquo;Ergue agora os teus olhos, e olha desde o lugar onde estás, para o norte, e para o sul, e para o oriente, e para o ocidente; porque toda a terra que vês, a ti a darei, e à tua semente, para sempre.</span><span class="lang-en">&ldquo;Please lift up your eyes and see from the place where you are, to the north and to the south/Negev and to the east and to the west; because all the land that you see, to you I will give it, and to your seed, forever.</span></p>
-        <p><sup class="vs">16</sup> <span class="lang-pt">E farei a tua semente como o pó (<span class="heb">עפר</span>) da terra; de modo que, se alguém puder contar o pó da terra, também a tua semente poderá ser contada.</span><span class="lang-en">And I will make your seed like the dust (<span class="heb">עפר</span>) of the land, which, if one was able to count the dust of the land, then also your seed could be counted.</span></p>
-        <p><sup class="vs">17</sup> <span class="lang-pt">Levanta-te, perambula pela terra, no seu comprimento e na sua largura; porque a ti a darei.&rdquo;</span><span class="lang-en">Arise, walk about in the land, its length and its width, because to you I will give it.&rdquo;</span></p>
-        <p><sup class="vs">18</sup> <span class="lang-pt">E Avram armou a sua tenda, e foi, e habitou junto aos carvalhos de Manre (<span class="heb">אלני ממרא</span>), que estão perto de Hebrom; e edificou ali um altar a Iavé.</span><span class="lang-en">And Avram set up his tent, and he went and dwelt by the oaks of Mamre (<span class="heb">אלני ממרא</span>), which are by Hebron, and he built there an altar to Yahweh.</span></p>
-      </div>
+<body class="bg-white font-sans text-slate-800">
+    <div class="p-4">
+        <a href="index.html" class="text-sky-600 hover:underline">← Voltar para o Índice</a>
     </div>
-  </div>
-  <p class="caption reveal"><span class="lang-pt"><em>Gênesis 13:12-18</em>. Tradução e Design Literário por Tim Mackie para a BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Genesis 13:12-18</em>. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
+    <div id="sessao-8" class="min-h-screen p-8 md:px-16">
+        <div class="md:px-16  max-w-4xl  mx-auto">
+            <h1 class="text-4xl font-bold text-slate-900 mb-8 border-b pb-4">Sessão 8: A Segunda Promessa de
+                Deus a Abrão</h1>
 
-  <h3 class="sub reveal"><span class="lang-pt">Irmãos À Parte em Sodoma e Hebrom</span><span class="lang-en">Brothers Apart in Sodom and Hebron</span></h3>
-  <p class="body reveal"><span class="lang-pt">Aqui a peregrinação de Avram pela terra, que começou em 12:6, chega a seu cumprimento quando ele finalmente se estabelece em Hebrom. O design desta unidade destaca o contraste entre os lugares onde Avram e Ló finalmente se fixam. Gênesis 13:12-13 contrasta o estabelecimento de Avram em Canaã com o de Ló fora, no vale oriental do Mar Morto, junto a Sodoma. Recordamos de 13:10 que este vale é como o Éden aos olhos de Ló, mas acaba que este jardim está cheio de má semente. As duas palavras usadas para descrever Sodoma ecoam as palavras-chave das falhas gêmeas da história do Éden: &ldquo;maus&rdquo; (<span class="heb">רע</span>) e &ldquo;pecadores&rdquo; (<span class="heb">חטאים</span>). Em contraste, Avram habita numa nova terra edênica, e a história conclui com ele armando sua tenda junto à árvore de carvalho de Manre perto de Hebrom. Cada elemento da descrição deste local se liga ao simbolismo maior do Éden: um lugar de tendas, árvores e visões divinas.</span><span class="lang-en">Here Avram&rsquo;s sojourn into the land that began in 12:6 comes to completion when he finally settles in Hebron. The design of this unit highlights the contrast between the locations where Avram and Lot finally settle. Genesis 13:12-13 contrasts Avram&rsquo;s settlement in Canaan with Lot&rsquo;s settlement outside in the eastern valley of the Dead Sea, by Sodom. We recall from 13:10 that this valley is like Eden in Lot&rsquo;s eyes, but it turns out that this garden is full of bad seed. The two words used to describe Sodom echo the key words of the twin failures of the Eden story: &ldquo;bad&rdquo; (<span class="heb">רע</span>) and &ldquo;moral-failures&rdquo; (<span class="heb">חטאים</span>). In contrast, Avram dwells in a new Eden land, and the story concludes with him setting up his tent by the oak tree of Mamre near Hebron. Each element of this location&rsquo;s description ties into the larger symbolism of Eden, a place of tents, trees, divine visions.</span></p>
+            <h2 class="text-2xl font-bold text-slate-800 mb-3">Pontos-Chave</h2>
+            <ul class="list-disc list-inside space-y-2 mb-10 text-lg text-slate-700">
+                <li>A promessa de Deus de tornar os descendentes de Avram "como o pó" evoca a criação do humano
+                    em Gênesis 2.</li>
+                <li>O convite de Deus para Avram "caminhar" pela terra continua o tema do justo caminhando em
+                    intimidade com Deus.</li>
+                <li>Deus fornece a terra como um refúgio semelhante à arca de segurança para Avram nas colinas
+                    do Éden, enquanto Ló escolhe um falso Éden abaixo, que levará à ruína.</li>
+            </ul>
 
-  <h3 class="sub reveal"><span class="lang-pt">Uma Promessa Repetida e Expandida</span><span class="lang-en">A Promise Repeated and Expanded</span></h3>
-  <p class="body reveal"><span class="lang-pt">Deus repete suas promessas a Avram de 12:6, mas expande ambos os elementos de semente e terra. Onde antes ele prometeu &ldquo;à tua semente darei esta terra&rdquo;, agora ele diz &ldquo;toda a terra que vês&rdquo; &mdash; uma promessa de extensão universal. E a imagem da semente &ldquo;como o pó da terra&rdquo; ecoa a própria criação do humano do pó em Gênesis 2.</span><span class="lang-en">God repeats his promises to Avram from 12:6 but expands both elements of seed and land. Where before he promised &ldquo;to your seed I will give this land,&rdquo; now he says &ldquo;all the land that you see&rdquo; &mdash; a promise of universal extent. And the image of the seed &ldquo;like the dust of the land&rdquo; echoes the very creation of the human from dust in Genesis 2.</span></p>
+            <div class=" bg-white  font-sans text-slate-900">
+                <!-- Título Principal -->
+                <h2 class="mb-8 text-3xl font-bold tracking-tight text-slate-900">Tradução e Design Literário de Gênesis
+                    13:12-18
+                </h2>
 
-  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Questão para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
-  <p class="body reveal"><span class="lang-pt">Por que a escolha de Ló por Sodoma e a de Avram por Hebrom são apresentadas como decisões edênicas?</span><span class="lang-en">Why are Lot&rsquo;s choice of Sodom and Avram&rsquo;s choice of Hebron presented as Eden-like decisions?</span></p>
+                <!-- Cartão Principal -->
+                <div
+                    class="relative rounded-xl border border-slate-300 bg-white p-8 text-[1.1rem] leading-relaxed shadow-sm">
+                    <!-- Verso 12 -->
+                    <div class="mb-1">
+                        <sup class="relative top-1 mr-0.5 align-top text-xs font-bold text-slate-500">12</sup>
+                        <span class="font-bold text-[#674ea7]">Habitou Abrão</span> na terra de Canaã,
+                    </div>
+                    <div class="mb-1 pl-6">
+                        <span class="font-bold text-[#674ea7]">e Ló habitou</span>
+                        <span class="rounded bg-[#d9ead3] px-1.5 py-0.5 font-semibold text-slate-900">nas cidades da
+                            campina</span>
+                    </div>
+                    <div class="mb-1 pl-6">
+                        <span class="font-bold text-[#674ea7]">e armou</span>
+                        <span class="rounded bg-[#cfe2f3] px-1.5 py-0.5 font-bold text-[#0b5394]">as suas tendas</span>
+                        <span class="rounded bg-[#d9ead3] px-1.5 py-0.5 font-semibold text-slate-900">até Sodoma</span>.
+                    </div>
 
-  
-    <section class="scripture reveal">
-    <h2 class="section"><span class="lang-pt">Traduções dos Versículos (Inglês)</span><span class="lang-en">Verse Translations (English)</span></h2>
-    <div class="v-outer"><span class="ref">GEN 13:12-18</span><div class="v-line"><span class="lang-en">12 Avram dwelt in the land of Canaan, and as for Lot, he dwelt in the cities of the valley , and he set up his tent     by Sodom . (13 Now, to Yahweh the men of Sodom were bad and moral-failures, very much .) 14 And Yahweh said to Avram, after Lot separated from him, a “Please lift up your eyes and see from the place where you are, b to the north and to the south/Negev and to the east and to the west , a' 15 because all the land that you see , c   to you I will give   it , and to your seed , forever. a 16 And I will make your seed like the dust of the land , b which, if one was able to count the dust of the land , a' then also your seed could be counted . a 17 Arise , walk about in the land , b    its length and its width , a'   because to you I will give    it .” a 18 And Avram set up his tent , b and he went and dwelt by the oaks of Mamre , b' which are by Hebron , a' and he built there an altar to Yahweh.</span></div></div>
-    <div class="v-outer"><span class="ref">GEN 13:12-13</span><div class="v-line"><span class="lang-en">the Dead Sea, by Sodom. We recall from 13:10 that this valley is like Eden in Lot’s eyes, but it turns out that this garden is full of bad seed. The two words used to describe Sodom echo the key words of the twin failures of the Eden story.</span></div></div>
-    <div class="v-outer"><span class="ref">GEN 13:13</span><div class="v-line"><span class="lang-en">Now, to Yahweh the men of Sodom were bad )‫ (רע‬and moral-failures )‫(חטאים‬, very much. Adam and Eve fail at the tree of knowing good and bad )‫ (רע‬because of the snake’s deception (Gen. 3:6-7). Cain gives into the influence of “sin,” that is, moral failure )‫ (חטאת‬and murders his brother (Gen. 4:7). In contrast, Avram dwells in a new Eden land, and the story concludes with him setting up his tent by the oak tree of Mamre near Hebron. Each element of this location’s description ties into the larger symbolism of Eden, a place of tents, trees, divine visions. Genesis 12:6-9                                                                 Genesis 13:18 Genesis 12:10-13:11 • Avram journeys                                                               • Avram settles in the through the land                    • 12:10-20                                  land in his tent and camps near the                  • 13:1-4                                    under the oaks of oak of Moreh                        • 13:5-11                                   Mamre )‫(אלני ממרא‬. )‫“ = (אלון מורה‬tree of seeing”</span></div></div>
-    <div class="v-outer"><span class="ref">GEN 12:6-13</span><div class="v-line"><span class="lang-en">A Promise Repeated and Expanded God repeats his promises to Avram from 12:6 but expands both elements of seed and land.</span></div></div>
-    <div class="v-outer"><span class="ref">GEN 13:16</span><div class="v-line"><span class="lang-en">And I will make your seed like the dust of the land, which, if one was able to count the dust of the land, then also your seed could be counted.</span></div></div>
-    <div class="v-outer"><span class="ref">GEN 2:7-8</span><div class="v-line"><span class="lang-en">7                                                                                 8 then Yahweh Elohim formed the human from the dust from the ground …               and Yahweh Elohim planted a garden in Eden, toward the east, and he placed there the human whom he had formed. The Land as an Ark of Safety, Avram as a New Noah God’s speech echoes the language of Noah right before the onset of the flood. He walks with God, so he is summoned to create a floating Eden so that he and the animals can live together in a place of refuge as the violence of humans is met by the powerful waters. The ark, like the land, has a length and width, which will provide safety for any inside.</span></div></div>
-    <div class="v-outer"><span class="ref">GEN 13:17</span><div class="v-line"><span class="lang-en">Arise, walk about )‫ (התהלך‬in the land, its length and its width )‫ (לארכה ולרחבה‬because to you I will give it.</span></div></div>
-    <div class="v-outer"><span class="ref">GEN 6:8-9</span><div class="v-line"><span class="lang-en">8                                                   9 But Noah found favor in the eyes of Yahweh.        These are the birth-generations of Noah; Noah was a righteous one, blameless in his generation; Noah walked about )‫ (התהלך‬with Elohim;</span></div></div>
-    <div class="v-outer"><span class="ref">GEN 12:1-9</span><div class="v-line"><span class="lang-en">• God's blessing of             • Foolish failure with     • Brother with abundance and                   Sarai who is "beautiful    abundance protection                      of sight"                  • Jealousy and conflict • Promise of fruitful           • Deception and lack of    • Brothers separate seed                            trust in God's word        through non-violence! • God's presence at             • Exile from false-Eden    • Non-chosen brother tree and mountains              (i.e., Egypt)              settles in the east, where violence is simmering, leading up to a flood of judgment Genesis 12-13 as Replay of Genesis 2-6. Created by Tim Mackie for BibleProject Classroom: Abraham (2021). In both sequences, God appoints a chosen figure to receive divine blessing and to become a conduit of that blessing to others. Both figures fail in acts of folly that are rooted in a lack of trust in God’s wisdom and word.</span></div></div>
-  </section>
+                    <!-- Verso 13 (Comentário) -->
+                    <div class="mb-8 flex items-baseline pl-1 leading-snug">
+                        <span class="mr-1 font-normal text-slate-800">(<sup
+                                class="relative top-0.5 align-top text-xs">13</sup></span>
+                        <span
+                            class="rounded border border-rose-200 bg-[#f4cccc] px-2 py-0.5 font-bold text-[#990000]">Ora,
+                            eram
+                            maus os varões de Sodoma e grandes pecadores contra o Senhor.</span>
+                        <span class="ml-0.5 font-normal text-slate-800">)</span>
+                    </div>
 
-  <div class="page-footer">
-    <span>Class Notes: Abraham</span>
-    <span><span class="lang-pt">Sessão 8 · A Segunda Promessa de Deus a Abrao</span><span class="lang-en">Session 8 · God's Second Promise to Abram</span></span>
-  </div>
-</div>
-<script>
-  function setLang(lang) {
-    document.documentElement.setAttribute('lang', lang);
-    try { localStorage.setItem('s8-lang', lang); } catch(e) {}
-    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
-    if (lang === 'pt') {
-      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
-      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
-    } else {
-      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
-      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
-    }
-  }
-  var saved = 'pt'; try { saved = localStorage.getItem('s8-lang') || 'pt'; } catch(e) {}
-  setLang(saved);
+                    <!-- Linha Divisória -->
+                    <div class="mb-6 w-full border-t border-slate-200"></div>
 
-  (function () {
-    var bar = document.getElementById('reading-progress');
-    function update() {
-      var h = document.documentElement;
-      var max = h.scrollHeight - h.clientHeight;
-      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
-    }
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
-  })();
+                    <!-- Verso 14 Intro -->
+                    <div class="mb-1">
+                        <sup class="relative top-1 mr-0.5 align-top text-xs font-bold text-slate-500">14</sup>
+                        E disse o Senhor a Abrão,
+                    </div>
+                    <div class="mb-1">depois que <span class="font-bold text-[#674ea7]">Ló se apartou dele</span>:</div>
 
-  (function () {
-    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var targets = document.querySelectorAll('.reveal');
-    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
-    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
-    targets.forEach(function (el) { io.observe(el); });
-  })();
-</script>
+                    <!-- Estrutura Poética v14 -->
+                    <div class="mb-1 grid grid-cols-[25px_1fr] gap-1">
+                        <div class="pt-2 text-right font-mono text-sm text-slate-500">a</div>
+                        <div><span class="rounded bg-[#e2dcf5] px-1.5 py-0.5 font-bold text-[#351c75]"> Levanta, agora,
+                                os teus
+                                olhos e olha</span> desde o lugar onde estás,</div>
+                    </div>
+                    <div class="mb-1 grid grid-cols-[25px_1fr] gap-1">
+                        <div class="pt-2 pl-8 text-right font-mono text-sm text-slate-500">b</div>
+                        <div class="pl-4"><span
+                                class="rounded bg-[#b45f06] px-2 py-0.5 font-bold text-white shadow-sm">para a banda
+                                do norte, e do sul, e do oriente, e do ocidente</span>;</div>
+                    </div>
 
-  <script src="../js/verse-modal.js"></script>
+                    <!-- Estrutura Poética v15 -->
+                    <div class="mb-1 grid grid-cols-[25px_1fr] gap-1">
+                        <div class="pt-2 pl-4 text-right font-mono text-sm text-slate-500">a'</div>
+                        <div class="flex flex-wrap items-baseline gap-1.5">
+                            <div>
+                                <sup class="mr-1 text-xs font-bold text-slate-500">15</sup>
+                                <span class="rounded bg-[#e7e9eb] px-1.5 py-0.5 font-bold text-slate-700">porque</span>
+                            </div>
+                            <div>toda <span class="rounded bg-[#fff2cc] px-1.5 py-0.5 font-bold text-[#7f6000]">esta
+                                    terra</span>
+                            </div>
+                            <div>que <span
+                                    class="rounded bg-[#e2dcf5] px-1.5 py-0.5 font-bold text-[#351c75]">vês</span></div>
+                        </div>
+                    </div>
+                    <div class="mb-1 grid grid-cols-[25px_1fr] gap-1 pl-8">
+                        <div class="pt-2 text-right font-mono text-sm text-slate-500">c</div>
+                        <div><span class="rounded bg-[#e7e9eb] px-1.5 py-0.5 font-bold text-slate-700">te hei de dar a
+                                ti</span>, e
+                            à <span class="rounded bg-[#2f3363] px-1.5 py-0.5 font-bold text-white shadow-sm">tua
+                                semente</span>,
+                            para sempre.</div>
+                    </div>
+
+                    <!-- Estrutura Poética v16 -->
+                    <div class="mb-1 grid grid-cols-[25px_1fr] gap-1">
+                        <div class="pt-2 text-right font-mono text-sm text-slate-500">a</div>
+                        <div>
+                            <sup class="mr-0.5 text-xs font-bold text-slate-500">16</sup>
+                            E farei a <span class="rounded bg-[#2f3363] px-2 py-0.5 font-bold text-white shadow-sm">tua
+                                semente</span> como
+                            <span class="font-bold text-[#7f6000]">o pó da</span>
+                            <span class="rounded bg-[#fff2cc] px-1.5 py-0.5 font-bold text-[#7f6000]">terra</span>;
+                        </div>
+                    </div>
+                    <div class="mb-1 grid grid-cols-[25px_1fr] gap-1">
+                        <div class="pt-2 text-right font-mono text-sm text-slate-500">b</div>
+                        <div class="pl-4">
+                            de maneira que, se alguém puder <span
+                                class="rounded bg-[#d0e0e3] px-1.5 py-0.5 font-bold text-[#134f5c]">contar</span>
+                            <span class="font-bold text-[#7f6000]">o pó da</span>
+                            <span class="rounded bg-[#fff2cc] px-1.5 py-0.5 font-bold text-[#7f6000]">terra</span>,
+                        </div>
+                    </div>
+                    <div class="mb-1 grid grid-cols-[25px_1fr] gap-1">
+                        <div class="pt-2 pl-4 text-right font-mono text-sm text-slate-500">a'</div>
+                        <div class="pl-4">também a <span
+                                class="rounded bg-[#2f3363] px-2 py-0.5 font-bold text-white shadow-sm">tua
+                                semente</span> será <span
+                                class="rounded bg-[#d0e0e3] px-1.5 py-0.5 font-bold text-[#134f5c]">contada</span>.
+                        </div>
+                    </div>
+
+                    <!-- Estrutura Poética v17 -->
+                    <div class="mb-1 grid grid-cols-[25px_1fr] gap-1">
+                        <div class="pt-2 text-right font-mono text-sm text-slate-500">a</div>
+                        <div>
+                            <sup class="mr-0.5 text-xs font-bold text-slate-500">17</sup>
+                            <span class="rounded bg-[#e2dcf5] px-1.5 py-0.5 font-bold text-[#351c75]">Levanta-te</span>,
+                            percorre
+                            <span class="rounded bg-[#fff2cc] px-1.5 py-0.5 font-bold text-[#7f6000]">essa terra</span>,
+                        </div>
+                    </div>
+                    <div class="mb-1 grid grid-cols-[25px_1fr] gap-1">
+                        <div class="pt-2 pl-10 text-right font-mono text-sm text-slate-500">b</div>
+                        <div class="pl-8" 4><span
+                                class="rounded bg-[#b45f06] px-2 py-0.5 font-bold text-white shadow-sm">no seu
+                                comprimento e na sua largura</span>;</div>
+                    </div>
+                    <div class="mb-6 grid grid-cols-[25px_1fr] gap-1">
+                        <div class="pt-2 pl-10 text-right font-mono text-sm text-slate-500">a'</div>
+                        <div class="flex items-center gap-1.5 pl-8"><span
+                                class="rounded bg-[#e7e9eb] px-1.5 py-0.5 font-bold text-slate-700">porque a ti a
+                                darei</span>.
+                        </div>
+                    </div>
+
+                    <!-- Linha Divisória -->
+                    <div class="mb-6 w-full border-t border-slate-200"></div>
+
+                    <!-- Verso 18 -->
+                    <div class="mb-1 grid grid-cols-[25px_1fr] gap-1">
+                        <div class="pt-2 text-right font-mono text-sm text-slate-500">a</div>
+                        <div>
+                            <sup class="mr-0.5 text-xs font-bold text-slate-500">18</sup>
+                            <span class="font-bold text-[#674ea7]">E Abrão armou</span>
+                            <span class="rounded bg-[#cfe2f3] px-1.5 py-0.5 font-bold text-[#0b5394]">as suas
+                                tendas</span>,
+                        </div>
+                    </div>
+                    <div class="mb-1 grid grid-cols-[25px_1fr] gap-1 pl-8">
+                        <div class="pt-2 text-right font-mono text-sm text-slate-500">b</div>
+                        <div class="pl-4">
+                            <span class="mr-0.5 font-bold text-[#674ea7]">e veio, e habitou</span>
+                            <span class="rounded bg-[#d9ead3] px-1.5 py-0.5 font-semibold text-slate-900">nos carvalhais
+                                de
+                                Manre</span>,
+                        </div>
+                    </div>
+                    <div class="mb-1 grid grid-cols-[25px_1fr] gap-1 pl-8">
+                        <div class="pt-2 pl-4 text-right font-mono text-sm text-slate-500">b'</div>
+                        <div class="pl-4">que estão <span
+                                class="rounded bg-[#d9ead3] px-1.5 py-0.5 font-semibold text-slate-900">junto a
+                                Hebrom</span>;</div>
+                    </div>
+                    <div class="grid grid-cols-[25px_1fr] gap-1">
+                        <div class="pt-2 pl-4 text-right font-mono text-sm text-slate-500">a'</div>
+                        <div class="pl-4">e edificou ali <span
+                                class="rounded bg-[#cfe2f3] px-1.5 py-0.5 font-bold text-[#0b5394]">um altar</span> ao
+                            Senhor.</div>
+                    </div>
+                </div>
+
+                <!-- Rodapé -->
+                <p class="mt-8 text-center font-serif text-[0.9rem] text-slate-500 italic">Genesis 13:12-18. Translation
+                    and
+                    Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</p>
+            </div>
+
+            <div class="mx-auto max-w-4xl bg-white  font-sans text-slate-900">
+                <h2 class="mb-6 pt-8 text-3xl font-bold text-slate-900">Irmãos Separados em Sodoma e Hebrom</h2>
+
+                <p class="mb-6 text-lg leading-relaxed text-slate-700">Aqui, a peregrinação de Avram pela terra, que
+                    começou em <a href="#" class="verse-link font-semibold text-slate-900 hover:underline"
+                        data-reference="Genesis+12:6">12:6</a>, chega ao fim quando ele finalmente se estabelece em
+                    Hebrom. O design
+                    desta unidade destaca o contraste entre os locais onde Avram e Ló finalmente se estabelecem.</p>
+
+                <p class="mb-8 text-lg leading-relaxed text-slate-700"><a href="#"
+                        class="verse-link font-semibold text-slate-900 hover:underline"
+                        data-reference="Gênesis+13:12-13">Gênesis
+                        13:12-13</a> contrasta o estabelecimento de Avram em Canaã com o estabelecimento de Ló fora, no
+                    vale
+                    oriental do Mar Morto, perto de Sodoma. Lembramos de <a href="#"
+                        class="verse-link font-semibold text-slate-900 hover:underline"
+                        data-reference="Genesis+13:10">13:10</a> que
+                    este vale é como o Éden nos olhos de Ló, mas este jardim está cheio de sementes ruins. As duas
+                    palavras usadas
+                    para descrever Sodoma ecoam as palavras-chave das duas falhas gêmeas da história do Éden.</p>
+
+                <!-- Bloco de Tradução/Comentário -->
+                <div class="mb-12 border-l-4 border-slate-300 py-2 pl-6">
+                    <h3 class="mb-2 text-lg font-bold text-slate-900">Gênesis 13:13 <span
+                            class="ml-2 font-normal text-slate-500">Tradução do Instrutor</span></h3>
+                    <p class="mb-4 text-lg text-slate-800">Ora, para Yahweh os homens de Sodoma eram <span
+                            class="font-bold">maus
+                            (רע)</span> e <span class="font-bold">falhas morais (חטאים)</span>, muito.</p>
+                    <div class="rounded-lg bg-slate-50 p-6">
+                        <ul class="list-inside list-disc space-y-2 text-lg text-slate-700">
+                            <li>Adão e Eva falham na árvore do conhecimento do bem e do <span class="font-bold">mal
+                                    (רע)</span> por
+                                causa do engano da serpente (<a href="#"
+                                    class="verse-link text-slate-600 hover:underline" data-reference="Gen+3:6-7">Gn.
+                                    3:6-7</a>).</li>
+                            <li>Caim cede à influência do “pecado”, isto é, <span class="font-bold">falha moral
+                                    (חטאת)</span> e
+                                assassina seu irmão (<a href="#" class="verse-link text-slate-600 hover:underline"
+                                    data-reference="Gen+4:7">Gn. 4:7</a>).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p class="mb-12 text-lg leading-relaxed text-slate-700">Em contraste, Avram habita em uma nova terra
+                    edênica, e a
+                    história termina com ele armando sua tenda junto ao carvalho de Manre, perto de Hebrom. Cada
+                    elemento da
+                    descrição deste local se conecta ao simbolismo maior do Éden, um lugar de tendas, árvores e visões
+                    divinas.</p>
+
+                <!-- Diagrama de Três Blocos -->
+                <div class="mb-8 flex flex-col gap-3 md:flex-row">
+                    <!-- Bloco 1 -->
+                    <div class="flex-1 rounded-2xl border-4 border-slate-400 bg-slate-100 p-6">
+                        <div class="mb-4 inline-block rounded-md bg-slate-500 px-3 py-1 font-bold text-white">
+                            <a href="#" class="verse-link text-white" data-reference="Gênesis+12:6-9">Gênesis 12:6-9</a>
+                        </div>
+                        <ul class="ml-5 list-outside list-disc space-y-3 text-lg leading-relaxed text-slate-800">
+                            <li>Avram viaja pela terra e acampa perto do carvalho de Moré (אלון מורה = “árvore da
+                                visão”)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Bloco 2 (Central) -->
+                    <div class="flex-1 rounded-2xl border-4 border-slate-400  p-6">
+                        <div class="mb-4 inline-block rounded-md bg-slate-500 px-3 py-1 font-bold text-white">
+                            <a href="#" class="verse-link text-white" data-reference="Gênesis+12:10-13:11">Gênesis
+                                12:10-13:11</a>
+                        </div>
+                        <ul class="list-inside list-disc space-y-2 font-bold text-slate-800 md:text-left">
+                            <li>12:10-20</li>
+                            <li>13:1-4</li>
+                            <li>13:5-11</li>
+                        </ul>
+                    </div>
+
+                    <!-- Bloco 3 -->
+                    <div class="flex-1 rounded-2xl border-4 border-slate-400 bg-slate-100 p-6">
+                        <div class="mb-4 inline-block rounded-md bg-slate-500 px-3 py-1 font-bold text-white">
+                            <a href="#" class="verse-link text-white" data-reference="Gênesis+13:18">Gênesis 13:18</a>
+                        </div>
+                        <ul class="ml-5 list-outside list-disc space-y-3 text-lg leading-relaxed text-slate-800">
+                            <li>Avram se estabelece na terra em sua tenda sob os carvalhos de Manre (אלני ממרא).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p class="mt-8 text-center text-slate-500 italic">Genesis 12:6-13:18. Literary Design by Tim Mackie for
+                    BibleProject
+                    Classroom: Abraham (2021).</p>
+            </div>
+
+            <div class="mx-auto max-w-4xl bg-white font-sans text-slate-900">
+
+                <!-- SEÇÃO: PROMISE REPEATED AND EXPANDED -->
+                <h2 class="text-3xl font-bold text-slate-900 mb-6 mt-12">Uma Promessa Repetida e Expandida</h2>
+
+                <p class="text-lg leading-relaxed text-slate-700 mb-6">
+                    Deus repete Suas promessas a Avram de 12:6, mas expande ambos os elementos de semente e terra.
+                </p>
+
+                <!-- Gênesis 13:14-17 (Tradução e Comentário) -->
+                <div class="border-l-4 border-slate-300 pl-6 py-2 mb-8">
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Gênesis 13:14-17 <span
+                            class="text-slate-500 font-normal ml-2">Tradução do Instrutor</span></h3>
+                    <div class="text-lg text-slate-800 space-y-4">
+                        <p>
+                            <sup>14</sup> E Yahweh disse a Avram, depois que Ló se separou dele, “Por favor, levante
+                            seus olhos e
+                            veja do lugar onde você está, para o norte e para o sul/Negueve e para o leste e para o
+                            oeste,
+                            <sup>15</sup> porque toda a terra que você vê, a você eu a darei, e à sua semente, para
+                            sempre.
+                        </p>
+                        <p>
+                            <sup>16</sup> E eu farei sua semente como o pó da terra, que, se alguém pudesse contar o pó
+                            da terra,
+                            então também sua semente poderia ser contada.
+                        </p>
+                        <p>
+                            <sup>17</sup> Levante-se, caminhe na terra, seu comprimento e sua largura, porque a você eu
+                            a darei.”
+                        </p>
+                    </div>
+                </div>
+
+                <p class="text-lg leading-relaxed text-slate-700 mb-8">
+                    Essas expansões da promessa ecoam de volta às bênçãos divinas sobre Adão e Noé, mostrando que Avram
+                    é o
+                    recipiente da promessa do Éden para todas as nações.
+                </p>
+
+                <!-- SEÇÃO: SEED OF THE NEW HUMANITY -->
+                <h2 class="text-3xl font-bold text-slate-900 mb-6 mt-12">Semente da Nova Humanidade</h2>
+
+                <p class="text-lg leading-relaxed text-slate-700 mb-6">
+                    Como a humanidade no Éden, Deus criará uma semente para Avram que é “como” o inumerável pó da terra.
+                </p>
+
+                <div class="space-y-6 mb-12">
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                        <h3 class="font-bold text-slate-900 mb-2">Gênesis 13:16 <span
+                                class="font-normal text-slate-500 ">Tradução
+                                do Instrutor</span></h3>
+                        <p class="text-slate-800">
+                            E eu farei sua <b>semente</b> como o <b>pó da terra</b>, que, se alguém fosse capaz de
+                            contar o pó da
+                            terra, então também sua semente poderia ser contada.
+                        </p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                        <h3 class="font-bold text-slate-900 mb-2">Gênesis 2:7-8 <span
+                                class="font-normal text-slate-500 ">Tradução
+                                do Instrutor</span></h3>
+                        <p class="text-slate-800">
+                            <sup>7</sup> então Yahweh <em>Elohim</em> formou o humano do <b>pó do solo</b> ...
+                            <sup>8</sup> e Yahweh
+                            <em>Elohim</em> plantou um jardim no Éden, para o leste, e ele colocou lá o humano que ele
+                            havia
+                            formado.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- SEÇÃO: THE LAND AS AN ARK OF SAFETY -->
+                <h2 class="text-3xl font-bold text-slate-900 mb-6 mt-12">A Terra como uma Arca de Segurança, Avram como
+                    um Novo Noé
+                </h2>
+
+                <p class="text-lg leading-relaxed text-slate-700 mb-6">
+                    O discurso de Deus ecoa a linguagem de Noé logo antes do início do dilúvio. Ele caminha com Deus,
+                    então ele é
+                    convocado para criar um Éden flutuante para que ele e os animais possam viver juntos em um lugar de
+                    refúgio
+                    enquanto a violência dos humanos é confrontada pelas águas poderosas. A arca, como a terra, tem um
+                    comprimento e
+                    largura, que fornecerá segurança para qualquer um dentro.
+                </p>
+
+                <div class="space-y-6 mb-12">
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                        <h3 class="font-bold text-slate-900 mb-2">Gênesis 13:17 <span
+                                class="font-normal text-slate-500 ">Tradução
+                                do Instrutor</span></h3>
+                        <p class="text-slate-800">
+                            Levante-se, <b>caminhe</b> (התהלך) na terra, <b>seu comprimento e sua largura</b> (לארכה
+                            ולרחבה) porque
+                            a você eu a darei.
+                        </p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                        <h3 class="font-bold text-slate-900 mb-2">Gênesis 6:8-9 <span
+                                class="font-normal text-slate-500 ">Tradução
+                                do Instrutor</span></h3>
+                        <p class="text-slate-800">
+                            <sup>8</sup> Mas Noé achou favor aos olhos de Yahweh. <sup>9</sup> Estas são as gerações de
+                            Noé; Noé era
+                            um homem justo, irrepreensível em sua geração; Noé <b>caminhou</b> (התהלך) com
+                            <em>Elohim</em>;
+                        </p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                        <h3 class="font-bold text-slate-900 mb-2">Gênesis 6:13-15 <span
+                                class="font-normal text-slate-500 ">Tradução
+                                do Instrutor</span></h3>
+                        <div class="text-slate-800 space-y-2">
+                            <p>
+                                <sup>13</sup> E <em>Elohim</em> disse a Noé, “O fim de toda carne veio diante de mim,
+                                porque a terra
+                                está cheia de violência por causa deles, e eis que eu vou causar a ruína com a terra.
+                                <sup>14</sup>
+                                Faça para você uma arca de madeira de gofer; você fará a arca com ninhos, e a cobrirá
+                                por dentro e
+                                por fora com piche. <sup>15</sup> É assim que você a fará:
+                            </p>
+                            <ul class="list-disc list-inside pl-4">
+                                <li>300 côvados: <b>o comprimento</b> (ארך) da arca</li>
+                                <li>50 côvados: <b>sua largura</b> (רחבה)</li>
+                                <li>30 côvados: sua altura.”</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SEÇÃO: GENESIS 12-13 AS REPLAY -->
+                <h2 class="text-3xl font-bold text-slate-900 mb-6 mt-12">Gênesis 12-13 como Replay de Gênesis 2-6</h2>
+
+                <div class="overflow-x-auto rounded-lg border border-slate-300 shadow-sm mb-8">
+                    <table class="w-full text-left text-slate-800 border-collapse table-fixed min-w-[800px]">
+                        <thead class="bg-white border-b border-slate-300">
+                            <tr class="align-top">
+                                <th class="p-4 w-1/4 border-r border-slate-300">
+                                    <span
+                                        class="inline-block bg-slate-200 rounded px-2 py-1  font-bold text-slate-700 mb-2">Gênesis
+                                        2</span>
+                                    <ul class="list-disc list-inside  font-normal text-slate-600 space-y-1">
+                                        <li>Bênção de Deus de semente frutífera</li>
+                                        <li>Abundância do jardim</li>
+                                        <li>Espaço sagrado da presença de Deus pela árvore da vida no Mt. Éden</li>
+                                    </ul>
+                                </th>
+                                <th class="p-4 w-1/4 border-r border-slate-300">
+                                    <span
+                                        class="inline-block bg-slate-500 rounded px-2 py-1  font-bold text-white mb-2">Gênesis
+                                        3</span>
+                                    <ul class="list-disc list-inside  font-normal text-slate-600 space-y-1">
+                                        <li>Falha tola na árvore do teste que é “boa de ver”</li>
+                                        <li>Decepção e falta de confiança na palavra de Deus</li>
+                                        <li>Exílio do Éden</li>
+                                    </ul>
+                                </th>
+                                <th class="p-4 w-1/4 border-r border-slate-300">
+                                    <span
+                                        class="inline-block bg-[#8d6e63] rounded px-2 py-1  font-bold text-white mb-2">Gênesis
+                                        4-6</span>
+                                    <ul class="list-disc list-inside  font-normal text-slate-600 space-y-1">
+                                        <li>Irmãos com abundância</li>
+                                        <li>Ciúme e conflito</li>
+                                        <li>Irmãos “separam-se” através da violência</li>
+                                        <li>Irmão não escolhido se estabelece no leste, onde a violência está fervendo,
+                                            levando a um
+                                            dilúvio de julgamento</li>
+                                    </ul>
+                                </th>
+                                <th class="p-4 w-1/4 bg-indigo-50">
+                                    <span
+                                        class="inline-block bg-indigo-500 rounded px-2 py-1  font-bold text-white mb-2">Violência
+                                        e Dilúvio!</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white">
+                            <tr class="align-top border-t border-slate-300">
+                                <td class="p-4 border-r border-slate-300 bg-slate-50">
+                                    <span
+                                        class="inline-block bg-slate-200 rounded px-2 py-1  font-bold text-slate-700 mb-2">Gênesis
+                                        12:1-9</span>
+                                    <ul class="list-disc list-inside  font-normal text-slate-600 space-y-1">
+                                        <li>Bênção de Deus de abundância e proteção</li>
+                                        <li>Promessa de semente frutífera</li>
+                                        <li>Presença de Deus na árvore e montanhas</li>
+                                    </ul>
+                                </td>
+                                <td class="p-4 border-r border-slate-300 bg-slate-50">
+                                    <span
+                                        class="inline-block bg-slate-500 rounded px-2 py-1  font-bold text-white mb-2">Gênesis
+                                        12:10-20</span>
+                                    <ul class="list-disc list-inside  font-normal text-slate-600 space-y-1">
+                                        <li>Falha tola com Sarai que é "bela de ver"</li>
+                                        <li>Decepção e falta de confiança na palavra de Deus</li>
+                                        <li>Exílio do falso-Éden (i.e., Egito)</li>
+                                    </ul>
+                                </td>
+                                <td class="p-4 border-r border-slate-300 bg-[#efebe9]">
+                                    <span
+                                        class="inline-block bg-[#8d6e63] rounded px-2 py-1  font-bold text-white mb-2">Gênesis
+                                        13</span>
+                                    <ul class="list-disc list-inside  font-normal text-slate-600 space-y-1">
+                                        <li>Irmão com abundância</li>
+                                        <li>Ciúme e conflito</li>
+                                        <li>Irmãos se separam através da não-violência!</li>
+                                        <li>Irmão não escolhido se estabelece no leste, onde a violência está fervendo,
+                                            levando a um
+                                            dilúvio de julgamento</li>
+                                    </ul>
+                                </td>
+                                <td class="p-4 bg-indigo-50">
+                                    <span
+                                        class="inline-block bg-indigo-500 rounded px-2 py-1  font-bold text-white mb-2">Violência
+                                        e Dilúvio!</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="bg-white border-t border-slate-200 p-3">
+                        <p class=" italic text-slate-500 text-center">Gênesis 12-13 como Replay de Gênesis 2-6. Criado
+                            por Tim
+                            Mackie para BibleProject Classroom: Abraham (2021).</p>
+                    </div>
+                </div>
+
+                <p class="text-lg leading-relaxed text-slate-700 mb-6">
+                    Em ambas as sequências, Deus designa uma figura escolhida para receber a bênção divina e se tornar
+                    um canal
+                    dessa bênção para os outros. Ambas as figuras falham em atos de insensatez que estão enraizados na
+                    falta de
+                    confiança na sabedoria e palavra de Deus.
+                </p>
+
+                <p class="text-lg leading-relaxed text-slate-700 mb-12">
+                    O exílio resulta em ambos os casos, embora o padrão seja mais sofisticado com Avram: Ele primeiro
+                    passa por um
+                    exílio autoimposto de Canaã e depois é exilado do Egito pelo Faraó. É apenas em Gênesis 13 que Avram
+                    quebra esse
+                    padrão. Uma vez que o conflito com Ló começa, Avram se torna um mediador para a paz e evita um
+                    conflito violento
+                    entre irmãos. Ló acaba escolhendo um lugar que é semelhante à cidade de Caim, um reino de violência
+                    (Lameque em
+                    <a href="#" class="verse-link text-slate-900 hover:underline" data-reference="Gênesis+4:18-24">Gn.
+                        4:18-24</a>;
+                    os guerreiros violentos de <a href="#" class="verse-link text-slate-900 hover:underline"
+                        data-reference="Gênesis+6:4">Gn. 6:4</a>; os homens perversos e violentos de Sodoma em <a
+                        href="#" class="verse-link text-slate-900 hover:underline" data-reference="Gênesis+13:13">Gn.
+                        13:13</a> e <a href="#" class="verse-link text-slate-900 hover:underline"
+                        data-reference="Gênesis+14:1-10">14:1-10</a>).
+                </p>
+
+            </div>
+
+            <h2 class="text-2xl font-bold text-slate-800 my-8">Questão para Reflexão</h2>
+            <div class="bg-slate-50 border border-slate-200 rounded-lg p-6">
+                <p class="text-lg text-slate-700">Que temas e palavras-chave em Gênesis 13:14-20 lembram o
+                    jardim do Éden no topo da montanha? Como esses temas foram desenvolvidos em Gênesis 1-11?
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/verse-modal.js"></script>
 </body>
+
 </html>

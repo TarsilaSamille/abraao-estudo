@@ -1,227 +1,690 @@
-<!DOCTYPE html>
-<html lang="pt">
+<!doctype html>
+<html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>O Design Literario de Genesis 1-11</title>
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
-<style>
-  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
-  html[lang="pt"] .lang-en { display: none !important; }
-  html[lang="en"] .lang-pt { display: none !important; }
-  .heb { font-family: 'SBL Hebrew','Times New Roman',serif; font-size: 1.05em; direction: rtl; unicode-bidi: embed; }
-
-  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
-  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
-  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
-  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
-  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
-  .ref:hover { color: #2563eb; }
-  ul.bullets { list-style: none; padding: 0; }
-  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
-  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
-  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-
-  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
-  .scripture:hover { border-left-color: #9aa7b8; }
-  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
-  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
-  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
-  .scripture .innerbox { background: #f6f8fa; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1rem; }
-  .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem; }
-
-  /* ---------- Macro design (3 columns) ---------- */
-  .macro { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; align-items: start; margin: 2rem 0 .75rem; }
-  .mcol { border: 3px solid #2e7d4e; border-radius: 12px; padding: .9rem .9rem 1rem; background: #fff; }
-  .mcol.dark { border-color: #3d4453; margin-top: 1.3rem; }
-  .mtag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 3px 10px; border-radius: 5px; }
-  .mtag-green { background: #2e7d4e; } .mtag-dark { background: #3d4453; }
-  .mcol-title { font-size: 1rem; font-weight: 800; color: #17181a; margin: .55rem 0 .8rem; line-height: 1.3; }
-  .mboxes { display: flex; gap: .55rem; }
-  .mbox { flex: 1; border: 3px solid #b9c2cf; border-radius: 9px; background: #fff; min-height: 15.5rem; position: relative; transition: box-shadow .25s, transform .25s; }
-  .mbox:hover { box-shadow: 0 8px 20px -10px rgba(30,41,59,.4); transform: translateY(-3px); }
-  .mbox .mhdr { position: absolute; top: .55rem; left: .55rem; right: .55rem; background: #7d8697; color: #fff; font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 5px; }
-  .mbox.s1 { margin-top: 0; } .mbox.s2 { margin-top: 2.4rem; min-height: 13rem; } .mbox.s3 { margin-top: 2.4rem; min-height: 13rem; }
-  @media (max-width: 860px) { .macro { grid-template-columns: 1fr; } .mcol.dark { margin-top: 0; } .mbox, .mbox.s2, .mbox.s3 { min-height: 7.5rem; margin-top: 0; } }
-
-  /* ---------- Chiasm staircase boxes ---------- */
-  .cx { border: 3px solid; border-radius: 12px; padding: 1.35rem 1.5rem 1.2rem; margin: 1.15rem 0; transition: box-shadow .25s, transform .25s; }
-  .cx:hover { box-shadow: 0 12px 26px -16px rgba(23,24,26,.45); transform: translateY(-2px); }
-  .cx-tag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 1px 13px; border-radius: 6px; margin-bottom: .7rem; }
-  .cx h4 { font-weight: 800; font-size: 1.06rem; color: #17181a; margin-bottom: .7rem; }
-  .cx ul.bullets > li { font-size: .99rem; margin-bottom: .45rem; }
-  .cx-slate  { border-color: #6b7280; background: #e9ebee; } .cx-slate  .cx-tag { background: #6b7280; }
-  .cx-rust   { border-color: #c0562f; background: #f7e6dd; } .cx-rust   .cx-tag { background: #c0562f; }
-  .cx-rose   { border-color: #c04a63; background: #f7e0e5; } .cx-rose   .cx-tag { background: #c04a63; }
-  .cx-blue   { border-color: #5468d4; background: #e4e8f9; } .cx-blue   .cx-tag { background: #5468d4; }
-  .cx-green  { border-color: #2e7d4e; background: #dfeee2; } .cx-green  .cx-tag { background: #2e7d4e; }
-  .cx-purple { border-color: #8b5cf6; background: #efe2f8; } .cx-purple .cx-tag { background: #8b5cf6; }
-  .cx-tan    { border-color: #8a6d3b; background: #ece7dc; } .cx-tan    .cx-tag { background: #8a6d3b; }
-
-  /* ---------- verse chips (Gen 18 translation) ---------- */
-  .k { display: inline; padding: 3px 9px; border-radius: 6px; font-weight: 700; color: #fff; line-height: 1.85; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
-  .k-blue   { background: #3b82c4; } .k-green  { background: #2e7d4e; } .k-rose { background: #c04a63; }
-  .k-gray   { background: #6b7280; } .k-rust   { background: #bf5a2b; } .k-teal { background: #0d7d8c; }
-  .k-purple { background: #7c5ad0; } .k-brown  { background: #8a6d3b; }
-  .t-teal { color: #0d8aa0; font-weight: 700; }
-
-  .v-outer { border: 3px solid #e3e7ee; border-radius: 20px; padding: 1.4rem 1.5rem; margin: 1.4rem 0; }
-  .v-black { border: 3px solid #17181a; border-radius: 16px; padding: 1.3rem 1.5rem; margin: 1.1rem 0; }
-  .v-light { border: 3px solid #e3e7ee; border-radius: 16px; padding: 1.2rem 1.4rem; margin: 1.1rem 0; }
-  .v-line { font-size: 1.06rem; line-height: 2.1; color: #1f2937; }
-  .v-div { border: 0; border-top: 1px solid #e6eaf0; margin: 1.1rem 0; }
-  .vbar-b { border-left: 5px solid #5468d4; padding-left: .8rem; }
-  .lbl { color: #6b7280; font-weight: 600; font-size: .85rem; margin-right: .2rem; }
-  sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px; }
-  .i1 { padding-left: 1.6rem; } .i2 { padding-left: 3.2rem; } .i3 { padding-left: 4.8rem; }
-
-  /* ---------- tables ---------- */
-  .doc-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 3px solid #d9dee6; border-radius: 14px; overflow: hidden; background: #fff; }
-  .doc-table th { background: #e2e6eb; text-align: left; padding: 1rem 1.3rem; font-weight: 800; font-size: 1.02rem; color: #17181a; }
-  .doc-table td { padding: 1.1rem 1.3rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.78; font-size: .97rem; color: #24262a; transition: background .2s; }
-  .doc-table td + td { border-left: 1px solid #e5e7eb; }
-  .doc-table tbody tr:hover td { background: #f8fafc; }
-  .doc-table tfoot td { border-top: 1px solid #d1d5db; background: #fbfcfd; color: #5b6472; font-size: .92rem; }
-  .kblue-soft { background: #cddcf5; color: #2b5fb0; padding: 2px 8px; border-radius: 6px; font-weight: 700; }
-
-  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
-  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
-  .reveal.visible { opacity: 1; transform: none; }
-
-  @media print {
-    @page { margin: 14mm 12mm; }
-    #reading-progress, .print\:hidden { display: none !important; }
-    .reveal { opacity: 1 !important; transform: none !important; }
-    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-    .max-w-4xl { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
-    h1.title, h2.section, h3.sub { break-after: avoid-page; }
-    .cx, .v-outer, .v-black, .v-light, .doc-table tr, .scripture, .mcol { break-inside: avoid; }
-  }
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .cx, .mbox { transition: none; } }
-</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sessão 3: O Design Literário de Gênesis 1-11</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
 
-<div id="reading-progress" aria-hidden="true"></div>
+<body class="bg-white font-sans text-slate-800">
+    <div class="p-4">
+        <a href="index.html" class="text-sky-600 hover:underline">← Voltar para o Índice</a>
+    </div>
+    <div id="sessao-3" class="min-h-screen p-8 md:px-16  flex flex-col justify-center">
+        <div class="mx-auto max-w-4xl">
+            <h1 class="text-4xl font-bold text-slate-900 mb-8 border-b pb-4">Sessão 3: O Design Literário de Gênesis
+                1-11 </h1>
+            <h2 class="text-2xl font-bold text-slate-800 mb-3">Pontos-Chave</h2>
+            <ul class="list-disc list-inside space-y-2 mb-10 text-lg text-slate-700">
+                <li>A história em Gênesis 1-11 nos guia através de um ciclo temático de criação, falhas crescentes,
+                    des-criação e, finalmente, a re-criação de um remanescente que é comissionado como a nova
+                    humanidade. </li>
+                <li>A história de Avraham é projetada com múltiplos movimentos que repetem e desenvolvem este ciclo.
+                </li>
+                <li>Saber onde você está no ciclo ilumina muitas das características únicas na ordem e no design da
+                    história de Avraham.</li>
+            </ul>
+            <h2 class="text-3xl font-bold text-slate-800 mb-4">A Melodia Temática do TaNaK</h2>
+            <p class="text-lg leading-relaxed text-slate-700 mb-8">A organização literária de <a href="#"
+                    class="text-sky-600 underline">Gênesis 1:1-11:26</a>, tanto em seu design quanto nos temas
+                principais explorados nas narrativas, forma o modelo organizacional do TaNaK. Para entender
+                verdadeiramente do que trata todo o TaNaK, precisamos recapitular a história até agora, como é
+                apresentada em Gênesis 1-11 (adaptado de D.A. Teeter, comunicação pessoal e seu artigo “Biblical
+                Symmetry and Its Modern Detractors”, apresentado no congresso de 2019 da International Organization
+                for the Study of the Old Testament). </p>
+        </div>
+        <div class="my-6">
+            <div class="mx-auto mb-12 w-full max-w-max">
+                <div class="w-full rounded-xl">
+                    <div class="p-3">
+                        <div class="inline-block rounded-lg bg-gray-800 px-2 py-1 text-sm font-bold text-white"><a
+                                href="#" class="verse-link hover:underline text-white"
+                                data-reference="Gênesis+1:1-9:17">Gênesis 1:1-9:17 </div>
+                    </div>
+                    <div class="space-y-3 px-3 pb-3">
+                        <div class="flex items-end gap-3">
+                            <div class="rounded-lg border-2 border-cyan-700 p-3">
+                                <div class="inline-block rounded-md bg-cyan-700 px-2 py-1 text-sm font-bold text-white">
+                                    <a href="#" class="verse-link hover:underline text-white"
+                                        data-reference="Gênesis+1:1-2:3">Gênesis 1:1-2:3</a>
+                                </div>
+                                <h2 class="text-md mt-2 font-semibold text-gray-700">Criação a Partir das Águas</h2>
+                                <div class="mt-2 flex items-end gap-2">
+                                    <div class="flex min-h-[15rem] items-start rounded-lg border-2 border-gray-400 p-2">
+                                        <div class="rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                            <a href="#" class="verse-link hover:underline "
+                                                data-reference="Gênesis+1:1-2">1:1-2</a>
+                                        </div>
+                                    </div>
+                                    <div class="min-h-[16rem] w-24 rounded-lg border-2 border-gray-400 p-2">
+                                        <div class="rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                            <a href="#" class="verse-link hover:underline "
+                                                data-reference="Gênesis+1:3-13"> 1:3-13</a>
+                                        </div>
+                                        <ul class="mt-2 list-inside list-disc space-y-1 text-sm">
+                                            <li>Dia 1</li>
+                                            <li>Dia 2</li>
+                                            <li>Dia 3</li>
+                                        </ul>
+                                    </div>
+                                    <div class="min-h-[16rem] w-24 rounded-lg border-2 border-gray-400 p-2">
+                                        <div class="rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                            <a href="#" class="verse-link hover:underline "
+                                                data-reference="Gênesis+1:14-31">1:14-31</a>
+                                        </div>
+                                        <ul class="mt-2 list-inside list-disc space-y-1 text-sm">
+                                            <li>Dia 4</li>
+                                            <li>Dia 5</li>
+                                            <li>Dia 6</li>
+                                        </ul>
+                                    </div>
+                                    <div class="flex min-h-[15rem] items-start rounded-lg border-2 border-gray-400 p-2">
+                                        <div class="rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                            <a href="#" class="verse-link hover:underline "
+                                                data-reference="Gênesis+2:1-3">2:1-3</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rounded-lg border-2 border-gray-600 p-3">
+                                <div class="inline-block rounded-md bg-gray-700 px-2 py-1 text-sm font-bold text-white">
+                                    <a href="#" class="verse-link hover:underline text-white"
+                                        data-reference="Gênesis+2:4-5:32">Gênesis 2:4-5:32</a>
+                                </div>
+                                <div class="mt-2 flex gap-2">
+                                    <div
+                                        class="flex max-h-8 min-h-[16rem] flex-col rounded-lg border-2 border-gray-400 p-2">
+                                        <div
+                                            class="self-start rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                            <a href="#" class="verse-link hover:underline "
+                                                data-reference="Gênesis+2:4-3:24">2:4-3:24</a>
+                                        </div>
+                                        <h3 class="mt-1 text-sm font-semibold">Insensatez e Consequências 2ª Geração
+                                        </h3>
+                                        <div class="mt-2 flex flex-1 items-stretch gap-2">
+                                            <div class="flex-1 rounded-lg border-2 border-gray-400 p-2">
+                                                <div
+                                                    class="rounded-md bg-gray-400 px-2 py-1 text-xs font-bold text-white">
+                                                    <a href="#" class="verse-link hover:underline text-white"><a
+                                                            href="#" class="verse-link hover:underline text-white"
+                                                            data-reference="Gênesis+2:4-17">2:4-17</a>
+                                                </div>
+                                            </div>
+                                            <div class="mt-6 flex-1 rounded-lg border-2 border-gray-400 p-2">
+                                                <div
+                                                    class="rounded-md bg-gray-400 px-2 py-1 text-xs font-bold text-white">
+                                                    <a href="#" class="verse-link hover:underline text-white"><a
+                                                            href="#" class="verse-link hover:underline text-white"
+                                                            data-reference="Gênesis+2:18-3:13">2:18-3:13</a>
+                                                </div>
+                                            </div>
+                                            <div class="flex-1 rounded-lg border-2 border-gray-400 p-2">
+                                                <div
+                                                    class="rounded-md bg-gray-400 px-2 py-1 text-xs font-bold text-white">
+                                                    <a href="#" class="verse-link hover:underline text-white"><a
+                                                            href="#" class="verse-link hover:underline text-white"
+                                                            data-reference="Gênesis+3:14-24">3:14-24</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-1 flex-col rounded-lg border-2 border-gray-400 p-2">
+                                        <div
+                                            class="self-start rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                            <a href="#" class="verse-link hover:underline "
+                                                data-reference="Gênesis+4:1-26">4:1-26</a>
+                                        </div>
+                                        <h3 class="mt-1 text-sm font-semibold">Insensatez e Consequências 2ª Geração
+                                        </h3>
+                                        <div class="mt-2 flex flex-1 items-stretch gap-2">
+                                            <div class="flex-1 rounded-lg border-2 border-gray-400 p-2">
+                                                <div
+                                                    class="rounded-md bg-gray-400 px-2 py-1 text-xs font-bold text-white">
+                                                    <a href="#" class="verse-link hover:underline text-white"><a
+                                                            href="#" class="verse-link hover:underline text-white"
+                                                            data-reference="Gênesis+4:1-16">4:1-16</a>
+                                                </div>
+                                            </div>
+                                            <div class="flex-1 rounded-lg border-2 border-gray-400 p-2">
+                                                <div
+                                                    class="rounded-md bg-gray-400 px-2 py-1 text-xs font-bold text-white">
+                                                    <a href="#" class="verse-link hover:underline text-white"><a
+                                                            href="#" class="verse-link hover:underline text-white"
+                                                            data-reference="Gênesis+4:17-26"> 4:17-26</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-1 flex-col rounded-lg border-2 border-gray-400 p-2">
+                                        <div
+                                            class="self-start rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                            <a href="#" class="verse-link hover:underline text-white"
+                                                data-reference="Gênesis+5:1-32">5:1-32</a>
+                                        </div>
+                                        <h3 class="mt-1 text-sm font-semibold">Linhagem Dividida 3 Filhos</h3>
+                                        <div class="mt-2 flex flex-1 items-stretch gap-2">
+                                            <div class="flex-1 rounded-lg border-2 border-gray-400 p-2">
+                                                <div
+                                                    class="rounded-md bg-gray-400 px-2 py-1 text-xs font-bold text-white">
+                                                    <a href="#" class="verse-link hover:underline text-white"><a
+                                                            href="#" class="verse-link hover:underline text-white"
+                                                            data-reference="Gênesis+5:1-2">5:1-2</a>
+                                                </div>
+                                            </div>
+                                            <div class="flex-1 rounded-lg border-2 border-gray-400 p-2">
+                                                <div
+                                                    class="rounded-md bg-gray-400 px-2 py-1 text-xs font-bold text-white">
+                                                    <a href="#" class="verse-link hover:underline text-white"><a
+                                                            href="#" class="verse-link hover:underline text-white"
+                                                            data-reference="Gênesis+5:3-27">5:3-27</a>
+                                                </div>
+                                            </div>
+                                            <div class="flex-1 rounded-lg border-2 border-gray-400 p-2">
+                                                <div
+                                                    class="rounded-md bg-gray-400 px-2 py-1 text-xs font-bold text-white">
+                                                    <a href="#" class="verse-link hover:underline text-white"><a
+                                                            href="#" class="verse-link hover:underline text-white"
+                                                            data-reference="Gênesis+5:28-32">5:28-32</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rounded-lg border-2 border-cyan-700 p-3">
+                                <div class="inline-block rounded-md bg-cyan-700 px-2 py-1 text-sm font-bold text-white">
+                                    <a href="#" class="verse-link hover:underline text-white"
+                                        data-reference="Gênesis+6:1-9:17">Gênesis 6:1-9:17</a>
+                                </div>
+                                <h2 class="text-md mt-2 font-semibold text-gray-700">Des-criação pela Água</h2>
+                                <div class="mt-2 flex items-stretch gap-2">
+                                    <div
+                                        class="flex min-h-[16rem] w-24 items-start rounded-lg border-2 border-gray-400 p-2">
+                                        <div class="rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                            <a href="#" class="verse-link hover:underline text-white"
+                                                data-reference="Gênesis+6:1-7:17">6:1-7:17a</a>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="flex min-h-[16rem] w-24 items-start rounded-lg border-2 border-gray-400 p-2">
+                                        <div class="rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                            <a href="#" class="verse-link hover:underline text-white"
+                                                data-reference="Gênesis+7:17-8:5"> 7:17b-8:5</a>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="flex min-h-[16rem] w-24 items-start rounded-lg border-2 border-gray-400 p-2">
+                                        <div class="rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                            <a href="#" class="verse-link hover:underline text-white"
+                                                data-reference="Gênesis+8:6-9:17">8:6-9:17</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="mt-4 text-lg text-gray-600">Gênesis 1:1-9:17. Tradução e Design Literário por Tim Mackie
+                    para BibleProject Classroom: Abraão (2021).</p>
+            </div>
+            <div class="mx-auto mb-12 w-full max-w-max">
+                <div class="space-y-3 px-3 pb-3">
+                    <div class="p-3">
+                        <div class="inline-block rounded-lg bg-gray-800 px-2 py-1 text-sm font-bold text-white"><a
+                                href="#" class="verse-link hover:underline text-white"
+                                data-reference="Gênesis+6:1-11:9">Gênesis 6:1-11:9 </a></div>
+                    </div>
+                    <div class="space-y-3 px-3 pb-3">
+                        <div class="flex items-stretch gap-3">
+                            <div class="rounded-lg border-2 border-cyan-700 p-3">
+                                <div class="inline-block rounded-md bg-cyan-700 px-2 py-1 text-sm font-bold text-white">
+                                    <a href="#" class="verse-link hover:underline text-white"
+                                        data-reference="Gênesis+6:1-9:17">Gênesis 6:1-9:17</a>
+                                </div>
+                                <h2 class="text-md mt-2 font-semibold text-gray-700">Nova Criação a Partir da
+                                    Água</h2>
+                                <div class="mt-2 flex items-stretch gap-2">
+                                    <div class="mt-2 flex items-stretch gap-2">
+                                        <div class="flex w-24 items-start rounded-lg border-2 border-gray-400 p-2">
+                                            <div class="rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                                <a href="#" class="verse-link hover:underline text-white"
+                                                    data-reference="Gênesis+6:1-7:17">6:1-7:17a</a>
+                                            </div>
+                                        </div>
+                                        <div class="flex w-24 items-start rounded-lg border-2 border-gray-400 p-2">
+                                            <div class="rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                                <a href="#" class="verse-link hover:underline text-white"
+                                                    data-reference="Gênesis+7:17-8:5"> 7:17b-8:5</a>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="flex min-h-[19rem] w-24 items-start rounded-lg border-2 border-gray-400 p-2">
+                                            <div class="rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                                <a href="#" class="verse-link hover:underline text-white"
+                                                    data-reference="Gênesis+8:6-9:17">8:6-9:17</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-5 flex-1 rounded-lg border-2 border-gray-600 p-3">
+                                <div class="inline-block rounded-md bg-gray-500 px-2 py-1 text-sm font-bold text-white">
+                                    <a href="#" class="verse-link hover:underline text-white"
+                                        data-reference="Gênesis+9:18-10:32">Gênesis 9:18-10:32 </a>
+                                </div>
+                                <div class="mt-2 flex min-h-80 items-stretch gap-2">
+                                    <div class="flex max-h-78 flex-col rounded-lg border-2 border-gray-400 p-2">
+                                        <div class="self-start rounded-md bg-gray-500 px-2 py-1 text-xs font-bold">
+                                            <a href="#" class="verse-link hover:underline text-white"
+                                                data-reference="Gênesis+9:18-29">9:18-29</a>
+                                        </div>
+                                        <h3 class="mt-1 text-sm font-semibold">Insensatez e Consequências 1ª e 2ª
+                                            Geração</h3>
+                                        <div class="mt-2 flex flex-1 items-stretch gap-2">
+                                            <div class="flex-1 rounded-lg border-2 border-gray-400 p-2">
+                                                <div
+                                                    class="rounded-md bg-gray-400 px-2 py-1 text-xs font-bold text-white">
+                                                    <a href="#" class="verse-link hover:underline text-white"><a
+                                                            href="#" class="verse-link hover:underline text-white"
+                                                            data-reference="Gênesis+9:18-19">9:18-19</a>
+                                                </div>
+                                            </div>
+                                            <div class="flex-1 rounded-lg border-2 border-gray-400 p-2">
+                                                <div
+                                                    class="rounded-md bg-gray-400 px-2 py-1 text-xs font-bold text-white">
+                                                    <a href="#" class="verse-link hover:underline text-white"><a
+                                                            href="#" class="verse-link hover:underline text-white"
+                                                            data-reference="Gênesis+9:20-27">9:20-27</a>
+                                                </div>
+                                            </div>
+                                            <div class="flex-1 rounded-lg border-2 border-gray-400 p-2">
+                                                <div
+                                                    class="rounded-md bg-gray-400 px-2 py-1 text-xs font-bold text-white">
+                                                    <a href="#" class="verse-link hover:underline text-white"><a
+                                                            href="#" class="verse-link hover:underline text-white"
+                                                            data-reference="Gênesis+9:28-29">9:28-29</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex max-h-78 flex-col rounded-lg border-2 border-gray-400 p-2">
+                                        <div
+                                            class="self-start rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                            <a href="#" class="verse-link hover:underline text-white"
+                                                data-reference="Gênesis+10:1-32">10:1-32</a>
+                                        </div>
+                                        <h3 class="mt-1 text-sm font-semibold">Linhagem Dividida 3 Filhos</h3>
+                                        <div class="mt-2 flex flex-1 items-stretch gap-2">
+                                            <div class="flex-1 rounded-lg border-2 border-gray-400 p-2">
+                                                <div
+                                                    class="rounded-md bg-gray-400 px-2 py-1 text-xs font-bold text-white">
+                                                    <a href="#" class="verse-link hover:underline text-white"><a
+                                                            href="#" class="verse-link hover:underline text-white"
+                                                            data-reference="Gênesis+10:1">10:1</a>
+                                                </div>
+                                            </div>
+                                            <div class="mt-5 flex-1 rounded-lg border-2 border-gray-400 p-2">
+                                                <div
+                                                    class="rounded-md bg-gray-400 px-2 py-1 text-xs font-bold text-white">
+                                                    <a href="#" class="verse-link hover:underline text-white"><a
+                                                            href="#" class="verse-link hover:underline text-white"
+                                                            data-reference="Gênesis+10:2-5">10:2-5</a>
+                                                </div><span class="text-xs">Jafé</span>
+                                            </div>
+                                            <div class="mt-5 flex-1 rounded-lg border-2 border-gray-400 p-2">
+                                                <div
+                                                    class="rounded-md bg-gray-400 px-2 py-1 text-xs font-bold text-white">
+                                                    <a href="#" class="verse-link hover:underline text-white"><a
+                                                            href="#" class="verse-link hover:underline text-white"
+                                                            data-reference="Gênesis+10:6-20">10:6-20</a>
+                                                </div><span class="text-xs">Cam</span>
+                                            </div>
+                                            <div class="mt-5 flex-1 rounded-lg border-2 border-gray-400 p-2">
+                                                <div
+                                                    class="rounded-md bg-gray-400 px-2 py-1 text-xs font-bold text-white">
+                                                    <a href="#" class="verse-link hover:underline text-white"><a
+                                                            href="#" class="verse-link hover:underline text-white"
+                                                            data-reference="Gênesis+10:21-31">10:21-31</a>
+                                                </div>
+                                                <span class="text-xs">Sem</span>
+                                            </div>
+                                            <div class="flex-1 rounded-lg border-2 border-gray-400 p-2">
+                                                <div
+                                                    class="rounded-md bg-gray-400 px-2 py-1 text-xs font-bold text-white">
+                                                    <a href="#" class="verse-link hover:underline text-white"><a
+                                                            href="#" class="verse-link hover:underline text-white"
+                                                            data-reference="Gênesis+10:32">10:32</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rounded-lg border-2 border-cyan-700 p-3">
+                                <div class="inline-block rounded-md bg-cyan-700 px-2 py-1 text-sm font-bold text-white">
+                                    <a href="#" class="verse-link hover:underline text-white"
+                                        data-reference="Gênesis+11:1-9">Gênesis 11:1-9 </a>
 
-<div class="fixed left-4 top-4 z-50 print:hidden">
-  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
-    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
-  </a>
-</div>
-<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
-  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
-    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
-  </button>
-  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm shadow-sm">
-    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
-    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
-  </div>
-</div>
+                                </div>
+                                <h2 class="text-md mt-2 font-semibold text-gray-700">Des-criação pela Dispersão</h2>
+                                <div class="mt-2 flex items-stretch gap-2">
+                                    <div class="min-h-[19rem] w-16 rounded-lg border-2 border-gray-400 p-2">
+                                        <div class="rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                            <a href="#" class="verse-link hover:underline text-white"
+                                                data-reference="Gênesis+11:1-2">11:1-2</a>
 
-<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
-<h1 class="title reveal"><span class="lang-pt">Sessão 3: O Design Literário de Gênesis 1&ndash;11</span><span class="lang-en">Session 3: The Literary Design of Genesis 1&ndash;11</span></h1>
-  <hr class="rule">
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col rounded-lg border-2 border-gray-400 p-2">
+                                        <div
+                                            class="self-start rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                            <a href="#" class="verse-link hover:underline text-white"
+                                                data-reference="Gênesis+11:3-7">11:3-7</a>
+                                        </div>
+                                        <div class="mt-2 flex flex-1 items-stretch gap-2">
+                                            <div class="flex-1 rounded-lg border-2 border-gray-400 p-2">
+                                                <div
+                                                    class="rounded-md bg-gray-400 px-2 py-1 text-xs font-bold text-white">
+                                                    <a href="#" class="verse-link hover:underline text-white"><a
+                                                            href="#" class="verse-link hover:underline text-white"
+                                                            data-reference="Gênesis+11:3-4">11:3-4</a>
+                                                </div>
+                                            </div>
+                                            <div class="flex-1 rounded-lg border-2 border-gray-400 p-2">
+                                                <div
+                                                    class="rounded-md bg-gray-400 px-2 py-1 text-xs font-bold text-white">
+                                                    <a href="#" class="verse-link hover:underline text-white"><a
+                                                            href="#" class="verse-link hover:underline text-white"
+                                                            data-reference="Gênesis+11:5">11:5</a>
+                                                </div>
+                                            </div>
+                                            <div class="flex-1 rounded-lg border-2 border-gray-400 p-2">
+                                                <div
+                                                    class="rounded-md bg-gray-400 px-2 py-1 text-xs font-bold text-white">
+                                                    <a href="#" class="verse-link hover:underline text-white"><a
+                                                            href="#" class="verse-link hover:underline text-white"
+                                                            data-reference="Gênesis+11:6-7">11:6-7</a>
 
-  <h3 class="sub reveal" style="margin-top:0;"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
-  <ul class="bullets reveal" style="margin-bottom:2.5rem;">
-    <li><span class="lang-pt">A história em Gênesis 1&ndash;11 nos conduz por um ciclo temático de criação, fracassos crescentes, des-criação e, finalmente, a re-criação de um remanescente incumbido como a nova humanidade.</span><span class="lang-en">The story in Genesis 1&ndash;11 walks us through a thematic cycle of creation, escalating failures, de-creation, and finally the re-creation of a remnant that is commissioned as the new humanity.</span></li>
-    <li><span class="lang-pt">A história de Avraham é desenhada com múltiplos movimentos que repetem e desenvolvem esse ciclo.</span><span class="lang-en">The story of Avraham is designed with multiple movements that repeat and develop this cycle.</span></li>
-    <li><span class="lang-pt">Saber em que ponto do ciclo você está ilumina muitas das características singulares na ordem e no design da história de Avraham.</span><span class="lang-en">Knowing where you are in the cycle illuminates many of the unique features in the order and design of the Avraham story.</span></li>
-  </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-16 rounded-lg border-2 border-gray-400 p-2">
+                                        <div class="rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                            <a href="#" class="verse-link hover:underline text-white"
+                                                data-reference="Gênesis+11:8-9">11:8-9</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-lg text-gray-600">Gênesis 6:1-11:9. Tradução e Design Literário por Tim Mackie
+                        para BibleProject
+                        Classroom: Abraão (2021).</p>
+                </div>
+            </div>
+        </div>
 
-  <h2 class="section reveal"><span class="lang-pt">A Melodia Temática do TaNaK</span><span class="lang-en">The Thematic Melody of the TaNaK</span></h2>
-  <p class="body reveal"><span class="lang-pt">A organização literária de Gênesis 1:1&ndash;11:26, tanto em seu design quanto nos temas principais explorados nas narrativas, forma o modelo organizacional do TaNaK. Assim, para compreender verdadeiramente o que todo o TaNaK quer dizer, precisamos recapitular a história até aqui conforme apresentada em Gênesis 1&ndash;11 (adaptado de D.A. Teeter, comunicação pessoal e seu artigo &ldquo;Biblical Symmetry and Its Modern Detractors&rdquo; apresentado no congresso de 2019 da International Organization for the Study of the Old Testament).</span><span class="lang-en">The literary organization of Genesis 1:1&ndash;11:26, both in its design and in the main themes explored in the narratives, forms the organizational template of the TaNaK. So to truly grasp what the entire TaNaK is about, we need to recap the story so far as it&rsquo;s presented in Genesis 1&ndash;11 (adapted from D.A. Teeter, personal communication and his &ldquo;Biblical Symmetry and Its Modern Detractors&rdquo; paper delivered at the 2019 International Organization for the Study of the Old Testament congress).</span></p>
 
-  <p class="body reveal"><span class="lang-pt">Estes ciclos temáticos estabelecem um padrão narrativo e uma melodia temática que se recicla, desenvolve e avança a cada nova geração. A melodia básica é esta.</span><span class="lang-en">These thematic cycles set up a narrative pattern and thematic melody that recycles, develops, and advances with each new generation. The basic melody goes like this.</span></p>
+        <div class="w-full rounded-xl">
+            <div class="p-3">
+                <div class="inline-block rounded-lg bg-gray-800 px-2 py-1 text-sm font-bold text-white"><a href="#"
+                        class="verse-link hover:underline text-white" data-reference="Gênesis+11:1-12:5">Gênesis
+                        11:1-12:5 </a></div>
+            </div>
+            <div class="space-y-3 px-3 pb-3">
+                <div class="flex items-stretch gap-3">
+                    <div class="max-h-90 rounded-lg border-2 border-cyan-700 p-3">
+                        <div class="inline-block rounded-md bg-cyan-700 px-2 py-1 text-sm font-bold text-white"><a
+                                href="#" class="verse-link hover:underline text-white"
+                                data-reference="Gênesis+11:1-9">Gênesis 11:1-9</a></div>
+                        <h2 class="text-md mt-2 font-semibold text-gray-700">Nova Criação pela Dispersão</h2>
+                        <div class="mt-2 flex items-stretch gap-2">
+                            <div class="min-h-[17rem]  rounded-lg border-2 border-gray-400 p-2">
+                                <div class="rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                    <a href="#" class="verse-link hover:underline text-white"
+                                        data-reference="Gênesis+11:1-2">11:1-2</a>
+                                </div>
+                            </div>
+                            <div class="mt-6 flex  flex-1 flex-col rounded-lg border-2 border-gray-400 p-2">
+                                <div class="self-start rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                    11:3-7</div>
+                                <div class="mt-2 flex flex-1 items-stretch gap-2">
+                                    <div class="min-h-[12rem] rounded-lg border-2 border-gray-400 p-2">
+                                        <div class="rounded-md bg-gray-400 px-2 py-1 text-xs font-bold text-white"><a
+                                                href="#" class="verse-link hover:underline text-white"><a href="#"
+                                                    class="verse-link hover:underline text-white"
+                                                    data-reference="Gênesis+11:3-4">11:3-4</a></div>
+                                    </div>
+                                    <div class="rounded-lg border-2 border-gray-400 p-2">
+                                        <div class="rounded-md bg-gray-400 px-2 py-1 text-xs font-bold text-white"><a
+                                                href="#" class="verse-link hover:underline text-white"><a href="#"
+                                                    class="verse-link hover:underline text-white"
+                                                    data-reference="Gênesis+11:5">11:5</a></div>
+                                    </div>
+                                    <div class="rounded-lg border-2 border-gray-400 p-2">
+                                        <div class="rounded-md bg-gray-400 px-2 py-1 text-xs font-bold text-white"><a
+                                                href="#" class="verse-link hover:underline text-white"><a href="#"
+                                                    class="verse-link hover:underline text-white"
+                                                    data-reference="Gênesis+11:6-7">11:6-7</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" rounded-lg border-2 border-gray-400 p-2">
+                                <div class="rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                    <a href="#" class="verse-link hover:underline text-white"
+                                        data-reference="Gênesis+11:8-9">11:8-9</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" mt-6 rounded-lg max-w-min border-2 border-gray-400 p-3">
+                        <div class="inline-block rounded-md bg-gray-600 px-2 py-1 text-sm font-bold text-white"><a
+                                href="#" class="verse-link hover:underline text-white"
+                                data-reference="Gênesis+11:27-12:5">Gênesis 11:10-26</a></div>
+                        <h2 class="text-md mt-2 font-semibold text-gray-700">Linhagem Dividida, 10 Gerações + 3 Filhos
+                        </h2>
+                        <div class="mt-2 flex items-stretch gap-2">
+                            <div class="min-h-[14rem] rounded-lg border-2 border-gray-400 p-2 min-w-max">
+                                <div class="rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white"><a href="#"
+                                        class="verse-link hover:underline text-white"
+                                        data-reference="Gênesis+11:10">11:10a</a>
+                                </div>
+                            </div>
+                            <div class="mt-6 rounded-lg border-2 border-gray-400 p-2">
+                                <div class="rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white"><a href="#"
+                                        class="verse-link hover:underline text-white"
+                                        data-reference="Gênesis+11:10-26">11:10b-26a</a></div>
+                            </div>
+                            <div class="rounded-lg border-2 border-gray-400 p-2">
+                                <div class="rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                    <a href="#" class="verse-link hover:underline text-white"
+                                        data-reference="Gênesis+11:26">11:26b</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="max-h-90 rounded-lg border-2 border-cyan-700 p-3">
+                        <div class="inline-block rounded-md bg-cyan-700 px-2 py-1 text-sm font-bold text-white"><a
+                                href="#" class="verse-link hover:underline text-white"
+                                data-reference="Gênesis+11:27-12:5">Gênesis 11:27-12:5</a></div>
+                        <h2 class="text-md mt-2 font-semibold text-gray-700">Des-criação pela Morte, Nova Criação pela
+                            Bênção</h2>
+                        <div class="mt-2 flex h-full items-stretch gap-2">
+                            <div class="flex max-h-[16rem] flex-1 flex-col rounded-lg border-2 border-gray-400 p-2">
+                                <div class="self-start rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                    <a href="#" class="verse-link hover:underline text-white"
+                                        data-reference="Gênesis+11:27-32">11:27-32</a>
+                                </div>
+                                <div class="mt-2 flex flex-1 items-stretch gap-2">
+                                    <div class="rounded-lg border-2 border-gray-400 p-2">
+                                        <div class="rounded-md bg-gray-400 px-2 py-1 text-xs font-bold text-white"><a
+                                                href="#" class="verse-link hover:underline text-white"><a href="#"
+                                                    class="verse-link hover:underline text-white"
+                                                    data-reference="Gênesis+11:27-28">11:27-28</a></div>
+                                    </div>
+                                    <div class="rounded-lg border-2 border-gray-400 p-2">
+                                        <div class="rounded-md bg-gray-400 px-2 py-1 text-xs font-bold text-white"><a
+                                                href="#" class="verse-link hover:underline text-white"><a href="#"
+                                                    class="verse-link hover:underline text-white"
+                                                    data-reference="Gênesis+11:29-30">11:29-30</a></div>
+                                    </div>
+                                    <div class="rounded-lg border-2 border-gray-400 p-2">
+                                        <div class="rounded-md bg-gray-400 px-2 py-1 text-xs font-bold text-white"><a
+                                                href="#" class="verse-link hover:underline text-white"><a href="#"
+                                                    class="verse-link hover:underline text-white"
+                                                    data-reference="Gênesis+11:31-32">11:31-32</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex max-h-[16rem] flex-col rounded-lg border-2 border-gray-400 p-2">
+                                <div class="self-start rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                    <a href="#" class="verse-link hover:underline text-white"
+                                        data-reference="Gênesis+12:1-5">12:1-5</a>
+                                </div>
+                                <div class="mt-2 flex flex-1 items-stretch gap-2">
+                                    <div class="rounded-lg border-2 border-gray-400 p-2">
+                                        <div class="rounded-md bg-gray-400 px-2 py-1 text-xs font-bold text-white"><a
+                                                href="#" class="verse-link hover:underline text-white"><a href="#"
+                                                    class="verse-link hover:underline text-white"
+                                                    data-reference="Gênesis+12:1-3">12:1-3</a></div>
+                                    </div>
+                                    <div class="rounded-lg border-2 border-gray-400 p-2">
+                                        <div class="rounded-md bg-gray-400 px-2 py-1 text-xs font-bold text-white"><a
+                                                href="#" class="verse-link hover:underline text-white"><a href="#"
+                                                    class="verse-link hover:underline text-white"
+                                                    data-reference="Gênesis+12:4">12:4</a></div>
+                                    </div>
+                                    <div class="rounded-lg border-2 border-gray-400 p-2">
+                                        <div class="rounded-md bg-gray-400 px-2 py-1 text-xs font-bold text-white"><a
+                                                href="#" class="verse-link hover:underline text-white"><a href="#"
+                                                    class="verse-link hover:underline text-white"
+                                                    data-reference="Gênesis+12:5">12:5</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="mt-4 text-lg text-gray-600">Gênesis 11:1-12:5. Tradução e Design Literário por Tim Mackie para
+            BibleProject Classroom: Abraão (2021).</p>
 
-  <h3 class="sub reveal"><span class="lang-pt">1. Criação e Bênção</span><span class="lang-en">1. Creation and Blessing</span></h3>
-  <p class="body reveal"><span class="lang-pt">Deus traz ordem/vida/bênção a partir do caos/águas/morte/maldição. Palavras-chave: vida, bênção, criar, firmar, semente, brotar, crescer, fruto, frutificar e multiplicar. Também sete, plenitude e juramento (todos grafados <span class="heb">שבע</span>). Imagens-chave: terra seca, refúgio, segurança, ordem.</span><span class="lang-en">God brings order/life/blessing out of chaos/waters/death/curse. Key words: life, blessing, create, establish, seed, sprout, grow, fruit, fruitful and multiply. Also seven, fullness, and oath (all spelled <span class="heb">שבע</span>). Key images: dry land, refuge, safety, order.</span></p>
+        <p class="mt-8 mb-6 text-lg text-slate-700">Esses ciclos temáticos estabelecem um padrão narrativo e uma melodia
+            temática que recicla, desenvolve e avança a cada nova geração. A melodia básica é assim:</p>
+        <div class="space-y-6 text-slate-700">
+            <div>
+                <h3 class="text-xl font-bold">1. Criação e Bênção</h3>
+                <ul class="list-inside list-disc space-y-1 pl-4">
+                    <li>Deus traz ordem/vida/bênção a partir do caos/águas/morte/maldição.</li>
+                    <li>Palavras-chave: vida, bênção, criar, estabelecer, semente, brotar, crescer, fruto, frutífero e
+                        multiplicar. Também sete, plenitude e juramento.</li>
+                    <li>Imagens-chave: terra seca, refúgio, segurança, ordem.</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold">2. Insensatez, Teste e Falha (a.k.a. “a queda tola”)</h3>
+                <ul class="list-inside list-disc space-y-1 pl-4">
+                    <li>Deus convida um parceiro humano escolhido para compartilhar da ordem/vida/bênção, o que coloca
+                        uma decisão/teste de sua confiabilidade sobre a mesa.</li>
+                    <li>O parceiro escolhido por Deus falha/tem sucesso no teste, geralmente envolvendo
+                        engano/divisão/violência.</li>
+                    <li>A mesma pessoa/próxima geração enfrenta sua própria oportunidade e teste e falha/tem sucesso,
+                        geralmente envolvendo uma expressão intensificada de engano/divisão/violência.</li>
+                    <li>A sequência crescente de testes e falhas leva a uma separação entre os personagens principais,
+                        de modo que uma pessoa ou família se separa do resto e é escolhida por Deus para um novo futuro.
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold">3. Des-criação e Re-criação</h3>
+                <ul class="list-inside list-disc space-y-1 pl-4">
+                    <li>Des-criação: Deus provoca uma inversão do nº 1 acima, geralmente uma escalada de
+                        caos/morte/maldição.</li>
+                    <li>A partir dessa des-criação, Deus escolhe/preserva um remanescente/semente e inicia um novo
+                        movimento de re-criação através deles (frequentemente marcado por alianças).</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold">4. Repetição</h3>
+                <div class="my-8">
+                    <div class="mx-auto max-w-6xl">
+                        <div class="flex items-stretch gap-4">
+                            <div class="flex-1 rounded-lg border-2 border-cyan-500 bg-cyan-100 p-4">
+                                <h2 class="mb-2 text-lg font-bold">Criação</h2>
+                                <ul class="list-inside list-disc space-y-2 text-gray-800">
+                                    <li>A partir das trevas e da desordem</li>
+                                    <li>Ordem / vida / bênção / descanso / semente / fruto</li>
+                                    <li>Padrões de 3+1 / 7 / 10</li>
+                                </ul>
+                            </div>
+                            <div class="flex-[2.5] rounded-lg border-2 border-slate-500 p-4">
+                                <h2 class="mb-4 text-center text-lg font-bold">O Teste (também conhecido como "A Queda
+                                    Insensata")</h2>
+                                <div class="flex min-h-90 flex-1 gap-4">
+                                    <div class="max-h-100 flex-1 rounded-lg border-2 border-slate-400 bg-white p-4">
+                                        <h3 class="font-bold">Passar/Falhar</h3>
+                                        <ul class="mt-2 list-inside list-disc space-y-2 text-gray-800">
+                                            <li>Engano</li>
+                                            <li>Fazer o que é "bom" aos seus próprios olhos</li>
+                                            <li>Divisão</li>
+                                        </ul>
+                                    </div>
+                                    <div class="flex-1 rounded-lg border-2 border-slate-400 bg-white p-4">
+                                        <h3 class="font-bold">Passar/Falhar</h3>
+                                        <ul class="mt-2 list-inside list-disc space-y-2 text-gray-800">
+                                            <li>Engano</li>
+                                            <li>Fazer o que é "bom" aos seus próprios olhos</li>
+                                            <li>Divisão</li>
+                                        </ul>
+                                    </div>
+                                    <div class="flex-1 rounded-lg border-2 border-slate-400 bg-white p-4">
+                                        <h3 class="font-bold">Passar/Falhar</h3>
+                                        <ul class="mt-2 list-inside list-disc space-y-2 text-gray-800">
+                                            <li>Engano</li>
+                                            <li>Fazer o que é "bom" aos seus próprios olhos</li>
+                                            <li>Divisão</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-1 rounded-lg border-2 border-cyan-500 bg-cyan-100 p-4">
+                                <h2 class="mb-2 text-lg font-bold">Des-criação e Re-criação</h2>
+                                <ul class="list-inside list-disc space-y-2 text-gray-800">
+                                    <li>Desordem / morte / maldição</li>
+                                    <li>Resgate do remanescente</li>
+                                    <li>Padrões de 3+1 / 7 / 10</li>
+                                    <li>Nova ordem / vida / bênção através da aliança</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-gray-600">Gênesis 1:1-11:26. Tradução e Design Literário por Tim Mackie para
+                            BibleProject Classroom: Abraão (2021).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mx-auto w-full max-w-4xl mb-10">
+        <p class="text_namestext-lg leading-relaxed text-slate-700">As histórias de Avraham são organizadas de acordo
+            com essa
+            mesma melodia temática, à medida que o ciclo se repete nos níveis macro, médio e micro de cada parte da
+            história.</p>
+        <h2 class="my-8 text-2xl font-bold text-slate-800">Questão para Reflexão</h2>
+        <div class="rounded-lg border border-slate-200 bg-slate-50 p-6">
+            <p class="text-lg text-slate-700">Como os autores bíblicos ligam a história de Avraham ao ciclo de temas em
+                Gênesis 1-11?</p>
+        </div>
+    </div>
+    </div>
 
-  <h3 class="sub reveal"><span class="lang-pt">2. Loucura, Teste e Fracasso (também chamado de &ldquo;a queda tola&rdquo;)</span><span class="lang-en">2. Folly, Test, and Failure (a.k.a. &ldquo;the foolish fall&rdquo;)</span></h3>
-  <p class="body reveal"><span class="lang-pt">Deus convida um parceiro humano escolhido a compartilhar da ordem/vida/bênção, o que coloca sobre a mesa uma decisão/teste de sua confiabilidade. O parceiro escolhido de Deus falha ou passa no teste, geralmente envolvendo engano/divisão/violência. A mesma pessoa/próxima geração enfrenta sua própria oportunidade e teste e falha ou passa, geralmente envolvendo uma expressão intensificada de engano/divisão/violência. A sequência escalada de testes e fracassos leva a uma separação entre os personagens-chave, de modo que uma pessoa ou família se divide das demais e é escolhida por Deus para um novo futuro.</span><span class="lang-en">God invites a chosen human partner to share in the order/life/blessing, which places a decision/test of their trustworthiness on the table. God&rsquo;s chosen partner fails/succeeds the test, usually involving deception/division/violence. The same person/next generation faces their own opportunity and test and fails/succeeds, usually involving an intensified expression of deception/division/violence. The escalating sequence of tests and failures leads to a separation between the key characters so that one person or family splits off from the rest and is chosen by God for a new future.</span></p>
 
-  <h3 class="sub reveal"><span class="lang-pt">3. Des-criação e Re-criação</span><span class="lang-en">3. De-creation and Re-creation</span></h3>
-  <p class="body reveal"><span class="lang-pt">Des-criação: Deus provoca uma inversão do item 1 acima, geralmente uma escalada de caos/morte/maldição. A partir dessa des-criação, Deus escolhe/preserva um remanescente/semente e inicia um novo movimento de re-criação por meio dele (frequentemente marcado por alianças e trocadilhos com a raiz hebraica <span class="heb">שבע</span>, &ldquo;sete/plenitude/juramento&rdquo;, ou <span class="heb">ברית</span>, &ldquo;aliança&rdquo;).</span><span class="lang-en">De-creation: God brings about an inversion of #1 above, usually an escalation of chaos/death/curse. Out of that de-creation, God chooses/preserves a remnant/seed and begins a new movement of re-creation through them (often marked by covenants and wordplays on the Hebrew root <span class="heb">שבע</span>, &ldquo;seven/fullness/oath,&rdquo; or <span class="heb">ברית</span>, &ldquo;covenant&rdquo;).</span></p>
+    <script src="../js/verse-modal.js"></script>
 
-  <h3 class="sub reveal"><span class="lang-pt">4. Pressione Repetir</span><span class="lang-en">4. Press Repeat</span></h3>
-  <div class="overflow-x-auto reveal" style="margin:1.5rem 0;">
-    <table class="doc-table" style="min-width:560px;">
-      <thead><tr><th>O Teste (a.k.a. &ldquo;A Queda Tola&rdquo;)</th></tr></thead>
-      <tbody>
-        <tr><td><span class="lang-pt"><strong>Criação</strong> &mdash; A partir das trevas e da desordem: ordem / vida / bênção / descanso / semente / fruto</span><span class="lang-en"><strong>Creation</strong> &mdash; Out of darkness &amp; disorder: Order / life / blessing / rest / seed / fruit</span></td></tr>
-        <tr><td><span class="lang-pt"><strong>Passa/Falha</strong> &mdash; Engano; fazer o &ldquo;bem&rdquo; aos próprios olhos; divisão. Padrões de 3+1 / 7 / 10</span><span class="lang-en"><strong>Pass/Fail</strong> &mdash; Deception; Doing &ldquo;good&rdquo; in one&rsquo;s eyes; Division. Patterns of 3+1 / 7 / 10</span></td></tr>
-        <tr><td><span class="lang-pt"><strong>Des-criação &amp; Re-criação</strong> &mdash; Desordem / morte / maldição; resgate do remanescente; nova ordem / vida / bênção através da aliança</span><span class="lang-en"><strong>De-Creation &amp; Re-Creation</strong> &mdash; Disorder / death / curse; Rescue of remnant; New order / life / blessing through covenant</span></td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="caption reveal"><span class="lang-pt"><em>Gênesis 1:1&ndash;11:26</em>. Tradução e Design Literário por Tim Mackie para a BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Genesis 1:1&ndash;11:26</em>. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
-
-  <h3 class="sub reveal"><span class="lang-pt">As Histórias de Avraham Organizadas Segundo a Mesma Melodia Temática</span><span class="lang-en">The Avraham Stories Organized by the Same Thematic Melody</span></h3>
-  <p class="body reveal"><span class="lang-pt">As histórias de Avraham são organizadas de acordo com essa mesma melodia temática à medida que o ciclo se repete no nível macro, médio e micro de cada parte da história.</span><span class="lang-en">The Avraham stories are organized according to this same thematic melody as the cycle replays itself on the macro-level, medium-level, and micro-level of each part of the story.</span></p>
-
-  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Questão para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
-  <p class="body reveal"><span class="lang-pt">Como os autores bíblicos ligam a história de Avraham ao ciclo de temas em Gênesis 1&ndash;11?</span><span class="lang-en">How do the biblical authors link the Avraham story to the cycle of themes in Genesis 1&ndash;11?</span></p>
-
-    <section class="scripture reveal">
-    <h2 class="section"><span class="lang-pt">Traduções dos Versículos (Inglês)</span><span class="lang-en">Verse Translations (English)</span></h2>
-    <div class="v-outer"><span class="ref">GEN 1:1-2</span><div class="v-line"><span class="lang-en">Creation Out of Waters                                                                    Genesis 2:4-5:32                                                                                                                     De-Creation by Water 1:3-13                 1:14-31                                          2:4-3:24                                            4:1-26                           5:1-32                                          6:1-7:17a                     8:6-9:17 1:1-2                                                                2:1-3              Folly &amp; Fallout 1st Generation                       Folly &amp; Fallout 2nd Generation   Divided Lineage 3 Sons                                            7:17b-8:5 Day 1                 Day 4 Day 2                 Day 5 2:4-17                             3:14-24           4:1-16          4:17-26         5:1-2           5:3-27         5:28-32 Day 3                 Day 6 2:18-3:13</span></div></div>
-    <div class="v-outer"><span class="ref">GEN 1:1-9</span><div class="v-line"><span class="lang-en">Genesis 6:1-9:17                                                                                                                                                                                   Genesis 11:1-9 New Creation Out of Water                    Genesis 9:18-10:32                                                                                                                                    De-Creation by Scattering 6:1-7:17a                     8:6-9:17        9:18-29                                               10:1-32                                                                                         11:1-2                                                   11:8-9 7:17b-8:5                  Folly &amp; Fallout 1st &amp; 2nd Generation                Divided Lineage 3 Sons                                                                                            11:3-7 9:18-19                     9:28-29               10:1                                                                        10:32                              11:3-4      11:5             11:6-7 9:20-27                                             10:2-5             10:6-20               10:21-31 Japheth             Ham                  Shem</span></div></div>
-    <div class="v-outer"><span class="ref">GEN 11:1-9</span><div class="v-line"><span class="lang-en">New Creation by Scattering                                      Genesis 11:10-26                           De-Creation by Death, New Creation by Blessing Divided Lineage, 10 Generations + 3 Sons 11:1-2                                               11:8-9                                               11:27-32                                        12:1-5 11:3-7                                          11:10a                         11:26b 11:27-28          11:29-30     11:31-32        12:1-3       12:4       12:5 11:10b-26a 11:3-4       11:5    11:6-7</span></div></div>
-    <div class="v-outer"><span class="ref">GEN 11:1-12</span><div class="v-line"><span class="lang-en">These thematic cycles set up a narrative pattern and thematic melody that recycles, develops, and advances with each new generation. The basic melody goes like this. 1. Creation and Blessing God brings order/life/blessing out of chaos/waters/death/curse. Key words: life, blessing, create, establish, seed, sprout, grow, fruit, fruitful and multiply. Also seven, fullness, and oath (all spelled ‫(שבע‬. Key images: dry land, refuge, safety, order. 2. Folly, Test, and Failure (a.k.a. “the foolish fall”) God invites a chosen human partner to share in the order/life/blessing, which places a decision/test of their trustworthiness on the table. God’s chosen partner fails/succeeds the test, usually involving deception/division/violence. The same person/next generation faces their own opportunity and test and fails/succeeds, usually involving an intensified expression of deception/division/violence. The escalating sequence of tests and failures leads to a separation between the key characters so that one person or family splits off from the rest and is chosen by God for a new future. 3. De-creation and Re-creation De-creation: God brings about an inversion of #1 above, usually an escalation of chaos/death/curse. Out of that de-creation, God chooses/preserves a remnant/seed and begins a new movement of re-creation through them (often marked by covenants and wordplays on the Hebrew root ‫שבע‬, “seven/fullness/oath,” or ‫ברית‬, “covenant”). 4. Press Repeat The Test (a.k.a. “The Foolish Fall”) Creation                                                                                                                                                           De-Creation &amp; Re- Pass/Fail                            Pass/Fail                                 Pass/Fail Creation Out of darkness &amp; Deception                           Deception                                Deception disorder                                                                                                                                                         Disorder / death / Doing “good” in one's               Doing “good” in one's                    Doing “good” in one's Order / life / blessing                                                                                                                                          curse eyes                                eyes                                     eyes / rest / seed / fruit                                                                                                                                            Rescue of remnant Division                            Division                                 Division Patterns of 3+1 / 7 / 10                                                                                                                                         Patterns of 3+1 / 7 / 10 New order / life / blessing through covenant</span></div></div>
-  </section>
-
-  <div class="page-footer">
-    <span>Class Notes: Abraham</span>
-    <span><span class="lang-pt">Sessão 3 · O Design Literario de Genesis 1-11</span><span class="lang-en">Session 3 · The Literary Design of Genesis 1-11</span></span>
-  </div>
-</div>
-<script>
-  function setLang(lang) {
-    document.documentElement.setAttribute('lang', lang);
-    try { localStorage.setItem('s3-lang', lang); } catch(e) {}
-    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
-    if (lang === 'pt') {
-      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
-      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
-    } else {
-      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
-      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
-    }
-  }
-  var saved = 'pt'; try { saved = localStorage.getItem('s3-lang') || 'pt'; } catch(e) {}
-  setLang(saved);
-
-  (function () {
-    var bar = document.getElementById('reading-progress');
-    function update() {
-      var h = document.documentElement;
-      var max = h.scrollHeight - h.clientHeight;
-      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
-    }
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
-  })();
-
-  (function () {
-    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var targets = document.querySelectorAll('.reveal');
-    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
-    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
-    targets.forEach(function (el) { io.observe(el); });
-  })();
-</script>
-
-  <script src="../js/verse-modal.js"></script>
 </body>
+
 </html>

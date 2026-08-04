@@ -1,239 +1,719 @@
-<!DOCTYPE html>
-<html lang="pt">
+<!doctype html>
+<html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Historia de Abraao como um Todo</title>
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
-<style>
-  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
-  html[lang="pt"] .lang-en { display: none !important; }
-  html[lang="en"] .lang-pt { display: none !important; }
-  .heb { font-family: 'SBL Hebrew','Times New Roman',serif; font-size: 1.05em; direction: rtl; unicode-bidi: embed; }
-
-  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
-  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
-  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
-  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
-  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
-  .ref:hover { color: #2563eb; }
-  ul.bullets { list-style: none; padding: 0; }
-  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
-  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
-  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-
-  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
-  .scripture:hover { border-left-color: #9aa7b8; }
-  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
-  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
-  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
-  .scripture .innerbox { background: #f6f8fa; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1rem; }
-  .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem; }
-
-  /* ---------- Macro design (3 columns) ---------- */
-  .macro { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; align-items: start; margin: 2rem 0 .75rem; }
-  .mcol { border: 3px solid #2e7d4e; border-radius: 12px; padding: .9rem .9rem 1rem; background: #fff; }
-  .mcol.dark { border-color: #3d4453; margin-top: 1.3rem; }
-  .mtag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 3px 10px; border-radius: 5px; }
-  .mtag-green { background: #2e7d4e; } .mtag-dark { background: #3d4453; }
-  .mcol-title { font-size: 1rem; font-weight: 800; color: #17181a; margin: .55rem 0 .8rem; line-height: 1.3; }
-  .mboxes { display: flex; gap: .55rem; }
-  .mbox { flex: 1; border: 3px solid #b9c2cf; border-radius: 9px; background: #fff; min-height: 15.5rem; position: relative; transition: box-shadow .25s, transform .25s; }
-  .mbox:hover { box-shadow: 0 8px 20px -10px rgba(30,41,59,.4); transform: translateY(-3px); }
-  .mbox .mhdr { position: absolute; top: .55rem; left: .55rem; right: .55rem; background: #7d8697; color: #fff; font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 5px; }
-  .mbox.s1 { margin-top: 0; } .mbox.s2 { margin-top: 2.4rem; min-height: 13rem; } .mbox.s3 { margin-top: 2.4rem; min-height: 13rem; }
-  @media (max-width: 860px) { .macro { grid-template-columns: 1fr; } .mcol.dark { margin-top: 0; } .mbox, .mbox.s2, .mbox.s3 { min-height: 7.5rem; margin-top: 0; } }
-
-  /* ---------- Chiasm staircase boxes ---------- */
-  .cx { border: 3px solid; border-radius: 12px; padding: 1.35rem 1.5rem 1.2rem; margin: 1.15rem 0; transition: box-shadow .25s, transform .25s; }
-  .cx:hover { box-shadow: 0 12px 26px -16px rgba(23,24,26,.45); transform: translateY(-2px); }
-  .cx-tag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 1px 13px; border-radius: 6px; margin-bottom: .7rem; }
-  .cx h4 { font-weight: 800; font-size: 1.06rem; color: #17181a; margin-bottom: .7rem; }
-  .cx ul.bullets > li { font-size: .99rem; margin-bottom: .45rem; }
-  .cx-slate  { border-color: #6b7280; background: #e9ebee; } .cx-slate  .cx-tag { background: #6b7280; }
-  .cx-rust   { border-color: #c0562f; background: #f7e6dd; } .cx-rust   .cx-tag { background: #c0562f; }
-  .cx-rose   { border-color: #c04a63; background: #f7e0e5; } .cx-rose   .cx-tag { background: #c04a63; }
-  .cx-blue   { border-color: #5468d4; background: #e4e8f9; } .cx-blue   .cx-tag { background: #5468d4; }
-  .cx-green  { border-color: #2e7d4e; background: #dfeee2; } .cx-green  .cx-tag { background: #2e7d4e; }
-  .cx-purple { border-color: #8b5cf6; background: #efe2f8; } .cx-purple .cx-tag { background: #8b5cf6; }
-  .cx-tan    { border-color: #8a6d3b; background: #ece7dc; } .cx-tan    .cx-tag { background: #8a6d3b; }
-
-  /* ---------- verse chips (Gen 18 translation) ---------- */
-  .k { display: inline; padding: 3px 9px; border-radius: 6px; font-weight: 700; color: #fff; line-height: 1.85; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
-  .k-blue   { background: #3b82c4; } .k-green  { background: #2e7d4e; } .k-rose { background: #c04a63; }
-  .k-gray   { background: #6b7280; } .k-rust   { background: #bf5a2b; } .k-teal { background: #0d7d8c; }
-  .k-purple { background: #7c5ad0; } .k-brown  { background: #8a6d3b; }
-  .t-teal { color: #0d8aa0; font-weight: 700; }
-
-  .v-outer { border: 3px solid #e3e7ee; border-radius: 20px; padding: 1.4rem 1.5rem; margin: 1.4rem 0; }
-  .v-black { border: 3px solid #17181a; border-radius: 16px; padding: 1.3rem 1.5rem; margin: 1.1rem 0; }
-  .v-light { border: 3px solid #e3e7ee; border-radius: 16px; padding: 1.2rem 1.4rem; margin: 1.1rem 0; }
-  .v-line { font-size: 1.06rem; line-height: 2.1; color: #1f2937; }
-  .v-div { border: 0; border-top: 1px solid #e6eaf0; margin: 1.1rem 0; }
-  .vbar-b { border-left: 5px solid #5468d4; padding-left: .8rem; }
-  .lbl { color: #6b7280; font-weight: 600; font-size: .85rem; margin-right: .2rem; }
-  sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px; }
-  .i1 { padding-left: 1.6rem; } .i2 { padding-left: 3.2rem; } .i3 { padding-left: 4.8rem; }
-
-  /* ---------- tables ---------- */
-  .doc-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 3px solid #d9dee6; border-radius: 14px; overflow: hidden; background: #fff; }
-  .doc-table th { background: #e2e6eb; text-align: left; padding: 1rem 1.3rem; font-weight: 800; font-size: 1.02rem; color: #17181a; }
-  .doc-table td { padding: 1.1rem 1.3rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.78; font-size: .97rem; color: #24262a; transition: background .2s; }
-  .doc-table td + td { border-left: 1px solid #e5e7eb; }
-  .doc-table tbody tr:hover td { background: #f8fafc; }
-  .doc-table tfoot td { border-top: 1px solid #d1d5db; background: #fbfcfd; color: #5b6472; font-size: .92rem; }
-  .kblue-soft { background: #cddcf5; color: #2b5fb0; padding: 2px 8px; border-radius: 6px; font-weight: 700; }
-
-  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
-  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
-  .reveal.visible { opacity: 1; transform: none; }
-
-  @media print {
-    @page { margin: 14mm 12mm; }
-    #reading-progress, .print\:hidden { display: none !important; }
-    .reveal { opacity: 1 !important; transform: none !important; }
-    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-    .max-w-4xl { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
-    h1.title, h2.section, h3.sub { break-after: avoid-page; }
-    .cx, .v-outer, .v-black, .v-light, .doc-table tr, .scripture, .mcol { break-inside: avoid; }
-  }
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .cx, .mbox { transition: none; } }
-</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sessão 2: A História de Abraão como um Todo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
 
-<div id="reading-progress" aria-hidden="true"></div>
+<body class="bg-white font-sans text-slate-800">
+    <div class="p-4">
+        <a href="index.html" class="text-sky-600 hover:underline">← Voltar para o Índice</a>
+    </div>
 
-<div class="fixed left-4 top-4 z-50 print:hidden">
-  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
-    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
-  </a>
-</div>
-<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
-  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
-    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
-  </button>
-  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm shadow-sm">
-    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
-    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
-  </div>
-</div>
+    <div id="sessao-2" class="mt-8 px-4 md:mt-16 md:px-6">
+        <div class="mx-auto max-w-7xl">
+            <h1 class="mb-8 border-b pb-4 text-3xl font-bold text-slate-900 md:text-4xl">Sessão 2: A História de Abraão
+                como um Todo</h1>
+            <h2 class="mb-3 text-2xl font-bold text-slate-800">Pontos-Chave</h2>
+            <ul class="mb-10 list-inside list-disc space-y-2 text-lg text-slate-700">
+                <li>A narrativa bíblica contém apenas certos eventos da vida de Avraham e Sara. Os autores bíblicos
+                    selecionam eventos específicos para comunicar uma mensagem intencional.</li>
+                <li>Os autores bíblicos projetam o texto em seções arranjadas simetricamente, muitas vezes em grupos de
+                    três, para ajudar os leitores a fazer conexões, comparações e contrastes.</li>
+            </ul>
 
-<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
-<h1 class="title reveal"><span class="lang-pt">Sessão 2: A História de Abraão como um Todo</span><span class="lang-en">Session 2: The Abraham Story as a Whole</span></h1>
-  <hr class="rule">
+            <h2 class="mb-6 text-3xl font-bold text-slate-800">O Macro Design de Gênesis 11:27-25:18</h2>
 
-  <h3 class="sub reveal" style="margin-top:0;"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
-  <ul class="bullets reveal" style="margin-bottom:2.5rem;">
-    <li><span class="lang-pt">A narrativa bíblica contém apenas certos eventos das vidas de Avraham e Sara. Os autores bíblicos selecionam eventos específicos para comunicar uma mensagem intencional.</span><span class="lang-en">The biblical narrative contains only certain events from the lives of Avraham and Sarah. The biblical authors select specific events to communicate an intentional message.</span></li>
-    <li><span class="lang-pt">Os autores bíblicos organizam o texto em seções simetricamente arranjadas, frequentemente em grupos de três, para ajudar os leitores a fazer conexões, comparações e contrastes.</span><span class="lang-en">The biblical authors design the text in symmetrically arranged sections, often in groups of three, to help readers make connections, comparisons, and contrasts.</span></li>
-  </ul>
+            <!-- Cards de Introdução (Verticais) -->
+            <div class="flex flex-col items-center gap-6">
+                <!-- Card 1 -->
+                <div class="w-full max-w-2xl rounded-xl border-2 border-slate-500 bg-white shadow-md">
+                    <div class="p-3">
+                        <div class="inline-block rounded-lg bg-slate-700 px-2 py-1 text-sm font-bold text-white">Gênesis
+                            <a href="#" class="verse-link text-white hover:underline"
+                                data-reference="Gênesis+11:27-14:24">11:27-14:24</a>
+                        </div>
+                        <h1 class="mt-2 text-xl font-bold text-slate-800">Da Babilônia para Hebrom e Sodoma</h1>
+                    </div>
+                    <div class="space-y-3 px-3 pb-3">
+                        <div class="rounded-lg border-2 border-gray-400 p-3">
+                            <div class="inline-block rounded-md bg-gray-500 px-1 py-1 text-sm font-bold text-white">
+                                <a href="#" class="verse-link text-white hover:underline"
+                                    data-reference="Gênesis+11:27-14:5">11:27-14:24</a>
+                            </div>
+                            <ul class="mt-3 list-inside list-disc space-y-2 text-slate-800">
+                                <li>
+                                    <span class="font-bold"><a href="#" class="verse-link hover:underline"
+                                            data-reference="Gênesis+11:27-12:5">11:27-12:5</a></span> Da Babilônia para
+                                    Canaã
+                                </li>
+                                <li>
+                                    <span class="font-bold"><a href="#" class="verse-link hover:underline"
+                                            data-reference="Gênesis+12:6-13:18">12:6-13:18</a></span> De Canaã ao Egito
+                                    e de volta a Canaã
+                                </li>
+                                <li>
+                                    <span class="font-bold"><a href="#" class="verse-link hover:underline"
+                                            data-reference="Gênesis+14:1-24">14:1-24</a></span> Abrão resgata Ló da
+                                    aliança babilônica
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="rounded-lg border-2 border-gray-400 p-3">
+                            <div class="inline-block rounded-md bg-gray-500 px-1 py-1 text-sm font-bold text-white">
+                                <a href="#" class="verse-link text-white hover:underline"
+                                    data-reference="Gênesis+15:1-17:27">15:1-17:27</a>
+                            </div>
+                            <ul class="mt-3 list-inside list-disc space-y-2 text-slate-800">
+                                <li>
+                                    <span class="font-bold"><a href="#" class="verse-link hover:underline"
+                                            data-reference="Gênesis+15:1-21">15:1-21</a></span> A fé de Abrão e a
+                                    aliança
+                                </li>
+                                <li>
+                                    <span class="font-bold"><a href="#" class="verse-link hover:underline"
+                                            data-reference="Gênesis+16:1-16">16:1-16</a></span> A falha com Hagar
+                                </li>
+                                <li>
+                                    <span class="font-bold"><a href="#" class="verse-link hover:underline"
+                                            data-reference="Gênesis+17:1-27">17:1-27</a></span> A circuncisão e a
+                                    aliança renovada
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="rounded-lg border-2 border-gray-400 p-3">
+                            <div class="inline-block rounded-md bg-gray-500 px-2 py-1 text-sm font-bold text-white">
+                                <a href="#" class="verse-link text-white hover:underline"
+                                    data-reference="Gênesis+18:1-19:38">18:1-19:38</a>
+                            </div>
+                            <ul class="mt-3 list-inside list-disc space-y-2 text-slate-800">
+                                <li>
+                                    <span class="font-bold"><a href="#" class="verse-link hover:underline"
+                                            data-reference="Gênesis+18:1-15">18:1-15</a></span> Promessa de um filho a
+                                    Abrão e Sara
+                                </li>
+                                <li>
+                                    <span class="font-bold"><a href="#" class="verse-link hover:underline"
+                                            data-reference="Gênesis+18:16-33">18:16-33</a></span> Abrão intercede por Ló
+                                    em Sodoma
+                                </li>
+                                <li>
+                                    <span class="font-bold"><a href="#" class="verse-link hover:underline"
+                                            data-reference="Gênesis+19:1-39">19:1-39</a></span> Ló é resgatado da ruína
+                                    de Sodoma
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
-  <h2 class="section reveal"><span class="lang-pt">O Design Macroliterário de Gênesis 11:27&ndash;25:18</span><span class="lang-en">The Macro Design of Genesis 11:27&ndash;25:18</span></h2>
-  <p class="body reveal"><span class="lang-pt">A história de Avraham em Gênesis se organiza em três grandes movimentos, cada um espelhando o padrão de Gênesis 1&ndash;11.</span><span class="lang-en">The story of Avraham in Genesis is organized into three large movements, each mirroring the pattern of Genesis 1&ndash;11.</span></p>
+                <!-- Card 2 -->
+                <div class="mt-6 w-full max-w-2xl rounded-xl border-2 border-slate-500 bg-white shadow-md">
+                    <div class="p-3">
+                        <div class="inline-block rounded-lg bg-slate-700 px-2 py-1 text-sm font-bold text-white">
+                            <a href="#" class="verse-link text-white hover:underline"
+                                data-reference="Gênesis+20:1-22:19">Gênesis 20:1-22:19</a>
+                        </div>
+                        <h1 class="mt-2 text-xl font-bold text-slate-800">De Sodoma e Hebrom para o Monte Moriá</h1>
+                    </div>
+                    <div class="space-y-3 px-3 py-3">
+                        <div class="rounded-lg border-2 border-gray-400 p-3">
+                            <div class="inline-block rounded-md bg-gray-500 px-2 py-1 text-sm font-bold text-white">
+                                <a href="#" class="verse-link text-white hover:underline"
+                                    data-reference="Gênesis+20:1-18">20:1-18</a>
+                            </div>
+                            <h2 class="text-md mt-2 font-semibold text-slate-800">Abraão Engana Abimeleque sobre Sara
+                            </h2>
+                            <ul class="mt-2 list-inside list-disc space-y-1 text-slate-700">
+                                <li><a href="#" class="verse-link text-slate-700 hover:underline"
+                                        data-reference="Gênesis+20:1-2">20:1-2</a></li>
+                                <li><a href="#" class="verse-link text-slate-700 hover:underline"
+                                        data-reference="Gênesis+20:3-13">20:3-13</a></li>
+                                <li><a href="#" class="verse-link text-slate-700 hover:underline"
+                                        data-reference="Gênesis+20:14-18">20:14-18</a></li>
+                            </ul>
+                        </div>
+                        <div class="rounded-lg border-2 border-gray-400 p-3">
+                            <div class="inline-block rounded-md bg-gray-500 px-2 py-1 text-sm font-bold text-white">
+                                <a href="#" class="verse-link text-white hover:underline"
+                                    data-reference="Gênesis+21:1-34">21:1-21:34</a>
+                            </div>
+                            <h2 class="text-md mt-2 font-semibold text-slate-800">Isaque nasce e é separado de Hagar e
+                                Ismael</h2>
+                            <ul class="mt-3 list-inside list-disc space-y-2 text-slate-800">
+                                <li>
+                                    <span class="font-bold"><a href="#"
+                                            class="verse-link text-slate-700 hover:underline"
+                                            data-reference="Gênesis+21:1-21">21:1-21</a> Isaque nasce e é separado de
+                                        Hagar e Ismael</span>
+                                </li>
+                                <li>
+                                    <span class="font-bold"><a href="#"
+                                            class="verse-link text-slate-700 hover:underline"
+                                            data-reference="Gênesis+21:22-34">21:22-34</a> Abraão e Abimeleque unidos
+                                        por uma aliança</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="rounded-lg border-2 border-gray-400 p-3">
+                            <div class="inline-block rounded-md bg-gray-500 px-2 py-1 text-sm font-bold text-white">
+                                <a href="#" class="verse-link text-white hover:underline"
+                                    data-reference="Gênesis+22:1-19">22:1-19</a>
+                            </div>
+                            <h2 class="text-md mt-2 font-semibold text-slate-800">Abraão Perde e Recupera Isaque</h2>
+                            <ul class="mt-2 list-inside list-disc space-y-1 text-slate-700">
+                                <li><a href="#" class="verse-link text-slate-700 hover:underline"
+                                        data-reference="Gênesis+22:1-3">22:1-3</a></li>
+                                <li><a href="#" class="verse-link text-slate-700 hover:underline"
+                                        data-reference="Gênesis+22:4-14">22:4-14</a></li>
+                                <li><a href="#" class="verse-link text-slate-700 hover:underline"
+                                        data-reference="Gênesis+22:15-19">22:15-19</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
-  <h3 class="sub reveal"><span class="lang-pt">Gênesis 11:27&ndash;19:38 &mdash; Da Babilônia para Hebrom e Sodoma</span><span class="lang-en">Genesis 11:27&ndash;19:38 &mdash; From Babylon to Hebron and Sodom</span></h3>
-  <ul class="bullets reveal">
-    <li><span class="lang-pt"><strong>11:27&ndash;14:24</strong> Promessas e Problemas com Ló</span><span class="lang-en"><strong>11:27&ndash;14:24</strong> Promises &amp; Lot Problems</span>
-      <ul class="bullets"><li><span class="lang-pt">11:27&ndash;12:5 Da Babilônia para Canaã</span><span class="lang-en">11:27&ndash;12:5 From Babylon to Canaan</span></li>
-      <li><span class="lang-pt">12:6&ndash;13:18 Da Canaã para o Egito e de volta a Canaã</span><span class="lang-en">12:6&ndash;13:18 From Canaan to Egypt back to Canaan</span></li>
-      <li><span class="lang-pt">14:1&ndash;24 Avram resgata Ló de uma aliança babilônica</span><span class="lang-en">14:1&ndash;24 Avram rescues Lot from Babylonian alliance</span></li></ul></li>
-    <li><span class="lang-pt"><strong>15:1&ndash;17:27</strong> Problemas da Promessa da Descendência</span><span class="lang-en"><strong>15:1&ndash;17:27</strong> Problems of the Seed Promise</span>
-      <ul class="bullets"><li><span class="lang-pt">15:1&ndash;21 A fé de Avram e a aliança</span><span class="lang-en">15:1&ndash;21 Avram&rsquo;s faith and the covenant</span></li>
-      <li><span class="lang-pt">16:1&ndash;16 O fracasso com Hagar</span><span class="lang-en">16:1&ndash;16 The failure with Hagar</span></li>
-      <li><span class="lang-pt">17:1&ndash;27 Circuncisão e a aliança renovada</span><span class="lang-en">17:1&ndash;27 Circumcision and the covenant renewed</span></li></ul></li>
-    <li><span class="lang-pt"><strong>18:1&ndash;19:38</strong> Mais Promessas e Mais Problemas com Ló</span><span class="lang-en"><strong>18:1&ndash;19:38</strong> Promises &amp; More Lot Problems</span>
-      <ul class="bullets"><li><span class="lang-pt">18:1&ndash;15 Avram e Sara recebem a promessa de um filho</span><span class="lang-en">18:1&ndash;15 Avram and Sarah promised a son</span></li>
-      <li><span class="lang-pt">18:16&ndash;33 Avram intercede por Ló em Sodoma</span><span class="lang-en">18:16&ndash;33 Avram intercedes for Lot in Sodom</span></li>
-      <li><span class="lang-pt">19:1&ndash;39 Ló é resgatado da ruína de Sodoma</span><span class="lang-en">19:1&ndash;39 Lot is rescued out of Sodom&rsquo;s ruin</span></li></ul></li>
-  </ul>
+                <!-- Card 3 -->
+                <div class="mt-6 w-full max-w-2xl rounded-xl border-2 border-slate-500 bg-white shadow-md">
+                    <div class="p-3">
+                        <div class="inline-block rounded-lg bg-slate-700 px-2 py-1 text-sm font-bold text-white">
+                            <a href="#" class="verse-link text-white hover:underline"
+                                data-reference="Gênesis+22:20-25:18">Gênesis 22:20-25:18</a>
+                        </div>
+                        <h1 class="mt-2 text-xl font-bold text-slate-800">Do Monte Moriá para a Mesopotâmia e de Volta
+                        </h1>
+                    </div>
+                    <div class="space-y-3 px-3 pb-3">
+                        <div class="rounded-lg border-2 border-gray-400 p-3">
+                            <div class="inline-block rounded-md bg-gray-500 px-2 py-1 text-sm font-bold text-white">
+                                <a href="#" class="verse-link text-white hover:underline"
+                                    data-reference="Gênesis+22:20-24">22:20-24</a>
+                            </div>
+                            <h2 class="text-md mt-2 font-semibold text-slate-800">Nascimento de Rebeca na Mesopotâmia
+                            </h2>
+                            <ul class="mt-2 list-inside list-disc space-y-1 text-slate-700">
+                                <li><a href="#" class="verse-link text-slate-700 hover:underline"
+                                        data-reference="Gênesis+22:20-22">22:20-22</a></li>
+                                <li><a href="#" class="verse-link text-slate-700 hover:underline"
+                                        data-reference="Gênesis+22:23">22:23</a></li>
+                                <li><a href="#" class="verse-link text-slate-700 hover:underline"
+                                        data-reference="Gênesis+22:24">22:24</a></li>
+                            </ul>
+                        </div>
+                        <div class="rounded-lg border-2 border-gray-400 p-3">
+                            <div class="inline-block rounded-md bg-gray-500 px-2 py-1 text-sm font-bold text-white">
+                                <a href="#" class="verse-link text-white hover:underline"
+                                    data-reference="Gênesis+23:1-20">23:1-20</a>
+                            </div>
+                            <h2 class="text-md mt-2 font-semibold text-slate-800">Sara Morre e é Sepultada</h2>
+                            <ul class="mt-2 list-inside list-disc space-y-1 text-slate-700">
+                                <li><a href="#" class="verse-link text-slate-700 hover:underline"
+                                        data-reference="Gênesis+23:1-2">23:1-2</a></li>
+                                <li><a href="#" class="verse-link text-slate-700 hover:underline"
+                                        data-reference="Gênesis+23:3-16">23:3-16</a></li>
+                                <li><a href="#" class="verse-link text-slate-700 hover:underline"
+                                        data-reference="Gênesis+23:17-20">23:17-20</a></li>
+                            </ul>
+                        </div>
+                        <div class="rounded-lg border-2 border-gray-400 p-3">
+                            <div class="inline-block rounded-md bg-gray-500 px-2 py-1 text-sm font-bold text-white">
+                                <a href="#" class="verse-link text-white hover:underline"
+                                    data-reference="Gênesis+24:1-67">24:1-67</a>
+                            </div>
+                            <h2 class="text-md mt-2 font-semibold text-slate-800">A Jornada de Rebeca da Mesopotâmia
+                                para Canaã</h2>
+                            <ul class="mt-2 list-inside list-disc space-y-1 text-slate-700">
+                                <li><a href="#" class="verse-link text-slate-600 hover:underline"
+                                        data-reference="Gênesis+24:1-28">24:1-28</a></li>
+                                <li><a href="#" class="verse-link text-slate-600 hover:underline"
+                                        data-reference="Gênesis+24:29-51">24:29-51</a></li>
+                                <li><a href="#" class="verse-link text-slate-600 hover:underline"
+                                        data-reference="Gênesis+24:52-67">24:52-67</a></li>
+                            </ul>
+                        </div>
+                        <div class="rounded-lg border-2 border-gray-400 p-3">
+                            <div class="inline-block rounded-md bg-gray-500 px-2 py-1 text-sm font-bold text-white">
+                                <a href="#" class="verse-link text-white hover:underline"
+                                    data-reference="Gênesis+25:1-18">25:1-18</a>
+                            </div>
+                            <h2 class="text-md font-semibold text-slate-800">Abraão Morre e é Sepultado</h2>
+                            <ul class="mt-2 list-inside list-disc space-y-1 text-slate-700">
+                                <li><a href="#" class="verse-link text-slate-600 hover:underline"
+                                        data-reference="Gênesis+25:1-6">25:1-6</a></li>
+                                <li><a href="#" class="verse-link text-slate-600 hover:underline"
+                                        data-reference="Gênesis+25:7-11">25:7-11</a></li>
+                                <li><a href="#" class="verse-link text-slate-600 hover:underline"
+                                        data-reference="Gênesis+25:12-18">25:12-18</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-  <h3 class="sub reveal"><span class="lang-pt">Gênesis 20:1&ndash;22:19 &mdash; De Sodoma e Hebrom ao Monte Moriá</span><span class="lang-en">Genesis 20:1&ndash;22:19 &mdash; From Sodom and Hebron to Mount Moriah</span></h3>
-  <ul class="bullets reveal">
-    <li><span class="lang-pt"><strong>20:1&ndash;18</strong> Avraham engana Avimelek a respeito de Sara</span><span class="lang-en"><strong>20:1&ndash;18</strong> Avraham Deceives Avimelek About Sarah</span>
-      <ul class="bullets"><li><span class="lang-pt">20:1&ndash;2; 20:3&ndash;13; 20:14&ndash;18</span><span class="lang-en">20:1&ndash;2; 20:3&ndash;13; 20:14&ndash;18</span></li></ul></li>
-    <li><span class="lang-pt"><strong>21:1&ndash;21:34</strong></span><span class="lang-en"><strong>21:1&ndash;21:34</strong></span>
-      <ul class="bullets"><li><span class="lang-pt">21:1&ndash;21 Yitskhaq nasce e é separado de Hagar e Yishmael</span><span class="lang-en">21:1&ndash;21 Yitskhaq born and separated from Hagar and Yishmael</span></li>
-      <li><span class="lang-pt">21:22&ndash;34 Avraham e Avimelek unidos por aliança</span><span class="lang-en">21:22&ndash;34 Avraham and Avimelek united through covenant</span></li></ul></li>
-    <li><span class="lang-pt"><strong>22:1&ndash;19</strong> Avraham perde e reencontra Yitskhaq</span><span class="lang-en"><strong>22:1&ndash;19</strong> Avraham Loses and Regains Yitskhaq</span>
-      <ul class="bullets"><li><span class="lang-pt">22:1&ndash;3; 22:4&ndash;14; 22:15&ndash;19</span><span class="lang-en">22:1&ndash;3; 22:4&ndash;14; 22:15&ndash;19</span></li></ul></li>
-  </ul>
+            <!-- SEÇÃO VISUAL (Design Literário) -->
+            <div class="mt-12">
+                <h2 class="mb-6 text-3xl font-bold text-slate-800">A Organização Literária da História de Avraham</h2>
+            </div>
+        </div>
 
-  <h3 class="sub reveal"><span class="lang-pt">Gênesis 22:20&ndash;25:18 &mdash; Do Monte Moriá à Mesopotâmia e de Volta</span><span class="lang-en">Genesis 22:20&ndash;25:18 &mdash; From Mount Moriah to Mesopotamia and Back Again</span></h3>
-  <ul class="bullets reveal">
-    <li><span class="lang-pt"><strong>22:20&ndash;24</strong> Rivqah nasce na Mesopotâmia</span><span class="lang-en"><strong>22:20&ndash;24</strong> Rivqah Born in Mesopotamia</span></li>
-    <li><span class="lang-pt"><strong>23:1&ndash;20</strong> Sara morre e é sepultada</span><span class="lang-en"><strong>23:1&ndash;20</strong> Sarah Dies and Is Buried</span></li>
-    <li><span class="lang-pt"><strong>24:1&ndash;67</strong> A jornada de Rivqah da Mesopotâmia para Canaã</span><span class="lang-en"><strong>24:1&ndash;67</strong> Rivqah&rsquo;s Journey from Mesopotamia to Canaan</span></li>
-    <li><span class="lang-pt"><strong>25:1&ndash;18</strong> Avraham morre e é sepultado</span><span class="lang-en"><strong>25:1&ndash;18</strong> Avraham Dies and Is Buried</span></li>
-  </ul>
-  <p class="caption reveal"><span class="lang-pt"><em>Gênesis 11:27&ndash;25:18</em>. Design Literário por Tim Mackie para a BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Genesis 11:27&ndash;25:18</em>. Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
+        <!-- MACRO DESIGN VISUAL 1 -->
+        <div class="mx-auto w-full max-w-7xl">
+            <h1 class="mb-6 text-2xl font-bold text-slate-800">Da Mesopotâmia para Hebrom e Sodoma</h1>
+            <div class="flex flex-col items-stretch gap-4 xl:flex-row">
+                <!-- Coluna 1 -->
+                <div class="w-full flex-1 rounded-2xl border-2 border-slate-800 p-3">
+                    <div class="inline-block rounded-md bg-slate-700 px-3 py-1 text-xs font-bold text-white">
+                        <a href="#" class="verse-link text-white hover:underline"
+                            data-reference="Gênesis+11:27-14:24">Gênesis 11:27-14:24</a>
+                    </div>
+                    <div class="mt-2 flex flex-wrap items-center gap-2"><span
+                            class="rounded-md bg-emerald-600 px-3 py-1 text-xs font-bold text-white">Promessas</span><span
+                            class="font-bold text-slate-500">&</span><span
+                            class="rounded-md bg-sky-800 px-3 py-1 text-xs font-bold text-white">Problemas com Ló</span>
+                    </div>
+                    <div class="mt-2 flex flex-col items-stretch gap-2 md:flex-row xl:min-h-[16rem]">
+                        <div class="flex-1 rounded-xl border-2 border-emerald-400 p-2">
+                            <div class="inline-block rounded-md bg-emerald-500 px-2 py-1 text-xs font-bold text-white">
+                                <a href="#" class="verse-link text-white hover:underline"
+                                    data-reference="Gênesis+11:27-12:5">11:27-12:5</a>
+                            </div>
+                            <div class="mt-2 flex flex-col gap-2">
+                                <div class="rounded-lg border border-emerald-200 bg-emerald-50/50 p-1.5">
+                                    <div
+                                        class="inline-block min-w-max rounded-md bg-emerald-200 px-2 py-0.5 text-xs font-semibold text-emerald-800">
+                                        <a href="#" class="verse-link" data-reference="Gênesis+11:27-32">11:27-32</a>
+                                    </div>
+                                </div>
+                                <div class="rounded-lg border border-emerald-200 bg-emerald-50/50 p-1.5">
+                                    <div
+                                        class="inline-block min-w-max rounded-md bg-emerald-200 px-2 py-0.5 text-xs font-semibold text-emerald-800">
+                                        <a href="#" class="verse-link" data-reference="Gênesis+12:1-5">12:1-5</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-1 rounded-xl border-2 border-slate-300 p-2">
+                            <div class="inline-block rounded-md bg-slate-400 px-2 py-1 text-xs font-bold text-white">
+                                <a href="#" class="verse-link" data-reference="Gênesis+12:6-13:18">12:6-13:18</a>
+                            </div>
+                            <div class="mt-2 flex flex-col gap-2">
+                                <div class="rounded-lg border border-slate-200 bg-slate-50/50 p-1.5">
+                                    <div
+                                        class="inline-block min-w-max rounded-md bg-slate-200 px-2 py-0.5 text-xs font-semibold text-slate-700">
+                                        <a href="#" class="verse-link" data-reference="Gênesis+12:10-20">12:10-20</a>
+                                    </div>
+                                </div>
+                                <div class="rounded-lg border border-slate-200 bg-slate-50/50 p-1.5">
+                                    <div
+                                        class="inline-block min-w-max rounded-md bg-slate-200 px-2 py-0.5 text-xs font-semibold text-slate-700">
+                                        <a href="#" class="verse-link" data-reference="Gênesis+13:1-11">13:1-11</a>
+                                    </div>
+                                </div>
+                                <div class="rounded-lg border border-slate-200 bg-slate-50/50 p-1.5">
+                                    <div
+                                        class="inline-block min-w-max rounded-md bg-slate-200 px-2 py-0.5 text-xs font-semibold text-slate-700">
+                                        <a href="#" class="verse-link" data-reference="Gênesis+13:12-18">13:12-18</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-1 rounded-xl border-2 border-sky-800 p-2">
+                            <div class="inline-block rounded-md bg-sky-800 px-2 py-1 text-xs font-bold text-white">
+                                <a href="#" class="verse-link" data-reference="Gênesis+14:1-24">14:1-24</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-  <h3 class="sub reveal"><span class="lang-pt">A Organização Literária da História de Avraham Visualizada</span><span class="lang-en">The Literary Organization of the Avraham Story Visualized</span></h3>
-  <p class="body reveal"><span class="lang-pt">Note que cada um destes três movimentos não se alinha com nossa numeração contemporânea de capítulos, de modo que uma olhada no conteúdo destas divisões literárias pode parecer contraintuitiva. Isso se deve principalmente ao fato de que a organização literária da história de Avraham é modelada segundo a organização literária de Gênesis 1:1&ndash;11:26, tanto em seu design quanto nos temas principais explorados nas narrativas. Assim, para compreender verdadeiramente o que a história de Avraham quer dizer, precisamos recapitular a história até aqui conforme apresentada em Gênesis 1&ndash;11.</span><span class="lang-en">Notice that each of these three movements is not aligned with our contemporary chapter numbers, and so a glance at the content of these literary divisions may seem counterintuitive. This is primarily due to the fact that the literary organization of the Avraham story is patterned after the literary organization of Genesis 1:1&ndash;11:26, both in its design and in the main themes explored in the narratives. So to truly grasp what the Avraham story is about, we need to recap the story so far as it&rsquo;s presented in Genesis 1&ndash;11.</span></p>
+                <!-- Coluna 2 -->
+                <div class="w-full flex-1 rounded-2xl border-2 border-slate-800 p-3">
+                    <div class="inline-block rounded-md bg-slate-500 px-3 py-1 text-xs font-bold text-white">
+                        <a href="#" class="verse-link text-white hover:underline"
+                            data-reference="Gênesis+15:1-17:27">Gênesis 15:1-17:27</a>
+                    </div>
+                    <div class="mt-2 text-sm font-semibold text-slate-700">Problemas da Promessa da Semente</div>
+                    <div class="mt-2 flex flex-col items-stretch gap-2 md:flex-row xl:min-h-[16rem]">
+                        <div class="flex-1 rounded-xl border-2 border-rose-400 p-2">
+                            <div class="inline-block rounded-md bg-rose-500 px-2 py-1 text-xs font-bold text-white">
+                                <a href="#" class="verse-link" data-reference="Gênesis+15:1-21">15:1-21</a>
+                            </div>
+                            <div class="mt-2 text-sm font-bold text-slate-800">Aliança Rodada 1</div>
+                        </div>
+                        <div class="flex-1 rounded-xl border-2 border-teal-500 p-2">
+                            <div class="inline-block rounded-md bg-teal-600 px-2 py-1 text-xs font-bold text-white">
+                                <a href="#" class="verse-link" data-reference="Gênesis+16:1-16">16:1-16</a>
+                            </div>
+                            <div class="mt-2 text-sm font-bold text-slate-800">Falha com Hagar</div>
+                        </div>
+                        <div class="flex-1 rounded-xl border-2 border-rose-400 p-2">
+                            <div class="inline-block rounded-md bg-rose-500 px-2 py-1 text-xs font-bold text-white">
+                                <a href="#" class="verse-link" data-reference="Gênesis+17:1-27">17:1-27</a>
+                            </div>
+                            <div class="mt-2 text-sm font-bold text-slate-800">Aliança Rodada 2</div>
+                        </div>
+                    </div>
+                </div>
 
-  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Questão para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
-  <p class="body reveal"><span class="lang-pt">Como a analogia das plantas em vasos arranjadas nos ajuda a entender as convenções da literatura bíblica?</span><span class="lang-en">How does the analogy of the arranged potted plants help us understand the conventions of biblical literature?</span></p>
+                <!-- Coluna 3 -->
+                <div class="w-full flex-1 rounded-2xl border-2 border-slate-800 p-3">
+                    <div class="inline-block rounded-md bg-slate-700 px-3 py-1 text-xs font-bold text-white">
+                        <a href="#" class="verse-link text-white hover:underline"
+                            data-reference="Gênesis+18:1-19:38">Gênesis 18:1-19:38</a>
+                    </div>
+                    <div class="mt-2 flex flex-wrap items-center gap-2"><span
+                            class="rounded-md bg-emerald-600 px-3 py-1 text-xs font-bold text-white">Promessas</span><span
+                            class="font-bold text-slate-500">& Mais</span><span
+                            class="rounded-md bg-sky-800 px-3 py-1 text-xs font-bold text-white">Problemas com Ló</span>
+                    </div>
+                    <div class="mt-2 flex flex-col items-stretch gap-2 md:flex-row xl:min-h-[16rem]">
+                        <div class="flex-1 rounded-xl border-2 border-emerald-400 p-2">
+                            <div class="inline-block rounded-md bg-emerald-500 px-2 py-1 text-xs font-bold text-white">
+                                <a href="#" class="verse-link" data-reference="Gênesis+18:1-15">18:1-15</a>
+                            </div>
+                        </div>
+                        <div class="flex-1 rounded-xl border-2 border-slate-400 p-2">
+                            <div class="inline-block rounded-md bg-slate-500 px-2 py-1 text-xs font-bold text-white">
+                                <a href="#" class="verse-link" data-reference="Gênesis+18:16-33">18:16-33</a>
+                            </div>
+                        </div>
+                        <div class="flex-1 rounded-xl border-2 border-sky-800 p-2">
+                            <div class="inline-block rounded-md bg-sky-800 px-2 py-1 text-xs font-bold text-white">
+                                <a href="#" class="verse-link" data-reference="Gênesis+19:1-38">19:1-38</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="mt-8 text-lg text-slate-600">Gênesis 11:27-19:38. Design Literário por Tim Mackie para
+                BibleProject Classroom: Abraham (2021).</p>
+        </div>
 
-    <section class="scripture reveal">
-    <h2 class="section"><span class="lang-pt">Traduções dos Versículos (Inglês)</span><span class="lang-en">Verse Translations (English)</span></h2>
-    <div class="v-outer"><span class="ref">GEN 11:27-19</span><div class="v-line"><span class="lang-en">From Babylon to Hebron and Sodom 11:27-14:24 • 11:27-12:5 From Babylon to Canaan • 12:6-13:18 From Canaan to Egypt back to Canaan • 14:1-24 Avram rescues Lot from Babylonian alliance 15:1-17:27 • 15:1-21 Avram’s faith and the covenant • 16:1-16 The failure with Hagar • 17:1-27 Circumcision and the covenant renewed 18:1-19:38 • 18:1-15 Avram and Sarah promised a son • 18:16-33 Avram intercedes for Lot in Sodom • 19:1-39 Lot is rescued out of Sodom’s ruin Genesis 20:1-22:19 From Sodom and Hebron to Mount Moriah 20:1-18 Avraham Deceives Avimelek About Sarah</span></div></div>
-    <div class="v-outer"><span class="ref">GEN 22:20-25</span><div class="v-line"><span class="lang-en">From Mount Moriah to Mesopotamia and Back Again 22:20-24 Rivqah Born in Mesopotamia • 22:20-22 • 22:23 • 22:24 23:1-20 Sarah Dies and Is Buried • 23:1-2 • 23:3-16 • 23:17-20 24:1-67 Rivqah’s Journey from Mesopotamia to Canaan • 24:1-28 • 24:29-51 • 24:52-67 25:1-18</span></div></div>
-    <div class="v-outer"><span class="ref">GEN 11:27-25</span><div class="v-line"><span class="lang-en">The Literary Organization of the Avraham Story Visualized From Mesopotamia to Hebron and Sodom Genesis 11:27-14:24                                                                                                                                                                                                    Genesis 18:1-19:38 Promises &amp; Lot Problems                                                                                                               Genesis 15:1-17:27                                                               Promises &amp; More Lot Problems Problems of the Seed Promise 11:27-12:5                                                                                                     14:1-24                                                                                                  18:1-15                           19:1-38 12:10-13:18                                                                               15:1-21                                         17:1-27                                            18:16-33 11:27-32              12:1-5 Covenant Round              16:1-16               Covenant Round 12:10-20           13:1-11                13:12-18 1                           Failure with          2 Hagar</span></div></div>
-    <div class="v-outer"><span class="ref">GEN 20:1-22</span><div class="v-line"><span class="lang-en">From Mount Moriah to Mesopotamia and Back Again Genesis 22:20-24                                     Genesis 23:1-20                                                       Genesis 24:1-67                                                                                      Genesis 25:1-18 22:20-22          22:23             22:24             23:1-2              23:3-16                     23:17-20              24:1-28                     24:29-51                  24:52-61                    24:62-67             25:1-6        25:7-11     25:12-18 • 23:3-6                                          • 24:1-9                    • 24:29-33                 • 24:52-54a • 23:7-11                                         • 24:10-28                  • 24:34-49                 • 24:54b-58 • 23:12-16                                                                    • 24:50-51                 • 24:59-61</span></div></div>
-    <div class="v-outer"><span class="ref">GEN 1:1-11</span><div class="v-line"><span class="lang-en">the Avraham story is about, we need to recap the story so far as it’s presented in Genesis 1-11. Reflection Question How does the analogy of the arranged potted plants help us understand the conventions of biblical literature?</span></div></div>
-  </section>
+        <!-- MACRO DESIGN VISUAL 2 -->
+        <div class="mx-auto mt-12 w-full max-w-7xl">
+            <h1 class="mb-6 text-2xl font-bold text-slate-900">De Sodoma e Hebrom para o Monte Moriá</h1>
+            <div class="flex flex-col items-stretch gap-3 xl:flex-row">
+                <div
+                    class="flex-1 flex-col items-center justify-center rounded-2xl border-2 border-sky-200 p-3 xl:max-w-40">
+                    <div
+                        class="inline-block rounded-md bg-sky-200 px-2 py-1 text-center text-xs font-bold text-sky-900">
+                        <a href="#" class="verse-link hover:underline" data-reference="Gênesis+19:30-38">Gênesis
+                            19:30-38</a>
+                    </div>
+                </div>
+                <div class="flex-1 rounded-2xl border-2 border-green-600 p-3">
+                    <div class="inline-block rounded-md bg-green-500 px-2 py-1 text-xs font-bold text-white">
+                        <a href="#" class="verse-link text-white hover:underline"
+                            data-reference="Gênesis+20:1-18">Gênesis 20:1-18</a>
+                    </div>
+                    <div class="mt-2 flex flex-col items-stretch gap-2 rounded-xl md:flex-row xl:min-h-[19rem]">
+                        <div class="flex-1 rounded-xl border-2 border-gray-200 p-2">
+                            <div
+                                class="inline-block min-w-max rounded-md bg-gray-200 px-2 py-0.5 text-xs font-semibold text-gray-700">
+                                <a href="#" class="verse-link text-gray-700 hover:underline"
+                                    data-reference="Gênesis+20:1-2">20:1-2</a>
+                            </div>
+                        </div>
+                        <div class="flex-1 rounded-xl border-2 border-gray-200 p-2">
+                            <div
+                                class="inline-block min-w-max rounded-md bg-gray-200 px-2 py-0.5 text-xs font-semibold text-gray-700">
+                                <a href="#" class="verse-link text-gray-700 hover:underline"
+                                    data-reference="Gênesis+20:3-13">20:3-13</a>
+                            </div>
+                            <ul class="mt-2 list-inside list-disc space-y-1 text-sm font-bold text-slate-800">
+                                <li><a href="#" class="verse-link text-gray-700 hover:underline"
+                                        data-reference="Gênesis+20:3-7">20:3-7</a></li>
+                                <li><a href="#" class="verse-link text-gray-700 hover:underline"
+                                        data-reference="Gênesis+20:8-13">20:8-13</a></li>
+                            </ul>
+                        </div>
+                        <div class="flex-1 rounded-xl border-2 border-gray-200 p-2">
+                            <div
+                                class="inline-block min-w-max rounded-md bg-gray-200 px-2 py-0.5 text-xs font-semibold text-gray-700">
+                                <a href="#" class="verse-link text-gray-700 hover:underline"
+                                    data-reference="Gênesis+20:14-18">20:14-18</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-1 rounded-2xl border-2 border-slate-500 p-3">
+                    <div class="inline-block rounded-md bg-slate-700 px-2 py-1 text-xs font-bold text-white">
+                        <a href="#" class="verse-link text-white hover:underline"
+                            data-reference="Gênesis+21:1-34">Gênesis 21:1-34</a>
+                    </div>
+                    <div class="mt-2 flex flex-col items-stretch gap-2 md:flex-row">
+                        <div class="min-w-max flex-1 rounded-xl border-2 border-red-700 p-2 xl:min-h-[19rem]">
+                            <div class="inline-block rounded-md bg-red-700 px-2 py-1 text-xs font-bold text-white">
+                                <a href="#" class="verse-link text-white hover:underline"
+                                    data-reference="Gênesis+21:1-21">21:1-21</a>
+                            </div>
+                            <div class="mt-2 flex flex-col gap-2">
+                                <div class="rounded-xl border-2 border-gray-200 p-2">
+                                    <span
+                                        class="min-w-max rounded-md bg-gray-200 px-2 py-0.5 text-xs font-semibold text-gray-700"><a
+                                            href="#" class="verse-link text-gray-700 hover:underline"
+                                            data-reference="Gênesis+21:1-7">21:1-7</a></span>
+                                </div>
+                                <div class="rounded-xl border-2 border-gray-200 p-2">
+                                    <span
+                                        class="min-w-max rounded-md bg-gray-200 px-2 py-0.5 text-xs font-semibold text-gray-700"><a
+                                            href="#" class="verse-link text-gray-700 hover:underline"
+                                            data-reference="Gênesis+21:8-13">21:8-13</a></span>
+                                </div>
+                                <div class="rounded-xl border-2 border-gray-200 p-2">
+                                    <span
+                                        class="min-w-max rounded-md bg-gray-200 px-2 py-0.5 text-xs font-semibold text-gray-700"><a
+                                            href="#" class="verse-link text-gray-700 hover:underline"
+                                            data-reference="Gênesis+21:14-21">21:14-21</a></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-1 rounded-xl border-2 border-green-600 p-2">
+                            <div class="inline-block rounded-md bg-green-500 px-2 py-1 text-xs font-bold text-white">
+                                <a href="#" class="verse-link text-white hover:underline"
+                                    data-reference="Gênesis+21:22-34">21:22-34</a>
+                            </div>
+                            <div class="mt-2 flex flex-col gap-2">
+                                <div class="rounded-xl border-2 border-gray-200 p-2">
+                                    <span
+                                        class="min-w-max rounded-md bg-gray-200 px-2 py-0.5 text-xs font-semibold text-gray-700"><a
+                                            href="#" class="verse-link text-gray-700 hover:underline"
+                                            data-reference="Gênesis+21:22-24">21:22-24</a></span>
+                                </div>
+                                <div class="rounded-xl border-2 border-gray-200 p-2">
+                                    <span
+                                        class="min-w-max rounded-md bg-gray-200 px-2 py-0.5 text-xs font-semibold text-gray-700"><a
+                                            href="#" class="verse-link text-gray-700 hover:underline"
+                                            data-reference="Gênesis+21:25-30">21:25-30</a></span>
+                                </div>
+                                <div class="rounded-xl border-2 border-gray-200 p-2">
+                                    <span
+                                        class="min-w-max rounded-md bg-gray-200 px-2 py-0.5 text-xs font-semibold text-gray-700"><a
+                                            href="#" class="verse-link text-gray-700 hover:underline"
+                                            data-reference="Gênesis+21:31-34">21:31-34</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-2xl border-2 border-red-700 p-3">
+                    <div class="inline-block rounded-md bg-red-700 px-2 py-1 text-xs font-bold text-white">
+                        <a href="#" class="verse-link text-white hover:underline"
+                            data-reference="Gênesis+22:1-19">Gênesis 22:1-19</a>
+                    </div>
+                    <div class="mt-2 flex flex-col items-stretch gap-2 md:flex-row xl:min-h-[19rem]">
+                        <div class="flex-1 rounded-xl border-2 border-gray-200 p-2">
+                            <div
+                                class="min-w-max rounded-md bg-gray-200 px-2 py-0.5 text-xs font-semibold text-gray-700">
+                                <a href="#" class="verse-link text-gray-700 hover:underline"
+                                    data-reference="Gênesis+22:1-3">22:1-3</a>
+                            </div>
+                        </div>
+                        <div class="flex-1 rounded-xl border-2 border-gray-200 p-2">
+                            <div
+                                class="min-w-max rounded-md bg-gray-200 px-2 py-0.5 text-xs font-semibold text-gray-700">
+                                <a href="#" class="verse-link text-gray-700 hover:underline"
+                                    data-reference="Gênesis+22:4-14">22:4-14</a>
+                            </div>
+                            <ul class="mt-2 list-inside list-disc space-y-1 text-sm font-bold text-slate-800">
+                                <li><a href="#" class="verse-link text-gray-700 hover:underline"
+                                        data-reference="Gênesis+22:4-8">22:4-8</a></li>
+                                <li><a href="#" class="verse-link text-gray-700 hover:underline"
+                                        data-reference="Gênesis+22:9-14">22:9-14</a></li>
+                            </ul>
+                        </div>
+                        <div class="flex-1 rounded-xl border-2 border-gray-200 p-2">
+                            <div
+                                class="min-w-max rounded-md bg-gray-200 px-2 py-0.5 text-xs font-semibold text-gray-700">
+                                <a href="#" class="verse-link text-gray-700 hover:underline"
+                                    data-reference="Gênesis+22:15-19">22:15-19</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="min-h-[4rem] flex-1 flex-col items-center justify-center rounded-2xl border-2 border-sky-200 p-3 xl:min-h-[22rem] xl:max-w-40">
+                    <div
+                        class="inline-block rounded-md bg-sky-200 px-2 py-1 text-center text-xs font-bold text-sky-900">
+                        <a href="#" class="verse-link hover:underline" data-reference="Gênesis+22:20-24">Gênesis
+                            22:20-24</a>
+                    </div>
+                </div>
+            </div>
+            <p class="mt-4 text-lg text-slate-600">Gênesis 20:1-22:24. Design Literário por Tim Mackie para BibleProject
+                Classroom: Abraham (2021).</p>
+        </div>
 
-  <div class="page-footer">
-    <span>Class Notes: Abraham</span>
-    <span><span class="lang-pt">Sessão 2 · A Historia de Abraao como um Todo</span><span class="lang-en">Session 2 · The Abraham Story as a Whole</span></span>
-  </div>
-</div>
-<script>
-  function setLang(lang) {
-    document.documentElement.setAttribute('lang', lang);
-    try { localStorage.setItem('s2-lang', lang); } catch(e) {}
-    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
-    if (lang === 'pt') {
-      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
-      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
-    } else {
-      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
-      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
-    }
-  }
-  var saved = 'pt'; try { saved = localStorage.getItem('s2-lang') || 'pt'; } catch(e) {}
-  setLang(saved);
-
-  (function () {
-    var bar = document.getElementById('reading-progress');
-    function update() {
-      var h = document.documentElement;
-      var max = h.scrollHeight - h.clientHeight;
-      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
-    }
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
-  })();
-
-  (function () {
-    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var targets = document.querySelectorAll('.reveal');
-    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
-    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
-    targets.forEach(function (el) { io.observe(el); });
-  })();
-</script>
-
-  <script src="../js/verse-modal.js"></script>
+        <!-- MACRO DESIGN VISUAL 3 -->
+        <div class="mx-auto mt-12 w-full max-w-7xl">
+            <h1 class="mb-6 text-2xl font-bold text-slate-900">Do Monte Moriá para a Mesopotâmia e de Volta</h1>
+            <div class="flex flex-col items-stretch gap-3 xl:flex-row">
+                <div class="rounded-2xl border-2 border-sky-200 p-3">
+                    <div
+                        class="inline-block rounded-md bg-sky-200 px-2 py-1 text-center text-xs font-bold text-sky-900">
+                        <a href="#" class="verse-link hover:underline" data-reference="Gênesis+22:20-24">Gênesis
+                            22:20-24</a>
+                    </div>
+                    <div class="mt-2 flex flex-col items-stretch gap-2 md:flex-row xl:min-h-[19rem]">
+                        <div class="flex-1 rounded-xl border-2 border-gray-200 p-2">
+                            <div
+                                class="min-w-max rounded-md bg-gray-200 px-2 py-0.5 text-xs font-semibold text-gray-700">
+                                <a href="#" class="verse-link text-gray-700 hover:underline"
+                                    data-reference="Gênesis+22:20-22">22:20-22</a>
+                            </div>
+                        </div>
+                        <div class="flex-1 rounded-xl border-2 border-gray-200 p-2">
+                            <div
+                                class="min-w-max rounded-md bg-gray-200 px-2 py-0.5 text-xs font-semibold text-gray-700">
+                                <a href="#" class="verse-link text-gray-700 hover:underline"
+                                    data-reference="Gênesis+22:23">22:23</a>
+                            </div>
+                        </div>
+                        <div class="flex-1 rounded-xl border-2 border-gray-200 p-2">
+                            <div
+                                class="min-w-max rounded-md bg-gray-200 px-2 py-0.5 text-xs font-semibold text-gray-700">
+                                <a href="#" class="verse-link text-gray-700 hover:underline"
+                                    data-reference="Gênesis+22:24">22:24</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="min-w-75 rounded-2xl border-2 border-red-800 p-3">
+                    <div class="inline-block rounded-md bg-red-800 px-2 py-1 text-xs font-bold text-white">
+                        <a href="#" class="verse-link text-white hover:underline"
+                            data-reference="Gênesis+23:1-20">Gênesis 23:1-20</a>
+                    </div>
+                    <div class="mt-2 flex flex-col items-stretch gap-2 md:flex-row xl:min-h-[19rem]">
+                        <div class="flex-1 rounded-xl border-2 border-gray-200 p-2">
+                            <div class="rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                <a href="#" class="verse-link text-white hover:underline"
+                                    data-reference="Gênesis+23:1-2">23:1-2</a>
+                            </div>
+                        </div>
+                        <div class="flex-1 rounded-xl border-2 border-gray-200 p-2">
+                            <div class="rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                <a href="#" class="verse-link text-white hover:underline"
+                                    data-reference="Gênesis+23:3-16">23:3-16</a>
+                            </div>
+                            <ul class="mt-2 list-inside list-disc space-y-1 text-sm font-bold text-slate-800">
+                                <li><a href="#" class="verse-link hover:underline"
+                                        data-reference="Gênesis+23:3-6">23:3-6</a></li>
+                                <li><a href="#" class="verse-link hover:underline"
+                                        data-reference="Gênesis+23:7-11">23:7-11</a></li>
+                                <li><a href="#" class="verse-link hover:underline"
+                                        data-reference="Gênesis+23:12-16">23:12-16</a></li>
+                            </ul>
+                        </div>
+                        <div class="flex-1 rounded-xl border-2 border-gray-200 p-2">
+                            <div class="rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                <a href="#" class="verse-link text-white hover:underline"
+                                    data-reference="Gênesis+23:17-20">23:17-20</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-1 rounded-2xl border-2 border-blue-600 p-3">
+                    <div class="inline-block rounded-md bg-blue-800 px-2 py-1 text-xs font-bold text-white">
+                        <a href="#" class="verse-link text-white hover:underline"
+                            data-reference="Gênesis+24:1-67">Gênesis 24:1-67</a>
+                    </div>
+                    <div class="mt-2 flex flex-col items-stretch gap-2 md:flex-row xl:min-h-[19rem]">
+                        <div class="flex-1 rounded-xl border-2 border-gray-200 p-2">
+                            <div class="rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                <a href="#" class="verse-link text-white hover:underline"
+                                    data-reference="Gênesis+24:1-28">24:1-28</a>
+                            </div>
+                            <ul class="mt-2 list-inside list-disc space-y-1 text-sm font-bold text-slate-800">
+                                <li><a href="#" class="verse-link hover:underline"
+                                        data-reference="Gênesis+24:1-9">24:1-9</a></li>
+                                <li><a href="#" class="verse-link hover:underline"
+                                        data-reference="Gênesis+24:10-28">24:10-28</a></li>
+                            </ul>
+                        </div>
+                        <div class="flex-1 rounded-xl border-2 border-gray-200 p-2">
+                            <div class="rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                <a href="#" class="verse-link hover:underline"
+                                    data-reference="Gênesis+24:29-51">24:29-51</a>
+                            </div>
+                            <ul class="mt-2 list-inside list-disc space-y-1 text-sm font-bold text-slate-800">
+                                <li><a href="#" class="verse-link hover:underline"
+                                        data-reference="Gênesis+24:29-33">24:29-33</a></li>
+                                <li><a href="#" class="verse-link hover:underline"
+                                        data-reference="Gênesis+24:34-49">24:34-49</a></li>
+                                <li><a href="#" class="verse-link hover:underline"
+                                        data-reference="Gênesis+24:50-51">24:50-51</a></li>
+                            </ul>
+                        </div>
+                        <div class="flex-1 rounded-xl border-2 border-gray-200 p-2">
+                            <div class="rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                <a href="#" class="verse-link hover:underline"
+                                    data-reference="Gênesis+24:52-67">24:52-67</a>
+                            </div>
+                            <ul class="mt-2 list-inside list-disc space-y-1 text-sm font-bold text-slate-800">
+                                <li><a href="#" class="verse-link hover:underline"
+                                        data-reference="Gênesis+24:52-54">24:52-54a</a></li>
+                                <li><a href="#" class="verse-link hover:underline"
+                                        data-reference="Gênesis+24:54-58">24:54b-58</a></li>
+                                <li><a href="#" class="verse-link hover:underline"
+                                        data-reference="Gênesis+24:59-61">24:59-61</a></li>
+                            </ul>
+                        </div>
+                        <div class="flex-1 rounded-xl border-2 border-gray-200 p-2">
+                            <div class="rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                <a href="#" class="verse-link text-white hover:underline"
+                                    data-reference="Gênesis+24:62-67">24:62-67</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-2xl border-2 border-red-800 p-3">
+                    <div class="inline-block rounded-md bg-red-800 px-2 py-1 text-xs font-bold text-white">
+                        <a href="#" class="verse-link text-white hover:underline"
+                            data-reference="Gênesis+25:1-18">Gênesis 25:1-18</a>
+                    </div>
+                    <div class="mt-2 flex flex-col items-stretch gap-2 md:flex-row xl:min-h-[19rem]">
+                        <div class="flex-1 rounded-xl border-2 border-gray-200 p-2">
+                            <div class="rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                <a href="#" class="verse-link hover:underline"
+                                    data-reference="Gênesis+25:1-6">25:1-6</a>
+                            </div>
+                        </div>
+                        <div class="flex-1 rounded-xl border-2 border-gray-200 p-2">
+                            <div class="rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                <a href="#" class="verse-link hover:underline"
+                                    data-reference="Gênesis+25:7-11">25:7-11</a>
+                            </div>
+                        </div>
+                        <div class="flex-1 rounded-xl border-2 border-gray-200 p-2">
+                            <div class="rounded-md bg-gray-500 px-2 py-1 text-xs font-bold text-white">
+                                <a href="#" class="verse-link hover:underline"
+                                    data-reference="Gênesis+25:12-18">25:12-18</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="mt-4 text-lg text-slate-600">Gênesis 22:20-25:18. Design Literário por Tim Mackie para
+                BibleProject Classroom: Abraham (2021).</p>
+        </div>
+    </div>
+    <div class="mx-auto mt-8 w-full max-w-4xl px-4 pb-16">
+        <p class="text-lg leading-relaxed text-slate-700">Note que cada um desses três movimentos não está alinhado com
+            nossos números de capítulos contemporâneos, e por isso uma olhada no conteúdo dessas divisões literárias
+            pode parecer contraintuitiva. Isso se deve principalmente ao fato de que a organização literária da história
+            de Avraham é modelada segundo a organização literária de <a href="#" class="text-sky-600 underline">Gênesis
+                1:1-11:26</a>, tanto em seu design quanto nos temas principais explorados nas narrativas. Assim, para
+            entender verdadeiramente do que trata a história de Avraham, precisamos recapitular a história até agora,
+            como é apresentada em Gênesis 1-11.</p>
+        <h2 class="mt-16 mb-4 text-2xl font-bold text-slate-800">Questão para Reflexão</h2>
+        <div class="rounded-lg border border-slate-200 bg-slate-50 p-6">
+            <p class="text-lg text-slate-700">De que forma a imagem dos vasos com plantas pode ilustrar a estrutura e os
+                padrões recorrentes na literatura bíblica?</p>
+        </div>
+    </div>
+    <script src="../js/verse-modal.js"></script>
 </body>
+
 </html>
