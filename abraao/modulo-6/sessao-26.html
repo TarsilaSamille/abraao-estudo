@@ -139,8 +139,29 @@
 </head>
 
 <body class="bg-white font-sans text-slate-800">
+<!-- NAVIGATION FLOATING BUTTONS -->
+<div class="fixed left-4 top-4 z-50 print:hidden">
+    <a href="index.html"
+      class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+      <span>&larr;</span>
+      <span class="lang-pt">Voltar</span>
+      <span class="lang-en">Back</span>
+    </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+    <button onclick="window.print()" title="Imprimir / Print"
+      class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 0 0 1-2-2v-5a2 0 0 1 2-2h16a2 0 0 1 2 2v5a2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+      <span class="lang-pt">Imprimir</span>
+      <span class="lang-en">Print</span>
+    </button>
+    <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+      <button id="lang-pt" onclick="setLang('pt')" class="px-4 py-1.5 text-sm font-semibold transition-colors">PT</button>
+      <button id="lang-en" onclick="setLang('en')" class="px-4 py-1.5 text-sm font-semibold transition-colors">EN</button>
+    </div>
+</div>
     <div class="p-4 flex justify-between items-center print:hidden">
-        <a href="index.html" class="text-sky-600 hover:underline">← Voltar para o Índice</a>
+        
         <button onclick="window.print()" class="flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg transition-colors border border-slate-300 shadow-sm">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
             Imprimir
@@ -379,6 +400,18 @@
             </div>
         </div>
     </div>
+
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute("lang", lang);
+    try { localStorage.setItem("s26-lang", lang); } catch(e) {}
+    var pt = document.getElementById("lang-pt"), en = document.getElementById("lang-en");
+    if (lang === "pt") { pt.className = "px-4 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full"; en.className = "px-4 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full"; }
+    else { en.className = "px-4 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full"; pt.className = "px-4 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full"; }
+  }
+  var saved = "pt"; try { saved = localStorage.getItem("s26-lang") || "pt"; } catch(e) {}
+  setLang(saved);
+</script>
 </body>
 
 </html>
