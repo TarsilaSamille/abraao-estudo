@@ -1,1302 +1,228 @@
-<!doctype html>
-<html lang="pt-BR">
-
+<!DOCTYPE html>
+<html lang="pt">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sessão 9: Um Dilúvio de Violência</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Um Diluvio de Violencia</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  .heb { font-family: 'SBL Hebrew','Times New Roman',serif; font-size: 1.05em; direction: rtl; unicode-bidi: embed; }
+
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
+  .ref:hover { color: #2563eb; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+  .scripture:hover { border-left-color: #9aa7b8; }
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+  .scripture .innerbox { background: #f6f8fa; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1rem; }
+  .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem; }
+
+  /* ---------- Macro design (3 columns) ---------- */
+  .macro { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; align-items: start; margin: 2rem 0 .75rem; }
+  .mcol { border: 3px solid #2e7d4e; border-radius: 12px; padding: .9rem .9rem 1rem; background: #fff; }
+  .mcol.dark { border-color: #3d4453; margin-top: 1.3rem; }
+  .mtag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 3px 10px; border-radius: 5px; }
+  .mtag-green { background: #2e7d4e; } .mtag-dark { background: #3d4453; }
+  .mcol-title { font-size: 1rem; font-weight: 800; color: #17181a; margin: .55rem 0 .8rem; line-height: 1.3; }
+  .mboxes { display: flex; gap: .55rem; }
+  .mbox { flex: 1; border: 3px solid #b9c2cf; border-radius: 9px; background: #fff; min-height: 15.5rem; position: relative; transition: box-shadow .25s, transform .25s; }
+  .mbox:hover { box-shadow: 0 8px 20px -10px rgba(30,41,59,.4); transform: translateY(-3px); }
+  .mbox .mhdr { position: absolute; top: .55rem; left: .55rem; right: .55rem; background: #7d8697; color: #fff; font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 5px; }
+  .mbox.s1 { margin-top: 0; } .mbox.s2 { margin-top: 2.4rem; min-height: 13rem; } .mbox.s3 { margin-top: 2.4rem; min-height: 13rem; }
+  @media (max-width: 860px) { .macro { grid-template-columns: 1fr; } .mcol.dark { margin-top: 0; } .mbox, .mbox.s2, .mbox.s3 { min-height: 7.5rem; margin-top: 0; } }
+
+  /* ---------- Chiasm staircase boxes ---------- */
+  .cx { border: 3px solid; border-radius: 12px; padding: 1.35rem 1.5rem 1.2rem; margin: 1.15rem 0; transition: box-shadow .25s, transform .25s; }
+  .cx:hover { box-shadow: 0 12px 26px -16px rgba(23,24,26,.45); transform: translateY(-2px); }
+  .cx-tag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 1px 13px; border-radius: 6px; margin-bottom: .7rem; }
+  .cx h4 { font-weight: 800; font-size: 1.06rem; color: #17181a; margin-bottom: .7rem; }
+  .cx ul.bullets > li { font-size: .99rem; margin-bottom: .45rem; }
+  .cx-slate  { border-color: #6b7280; background: #e9ebee; } .cx-slate  .cx-tag { background: #6b7280; }
+  .cx-rust   { border-color: #c0562f; background: #f7e6dd; } .cx-rust   .cx-tag { background: #c0562f; }
+  .cx-rose   { border-color: #c04a63; background: #f7e0e5; } .cx-rose   .cx-tag { background: #c04a63; }
+  .cx-blue   { border-color: #5468d4; background: #e4e8f9; } .cx-blue   .cx-tag { background: #5468d4; }
+  .cx-green  { border-color: #2e7d4e; background: #dfeee2; } .cx-green  .cx-tag { background: #2e7d4e; }
+  .cx-purple { border-color: #8b5cf6; background: #efe2f8; } .cx-purple .cx-tag { background: #8b5cf6; }
+  .cx-tan    { border-color: #8a6d3b; background: #ece7dc; } .cx-tan    .cx-tag { background: #8a6d3b; }
+
+  /* ---------- verse chips (Gen 18 translation) ---------- */
+  .k { display: inline; padding: 3px 9px; border-radius: 6px; font-weight: 700; color: #fff; line-height: 1.85; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  .k-blue   { background: #3b82c4; } .k-green  { background: #2e7d4e; } .k-rose { background: #c04a63; }
+  .k-gray   { background: #6b7280; } .k-rust   { background: #bf5a2b; } .k-teal { background: #0d7d8c; }
+  .k-purple { background: #7c5ad0; } .k-brown  { background: #8a6d3b; }
+  .t-teal { color: #0d8aa0; font-weight: 700; }
+
+  .v-outer { border: 3px solid #e3e7ee; border-radius: 20px; padding: 1.4rem 1.5rem; margin: 1.4rem 0; }
+  .v-black { border: 3px solid #17181a; border-radius: 16px; padding: 1.3rem 1.5rem; margin: 1.1rem 0; }
+  .v-light { border: 3px solid #e3e7ee; border-radius: 16px; padding: 1.2rem 1.4rem; margin: 1.1rem 0; }
+  .v-line { font-size: 1.06rem; line-height: 2.1; color: #1f2937; }
+  .v-div { border: 0; border-top: 1px solid #e6eaf0; margin: 1.1rem 0; }
+  .vbar-b { border-left: 5px solid #5468d4; padding-left: .8rem; }
+  .lbl { color: #6b7280; font-weight: 600; font-size: .85rem; margin-right: .2rem; }
+  sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px; }
+  .i1 { padding-left: 1.6rem; } .i2 { padding-left: 3.2rem; } .i3 { padding-left: 4.8rem; }
+
+  /* ---------- tables ---------- */
+  .doc-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 3px solid #d9dee6; border-radius: 14px; overflow: hidden; background: #fff; }
+  .doc-table th { background: #e2e6eb; text-align: left; padding: 1rem 1.3rem; font-weight: 800; font-size: 1.02rem; color: #17181a; }
+  .doc-table td { padding: 1.1rem 1.3rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.78; font-size: .97rem; color: #24262a; transition: background .2s; }
+  .doc-table td + td { border-left: 1px solid #e5e7eb; }
+  .doc-table tbody tr:hover td { background: #f8fafc; }
+  .doc-table tfoot td { border-top: 1px solid #d1d5db; background: #fbfcfd; color: #5b6472; font-size: .92rem; }
+  .kblue-soft { background: #cddcf5; color: #2b5fb0; padding: 2px 8px; border-radius: 6px; font-weight: 700; }
+
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media print {
+    @page { margin: 14mm 12mm; }
+    #reading-progress, .print\:hidden { display: none !important; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .max-w-4xl { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
+    h1.title, h2.section, h3.sub { break-after: avoid-page; }
+    .cx, .v-outer, .v-black, .v-light, .doc-table tr, .scripture, .mcol { break-inside: avoid; }
+  }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .cx, .mbox { transition: none; } }
+</style>
 </head>
+<body>
 
-<body class="bg-white font-sans text-slate-800">
-    <div class="p-4">
-        <a href="index.html" class="text-sky-600 hover:underline">← Voltar para o Índice</a>
+<div id="reading-progress" aria-hidden="true"></div>
+
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+<h1 class="title reveal"><span class="lang-pt">Sessão 9: Um Dilúvio de Violência</span><span class="lang-en">Session 9: A Flood of Violence</span></h1>
+  <hr class="rule">
+
+  <h3 class="sub reveal" style="margin-top:0;"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal" style="margin-bottom:2.5rem;">
+    <li><span class="lang-pt">Os reis de Gênesis 14:1-10 são retratados como personificações do mal e da corrupção através de seus nomes e outro simbolismo.</span><span class="lang-en">The kings of Genesis 14:1-10 are portrayed as personifications of evil and corruption through their names and other symbolism.</span></li>
+    <li><span class="lang-pt">Os reis eliminaram grupos de gigantes, recordando os Nefilins, cuja violência arruinou a terra e trouxe o dilúvio.</span><span class="lang-en">The kings eliminated the groups of giants, recalling the Nephillim whose violence ruined the land and brought on the flood.</span></li>
+    <li><span class="lang-pt">O resgate dramático de Ló por Avram é retratado como miraculoso, validando a posição de Avram como agente escolhido de Deus.</span><span class="lang-en">Avram&rsquo;s dramatic rescue of Lot is depicted as miraculous, validating Avram&rsquo;s status as God&rsquo;s chosen agent.</span></li>
+  </ul>
+
+  <h2 class="section reveal"><span class="lang-pt">Tradução e Design Literário de Gênesis 14:1-16</span><span class="lang-en">Translation and Literary Design of Genesis 14:1-16</span></h2>
+  <div class="v-outer reveal">
+    <div class="v-line" style="display:flex; gap:.9rem;">
+      <span class="lbl" style="padding-top:.35rem;">1</span>
+      <div>
+        <p><span class="lang-pt">E aconteceu nos dias de Anrafel, rei de Sinar, de Arique, rei de Elasar, de Quedorlaomer, rei de Elão, e de Tidal, rei de Goim (= &ldquo;nações&rdquo;),</span><span class="lang-en">And it came about in the days of Amraphel, king of Shinar, of Aryok, king of Elasar, of Kedorlaomer, king of Elam, and of Tidal, king of Goyyim (= &ldquo;nations&rdquo;),</span></p>
+        <p class="i1"><sup class="vs">2</sup> <span class="lang-pt">que fizeram guerra contra Bera (= &ldquo;em mal&rdquo;), rei de Sodoma, e contra Birsa (= &ldquo;em perversidade&rdquo;), rei de Gomorra, e contra Sinabe (= &ldquo;pai-odiador&rdquo;), rei de Admá, e contra Semeber (= &ldquo;nome de destruição&rdquo;), rei de Zeboim, e contra o rei de Belá (= &ldquo;devorar&rdquo;) [esta é Zoar].</span><span class="lang-en">that they made war with Bera (= &ldquo;in evil&rdquo;), king of Sodom, and with Birsha (= &ldquo;in wickedness&rdquo;), king of Gomorrah, and with Shinab (= &ldquo;father hater&rdquo;), king of Admah, and with Shemeved (= &ldquo;name of destruction&rdquo;), king of Tsiboyim, and with the king of Bela (= &ldquo;devour&rdquo;) [this is Zoar].</span></p>
+        <p><sup class="vs">3</sup> <span class="lang-pt">Todos estes se uniram no vale de Sidim [este é o Mar de Sal].</span><span class="lang-en">All of these joined together in the valley of Siddim [this is the Sea of Salt].</span></p>
+        <p class="i1"><sup class="vs">4</sup> <span class="lang-pt">Doze anos haviam sido escravos de Quedorlaomer, e no décimo terceiro ano se rebelaram.</span><span class="lang-en">For twelve years they had been slaves of Kedorlaomer, and in the thirteenth year they rebelled.</span></p>
+        <p class="i1"><sup class="vs">5</sup> <span class="lang-pt">E no décimo quarto ano Quedorlaomer foi, e os reis que com ele estavam, e feriram os refains em Asterote-Carnaim (= &ldquo;Asherah de Dois-Picos&rdquo;), e os zuzins em Ham, e os emins em Savé-Quiriatain (= &ldquo;a Planície das Duas-Cidades&rdquo;),</span><span class="lang-en">and in the fourteenth year Kedorlaomer went, and the kings who were with him, and they struck the Rephaim in Ashteroth-Qarnayim (= &ldquo;Asherah of Twin-Peaks&rdquo;), and the Zuzim in Ham, and the Emim in Shaveh-Qiryathayim (= &ldquo;the Plain of Twin-Cities&rdquo;),</span></p>
+        <p class="i1"><sup class="vs">6</sup> <span class="lang-pt">e os horitas nos montes de Seir, até o carvalho de Parã, que está junto ao deserto.</span><span class="lang-en">and the Horites in the mountains of Seir, unto the Oak of Paran which is by the wilderness.</span></p>
+        <p><sup class="vs">8</sup> <span class="lang-pt">E o rei de Sodoma saiu, e o rei de Gomorra, e o rei de Admá, e o rei de Zeboim, e o rei de Belá [esta é Zoar], e ordenaram batalha contra eles no vale de Sidim;</span><span class="lang-en">And the king of Sodom went out, and the king of Gomorrah, and the king of Admah, and the king of Tsiboyim, and the king of Bela [this is Zoar], and they lined themselves up for war in the valley of Siddim;</span></p>
+        <p class="i1"><sup class="vs">9</sup> <span class="lang-pt">contra Quedorlaomer, rei de Elão, e Tidal, rei de Goim, e Anrafel, rei de Sinar, e Arique, rei de Elasar &mdash; quatro reis contra cinco.</span><span class="lang-en">against Kedorlaomer, king of Elam, and Tidal, king of Goyyim, and Amraphel, king of Shinar, and Aryok, king of Elasar &mdash; four kings against five.</span></p>
+        <p><sup class="vs">10</sup> <span class="lang-pt">Ora, o vale de Sidim estava cheio de muitas covas de betume; e fugiram o rei de Sodoma e o de Gomorra, e caíram ali; e os que restaram fugiram para os montes.</span><span class="lang-en">Now, the valley of Siddim was full of many pits of tar. And they fled, the king of Sodom, and Gomorrah, and they fell into there. And those remaining fled to the mountains.</span></p>
+      </div>
     </div>
-    <div id="sessao-9" class="min-h-screen p-8 lg:px-16">
-        <div class="mx-auto max-w-4xl">
-            <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-8 border-b pb-4">Sessão 9: Um Dilúvio de Violência
-            </h1>
-
-            <h2 class="text-2xl font-bold text-slate-800 mb-3">Pontos-Chave</h2>
-            <ul class="list-disc list-inside space-y-2 mb-10 text-lg text-slate-700">
-                <li>Os reis de Gênesis 14:1-10 são retratados como personificações do mal e corrupção através de
-                    seus nomes e outro simbolismo.</li>
-                <li>Os reis eliminaram os grupos de gigantes, lembrando os Nefilim cuja violência arruinou a
-                    terra e trouxe o dilúvio.</li>
-                <li>O resgate dramático de Ló por Avram é retratado como milagroso, validando o status de Avram
-                    as agente escolhido de Deus.</li>
-            </ul>
-
-            <div class="mx-auto max-w-4xl bg-white p-6 font-sans text-slate-900">
-                <!-- Título Principal -->
-                <h2 class="mb-8 text-3xl font-bold tracking-tight text-slate-900">Tradução e Design Literário de Gênesis
-                    14:1-16
-                </h2>
-
-                <!-- Container Geral -->
-                <div
-                    class="space-y-6 rounded-2xl border-2 border-slate-300 bg-white p-6 text-[1rem] leading-relaxed shadow-sm">
-                    <!-- CAIXA 1: Versos 1-3 (Borda Preta - Os Reis) -->
-                    <div class="rounded-2xl border-2 border-slate-800 bg-white p-6 shadow-sm">
-                        <!-- v1 a -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">a</div>
-                            <div>
-                                <sup class="mr-0.5 text-xs font-bold text-slate-500">1</sup>
-                                E aconteceu nos dias de
-                                <span class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">Anrafel</span>,
-                                <span class="rounded bg-[#674ea7] px-1 py-0.5 font-bold text-white">rei</span>
-                                <span class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">de Sinar</span>,
-                            </div>
-                        </div>
-                        <!-- v1 b (Indentado) -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2 pl-6">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">b</div>
-                            <div>
-                                de <span
-                                    class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">Arioque</span>,
-                                <span class="rounded bg-[#674ea7] px-1 py-0.5 font-bold text-white">rei</span>
-                                <span class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">de
-                                    Elasar</span>,
-                            </div>
-                        </div>
-                        <!-- v1 c (Mais Indentado) -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2 pl-12">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">c</div>
-                            <div>
-                                de <span
-                                    class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">Quedorlaomer</span>,
-                                <span class="rounded bg-[#674ea7] px-1 py-0.5 font-bold text-white">rei</span>
-                                <span class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">de Elão</span>,
-                            </div>
-                        </div>
-                        <!-- v1 d (Mais Indentado) -->
-                        <div class="mb-2 grid grid-cols-[20px_1fr] gap-2 pl-16">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">d</div>
-                            <div>
-                                e de <span
-                                    class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">Tidal</span>,
-                                <span class="rounded bg-[#674ea7] px-1 py-0.5 font-bold text-white">rei</span>
-                                de Goim (= “nações”),
-                            </div>
-                        </div>
-                        <!-- v2 a -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">a</div>
-                            <div>
-                                <sup class="mr-0.5 text-xs font-bold text-slate-500">2</sup>
-                                Que <span class="rounded bg-[#d05d76] px-1 py-0.5 font-bold text-white">estes fizeram
-                                    guerra</span>
-                                a <span class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">Bera</span> (=
-                                “em mal”),
-                                <span class="rounded bg-[#674ea7] px-1 py-0.5 font-bold text-white">rei</span>
-                                <span class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">de
-                                    Sodoma</span>,
-                            </div>
-                        </div>
-                        <!-- v2 a' (Indentado) -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2 pl-6">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">a'</div>
-                            <div>
-                                a <span class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">Birsa</span>
-                                (= “em
-                                perversidade”),
-                                <span class="rounded bg-[#674ea7] px-1 py-0.5 font-bold text-white">rei</span>
-                                <span class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">de
-                                    Gomorra</span>,
-                            </div>
-                        </div>
-                        <!-- v2 b (Indentado) -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2 pl-6">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">b</div>
-                            <div>
-                                a <span class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">Sinabe</span>
-                                (= “pai
-                                odiador”),
-                                <span class="rounded bg-[#674ea7] px-1 py-0.5 font-bold text-white">rei</span>
-                                <span class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">de Admá</span>,
-                            </div>
-                        </div>
-                        <!-- v2 b' (Indentado) -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2 pl-6">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">b'</div>
-                            <div>
-                                e a <span
-                                    class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">Semeber</span> (=
-                                “nome
-                                de destruição”),
-                                <span class="rounded bg-[#674ea7] px-1 py-0.5 font-bold text-white">rei</span>
-                                <span class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">de
-                                    Zeboim</span>,
-                            </div>
-                        </div>
-                        <!-- v2 c (Mais Indentado) -->
-                        <div class="mb-2 grid grid-cols-[20px_1fr] gap-2 pl-12">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">c</div>
-                            <div>e ao <span class="rounded bg-[#674ea7] px-1 py-0.5 font-bold text-white">rei</span>
-                                <span class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">de Belá</span>
-                                (= “devorar”)
-                                [esta é Zoar].
-                            </div>
-                        </div>
-                        <!-- v3 -->
-                        <div class="grid grid-cols-[20px_1fr] gap-2">
-                            <div class="pt-1 text-right font-mono text-xs font-bold text-slate-500">3</div>
-                            <div><span class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">Todos estes se
-                                    ajuntaram</span> no <span
-                                    class="rounded bg-[#fce5cd] px-1 py-0.5 font-bold text-[#b45f06]">vale
-                                    de Sidim</span> (que é o Mar Salgado).</div>
-                        </div>
-                    </div>
-
-                    <!-- CAIXA 2: Versos 4-7 (Borda Cinza - A Rebelião) -->
-                    <div class="rounded-2xl border-2 border-slate-300 bg-white p-6 shadow-sm">
-                        <!-- v4 a -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">a</div>
-                            <div>
-                                <sup class="mr-0.5 text-xs font-bold text-slate-500">4</sup>
-                                Por <span class="font-bold text-[#4a86e8]">doze anos</span> haviam servido a <span
-                                    class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">Quedorlaomer</span>,
-                            </div>
-                        </div>
-                        <!-- v4 a' -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">a'</div>
-                            <div>mas ao <span class="font-bold text-[#4a86e8]">décimo terceiro ano</span> rebelaram-se.
-                            </div>
-                        </div>
-                        <!-- v5 b (Indentado) -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2 pl-6">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">b</div>
-                            <div>
-                                <sup class="mr-0.5 text-xs font-bold text-slate-500">5</sup>
-                                E ao <span class="font-bold text-[#4a86e8]">décimo quarto ano</span> veio
-                                <span
-                                    class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">Quedorlaomer</span>
-                                <span class="rounded bg-[#888] px-1 py-0.5 font-bold text-white">(veio)</span>,
-                            </div>
-                        </div>
-                        <!-- v5 b' (Indentado) -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2 pl-6">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">b'</div>
-                            <div>e os reis que estavam com ele</div>
-                        </div>
-                        <!-- v5 a -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">a</div>
-                            <div>e <span class="rounded bg-[#d05d76] px-1 py-0.5 font-bold text-white">feriram</span>
-                                aos <span
-                                    class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">refains</span> em
-                                Asterote-Carnaim (= “Aserá de Dois Picos”),</div>
-                        </div>
-                        <!-- v5 a' -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">a'</div>
-                            <div>e aos <span
-                                    class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">zuzins</span> em
-                                Hã,
-                            </div>
-                        </div>
-                        <!-- v5 a'' -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">a''</div>
-                            <div>e aos <span
-                                    class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">emins</span> em
-                                Savé-Quiriataim (= “a Planície das Cidades Gêmeas”),</div>
-                        </div>
-                        <!-- v6 b (Indentado) -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2 pl-6">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">b</div>
-                            <div>
-                                <sup class="mr-0.5 text-xs font-bold text-slate-500">6</sup>
-                                e aos <span
-                                    class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">horeus</span> no
-                                seu
-                                monte Seir,
-                            </div>
-                        </div>
-                        <!-- v6 b' (Indentado) -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2 pl-6">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">b'</div>
-                            <div>até à campina de Parã, que está junto ao deserto.</div>
-                        </div>
-                        <!-- v7 c (Mais Indentado) -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2 pl-12">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">c</div>
-                            <div>
-                                <sup class="mr-0.5 text-xs font-bold text-slate-500">7</sup>
-                                Depois, tornaram, e <span
-                                    class="rounded bg-[#888] px-1 py-0.5 font-bold text-white">vieram</span> a
-                                En-Mispate (= “a Fonte do Julgamento”) [que é Cades]
-                            </div>
-                        </div>
-                        <!-- v7 c' (Mais Indentado) -->
-                        <div class="grid grid-cols-[20px_1fr] gap-2 pl-12">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">c'</div>
-                            <div>e <span class="rounded bg-[#d05d76] px-1 py-0.5 font-bold text-white">feriram</span>
-                                toda a terra
-                                dos <span
-                                    class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">amalequitas</span>,
-                            </div>
-                        </div>
-                        <!-- v7 c'' (Amorreus) (Mais Indentado) -->
-                        <div class="mt-1 grid grid-cols-[20px_1fr] gap-2 pl-12">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">c''</div>
-                            <div>e também os <span
-                                    class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">amorreus</span>,
-                                que habitavam
-                                em Hazazom-Tamar (= “Monte de Palmeiras”).</div>
-                        </div>
-                    </div>
-
-                    <!-- CAIXA 3: Versos 8-10 (Borda Preta - A Batalha) -->
-                    <div class="rounded-2xl border-2 border-slate-800 bg-white p-6 shadow-sm">
-                        <!-- v8 a -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">a</div>
-                            <div>
-                                <sup class="mr-0.5 text-xs font-bold text-slate-500">8</sup>
-                                Então, saiu <span class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">o
-                                    rei de
-                                    Sodoma</span>,
-                            </div>
-                        </div>
-                        <!-- v8 b (Indentado) -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2 pl-6">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">b</div>
-                            <div>e <span class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">o rei de
-                                    Gomorra</span>,
-                            </div>
-                        </div>
-                        <!-- v8 b (Indentado) -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2 pl-6">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">b</div>
-                            <div>e <span class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">o rei de
-                                    Admá</span>,
-                            </div>
-                        </div>
-                        <!-- v8 b (Indentado) -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2 pl-6">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">b</div>
-                            <div>e <span class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">o rei de
-                                    Zeboim</span>,
-                            </div>
-                        </div>
-                        <!-- v8 b (Indentado) -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2 pl-6">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">b</div>
-                            <div>e o rei <span class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">de
-                                    Belá</span>
-                                (esta é Zoar)</div>
-                        </div>
-                        <!-- v8 a' (Sem Indentação - Volta ao início) -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">a'</div>
-                            <div>e <span class="rounded bg-[#d05d76] px-1 py-0.5 font-bold text-white">ordenaram batalha
-                                    contra
-                                    eles</span> no <span
-                                    class="rounded bg-[#fce5cd] px-1 py-0.5 font-bold text-[#b45f06]">vale de
-                                    Sidim</span>,</div>
-                        </div>
-                        <!-- v9 a -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">a</div>
-                            <div>
-                                <sup class="mr-0.5 text-xs font-bold text-slate-500">9</sup>
-                                contra <span
-                                    class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">Quedorlaomer, rei
-                                    de
-                                    Elão</span>,
-                            </div>
-                        </div>
-                        <!-- v9 b (Indentado) -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2 pl-6">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">b</div>
-                            <div>e <span class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">Tidal, rei de
-                                    Goim</span>,</div>
-                        </div>
-                        <!-- v9 b (Indentado) -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2 pl-6">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">b</div>
-                            <div>e <span class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">Anrafel, rei
-                                    de
-                                    Sinar</span>,</div>
-                        </div>
-                        <!-- v9 b (Indentado) -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2 pl-6">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">b</div>
-                            <div>e <span class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">Arioque, rei
-                                    de
-                                    Elasar</span>;</div>
-                        </div>
-                        <!-- v9 c (Mais Indentado) -->
-                        <div class="mb-2 grid grid-cols-[20px_1fr] gap-2 pl-12">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">c</div>
-                            <div>quatro reis contra cinco.</div>
-                        </div>
-                        <!-- v10 a -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">a</div>
-                            <div>
-                                <sup class="mr-0.5 text-xs font-bold text-slate-500">10</sup>
-                                E o <span class="rounded bg-[#fce5cd] px-1 py-0.5 font-bold text-[#b45f06]">vale de
-                                    Sidim</span>
-                                estava cheio de <span
-                                    class="rounded bg-[#cfe2f3] px-1 py-0.5 font-bold text-[#0b5394]">poços</span>
-                                de betume;
-                            </div>
-                        </div>
-                        <!-- v10 b (Indentado) -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2 pl-6">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">b</div>
-                            <div>
-                                e <span class="font-bold text-[#4a86e8]">fugiram</span>
-                                <span class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">os reis de
-                                    Sodoma e de
-                                    Gomorra</span>
-                            </div>
-                        </div>
-                        <!-- v10 b' (Indentado) -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2 pl-6">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">b'</div>
-                            <div>e <span class="font-bold text-[#4a86e8]">caíram</span> ali;</div>
-                        </div>
-                        <!-- v10 a -->
-                        <div class="grid grid-cols-[20px_1fr] gap-2">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">a</div>
-                            <div>e os <span
-                                    class="rounded bg-[#d9ead3] px-1 py-0.5 font-bold text-[#38761d]">restantes</span>
-                                fugiram para um <span
-                                    class="rounded bg-[#cfe2f3] px-1 py-0.5 font-bold text-[#0b5394]">monte</span>.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div
-                    class="space-y-6 mt-8 rounded-2xl border-2 border-slate-300 bg-white p-6 text-[1rem] leading-relaxed shadow-sm">
-
-                    <!-- CAIXA 4: Versos 11-12 (Borda Preta - Ló Capturado) -->
-                    <div class="rounded-2xl border-2 border-slate-800 bg-white p-6 shadow-sm">
-                        <div class="mb-1">
-                            <sup class="mr-0.5 text-xs font-bold text-slate-500">11</sup>
-                            E tomaram
-                        </div>
-                        <div class="mb-1">toda a <span
-                                class="rounded bg-[#0c7c99] px-1 py-0.5 font-bold text-white">fazenda</span>
-                            de <span class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">Sodoma e de
-                                Gomorra</span>,
-                        </div>
-                        <div class="mb-1">e todo o seu <span
-                                class="rounded bg-[#0c7c99] px-1 py-0.5 font-bold text-white">mantimento</span>,</div>
-                        <div class="mb-1">e <span
-                                class="rounded bg-[#d9d9d9] px-1 py-0.5 font-bold text-[#434343]">foram-se</span>.
-                        </div>
-                        <div class="mb-1">
-                            <sup class="mr-0.5 text-xs font-bold text-slate-500">12</sup>
-                            Também <span
-                                class="rounded bg-[#d9d9d9] px-1 py-0.5 font-bold text-[#434343]">tomaram</span>
-                        </div>
-                        <div class="mb-1">a <span
-                                class="rounded bg-[#0c7c99] px-1 py-0.5 font-bold text-white">Ló</span>, e a sua
-                            <span class="rounded bg-[#0c7c99] px-1 py-0.5 font-bold text-white">fazenda</span>,
-                        </div>
-                        <div class="mb-1">filho do <span
-                                class="rounded bg-[#5b62d8] px-1 py-0.5 font-bold text-white">irmão</span>
-                            de Abrão,</div>
-                        <div class="mb-1">e <span
-                                class="rounded bg-[#d9d9d9] px-1 py-0.5 font-bold text-[#434343]">foram-se</span>.
-                        </div>
-                        <div>
-                            <span class="rounded bg-[#f4cccc] px-1 py-0.5 font-bold text-[#744747]">(que habitava
-                                em</span>
-                            <span class="rounded bg-[#e2dcf5] px-1 py-0.5 font-bold text-[#674ea7]">Sodoma</span>).
-                        </div>
-                    </div>
-
-                    <!-- CAIXA 5: Versos 13-14a (Borda Cinza - A Notícia) -->
-                    <div class="rounded-2xl border-2 border-slate-300 bg-white p-6 shadow-sm">
-                        <!-- v13 a -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">a</div>
-                            <div>
-                                <sup class="mr-0.5 text-xs font-bold text-slate-500">13</sup>
-                                Então, veio um que <span
-                                    class="rounded bg-[#d9ead3] px-1 py-0.5 font-bold text-[#38761d]">escapara</span> e
-                                o <span class="rounded bg-[#cfe2f3] px-1 py-0.5 font-bold text-[#2b72b8]">contou a
-                                    Abrão, o
-                                    hebreu</span>;
-                            </div>
-                        </div>
-                        <!-- v13 b (Indentado) -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2 pl-6">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">b</div>
-                            <div><span class="font-bold text-[#744747]">ele habitava junto dos carvalhais de
-                                    Manre</span>, o
-                                amorreu,</div>
-                        </div>
-                        <!-- v13 b (Indentado) -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2 pl-6">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">b</div>
-                            <div><span class="rounded bg-[#5b62d8] px-1 py-0.5 font-bold text-white">irmão</span> de
-                                Escol, e <span
-                                    class="rounded bg-[#5b62d8] px-1 py-0.5 font-bold text-white">irmão</span> de Aner;
-                            </div>
-                        </div>
-                        <!-- v13 b (Indentado) -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2 pl-6">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">b</div>
-                            <div>eles eram <span class="font-bold text-[#986f24]">confederados</span> de Abrão.</div>
-                        </div>
-                        <!-- v14 a' -->
-                        <div class="grid grid-cols-[20px_1fr] gap-2">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">a'</div>
-                            <div>
-                                <sup class="mr-0.5 text-xs font-bold text-slate-500">14</sup>
-                                <span class="rounded bg-[#cfe2f3] px-1 py-0.5 font-bold text-[#2b72b8]">Ouvindo, pois,
-                                    Abrão que o
-                                    seu irmão</span> estava <span
-                                    class="rounded bg-[#d9ead3] px-1 py-0.5 font-bold text-[#38761d]">preso</span>,
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- CAIXA 6: Versos 14b-16 (Borda Preta - O Resgate) -->
-                    <div class="rounded-2xl border-2 border-slate-800 bg-white p-6 shadow-sm">
-                        <!-- v14 a -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">a</div>
-                            <div>armou os <span class="font-bold text-[#38761d]">seus criados</span>,</div>
-                        </div>
-                        <!-- v14 b (Indentado) -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2 pl-6">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">b</div>
-                            <div><span class="font-bold text-[#38761d]">nascidos em sua casa</span>,</div>
-                        </div>
-                        <!-- v14 b' (Indentado) -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2 pl-6">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">b'</div>
-                            <div>trezentos e dezoito,</div>
-                        </div>
-                        <!-- v14 a' -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">a'</div>
-                            <div><span class="rounded bg-[#c05020] px-1 py-0.5 font-bold text-white">e os
-                                    perseguiu</span> até Dã.
-                            </div>
-                        </div>
-
-                        <!-- v15 a -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">a</div>
-                            <div>
-                                <sup class="mr-0.5 text-xs font-bold text-slate-500">15</sup>
-                                E <span class="font-bold text-[#d05d76]">dividiu-se contra eles</span> de noite,
-                            </div>
-                        </div>
-                        <!-- v15 b (Indentado) -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2 pl-6">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">b</div>
-                            <div><span class="font-bold text-[#38761d]">ele e os seus criados</span>,</div>
-                        </div>
-                        <!-- v15 a' -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">a'</div>
-                            <div>e <span class="font-bold text-[#d05d76]">os feriu</span>,</div>
-                        </div>
-                        <!-- v15 a'' -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">a''</div>
-                            <div><span class="rounded bg-[#c05020] px-1 py-0.5 font-bold text-white">e os
-                                    perseguiu</span> até Hobá,
-                                que fica à esquerda de Damasco.</div>
-                        </div>
-
-                        <!-- v16 a -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">a</div>
-                            <div>
-                                <sup class="mr-0.5 text-xs font-bold text-slate-500">16</sup>
-                                E tornou a trazer toda a <span
-                                    class="rounded bg-[#0c7c99] px-1 py-0.5 font-bold text-white">fazenda</span>,
-                            </div>
-                        </div>
-                        <!-- v16 a' -->
-                        <div class="mb-1 grid grid-cols-[20px_1fr] gap-2">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">a'</div>
-                            <div>e tornou a trazer também a <span
-                                    class="rounded bg-[#0c7c99] px-1 py-0.5 font-bold text-white">Ló</span>, seu <span
-                                    class="rounded bg-[#5b62d8] px-1 py-0.5 font-bold text-white">irmão</span>, e a sua
-                                <span class="rounded bg-[#0c7c99] px-1 py-0.5 font-bold text-white">fazenda</span>,
-                            </div>
-                        </div>
-                        <!-- v16 b (Indentado) -->
-                        <div class="grid grid-cols-[20px_1fr] gap-2 pl-6">
-                            <div class="pt-1 text-right font-mono text-xs text-slate-500">b</div>
-                            <div>e também as mulheres, e o povo.</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Rodapé -->
-                <p class="mt-8 text-center font-serif text-[0.9rem] text-slate-500 italic">Genesis 14:1-16. Translation
-                    and Literary
-                    Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</p>
-            </div>
-
-
-            <h2 class="text-3xl font-bold text-slate-800 mb-4">De Reis e Gigantes</h2>
-            <p class="text-lg leading-relaxed text-slate-700 mb-6">A história destaca essas listas repetidas de
-                reis. As listas são organizadas em padrões simétricos, e os nomes dos reis estão carregados de
-                jogos de palavras sarcásticos.</p>
-
-            <div class="mx-auto max-w-4xl bg-white p-6 font-sans text-slate-900">
-
-                <!-- Tabela Principal com Borda Grossa -->
-                <div class="overflow-hidden border-2 border-slate-900 bg-white">
-                    <!-- Cabeçalho Reis Mesopotâmicos -->
-                    <div class="flex border-b-2 border-slate-900  text-lg font-bold">
-                        <div class="w-1/2 border-r-2 border-slate-900 p-4 text-center">Reis Mesopotâmicos: 1ª Lista
-                        </div>
-                        <div class="w-1/2 p-4 text-center">Reis Mesopotâmicos: 2ª Lista</div>
-                    </div>
-
-                    <!-- Corpo Reis Mesopotâmicos (Com o Cruzamento em X) -->
-                    <div class="relative flex h-[190px] border-b-2 border-slate-900 text-lg leading-relaxed">
-                        <!-- ELEMENTOS DE CONEXÃO CENTRALIZADOS (SVG + CSS) -->
-                        <div class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
-                            <!-- Container centralizado para o desenho -->
-                            <div class="relative h-[160px] w-[60px]">
-                                <!-- Chave Esquerda Superior (A, B) -->
-                                <div
-                                    class="absolute top-0 left-0 h-[70px] w-3 border-t-2 border-r-2 border-b-2 border-slate-900">
-                                </div>
-
-                                <!-- Chave Esquerda Inferior (C, D) -->
-                                <div
-                                    class="absolute bottom-0 left-0 h-[70px] w-3 border-t-2 border-r-2 border-b-2 border-slate-900">
-                                </div>
-
-                                <!-- Chave Direita Superior (C, D) -->
-                                <div
-                                    class="absolute top-0 right-0 h-[70px] w-3 border-t-2 border-b-2 border-l-2 border-slate-900">
-                                </div>
-
-                                <!-- Chave Direita Inferior (A, B) -->
-                                <div
-                                    class="absolute right-0 bottom-0 h-[70px] w-3 border-t-2 border-b-2 border-l-2 border-slate-900">
-                                </div>
-
-                                <!-- Linhas Cruzadas -->
-                                <svg class="absolute inset-0 h-full w-full overflow-visible">
-                                    <!-- Linha Superior Esq -> Inferior Dir -->
-                                    <line x1="10" y1="35" x2="50" y2="125" stroke="#0f172a" stroke-width="2" />
-                                    <!-- Linha Inferior Esq -> Superior Dir -->
-                                    <line x1="10" y1="125" x2="50" y2="35" stroke="#0f172a" stroke-width="2" />
-                                </svg>
-                            </div>
-                        </div>
-
-                        <!-- Coluna Esquerda -->
-                        <div class="relative flex w-1/2 flex-col border-r-2 border-slate-900 p-6">
-                            <!-- Grupo A, B -->
-                            <div class="absolute top-[25px] right-6 left-10">
-                                <ul class="space-y-1">
-                                    <li><b>A</b> Anrafel, rei de Sinar</li>
-                                    <li><b>B</b> Arioque, rei de Elasar</li>
-                                </ul>
-                            </div>
-
-                            <!-- Grupo C, D -->
-                            <div class="absolute right-6 bottom-[25px] left-10">
-                                <ul class="space-y-1">
-                                    <li><b>C</b> Quedorlaomer, rei de Elão</li>
-                                    <li><b>D</b> Tidal, rei de Goim</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Coluna Direita -->
-                        <div class="relative flex w-1/2 flex-col justify-between p-6">
-                            <!-- Grupo C, D -->
-                            <div class="absolute top-[25px] right-6 left-10">
-                                <ul class="space-y-1">
-                                    <li><b>C</b> Quedorlaomer, rei de Elão</li>
-                                    <li><b>D</b> Tidal, rei de Goim</li>
-                                </ul>
-                            </div>
-
-                            <!-- Grupo A, B -->
-                            <div class="absolute right-6 bottom-[25px] left-10">
-                                <ul class="space-y-1">
-                                    <li><b>A</b> Anrafel, rei de Sinar</li>
-                                    <li><b>B</b> Arioque, rei de Elasar</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Cabeçalho Reis Cananeus -->
-                    <div class="flex border-b-2 border-slate-900 bg-white text-lg font-bold">
-                        <div class="w-1/2 border-r-2 border-slate-900 p-4 text-center">Reis Cananeus: 1ª Lista</div>
-                        <div class="w-1/2 p-4 text-center">Reis Cananeus: 2ª Lista</div>
-                    </div>
-
-                    <!-- Corpo Reis Cananeus -->
-                    <div class="flex bg-white text-lg leading-relaxed">
-                        <div class="w-1/2 border-r-2 border-slate-900 p-6">
-                            <ul class="space-y-2">
-                                <li><b>A</b> Bera, rei de Sodoma</li>
-                                <li><b>B</b> Birsa, rei de Gomorra</li>
-                                <li><b>C</b> Sinabe, rei de Admá</li>
-                                <li><b>D</b> Semeber, rei de Zeboim</li>
-                                <li><b>E</b> O rei de Belá [esta é Zoar]</li>
-                            </ul>
-                        </div>
-                        <div class="w-1/2 p-6">
-                            <ul class="space-y-2">
-                                <li><b>A</b> O rei de Sodoma,</li>
-                                <li><b>B</b> O rei de Gomorra</li>
-                                <li><b>C</b> O rei de Admá</li>
-                                <li><b>D</b> O rei de Zeboim</li>
-                                <li><b>E</b> O rei de Belá [esta é Zoar]</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Rodapé -->
-                <p class="mt-2 border-t border-slate-300 pt-4 text-center text-sm text-slate-500 italic">Listas de Reis
-                    Mesopotâmicos e Cananeus. Criado por Tim Mackie para BibleProject Classroom: Abraham (2021).</p>
-            </div>
-
-
-            <p class="text-lg leading-relaxed text-slate-700 mb-6">A lista de nove reis é repetida duas vezes,
-                mas não identicamente. A ordem dos quatro reis mesopotâmicos é invertida para que o rei de
-                Shinar seja o número um na primeira lista, e o rei de Elam seja o número um na segunda lista.
-            </p>
-
-            <div class="mx-auto max-w-4xl bg-white p-6 font-sans text-slate-900">
-
-                <p class="text-lg leading-relaxed text-slate-700 mb-6">
-                    Esta variação aparentemente aleatória torna-se significativa quando a história é mapeada em sua
-                    sequência
-                    literária.
-                </p>
-
-                <!-- Sequência Literária (Boxes) -->
-                <div class="space-y-4 mb-12">
-                    <div class="rounded-xl border-2 border-slate-300 bg-slate-50 p-4">
-                        <p>A - Anrafel, rei de Sinar</p>
-                        <p>B - Arioque, rei de Elasar</p>
-                    </div>
-                    <div class="rounded-xl border-2 border-slate-400 bg-slate-200 p-4">
-                        <p>C - Quedorlaomer, rei de Elão</p>
-                        <p>D - Tidal, rei de Goim</p>
-                    </div>
-                    <div class="rounded-xl border-2 border-slate-400 bg-white p-4 ml-8">
-                        <p>A - Bera, rei de Sodoma</p>
-                        <p>B - Birsa, rei de Gomorra</p>
-                        <p>C - Sinabe, rei de Admá</p>
-                        <p>D - Semeber, rei de Zeboim</p>
-                        <p>E - O rei de Belá [esta é Zoar]</p>
-                    </div>
-                    <!-- Box Central Destaque -->
-                    <div class="rounded-xl border-2 border-red-900 bg-red-50 p-4 ml-12 shadow-sm">
-                        <h3 class="font-bold text-slate-900 mb-2">Quedorlaomer e os Reis com Ele Ferem os Clãs de
-                            Gigantes</h3>
-                        <ul class="list-disc list-inside space-y-1 text-slate-800 ml-2">
-                            <li>Refains / Zuzins / Emins</li>
-                            <li>Horeus / Amalequitas / Amorreus</li>
-                        </ul>
-                    </div>
-                    <div class="rounded-xl border-2 border-slate-400 bg-white p-4 ml-8">
-                        <p>A - o rei de Sodoma</p>
-                        <p>B - o rei de Gomorra</p>
-                        <p>C - o rei de Admá</p>
-                        <p>D - o rei de Zeboim</p>
-                        <p>E - o rei de Belá [esta é Zoar]</p>
-                    </div>
-                    <div class="rounded-xl border-2 border-slate-400 bg-slate-200 p-4">
-                        <p>C - Quedorlaomer, rei de Elão</p>
-                        <p>D - Tidal, rei de Goim</p>
-                    </div>
-                    <div class="rounded-xl border-2 border-slate-300 bg-slate-50 p-4">
-                        <p>A - Anrafel, rei de Sinar</p>
-                        <p>B - Arioque, rei de Elasar</p>
-                    </div>
-                    <p class="text-sm italic text-slate-500 mt-2">Gênesis 14:1-10 Reis. Design Literário por Tim Mackie
-                        para
-                        BibleProject Classroom: Abraham (2021).</p>
-                </div>
-
-                <p class="text-lg leading-relaxed text-slate-700 mb-6">
-                    Os nomes foram listados em padrão simétrico, que coloca os reis mesopotâmicos nos locais externos e
-                    destaca os
-                    clãs de gigantes na posição central. Cada uma dessas características de design parece intencional e
-                    comunica
-                    algo significativo.
-                </p>
-                <p class="text-lg leading-relaxed text-slate-700 mb-8">
-                    Os reis mesopotâmicos invertidos: Os dois reis destacados são os governantes de Sinar e Elão. Ambos
-                    os reinos
-                    desempenham um papel significativo na história bíblica mais ampla.
-                </p>
-
-                <!-- Seção Sinar -->
-                <h3 class="text-2xl font-bold text-slate-900 mb-4">Sinar</h3>
-                <p class="text-lg leading-relaxed text-slate-700 mb-4">
-                    Sinar foi mencionado pela última vez em <a href="#"
-                        class="verse-link text-slate-900 hover:underline" data-reference="Genesis+11:1-2">Gênesis
-                        11:1-2</a>, na genealogia de Cam, filho de Noé: “E aconteceu que,
-                    partindo eles do oriente, acharam um vale na terra de Sinar; e habitaram ali” e começaram a
-                    construir a
-                    Babilônia.
-                </p>
-                <p class="text-lg leading-relaxed text-slate-700 mb-4">
-                    Sinar é um termo raro usado para descrever a planície de inundação em que a Babilônia e seus
-                    zigurates foram
-                    construídos. Cada vez que aparece na Bíblia Hebraica, é sinistro:
-                </p>
-                <ul class="list-disc list-inside space-y-2 text-lg text-slate-700 mb-8 ml-4">
-                    <li>“O princípio do reino de Ninrode foi Babilônia ... na terra de Sinar” (<a href="#"
-                            class="verse-link text-slate-900 hover:underline" data-reference="Gen+10:10">Gn. 10:10</a>)
-                    </li>
-                    <li>“Naquele dia, o Senhor estenderá a mão uma segunda vez para restaurar o remanescente do seu povo
-                        da Assíria,
-                        Egito ... Elão, Sinar ... e das ilhas do mar.” (<a href="#"
-                            class="verse-link text-slate-900 hover:underline" data-reference="Isaiah+11:11">Isaías
-                            11:11</a>)</li>
-                    <li>“[Nabucodonosor] levou os vasos do templo de <em>Elohim</em> para a terra de Sinar, para a casa
-                        do tesouro
-                        do seu <em>elohim</em>.” (<a href="#" class="verse-link text-slate-900 hover:underline"
-                            data-reference="Daniel+1:2">Daniel 1:2</a>)</li>
-                </ul>
-
-                <!-- Seção Elão -->
-                <h3 class="text-2xl font-bold text-slate-900 mb-4">Elão</h3>
-                <p class="text-lg leading-relaxed text-slate-700 mb-4">
-                    “Elão” é a palavra hebraica para “Pérsia”, e foi mencionada pela última vez na genealogia de Sem,
-                    filho de Noé:
-                    “Os filhos de Sem: Elão, Assur, Arfaxade, Lude e Arã” (<a href="#"
-                        class="verse-link text-slate-900 hover:underline" data-reference="Gen+10:22">Gn. 10:22</a>).
-                </p>
-                <p class="text-lg leading-relaxed text-slate-700 mb-4">
-                    Interessantemente, Elão/Pérsia é a nação que derruba a Babilônia e se torna o instrumento de Deus
-                    para restaurar
-                    os israelitas exilados de volta à terra prometida (ver <a href="#"
-                        class="verse-link text-slate-900 hover:underline" data-reference="Ezra+1:1-11">Esdras
-                        1:1-11</a>).
-                </p>
-                <p class="text-lg leading-relaxed text-slate-700 mb-4">
-                    Mais tarde, o rei da Babilônia (descendente de Cam) exilará os descendentes de Avram para a terra de
-                    Sinar, e
-                    Elão (filho de Sem) é a nação que restaurará esses exilados de volta à sua terra natal.
-                </p>
-                <p class="text-lg leading-relaxed text-slate-700 mb-8">
-                    A lista de reis cananeus é repetida de forma idêntica, e a maioria dos nomes vem da genealogia de
-                    Cam em Gênesis
-                    10.
-                </p>
-
-                <!-- Bloco Gênesis 10 -->
-                <div class="border-l-4 border-slate-600 pl-6 py-2 mb-8 bg-slate-50/30 p-4 rounded-r-xl">
-                    <h4 class="font-bold text-slate-900 mb-2">Gênesis 10:6, 19 <span
-                            class="text-slate-500 font-normal ml-2">NVI</span></h4>
-                    <p class="text-lg text-slate-800">
-                        <sup>6</sup> Os filhos de Cam foram Cuxe, Mizraim, Pute e Canaã. ... <sup>19</sup> As fronteiras
-                        de Canaã se
-                        estendiam desde Sidom, indo em direção a Gerar, até Gaza; e indo em direção a <b>Sodoma</b>,
-                        <b>Gomorra</b>,
-                        <b>Admá</b> e <b>Zeboim</b>, até Lasa.
-                    </p>
-                </div>
-
-                <p class="text-lg leading-relaxed text-slate-700 mb-8">
-                    Essa ligação precisa dos reis aos filhos de Noé em Gênesis 10 é intencional. O autor está tentando
-                    mostrar que
-                    esta batalha é um desdobramento da rivalidade entre irmãos que Noé antecipou em Gênesis 9:25-26.
-                </p>
-
-                <!-- Bloco Gênesis 9 -->
-                <div class="border-l-4 border-slate-600 pl-6 py-2 mb-8 bg-slate-50/30 p-4 rounded-r-xl">
-                    <h4 class="font-bold text-slate-900 mb-2">Gênesis 9:24-26 <span
-                            class="text-slate-500 font-normal ml-2">NVI</span></h4>
-                    <p class="text-lg text-slate-800 mb-2">
-                        <sup>24</sup> Quando Noé acordou de seu vinho e soube o que seu filho mais novo lhe fizera,
-                        <sup>25</sup>
-                        disse:
-                    </p>
-                    <p class="text-lg text-slate-800 italic pl-4 mb-2">
-                        “Maldito seja Canaã!<br>
-                        O mais baixo dos <b>escravos</b><br>
-                        ele será para seus irmãos.”
-                    </p>
-                    <p class="text-lg text-slate-800">
-                        <sup>26</sup> Disse ainda:
-                    </p>
-                    <p class="text-lg text-slate-800 italic pl-4">
-                        “Bendito seja o SENHOR, o Deus de Sem!<br>
-                        Que Canaã seja <b>escravo</b> de Sem.”
-                    </p>
-                </div>
-
-                <!-- Bloco Gênesis 14 -->
-                <div class="border-l-4 border-slate-600 pl-6 py-2 mb-8 bg-slate-50/30 p-4 rounded-r-xl">
-                    <h4 class="font-bold text-slate-900 mb-2">Gênesis 14:4-5 <span
-                            class="text-slate-500 font-normal ml-2">Tradução
-                            do Instrutor</span></h4>
-                    <p class="text-lg text-slate-800">
-                        <sup>4</sup> Por doze anos [os filhos de Cam] tinham sido <b>escravos</b> de Quedorlaomer, e no
-                        décimo
-                        terceiro ano eles se rebelaram, <sup>5</sup> e no décimo quarto ano Quedorlaomer veio, e os reis
-                        que estavam
-                        com ele [filhos de Sem]
-                    </p>
-                </div>
-
-            </div>
-            <div class="mx-auto max-w-4xl bg-white p-6 font-sans text-slate-900">
-
-                <h2 class="text-3xl font-bold text-slate-900 mb-6">Os Reis Mesopotâmicos Versus os Gigantes</h2>
-
-                <p class="text-lg leading-relaxed text-slate-700 mb-8">
-                    Os reis orientais vêm a Canaã e ferem os clãs de gigantes associados aos Nefilim, os guerreiros
-                    gigantes do
-                    tempo do dilúvio.
-                </p>
-
-                <!-- Seção: Refains -->
-                <h3 class="text-2xl font-bold text-slate-900 mb-4">Refains em Asterote-Carnaim</h3>
-                <p class="text-lg leading-relaxed text-slate-700 mb-6">
-                    Os Refains eram um clã de gigantes, com um rei chamado Ogue que governava em Asterote, na região de
-                    Basã, no
-                    lado leste do rio Jordão.
-                </p>
-
-                <div class="border-l-4 border-slate-600 pl-6 py-2 mb-8 bg-slate-50/30 p-4 rounded-r-xl">
-                    <h4 class="font-bold text-slate-900 mb-2">Deuteronômio 3:8-11 <span
-                            class="text-slate-500 font-normal ml-2">NVI</span></h4>
-                    <p class="text-lg text-slate-800">
-                        <sup>8</sup> "Assim naquele tempo tomamos a terra das mãos dos dois reis dos amorreus que
-                        estavam além do
-                        Jordão, desde o vale de Arnom até ao monte Hermom... <sup>10</sup> todas as cidades do planalto,
-                        e toda a
-                        Gileade, e toda a Basã... cidades do reino de Ogue em Basã. <sup>11</sup> (Porque só Ogue, o rei
-                        de Basã,
-                        restou do remanescente dos <b>Refains</b>. Eis que o seu leito, um leito de ferro, não está
-                        porventura em
-                        Rabá dos amonitas? De nove côvados o seu comprimento, e de quatro côvados a sua largura, pelo
-                        côvado
-                        comum.)"
-                    </p>
-                </div>
-
-                <div class="border-l-4 border-slate-600 pl-6 py-2 mb-8 bg-slate-50/30 p-4 rounded-r-xl">
-                    <h4 class="font-bold text-slate-900 mb-2">Josué 13:12 <span
-                            class="text-slate-500 font-normal ml-2">NVI</span>
-                    </h4>
-                    <p class="text-lg text-slate-800">
-                        todo o reino de Ogue em Basã, que reinou em Asterote e em Edrei (este restou do remanescente dos
-                        <b>Refains</b>); e Moisés os feriu e os expulsou.
-                    </p>
-                </div>
-
-                <p class="text-lg leading-relaxed text-slate-700 mb-8">
-                    Os tradutores da Septuaginta Grega de Gênesis traduziram os Refains de <a href="#"
-                        class="verse-link text-slate-900 hover:underline font-semibold"
-                        data-reference="Genesis+14:5">Gênesis
-                        14:5</a> com a palavra grega <em>gigantas</em> (γίγαντας) = “gigantes”, a mesma palavra que
-                    usaram para
-                    traduzir “Nefilim” em <a href="#" class="verse-link text-slate-900 hover:underline font-semibold"
-                        data-reference="Genesis+6:4">Gênesis 6:4</a>.
-                </p>
-
-                <!-- Seção: Zuzins -->
-                <h3 class="text-2xl font-bold text-slate-900 mb-4">Os Zuzins (זוזים) em Hã</h3>
-                <p class="text-lg leading-relaxed text-slate-700 mb-6">
-                    Os Zuzins, também conhecidos como “Zanzumins” (זמזמים), viviam na região habitada mais tarde pelos
-                    amonitas, que
-                    eram na verdade parte dos clãs gigantes Refains.
-                </p>
-
-                <div class="border-l-4 border-slate-600 pl-6 py-2 mb-8 bg-slate-50/30 p-4 rounded-r-xl">
-                    <h4 class="font-bold text-slate-900 mb-2">Deuteronômio 2:19-21 <span
-                            class="text-slate-500 font-normal ml-2">NVI</span></h4>
-                    <p class="text-lg text-slate-800">
-                        <sup>19</sup> "... não lhes darei nada da terra dos amonitas por herança... <sup>20</sup>
-                        (Também essa é
-                        considerada terra de <b>Refains</b>; dantes habitavam nela <b>Refains</b>, mas os amonitas lhes
-                        chamam
-                        <b>Zanzumins</b>— <sup>21</sup> um povo grande e numeroso, e <b>alto como os Anaquins</b>; mas o
-                        SENHOR os
-                        destruiu de diante deles, e eles os despojaram, e habitaram no lugar deles)"
-                    </p>
-                </div>
-
-                <!-- Seção: Emins -->
-                <h3 class="text-2xl font-bold text-slate-900 mb-4">Os Emins em Savé-Quiriataim</h3>
-                <p class="text-lg leading-relaxed text-slate-700 mb-6">
-                    Os Emins também eram parte dos clãs gigantes Refains.
-                </p>
-
-                <div class="border-l-4 border-slate-600 pl-6 py-2 mb-8 bg-slate-50/30 p-4 rounded-r-xl">
-                    <h4 class="font-bold text-slate-900 mb-2">Deuteronômio 2:10-11 <span
-                            class="text-slate-500 font-normal ml-2">NVI</span></h4>
-                    <p class="text-lg text-slate-800">
-                        <sup>10</sup> (Os Emins dantes habitavam nela, um povo grande e numeroso, e alto como os
-                        Anaquins;
-                        <sup>11</sup> eles também são considerados <b>Refains</b> como os Anaquins; mas os moabitas lhes
-                        chamam
-                        Emins).
-                    </p>
-                </div>
-
-                <p class="text-lg leading-relaxed text-slate-700 mb-8">
-                    Todas essas tribos estão conectadas aos Anaquins e aos Nefilim desde o tempo do dilúvio.
-                </p>
-
-                <div class="border-l-4 border-slate-600 pl-6 py-2 mb-8 bg-slate-50/30 p-4 rounded-r-xl">
-                    <h4 class="font-bold text-slate-900 mb-2">Números 13:27-33 <span
-                            class="text-slate-500 font-normal ml-2">NVI</span></h4>
-                    <p class="text-lg text-slate-800">
-                        <sup>27</sup> E relataram-lhe: “Fomos à terra a que nos enviaste. Ela mana leite e mel...
-                        <sup>28</sup> O
-                        povo, porém, que habita nessa terra é poderoso, e as cidades são fortificadas e mui grandes.
-                        Vimos também
-                        ali os descendentes de <b>Anaque</b>. <sup>29</sup> Os amalequitas habitam na terra do
-                        Negueve...
-                        <sup>32</sup> ...A terra, pela qual passamos a espiá-la, é terra que consome os seus moradores;
-                        e todo o
-                        povo que vimos nela são homens de grande estatura. <sup>33</sup> Também vimos ali os
-                        <b>Nefilim</b>, isto é,
-                        os filhos de <b>Anaque</b>, que são descendentes dos <b>Nefilim</b>; e éramos aos nossos olhos
-                        como
-                        gafanhotos..."
-                    </p>
-                </div>
-
-                <p class="text-lg leading-relaxed text-slate-700 mb-8">
-                    Toda essa lista de habitantes de Canaã e da Transjordânia fornece uma contabilidade de todas as
-                    regiões em que
-                    os israelitas entrarão mais tarde, de Números 20 em diante. Essas regiões estavam cheias de
-                    habitantes
-                    anteriores, clãs de gigantes que foram tratados pela justiça providencial de Deus muito antes de
-                    Israel entrar
-                    na terra.
-                </p>
-
-                <div class="border-l-4 border-slate-600 pl-6 py-2 mb-8 bg-slate-50/30 p-4 rounded-r-xl">
-                    <h4 class="font-bold text-slate-900 mb-2">Deuteronômio 2:9-11, 18-23 <span
-                            class="text-slate-500 font-normal ml-2">NVI</span></h4>
-                    <p class="text-lg text-slate-800">
-                        <sup>9</sup> E o SENHOR me disse: "Não molestes a Moabe... porque não te darei da sua terra por
-                        herança,
-                        porquanto dei Ar aos filhos de Ló por herança." <sup>10</sup> (Os <b>Emins</b> dantes habitavam
-                        nela, um
-                        povo grande e numeroso, e alto como os Anaquins; <sup>11</sup> eles também são considerados
-                        <b>Refains</b>
-                        como os Anaquins; mas os moabitas lhes chamam <b>Emins</b>. <sup>12</sup> Os <b>horeus</b>
-                        também habitaram
-                        dantes em Seir, porém os filhos de Esaú os despojaram e os destruíram de diante de si...)
-                    </p>
-                </div>
-
-                <p class="text-lg leading-relaxed text-slate-700 mb-12">
-                    O discurso de Moisés em <a href="#" class="verse-link text-slate-900 hover:underline font-semibold"
-                        data-reference="Deuteronomy+2">Deuteronômio 2</a> pressupõe uma história de fundo do julgamento
-                    de Deus
-                    sobre os clãs de gigantes no lado leste do Jordão, e <a href="#"
-                        class="verse-link text-slate-900 hover:underline font-semibold"
-                        data-reference="Genesis+14">Gênesis 14</a>
-                    fornece essa narrativa. O ponto do discurso de Moisés é que, assim como Deus providencialmente deu
-                    outras terras
-                    aos descendentes não escolhidos e parentes de Avraham (Ló ou Esaú), assim também ele usará os
-                    israelitas para
-                    desapossar os cananeus. <a href="#" class="verse-link text-slate-900 hover:underline font-semibold"
-                        data-reference="Genesis+14">Gênesis 14</a> fornece a história de fundo providencial, implicando
-                    que Deus
-                    usou os reis orientais liderados pela Babilônia como um instrumento divino de julgamento sobre os
-                    clãs gigantes
-                    de Canaã e da Transjordânia. No entanto, por causa da arrogância da Babilônia ao capturar Ló, a
-                    semente de
-                    Avraham, Deus então liberta a coalizão para Avraham.
-                </p>
-                <p class="mb-6 text-lg leading-relaxed text-slate-700">Este capítulo, então, torna Avram superior aos
-                    reis
-                    orientais, aos cananeus e a todos os gigantes da antiguidade. Também qualifica Avram para ser o
-                    verdadeiro
-                    herdeiro dessas mesmas terras, porque ele foi o seu libertador.</p>
-                <p class="mb-6 text-lg leading-relaxed text-slate-700">Tudo isso parece alinhado com uma estratégia que
-                    coloca os
-                    retornados do exílio em analogia com Avram. Eles (re)entraram em “Canaã” (= <em>Yehud</em> Persa)
-                    depois que
-                    Deus usou a Babilônia para julgar os habitantes anteriores (os reinos israelitas e judeus junto com
-                    a população
-                    não-israelita), e se viram chamados a herdar de acordo com a promessa de Deus.</p>
-            </div>
-
-            <div class="mx-auto max-w-4xl bg-white p-6 font-sans text-slate-900">
-
-                <!-- Seção: Um Dilúvio de Violência -->
-                <h2 class="mt-12 mb-6 text-3xl font-bold text-slate-900">Um Dilúvio de Violência</h2>
-                <p class="mb-8 text-lg leading-relaxed text-slate-700">Lembre-se que Gênesis 11-14 refaz a sequência
-                    temática de
-                    Gênesis 1-9, e <a href="#" class="verse-link font-semibold text-slate-900 hover:underline"
-                        data-reference="Genesis+14">Gênesis 14</a> chega precisamente no momento em que estamos
-                    esperando um momento
-                    de dilúvio/re-criação. A história está cheia de conexões únicas com o início da narrativa do
-                    dilúvio.</p>
-
-                <!-- Tabela Comparativa -->
-                <div class="mb-12 overflow-hidden rounded-xl border border-slate-300 shadow-sm">
-                    <table class="w-full table-fixed border-collapse text-left text-slate-800">
-                        <thead class="border-b border-slate-300 bg-slate-100 text-lg font-bold text-slate-900">
-                            <tr>
-                                <th class="w-1/2 border-r border-slate-300 p-5">Gênesis 6-8</th>
-                                <th class="w-1/2 p-5">Gênesis 14:1-24</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-200 bg-white text-base">
-                            <!-- Linha 1 -->
-                            <tr class="align-top">
-                                <td class="border-r border-slate-300 p-5">
-                                    Os poderosos guerreiros violentos (Heb. <em>gibborim</em>), também chamados de
-                                    “<span class="font-bold text-orange-700">Nefilim, homens do nome</span>” (observe a
-                                    proeminência de
-                                    nomes neste capítulo) derramam muito sangue na terra, enchendo-a de
-                                    violência.<br /><br />
-                                    <span class="font-bold">Gênesis 6:4</span> <span
-                                        class="rounded bg-[#e0e0e0] px-1">Havia
-                                        naqueles dias <strong>gigantes</strong> na terra; e também depois, quando os
-                                        filhos de Deus
-                                        entraram às filhas dos homens e delas geraram filhos; estes eram os valentes que
-                                        houve na
-                                        antiguidade, os <strong>homens de fama</strong>.</span><br /><br />
-                                    <span class="font-bold">Gênesis 6:13</span> <span
-                                        class="rounded bg-[#e0e0e0] px-1">Então disse
-                                        Deus a Noé: O fim de toda a carne é vindo perante a minha face; porque a terra
-                                        está cheia de
-                                        violência; e eis que os desfarei com a terra.</span>
-                                </td>
-                                <td class="p-5">
-                                    • Os reis mesopotâmicos ferem os Refains e outros clãs de gigantes (<span
-                                        class="font-bold">Gênesis 14:5</span>, LXX <em>gigantas</em>), conectados aos
-                                    Anaquins
-                                    (<span class="font-bold">Deut. 2:10-11, 3:11-13</span>) e aos Nefilim (<span
-                                        class="font-bold">Num. 13:33</span>).<br /><br />
-                                    • Os reis mesopotâmicos tornam-se um dilúvio de julgamento divino que consiste em
-                                    guerreiros
-                                    (<em>gibborim</em>) varrendo a terra prometida a Avram, limpando seus habitantes
-                                    anteriores.
-                                </td>
-                            </tr>
-
-                            <!-- Linha 2 -->
-                            <tr class="align-top">
-                                <td class="border-r border-slate-300 p-5">
-                                    As águas do dilúvio são chamadas de “poderosas e fortes” (Heb. <em>gavar</em>, גבר),
-                                    da mesma
-                                    raiz que “poderoso guerreiro” (Heb. <em>gibbor</em>, גבור).<br /><br />
-                                    <span class="font-bold">Gênesis 7:18-20</span><br />
-                                    <sup>18</sup> E as águas <span
-                                        class="rounded bg-blue-100 px-1 font-bold text-blue-900">prevaleceram</span>
-                                    (Heb.
-                                    <em>gavar</em>, גבר) e cresceram grandemente sobre a terra...<br />
-                                    <sup>19</sup> E as águas <span
-                                        class="rounded bg-blue-100 px-1 font-bold text-blue-900">prevaleceram</span>
-                                    (Heb.
-                                    <em>gavar</em>, גבר) excessivamente sobre a terra...<br />
-                                    <sup>20</sup> Quinze côvados acima <span
-                                        class="rounded bg-blue-100 px-1 font-bold text-blue-900">prevaleceram</span>
-                                    (Heb.
-                                    <em>gavar</em>, גבר) as águas; e os montes foram cobertos.
-                                </td>
-                                <td class="p-5"></td>
-                            </tr>
-
-                            <!-- Linha 3 -->
-                            <tr class="align-top">
-                                <td class="border-r border-slate-300 p-5">
-                                    <span class="font-bold">Gênesis 7:11</span> O dilúvio acontece quando as “fontes do
-                                    grande
-                                    abismo” se rompem, e as “janelas” (Heb. <em>‘arubbot</em>, ארבת) se
-                                    abrem.<br /><br />
-                                    <span class="font-bold">Gênesis 11:3</span> A torre e a cidade de Babilônia, que
-                                    foram
-                                    espalhadas em um julgamento semelhante a um dilúvio, foram construídas usando
-                                    “betume” (חמר)
-                                    como argamassa.
-                                </td>
-                                <td class="p-5">
-                                    Os reis de Sodoma e Gomorra caem em poços de betume.<br /><br />
-                                    <span class="font-bold">Gênesis 14:10</span> E o vale de Sidim estava cheio de poços
-                                    de betume
-                                    (בארת בארת); e fugiram os reis de Sodoma e de Gomorra, e caíram ali...
-                                </td>
-                            </tr>
-
-                            <!-- Linha 4 -->
-                            <tr class="align-top">
-                                <td class="border-r border-slate-300 p-5">
-                                    Após o dilúvio, Noé e sua família são um remanescente (נשאר/שאר), e eles escapam e
-                                    são colocados
-                                    sobre as “montanhas de Ararat”.<br /><br />
-                                    <span class="font-bold">Gênesis 7:23</span> “...e ficou (נשאר) somente Noé, e os que
-                                    com ele
-                                    estavam na arca.”<br /><br />
-                                    <span class="font-bold">Gênesis 8:4</span> “E a arca repousou no sétimo mês... sobre
-                                    os montes
-                                    (הר) de Ararat”
-                                </td>
-                                <td class="p-5">
-                                    Após o ataque semelhante a um dilúvio dos reis, os sobreviventes fogem para as
-                                    montanhas.<br /><br />
-                                    <span class="font-bold">Gênesis 14:10</span> ... e os restantes fugiram para um
-                                    monte (הר).
-                                </td>
-                            </tr>
-
-                            <!-- Linha 5 -->
-                            <tr class="align-top">
-                                <td class="border-r border-slate-300 p-5"><span class="font-bold">Gênesis 8:21</span>
-                                    Após o
-                                    dilúvio, Deus se refere às águas como um “ferir” sobre a terra (נכה) — “não tornarei
-                                    mais a
-                                    <span class="rounded bg-orange-100 px-1 font-bold text-orange-900">ferir</span>
-                                    (נכה) todo
-                                    vivente, como fiz.”
-                                </td>
-                                <td class="p-5">
-                                    Os reis mesopotâmicos vêm e “ferem” (נכה) os clãs de gigantes.<br /><br />
-                                    <span class="font-bold">Gênesis 14:5, 7</span> Quedorlaomer veio... e <span
-                                        class="rounded bg-orange-100 px-1 font-bold text-orange-900">feriram</span>
-                                    (נכה) os
-                                    refains... e <span
-                                        class="rounded bg-orange-100 px-1 font-bold text-orange-900">feriram</span>
-                                    (נכה) todo o campo dos amalequitas.
-                                </td>
-                            </tr>
-
-                            <!-- Linha 6 -->
-                            <tr class="align-top">
-                                <td class="border-r border-slate-300 p-5">
-                                    Deus faz uma promessa de aliança a Noé, de que proverá um refúgio para ele e sua
-                                    família na arca
-                                    construída de árvores (עץ), onde ele pode viver em segurança com os animais e
-                                    bastante
-                                    comida.<br /><br />
-                                    <span class="font-bold">Gênesis 6:14</span> “Faze para ti uma arca da madeira (עץ)
-                                    de
-                                    gofer...”<br /><br />
-                                    <span class="font-bold">Gênesis 6:18-19</span> “Mas contigo estabelecerei a minha
-                                    aliança
-                                    (ברית); e entrarás na arca, tu e teus filhos...”<br /><br />
-                                    <span class="font-bold">Gênesis 6:21</span> “E leva contigo de toda a comida (מאכל)
-                                    que se
-                                    come... e te será para mantimento (אכל) a ti e a eles.”
-                                </td>
-                                <td class="p-5">
-                                    <span class="font-bold">Gênesis 14:13</span> Enquanto a batalha se enfurece ao redor
-                                    de Avram,
-                                    ele se senta em paz entre os carvalhos de Manre.<br /><br />
-                                    <span class="font-bold">Gênesis 14:13</span> Enquanto os cananeus corruptos estão
-                                    sendo feridos
-                                    ao redor, um grupo de cananeus que está em uma aliança (ברית) com Avram, sentados
-                                    com ele, estão
-                                    perfeitamente seguros<br /><br />
-                                    <span class="font-bold">Gênesis 14:11-12</span> Os reis mesopotâmicos vêm e “tomam”
-                                    (לקח) tanto
-                                    a “comida” (אכל) quanto Ló de Sodoma.<br /><br />
-                                </td>
-                            </tr>
-
-                            <!-- Linha 7 -->
-                            <tr class="align-top">
-                                <td class="border-r border-slate-300 p-5">
-                                    <span class="font-bold">Gênesis 5:21, 28-29</span> Noé é o bisneto de Enoque ( <span
-                                        class="rounded bg-green-100 px-1 font-bold text-green-900">חנ ו ך</span>
-                                    )<br /><br />
-                                    <span class="font-bold">Gênesis 5:29</span> Noé ( נח ) ... "Este nos <span
-                                        class="rounded bg-green-100 px-1 font-bold text-green-900">consolará</span> ( י
-                                    נח מנ ו
-                                    )"<br /><br />
-                                    <span class="font-bold">Gênesis 6:8</span> Mas Noé ( נח ) achou <span
-                                        class="rounded bg-green-100 px-1 font-bold text-green-900">graça</span> (חן) aos
-                                    olhos de
-                                    Yahweh
-                                </td>
-                                <td class="p-5"><span class="font-bold">Gênesis 14:14</span> Avram prepara seus “<span
-                                        class="rounded bg-green-100 px-1 font-bold text-green-900">homens
-                                        treinados</span>” ( חנ י כ
-                                    י ו ).</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="border-t border-slate-200 bg-slate-50/30 p-4">
-                        <p class="text-center text-sm text-slate-500 italic">Mesopotamian Kings As a Flood of Violence.
-                            Criado por
-                            Tim Mackie para BibleProject Classroom: Abraham (2021).</p>
-                    </div>
-                </div>
-
-                <p class="mb-6 text-lg leading-relaxed text-slate-700">Esses hiperlinks estabelecem Avram, a semente de
-                    Noé, como um
-                    novo Noé que é libertado do dilúvio de violência dos reis mesopotâmicos e que se torna o agente da
-                    libertação e
-                    julgamento de Deus.</p>
-                <p class="mb-6 text-lg leading-relaxed text-slate-700">Avram é o agente da libertação de Deus porque os
-                    cananeus que
-                    estão em uma aliança com ele são libertados e salvos do ataque mesopotâmico.</p>
-                <p class="mb-6 text-lg leading-relaxed text-slate-700">Avram é o agente do julgamento de Deus porque ele
-                    e os
-                    cananeus com ele contra-atacam os reis mesopotâmicos, vencendo-os e resgatando os cativos de Sodoma.
-                </p>
-                <p class="mb-12 text-lg leading-relaxed text-slate-700">Nesta história, os cananeus amaldiçoados são
-                    atingidos por
-                    reis perversos do leste, que são retratados como um dilúvio de perversidade. Embora a providência de
-                    Deus não
-                    seja evocada explicitamente, parece ser um julgamento sobre os cananeus, que, por extensão de Sodoma
-                    e Gomorra
-                    “grande maldade e pecado” (<a href="#" class="verse-link text-slate-900 hover:underline"
-                        data-reference="Genesis+13:13">Gn. 13:13</a>), merecem a justiça divina. Mas, em contraste com o
-                    dilúvio, os
-                    reis violentos do leste vêm liderados pela Babilônia. Isso nos prepara para o retrato da Babilônia
-                    como “servo”
-                    de Deus em <a href="#" class="verse-link text-slate-900 hover:underline"
-                        data-reference="Jeremiah+25">Jeremias
-                        25</a>, que será usado por um tempo (paralelo a <a href="#"
-                        class="verse-link text-slate-900 hover:underline" data-reference="Genesis+14:1-10">Gn.
-                        14:1-10</a>) até que
-                    ultrapasse seus limites (paralelo a <a href="#" class="verse-link text-slate-900 hover:underline"
-                        data-reference="Genesis+14:11-24">Gn. 14:11-24</a>) e se torne o objeto do julgamento de Deus em
-                    vez de seu
-                    instrumento.</p>
-            </div>
-
-            <h2 class="text-3xl font-bold text-slate-800 mb-4">Avram o Hebreu e Sua Aliança Com os Cananeus</h2>
-            <p class="text-lg leading-relaxed text-slate-700 mb-4">Os cananeus são retratados de duas maneiras:
-            </p>
-            <ol class="list-decimal list-inside space-y-4 mb-8 text-lg text-slate-700 pl-4">
-                <li>Os cananeus não conectados a Avram são varridos na batalha dos reis. Seu status "ímpio" é
-                    indicado pelos nomes dos reis: "No Mal", "Na Perversidade", "Odiador do Pai", "Nome de
-                    Destruição" e "Devorado".</li>
-                <li>Os bons cananeus (Manre, Aner, Escol) que estão com Avram em seu mini-Éden são associados a
-                    Avram por aliança. Não apenas são poupados, mas vão com Avram e derrotam as nações violentas
-                    eles mesmos, perseguindo-os até "Dan" (עד דן), que soa como o hebraico para "até o Éden".
-                </li>
-            </ol>
-
-            <h2 class="text-2xl font-bold text-slate-800 my-8">Questão para Reflexão</h2>
-            <div class="bg-slate-50/30 border-2 border-slate-300 rounded-xl p-6 shadow-sm">
-                <p class="text-lg text-slate-700">Como os reis violentos de Gênesis 14 reproduzem o tema do
-                    dilúvio? Como isso nos ajuda a entender a importância deste episódio na história de Avram?
-                </p>
-            </div>
-        </div>
+    <div class="v-line" style="display:flex; gap:.9rem;">
+      <span class="lbl" style="padding-top:.35rem;">11</span>
+      <div>
+        <p><span class="lang-pt">E tomaram todos os bens de Sodoma e Gomorra, e toda a sua comida, e se foram.</span><span class="lang-en">And they took all the possessions of Sodom and Gomorrah, and all their food, and they went away.</span></p>
+        <p><sup class="vs">12</sup> <span class="lang-pt">E tomaram a Ló, e os seus bens, filho do irmão de Avram, e se foram; pois ele habitava em Sodoma.</span><span class="lang-en">And they took Lot and his possessions, the son of the brother of Avram, and they went away. Now, he was dwelling in Sodom.</span></p>
+        <p><sup class="vs">13</sup> <span class="lang-pt">E veio um fugitivo, e o anunciou a Avram, o hebreu; ora, ele habitava junto aos carvalhos de Manre, o amorreu, irmão de Escole e de Aner, os quais eram membros da aliança com Avram.</span><span class="lang-en">And a refugee came and reported to Avram the Hebrew; now, he was dwelling among the oaks of Mamre the Amorite, brother of Eshkol, and brother of Aner, who were members of a covenant with Avram.</span></p>
+        <p><sup class="vs">14</sup> <span class="lang-pt">E Avram ouviu que seu irmão tinha sido levado cativo, e trouxe seus homens treinados, nascidos de sua casa, trezentos e dezoito, e perseguiu-os até Dã.</span><span class="lang-en">And Avram heard that his brother had been taken captive, and he brought out his trained men, those born of his house, three hundred and eighteen, and he chased them unto Dan.</span></p>
+        <p><sup class="vs">15</sup> <span class="lang-pt">E dividiu-se contra eles de noite, ele e seus servos, e os feriu, e os perseguiu até Hobá, que fica ao norte de Damasco.</span><span class="lang-en">And he divided himself against them by night, he and his servants, and he struck them, and he chased them unto Khobah, which is north of Damascus.</span></p>
+        <p><sup class="vs">16</sup> <span class="lang-pt">E trouxe de volta todos os bens, e também a Ló, seu irmão, e os seus bens, e também as mulheres, e o povo.</span><span class="lang-en">And he brought back all the possessions, and also Lot his brother, and his possessions, and also the women, and the people.</span></p>
+      </div>
     </div>
-    <script src="../js/verse-modal.js"></script>
+  </div>
+  <p class="caption reveal"><span class="lang-pt"><em>Gênesis 14:1-16</em>. Tradução e Design Literário por Tim Mackie para a BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Genesis 14:1-16</em>. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
+
+  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Questão para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">Como a violência dos reis em Gênesis 14 ecoa a violência que trouxe o dilúvio em Gênesis 6-9?</span><span class="lang-en">How does the kings&rsquo; violence in Genesis 14 echo the violence that brought on the flood in Genesis 6-9?</span></p>
+
+  
+    <section class="scripture reveal">
+    <h2 class="section"><span class="lang-pt">Traduções dos Versículos (Inglês)</span><span class="lang-en">Verse Translations (English)</span></h2>
+    <div class="v-outer"><span class="ref">GEN 14:1-16</span><div class="v-line"><span class="lang-en">a 1 And it came about in the days of Amraphel , king           of Shinar , b of Aryok , king        of Elasar , c of Kedorlaomer , king          of Elam , d and of Tidal , king of Goyyim (= “nations”), a 2 that they made war with Bera (= “in evil”), king          of Sodom , a' and with Birsha (= “in wickedness), king            of Gomorrah , b and with Shinab (= “father hater”), king           of Admah , b' and with Shemeved (= “name of destruction”), king               of Tsiboyim , c and with the     king   of Bela (= “devour”) [this is Zoar]. 3 All of these joined together in the valley of Siddim [this is the Sea of Salt] a 4 For twelve years they had been slaves of Kedorlaomer , a' and in the thirteenth year they rebelled, b 5 and in the fourteenth year Kedorlaomer             went , b' and the kings who were with him, a and they struck the Rephaim in Ashteroth-Qarnayim (= “Asherah of Twin-Peaks”) a' and the Zuzim in Ham, a'' and the Emim in Shaveh-Qiryathayim (= “the Plain of Twin-Cities”), b 6 and the Horites in the mountains of Seir, b' unto the Oak of Paran which is by the wilderness. 7 And they returned and they went to Eyn-Mishpat (= “the Spring of Judgment”) [this is c Qadesh] and they struck all the field of the Amalekites , c'</span></div></div>
+    <div class="v-outer"><span class="ref">GEN 14:1-24</span><div class="v-line"><span class="lang-en">Of Kings and Giants The story highlights these repeated lists of kings. The lists are arranged in symmetrical patterns, and the names of the kings are loaded with sarcastic wordplays. Mesopotamian and Canaanite Kings Lists. Created by Tim Mackie for BibleProject Classroom: Abraham (2021). The list of nine kings is repeated two times, but not identically. The order of the four Mesopotamian kings is inverted so that the king of Shinar is number one in the first list, and the king of Elam is number one in the second list.</span></div></div>
+    <div class="v-outer"><span class="ref">GEN 14:1-10</span><div class="v-line"><span class="lang-en">The names have been listed in symmetrical pattern, which places the Mesopotamian kings at the outer locations and highlights the giant clans in the center position. Each of these design features seems intentional and communicates something significant. The inverted Mesopotamian kings: The two kings highlighted are the rulers of Shinar and Elam. Both kingdoms play a significant role in the larger biblical story.</span></div></div>
+    <div class="v-outer"><span class="ref">GEN 10:6</span><div class="v-line"><span class="lang-en">6                                                                      19 The sons of Ham were Cush and Mizraim and Put and Canaan. ...           The territory of the Canaanite extended from Sidon as you go toward Gerar, as far as Gaza; as you go toward Sodom and Gomorrah and Admah and Zeboiim, as far as Lasha. This precise linking of the kings to the list of Noah’s sons in Genesis 10 is intentional. The author is trying to show that this battle is an outworking of the sibling rivalry that Noah anticipated in Genesis 9:25-26. Genesis 9:24-26 NIV 24                                                                                                25 When Noah awoke from his wine and found out what his youngest son had done to him,                he said, “Cursed be Canaan! The lowest of slaves will he be to his brothers.” 26 He also said, “Praise be to the LORD, the God of Shem! May Canaan be the slave of Shem."</span></div></div>
+  </section>
+
+  <div class="page-footer">
+    <span>Class Notes: Abraham</span>
+    <span><span class="lang-pt">Sessão 9 · Um Diluvio de Violencia</span><span class="lang-en">Session 9 · A Flood of Violence</span></span>
+  </div>
+</div>
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s9-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s9-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+  <script src="../js/verse-modal.js"></script>
 </body>
-
 </html>

@@ -1,628 +1,247 @@
-<!doctype html>
-<html lang="pt-BR">
-
+<!DOCTYPE html>
+<html lang="pt">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sessão 6: Avram, a Serpente</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avram, a Serpente</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  .heb { font-family: 'SBL Hebrew','Times New Roman',serif; font-size: 1.05em; direction: rtl; unicode-bidi: embed; }
+
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
+  .ref:hover { color: #2563eb; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+  .scripture:hover { border-left-color: #9aa7b8; }
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+  .scripture .innerbox { background: #f6f8fa; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1rem; }
+  .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem; }
+
+  /* ---------- Macro design (3 columns) ---------- */
+  .macro { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; align-items: start; margin: 2rem 0 .75rem; }
+  .mcol { border: 3px solid #2e7d4e; border-radius: 12px; padding: .9rem .9rem 1rem; background: #fff; }
+  .mcol.dark { border-color: #3d4453; margin-top: 1.3rem; }
+  .mtag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 3px 10px; border-radius: 5px; }
+  .mtag-green { background: #2e7d4e; } .mtag-dark { background: #3d4453; }
+  .mcol-title { font-size: 1rem; font-weight: 800; color: #17181a; margin: .55rem 0 .8rem; line-height: 1.3; }
+  .mboxes { display: flex; gap: .55rem; }
+  .mbox { flex: 1; border: 3px solid #b9c2cf; border-radius: 9px; background: #fff; min-height: 15.5rem; position: relative; transition: box-shadow .25s, transform .25s; }
+  .mbox:hover { box-shadow: 0 8px 20px -10px rgba(30,41,59,.4); transform: translateY(-3px); }
+  .mbox .mhdr { position: absolute; top: .55rem; left: .55rem; right: .55rem; background: #7d8697; color: #fff; font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 5px; }
+  .mbox.s1 { margin-top: 0; } .mbox.s2 { margin-top: 2.4rem; min-height: 13rem; } .mbox.s3 { margin-top: 2.4rem; min-height: 13rem; }
+  @media (max-width: 860px) { .macro { grid-template-columns: 1fr; } .mcol.dark { margin-top: 0; } .mbox, .mbox.s2, .mbox.s3 { min-height: 7.5rem; margin-top: 0; } }
+
+  /* ---------- Chiasm staircase boxes ---------- */
+  .cx { border: 3px solid; border-radius: 12px; padding: 1.35rem 1.5rem 1.2rem; margin: 1.15rem 0; transition: box-shadow .25s, transform .25s; }
+  .cx:hover { box-shadow: 0 12px 26px -16px rgba(23,24,26,.45); transform: translateY(-2px); }
+  .cx-tag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 1px 13px; border-radius: 6px; margin-bottom: .7rem; }
+  .cx h4 { font-weight: 800; font-size: 1.06rem; color: #17181a; margin-bottom: .7rem; }
+  .cx ul.bullets > li { font-size: .99rem; margin-bottom: .45rem; }
+  .cx-slate  { border-color: #6b7280; background: #e9ebee; } .cx-slate  .cx-tag { background: #6b7280; }
+  .cx-rust   { border-color: #c0562f; background: #f7e6dd; } .cx-rust   .cx-tag { background: #c0562f; }
+  .cx-rose   { border-color: #c04a63; background: #f7e0e5; } .cx-rose   .cx-tag { background: #c04a63; }
+  .cx-blue   { border-color: #5468d4; background: #e4e8f9; } .cx-blue   .cx-tag { background: #5468d4; }
+  .cx-green  { border-color: #2e7d4e; background: #dfeee2; } .cx-green  .cx-tag { background: #2e7d4e; }
+  .cx-purple { border-color: #8b5cf6; background: #efe2f8; } .cx-purple .cx-tag { background: #8b5cf6; }
+  .cx-tan    { border-color: #8a6d3b; background: #ece7dc; } .cx-tan    .cx-tag { background: #8a6d3b; }
+
+  /* ---------- verse chips (Gen 18 translation) ---------- */
+  .k { display: inline; padding: 3px 9px; border-radius: 6px; font-weight: 700; color: #fff; line-height: 1.85; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  .k-blue   { background: #3b82c4; } .k-green  { background: #2e7d4e; } .k-rose { background: #c04a63; }
+  .k-gray   { background: #6b7280; } .k-rust   { background: #bf5a2b; } .k-teal { background: #0d7d8c; }
+  .k-purple { background: #7c5ad0; } .k-brown  { background: #8a6d3b; }
+  .t-teal { color: #0d8aa0; font-weight: 700; }
+
+  .v-outer { border: 3px solid #e3e7ee; border-radius: 20px; padding: 1.4rem 1.5rem; margin: 1.4rem 0; }
+  .v-black { border: 3px solid #17181a; border-radius: 16px; padding: 1.3rem 1.5rem; margin: 1.1rem 0; }
+  .v-light { border: 3px solid #e3e7ee; border-radius: 16px; padding: 1.2rem 1.4rem; margin: 1.1rem 0; }
+  .v-line { font-size: 1.06rem; line-height: 2.1; color: #1f2937; }
+  .v-div { border: 0; border-top: 1px solid #e6eaf0; margin: 1.1rem 0; }
+  .vbar-b { border-left: 5px solid #5468d4; padding-left: .8rem; }
+  .lbl { color: #6b7280; font-weight: 600; font-size: .85rem; margin-right: .2rem; }
+  sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px; }
+  .i1 { padding-left: 1.6rem; } .i2 { padding-left: 3.2rem; } .i3 { padding-left: 4.8rem; }
+
+  /* ---------- tables ---------- */
+  .doc-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 3px solid #d9dee6; border-radius: 14px; overflow: hidden; background: #fff; }
+  .doc-table th { background: #e2e6eb; text-align: left; padding: 1rem 1.3rem; font-weight: 800; font-size: 1.02rem; color: #17181a; }
+  .doc-table td { padding: 1.1rem 1.3rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.78; font-size: .97rem; color: #24262a; transition: background .2s; }
+  .doc-table td + td { border-left: 1px solid #e5e7eb; }
+  .doc-table tbody tr:hover td { background: #f8fafc; }
+  .doc-table tfoot td { border-top: 1px solid #d1d5db; background: #fbfcfd; color: #5b6472; font-size: .92rem; }
+  .kblue-soft { background: #cddcf5; color: #2b5fb0; padding: 2px 8px; border-radius: 6px; font-weight: 700; }
+
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media print {
+    @page { margin: 14mm 12mm; }
+    #reading-progress, .print\:hidden { display: none !important; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .max-w-4xl { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
+    h1.title, h2.section, h3.sub { break-after: avoid-page; }
+    .cx, .v-outer, .v-black, .v-light, .doc-table tr, .scripture, .mcol { break-inside: avoid; }
+  }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .cx, .mbox { transition: none; } }
+</style>
 </head>
+<body>
 
-<body class="bg-white font-sans text-slate-800">
-    <div class="p-4">
-        <a href="index.html" class="text-sky-600 hover:underline">← Voltar para o Índice</a>
+<div id="reading-progress" aria-hidden="true"></div>
+
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+<h1 class="title reveal"><span class="lang-pt">Sessão 6: Avram, a Serpente</span><span class="lang-en">Session 6: Abram the Snake</span></h1>
+  <hr class="rule">
+
+  <h3 class="sub reveal" style="margin-top:0;"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal" style="margin-bottom:2.5rem;">
+    <li><span class="lang-pt">Avram não confia em Deus e, em vez disso, elabora um esquema que expõe Sarai a risco para preservar sua própria vida.</span><span class="lang-en">Avram does not trust God and instead crafts a scheme that exposes Sarai to risk in order to preserve his own life.</span></li>
+    <li><span class="lang-pt">Em vez de trazer bênção às nações, os esquemas de Avram trazem maldições sobre os egípcios.</span><span class="lang-en">Rather than bringing blessing to the nations, Avram&rsquo;s schemes bring curses upon the Egyptians.</span></li>
+    <li><span class="lang-pt">Este episódio é posto em analogia a Gênesis 3, com Sarai no papel da árvore, Faraó e os egípcios no papel dos humanos, e Avram no papel da serpente.</span><span class="lang-en">This episode is set on analogy to Genesis 3 with Sarai in the role of the tree, Pharaoh and the Egyptians in the role of the humans, and Avram in the role of the snake.</span></li>
+  </ul>
+
+  <h2 class="section reveal"><span class="lang-pt">Tradução e Design Literário de Gênesis 12:10-20</span><span class="lang-en">Translation and Literary Design of Genesis 12:10-20</span></h2>
+  <div class="v-outer reveal">
+    <div class="v-line" style="display:flex; gap:.9rem;">
+      <span class="lbl" style="padding-top:.35rem;">10</span>
+      <div>
+        <p><span class="lang-pt">Ora, houve fome na terra; e Avram desceu ao Egito para ali peregrinar, pois a fome era grave na terra.</span><span class="lang-en">Now there was a famine in the land; and Avram went down to Egypt to sojourn there, for the famine was severe in the land.</span></p>
+        <p><sup class="vs">11</sup> <span class="lang-pt">E aconteceu que, chegando ele perto de entrar no Egito, disse a Sarai, sua mulher:</span><span class="lang-en">And it came about when he came near to entering Egypt,</span></p>
+        <p class="i1"><sup class="vs">12</sup> <span class="lang-pt">&ldquo;Eis que, agora, sei que és mulher de bela aparência;</span><span class="lang-en">and he said to Sarai his wife, &ldquo;See now, I know that you are a woman beautiful of sight;</span></p>
+        <p class="i1"><sup class="vs">13</sup> <span class="lang-pt">e acontecerá que, quando os egípcios te virem, dirão: &lsquo;Esta é sua mulher&rsquo;; e me matarão a ti, porém a ti te deixarão viver. Dize, peço-te, que és minha irmã, para que me vá bem por tua causa, e para que viva a minha alma por causa de ti.&rdquo;</span><span class="lang-en">and when the Egyptians see you, they will say, &lsquo;This is his wife&rsquo;; and they will kill me, but they will let you live. Please say that you are my sister so that there will be good to me on account of you, and that I may live on account of you.&rdquo;</span></p>
+      </div>
     </div>
-    <div id="sessao-6" class="min-h-screen p-8 lg:px-16">
-        <div class="mx-auto max-w-4xl">
-            <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-8 pb-4">Sessão 6: Avram, a Serpente</h1>
-            <h2 class="text-2xl font-bold text-slate-800 mb-3">Pontos-Chave</h2>
-            <ul class="list-disc list-inside space-y-2 mb-10 text-lg text-slate-700">
-                <li>Avram não confia em Deus e, em vez disso, elabora um esquema que expõe Sarai ao risco para
-                    preservar sua própria vida.</li>
-                <li>Em vez de levar bênção às nações, os esquemas de Avram trazem maldições sobre os egípcios.</li>
-                <li>Este episódio é análogo a Gênesis 3, com Sarai no papel da árvore, Faraó e os egípcios no papel
-                    dos humanos, e Avram no papel da serpente.</li>
-            </ul>
-            <div>
-
-                <div>
-                    <div class="mx-auto max-w-4xl">
-                        <h2 class="mt-10 mb-4 text-3xl font-bold text-slate-900">Tradução e Design
-                            Literário de Gênesis
-                            12:10-20</h2>
-
-                        <!-- Introdução: Avram vai para o Egito -->
-                        <div class="p-3">
-                            <div
-                                class="inline-block min-w-max rounded-t-lg bg-slate-200 p-3 px-2 py-0.5 pt-1 font-semibold text-slate-700">
-                                Introdução: Avram Vai para o Egito por Causa de uma Fome</div>
-                            <div class="rounded-b-lg bg-slate-200 p-1">
-                                <div class="rounded-b-lg border border-slate-300 bg-white p-4 text-lg">
-                                    <div class="leading-relaxed">
-                                        <p>a&nbsp;&nbsp;&nbsp;<strong>10</strong> Ora, havia uma <span
-                                                class="rounded bg-orange-200 p-1 font-semibold text-yellow-900">fome na
-                                                terra</span>;</p>
-                                        <p class="ml-8">b&nbsp;&nbsp;&nbsp;e Avram desceu ao Egito para peregrinar ali,
-                                        </p>
-                                        <p>a'&nbsp;&nbsp;pois a <span
-                                                class="rounded bg-orange-200 p-1 font-semibold text-yellow-900">fome
-                                                era severa na terra</span>.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Avram se aproxima do Egito -->
-                        <div class="ml-10 border-l-4 border-sky-700 p-3">
-                            <div
-                                class="inline-block min-w-max rounded-t-lg bg-slate-200 p-3 px-2 py-0.5 pt-1 font-semibold text-slate-700">
-                                Avram se Aproxima do Egito + Discurso de Avram a Sarai</div>
-                            <div class="rounded-b-lg bg-slate-200 p-1">
-                                <div class="rounded-b-lg border border-slate-300 bg-white p-4 text-lg">
-                                    <p><strong>11</strong> E aconteceu que, quando ele se aproximou de entrar no Egito,
-                                        disse a Sarai, sua
-                                        esposa:</p>
-                                    <p class="pl-4">“Vê, eu sei que és uma <span
-                                            class="rounded bg-red-200 p-1 font-semibold text-red-900">mulher bonita de
-                                            se ver</span>;</p>
-                                    <p class="pl-4"><strong>12</strong> e quando os <span
-                                            class="rounded bg-red-200 p-1 font-semibold text-red-900">egípcios te
-                                            virem</span>, <span
-                                            class="rounded bg-green-200 p-1 font-semibold text-green-900">eles
-                                            dirão:</span> ‘<span
-                                            class="rounded bg-green-200 p-1 font-semibold text-green-900">Esta é a
-                                            esposa dele</span>’;</p>
-                                    <p class="pl-4">e eles me matarão, mas te deixarão viver.</p>
-                                    <p class="pl-4"><strong>13</strong> Por favor, <span
-                                            class="rounded bg-violet-200 p-1 font-semibold text-violet-900">diga que
-                                            você é minha
-                                            irmã</span> para que <span
-                                            class="rounded bg-blue-200 p-1 font-semibold text-blue-900">me seja
-                                            bem por sua causa</span>,</p>
-                                    <p class="pl-4">e para que eu possa viver por sua causa.”</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Egípcios veem Sarai -->
-                        <div class="ml-20 border-l-4 border-teal-700 p-3">
-                            <div
-                                class="inline-block min-w-max rounded-t-lg bg-slate-200 p-3 px-2 py-0.5 pt-1 font-semibold text-slate-700">
-                                Egípcios Veem Sarai e Faraó a Toma</div>
-                            <div class="rounded-b-lg bg-slate-200 p-1">
-                                <div class="rounded-b-lg border border-slate-300 bg-white p-4 text-lg">
-                                    <p><strong>14</strong> E aconteceu que, quando Avram entrou no Egito,</p>
-                                    <p class="pl-4">os <span
-                                            class="rounded bg-pink-700 p-1 font-semibold text-red-100">egípcios viram
-                                            que a
-                                            mulher era muito bonita</span>.</p>
-                                    <p><strong>15</strong> E os oficiais de Faraó a <span
-                                            class="rounded bg-pink-700 p-1 font-semibold text-red-100">viram</span> e a
-                                        elogiaram a Faraó;
-                                    </p>
-                                    <p class="pl-4">e a mulher foi <span
-                                            class="rounded bg-pink-700 p-1 font-semibold text-pink-100">levada</span>
-                                        para a casa de Faraó.
-                                    </p>
-                                    <p><strong>16</strong> E ele <span
-                                            class="rounded bg-blue-200 p-1 font-semibold text-blue-900">tratou
-                                            bem a Avram por causa dela</span>;</p>
-                                    <p class="pl-4">e havia para ele ovelhas e bois e jumentos e servos e servas e
-                                        jumentas e camelos.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pragas sobre Faraó -->
-                        <div class="ml-10 border-l-4 border-sky-700 p-3">
-                            <div
-                                class="inline-block min-w-max rounded-t-lg bg-slate-200 p-3 px-2 py-0.5 pt-1 font-semibold text-slate-700">
-                                Pragas sobre Faraó + Discurso de Faraó a Avram</div>
-                            <div class="rounded-b-lg bg-slate-200 p-1">
-                                <div class="rounded-b-lg border border-slate-300 bg-white p-4 text-lg">
-                                    <p><strong>17</strong> E Yahweh afligiu Faraó e sua casa com grandes pragas por
-                                        causa de Sarai, <span
-                                            class="rounded bg-green-200 p-1 font-semibold text-green-900">esposa de
-                                            Avram</span>.</p>
-                                    <p><strong>18</strong> E Faraó chamou Avram e disse:</p>
-                                    <p class="pl-4">“O que é isto que você fez comigo? Por que não me disse que ela era
-                                        <span class="rounded bg-green-200 p-1 font-semibold text-green-900">sua
-                                            esposa</span>?
-                                    </p>
-                                    <p><strong>19</strong> <span
-                                            class="rounded bg-violet-200 p-1 font-semibold text-violet-900">Por que
-                                            você disse</span>, ‘<span
-                                            class="rounded bg-violet-200 p-1 font-semibold text-violet-900">Ela é
-                                            minha irmã</span>,’ para que eu a tomasse para ser <span
-                                            class="rounded bg-green-200 p-1 font-semibold text-green-900">minha
-                                            esposa</span>?</p>
-                                    <p class="pl-4">Agora, então, aqui está <span
-                                            class="rounded bg-green-200 p-1 font-semibold text-green-900">sua
-                                            esposa</span>, pegue-a e vá.”
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Conclusão -->
-                        <div class="p-3">
-                            <div
-                                class="inline-block min-w-max rounded-t-lg bg-slate-200 p-3 px-2 py-0.5 pt-1 font-semibold text-slate-700">
-                                Conclusão: Avram é Enviado para Fora do Egito por Faraó</div>
-                            <div class="rounded-b-lg bg-slate-200 p-1">
-                                <div class="rounded-b-lg border border-slate-300 bg-white p-4 text-lg">
-                                    <p><strong>20</strong> E Faraó deu ordens aos seus homens a respeito dele;</p>
-                                    <p class="pl-4">e eles o enviaram, com sua esposa e tudo o que lhe pertencia.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <p class="my-6 text-sm text-slate-500 italic">Gênesis 12:10-20. Tradução e Design Literário por
-                            Tim Mackie para
-                            BibleProject Classroom: Introduction to the Hebrew Bible (2019).</p>
-                    </div>
-
-                </div>
-                <div class="mx-auto max-w-4xl bg-white p-6 font-sans text-slate-900">
-                    <!-- Bloco A: Gênesis 12:10 -->
-                    <div class="mb-4 rounded-xl border-2 border-slate-600 bg-slate-50/30 p-4 shadow-sm">
-                        <div class="mb-2">
-                            <span class="inline-block rounded bg-slate-600 px-2 py-1 text-sm font-bold text-white">
-                                Gênesis 12:10
-                            </span>
-                        </div>
-                        <p class="font-bold text-slate-900">A - Introdução: Avram vai para o Egito por causa de uma fome
-                        </p>
-                    </div>
-
-                    <!-- Bloco B: Gênesis 12:11-13 (Recuado) -->
-                    <div class="mb-4 ml-8 rounded-xl border-2 border-slate-500 bg-white p-4 shadow-sm">
-                        <div class="mb-2">
-                            <span class="inline-block rounded bg-slate-500 px-2 py-1 text-sm font-bold text-white">
-                                Gênesis 12:11-13
-                            </span>
-                        </div>
-                        <p class="mb-3 font-bold text-slate-900">
-                            B - Avram se aproxima do Egito +
-                            <span class="rounded bg-[#e0dcf5] px-1.5 py-0.5 font-bold text-[#6a5acd]">Discurso de Avram
-                                a Sarai</span>
-                        </p>
-                        <ul class="list-disc pl-5 text-slate-800">
-                            <li>"Eu sei que você é uma mulher (אשה) de bela aparência, muito... Por favor, diga que você
-                                é minha irmã
-                                (אחתי)."</li>
-                        </ul>
-                    </div>
-
-                    <!-- Bloco C: Gênesis 12:14-16 (Mais Recuado) -->
-                    <div class="mb-4 ml-16 rounded-xl border-2 border-slate-300 bg-white p-4 shadow-sm">
-                        <div class="mb-2">
-                            <span class="inline-block rounded bg-slate-200 px-2 py-1 text-sm font-bold text-gray-700">
-                                Gênesis 12:14-16
-                            </span>
-                        </div>
-                        <p class="font-bold text-slate-900">C - Egípcios veem Sarai e Faraó a toma</p>
-                    </div>
-
-                    <!-- Bloco B': Gênesis 12:17-19 (Recuado) -->
-                    <div class="mb-4 ml-8 rounded-xl border-2 border-slate-500 bg-white p-4 shadow-sm">
-                        <div class="mb-2">
-                            <span class="inline-block rounded bg-slate-500 px-2 py-1 text-sm font-bold text-white">
-                                Gênesis 12:17-19
-                            </span>
-                        </div>
-                        <p class="mb-3 font-bold text-slate-900">
-                            B' - Pragas sobre Faraó +
-                            <span class="rounded bg-[#e0dcf5] px-1.5 py-0.5 font-bold text-[#6a5acd]">Discurso de Faraó
-                                a Avram</span>
-                        </p>
-                        <ul class="list-disc pl-5 text-slate-800">
-                            <li>"Por que você disse ‘Ela é minha irmã (אחתי)’, para que eu a tomasse como minha esposa
-                                (אשה)?"</li>
-                        </ul>
-                    </div>
-
-                    <!-- Bloco A': Gênesis 12:20 -->
-                    <div class="mb-4 rounded-xl border-2 border-slate-600 bg-slate-50/30 p-4 shadow-sm">
-                        <div class="mb-2">
-                            <span class="inline-block rounded bg-slate-600 px-2 py-1 text-sm font-bold text-white">
-                                Gênesis 12:20
-                            </span>
-                        </div>
-                        <p class="font-bold text-slate-900">A' - Conclusão: Avram é enviado do Egito por Faraó</p>
-                    </div>
-
-                    <!-- Rodapé -->
-                    <p class="mt-6 text-center font-serif text-[0.85rem] text-slate-500 italic">Genesis 12:10-20.
-                        Translation and
-                        Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</p>
-                </div>
-
-            </div>
-            <div>
-
-                <div class="mx-auto max-w-4xl">
-                    <!-- O código anterior da análise literária de Gênesis 12:10-20 estaria aqui -->
-
-                    <h2 class="text-3xl font-bold text-slate-800 my-8">Uma Crise de Fé</h2>
-                    <p class="text-lg leading-relaxed text-slate-700 mb-4">Deus acaba de prometer a Avram que viajar
-                        para a terra de
-                        Canaã resultará em bênção, abundância e posse da terra, e que essa bênção transbordará em bênção
-                        para as nações.
-                        A primeira história que nos é contada após a estada obediente de Avram em Canaã é sobre a falta
-                        de confiança de
-                        Avram e sua decepção das nações que leva a maldição e pragas sobre elas.</p>
-                    <p class="text-lg leading-relaxed text-slate-700">No entanto, a decepção de Avram é motivada por um
-                        sentimento
-                        compreensível. Depois de ir para uma terra onde lhe foi prometida abundância, ele descobre
-                        escassez em um tempo
-                        de fome. A fome é o segundo teste de fé de Avram. Ele permanecerá na terra e confiará em Deus,
-                        ou elaborará seu
-                        próprio plano e tentará encontrar bênção e abundância por sua própria sabedoria?</p>
-
-                    <h2 class="text-3xl font-bold text-slate-800 mb-4 mt-10">O Plano "Esposa-Irmã" de Avram</h2>
-                    <p class="text-lg leading-relaxed text-slate-700 mb-4">Há uma razão cultural pela qual Avram teria
-                        elaborado este
-                        esquema específico de apresentar Sarai como sua irmã. Primeiro, é uma meia-verdade, como Avram
-                        admite em <a href="#" class="verse-link text-sky-600 hover:underline"
-                            data-reference="Gen+20:12">20:12</a>, porque Sarai
-                        é sua meia-irmã por parte de pai. Casar-se com a meio-irmã não era incomum nas culturas do
-                        Antigo Oriente
-                        Próximo (na verdade, é o que o irmão de Avram, Naor, fez, veja <a href="#"
-                            class="verse-link text-sky-600 hover:underline" data-reference="Gen+11:29">11:29</a>). Mas,
-                        em segundo
-                        lugar, ao se apresentar como irmão de Sarai, Avram estava usando uma convenção cultural comum
-                        como uma tentativa
-                        de salvar sua vida e a de Sarai.</p>
-
-                    <blockquote class="border-l-4 border-slate-600 p-6 my-8 text-slate-600 bg-slate-50/30 rounded-r-xl shadow-sm text-lg">
-                        “No antigo Oriente Próximo, havia uma instituição soci-legal bem conhecida de 'fratriarquia' que
-                        existiu por um
-                        longo período. Onde não há pai, o irmão assume a tutela legal de sua irmã, particularmente no
-                        que diz respeito
-                        às obrigações e responsabilidades de arranjar o casamento em seu nome. Portanto, quem quisesse
-                        tomar Sarai como
-                        esposa teria que negociar com seu 'irmão'. Dessa forma, Abrão poderia ganhar tempo para planejar
-                        a fuga. Claro,
-                        isso deu errado quando o egípcio acabou por ser o próprio Faraó.”
-                        <br>
-                        <span class="block mt-4 font-semibold not-italic">Sarna, Nahum M. (2001). The JPS Torah
-                            Commentary: Genesis.
-                            Jewish Publication Society. 95.</span>
-                    </blockquote>
-
-                    <p class="text-lg leading-relaxed text-slate-700">Deste ângulo, as motivações de Avram parecem tanto
-                        astutas quanto
-                        tolas, mas não maliciosas. Seu plano inicial visava preservar sua vida e a de Sarai, porque
-                        qualquer egípcio que
-                        propusesse casamento a Sarai teria que respeitar seu irmão. Se ele fosse conhecido como seu
-                        marido, seria mais
-                        provável que se tornasse objeto de ciúmes. Isso nos ajuda a ver que <a href="#"
-                            class="verse-link text-sky-600 hover:underline" data-reference="Gen+12:14">Gênesis 12:14</a>
-                        na verdade
-                        vindica o plano de Avram, pois os egípcios a veem. Até aí, tudo bem. Mas seu plano não leva em
-                        conta a
-                        possibilidade de que o rei de toda a terra possa "ver" e "tomar" Sarai.</p>
-
-                </div>
-            </div>
-
-
-
-            <div class="mt-8">
-                <div class="mx-auto max-w-4xl">
-
-                    <h2 class="text-3xl font-bold text-slate-900 mb-6 mt-12 border-t border-slate-200 pt-8">Avram, a
-                        Serpente</h2>
-
-                    <p class="text-lg leading-relaxed text-slate-700 mb-8">
-                        <a href="#" class="verse-link text-sky-600 hover:underline font-semibold"
-                            data-reference="Gênesis+12:10-20">Gênesis 12:10-20</a> é o “fracasso edênico” de Avram. O
-                        episódio inteiro é
-                        construído em analogia com a decepção da serpente a Adão e Eva. As analogias são surpreendentes
-                        e oferecem um
-                        comentário importante sobre os motivos e ações do personagem.
-                    </p>
-
-                    <div class="rounded-xl overflow-hidden border-2 border-slate-300 shadow-sm bg-white">
-                        <table class="w-full text-left text-slate-800 border-collapse">
-                            <!-- Cabeçalho -->
-                            <thead class="bg-slate-100 text-slate-900 font-bold text-base border-b border-slate-300">
-                                <tr>
-                                    <th class="p-5 w-1/2">Decepção de Avram em Gênesis 12:10-20</th>
-                                    <th class="p-5 w-1/2 border-l border-slate-300">Decepção da Serpente em Gênesis 3
-                                    </th>
-                                </tr>
-                            </thead>
-
-                            <!-- Corpo -->
-                            <tbody class="divide-y divide-slate-200 text-base leading-relaxed">
-
-                                <!-- Linha 1 -->
-                                <tr class="align-top">
-                                    <td class="p-5 border-r border-slate-200">
-                                        Avram confia em seu conhecimento em vez de confiar na promessa de Deus.<br>
-                                        <span class="font-bold">Gênesis 12:11-12</span> “Eu <span
-                                            class="bg-blue-100 text-blue-800 font-semibold px-1 rounded">sei</span>
-                                        (ידע) que és uma
-                                        <span
-                                            class="bg-purple-100 text-purple-800 font-semibold px-1 rounded">mulher</span>
-                                        (אשה) <span class="bg-green-100 text-green-800 font-semibold px-1 rounded">bela
-                                            de aparência</span>
-                                        (מראה)... e eles te <span
-                                            class="bg-blue-100 text-blue-800 font-semibold px-1 rounded">verão</span>
-                                        (ראה)... e me
-                                        matarão, mas te deixarão <span
-                                            class="bg-orange-100 text-orange-800 font-semibold px-1 rounded">viver</span>
-                                        (חיה).
-                                    </td>
-                                    <td class="p-5">
-                                        Adão e Eva buscam seu próprio conhecimento em vez de confiar no mandamento de
-                                        Deus.<br>
-                                        <span class="font-bold">Gênesis 3:6</span> A <span
-                                            class="bg-purple-100 text-purple-800 font-semibold px-1 rounded">mulher</span>
-                                        (האשה)...
-                                        <span class="bg-blue-100 text-blue-800 font-semibold px-1 rounded">viu</span>
-                                        (ראה) a árvore do
-                                        <span
-                                            class="bg-blue-100 text-blue-800 font-semibold px-1 rounded">conhecimento</span>
-                                        (ידע) do
-                                        bem (טוב) e do mal, e que era desejável <span
-                                            class="bg-green-100 text-green-800 font-semibold px-1 rounded">aos
-                                            olhos</span>.
-                                    </td>
-                                </tr>
-
-                                <!-- Linha 2 -->
-                                <tr class="align-top bg-slate-50/50">
-                                    <td class="p-5 border-r border-slate-200">
-                                        A decepção de Avram resulta em "bem" à custa de Sarai, resultando em pragas
-                                        sobre Faraó.<br>
-                                        <span class="font-bold">Gênesis 12:13</span> "...para que me seja <span
-                                            class="bg-blue-100 text-blue-800 font-semibold px-1 rounded">bem</span>
-                                        (יטב), <span class="bg-blue-200 text-blue-900 font-semibold px-1 rounded">por
-                                            sua causa</span> (בעבורך),
-                                        e eu <span
-                                            class="bg-orange-100 text-orange-800 font-semibold px-1 rounded">viva</span>
-                                        (חיה).”<br>
-                                        <span class="font-bold">Gênesis 12:17</span> E Yahweh enviou pragas sobre Faraó,
-                                        <span class="bg-blue-200 text-blue-900 font-semibold px-1 rounded">por causa de
-                                            Sarai</span>.
-                                    </td>
-                                    <td class="p-5">
-                                        As ações de Adão e Eva resultam em "maldição" sobre a terra.<br>
-                                        <span class="font-bold">Gênesis 3:17</span> Amaldiçoada é a terra <span
-                                            class="bg-blue-200 text-blue-900 font-semibold px-1 rounded">por sua
-                                            causa</span> (בעבורך).
-                                    </td>
-                                </tr>
-
-                                <!-- Linha 3 -->
-                                <tr class="align-top">
-                                    <td class="p-5 border-r border-slate-200">
-                                        Avram apresenta sua esposa como uma "árvore de teste" para os egípcios.<br>
-                                        <span class="font-bold">Gênesis 12:14-15</span> E os egípcios <span
-                                            class="bg-blue-100 text-blue-800 font-semibold px-1 rounded">viram</span>
-                                        (ראה) a <span
-                                            class="bg-purple-100 text-purple-800 font-semibold px-1 rounded">mulher</span>
-                                        (האשה), que
-                                        ela era muito <span
-                                            class="bg-green-100 text-green-800 font-semibold px-1 rounded">bela</span>...
-                                        e ela foi
-                                        <span
-                                            class="bg-purple-200 text-purple-900 font-semibold px-1 rounded">tomada</span>
-                                        (לקח) para
-                                        a casa de Faraó.<br>
-                                        <span class="font-bold">Gênesis 12:17</span> E Yahweh <span
-                                            class="bg-purple-200 text-purple-900 font-semibold px-1 rounded">feriu/tocou</span>
-                                        (נגע)
-                                        Faraó com grandes <span
-                                            class="bg-purple-200 text-purple-900 font-semibold px-1 rounded">feridas</span>
-                                        (נגעים).
-                                    </td>
-                                    <td class="p-5">
-                                        A serpente apresenta a "árvore de teste" aos humanos.<br>
-                                        <span class="font-bold">Gênesis 3:6</span> E a <span
-                                            class="bg-purple-100 text-purple-800 font-semibold px-1 rounded">mulher</span>
-                                        (האשה) <span
-                                            class="bg-blue-100 text-blue-800 font-semibold px-1 rounded">viu</span>
-                                        (ראה) que a árvore
-                                        era <span
-                                            class="bg-green-100 text-green-800 font-semibold px-1 rounded">boa</span>
-                                        (טוב)... e
-                                        ela <span
-                                            class="bg-purple-200 text-purple-900 font-semibold px-1 rounded">tomou</span>
-                                        (לקח)...<br>
-                                        <span class="font-bold">Gênesis 3:3</span> “...não podemos comer dela nem <span
-                                            class="bg-purple-200 text-purple-900 font-semibold px-1 rounded">tocá-la</span>
-                                        (נגע).”
-                                    </td>
-                                </tr>
-
-                                <!-- Linha 4 -->
-                                <tr class="align-top bg-slate-50/50">
-                                    <td class="p-5 border-r border-slate-200">
-                                        Faraó responsabiliza Avram por sua decepção.<br>
-                                        <span class="font-bold">Gênesis 12:18</span> E Faraó <span
-                                            class="bg-blue-100 text-blue-800 font-semibold px-1 rounded">chamou</span>
-                                        (ויקרא) Avram e
-                                        disse: "<span class="bg-blue-200 text-blue-900 font-semibold px-1 rounded">O que
-                                            é isto que
-                                            fizeste</span> (מה־זאת עשית) a mim? Você não me <span
-                                            class="bg-purple-200 text-purple-900 font-semibold px-1 rounded">disse</span>
-                                        (נגד) que ela
-                                        era tua esposa."
-                                    </td>
-                                    <td class="p-5">
-                                        Deus responsabiliza Adão e Eva por suas ações.<br>
-                                        <span class="font-bold">Gênesis 3:9</span> E Yahweh <span
-                                            class="bg-blue-100 text-blue-800 font-semibold px-1 rounded">chamou</span>
-                                        (ויקרא)... o
-                                        homem.<br>
-                                        <span class="font-bold">Gênesis 3:13</span> E Yahweh disse à mulher: "<span
-                                            class="bg-blue-200 text-blue-900 font-semibold px-1 rounded">O que é isto
-                                            que fizeste</span>
-                                        (מה־זאת עשית)?"<br>
-                                        <span class="font-bold">Gênesis 3:11</span> "Quem te <span
-                                            class="bg-purple-200 text-purple-900 font-semibold px-1 rounded">disse</span>
-                                        (נגד) que
-                                        estavas nu?"
-                                    </td>
-                                </tr>
-
-                                <!-- Linha 5 -->
-                                <tr class="align-top">
-                                    <td class="p-5 border-r border-slate-200">
-                                        Faraó exila Avram.<br>
-                                        <span class="font-bold">Gênesis 12:20</span> E Faraó <span
-                                            class="bg-blue-100 text-blue-800 font-semibold px-1 rounded">ordenou</span>
-                                        (ויצו)... e o
-                                        <span class="bg-blue-200 text-blue-900 font-semibold px-1 rounded">enviou</span>
-                                        (שלח).
-                                    </td>
-                                    <td class="p-5">
-                                        Deus exila Adão e Eva.<br>
-                                        <span class="font-bold">Gênesis 2:16</span> E Yahweh <span
-                                            class="bg-blue-100 text-blue-800 font-semibold px-1 rounded">ordenou</span>
-                                        (ויצו) ao
-                                        homem...<br>
-                                        <span class="font-bold">Gênesis 3:23</span> E Yahweh <span
-                                            class="bg-blue-200 text-blue-900 font-semibold px-1 rounded">enviou</span>
-                                        (שלח) o homem do
-                                        jardim do Éden.
-                                    </td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-
-                        <!-- Rodapé da Tabela -->
-                        <div class="bg-slate-50 border-t border-slate-200 p-3">
-                            <p class="text-sm italic text-slate-500 text-center">Avram, a Serpente. Criado por Tim
-                                Mackie para
-                                BibleProject Classroom: Abraham (2021).</p>
-                        </div>
-                    </div>
-
-                    <h2 class="text-2xl font-bold text-slate-900 mb-6 mt-12">Implicações Dessas Analogias</h2>
-
-                    <div class="space-y-6 text-lg leading-relaxed text-slate-700">
-                        <p>Avram é retratado em analogia à serpente astuta. Ele é habilidoso e capaz de usar as
-                            circunstâncias a seu
-                            favor, mas à custa dos outros. A decisão de Avram de mentir coloca Sarai em perigo e também
-                            traz pragas
-                            sobre Faraó. Nesta cena, a prosperidade (= bênção) de Avram vem precisamente através do
-                            sofrimento dos
-                            outros.</p>
-
-                        <p>A beleza de Sarai é colocada em relação à beleza da árvore do teste no jardim do Éden. Uma
-                            coisa boa é
-                            cooptada por enganadores e usada para sua própria vantagem.</p>
-
-                        <p>Note que o papel de Faraó na história ativa duas analogias:</p>
-
-                        <ol class="list-decimal list-inside space-y-4 pl-4 marker:font-bold marker:text-slate-900">
-                            <li>
-                                <span class="font-bold text-slate-900">Faraó em analogia a Adão e Eva:</span> Faraó é
-                                inocente, mas
-                                ainda assim comete um erro. Embora seu "tomar" de uma mulher seja certamente um
-                                exercício de poder e
-                                privilégio patriarcal, ele é retratado como sem culpa em termos de seus motivos. Mas
-                                seus motivos
-                                inocentes não apagam o fato de que ele está tomando a esposa de outro homem.
-                            </li>
-                            <li>
-                                <span class="font-bold text-slate-900">Faraó em analogia a Deus:</span> Depois que Faraó
-                                descobre a
-                                decepção de Avram, ele assume o papel divino de responsabilizar Avram.
-                            </li>
-                        </ol>
-                    </div>
-
-                </div>
-            </div>
-            <div class="mx-auto max-w-4xl">
-                <!-- O código anterior sobre as Implicações das Analogias estaria aqui -->
-
-                <h2 class="text-3xl font-bold text-slate-900 mb-4 mt-10 border-t pt-8">A Promessa de Deus e a Justiça de
-                    Deus</h2>
-                <p class="text-lg leading-relaxed text-slate-700 mb-4">Esta história apresenta um retrato desconfortável
-                    da relação
-                    de Deus com as nações. Deus defende o enganador nesta história e traz julgamento sobre alguém que
-                    agiram
-                    erroneamente, mas sem motivos errados. Este capítulo inicia um longo drama de tensão entre as
-                    promessas da
-                    aliança de Deus à família de Avraham e os traços divinos de caráter de justiça e equidade.</p>
-                <p class="text-lg leading-relaxed text-slate-700 mb-6">Deus acabou de prometer "abençoar aqueles que te
-                    abençoarem e
-                    amaldiçoar aqueles que te tratarem como amaldiçoado". Nesta história, vemos Deus protegendo Avram
-                    mesmo que ele
-                    não mereça. </p>
-
-                <blockquote class="border-l-4 border-slate-600 p-6 my-8 text-slate-600 bg-slate-50/30 rounded-r-xl shadow-sm text-lg">
-                    “[O comportamento de Abrão] pareceria colocar Yahweh em uma espécie de aperto... Yahweh deve decidir
-                    se e como
-                    tomar o partido de Abrão quando surgem problemas com outros — mesmo quando o conflito surge do
-                    comportamento
-                    menos que honesto de Abrão. Faraó trata Abrão com honra e generosidade, mas Yahweh evidentemente
-                    decide que ter
-                    um amigo humano em um mundo perverso requer um compromisso total com o bem-estar desse indivíduo,
-                    mesmo quando
-                    isso vai contra o bem-estar dos outros. Ficar ao lado de alguém inevitavelmente leva a ficar contra
-                    outra
-                    pessoa. Yahweh, portanto, fere Faraó e sua casa, embora a confusão tenha sido feita por Abrão...
-                    Este primeiro
-                    ato de violência divina após o dilúvio é momentoso, pois é direcionado a pessoas que, até onde
-                    sabem, não agiram
-                    perversamente, em prol de demonstrar solidariedade com a família que Yahweh fez amizade.”
-                    <br>
-                    <span class="block mt-4 font-semibold not-italic">Hawk, L. Daniel (2019). The Violence of the
-                        Biblical God.
-                        Eerdmans. 48-49.</span>
-                </blockquote>
-
-                <h2 class="text-3xl font-bold text-slate-900 mb-4 mt-10">O Saque Egípcio de Avram</h2>
-                <p class="text-lg leading-relaxed text-slate-700 mb-6">Esta história também estabelece uma série de
-                    temas que serão
-                    desenvolvidos em episódios futuros.</p>
-                <ul class="list-disc list-inside space-y-4 text-lg pl-4">
-                    <li>A falta de confiança de Avram na proteção e promessa de Deus. Isso será abordado novamente no
-                        capítulo 15.
-                    </li>
-                    <li>Os esquemas míopes de Avram para obter ou reter a bênção de Deus por sua própria sabedoria. Isso
-                        se repetirá
-                        nos capítulos 16, 21 e 22.</li>
-                    <li>O “saque” de Avram consiste em rebanhos de animais e escravos, ambos os quais causarão problemas
-                        em
-                        histórias posteriores.</li>
-                </ul>
-
-                <blockquote class="border-l-4 border-amber-500 bg-amber-50/30 p-4 rounded-r-xl text-lg italic mt-8 shadow-sm">
-                    <b><a href="#" class="verse-link text-amber-800 hover:underline"
-                            data-reference="Genesis+12:16">Gênesis
-                            12:16</a> Tradução do Instrutor</b><br>
-                    E [Faraó] tratou bem a Avram por causa dela;<br>
-                    e havia para ele ovelhas, bois e jumentos <span class="text-sm not-italic text-red-700">(a fonte dos
-                        problemas
-                        em Gn. 13)</span><br>
-                    e servos e servas <span class="text-sm not-italic text-red-700">(a fonte dos problemas em Gn.
-                        16)</span><br>
-                    e jumentas e camelos <span class="text-sm not-italic text-red-700">(a fonte dos problemas em Gn.
-                        13)</span>.
-                </blockquote>
-
-                <!-- A seção da Questão de Reflexão final da Sessão 6 iria aqui -->
-            </div>
-            <h2 class="text-2xl font-bold text-slate-800 my-8">Questão para Reflexão</h2>
-            <div class="bg-slate-50/30 border-2 border-slate-400 rounded-xl p-6 shadow-sm">
-                <p class="text-lg text-slate-700">Como a história de <a href="#"
-                        class="verse-link text-sky-600 hover:underline" data-reference="Genesis+12:10-20">Gênesis
-                        12:10-20</a> espelha Gênesis 3? Como isso nos ajuda a entender o significado desta história?
-                </p>
-            </div>
-        </div>
+    <div class="v-line" style="display:flex; gap:.9rem;">
+      <span class="lbl" style="padding-top:.35rem;">14</span>
+      <div>
+        <p><span class="lang-pt">E aconteceu que, entrando Avram no Egito, viram os egípcios que a mulher era muito formosa.</span><span class="lang-en">And it came about when Avram came into Egypt, and the Egyptians saw that the woman was very beautiful.</span></p>
+        <p><sup class="vs">15</sup> <span class="lang-pt">E os príncipes de Faraó a viram, e gabaram-na a Faraó; e a mulher foi tomada para a casa de Faraó.</span><span class="lang-en">And Pharaoh&rsquo;s officials saw her and praised her to Pharaoh; and the woman was taken into Pharaoh&rsquo;s house.</span></p>
+        <p><sup class="vs">16</sup> <span class="lang-pt">E ele tratou bem a Avram por causa dela; e houve para ele ovelhas, bois, jumentos, servos e servas, jumentas e camelos.</span><span class="lang-en">And he did good to Avram on account of her; and there was for him sheep and oxen and donkeys and male and female servants and female donkeys and camels.</span></p>
+        <p><sup class="vs">17</sup> <span class="lang-pt">E Iavé feriu a Faraó e a sua casa com grandes pragas, por causa de Sarai, mulher de Avram.</span><span class="lang-en">And Yahweh plagued Pharaoh and his house with great plagues on account of Sarai, Avram&rsquo;s wife.</span></p>
+        <p><sup class="vs">18</sup> <span class="lang-pt">E chamou Faraó a Avram, e disse: &ldquo;Que é isto que me fizeste? Por que não me disseste que ela era tua mulher?</span><span class="lang-en">And Pharaoh called Avram and he said, &ldquo;What is this you have done to me? Why did you not tell me that she was your wife?</span></p>
+        <p class="i1"><sup class="vs">19</sup> <span class="lang-pt">Por que disseste: &lsquo;Ela é minha irmã&rsquo;, de modo que a tomei por mulher? Agora, pois, eis aqui tua mulher; toma-a, e vai-te.&rdquo;</span><span class="lang-en">Why did you say, &lsquo;She is my sister,&rsquo; so that I took her for my wife? Now then, here is your wife, take her and go.&rdquo;</span></p>
+        <p><sup class="vs">20</sup> <span class="lang-pt">E Faraó deu ordem aos seus homens a respeito dele; e eles o enviaram, com sua mulher e tudo o que tinha.</span><span class="lang-en">And Pharaoh commanded his men concerning him; and they sent him away, with his wife and all that belonged to him.</span></p>
+      </div>
     </div>
-    <script src="../js/verse-modal.js"></script>
+  </div>
+  <p class="caption reveal"><span class="lang-pt"><em>Gênesis 12:10-20</em>. Tradução e Design Literário por Tim Mackie para a BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Genesis 12:10-20</em>. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
+
+  <h3 class="sub reveal"><span class="lang-pt">Uma Crise de Fé</span><span class="lang-en">A Crisis of Faith</span></h3>
+  <p class="body reveal"><span class="lang-pt">Deus acabara de prometer a Avram que viajar para a terra de Canaã resultaria em bênção, abundância e posse da terra, e que essa bênção transbordaria em bênção para as nações. A primeira história que nos é contada após a peregrinação obediente de Avram a Canaã trata da falta de confiança de Avram e de seu engano das nações, o que leva a maldição e pragas sobre elas. No entanto, o engano de Avram é motivado por um sentimento compreensível. Depois de ir a uma terra onde lhe foi prometida abundância, ele descobre escassez num tempo de fome. A fome é o segundo teste de fé de Avram: permanecerá na terra e confiar em Deus, ou elaborará seu próprio plano e tentará achar bênção e abundância por sua própria sabedoria?</span><span class="lang-en">God just promised Avram that traveling to the land of Canaan will result in blessing, abundance, and possession of the land, and this blessing will overflow into blessing for the nations. The first story we&rsquo;re told after Avram&rsquo;s obedient sojourn to Canaan is about Avram&rsquo;s lack of trust and his deception of the nations that leads to curse and plagues upon them. However, Avram&rsquo;s deception is motivated by an understandable feeling. After going to a land where he was promised abundance, he discovers scarcity in a time of famine. The famine is Avram&rsquo;s second test of faith. Will he remain in the land and trust God, or will he make up his own plan and attempt to find blessing and abundance by his own wisdom?</span></p>
+
+  <h3 class="sub reveal"><span class="lang-pt">O Plano &ldquo;Mulher-Irmã&rdquo; de Avram</span><span class="lang-en">Avram&rsquo;s &ldquo;Wife-Sister&rdquo; Plan</span></h3>
+  <p class="body reveal"><span class="lang-pt">Há uma razão cultural para Avram criar esse esquema específico apresentando Sarai como sua irmã. Primeiro, é uma meia-verdade, como Avram admite em 20:12, porque Sarai é sua meia-irmã do lado do pai. Casar com a própria meia-irmã não era incomum nas culturas do antigo Oriente Próximo (de fato, é o que o irmão de Avram, Naor, fez, ver 11:29). Mas, segundo, ao se apresentar como irmão de Sarai, Avram usava uma convenção cultural comum na tentativa de salvar sua vida e a de Sarai. &ldquo;No antigo Oriente Próximo havia uma instituição sociológica bem conhecida de &lsquo;fratriarquia&rsquo; que existiu por longo período. Onde não há pai, o irmão assume a guarda legal da irmã, particularmente quanto a obrigações e responsabilidades em arranjar o casamento em seu nome. Portanto, quem quisesse tomar Sarai como mulher teria de negociar com seu &lsquo;irmão&rsquo;. Assim, Abrão ganhava tempo para planejar a fuga. Claro, isso deu errado quando o egípcio acabou sendo o próprio Faraó.&rdquo; (Sarna, Nahum M. (2001). The JPS Torah Commentary: Genesis. Jewish Publication Society. 95.) Sob esse ângulo, as motivações de Avram parecem astutas e tolas, mas não maliciosas.</span><span class="lang-en">There is a cultural reason why Avram would come up with this specific scheme presenting Sarai as his sister. First, it is a half-truth, as Avram admits in 20:12, because Sarai is his half-sister from his father&rsquo;s side. Marrying one&rsquo;s step-sister was not uncommon in ancient Near Eastern cultures (in fact, it&rsquo;s what Avram&rsquo;s brother Nakhor did, see 11:29). But second, by presenting himself as Sarai&rsquo;s brother, Avram was using a common cultural convention as an attempt to save his life and Sarai&rsquo;s. &ldquo;In the ancient Near East there was a well-known socio-legal institution of &lsquo;fratriarchy&rsquo; that existed over a long period of time. Where there is no father, the brother assumes legal guardianship of his sister, particularly with respect to obligations and responsibilities in arranging marriage on her behalf. Therefore, whoever wished to take Sarai to wife would have to negotiate with her &lsquo;brother.&rsquo; In this way, Abram could gain time to plan escape. Of course, this went awry when the Egyptian turned out to be Pharaoh himself.&rdquo; (Sarna, Nahum M. (2001). The JPS Torah Commentary: Genesis. Jewish Publication Society. 95.) From this angle, Avram&rsquo;s motivations appear both clever and foolish, but not malicious.</span></p>
+
+  <h3 class="sub reveal"><span class="lang-pt">Avram, a Serpente</span><span class="lang-en">Avram the Snake</span></h3>
+  <p class="body reveal"><span class="lang-pt">Gênesis 12:10-20 é o &ldquo;fracasso edênico&rdquo; de Avram. Todo o episódio é posto em analogia com o engano da serpente a Adão e Eva. As analogias são surpreendentes e oferecem comentário importante sobre os motivos e ações do personagem.</span><span class="lang-en">Genesis 12:10-20 is Avram&rsquo;s &ldquo;Eden failure.&rdquo; The entire episode is set on analogy with the snake&rsquo;s deception of Adam and Eve. The analogies are surprising and offer important commentary on the character&rsquo;s motives and actions.</span></p>
+  <div class="overflow-x-auto reveal" style="margin:1.5rem 0;">
+    <table class="doc-table" style="min-width:600px;">
+      <thead><tr><th style="width:50%;">O Engano de Avram em Gênesis 12:10-20</th><th style="width:50%;">O Engano da Serpente em Gênesis 3</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="lang-pt">Avram confia em seu conhecimento (<span class="heb">ידע</span>) do que acontecerá no Egito, em vez de confiar na promessa de Deus.</span><span class="lang-en">Avram relies on his knowledge (<span class="heb">ידע</span>) of what will happen in Egypt instead of trusting God&rsquo;s promise.</span></td>
+          <td><span class="lang-pt">Adão e Eva buscam seu próprio conhecimento (<span class="heb">ידע</span>) do bem e do mal, em vez de confiar no mandamento de Deus.</span><span class="lang-en">Adam and Eve seek their own knowledge (<span class="heb">ידע</span>) of good and bad, instead of trusting God&rsquo;s command.</span></td>
+        </tr>
+        <tr>
+          <td><span class="lang-pt">Gn 12:11-12 &ldquo;Eu sei (<span class="heb">ידע</span>) que és uma mulher (<span class="heb">אשה</span>) formosa&hellip;&rdquo;</span><span class="lang-en">Gen. 12:11-12 &ldquo;I know (<span class="heb">ידע</span>) that a woman (<span class="heb">אשה</span>) is beautiful&hellip;&rdquo;</span></td>
+          <td><span class="lang-pt">Gn 3:6 A mulher (<span class="heb">האשה</span>, Eva) viu (<span class="heb">ראה</span>) que a árvore era boa&hellip;</span><span class="lang-en">Gen. 3:6 The woman (<span class="heb">האשה</span>, Eve) saw (<span class="heb">ראה</span>) that the tree was good&hellip;</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="caption reveal"><span class="lang-pt"><em>Avram, a Serpente.</em> Criado por Tim Mackie para a BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Avram the Snake.</em> Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
+
+  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Questão para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">De que maneiras a história de Avram no Egito espelha a queda em Gênesis 3, e o que isso revela sobre a fé?</span><span class="lang-en">In what ways does Avram&rsquo;s story in Egypt mirror the fall in Genesis 3, and what does that reveal about faith?</span></p>
+
+  
+    <section class="scripture reveal">
+    <h2 class="section"><span class="lang-pt">Traduções dos Versículos (Inglês)</span><span class="lang-en">Verse Translations (English)</span></h2>
+    <div class="v-outer"><span class="ref">GEN 12:10-20</span><div class="v-line"><span class="lang-en">Introduction: Avram Goes to Egypt Because of a Famine a    10 Now there was a famine in the land ; b   and Avram went down to Egypt to sojourn there, a'   for the famine was severe in the land . Avram Nears Egypt + Avram’s Speech to Sarai 11 And it came about when he came near to entering Egypt, and he said to Sarai his wife, “See now, I know that you are a woman beautiful of sight ; 12 and when the Egyptians see you , they will say , ‘ This is his wife ’; and they will kill me, but they will let you live. 13 Please say that you are my sister so that there will be good to me on account of you , and that I may live on account of you.” Egyptians See Sarai and Pharaoh Takes Her 14 And it came about when Avram came into Egypt, and the Egyptians saw that the woman was very beautiful . 15 And Pharaoh’s officials saw her and praised her to Pharaoh; and the woman was taken into Pharaoh’s house. 16 And he did good to Avram on account of her ; and there was for him sheep and oxen and donkeys and male and female servants and female donkeys and camels. Plagues on Pharaoh + Pharaoh’s Speech to Avram</span></div></div>
+    <div class="v-outer"><span class="ref">GEN 12:16</span><div class="v-line"><span class="lang-en">And [Pharaoh] did good to Avram on account of her; and there was for him sheep and oxen and donkeys (the source of problems in Gen. 13) and male and female servants (the source of problems in Gen. 16) and female donkeys and camels (the source of problems in Gen. 13). Reflection Question How does the Genesis 12:10-20 mirror Genesis 3? How does this help us understand the meaning of this story?</span></div></div>
+  </section>
+
+  <div class="page-footer">
+    <span>Class Notes: Abraham</span>
+    <span><span class="lang-pt">Sessão 6 · Avram, a Serpente</span><span class="lang-en">Session 6 · Abram the Snake</span></span>
+  </div>
+</div>
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s6-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s6-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+  <script src="../js/verse-modal.js"></script>
 </body>
-
 </html>

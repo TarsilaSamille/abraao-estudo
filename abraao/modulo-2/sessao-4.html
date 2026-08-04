@@ -1,1326 +1,224 @@
-<!doctype html>
-<html lang="pt-BR">
-
+<!DOCTYPE html>
+<html lang="pt">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sessão 4: Uma História de Duas Jornadas</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uma Historia de Duas Jornadas</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  .heb { font-family: 'SBL Hebrew','Times New Roman',serif; font-size: 1.05em; direction: rtl; unicode-bidi: embed; }
+
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
+  .ref:hover { color: #2563eb; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+  .scripture:hover { border-left-color: #9aa7b8; }
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+  .scripture .innerbox { background: #f6f8fa; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1rem; }
+  .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem; }
+
+  /* ---------- Macro design (3 columns) ---------- */
+  .macro { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; align-items: start; margin: 2rem 0 .75rem; }
+  .mcol { border: 3px solid #2e7d4e; border-radius: 12px; padding: .9rem .9rem 1rem; background: #fff; }
+  .mcol.dark { border-color: #3d4453; margin-top: 1.3rem; }
+  .mtag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 3px 10px; border-radius: 5px; }
+  .mtag-green { background: #2e7d4e; } .mtag-dark { background: #3d4453; }
+  .mcol-title { font-size: 1rem; font-weight: 800; color: #17181a; margin: .55rem 0 .8rem; line-height: 1.3; }
+  .mboxes { display: flex; gap: .55rem; }
+  .mbox { flex: 1; border: 3px solid #b9c2cf; border-radius: 9px; background: #fff; min-height: 15.5rem; position: relative; transition: box-shadow .25s, transform .25s; }
+  .mbox:hover { box-shadow: 0 8px 20px -10px rgba(30,41,59,.4); transform: translateY(-3px); }
+  .mbox .mhdr { position: absolute; top: .55rem; left: .55rem; right: .55rem; background: #7d8697; color: #fff; font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 5px; }
+  .mbox.s1 { margin-top: 0; } .mbox.s2 { margin-top: 2.4rem; min-height: 13rem; } .mbox.s3 { margin-top: 2.4rem; min-height: 13rem; }
+  @media (max-width: 860px) { .macro { grid-template-columns: 1fr; } .mcol.dark { margin-top: 0; } .mbox, .mbox.s2, .mbox.s3 { min-height: 7.5rem; margin-top: 0; } }
+
+  /* ---------- Chiasm staircase boxes ---------- */
+  .cx { border: 3px solid; border-radius: 12px; padding: 1.35rem 1.5rem 1.2rem; margin: 1.15rem 0; transition: box-shadow .25s, transform .25s; }
+  .cx:hover { box-shadow: 0 12px 26px -16px rgba(23,24,26,.45); transform: translateY(-2px); }
+  .cx-tag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 1px 13px; border-radius: 6px; margin-bottom: .7rem; }
+  .cx h4 { font-weight: 800; font-size: 1.06rem; color: #17181a; margin-bottom: .7rem; }
+  .cx ul.bullets > li { font-size: .99rem; margin-bottom: .45rem; }
+  .cx-slate  { border-color: #6b7280; background: #e9ebee; } .cx-slate  .cx-tag { background: #6b7280; }
+  .cx-rust   { border-color: #c0562f; background: #f7e6dd; } .cx-rust   .cx-tag { background: #c0562f; }
+  .cx-rose   { border-color: #c04a63; background: #f7e0e5; } .cx-rose   .cx-tag { background: #c04a63; }
+  .cx-blue   { border-color: #5468d4; background: #e4e8f9; } .cx-blue   .cx-tag { background: #5468d4; }
+  .cx-green  { border-color: #2e7d4e; background: #dfeee2; } .cx-green  .cx-tag { background: #2e7d4e; }
+  .cx-purple { border-color: #8b5cf6; background: #efe2f8; } .cx-purple .cx-tag { background: #8b5cf6; }
+  .cx-tan    { border-color: #8a6d3b; background: #ece7dc; } .cx-tan    .cx-tag { background: #8a6d3b; }
+
+  /* ---------- verse chips (Gen 18 translation) ---------- */
+  .k { display: inline; padding: 3px 9px; border-radius: 6px; font-weight: 700; color: #fff; line-height: 1.85; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  .k-blue   { background: #3b82c4; } .k-green  { background: #2e7d4e; } .k-rose { background: #c04a63; }
+  .k-gray   { background: #6b7280; } .k-rust   { background: #bf5a2b; } .k-teal { background: #0d7d8c; }
+  .k-purple { background: #7c5ad0; } .k-brown  { background: #8a6d3b; }
+  .t-teal { color: #0d8aa0; font-weight: 700; }
+
+  .v-outer { border: 3px solid #e3e7ee; border-radius: 20px; padding: 1.4rem 1.5rem; margin: 1.4rem 0; }
+  .v-black { border: 3px solid #17181a; border-radius: 16px; padding: 1.3rem 1.5rem; margin: 1.1rem 0; }
+  .v-light { border: 3px solid #e3e7ee; border-radius: 16px; padding: 1.2rem 1.4rem; margin: 1.1rem 0; }
+  .v-line { font-size: 1.06rem; line-height: 2.1; color: #1f2937; }
+  .v-div { border: 0; border-top: 1px solid #e6eaf0; margin: 1.1rem 0; }
+  .vbar-b { border-left: 5px solid #5468d4; padding-left: .8rem; }
+  .lbl { color: #6b7280; font-weight: 600; font-size: .85rem; margin-right: .2rem; }
+  sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px; }
+  .i1 { padding-left: 1.6rem; } .i2 { padding-left: 3.2rem; } .i3 { padding-left: 4.8rem; }
+
+  /* ---------- tables ---------- */
+  .doc-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 3px solid #d9dee6; border-radius: 14px; overflow: hidden; background: #fff; }
+  .doc-table th { background: #e2e6eb; text-align: left; padding: 1rem 1.3rem; font-weight: 800; font-size: 1.02rem; color: #17181a; }
+  .doc-table td { padding: 1.1rem 1.3rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.78; font-size: .97rem; color: #24262a; transition: background .2s; }
+  .doc-table td + td { border-left: 1px solid #e5e7eb; }
+  .doc-table tbody tr:hover td { background: #f8fafc; }
+  .doc-table tfoot td { border-top: 1px solid #d1d5db; background: #fbfcfd; color: #5b6472; font-size: .92rem; }
+  .kblue-soft { background: #cddcf5; color: #2b5fb0; padding: 2px 8px; border-radius: 6px; font-weight: 700; }
+
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media print {
+    @page { margin: 14mm 12mm; }
+    #reading-progress, .print\:hidden { display: none !important; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .max-w-4xl { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
+    h1.title, h2.section, h3.sub { break-after: avoid-page; }
+    .cx, .v-outer, .v-black, .v-light, .doc-table tr, .scripture, .mcol { break-inside: avoid; }
+  }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .cx, .mbox { transition: none; } }
+</style>
 </head>
+<body>
 
-<body class="bg-white font-sans text-slate-800">
-    <div class="p-4">
-        <a href="index.html" class="text-sky-600 hover:underline">← Voltar para o Índice</a>
-    </div>
-    <div id="sessao-4" class="min-h-screen p-8">
-        <div class="flex min-h-screen flex-col ">
-            <main class="flex flex-1 flex-col items-center justify-center text-center">
-                <img src="../image/img-2.png" alt="Ilustração de uma mulher com uma serpente"
-                    class="mb-8 h-48 w-48 rounded-2xl object-cover shadow-lg" />
-                <h1 class="text-5xl font-bold text-slate-900">Módulo 2: Da Babilônia para Canaã</h1>
-                <h2 class="mt-4 text-lg font-semibold uppercase tracking-wider text-slate-500">Sessões 4-10</h2>
-                <p class="mt-8 max-w-2xl text-lg text-slate-700"> Deus escolhe uma família da dispersão da Babilônia.
-                    Estude
-                    Gênesis 11-14 enquanto Abraão enfrenta seus primeiros testes como o parceiro humano escolhido por
-                    Deus. </p>
-            </main>
-        </div>
-        <div class="mx-auto max-w-4xl ">
-            <div class="flex min-h-screen flex-col">
-                <div id="sessao-4" class="mx-auto max-w-4xl">
-                    <h1 class="text-3xl font-bold text-slate-900 mb-8 border-b pb-4 md:text-4xl">Sessão 4: Uma História de Duas
-                        Jornadas
-                    </h1>
-                    <h2 class="text-2xl font-bold text-slate-800 mb-3">Pontos-Chave</h2>
-                    <ul class="list-disc list-inside space-y-2 mb-10 text-lg text-slate-700">
-                        <li>As duas histórias de Terá e Avram são colocadas lado a lado para comparação e contraste:
-                            Terá é
-                            marcado
-                            pela morte e Avram é marcado pela bênção.</li>
-                        <li>Avram é retratado como um novo Noé. Ele deixa o forno de fogo da Babilônia após a dispersão,
-                            assim
-                            como
-                            Noé deixou a arca após o dilúvio.</li>
-                        <li>Quando Deus chama Avram, o foco da história bíblica se estreita do drama de Deus e as nações
-                            para a
-                            obra
-                            de Deus através de uma família.</li>
-                    </ul>
-                    <h2 class="text-3xl font-bold text-slate-800 mb-4">Movimento I: Da Babilônia para Hebrom e Sodoma
-                        (11:27-19:38) </h2>
-                    <p class="text-lg leading-relaxed text-slate-700 mb-8">Existem três seções nesta macro-unidade, e
-                        elas
-                        exibem
-                        uma coesão e um design simétrico rigorosos.</p>
-                    <h3 class="text-2xl font-bold text-slate-800 mb-4">O Macro Design de Gênesis 11:27-19:38</h3>
+<div id="reading-progress" aria-hidden="true"></div>
 
-                </div>
-                <div>
-                    <div class="mx-auto w-full max-w-7xl">
-                        <div class="flex flex-col items-stretch gap-4 lg:flex-row lg:items-start">
-                            <div class="w-full flex-1 rounded-2xl border-2 border-slate-700 bg-white p-4 shadow-sm">
-                                <div
-                                    class="inline-block rounded-md bg-slate-700 px-3 py-1 text-xs font-bold text-white">
-                                    <a href="#" class="verse-link hover:underline"
-                                        data-reference="Gênesis+11:27-14:24">Gênesis
-                                        11:27-14:24 </a>
-                                </div>
-                                <div class="mt-2 flex items-center gap-2"><span
-                                        class="rounded-md bg-emerald-600 px-3 py-1 text-xs font-bold text-white">Promessas</span><span
-                                        class="font-bold text-slate-500">&</span><span
-                                        class="rounded-md bg-sky-500 px-3 py-1 text-xs font-bold text-white">Problemas
-                                        com
-                                        Ló</span></div>
-                                <div class="mt-3 flex flex-col items-stretch gap-2 sm:flex-row lg:min-h-[15rem] xl:min-h-[17rem]">
-                                    <div class="flex-1 rounded-xl border-2 border-emerald-500 bg-emerald-50/30 p-2.5">
-                                        <div
-                                            class="inline-block rounded-md bg-emerald-500 px-2 py-1 text-xs font-bold text-white">
-                                            <a href="#" class="verse-link hover:underline"
-                                                data-reference="Gênesis+11:27-12:5">
-                                                11:27-12:5 </a>
-                                        </div>
-                                        <div class="mt-2 flex h-full gap-2 pb-9">
-                                            <div
-                                                class="flex-1 rounded-lg border border-emerald-200 bg-emerald-50/50 p-1.5">
-                                                <div
-                                                    class="inline-block min-w-max rounded-md bg-emerald-200 px-2 py-0.5 text-xs font-semibold text-emerald-800">
-                                                    <a href="#" class="verse-link  " data-reference="Gênesis+11:27-32">
-                                                        11:27-32
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div
-                                                class="flex-1 rounded-lg border border-emerald-200 bg-emerald-50/50 p-1.5">
-                                                <div
-                                                    class="inline-block min-w-max rounded-md bg-emerald-200 px-2 py-0.5 text-xs font-semibold text-emerald-800">
-                                                    <a href="#" class="verse-link  " data-reference="Gênesis+12:1-5">
-                                                        12:1-5</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div
-                                        class="min-h-[16rem] min-w-max flex-1 rounded-xl border-2 border-slate-300 p-2">
-                                        <div
-                                            class="inline-block rounded-md bg-slate-400 px-2 py-1 text-xs font-bold text-white">
-                                            <a href="#" class="verse-link  " data-reference="Gênesis+12:6-13:18">
-                                                12:6-13:18 </a>
-                                        </div>
-                                        <div class="mt-2 flex h-full items-stretch gap-2 pb-9">
-                                            <div class="flex-1 rounded-lg border border-slate-200 bg-slate-50/50 p-1.5">
-                                                <div
-                                                    class="inline-block min-w-max rounded-md bg-slate-200 px-2 py-0.5 text-xs font-semibold text-slate-700">
-                                                    <a href="#" class="verse-link  " data-reference="Gênesis+12:10-20">
-                                                        12:10-20</a>
-                                                </div>
-                                            </div>
-                                            <div class="flex-1 rounded-lg border border-slate-200 bg-slate-50/50 p-1.5">
-                                                <div
-                                                    class="inline-block min-w-max rounded-md bg-slate-200 px-2 py-0.5 text-xs font-semibold text-slate-700">
-                                                    <a href="#" class="verse-link  " data-reference="Gênesis+13:1-11">
-                                                        13:1-11</a>
-                                                </div>
-                                            </div>
-                                            <div class="flex-1 rounded-lg border border-slate-200 bg-slate-50/50 p-1.5">
-                                                <div
-                                                    class="inline-block min-w-max rounded-md bg-slate-200 px-2 py-0.5 text-xs font-semibold text-slate-700">
-                                                    <a href="#" class="verse-link  " data-reference="Gênesis+13:12-18">
-                                                        13:12-18</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="min-h-[16rem] min-w-max rounded-xl border-2 border-sky-400 p-2">
-                                        <div
-                                            class="inline-block rounded-md bg-sky-500 px-2 py-1 text-xs font-bold text-white">
-                                            <a href="#" class="verse-link  " data-reference="Gênesis+14:1-24">
-                                                14:1-24 </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-full rounded-2xl border-2 border-slate-600 bg-white p-4 shadow-sm lg:w-auto">
-                                <div
-                                    class="inline-block rounded-md bg-slate-600 px-3 py-1.5 text-xs font-bold text-white md:text-sm">
-                                    <a href="#" class="verse-link hover:underline"
-                                        data-reference="Gênesis+15:1-17:27">Gênesis
-                                        15:1-17:27</a>
-                                </div>
-                                <div class="mt-2 text-sm font-semibold text-slate-800 md:text-base">Problemas da Promessa da Semente
-                                </div>
-                                <div class="mt-3 flex flex-col items-stretch gap-2 sm:flex-row lg:min-h-[15rem] xl:min-h-[17rem]">
-                                    <div class="flex-1 rounded-xl border-2 border-rose-500 bg-rose-50/30 p-2.5">
-                                        <div
-                                            class="inline-block rounded-md bg-rose-500 px-2 py-1 text-xs font-bold text-white">
-                                            <a href="#" class="verse-link  " data-reference="Gênesis+15:1-21">
-                                                15:1-21 </a>
-                                        </div>
-                                        <div class="mt-2 text-sm font-bold text-slate-800">Aliança Rodada 1</div>
-                                    </div>
-                                    <div class="flex-1 rounded-xl border-2 border-teal-600 bg-teal-50/30 p-2.5">
-                                        <div
-                                            class="inline-block rounded-md bg-teal-700 px-2.5 py-1 text-xs font-bold text-white">
-                                            <a href="#" class="verse-link  " data-reference="Gênesis+16:1-16">
-                                                16:1-16 </a>
-                                        </div>
-                                        <div class="mt-2 text-sm font-bold text-slate-800">Falha com Hagar</div>
-                                    </div>
-                                    <div class="flex-1 rounded-xl border-2 border-rose-500 bg-rose-50/30 p-2.5">
-                                        <div
-                                            class="inline-block rounded-md bg-rose-600 px-2.5 py-1 text-xs font-bold text-white">
-                                            <a href="#" class="verse-link  " data-reference="Gênesis+17:1-27">
-                                                17:1-27 </a>
-                                        </div>
-                                        <div class="mt-2 text-sm font-bold text-slate-800">Aliança Rodada 2</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-full rounded-2xl border-2 border-slate-700 bg-white p-4 shadow-sm lg:w-auto">
-                                <div
-                                    class="inline-block rounded-md bg-slate-700 px-3 py-1.5 text-xs font-bold text-white md:text-sm">
-                                    <a href="#" class="verse-link hover:underline"
-                                        data-reference="Gênesis+18:1-19:38">Gênesis
-                                        18:1-19:38 </a>
-                                </div>
-                                <div class="mt-2 flex items-center gap-2"><span
-                                        class="rounded-md bg-emerald-600 px-3 py-1 text-xs font-bold text-white">Promessas</span><span
-                                        class="font-bold text-slate-500">& Mais</span><span
-                                        class="rounded-md bg-sky-500 px-3 py-1 text-xs font-bold text-white">Problemas
-                                        com
-                                        Ló</span></div>
-                                <div class="mt-2 flex min-w-max items-stretch gap-2">
-                                    <div class="min-h-[16rem] w-24 rounded-xl border-2 border-emerald-400 p-2">
-                                        <div
-                                            class="inline-block rounded-md bg-emerald-500 px-2 py-1 text-xs font-bold text-white">
-                                            <a href="#" class="verse-link  " data-reference="Gênesis+18:1-15">
-                                                18:1-15 </a>
-                                        </div>
-                                    </div>
-                                    <div class="min-h-[16rem] w-24 rounded-xl border-2 border-slate-400 p-2">
-                                        <div
-                                            class="inline-block rounded-md bg-slate-500 px-2 py-1 text-xs font-bold text-white">
-                                            <a href="#" class="verse-link  " data-reference="Gênesis+18:16-33">
-                                                18:16-33 </a>
-                                        </div>
-                                    </div>
-                                    <div class="min-h-[16rem] w-24 rounded-xl border-2 border-sky-400 p-2">
-                                        <div
-                                            class="inline-block rounded-md bg-sky-500 px-2 py-1 text-xs font-bold text-white">
-                                            <a href="#" class="verse-link  " data-reference="Gênesis+19:1-38">
-                                                19:1-38 </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="mt-8 text-lg text-slate-600">Gênesis 11:27-19:38. Design Literário por Tim Mackie para
-                            BibleProject Classroom: Abraham (2021).</p>
-                    </div>
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
 
-                </div>
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+<h1 class="title reveal"><span class="lang-pt">Sessão 4: Uma História de Duas Jornadas</span><span class="lang-en">Session 4: A Tale of Two Journeys</span></h1>
+  <hr class="rule">
 
-            </div>
-            <div class="mx-auto max-w-4xl">
-                <p class="text-lg leading-relaxed text-slate-700">Este primeiro grande trecho da história de Avraham
-                    foi
-                    organizado em três movimentos, cada um consistindo de três unidades literárias. Essas tríades
-                    são
-                    simetricamente projetadas em cada nível, convidando o leitor a fazer comparações e contrastes
-                    vitais que
-                    informam a contribuição de cada cena para o todo.</p>
-                <h3 class="text-xl font-bold mt-6">11:27-14:24 e 18:1-19:38</h3>
-                <p class="text-lg leading-relaxed text-slate-700">Estes são dois grandes blocos onde o sobrinho de
-                    Avraham,
-                    Ló, aparece como personagem principal. Em ambos os casos, o desrespeito de Avraham ao mandamento
-                    de Deus
-                    para deixar sua família para trás resulta em grandes problemas, primeiro na captura de Ló pela
-                    aliança
-                    babilônica (Gn. 14), e segundo quando ele precisa ser resgatado de Sodoma (Gn. 19). Em ambas as
-                    histórias,
-                    Deus livra o sobrinho não escolhido através do status de Avraham como o intercessor escolhido,
-                    abençoado
-                    e
-                    justo.</p>
-                <p class="text-lg leading-relaxed text-slate-700">As primeiras promessas de uma grande família para
-                    Avraham e
-                    Sara são feitas em <a href="#" class="text-sky-600 underline">12:1-9</a>, mas não são cumpridas
-                    até <a href="#" class="text-sky-600 underline">18:1-15</a>. </p>
-                <h3 class="text-xl font-bold mt-6">15:1-17:27</h3>
-                <p class="text-lg leading-relaxed text-slate-700 mb-8">Esta tríade de histórias rigidamente
-                    organizadas está
-                    conectada de maneiras importantes. Todas giram em torno da luta de Avraham para confiar na
-                    promessa de Deus
-                    de
-                    que ele e Sara produzirão um filho.</p>
-                <p class="text-lg leading-relaxed text-slate-700 mb-8">Nos capítulos 15 e 17, Avraham tanto acredita
-                    quanto não
-                    acredita na promessa de Deus, levando à segunda grande aliança na história bíblica.</p>
-                <h2 class="text-3xl font-bold text-slate-800 mb-4">Parte 1: O Macro Design de Gênesis 11:27-14:24
-                </h2>
-                <div class="my-6 flex w-full flex-col gap-4 lg:flex-row">
-                    <!-- Seção 1: Da Babilônia para Canaã -->
-                    <div class="rounded-xl border-2 border-rose-600 bg-white p-4 shadow-sm">
-                        <div class="inline-block rounded-md bg-rose-600 px-2 py-1 text-xs font-bold text-white">
-                            Gênesis 11:27-12:5</div>
-                        <p class="mt-2 font-semibold text-slate-700">Da Babilônia para Canaã</p>
-                        <div class="mt-2 flex flex-col items-stretch gap-2 sm:flex-row">
-                            <div class="w-40 rounded-lg border-2 border-slate-400 bg-slate-50/30 p-2.5">
-                                <div
-                                    class="inline-block rounded bg-slate-500 px-1.5 py-0.5 text-xs font-bold text-white">
-                                    11:27-32</div>
-                                <p class="mt-1 text-sm font-semibold">A Jornada de Terá, o Pai</p>
-                            </div>
-                            <div class="w-40 rounded-lg border-2 border-slate-400 p-2">
-                                <div
-                                    class="inline-block rounded bg-slate-500 px-1.5 py-0.5 text-xs font-bold text-white">
-                                    12:1-5</div>
-                                <p class="mt-1 text-sm font-semibold">
-                                    A Jornada de Abrão, o Filho +
-                                    <span
-                                        class="ml-1 inline-block rounded bg-orange-200 px-2 py-0.5 text-xs font-bold text-orange-800">Ló</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+  <h3 class="sub reveal" style="margin-top:0;"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal" style="margin-bottom:2.5rem;">
+    <li><span class="lang-pt">As duas histórias de Terakh (Terá) e Avram são colocadas lado a lado para comparar e contrastar: Terakh é marcado pela morte, e Avram é marcado pela bênção.</span><span class="lang-en">The two stories of Terakh (Terah) and Avram are set alongside each other to compare and contrast: Terakh is marked by death and Avram is marked by blessing.</span></li>
+    <li><span class="lang-pt">Avram é retratado como um novo Noé. Ele deixa a fornalha de fogo da Babilônia após a dispersão, como Noé deixou a arca após o dilúvio.</span><span class="lang-en">Avram is depicted as a new Noah. He leaves the fire oven of Babylon after the scattering, like Noah left the ark after the flood.</span></li>
+    <li><span class="lang-pt">Quando Deus chama Avram, o foco da história bíblica se estreita do drama de Deus e as nações para a obra de Deus através de uma família.</span><span class="lang-en">When God calls Avram, the focus of the biblical story narrows from the drama of God and the nations to God&rsquo;s work through one family.</span></li>
+  </ul>
 
-                    <!-- Seção 2: De Canaã ao Egito e volta -->
-                    <div class="rounded-xl border-2 border-slate-600 bg-white p-4 shadow-sm">
-                        <div class="inline-block rounded-md bg-slate-600 px-2 py-1 text-xs font-bold text-white">
-                            Gênesis 12:6-13:18
-                        </div>
-                        <p class="mt-2 font-semibold text-slate-700">De Canaã para o Egito e de Volta para Canaã</p>
-                        <div class="mt-2 flex items-end gap-2">
-                            <div class="h-32 w-32 rounded-lg border-2 border-violet-500 p-2">
-                                <div
-                                    class="inline-block rounded bg-violet-500 px-1.5 py-0.5 text-xs font-bold text-white">
-                                    12:6-9</div>
-                                <p class="mt-1 text-sm font-semibold">Promessa da Semente e da Terra</p>
-                            </div>
-                            <div class="h-24 w-32 rounded-lg border-2 border-slate-400 p-2">
-                                <div
-                                    class="inline-block rounded bg-slate-500 px-1.5 py-0.5 text-xs font-bold text-white">
-                                    12:10-20</div>
-                                <p class="mt-1 text-sm font-semibold">Engano com a Irmã</p>
-                            </div>
-                            <div class="h-24 w-20 rounded-lg border-2 border-slate-400 p-2">
-                                <div
-                                    class="inline-block rounded bg-slate-500 px-1.5 py-0.5 text-xs font-bold text-white">
-                                    13:1-4</div>
-                            </div>
-                            <div class="h-24 w-32 rounded-lg border-2 border-slate-400 p-2">
-                                <div
-                                    class="inline-block rounded bg-slate-500 px-1.5 py-0.5 text-xs font-bold text-white">
-                                    13:5-11</div>
-                                <p class="mt-1 text-sm font-semibold">Divisão com o Irmão</p>
-                            </div>
-                            <div class="h-32 w-32 rounded-lg border-2 border-violet-500 p-2">
-                                <div
-                                    class="inline-block rounded bg-violet-500 px-1.5 py-0.5 text-xs font-bold text-white">
-                                    13:12-18
-                                </div>
-                                <p class="mt-1 text-sm font-semibold">Promessa da Semente e da Terra</p>
-                            </div>
-                        </div>
-                    </div>
+  <h2 class="section reveal"><span class="lang-pt">Movimento I: Da Babilônia para Hebrom e Sodoma (11:27&ndash;19:38)</span><span class="lang-en">Movement I: From Babylon to Hebron and Sodom (11:27&ndash;19:38)</span></h2>
+  <p class="body reveal"><span class="lang-pt">Há três seções nesta macrounidade, e elas exibem uma coesão apertada e um design simétrico. Esta primeira grande extensão da história de Avraham foi organizada em três movimentos, cada um consistindo de três unidades literárias. Essas tríades são simetricamente desenhadas em cada nível, convidando o leitor a fazer comparações e contrastes vitais que informam a contribuição de cada cena para o todo.</span><span class="lang-en">There are three sections in this macro-unit, and they display a tight cohesion and symmetrical design. This first large stretch of the Avraham story has been organized into three movements that each consist of three literary units. These triads are symmetrically designed at each level, inviting the reader to make vital comparisons and contrasts that inform each scene&rsquo;s contribution to the whole.</span></p>
 
-                    <!-- Seção 3: Da Babilônia para Canaã -->
-                    <div class="rounded-xl border-2 border-rose-600 bg-white p-4 shadow-sm">
-                        <div class="inline-block rounded-md bg-rose-600 px-2 py-1 text-xs font-bold text-white">
-                            Gênesis 14:1-24</div>
-                        <p class="mt-2 font-semibold text-slate-700">Da Babilônia para Canaã</p>
-                        <div class="mt-2 flex items-stretch gap-2">
-                            <div class="w-36 rounded-lg border-2 border-slate-400 p-2">
-                                <div
-                                    class="inline-block rounded bg-slate-500 px-1.5 py-0.5 text-xs font-bold text-white">
-                                    14:1-10</div>
-                                <ul class="mt-1 list-inside list-disc text-sm font-semibold">
-                                    <li>Guerra de 9 reis</li>
-                                    <li><span
-                                            class="rounded bg-orange-200 px-2 py-0.5 text-xs font-bold text-orange-800">Ló</span>
-                                        cativo</li>
-                                </ul>
-                            </div>
-                            <div class="w-36 rounded-lg border-2 border-slate-400 p-2">
-                                <div
-                                    class="inline-block rounded bg-slate-500 px-1.5 py-0.5 text-xs font-bold text-white">
-                                    14:11-16</div>
-                                <ul class="mt-1 list-inside list-disc text-sm font-semibold">
-                                    <li>Reis derrotados</li>
-                                    <li><span
-                                            class="rounded bg-orange-200 px-2 py-0.5 text-xs font-bold text-orange-800">Ló</span>
-                                        liberto</li>
-                                </ul>
-                            </div>
-                            <div class="w-36 rounded-lg border-2 border-slate-400 p-2">
-                                <div
-                                    class="inline-block rounded bg-slate-500 px-1.5 py-0.5 text-xs font-bold text-white">
-                                    14:17-24</div>
-                                <ul class="mt-1 list-inside list-disc text-sm font-semibold">
-                                    <li>Bênção do 10º rei</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <h3 class="sub reveal"><span class="lang-pt">11:27&ndash;14:24 e 18:1&ndash;19:38</span><span class="lang-en">11:27&ndash;14:24 and 18:1&ndash;19:38</span></h3>
+  <p class="body reveal"><span class="lang-pt">Estes são dois grandes blocos onde o sobrinho de Avraham, Ló, aparece como personagem principal. Em ambos os casos, o desrespeito de Avraham ao mandamento de Deus de deixar sua família para trás resulta em grande problema, primeiro no cativeiro de Ló pela aliança babilônica (Gn 14), e segundo quando ele precisa ser resgatado de Sodoma (Gn 19). Em ambas as histórias Deus liberta o sobrinho não escolhido através da posição de Avraham como o escolhido, abençoado e justo intercessor.</span><span class="lang-en">These are two large blocks where Avraham&rsquo;s nephew Lot features as a main character. In both cases, Avraham&rsquo;s disregard for God&rsquo;s command to leave his family behind results in huge trouble, first in Lot&rsquo;s capture by the Babylonian alliance (Gen. 14), and second when he needs to be rescued from Sodom (Gen. 19). In both stories God delivers the non-chosen nephew through Avraham&rsquo;s status as the chosen, blessed, and righteous intercessor.</span></p>
+  <p class="body reveal"><span class="lang-pt">As primeiras promessas de uma grande família para Avraham e Sara são feitas em 12:1-9, mas não são cumpridas até 18:1-15.</span><span class="lang-en">The first promises of a large family for Avraham and Sarah are made in 12:1-9, but they are not fulfilled until 18:1-15.</span></p>
 
-                <p class="text-lg leading-relaxed text-slate-700 mb-4">Neste primeiro grande movimento da história
-                    de Avraham,
-                    as unidades literárias são determinadas por movimentos de e para locais (Babilônia, Canaã e
-                    Egito) e pelos
-                    personagens principais em foco.</p>
+  <h3 class="sub reveal"><span class="lang-pt">15:1&ndash;17:27</span><span class="lang-en">15:1&ndash;17:27</span></h3>
+  <p class="body reveal"><span class="lang-pt">Esta tríade de histórias bem organizadas está conectada de maneiras importantes. Todas giram em torno da luta de Avraham para confiar na promessa de Deus de que ele e Sara produzirão um filho. Nos capítulos 15 e 17, Avraham tanto crê quanto não crê na promessa de Deus, levando à segunda grande aliança na história bíblica.</span><span class="lang-en">This triad of tightly organized stories is connected in important ways. They all revolve around Avraham&rsquo;s struggle to trust God&rsquo;s promise that he and Sarah will produce a child. In chapters 15 and 17, Avraham both believes and doesn&rsquo;t believe in God&rsquo;s promise, leading to the second major covenant in the biblical story.</span></p>
 
-                <p class="text-lg leading-relaxed text-slate-700">Note o design simétrico dos locais.</p>
-                <div class="space-y-4">
-                    <div class="rounded-xl border-2 border-rose-500 bg-rose-50/30 p-4 shadow-sm">
-                        <div class="inline-block rounded-md bg-rose-500 px-3 py-1 text-sm font-bold text-white">
-                            Gênesis
-                            11:27-12:5
-                        </div>
-                        <h2 class="mt-2 text-lg font-bold">Da Babilônia para Canaã</h2>
-                        <ul class="mt-1 list-inside list-disc">
-                            <li>Avram traz Ló (não era para fazer!)</li>
-                        </ul>
-                    </div>
-                    <div class="ml-10 rounded-xl border-2 border-orange-700 bg-orange-50/30 p-4 shadow-sm">
-                        <div class="inline-block rounded-md bg-orange-700 px-3 py-1 text-sm font-bold text-white">
-                            Gênesis 12:6-7
-                        </div>
-                        <h2 class="mt-2 text-lg font-bold">Canaã: Carvalho de Moré</h2>
-                        <ul class="mt-1 list-inside list-disc">
-                            <li>Revelação Divina: "À tua descendência darei esta terra"</li>
-                        </ul>
-                    </div>
-                    <div class="ml-20 rounded-xl border-2 border-slate-500 bg-slate-50/30 p-4 shadow-sm">
-                        <div class="inline-block rounded-md bg-slate-500 px-3 py-1 text-sm font-bold text-white">
-                            Gênesis 12:8-9
-                        </div>
-                        <h2 class="mt-2 text-lg font-bold">Entre Betel e Ai até o Negueve</h2>
-                        <ul class="mt-1 list-inside list-disc">
-                            <li>Altar construído para adoração</li>
-                        </ul>
-                    </div>
-                    <div class="ml-[8rem] rounded-xl border-2 border-green-600 bg-green-50/30 p-4 shadow-sm">
-                        <div class="inline-block rounded-md bg-green-600 px-3 py-1 text-sm font-bold text-white">
-                            Gênesis
-                            12:10-20
-                        </div>
-                        <h2 class="mt-2 ml-4 text-lg font-bold">Egito</h2>
-                    </div>
+  <h3 class="sub reveal"><span class="lang-pt">Parte 1: O Design Macroliterário de Gênesis 11:27&ndash;14:24</span><span class="lang-en">Part 1: The Macro Design of Genesis 11:27&ndash;14:24</span></h3>
+  <p class="body reveal"><span class="lang-pt">Neste primeiro grande movimento da história de Avraham, as unidades literárias são determinadas por movimentos de e para lugares (Babilônia, Canaã e Egito) e pelos personagens principais em foco. Observe o design simétrico dos locais.</span><span class="lang-en">In this first large movement of the Avraham story, the literary units are determined by movements to and from locations (Babylon, Canaan, and Egypt) and by the main characters in focus. Notice the symmetrical design of the locations.</span></p>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt"><strong>Gênesis 11:27&ndash;12:5</strong> Da Babilônia para Canaã &mdash; a jornada do pai Terakh; a jornada do filho Avram + a promessa da descendência e da terra (Deus disse para deixar a família, mas Avram leva Ló &mdash; um não-não!).</span><span class="lang-en"><strong>Genesis 11:27&ndash;12:5</strong> From Babylon to Canaan &mdash; Father Terakh&rsquo;s Journey; Son Avram&rsquo;s Journey + Promise of Seed and Land (God said leave family, but Avram brings Lot &mdash; a no-no!).</span></li>
+    <li><span class="lang-pt"><strong>Gênesis 12:6&ndash;13:18</strong> Da Canaã para o Egito e de volta a Canaã &mdash; 12:6-9 Canaã: Carvalho de Moré (revelação divina: &ldquo;À tua semente darei esta terra&rdquo;); 12:10-20 Egito (engano com a irmã); 13:1-11 Para o Neguebe, entre Betel e Ai (altar); 13:12-18 Canaã: Carvalhos de Manre (revelação: &ldquo;toda a terra &hellip; dou a ti e à tua semente&rdquo;).</span><span class="lang-en"><strong>Genesis 12:6&ndash;13:18</strong> From Canaan to Egypt Back to Canaan &mdash; 12:6-9 Canaan: Oak of Moreh (divine revelation: &ldquo;To your seed I give this land&rdquo;); 12:10-20 Egypt (deception with sister); 13:1-11 To the Negev, between Bethel and Ai (altar); 13:12-18 Canaan: Oaks of Mamre (revelation: &ldquo;all the land &hellip; I give to you and your seed&rdquo;).</span></li>
+    <li><span class="lang-pt"><strong>Gênesis 14:1&ndash;24</strong> Da Babilônia para Canaã &mdash; invasão babilônica de Canaã; Ló cativo; Ló libertado; 10º rei abençoado.</span><span class="lang-en"><strong>Genesis 14:1&ndash;24</strong> From Babylon to Canaan &mdash; Babylonian invasion of Canaan; Lot captive; Lot freed; 10th king blessing.</span></li>
+  </ul>
+  <p class="body reveal"><span class="lang-pt">Este design encoraja o leitor a comparar as duas histórias que apresentam a Babilônia e a presença de Ló na família de Avram. Nos capítulos 11-12, Avram leva Ló mesmo depois de Deus lhe dizer para deixar sua família para trás. Essa decisão assombra Avram na história da disputa entre Ló e Avram que leva à sua migração para Sodoma. E, claro, a presença de Ló em Sodoma causa grandes dores de cabeça para Avram no capítulo 14. Aninhadas dentro das histórias de Babilônia/Ló estão duas histórias onde Avram edifica altares junto a árvores sagradas e recebe revelação divina sobre sua herança futura da terra &mdash; na primeira, é dom de Deus; na segunda, em Manre (13:12-18), o dom da terra reverte o perigo que a disputa de Avram e Ló representava para a promessa. No centro desta sequência está o autoexílio de Avram no Egito que leva ao desastre quando ele põe em risco o futuro da semente prometida.</span><span class="lang-en">This design encourages the reader to compare the two stories that feature Babylon and the presence of Lot in Avram&rsquo;s family. In chapters 11-12, Avram brings Lot even though God told him to leave his family behind. This decision comes to haunt Avram in the story of the dispute between Lot and Avram that leads to his migration to Sodom. And, of course, Lot&rsquo;s presence in Sodom causes huge headaches for Avram in chapter 14. Nested inside of the Babylon/Lot stories are two stories where Avram builds altars by sacred trees and receives a divine revelation about his future inheritance of the land. In the first story, it&rsquo;s a gift from God. In the second story at Mamre (13:12-18), the gift of the land reverses the danger Avram and Lot&rsquo;s dispute posed to the promise. At the very center of this sequence is Avram&rsquo;s self-imposed exile in Egypt that leads to disaster when he puts the future of the promised seed in jeopardy.</span></p>
 
-                    <div class="space-y-4 mb-8">
-                        <div class="ml-20 rounded-xl border-2 border-slate-500 bg-slate-50/30 p-4 shadow-sm">
-                            <div class="inline-block rounded-md bg-slate-500 px-3 py-1 text-sm font-bold text-white">
-                                Gênesis 13:1-11
-                            </div>
-                            <h2 class="mt-2 text-lg font-bold">Para o Negueve, entre Betel e Ai</h2>
-                            <ul class="mt-1 list-inside list-disc">
-                                <li>Altar construído para adoração</li>
-                            </ul>
-                        </div>
-                        <div class="ml-10  rounded-xl border-2 border-orange-700 bg-orange-50/30 p-4 shadow-sm">
-                            <div class="inline-block rounded-md bg-orange-700 px-3 py-1 text-sm font-bold text-white">
-                                Gênesis
-                                13:12-28
-                            </div>
-                            <h2 class="mt-2 text-lg font-bold">Canaã: Carvalhos de Manre</h2>
-                            <ul class="mt-1 list-inside list-disc">
-                                <li>Revelação divina: "toda a terra... eu a dou a ti e à tua descendência"</li>
-                            </ul>
-                        </div>
-                        <div class="rounded-xl border-2 border-rose-500 bg-rose-50/30 p-4 shadow-sm">
-                            <div class="inline-block rounded-md bg-rose-500 px-3 py-1 text-sm font-bold text-white">
-                                Gênesis 14:
-                            </div>
-                            <h2 class="mt-2 text-lg font-bold">Invasão Babilônica de Canaã</h2>
-                            <ul class="mt-1 list-inside list-disc">
-                                <li>A presença de Ló traz problemas para Avram</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="mx-auto max-w-4xl">
+  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Questão para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">Como a história de Terá e a de Avram se comparam, e o que o design simétrico nos ensina sobre o propósito de Deus?</span><span class="lang-en">How do the stories of Terah and Avram compare, and what does the symmetrical design teach us about God&rsquo;s purpose?</span></p>
 
-                <p class="mt-1 text-xs italic text-slate-500">Gênesis 11:27-14:24. Design Literário por Tim Mackie...
-                </p>
+  
+    <section class="scripture reveal">
+    <h2 class="section"><span class="lang-pt">Traduções dos Versículos (Inglês)</span><span class="lang-en">Verse Translations (English)</span></h2>
+    <div class="v-outer"><span class="ref">GEN 11:27-14</span><div class="v-line"><span class="lang-en">Promises &amp; Lot Problems                                       Genesis 15:1-17:27                               Promises &amp; More Lot Problems Problems of the Seed Promise 11:27-12:5                                         14:1-24                                                     18:1-15                       19:1-38 12:10-13:18                                   15:1-21                        17:1-27                           18:16-33 Covenant Round       16:1-16   Covenant Round 12:10-20     13:1-11   13:12-18 1                   Failure    2</span></div></div>
+    <div class="v-outer"><span class="ref">GEN 11:27-19</span><div class="v-line"><span class="lang-en">This first large stretch of the Avraham story has been organized into three movements that each consist of three literary units. These triads are symmetrically designed at each level, inviting the reader to make vital comparisons and contrasts that inform each scene’s contribution to the whole. 11:27-14:24 and 18:1-19:38 These are two large blocks where Avraham’s nephew Lot features as a main character. In both cases, Avraham’s disregard for God’s command to leave his family behind results in huge trouble, first in Lot’s capture by the Babylonian alliance (Gen. 14), and second when he needs to be rescued from Sodom (Gen. 19). In both stories God delivers the non-chosen nephew through Avraham’s status as the chosen, blessed, and righteous intercessor.</span></div></div>
+    <div class="v-outer"><span class="ref">GEN 11:27-12</span><div class="v-line"><span class="lang-en">From Babylon to Canaan                              Genesis 12:6-13:18                                                                         From Babylon to Canaan From Canaan to Egypt Back to Canaan 11:27-32                   12:1-5                                                                                                              14:1-10                                   14:17-24 Father Terakh's Journey    Son Avram's Journey +    12:6-9                                                              13:12-18                                       14:11-16 9 kings war                              10th king blessing Lot                      Promise of Seed and       12:10-20         13:1-4   13:5-11         Promise of Seed and      Lot captive            Kings defeated Land                      Deception with            Division with   Land Lot freed Sister                    Brother</span></div></div>
+    <div class="v-outer"><span class="ref">GEN 13:1-11</span><div class="v-line"><span class="lang-en">To the Negev, to between Bethel and Ai Altar built for worship Genesis 13:12-28 Canaan: Oaks of Mamre Divine revelation: "all the land ... I give to you and your seed" Genesis 14: Babylonian Invasion of Canaan Lot's presence brings trouble upon Avram</span></div></div>
+    <div class="v-outer"><span class="ref">GEN 11:1-9</span><div class="v-line"><span class="lang-en">A Sojourn Into Disaster                                  A Sojourn Into Blessing Begins with “all the land … journeying (‫ )נסע‬from       Begins with one family leaving (‫ )ויצאו‬the place of the east (‫[ ”)מקדם‬11:1-2]                               scattering, Ur of Chasdim [11:31] Concludes with “all the land” being “scattered” (       Concludes with Avram “journeying” (‫ )נסע‬into ‫ הפיץ‬/ ‫[ )נפוץ‬11:9]                                     Canaan in places “from the east” (‫[ )מקדם‬12:8-9] They find a “plain in Shinar” and “they settled         They come to Haran and “they settled there” ( there” (‫[ )וישבו שם‬11:2]                                ‫[ )וישבו שם‬11:31] “Let us build (‫ )בנה‬for ourselves a city and tower”     “and Yahweh said” (‫[ )ויאמר יהוה‬12:1] followed by a [11:4]                                                  reversal of circumstances — from barrenness to “… the city and tower which the sons of ’adam built     birth (‫ )בנה‬for themselves” [11:5] “Let us make a name (‫ )שם‬for ourselves” [11:4]          “I will make great your name (‫[ )שם‬12:2] “and Yahweh said” (‫[ )ויאמר יהוה‬11:6] followed by a     “and [Avram] built (‫ )בנה‬there an altar to Yahweh” reversal of circumstances — from building to            [12:7] scattering                                              “and [Avram] built (‫ )בנה‬there an altar to Yahweh and he called upon the name (‫ )שם‬of Yahweh.” [12:8] A westward sojourn that ends with settlement by         A westward sojourn that ends with settlement by humans who use their potential for their own            humans who have no potential to make a name for name, so that Yahweh becomes the antagonist             themselves, so that Yahweh becomes the and reverses their circumstances                        protagonist and reverses their circumstances Tale of Two Sojourns. Created by Tim Mackie for BibleProject Classroom: Noah to Abraham (2020). Notice how the sojourn of “all the land” in Genesis 6:1-11:26 furthers the thematic portrait of human nature expressed in Genesis 6:5 and 8:21, “humans are bad from their youth.” They take their God-given potential and unity and use it for selfish and (what will become) imperial ends: the deification and exaltation of their name.</span></div></div>
+    <div class="v-outer"><span class="ref">GEN 15:7</span><div class="v-line"><span class="lang-en">And he said to him, “I am Yahweh who brought you out of Ur of the Chaldeans, to give you this land to possess it.” *Key Words Adapted by Teacher Option 2: In Ur of the Chaldeans The literary sequence of Genesis 11:27-32 and 12:1-5 does not necessarily indicate the sequence of events referenced by the narrative. It is not uncommon in biblical narrative for two consecutive narrative units to be placed out of chronological order so that the author can achieve the literary effect of juxtaposition, forcing the reader to compare and contrast the two versions of similar events. This has already happened at key junctures in Genesis 1-11. Gen. 1:1-2:3 Creation of the ordered land      Gen. 2:4-17 Creation of the fruitful garden Example 1 out of the dark waters                         out of the barren wilderness Example 2         Gen. 10:1-32                                   Gen. 11:1-9 • Babylon built by Nimrod as he spreads        • Babylon built a “name-seeking” Narrative Versus Event Sequence. Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></div></div>
+    <div class="v-outer"><span class="ref">GEN 11:26</span><div class="v-line"><span class="lang-en">Terakh lived seventy years, and became the father of Avram, Nakhor, and Haran. *Key Words Adapted by Teacher Genesis 11:31-32 NASB* 31 Terakh took Avram his son, and Lot the son of Haran, his grandson, and Sarai his daughter-in-law, his son Avram’s wife; and they went out together from Ur of the Chaldeans in order to enter the land of Canaan; 32 and they went as far as Haran, and settled there.         The days of Terakh were two hundred and five years; and Terakh died in Haran. *Key Words Adapted by Teacher Genesis 12:4-5 NASB* 4 So Avram went forth as Yahweh had spoken to him; and Lot went with him. Now Avram was seventy-five 5 years old when he departed from Haran.           … thus they came to the land of Canaan. *Key Words Adapted by Teacher The implication of these numbers is very clear. Terakh had his sons at age 70, and his son Avram left for Canaan at age 75. This means that Terakh was still alive at 145 years old when Avram was summoned by God in 12:1. Even though Terakh’s death is recorded in 11:32, before Avram leaves for Canaan, the ages given by the narrator show that Terakh is still alive when Avram, Sarai, and Lot leave him. “Biblical protagonists frequently exit the narrative stage long before their chronological lives are over. For example, Noah dies before the Abraham narrative begins. But a simple calculation shows that Noah dies when Abraham was 58 years old (see Gen. 9:28-29); similarly Isaac was still alive when his grandson Joseph was sold (Gen. 35:28-29). Genesis ... is a sweeping series of portraits that trace a character from birth to death before the next character is introduced ... The spotlight only falls on Abram once Terah has stepped down, despite the fact that the first events in the Abram story occur during Terah’s lifetime ... This narrative</span></div></div>
+    <div class="v-outer"><span class="ref">GEN 11:28</span><div class="v-line"><span class="lang-en">Haran died in the presence of his father Terah in the land of his birth, in Ur of the Chaldeans. Genesis 11:30 NASB* Sarai was infertile; she had no child. *Key Words Adapted by Teacher Genesis 11:32 NASB* ... and Terakh died in Haran. *Key Words Adapted by Teacher In contrast, Avram’s journey, which was the same as his father’s, is associated with obedience to God’s calling, followed by blessing and the promise of family and abundance.</span></div></div>
+    <div class="v-outer"><span class="ref">GEN 12:1-2</span><div class="v-line"><span class="lang-en">1                                                                               2 ... Go from your land and from your family … to the land I will show you.       … and I will make you and great nation and I will bless you.</span></div></div>
+    <div class="v-outer"><span class="ref">GEN 12:4</span><div class="v-line"><span class="lang-en">And Avram went just as Yahweh spoke to him ...</span></div></div>
+    <div class="v-outer"><span class="ref">GEN 12:7</span><div class="v-line"><span class="lang-en">And Yahweh said to Avram, “To your seed I will give this land.” Narrative Focus of the Hebrew Bible</span></div></div>
+  </section>
 
-                <div class="text-lg text-slate-700 space-y-4 mt-8 leading-relaxed">
-                    <p>Este design encoraja o leitor a comparar as duas histórias que apresentam a Babilônia e a
-                        presença de Ló
-                        na
-                        família de Avram. Nos capítulos 11-12, Avram traz Ló, mesmo que Deus lhe tenha dito para deixar
-                        sua
-                        família
-                        para trás. Essa decisão assombra Avram na história da disputa entre Ló e Avram, que leva à sua
-                        migração
-                        para
-                        Sodoma. E, claro, a presença de Ló em Sodoma causa enormes dores de cabeça para Avram no
-                        capítulo 14.
-                    </p>
-                    <p>Aninhadas dentro das histórias de Babilônia/Ló estão duas histórias onde Avram constrói altares
-                        junto a
-                        árvores sagradas e recebe uma revelação divina sobre sua futura herança da terra. Na primeira
-                        história,
-                        é um
-                        presente de Deus. Na segunda história em Manre (13:12-18), o dom da terra reverte o perigo que a
-                        disputa
-                        de
-                        Avram e Ló representava para a promessa.</p>
-                    <p>Dentro disso, há duas histórias sobre Avraham encontrando a presença de Deus na terra e
-                        construindo
-                        altares
-                        para adoração; ele está demarcando a terra como um lugar de adoração sagrada.</p>
-                    <p>No centro desta sequência está o exílio autoimposto de Avram no Egito, que leva ao desastre
-                        quando ele
-                        coloca em risco o futuro da semente prometida.</p>
-                </div>
+  <div class="page-footer">
+    <span>Class Notes: Abraham</span>
+    <span><span class="lang-pt">Sessão 4 · Uma Historia de Duas Jornadas</span><span class="lang-en">Session 4 · A Tale of Two Journeys</span></span>
+  </div>
+</div>
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s4-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s4-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
 
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
 
-            </div>
-            <div class="mx-auto max-w-4xl">
-                <div class="text-lg">
-                    <h2 class="text-3xl font-bold text-slate-900 my-8 border-t pt-8">Tradução e Design Literário de
-                        Gênesis 11:27-12:5
-                    </h2>
-                    <div>
-                        <div class="inline-block min-w-max rounded-t-lg bg-slate-800 px-2 py-0.5  text-white pt-1">
-                            Introdução </div>
-                        <div class="rounded-b-lg  p-1 bg-slate-800 ">
-                            <div class="border border-slate-300 rounded-b-lg p-4 bg-white ">
-                                <p class=" text-cyan-950">
-                                    <sup>27</sup> E estas são as gerações de Terá.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <h3 class="pt-8 text-2xl font-bold">Parte 1: A Jornada de Terá</h3>
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
 
-                    <div class="border-yellow-900   border-l-4  p-3">
-                        <div
-                            class=" inline-block min-w-max rounded-t-lg  px-2 py-0.5  bg-slate-200 p-3 font-semibold text-slate-700 pt-1">
-                            Morte e Esterilidade em Ur-Kasdim </div>
-                        <div class="rounded-b-lg p-1 bg-slate-200  text-sm">
-                            <div class="border border-slate-300 rounded-b-lg p-4 bg-white ">
-                                <p class="text-lg text-cyan-950">
-                                <div class="p-4 text-lg leading-relaxed">
-                                    <p>a. Terá gerou <span
-                                            class="rounded bg-orange-200  p-1 font-semibold text-yellow-900 ">Avram</span>,
-                                        <span
-                                            class=" bg-orange-200 rounded p-1 font-semibold text-yellow-900">Naor</span>
-                                        e <span
-                                            class="rounded bg-orange-200  p-1 font-semibold text-yellow-900">Harã</span>;
-                                    </p>
-                                    <p>a'. e Harã gerou <span
-                                            class="rounded bg-orange-200  p-1 font-semibold text-yellow-900">Ló</span>.
-                                    </p>
-                                    <p class="pl-6">b. <sup>28</sup> E<span
-                                            class="bg-blue-100 rounded p-1 font-semibold text-blue-900">
-                                            Harã morreu antes de seu pai Terá</span>
-                                    </p>
-                                    <p class="pl-9 ">c. <span class=" font-semibold text-orange-700">na terra de sua
-                                            família</span>,</p>
-                                    <p class="pl-9">c. em <span
-                                            class="bg-orange-100 rounded p-1 font-semibold text-orange-900">Ur dos
-                                            Caldeus</span>. </p>
-
-                                    <div class="border-slate-200 border-2 m-4 "></div>
-                                    <p>a. <sup>29</sup> E <span
-                                            class="rounded bg-orange-200  p-1 font-semibold text-yellow-900 ">Avram</span>
-                                        e <span
-                                            class="rounded bg-orange-200  p-1 font-semibold text-yellow-900 ">Naor</span>
-                                        tomaram
-                                        esposas para si, </p>
-                                    <p class="pl-6">b. o nome da esposa de Avram era <span
-                                            class="rounded bg-orange-200  p-1 font-semibold text-yellow-900 ">Sarai</span>;
-                                    </p>
-                                    <p class="pl-9">c. e <span class=" font-semibold text-blue-900">o nome da esposa de
-                                            Naor era
-                                            Milca</span>,</p>
-                                    <p class="pl-9">c'. <span class=" font-semibold text-blue-900">a filha de
-                                            Harã</span>, o pai de
-                                        <span class=" font-semibold text-blue-900">Milca</span> e Iscá.
-                                    </p>
-                                    <p class="pl-6">b'. <sup>30</sup> E <span
-                                            class="rounded bg-green-200  p-1 font-semibold text-green-900">Sarai era
-                                            estéril, ela não
-                                            tinha filhos</span>. </p>
-                                </div>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="border-violet-900   border-l-4  p-3 ml-10">
-                        <div
-                            class="inline-block min-w-max rounded-t-lg  px-2 py-0.5  bg-slate-200 p-3 font-semibold text-slate-700 pt-1">
-                            Terá Leva Sua Família</div>
-                        <div class="rounded-b-lg p-1 bg-slate-200  text-sm">
-                            <div class="border border-slate-300 rounded-b-lg p-4 bg-white text-lg">
-                                <p>
-                                    <sup>31</sup> <span
-                                        class="rounded bg-orange-200  p-1 font-semibold text-yellow-900"> Terá tomou
-                                        (...ויקח תרח)</span>
-                                </p>
-                                <p class="ml-4">
-                                    <span class="rounded bg-orange-200  p-1 font-semibold text-yellow-900">Avram</span>
-                                    seu filho
-                                </p>
-                                <p class="ml-4">e <span
-                                        class="rounded bg-orange-200  p-1 font-semibold text-yellow-900">Ló</span>, o
-                                    filho de Harã, filho de seu filho, </p>
-                                <p class="ml-4">e <span
-                                        class="rounded bg-orange-200  p-1 font-semibold text-yellow-900">Sarai</span>
-                                    sua nora, esposa de seu filho Avram; </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="border-red-700   border-l-4  p-3 ml-20">
-                        <div
-                            class="inline-block min-w-max rounded-t-lg  px-2 py-0.5  bg-slate-200 p-3 font-semibold text-slate-700 pt-1">
-                            Eles Saem de Ur para Entrar em Canaã, mas Não Chegam</div>
-                        <div class="rounded-b-lg p-1 bg-slate-200  text-sm">
-                            <div class="border border-slate-300 rounded-b-lg p-4 bg-white text-lg">
-                                <p>e <span class="rounded bg-orange-200  p-1 font-semibold text-yellow-900">eles saíram
-                                    </span> com eles
-                                    de <span class="bg-orange-100 rounded p-1 font-semibold text-orange-900">Ur dos
-                                        Caldeus</span>
-                                </p>
-                                <p> <span class="rounded bg-orange-200  p-1 font-semibold text-yellow-900 ml-10"> para
-                                        ir para a terra
-                                        de Canaã</span>; </p>
-                                <p><span class="rounded bg-orange-200  p-1 font-semibold text-yellow-900">e foram</span>
-                                    até Harã, e ali
-                                    se estabeleceram.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="border-blue-700   border-l-4  p-3 ml-[8rem]">
-                        <div
-                            class="inline-block min-w-max rounded-t-lg  px-2 py-0.5  bg-slate-200 p-3 font-semibold text-slate-700 pt-1">
-                            Idade de Terá + Morte em Harã</div>
-                        <div class="rounded-b-lg p-1 bg-slate-200  text-sm">
-                            <div class="border border-slate-300 rounded-b-lg p-4 bg-white text-lg">
-                                <p>
-                                    <sup>32</sup> E <span class=" font-semibold text-yellow-900">os dias de Terá foram
-                                        duzentos e cinco
-                                        anos</span>;
-                                </p>
-                                <p><span class="bg-blue-100 rounded p-1 font-semibold text-blue-900">e Terá morreu em
-                                        Harã</span>. </p>
-                            </div>
-                        </div>
-                    </div>
-                    <h3 class="pt-8 text-2xl font-bold">Parte 2: A Jornada de Avram</h3>
-                    <div class="border-yellow-900   border-l-4  p-3">
-                        <div
-                            class="inline-block min-w-max rounded-t-lg  px-2 py-0.5  bg-slate-200 p-3 font-semibold text-slate-700 pt-1">
-                            Bênção e Filhos na Terra Prometida </div>
-                        <div class="rounded-b-lg p-1 bg-slate-200  text-sm">
-                            <div class="border border-slate-300 rounded-b-lg p-4 bg-white ">
-                                <p class="text-lg text-cyan-950">
-                                <div class="p-4 text-lg leading-relaxed">
-                                    <p>
-                                        <sup>12:1</sup> E Yahweh disse a Avram,
-                                    </p>
-                                    <p>a. "Saia</p>
-                                    <p class="pl-6">b. da <span class=" font-semibold text-yellow-900">sua terra</span>,
-                                    </p>
-                                    <p class="pl-6">b'. e da <span class=" font-semibold text-yellow-900">sua
-                                            família</span>, </p>
-                                    <p class="pl-6">b'. e da <span
-                                            class=" bg-orange-200 rounded p-1 font-semibold text-yellow-900">casa
-                                            de seu pai</span>, </p>
-
-
-                                    <p>a'. para a terra que eu lhe mostrarei.</p>
-
-                                    <div class="border-slate-200 border-2 m-4 "></div>
-
-                                    <p>a. <sup>2</sup> E <span
-                                            class="rounded bg-green-200  p-1 font-semibold text-green-900">eu farei
-                                            de você uma grande nação</span>, </p>
-                                    <p class="pl-6">b. e eu o abençoarei,</p>
-                                    <p>a'. e farei grande o seu nome;</p>
-                                    <p class="pl-6">b'. e assim você será uma bênção.</p>
-                                    <p>a. <sup>3</sup> E eu <span
-                                            class=" font-semibold text-violet-900">abençoarei</span>
-                                    </p>
-                                    <p class="pl-6">b. aqueles que o <span
-                                            class=" font-semibold text-violet-900">abençoarem</span>,</p>
-                                    <p class="pl-6">b'. e aquele que o trata como <span
-                                            class=" font-semibold text-violet-900">amaldiçoado</span>
-                                    </p>
-                                    <p>a'. eu <span class=" font-semibold text-violet-900">amaldiçoarei</span>; </p>
-                                    <p>a. e em você todas as <span class=" font-semibold text-yellow-900">famílias da
-                                            terra</span>
-                                    </p>
-                                    <p class="pl-6">b. encontrarão bênção.”</p>
-                                </div>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="border-blue-700   border-l-4  p-3 ml-[8rem]">
-                        <div
-                            class="inline-block min-w-max rounded-t-lg  px-2 py-0.5  bg-slate-200 p-3 font-semibold text-slate-700 pt-1">
-                            Idade de Avram + Saída de Harã</div>
-                        <div class="rounded-b-lg p-1 bg-slate-200  text-sm">
-                            <div class="border border-slate-300 rounded-b-lg p-4 bg-white text-lg">
-                                <p>
-                                    <sup>4</sup> E Avram partiu, como Yahweh lhe havia falado, e Ló foi com ele,
-                                </p>
-                                <p>e <span class=" font-semibold text-yellow-900">Avram tinha setenta e cinco
-                                        anos</span> <span
-                                        class="bg-blue-100 rounded p-1 font-semibold text-blue-900">quando saiu de
-                                        Harã</span>. </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="border-violet-900   border-l-4  p-3 ml-10">
-                        <div
-                            class="inline-block min-w-max rounded-t-lg  px-2 py-0.5  bg-slate-200 p-3 font-semibold text-slate-700 pt-1">
-                            Avram Leva Sua Família</div>
-                        <div class="rounded-b-lg p-1 bg-slate-200  text-sm">
-                            <div class="border border-slate-300 rounded-b-lg p-4 bg-white text-lg">
-                                <p>
-                                    <sup>5</sup> <span
-                                        class=" bg-orange-200 rounded p-1 font-semibold text-yellow-900">E Avram tomou
-                                        (...ויקח אברם)</span>
-                                </p>
-                                <p class="ml-4"> <span
-                                        class=" bg-orange-200 rounded p-1 font-semibold text-yellow-900">Sarai sua
-                                        esposa
-                                        e Ló,</span> filho de seu irmão</p>
-                                <p class="ml-4">e todos os seus bens que possuíam</p>
-                                <p class="ml-4">e as pessoas que haviam adquirido em Harã,</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="border-red-700   border-l-4  p-3 ml-20">
-                        <div
-                            class="inline-block min-w-max rounded-t-lg  px-2 py-0.5  bg-slate-200 p-3 font-semibold text-slate-700 pt-1">
-                            Eles Saem de Harã para Entrar em Canaã e Chegam</div>
-                        <div class="rounded-b-lg p-1 bg-slate-200  text-sm">
-                            <div class="border border-slate-300 rounded-b-lg p-4 bg-white text-lg">
-                                <p> <span class=" bg-orange-200 rounded p-1 font-semibold text-yellow-900">e eles
-                                        saíram</span></p>
-                                <p> <span class=" bg-orange-200 rounded p-1 font-semibold text-yellow-900 ml-10">para ir
-                                        para a terra de
-                                        Canaã</span></p>
-                                <p> <span class=" bg-orange-200 rounded p-1 font-semibold text-yellow-900">e chegaram
-                                    </span> à terra de
-                                    Canaã.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="mt-8 text-sm italic text-slate-500">Gênesis 11:27-12:5. Tradução e Design Literário por
-                        Tim Mackie para
-                        BibleProject Classroom: Noé a Abraão (2020).</p>
-                </div>
-
-
-
-
-            </div>
-            <div class="mx-auto max-w-4xl">
-                <h2 class="text-4xl font-bold text-slate-900 mt-12">Mapas das Jornadas de Terá e Avram</h2>
-
-                <div class="mx-auto max-w-4xl">
-                    <div class="mb-8 text-center">
-                        <img src="../image/h-u.png" alt="Mapa da jornada de Terá de Ur para Harã"
-                            class="mx-auto mb-2 w-full max-w-lg rounded-lg border">
-                        <a href="#" class="text-sm text-sky-600 underline">Openstreetmap.org</a>
-                    </div>
-                    <div class="text-lg text-slate-700 space-y-4 leading-relaxed">
-                        <p>Note como esta jornada de dois passos é também uma jornada de duas gerações. O que Terá
-                            começa,
-                            Avram
-                            completa, mas apenas por causa da palavra de Deus que vem a Avram.</p>
-                        <p>A jornada de Terá começa com duas notas trágicas: a morte de Harã e a esterilidade de Sarai,
-                            sua
-                            nora. A
-                            infertilidade de Sarai também destaca o contraste entre ela e sua cunhada Milca. Ambas têm
-                            nomes
-                            reais
-                            (“Princesa” e “Rainha”), mas a identidade de Milca é descrita em termos de suas relações
-                            familiares,
-                            enquanto a identidade de Sarai é descrita apenas em relação à sua incapacidade de ter
-                            filhos.
-                        </p>
-                        <p>A jornada de Terá começa com essas notas trágicas e, em seguida, se desenvolve em um processo
-                            de
-                            três
-                            estágios: (1) “tomar”, (2) “sair” e (3) chegar em Harã, onde Terá morre. A jornada de Terá
-                            começa com a
-                            morte de Harã e termina com sua própria morte em outro Harã.</p>
-                    </div>
-                    <div class="my-8 text-center">
-                        <img src="../image/h-i.png" alt="Mapa da jornada de Avram para Canaã"
-                            class="mx-auto mb-2 w-full max-w-lg rounded-lg border">
-                        <a href="#" class="text-sm text-sky-600 underline">Openstreetmap.org</a>
-                    </div>
-                    <div class="text-lg text-slate-700 space-y-4 leading-relaxed">
-                        <p>A jornada de Avram começa com uma lembrança das duas notas trágicas que iniciaram a jornada
-                            de
-                            Terá. Ele
-                            deve deixar sua família e a casa de seu pai (marcadas pela morte), e Deus fará dele uma
-                            grande
-                            nação
-                            (revertendo assim a infertilidade de Sarai).</p>
-                        <p>Deus não apenas reverterá as tragédias de sua família, mas também trará uma bênção de Gênesis
-                            1
-                            que
-                            produzirá uma superabundância de bênçãos que fluirão dele para as outras famílias das
-                            nações.
-                        </p>
-                    </div>
-                </div>
-                <div class="mx-auto max-w-4xl">
-                    <p class="text-lg leading-relaxed text-slate-700 mb-8">Uma vez que Avram recebe esta palavra divina
-                        de
-                        bênção
-                        que reverte o destino de seu pai, ele inicia seu próprio processo de três passos de (1) “tomar”,
-                        (2)
-                        “sair”
-                        e
-                        (3) chegar em Canaã. Quando ele finalmente chega em Canaã, Avram completa a jornada que seu pai
-                        começou.
-                        Note
-                        como as cenas se alternam precisamente entre três estágios de jornada, pontuados por duas
-                        paradas em
-                        Siquém
-                        e
-                        Betel, onde Avram constrói altares e adora a Yahweh, que o chamou e sua família para fora de Ur
-                        dos
-                        Caldeus.
-                    </p>
-                    <h2 class="text-3xl font-bold text-slate-900 mb-4 mt-10">Um Novo Noé, Um Novo Adão</h2>
-                    <p class="text-lg leading-relaxed text-slate-700 mb-8">O design literário de Gênesis <a href="#"
-                            class="verse-link hover:underline" data-reference="Gênesis+6:1-11:26">6:1-11:26</a> nos
-                        prepara para
-                        ver a saída de Avram de Ur dos Caldeus após a dispersão da Babilônia em <a href="#"
-                            class="verse-link hover:underline" data-reference="Gênesis+11:1-9">11:1-9</a> em um
-                        paralelo
-                        à saída
-                        de
-                        Noé da arca após o dilúvio.</p>
-                    <div class="rounded-xl overflow-hidden border-2 border-slate-300 shadow-sm">
-                        <table class="w-full text-left text-slate-700">
-                            <thead class="bg-slate-100 text-slate-800">
-                                <tr>
-                                    <th class="p-4 w-1/2">Saída de Noé da Arca e Bênção Familiar</th>
-                                    <th class="p-4 w-1/2">Saída de Avram da Babilônia e Bênção Familiar</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-slate-200">
-                                <tr class="align-top">
-                                    <td class="p-4">Dez gerações de Adão a Noé; 3 filhos</td>
-                                    <td class="p-4">Dez gerações de Noé a Avram (de 3 filhos)</td>
-                                </tr>
-                                <tr class="align-top">
-                                    <td class="p-4">
-                                        <b> <a href="#" class="verse-link hover:underline"
-                                                data-reference="Gênesis+6:1-4">Gn. 6:1-4</a></b> A história do dilúvio
-                                        começa com violência e derramamento de
-                                        sangue
-                                        perpetrados por
-                                        guerreiros e “homens de nome”.
-                                    </td>
-                                    <td class="p-4">
-                                        <b> <a href="#" class="verse-link hover:underline"
-                                                data-reference="Gênesis+10:8-12">Gn. 10:8-12</a></b> Babilônia é fundada
-                                        por um guerreiro violento, um homem de
-                                        nome.
-                                        <br>
-                                        <b> <a href="#" class="verse-link hover:underline"
-                                                data-reference="Gênesis+11:1-9"></a>Gn. 11:1-9</a></b> Babilônia é
-                                        construída por pessoas que buscam fazer um nome
-                                        para
-                                        si
-                                        mesmas.
-                                    </td>
-                                </tr>
-                                <tr class="align-top">
-                                    <td class="p-4">Noé e aqueles com ele são abrigados na arca durante o dilúvio.</td>
-                                    <td class="p-4">Terá e aqueles com ele se refugiam em Harã após a dispersão da
-                                        Babilônia.</td>
-                                </tr>
-                                <tr class="align-top">
-                                    <td class="p-4">Noé “sai” da arca com sua família (יצא repetido 4x em Gn. <a
-                                            href="#" class="verse-link hover:underline"
-                                            data-reference="Gênesis+8:16-19">8:16-19</a>):
-                                        “e
-                                        Noé saiu
-                                        da arca,
-                                        e seus filhos, sua esposa e as esposas de seus filhos”.</td>
-                                    <td class="p-4">
-                                        <b> <a href="#" class="verse-link hover:underline"
-                                                data-reference="Gênesis+11:31">Gn. 11:31</a></b> Terá “saiu” da
-                                        Babilônia com sua família: “e Terá tomou Avram
-                                        seu
-                                        filho...
-                                        e eles
-                                        saíram com eles de Ur dos Caldeus”. <br>
-                                        <b> <a href="#" class="verse-link hover:underline"
-                                                data-reference="Gênesis+12:5">Gn. 12:5</a></b> Avram “saiu” de Harã com
-                                        sua família “e Avram tomou sua esposa e
-                                        o
-                                        filho de
-                                        seus
-                                        irmãos... e eles saíram para ir para a terra de Canaã”.
-                                    </td>
-                                </tr>
-                                <tr class="align-top">
-                                    <td class="p-4">Deus promete que Noé e sua esposa serão “frutíferos e se
-                                        multiplicarão”.
-                                        <br>
-                                        <b> <a href="#" class="verse-link hover:underline"
-                                                data-reference="Gênesis+9:1">Gn. 9:1</a></b> “E Deus abençoou Noé e seus
-                                        filhos e disse: ‘Sede fecundos,
-                                        multiplicai-vos e
-                                        enchei a
-                                        terra’”.
-                                    </td>
-                                    <td class="p-4">Deus promete fazer Avram e sua esposa “frutíferos e se
-                                        multiplicarem”.
-                                        <br>
-                                        <b> <a href="#" class="verse-link hover:underline"
-                                                data-reference="Gênesis+12:1-2"></a>Gn. 12:1-2</a></b> “E Yahweh disse a
-                                        Avram: ‘... Farei de ti uma grande nação e
-                                        te
-                                        abençoarei...’”.
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p class="text-xs italic text-slate-500 text-center p-2 bg-slate-50">Saindo da Arca e da
-                            Babilônia.
-                            Criado
-                            por
-                            Tim Mackie...</p>
-                    </div>
-                    <p class="mt-8 text-lg leading-relaxed">Assim como a vida de Noé foi preservada em meio a um grande
-                        ato
-                        de
-                        julgamento divino sobre a violência humana, a família de Terá é preservada do
-                        julgamento-dispersão
-                        divino da
-                        Babilônia. A saída de Noé do abrigo divinamente provido é seguida por uma promessa de
-                        fecundidade e
-                        bênção, e a
-                        saída de Avram de Harã inclui um chamado divino para ir a uma nova terra de fecundidade e
-                        bênção.
-                        Todas
-                        essas
-                        semelhanças destacam um dos maiores contrastes entre Noé e Avram: a incapacidade de Sarai de ter
-                        filhos é
-                        muito diferente dos muitos filhos e netos de Noé e sua esposa. Esse contraste nos prepara para o
-                        grande
-                        drama
-                        da história de Avram e Sarai.</p>
-                    <h2 class="text-3xl font-bold text-slate-900 mb-4 mt-10">Uma História de Duas Jornadas: Babilônia e
-                        a
-                        Linhagem
-                        Escolhida</h2>
-                    <p class="text-lg leading-relaxed text-slate-700 mb-8">A jornada de Terá e Avraham é contrastada com
-                        a
-                        jornada
-                        na narrativa anterior dos filhos de Noé, que termina na rebelião e dispersão da Babilônia. Uma
-                        história
-                        termina em desastre e a outra começa em bênção.</p>
-                    <div class="rounded-xl overflow-hidden border-2 border-slate-300 shadow-sm">
-                        <table class="w-full text-left text-slate-700">
-                            <thead class="bg-slate-100 text-slate-800">
-                                <tr>
-                                    <th class="p-4 w-1/2"><a href="#" class="verse-link hover:underline"
-                                            data-reference="Gênesis+11:1-9">Gênesis 11:1-9 <br>Uma Jornada para o
-                                            Desastre </a></th>
-                                    <th class="p-4 w-1/2"> <a href="#" class="verse-link hover:underline"
-                                            data-reference="Gênesis+11:27-12:9">Gênesis 11:27-12:9 <br>Uma Jornada para
-                                            a Bênção </a></th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-slate-200">
-                                <tr class="align-top text-sm">
-                                    <td class="p-4"> >Começa com “toda a terra... viajando (נסע) do leste (מקדם)” <a
-                                            href="#" class="verse-link hover:underline"
-                                            data-reference="Gênesis+11:1-2">[11:1-2]</a>
-                                        <br>Conclui
-                                        com
-                                        “toda a terra” sendo “espalhada” (נפוץ / הפיץ) <a href="#"
-                                            class="verse-link hover:underline"
-                                            data-reference="Gênesis+11:9"></a>[11:9]</a>
-                                    </td>
-                                    <td class="p-4">Começa com uma família saindo (ויצאו) do lugar da dispersão, Ur dos
-                                        Caldeus
-                                        <a href="#" class="verse-link hover:underline"
-                                            data-reference="Gênesis+11:31">[11:31]</a>
-                                        <br>Conclui com Avram “viajando” (נסע) para Canaã em lugares “do leste” (מקדם)
-                                        <a href="#" class="verse-link hover:underline"
-                                            data-reference="Gênesis+12:8-9">[12:8-9]</a>
-                                    </td>
-                                </tr>
-                                <tr class="align-top text-sm">
-                                    <td class="p-4">Eles encontram uma “planície em Sinar” e “ali se estabeleceram”
-                                        (וישבו
-                                        שם)
-                                        <a href="#" class="verse-link hover:underline"
-                                            data-reference="Gênesis+11:2">[11:2]</a>
-                                    </td>
-                                    <td class="p-4">Eles chegam a Harã e “ali se estabeleceram” (וישבו שם) <a href="#"
-                                            class="verse-link hover:underline"
-                                            data-reference="Gênesis+11:31">[11:31]</a></td>
-                                </tr>
-                                <tr class="align-top text-sm">
-                                    <td class="p-4">“Vamos construir (בנה) para nós uma cidade e uma torre” <a href="#"
-                                            class="verse-link hover:underline" data-reference="Gênesis+11:4">[11:4]</a>
-                                        <br>“...
-                                        a cidade
-                                        e a
-                                        torre que os filhos de Adão construíram (בנה) para si mesmos” <a href="#"
-                                            class="verse-link hover:underline" data-reference="Gênesis+11:5">[11:5]</a>
-                                    </td>
-                                    <td class="p-4">“e Yahweh disse” (ויאמר יהוה) <a href="#"
-                                            class="verse-link hover:underline" data-reference="Gênesis+12:1">[12:1]</a>
-                                        seguido por uma reversão de
-                                        circunstâncias
-                                        — da
-                                        esterilidade ao nascimento</td>
-                                </tr>
-                                <tr class="align-top text-sm">
-                                    <td class="p-4">“Façamos para nós um nome (שם)” <a href="#"
-                                            class="verse-link hover:underline"
-                                            data-reference="Gênesis+11:4"></a>[11:4]</a></td>
-                                    <td class="p-4">“Eu farei grande o seu nome (שם)” <a href="#"
-                                            class="verse-link hover:underline" data-reference="Gênesis+12:2">[12:2]</a>
-                                    </td>
-                                </tr>
-                                <tr class="align-top text-sm">
-                                    <td class="p-4">“e Yahweh disse” (ויאמר יהוה) [<a href="#"
-                                            class="verse-link hover:underline" data-reference="Gênesis+11:6">11:6</a>]
-                                        seguido por uma reversão de
-                                        circunstâncias
-                                        — da
-                                        construção à dispersão</td>
-                                    <td class="p-4">“e [Avram] construiu (בנה) ali um altar a Yahweh” [<a href="#"
-                                            class="verse-link hover:underline" data-reference="Gênesis+12:7">12:7</a> ]
-                                        <br>“e
-                                        [Avram]
-                                        construiu (בנה)
-                                        ali um altar a Yahweh e invocou o nome (שם) de Yahweh.” [<a href="#"
-                                            class="verse-link hover:underline" data-reference="Gênesis+12:8">12:8</a>]
-                                    </td>
-                                </tr>
-                                <tr class="align-top text-sm bg-slate-50">
-                                    <td class="p-4">Uma jornada para o oeste que termina com o estabelecimento de
-                                        humanos
-                                        que usam
-                                        seu
-                                        potencial para seu próprio nome, de modo que Yahweh se torna o antagonista e
-                                        reverte
-                                        suas
-                                        circunstâncias.</td>
-                                    <td class="p-4">Uma jornada para o oeste que termina com o estabelecimento de
-                                        humanos
-                                        que não
-                                        têm
-                                        potencial para fazer um nome para si mesmos, de modo que Yahweh se torna o
-                                        protagonista e
-                                        reverte suas
-                                        circunstâncias.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p class="text-xs italic text-slate-500 text-center p-2 bg-slate-50">Conto de Duas Jornadas.
-                            Criado
-                            por Tim
-                            Mackie...</p>
-                    </div>
-                </div>
-                <div class="mx-auto max-w-4xl">
-                    <div class="text-lg text-slate-700 space-y-4 leading-relaxed">
-                        <p>Em contraste, a jornada de Terá começa com a trágica morte de seu filho Harã, e termina com
-                            sua
-                            própria
-                            morte em Harã. Essas mortes são paralelas à incapacidade de Avram e Sarai de ter filhos e
-                            perpetuar seu
-                            nome. Mas Deus intervém com uma palavra de promessa e bênção, motivando uma jornada final
-                            para o
-                            oeste,
-                            para
-                            a terra de Canaã. </p>
-                        <p>Note como a jornada e a construção estão no centro de ambas as narrativas, mas com fins
-                            opostos.
-                            Os
-                            babilônios constroem uma cidade e uma torre para seu próprio nome, enquanto Avram constrói
-                            altares para
-                            o
-                            nome de Yahweh. </p>
-                    </div>
-                    <h2 class="text-3xl font-bold text-slate-900 mb-4 mt-10">De Onde Avram Foi Chamado?</h2>
-                    <p class="text-lg leading-relaxed text-slate-700 mb-8">As duas narrativas de Gênesis <a href="#"
-                            class="verse-link hover:underline" data-reference="Gênesis+11:27-32">11:27-32</a> e
-                        <a href="#" class="verse-link hover:underline" data-reference="Gênesis+12:1-9"></a>12:1-9</a>
-                        contrastam as jornadas de Terá e Avram. A primeira diz que foi Terá quem “saiu de Ur dos
-                        Caldeus”
-                        para
-                        viajar
-                        a Canaã, mas em vez disso, ele chegou apenas a Harã e se estabeleceu ali (<a href="#"
-                            class="verse-link hover:underline" data-reference="Gênesis+11:31">11:31</a>). Em contraste,
-                        Avram é
-                        abordado por Deus para ir a Canaã, e então ele “sai” de um local não identificado (<a href="#"
-                            class="verse-link hover:underline" data-reference="Gênesis+12:5">12:5</a>) para ir
-                        a
-                        Canaã. De
-                        onde Avram vai para Canaã, e onde é o local da primeira aparição e discurso de Deus a ele em
-                        <a href="#" class="verse-link hover:underline" data-reference="Gênesis+12:1-5">12:1-5</a>?
-                    </p>
-                    <h3 class="text-xl font-semibold">Opção 1: Em Harã</h3>
-                    <p class="text-lg leading-relaxed text-slate-700 mb-4">A sequência literária das duas unidades
-                        narrativas
-                        <a href="#" class="verse-link hover:underline" data-reference="Gênesis+11:27-32">11:27-32</a> e
-                        <a href="#" class="verse-link hover:underline" data-reference="Gênesis+12:1-9">12:1-9</a>
-                        poderia ser interpretada como uma sequência temporal onde a jornada de Avram
-                        com
-                        seu pai
-                        para Harã precedeu o discurso de Deus a ele para sair e ir para Canaã.
-                    </p>
-                    <p class="text-lg leading-relaxed text-slate-700 mb-6">Há um porém nesta interpretação direta, no
-                        entanto. A
-                        única outra vez que a jornada de Avram para Canaã é referenciada na Bíblia Hebraica, diz-se que
-                        ele
-                        foi
-                        convocado por Deus para deixar Ur dos Caldeus, não Harã.</p>
-                    <blockquote class="border-l-4 border-slate-500 bg-slate-50/30 p-4 rounded-r-xl text-lg italic shadow-sm">
-                        <b> <a href="#" class="verse-link hover:underline" data-reference="Gênesis+15:7">Gênesis 15:7
-                                NAA*</a></b>
-                        <br>E disse-lhe: “Eu sou Yahweh que te tirei de Ur dos Caldeus, para te dar esta terra para a
-                        possuíres.”
-                        <br>
-                        <span class="text-xs not-italic">*Palavras-chave Adaptadas pelo Professor</span>
-                    </blockquote>
-                    <h3 class="text-xl font-semibold mt-8">Opção 2: Em Ur dos Caldeus</h3>
-                    <p class="text-lg leading-relaxed text-slate-700 mb-4">A sequência literária de Gênesis <a href="#"
-                            class="verse-link hover:underline" data-reference="Gênesis+11:27-32">11:27-32</a> e
-                        <a href="#" class="verse-link hover:underline" data-reference="Gênesis+12:1-5"></a>12:1-5</a>
-                        não
-                        indica necessariamente a sequência de eventos referenciados pela narrativa. Não é incomum na
-                        narrativa
-                        bíblica
-                        que duas unidades narrativas consecutivas sejam colocadas fora de ordem cronológica para que o
-                        autor
-                        possa
-                        alcançar o efeito literário da justaposição, forçando o leitor a comparar e contrastar as duas
-                        versões de
-                        eventos semelhantes. Isso já aconteceu em momentos cruciais em Gênesis 1-11.
-                    </p>
-                    <table class="w-full text-left text-slate-700 border-2 border-slate-300 rounded-xl shadow-sm">
-                        <tr class="bg-slate-100">
-                            <td class="p-3 border-r font-semibold">Exemplo 1</td>
-                            <td class="p-3 border-r">
-                                <b><a href="#" class="verse-link hover:underline" data-reference="Gn. 1:1-2:3">Gn.
-                                        1:1-2:3</a></b> Criação da terra ordenada a partir das águas escuras
-                            </td>
-                            <td class="p-3">
-                                <b><a href="#" class="verse-link hover:underline" data-reference="Gn. 2:4-17">Gn.
-                                        2:4-17</a></b> Criação do jardim frutífero a partir do deserto estéril
-                            </td>
-                        </tr>
-                        <tr class="bg-white">
-                            <td class="p-3 border-r font-semibold">Exemplo 2</td>
-                            <td class="p-3 border-r">
-                                <b><a href="#" class="verse-link hover:underline" data-reference="Gn. 10:1-32">Gn.
-                                        10:1-32</a></b>
-                                <br>• Babilônia construída por Ninrode enquanto ele se espalhaseu império <br>• Nações
-                                já
-                                espalhadas com muitas línguas
-                            </td>
-                            <td class="p-3">
-                                <b><a href="#" class="verse-link hover:underline" data-reference="Gn. 11:1-9">Gn.
-                                        11:1-9</a></b>
-                                <br>• Babilônia construiu uma humanidade “em busca de nome”<br>• Nações ainda não
-                                espalhadas
-                                e apenas uma língua
-                            </td>
-                        </tr>
-                    </table>
-                    <p class="text-xs italic text-slate-500 text-center p-2">Sequência Narrativa Versus Sequência de
-                        Eventos. Criado
-                        por Tim Mackie...</p>
-                </div>
-                <div class="mx-auto max-w-4xl">
-
-
-                    <p class="text-lg leading-relaxed text-slate-700 mb-8">Em ambos os casos, a sequência literária não
-                        corresponde
-                        à sequência de eventos. Em vez disso, permite ao autor retratar o mesmo evento de dois ângulos,
-                        destacando
-                        diferentes temas e ideias ao apresentar o mesmo evento central. A mesma técnica é usada na
-                        apresentação da
-                        jornada de Terá e Avram de Ur para Canaã. E há outra pista textual que deixa claro que este é o
-                        caso.</p>
-                    <h2 class="text-3xl font-bold text-slate-900 mb-4">As Idades de Avram e Terá</h2>
-                    <p class="text-lg leading-relaxed text-slate-700 mb-6">O narrador deixa claro que Terá teve seus
-                        três
-                        filhos aos
-                        70 anos e depois morreu aos 205. Avram, nos é dito, tinha 75 anos quando recebeu o chamado de
-                        Deus
-                        para
-                        deixar
-                        sua família e ir para Canaã.</p>
-                    <div class="space-y-4 text-lg">
-                        <blockquote class="border-l-4 border-slate-500 bg-slate-50/30 p-4 rounded-r-xl italic shadow-sm">
-                            <b><a href="#" class="verse-link hover:underline" data-reference="Gênesis+11:26">Gênesis
-                                    11:26 NAA*</a></b>
-                            <br>Terá viveu setenta anos e gerou Avram, Naor e Harã. <br>
-                            <span class="text-xs not-italic">*Palavras-chave Adaptadas pelo Professor</span>
-                        </blockquote>
-                        <blockquote class="border-l-4 border-slate-400 bg-slate-50 p-4 rounded-r-lg italic">
-                            <b><a href="#" class="verse-link hover:underline" data-reference="Gênesis+11:31-32">Gênesis
-                                    11:31-32 NAA*</a></b>
-                            <br>
-                            <sup>31</sup>Terá tomou Avram, seu filho, e Ló, filho de Harã, seu neto, e Sarai, sua nora,
-                            esposa de
-                            seu
-                            filho Avram; e saíram juntos de Ur dos Caldeus para entrar na terra de Canaã; e foram até
-                            Harã e
-                            ali se
-                            estabeleceram. <sup>32</sup>Os dias de Terá foram duzentos e cinco anos; e Terá morreu em
-                            Harã.
-                            <br>
-                            <span class="text-xs not-italic">*Palavras-chave Adaptadas pelo Professor</span>
-                        </blockquote>
-                        <blockquote class="border-l-4 border-slate-400 bg-slate-50 p-4 rounded-r-lg italic">
-                            <b><a href="#" class="verse-link hover:underline" data-reference="Gênesis+12:4-5">Gênesis
-                                    12:4-5 NAA*</a></b>
-                            <br>
-                            <sup>4</sup>Assim Avram partiu como Yahweh lhe havia falado; e Ló foi com ele. Ora, Avram
-                            tinha
-                            setenta
-                            e
-                            cinco anos quando partiu de Harã. <sup>5</sup>... assim chegaram à terra de Canaã. <br>
-                            <span class="text-xs not-italic">*Palavras-chave Adaptadas pelo Professor</span>
-                        </blockquote>
-                    </div>
-                    <p class="mt-6 text-lg leading-relaxed text-slate-700">A implicação desses números é muito clara.
-                        Terá
-                        teve seus
-                        filhos aos 70 anos, e seu filho Avram partiu para Canaã aos 75 anos. Isso significa que Terá
-                        ainda
-                        estava
-                        vivo
-                        com 145 anos quando Avram foi convocado por Deus em <a href="#"
-                            class="verse-link hover:underline" data-reference="Gênesis+12:1">12:1</a>. Embora
-                        a morte de Terá seja registrada
-                        em
-                        11:32,
-                        antes de Avram partir para Canaã, as idades dadas pelo narrador mostram que Terá ainda está vivo
-                        quando
-                        Avram,
-                        Sarai e Ló o deixam.</p>
-                    <blockquote class="border-l-4 border-slate-600 p-6 my-8 text-slate-600 bg-slate-50/30 rounded-r-xl shadow-sm"> “Os protagonistas
-                        bíblicos
-                        frequentemente saem do palco narrativo muito antes de suas vidas cronológicas terminarem. Por
-                        exemplo, Noé
-                        morre antes do início da narrativa de Abraão. Mas um cálculo simples mostra que Noé morre quando
-                        Abraão
-                        tinha
-                        58 anos (ver Gn. <a href="#" class="verse-link hover:underline"
-                            data-reference="Gênesis+9:28-29">9:28-29</a>); da mesma forma, Isaque ainda estava vivo
-                        quando seu neto José foi
-                        vendido
-                        <a href="#" class="verse-link hover:underline" data-reference="Gênesis+35:28-29">
-                            (Gn.
-                            35:28-29)</a>. Gênesis... é uma série abrangente de retratos que traçam um personagem do
-                        nascimento
-                        à
-                        morte
-                        antes
-                        que o próximo personagem seja introduzido... O foco só cai sobre Abrão quando Terá sai de cena,
-                        apesar do
-                        fato
-                        de que os primeiros eventos na história de Abrão ocorrem durante a vida de Terá... Este estilo
-                        de
-                        narrativa
-                        ilumina a
-                        correlação entre a jornada de Terá e a revelação de Deus a Abrão... É razoável concluir que a
-                        decisão de
-                        Terá
-                        de imigrar para Canaã está conectada ao mandamento de Deus a Abrão.” <br>
-                        <span class="block mt-4 font-semibold not-italic">Grossman, Jonathan (2016). Abram to Abraham: A
-                            Literary
-                            Analysis of the Abraham Narrative. Peter Lang. 74-75.</span>
-                    </blockquote>
-                    <h2 class="text-3xl font-bold text-slate-900 mb-4 mt-10">Conclusão</h2>
-                    <p class="text-lg leading-relaxed text-slate-700 mb-6">O narrador separou a única partida de Terá e
-                        Avram de Ur
-                        dos Caldeus em dois retratos narrativos distintos para destacar os diferentes significados de
-                        suas
-                        jornadas.
-                    </p>
-                    <p class="text-lg leading-relaxed text-slate-700 mb-6">A jornada de Terá está associada à morte e à
-                        infertilidade. </p>
-                    <div class="space-y-4 text-lg">
-                        <blockquote class="border-l-4 border-slate-400 bg-slate-50 p-4 rounded-r-lg italic">
-                            <b><a href="#" class="verse-link hover:underline" data-reference="Gênesis+11:28">
-                                    Gênesis 11:28 NAA</a></b>
-                            <br>Harã morreu na presença de seu pai Terá na terra de seu nascimento, em Ur dos Caldeus.
-                        </blockquote>
-                        <blockquote class="border-l-4 border-slate-400 bg-slate-50 p-4 rounded-r-lg italic">
-                            <b><a href="#" class="verse-link hover:underline" data-reference="Gênesis+11:30">
-                                    Gênesis 11:30 NAA*</a></b>
-                            <br>Sarai era infértil; ela não tinha filhos. <br>
-                            <span class="text-xs not-italic">*Palavras-chave Adaptadas pelo Professor</span>
-                        </blockquote>
-                        <blockquote class="border-l-4 border-slate-400 bg-slate-50 p-4 rounded-r-lg italic">
-                            <b><a href="#" class="verse-link hover:underline" data-reference="Gênesis+11:32">
-                                    Gênesis 11:32 NAA*</a></b>
-                            <br>... e Terá morreu em Harã. <br>
-                            <span class="text-xs not-italic">*Palavras-chave Adaptadas pelo Professor</span>
-                        </blockquote>
-                    </div>
-                    <p class="mt-6 text-lg leading-relaxed text-slate-700">Em contraste, a jornada de Avram, que foi a
-                        mesma
-                        de seu
-                        pai, está associada à obediência ao chamado de Deus, seguida de bênção e da promessa de família
-                        e
-                        abundância.
-                    </p>
-                    <div class="space-y-4 text-lg mt-4">
-                        <blockquote class="border-l-4 border-green-500 bg-green-50/30 p-4 rounded-r-xl italic shadow-sm">
-                            <b><a href="#" class="verse-link hover:underline" data-reference="Gênesis+12:1-2">Gênesis
-                                    12:1-2 Tradução do Instrutor</a></b>
-                            <br>
-                            <sup>1</sup>... Vá da sua terra e da sua família... para a terra que eu lhe mostrarei.
-                            <sup>2</sup>... e
-                            farei de você uma grande nação e o abençoarei.
-                        </blockquote>
-                        <blockquote class="border-l-4 border-green-400 bg-green-50 p-4 rounded-r-lg italic">
-                            <b><a href="#" class="verse-link hover:underline" data-reference="Gênesis+12:4">Gênesis 12:4
-                                    Tradução do Instrutor</a></b>
-                            <br>E Avram foi exatamente como Yahweh lhe falou...
-                        </blockquote>
-                        <blockquote class="border-l-4 border-green-400 bg-green-50 p-4 rounded-r-lg italic">
-                            <b><a href="#" class="verse-link hover:underline" data-reference="Gênesis+12:7">Gênesis 12:7
-                                    Tradução do Instrutor</a></b>
-                            <br>E Yahweh disse a Avram: “À tua semente darei esta terra.”
-                        </blockquote>
-                    </div>
-                </div>
-                <div class="max-w-4xl mx-auto w-full">
-
-                    <h2 class="text-2xl font-bold text-slate-800 my-10">Questão para Reflexão</h2>
-                    <div class="bg-slate-50/30 border-2 border-slate-400 rounded-xl p-6 shadow-sm">
-                        <p class="text-lg text-slate-700">Qual é o ponto de virada na história da jornada de Ur para
-                            Canaã?
-                            Como
-                            isso
-                            relembra temas anteriores em Gênesis?</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="../js/verse-modal.js"></script>
+  <script src="../js/verse-modal.js"></script>
 </body>
-
 </html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O Nascimento de Isaque</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  .heb { font-family: 'SBL Hebrew','Times New Roman',serif; font-size: 1.05em; direction: rtl; unicode-bidi: embed; }
+
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
+  .ref:hover { color: #2563eb; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+  .scripture:hover { border-left-color: #9aa7b8; }
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+  .scripture .innerbox { background: #f6f8fa; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1rem; }
+  .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem; }
+
+  /* ---------- Macro design (3 columns) ---------- */
+  .macro { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; align-items: start; margin: 2rem 0 .75rem; }
+  .mcol { border: 3px solid #2e7d4e; border-radius: 12px; padding: .9rem .9rem 1rem; background: #fff; }
+  .mcol.dark { border-color: #3d4453; margin-top: 1.3rem; }
+  .mtag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 3px 10px; border-radius: 5px; }
+  .mtag-green { background: #2e7d4e; } .mtag-dark { background: #3d4453; }
+  .mcol-title { font-size: 1rem; font-weight: 800; color: #17181a; margin: .55rem 0 .8rem; line-height: 1.3; }
+  .mboxes { display: flex; gap: .55rem; }
+  .mbox { flex: 1; border: 3px solid #b9c2cf; border-radius: 9px; background: #fff; min-height: 15.5rem; position: relative; transition: box-shadow .25s, transform .25s; }
+  .mbox:hover { box-shadow: 0 8px 20px -10px rgba(30,41,59,.4); transform: translateY(-3px); }
+  .mbox .mhdr { position: absolute; top: .55rem; left: .55rem; right: .55rem; background: #7d8697; color: #fff; font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 5px; }
+  .mbox.s1 { margin-top: 0; } .mbox.s2 { margin-top: 2.4rem; min-height: 13rem; } .mbox.s3 { margin-top: 2.4rem; min-height: 13rem; }
+  @media (max-width: 860px) { .macro { grid-template-columns: 1fr; } .mcol.dark { margin-top: 0; } .mbox, .mbox.s2, .mbox.s3 { min-height: 7.5rem; margin-top: 0; } }
+
+  /* ---------- Chiasm staircase boxes ---------- */
+  .cx { border: 3px solid; border-radius: 12px; padding: 1.35rem 1.5rem 1.2rem; margin: 1.15rem 0; transition: box-shadow .25s, transform .25s; }
+  .cx:hover { box-shadow: 0 12px 26px -16px rgba(23,24,26,.45); transform: translateY(-2px); }
+  .cx-tag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 1px 13px; border-radius: 6px; margin-bottom: .7rem; }
+  .cx h4 { font-weight: 800; font-size: 1.06rem; color: #17181a; margin-bottom: .7rem; }
+  .cx ul.bullets > li { font-size: .99rem; margin-bottom: .45rem; }
+  .cx-slate  { border-color: #6b7280; background: #e9ebee; } .cx-slate  .cx-tag { background: #6b7280; }
+  .cx-rust   { border-color: #c0562f; background: #f7e6dd; } .cx-rust   .cx-tag { background: #c0562f; }
+  .cx-rose   { border-color: #c04a63; background: #f7e0e5; } .cx-rose   .cx-tag { background: #c04a63; }
+  .cx-blue   { border-color: #5468d4; background: #e4e8f9; } .cx-blue   .cx-tag { background: #5468d4; }
+  .cx-green  { border-color: #2e7d4e; background: #dfeee2; } .cx-green  .cx-tag { background: #2e7d4e; }
+  .cx-purple { border-color: #8b5cf6; background: #efe2f8; } .cx-purple .cx-tag { background: #8b5cf6; }
+  .cx-tan    { border-color: #8a6d3b; background: #ece7dc; } .cx-tan    .cx-tag { background: #8a6d3b; }
+
+  /* ---------- verse chips (Gen 18 translation) ---------- */
+  .k { display: inline; padding: 3px 9px; border-radius: 6px; font-weight: 700; color: #fff; line-height: 1.85; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  .k-blue   { background: #3b82c4; } .k-green  { background: #2e7d4e; } .k-rose { background: #c04a63; }
+  .k-gray   { background: #6b7280; } .k-rust   { background: #bf5a2b; } .k-teal { background: #0d7d8c; }
+  .k-purple { background: #7c5ad0; } .k-brown  { background: #8a6d3b; }
+  .t-teal { color: #0d8aa0; font-weight: 700; }
+
+  .v-outer { border: 3px solid #e3e7ee; border-radius: 20px; padding: 1.4rem 1.5rem; margin: 1.4rem 0; }
+  .v-black { border: 3px solid #17181a; border-radius: 16px; padding: 1.3rem 1.5rem; margin: 1.1rem 0; }
+  .v-light { border: 3px solid #e3e7ee; border-radius: 16px; padding: 1.2rem 1.4rem; margin: 1.1rem 0; }
+  .v-line { font-size: 1.06rem; line-height: 2.1; color: #1f2937; }
+  .v-div { border: 0; border-top: 1px solid #e6eaf0; margin: 1.1rem 0; }
+  .vbar-b { border-left: 5px solid #5468d4; padding-left: .8rem; }
+  .lbl { color: #6b7280; font-weight: 600; font-size: .85rem; margin-right: .2rem; }
+  sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px; }
+  .i1 { padding-left: 1.6rem; } .i2 { padding-left: 3.2rem; } .i3 { padding-left: 4.8rem; }
+
+  /* ---------- tables ---------- */
+  .doc-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 3px solid #d9dee6; border-radius: 14px; overflow: hidden; background: #fff; }
+  .doc-table th { background: #e2e6eb; text-align: left; padding: 1rem 1.3rem; font-weight: 800; font-size: 1.02rem; color: #17181a; }
+  .doc-table td { padding: 1.1rem 1.3rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.78; font-size: .97rem; color: #24262a; transition: background .2s; }
+  .doc-table td + td { border-left: 1px solid #e5e7eb; }
+  .doc-table tbody tr:hover td { background: #f8fafc; }
+  .doc-table tfoot td { border-top: 1px solid #d1d5db; background: #fbfcfd; color: #5b6472; font-size: .92rem; }
+  .kblue-soft { background: #cddcf5; color: #2b5fb0; padding: 2px 8px; border-radius: 6px; font-weight: 700; }
+
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media print {
+    @page { margin: 14mm 12mm; }
+    #reading-progress, .print\:hidden { display: none !important; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .max-w-4xl { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
+    h1.title, h2.section, h3.sub { break-after: avoid-page; }
+    .cx, .v-outer, .v-black, .v-light, .doc-table tr, .scripture, .mcol { break-inside: avoid; }
+  }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .cx, .mbox { transition: none; } }
+</style>
+</head>
+<body>
+
+<div id="reading-progress" aria-hidden="true"></div>
+
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-sm shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+<h1 class="title reveal"><span class="lang-pt">Sessão 21: O Nascimento de Isaque</span><span class="lang-en">Session 21: Isaac&rsquo;s Birth</span></h1>
+  <hr class="rule">
+
+  <h3 class="sub reveal" style="margin-top:0;"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal" style="margin-bottom:2.5rem;">
+    <li><span class="lang-pt">Os autores bíblicos usam design literário e palavras-chave de ligação para transmitir tanto a alegria de Sara quanto seu eco de dúvida no nascimento de Yitskhaq.</span><span class="lang-en">The biblical authors use literary design and key linking words to both convey Sarah&rsquo;s joy and echo her doubt at the birth of Yitskhaq.</span></li>
+    <li><span class="lang-pt">Ao pensar em como abordar essas histórias, a visão macro é tão importante quanto a micro.</span><span class="lang-en">As we think about how to approach these stories, the macro view is just as important to consider as the micro view.</span></li>
+    <li><span class="lang-pt">Quando os parceiros escolhidos de Deus se comportam injustamente, Deus deve trabalhar em circunstâncias comprometidas para realizar seus propósitos com e através desses parceiros.</span><span class="lang-en">When God&rsquo;s chosen partners behave unjustly, God must work in compromised circumstances to accomplish his purposes with and through these partners.</span></li>
+  </ul>
+
+  <h2 class="section reveal"><span class="lang-pt">Tradução e Design Literário de Gênesis 21:1-7</span><span class="lang-en">Translation and Literary Design of Genesis 21:1-7</span></h2>
+  <div class="v-outer reveal">
+    <div class="v-line" style="display:flex; gap:.9rem;">
+      <span class="lbl" style="padding-top:.35rem;">1</span>
+      <div>
+        <p><span class="lang-pt">E Iavé visitou a Sara, como havia dito, e Iavé fez por Sara, como tinha falado.</span><span class="lang-en">Now, Yahweh visited Sarah, just as he said, and Yahweh did for Sarah, just as he spoke.</span></p>
+        <p><sup class="vs">2</sup> <span class="lang-pt">E Sara concebeu e deu à luz um filho a Avraham na sua velhice, no tempo determinado, como Iavé havia falado.</span><span class="lang-en">And Sarah became pregnant and gave birth to a son for Avraham in his old age, at the appointed time that Yahweh had spoken to him.</span></p>
+        <p><sup class="vs">3</sup> <span class="lang-pt">E Avraham deu ao seu filho, o que lhe nasceu, que Sara lhe deu à luz, o nome de Yitskhaq (= &ldquo;Risada&rdquo;).</span><span class="lang-en">And Avraham called the name of his son, the one born for him, whom Sarah had born for him, Yitskhaq (= &ldquo;Laughter&rdquo;).</span></p>
+        <p><sup class="vs">4</sup> <span class="lang-pt">E Avraham circuncidou a Yitskhaq, seu filho, filho de oito dias, como Elohim lhe havia ordenado.</span><span class="lang-en">And Avraham circumcised Yitskhaq his son, a son of eight days, just as Elohim commanded him.</span></p>
+        <p><sup class="vs">5</sup> <span class="lang-pt">E Avraham era de cem anos de idade, quando lhe nasceu Yitskhaq, seu filho.</span><span class="lang-en">And Avraham was a son of one hundred years, when Yitskhaq his son was born for him.</span></p>
+        <p><sup class="vs">6</sup> <span class="lang-pt">E Sara disse: &ldquo;Elohim fez riso para mim! Todo aquele que ouvir rirá comigo!&rdquo;</span><span class="lang-en">And Sarah said, &ldquo;Elohim has made laughter for me! Everyone who hears will laugh with me!&rdquo;</span></p>
+        <p><sup class="vs">7</sup> <span class="lang-pt">E ela disse: &ldquo;Quem teria dito (<span class="heb">מי מלל</span>) a Avraham que Sara amamentaria filhos? Pois lhe dei à luz na sua velhice!&rdquo;</span><span class="lang-en">And she said, &ldquo;Who would have told (<span class="heb">מי מלל</span>) Avraham that Sarah would nurse sons? But I have given birth for him in his old age!&rdquo;</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="caption reveal"><span class="lang-pt"><em>Gênesis 21:1-7</em>. Tradução e Design Literário por Tim Mackie para a BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Genesis 21:1-7</em>. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
+
+  <h3 class="sub reveal"><span class="lang-pt">A Promessa de Deus Cumprida e a Crível Tênue de Sara</span><span class="lang-en">God&rsquo;s Promise Fulfilled and Sarah&rsquo;s Tenuous Belief</span></h3>
+  <p class="body reveal"><span class="lang-pt">O design de três passos deste parágrafo contrasta as ações de Iavé e de Avraham com a resposta de Sara. Observe a ênfase em cada subunidade na palavra falada de Iavé que prometeu o nascimento de um filho: &ldquo;&hellip; como Iavé disse &hellip; como Iavé falou &hellip; como Elohim ordenou.&rdquo; Essa ênfase no cumprimento da promessa nos faz avaliar as palavras de Sara mais profundamente. Sua pergunta &ldquo;Quem teria dito a Avraham que Sara amamentaria filhos?&rdquo; é facilmente respondida: &ldquo;Iavé disse a vocês ambos, lá em Gênesis 18!&rdquo; Em outras palavras, a resposta de Sara é primeiro grata (&ldquo;riso&rdquo;), mas a palavra-chave &ldquo;rir&rdquo; nos lembra o riso de Avraham que demonstrou sua falta de confiança em Iavé em Gênesis 17:17. O riso de Sara pode ser entendido de dois modos: celebração da generosidade de Deus, mas também, como o de Avraham, resposta de incredulidade &mdash; sua pergunta &ldquo;Quem teria dito&hellip;&rdquo; parece mais do que retórica.</span><span class="lang-en">The three-step design of this paragraph contrasts Yahweh&rsquo;s actions and Avraham&rsquo;s actions with Sarah&rsquo;s response. Notice the emphasis in each sub-unit on the spoken word of Yahweh that promised the birth of a son, &ldquo;&hellip; just as Yahweh said &hellip; just as Yahweh spoke &hellip; just as Elohim commanded.&rdquo; This emphasis on Yahweh&rsquo;s fulfillment of the promise makes us evaluate Sarah&rsquo;s words in a deeper way. Her question, &ldquo;Who would have told Avraham that Sarah would nurse sons?&rdquo; is easily answered: &ldquo;Yahweh told you both, back in Genesis chapter 18!&rdquo; In other words, Sarah&rsquo;s response is first grateful (&ldquo;laughter&rdquo;), but the key word &ldquo;laugh&rdquo; reminds us of Avraham&rsquo;s laughter that demonstrated his lack of trust in Yahweh back in Genesis 17:17. Sarah&rsquo;s laughter can be understood in two ways: celebration of God&rsquo;s generosity, but also, like Avraham, a response of unbelief.</span></p>
+
+  <h3 class="sub reveal"><span class="lang-pt">Yitskhaq, Circuncisão e Ecos da Obediência de Noé</span><span class="lang-en">Yitskhaq, Circumcision, and Echoes of Noah&rsquo;s Obedience</span></h3>
+  <p class="body reveal"><span class="lang-pt">Esta unidade está repleta de alusões à narrativa do dilúvio e a Gênesis 17. Avraham é obediente ao mandamento divino dado em Gênesis 17:9-14 de que todos em sua família devem ser circuncidados como sinal da aliança de Deus com eles. Assim como Noé foi justo e obediente, Avraham aqui age em alinhamento com a vontade de Deus &mdash; um contraste com seu engano anterior.</span><span class="lang-en">This unit is riddled with allusions to the flood narrative and to Genesis 17, an earlier Avraham narrative that also echoed the flood narrative. Avraham is obedient to the divine command given in Genesis 17:9-14 that everyone in his family should be circumcised as a sign of God&rsquo;s covenant with them. Just as Noah was righteous and obedient, Avraham here acts in alignment with God&rsquo;s will &mdash; a contrast with his earlier deception.</span></p>
+
+  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Questão para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">Como o nascimento de Isaque cumpre a promessa de Deus e, ao mesmo tempo, revela a fé ainda titubeante de Sara?</span><span class="lang-en">How does Isaac&rsquo;s birth fulfill God&rsquo;s promise while also revealing Sarah&rsquo;s still-hesitant faith?</span></p>
+
+  
+    <section class="scripture reveal">
+    <h2 class="section"><span class="lang-pt">Traduções dos Versículos (Inglês)</span><span class="lang-en">Verse Translations (English)</span></h2>
+    <div class="v-outer"><span class="ref">GEN 21:1-7</span><div class="v-line"><span class="lang-en">a 1 Now, Yahweh visited Sarah, b    just as he said , a' and Yahweh did for Sarah, A b'   just as he spoke . a'' 2 And Sarah became pregnant and gave birth to a son         for Avraham   in his old age , b'' at the appointed time that Yahweh had spoken to him. a 3 And Avraham called the name of his son , b the one born for him , b' whom Sarah had born for him , a'   Yitskhaq (= “ Laughter ”) B      a 4 And Avraham circumcised (‫)וימל‬      Yitskhaq   his son , b a son of eight days, c   just as Elohim commanded him. b' 5 And Avraham was a son of one hundred years , a' when Yitskhaq his son was born for him . 6 And Sarah said, “Elohim has made laughter for me! Everyone who hears will laugh with me!” A' 7 And she said, “ Who would have told (‫ )מי מלל‬Avraham that Sarah would nurse sons ?</span></div></div>
+    <div class="v-outer"><span class="ref">GEN 21:1-21</span><div class="v-line"><span class="lang-en">God’s Promise Fulfilled and Sarah’s Tenuous Belief The three-step design of this paragraph contrasts Yahweh’s actions and Avraham’s actions with Sarah’s response. Genesis 21:1-2 A - God Acts Upon Sarah (Her Name is Repeated 3x) Genesis 21:3-5 B - Avraham Acts Upon Yitskhaq: Giving of a Name and Circumcision Genesis 21:6-7 A' - Sarah Speaks About God</span></div></div>
+    <div class="v-outer"><span class="ref">GEN 17:17</span><div class="v-line"><span class="lang-en">And Avraham fell on his face, and he laughed (= yitskhaq) and said in his heart, “Will there be a birth for a son of a hundred years?! Or Sarah, a daughter of ninety years, she will give birth?!” Sarah’s laughter can be understood in two ways. 1. At first her laughter seems to be a celebration of God’s generosity toward her (“Elohim has made laughter for me!”). 2. But, like Avraham, laughter can be a response of unbelief, as if she simply can’t believe that this was the work of Yahweh to fulfill the covenant promise. Thus her question, “Who would have told …” seems to be more than simply rhetorical. The obvious answer to her question is “God told you!” Sarah’s laughter seems to indicate an abiding lack of trust in the promise of God.</span></div></div>
+    <div class="v-outer"><span class="ref">GEN 21:8-13</span><div class="v-line"><span class="lang-en">8 And the child grew big (‫ )גדל‬and he was weaned (‫ )יגמל‬, and Avraham made a big (‫ )גדול‬feast, on the day that Yitskhaq (‫ )יצחק‬was weaned (‫ )הגמל‬. 9 And Sarah saw the son of Hagar the Egyptian, A        the one she had born for Avraham , making laughter (‫ )מצחק‬, 10 and she said to Avraham, “Banish this slave woman and her son , B because he will not inherit, this son of this slave woman , along with my son , along with Yitskhaq (‫“! )יצחק‬ 11 And the matter was very much evil in the eyes of Avraham , A' on account of his son .</span></div></div>
+    <div class="v-outer"><span class="ref">GEN 21:9</span><div class="v-line"><span class="lang-en">And Sarah saw )‫… (ותרא‬</span></div></div>
+    <div class="v-outer"><span class="ref">GEN 16:3-4</span><div class="v-line"><span class="lang-en">And Sarai took )‫ (ותקח‬Hagar and she gave )‫ (ותתן‬her to Avram … and Hagar saw )‫… (ותרא‬</span></div></div>
+    <div class="v-outer"><span class="ref">GEN 3:6</span><div class="v-line"><span class="lang-en">And the woman saw )‫ … (ותרא‬and she took )‫ … (ותקח‬and she gave )‫ (ותתן‬to her husband …</span></div></div>
+    <div class="v-outer"><span class="ref">GEN 21:11</span><div class="v-line"><span class="lang-en">And it was bad in the eyes )‫ (רע … בעיני‬of Avraham …</span></div></div>
+    <div class="v-outer"><span class="ref">GEN 16:4</span><div class="v-line"><span class="lang-en">And [Hagar] saw )‫ (ותרא‬that she was pregnant and her mistress was cursed in her eyes )‫(בעיניה‬</span></div></div>
+    <div class="v-outer"><span class="ref">GEN 16:6</span><div class="v-line"><span class="lang-en">Avram said to Sarai, “… Do to Hagar what is good in your eyes )‫”(טוב … בעיניך‬</span></div></div>
+    <div class="v-outer"><span class="ref">GEN 21:12</span><div class="v-line"><span class="lang-en">Listen to the voice )‫ בקול‬+ ‫ (שמע‬of Sarah …</span></div></div>
+    <div class="v-outer"><span class="ref">GEN 3:17</span><div class="v-line"><span class="lang-en">Because you listened to the voice )‫ לקול‬+ ‫ (שמע‬of your wife … Banishing</span></div></div>
+    <div class="v-outer"><span class="ref">GEN 21:10</span><div class="v-line"><span class="lang-en">Banish )‫ (גרש‬the slave woman and her son …</span></div></div>
+    <div class="v-outer"><span class="ref">GEN 3:24</span><div class="v-line"><span class="lang-en">And Yahweh Elohim banished )‫ (גרש‬the human from the garden …</span></div></div>
+    <div class="v-outer"><span class="ref">GEN 4:14</span><div class="v-line"><span class="lang-en">Look, today you have banished )‫ (גרש‬me from the face of the ground. In Genesis 3, the woman does what is good in her eyes and her husband participates. In Genesis 16, Sarah and Avraham do the same. In Genesis 21 however, the situation is more complex, because God has committed himself to the lineage born through Sarah and not through Hagar. He will still bless and provide for Hagar’s son, but Yitskhaq is the chosen son. God acquiesces to Sarah’s selfish behavior, telling Avraham to “listen to her voice.” In both Genesis 3 and 16, the man listening to the voice of his wife is a negative thing. How should it be evaluated here? Now God commits to both Avraham and Sarah but also to Hagar, based on the divine promise to bless her son as well (Gen. 16:10). It’s as if God knows that Sarah will not tolerate having a rival wife and son around, and, in the interests of protecting Hagar and Yishmael, God allows them to be expelled. The fact that this is immediately followed by God’s rescue of Hagar and Yishmael shows that he has their well-being in mind, even if it means a painful separation. This itself finds a certain analogy with the Eden narrative, as God expels the very humans that he wanted to bless. And so even the act of separation includes a hidden promise of blessing that focuses on the seed (Gen. 3:15 and 21:13). Reflection Question Sarah demands Avraham send Hagar and Yishmael away, and God tells Avraham to listen to the voice of his wife. What does this episode tell us about Avraham, about Sarah, and about God?</span></div></div>
+  </section>
+
+  <div class="page-footer">
+    <span>Class Notes: Abraham</span>
+    <span><span class="lang-pt">Sessão 21 · O Nascimento de Isaque</span><span class="lang-en">Session 21 · Isaac's Birth</span></span>
+  </div>
+</div>
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s21-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s21-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+  <script src="../js/verse-modal.js"></script>
+</body>
+</html>
