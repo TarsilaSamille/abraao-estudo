@@ -16,4 +16,4 @@ Modulo 5
 
 Modulo 6 
 
-29
+26 29

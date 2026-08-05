@@ -1,4 +1,4 @@
-const { chromium } = require('/Users/macbook/.hermes/hermes-agent/apps/desktop/node_modules/playwright');
+const { chromium } = require('/Users/macbook/GitHub/biblia-estudo/node_modules/playwright');
 (async () => {
   const browser = await chromium.launch({ args: ['--no-sandbox','--allow-file-access-from-files'] });
   const page = await browser.newPage({ viewport: { width: 720, height: 2400 } });
