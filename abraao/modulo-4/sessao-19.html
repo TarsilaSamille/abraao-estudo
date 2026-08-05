@@ -35,70 +35,44 @@
   .scripture .innerbox { background: #f6f8fa; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1rem; }
   .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem; }
 
-  /* ---------- Macro design (columns) ---------- */
-  .macro { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1rem; align-items: start; margin: 2rem 0 .75rem; }
-  .mcol { border: 3px solid #2e7d4e; border-radius: 12px; padding: .9rem .9rem 1rem; background: #fff; }
-  .mcol.dark { border-color: #3d4453; }
-  .mtag { display: inline-block; font-size: .95rem; font-weight: 700; color: #fff; padding: 3px 10px; border-radius: 5px; }
-  .mtag-green { background: #2e7d4e; } .mtag-dark { background: #3d4453; }
-  .mcol-title { font-size: 1rem; font-weight: 800; color: #17181a; margin: .55rem 0 .8rem; line-height: 1.3; }
-  @media (max-width: 860px) { .macro { grid-template-columns: 1fr; } }
-
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
-  @media (max-width: 860px) { .two-col { grid-template-columns: 1fr; } }
+  /* ---------- Macro design & Two Col (Cards) ---------- */
+  .macro, .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 2rem 0 .75rem; }
+  .card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 1.5rem; background: #fff; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05); transition: transform .2s, box-shadow .2s; }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.05); }
+  .mtag { display: inline-block; font-size: .85rem; font-weight: 700; color: #fff; padding: 4px 12px; border-radius: 6px; margin-bottom: .75rem; }
+  .mtag-dark { background: #4F5669; } .mtag-green { background: #3A8060; }
+  .card-title { font-size: 1.1rem; font-weight: 800; color: #17181a; margin-bottom: .65rem; line-height: 1.4; }
+  .card-text { font-size: .95rem; line-height: 1.6; color: #4b5563; }
+  @media (max-width: 860px) { .macro, .two-col { grid-template-columns: 1fr; } }
 
   /* ---------- verse chips (Gen 19 translation) ---------- */
-  .k { display: inline; padding: 3px 9px; border-radius: 6px; font-weight: 700; color: #fff; line-height: 1.85; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
-  .k-blue   { background: #3b82c4; } .k-green  { background: #2e7d4e; } .k-rose { background: #c04a63; }
-  .k-gray   { background: #6b7280; } .k-rust   { background: #bf5a2b; } .k-teal { background: #0d7d8c; }
-  .k-purple { background: #7c5ad0; } .k-brown  { background: #8a6d3b; }
-  .t-teal { color: #0d8aa0; font-weight: 700; }
-
-  /* Caixas de tradução: o PDF usa caixa branca com BORDA (não fundo) —
-     cinza claro #E4E8ED para a caixa principal, PRETA para as subcaixas de destaque */
   .v-outer { border: 1.5px solid #E4E8ED; border-radius: 20px; padding: 1.4rem 1.5rem; margin: 1.4rem 0; background: #fff; }
   .v-outer.dark { border: 2.5px solid #17181a; border-radius: 16px; padding: 1.2rem 1.5rem; margin: 1.1rem 0; }
   .v-line { font-size: 1.06rem; line-height: 2.1; color: #1f2937; }
   .chip { display: inline; padding: 2px 7px; border-radius: 6px; font-weight: 700; line-height: 1.9; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
-  /* Cores exatas medidas do PDF (fitz get_drawings + amostragem de pixels) */
-  .c-beige  { background: #FAE4C4; color: #91362E; }   /* urged, made go out, Zoar, cave */
-  .c-blue   { background: #D9EDFD; color: #404CA6; }   /* wife, daughters */
-  .c-blue2  { background: #CCF1FA; color: #245791; }   /* very being */
-  .c-green-solid { background: #3A8060; color: #fff; } /* not swept away, caused the ruin, overturning */
-  .c-teal   { background: #B9EFF7; color: #00626F; }   /* the city, Sodom/Gomorrah, little */
-  .c-rose   { background: #F7E1F5; color: #713C92; }   /* mercy, favor, loyal love, two daughters */
-  .c-gray-solid { background: #6B7384; color: #fff; }  /* that he said, And Lot said to them */
-  .c-green  { background: #D3F2CD; color: #2B6146; }   /* Escape, seed, flee */
-  .c-beige2 { background: #EFE7DA; color: #645537; }   /* to the mountain, their father, Hurry */
-  .c-maroon { background: #B5543A; color: #fff; }      /* just as the sunrise, early in the morning */
-  .c-brown-solid { background: #4F4229; color: #fff; } /* all, the valley */
-  .c-smoke  { background: #FBE8DE; color: #972A4E; }   /* the smoke */
-  .c-purple-solid { background: #54305F; color: #fff; }/* firstborn */
-  .c-magenta { background: #9955A8; color: #fff; }     /* little one (צעירה) */
-  .c-life   { background: #3678B4; color: #fff; }      /* keeping alive, I will die, my being can live */
-  /* Texto colorido SEM chip (PDF usa cor de texto pura) */
-  .t-red    { color: #BE4967; }    /* Don't stare, don't stand, please, Look, please */
-  .t-purple { color: #7E62BC; }    /* Avraham, dwelling */
-  .t-magenta { color: #9855AF; }   /* And the, said to the, that the (v31/34) */
-  .t-green  { color: #3A8060; }    /* Our father, Come… (v32/34) */
-  .t-brown  { color: #816F4D; }    /* And they made… (v33/35) */
-  .t-olive  { color: #645537; }    /* their father, her father (v35/36) */
+  /* Cores exatas medidas do PDF */
+  .c-beige  { background: #FAE4C4; color: #91362E; }   .c-blue   { background: #D9EDFD; color: #404CA6; }   .c-blue2  { background: #CCF1FA; color: #245791; }
+  .c-green-solid { background: #3A8060; color: #fff; } .c-teal   { background: #B9EFF7; color: #00626F; }   .c-rose   { background: #F7E1F5; color: #713C92; }
+  .c-gray-solid { background: #6B7384; color: #fff; }  .c-green  { background: #D3F2CD; color: #2B6146; }   .c-beige2 { background: #EFE7DA; color: #645537; }
+  .c-maroon { background: #B5543A; color: #fff; }      .c-brown-solid { background: #4F4229; color: #fff; } .c-smoke  { background: #FBE8DE; color: #972A4E; }
+  .c-purple-solid { background: #54305F; color: #fff; }.c-magenta { background: #9955A8; color: #fff; }     .c-life   { background: #3678B4; color: #fff; }
+  /* Texto colorido SEM chip */
+  .t-red    { color: #BE4967; font-weight: 700; } .t-purple { color: #7E62BC; font-weight: 700; } .t-magenta { color: #9855AF; font-weight: 700; }
+  .t-green  { color: #3A8060; font-weight: 700; } .t-brown  { color: #816F4D; font-weight: 700; } .t-olive  { color: #645537; font-weight: 700; }
   .v-div { border: 0; border-top: 1px solid #E4E8ED; margin: 1.1rem 0; }
-  .vbar-b { border-left: 5px solid #5468d4; padding-left: .8rem; }
-  .lbl { color: #4F5669; font-weight: 700; font-size: .9rem; margin-right: .35rem; }
+  .lbl { color: #4F5669; font-weight: 700; font-size: .9rem; margin-right: .35rem; min-width: 2.5rem; display: inline-block; text-align: right; }
   .speech-label { font-weight: 800; font-size: 1rem; color: #4F5669; letter-spacing: .01em; margin: .2rem 0 .35rem; }
   .speech-label:first-child { margin-top: 0; }
-  sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px; }
+  sup.vs { font-size: .72em; color: #333; font-weight: 700; margin-right: 2px; }
   .i1 { padding-left: 1.6rem; } .i2 { padding-left: 3.2rem; } .i3 { padding-left: 4.8rem; }
+  .chiastic { font-weight: 800; color: #4F5669; margin-right: .4rem; display: inline-block; min-width: 1.2rem; }
 
   /* ---------- tables ---------- */
   .doc-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 3px solid #d9dee6; border-radius: 14px; overflow: hidden; background: #fff; }
-  .doc-table th { background: #e2e6eb; text-align: left; padding: 1rem 1.3rem; font-weight: 800; font-size: 1.02rem; color: #17181a; }
-  .doc-table td { padding: 1.1rem 1.3rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.78; font-size: .97rem; color: #24262a; transition: background .2s; }
+  .doc-table th { background: #E4E8EC; text-align: left; padding: 1rem 1.3rem; font-weight: 800; font-size: 1.02rem; color: #17181a; }
+  .doc-table td { padding: 1.1rem 1.3rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.78; font-size: .97rem; color: #24262a; }
   .doc-table td + td { border-left: 1px solid #e5e7eb; }
-  .doc-table tbody tr:hover td { background: #f8fafc; }
   .doc-table tfoot td { border-top: 1px solid #d1d5db; background: #fbfcfd; color: #5b6472; font-size: .92rem; }
-  .kblue-soft { background: #cddcf5; color: #2b5fb0; padding: 2px 8px; border-radius: 6px; font-weight: 700; }
 
   .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
   #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
@@ -112,7 +86,7 @@
     * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
     .max-w-4xl { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
     h1.title, h2.section, h3.sub { break-after: avoid-page; }
-    .cx, .v-outer, .doc-table tr, .scripture, .mcol { break-inside: avoid; }
+    .cx, .v-outer, .doc-table tr, .scripture, .card { break-inside: avoid; }
   }
   @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 </style>
@@ -195,6 +169,8 @@
           <p class="i1"><span class="lang-pt">para que <span class="chip c-life">minha vida</span> (<span class="heb">נפש</span>) <span class="chip c-life">possa viver</span>!&rdquo;</span><span class="lang-en">so that <span class="chip c-life">my being</span> (<span class="heb">נפש</span>) <span class="chip c-life">can live</span>!&rdquo;</span></p>
         </div>
       </div>
+      <hr class="v-div">
+      <p class="speech-label"><span class="lang-pt">O Discurso do Homem</span><span class="lang-en">The Man&rsquo;s Speech</span></p>
       <div class="v-line" style="display:flex; gap:.9rem;">
         <span class="lbl" style="padding-top:.35rem;">21</span>
         <div>
@@ -250,23 +226,68 @@
   <p class="body reveal"><span class="lang-pt">Embora seja Avraham quem é verdadeiramente como Noé, sua intercessão resulta em Ló sendo &ldquo;mantido vivo&rdquo; no dilúvio de juízo. A narrativa mostra que a intercessão do justo é eficaz em produzir o livramento dos aflitos.</span><span class="lang-en">Even though it&rsquo;s Avraham who is truly like Noah, his intercession results in Lot being &ldquo;kept alive&rdquo; in the flood of judgment. The narrative is showing that the intercession of the righteous one is effective in bringing about the deliverance of the afflicted.</span></p>
 
   <h2 class="section reveal"><span class="lang-pt">O Livramento de Ló &hellip; Com Ressalvas</span><span class="lang-en">Lot&rsquo;s Deliverance &hellip; With Qualifications</span></h2>
-  <p class="body reveal"><span class="lang-pt">Com a história de Ló, somos apresentados a uma nova complicação em seu caráter &mdash; ele não quer o livramento que Iavé oferece, ao menos não inteiramente.</span><span class="lang-en">With the story of Lot, we are introduced to a new complication in his character&mdash;he doesn&rsquo;t want the deliverance that Yahweh offers, at least not entirely.</span></p>
+  <p class="body reveal"><span class="lang-pt">Com a história de Ló, somos introduzidos a uma nova complicação em seu caráter — ele não quer o livramento que Iavé oferece, ao menos não inteiramente.</span><span class="lang-en">With the story of Lot, we are introduced to a new complication in his character—he doesn’t want the deliverance that Yahweh offers, at least not entirely.</span></p>
   <p class="body reveal"><span class="lang-pt">Através de uma elaborada série de jogos de palavras, o narrador retrata Ló como caprichoso e mesquinho no momento de sua salvação. Em vez de aceitar o refúgio que Deus proveu, Ló quer negociar sua própria salvação, para que o resgate aconteça em seus próprios termos.</span><span class="lang-en">Through an elaborate series of wordplays, the narrator portrays Lot as fickle and petty in the moment of his salvation. Instead of accepting the refuge that God has provided, Lot wants to negotiate his own salvation, so the rescue happens on his own terms.</span></p>
-  <p class="body reveal"><span class="lang-pt">Isto tem uma importante semelhança com a negociação de Caim sobre o livramento que Iavé provê após o assassinato de Abel.</span><span class="lang-en">This bears an important resemblance to Cain&rsquo;s negotiation over the deliverance that Yahweh provides after the murder of Abel.</span></p>
+
+  <div class="v-outer reveal">
+    <div class="v-outer dark">
+      <p class="speech-label"><span class="lang-pt">O Discurso do Homem</span><span class="lang-en">The Man’s Speech</span></p>
+      <div class="v-line" style="display:flex; gap:.9rem;">
+        <span class="lbl" style="padding-top:.35rem;">17</span>
+        <div>
+          <p><span class="lang-pt">E aconteceu que, quando <span class="chip c-beige">os faziam sair</span> (<span class="heb">הוציא</span>) <span class="chip c-beige">para fora</span>,</span><span class="lang-en">And it came about as they <span class="chip c-beige">made them go out</span> (<span class="heb">הוציא</span>) <span class="chip c-beige">to the outside</span>,</span></p>
+          <p class="i1"><span class="lang-pt"><span class="chip c-gray-solid">que ele disse</span>, “<span class="chip c-green">Foge</span> pela tua <span class="chip c-blue2">vida</span> (<span class="heb">נפש</span>)!</span><span class="lang-en"><span class="chip c-gray-solid">that he said</span>, “<span class="chip c-green">Escape</span> for your <span class="chip c-blue2">very being</span> (<span class="heb">נפש</span>)!</span></p>
+          <p class="i1"><span class="lang-pt"><span class="t-red">Não olhes</span> para trás de ti, e <span class="t-red">não pares</span> em lugar nenhum no vale!</span><span class="lang-en"><span class="t-red">Don’t stare</span> behind you, and <span class="t-red">don’t stand</span> anywhere in the valley!</span></p>
+          <p class="i1"><span class="lang-pt"><span class="chip c-green">Foge</span> para a <span class="chip c-beige2">montanha</span> (<span class="heb">ההר</span>), para que não sejas <span class="chip c-green-solid">varrido</span>!”</span><span class="lang-en"><span class="chip c-green">Escape</span> to the <span class="chip c-beige2">mountain</span> (<span class="heb">ההר</span>), so that you’re <span class="chip c-green-solid">not swept away</span>!”</span></p>
+        </div>
+      </div>
+      <hr class="v-div">
+      <p class="speech-label"><span class="lang-pt">O Discurso de Ló</span><span class="lang-en">Lot’s Speech</span></p>
+      <div class="v-line" style="display:flex; gap:.9rem;">
+        <span class="lbl" style="padding-top:.35rem;">18</span>
+        <div>
+          <p><span class="lang-pt"><span class="chip c-gray-solid">E Ló lhes disse</span>:</span><span class="lang-en"><span class="chip c-gray-solid">And Lot said to them</span>:</span></p>
+          <p class="i1"><span class="lang-pt">“Não, <span class="t-red">por favor</span>, meus senhores!</span><span class="lang-en">“No, <span class="t-red">please</span>, my masters!</span></p>
+          <p><sup class="vs">19</sup> <span class="lang-pt"><span class="t-red">Olha, por favor</span>. Teu servo achou <span class="chip c-rose">graça</span> aos teus olhos,</span><span class="lang-en"><span class="t-red">Look, please</span>. Your servant has found <span class="chip c-rose">favor</span> in your eyes,</span></p>
+          <p class="i1"><span class="lang-pt">e tu engrandeceste o teu <span class="chip c-rose">amor leal</span> que me mostraste, ao <span class="chip c-life">manteres viva a minha vida</span> (<span class="heb">נפש</span>).</span><span class="lang-en">and you have made great your <span class="chip c-rose">loyal love</span> that you’ve shown me, by <span class="chip c-life">keeping alive my very being</span> (<span class="heb">נפש</span>).</span></p>
+          <p class="i1"><span class="lang-pt">Mas não posso <span class="chip c-green">fugir</span> para a <span class="chip c-beige2">montanha</span> (<span class="heb">ההר</span>), pois o mal se apegará a mim, e <span class="chip c-life">morrerei</span>!</span><span class="lang-en">But I am not able to <span class="chip c-green">escape</span> to the <span class="chip c-beige2">mountain</span> (<span class="heb">ההר</span>), or else the evil will cling to me, and <span class="chip c-life">I will die</span>!</span></p>
+          <p><sup class="vs">20</sup> <span class="lang-pt"><span class="t-red">Olha, por favor</span>, esta <span class="chip c-teal">cidade</span> (<span class="heb">העיר</span>) está perto para <span class="chip c-green">fugir para lá</span>, e é <span class="chip c-teal">pequena</span> (<span class="heb">מצער</span>)!</span><span class="lang-en"><span class="t-red">Look, please</span>, this <span class="chip c-teal">city</span> (<span class="heb">העיר</span>) is close to <span class="chip c-green">flee there</span>, and it is <span class="chip c-teal">little</span> (<span class="heb">מצער</span>)!</span></p>
+          <p class="i1"><span class="lang-pt"><span class="t-red">Por favor</span>, que eu <span class="chip c-green">fuja para lá</span> —porventura não é <span class="chip c-teal">pequena</span> (<span class="heb">מצער</span>)?—</span><span class="lang-en"><span class="t-red">Please</span>, may I <span class="chip c-green">escape there</span>, isn’t it <span class="chip c-teal">little</span> (<span class="heb">מצער</span>)?—</span></p>
+          <p class="i1"><span class="lang-pt">para que <span class="chip c-life">minha vida</span> (<span class="heb">נפש</span>) <span class="chip c-life">possa viver</span>!”</span><span class="lang-en">so that <span class="chip c-life">my being</span> (<span class="heb">נפש</span>) <span class="chip c-life">can live</span>!”</span></p>
+        </div>
+      </div>
+      <hr class="v-div">
+      <p class="speech-label"><span class="lang-pt">O Discurso do Homem</span><span class="lang-en">The Man’s Speech</span></p>
+      <div class="v-line" style="display:flex; gap:.9rem;">
+        <span class="lbl" style="padding-top:.35rem;">21</span>
+        <div>
+          <p><span class="lang-pt"><span class="chip c-gray-solid">E ele lhe disse</span>:</span><span class="lang-en"><span class="chip c-gray-solid">And he said to him</span>:</span></p>
+          <p class="i1"><span class="lang-pt">“<span class="t-red">Olha</span>, levantei a tua face, <span class="chip c-gray-solid">mesmo quanto a isto</span>,</span><span class="lang-en">“<span class="t-red">Look</span>, I have lifted up your face, <span class="chip c-gray-solid">even about this thing</span>,</span></p>
+          <p class="i1"><span class="lang-pt">para que eu não <span class="chip c-green-solid">transtorne</span> a <span class="chip c-teal">cidade</span> (<span class="heb">העיר</span>) de que falaste.</span><span class="lang-en">so that I won’t <span class="chip c-green-solid">overturn</span> the <span class="chip c-teal">city</span> (<span class="heb">העיר</span>) which you spoke of.</span></p>
+          <p><sup class="vs">22</sup> <span class="lang-pt"><span class="chip c-beige2">Apressa-te</span> (<span class="heb">מהר</span>), <span class="chip c-green">foge para lá</span>, pois não posso fazer <span class="chip c-gray-solid">coisa alguma</span> até que chegues lá!”</span><span class="lang-en"><span class="chip c-beige2">Hurry</span> (<span class="heb">מהר</span>), <span class="chip c-green">escape there</span>, because I’m not able to do <span class="chip c-gray-solid">anything</span> until you go there!”</span></p>
+          <p class="i1"><span class="lang-pt">Esta é a razão pela qual se chama o nome da <span class="chip c-teal">cidade</span> (<span class="heb">העיר</span>) <span class="chip c-teal">“Zoar”</span> (<span class="heb">צוער</span>) [= “pequena”].</span><span class="lang-en">This is the reason one calls the name of the <span class="chip c-teal">city</span> (<span class="heb">העיר</span>) <span class="chip c-teal">“Zoar”</span> (<span class="heb">צוער</span>) [= “little”].</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="caption reveal"><span class="lang-pt"><em>Gênesis 19:15-29</em>. Tradução e Design Literário por Tim Mackie para a BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Genesis 19:15-29</em>. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
+
+  <p class="body reveal"><span class="lang-pt">Este jogo de palavras continua na cena seguinte, mas, por ora, notemos como Ló é retratado como de visão curta e caprichoso no exato momento em que Deus está graciosamente salvando a vida de sua família.</span><span class="lang-en">This wordplay continues into the following scene, but for the moment, let’s notice how Lot is depicted as short-sighted and fickle at the very moment God is graciously saving his family’s life.</span></p>
+  <p class="body reveal"><span class="lang-pt">Isto tem uma importante semelhança com a negociação de Caim sobre o livramento que Iavé provê após o assassinato de Abel.</span><span class="lang-en">This bears an important resemblance to Cain’s negotiation over the deliverance that Yahweh provides after the murder of Abel.</span></p>
   <ul class="bullets reveal">
-    <li><span class="lang-pt">Deus provê um &ldquo;sinal&rdquo; para Caim, mas Caim sai e edifica uma &ldquo;cidade&rdquo; (<span class="heb">עיר</span>) para sua própria proteção (Gn 4:17).</span><span class="lang-en">God provides a &ldquo;sign&rdquo; for Cain, but Cain goes out and builds a &ldquo;city&rdquo; (<span class="heb">עיר</span>) for his own protection (Gen. 4:17).</span></li>
-    <li><span class="lang-pt">Caim edifica sua cidade por medo de que alguém o &ldquo;ache&rdquo; (<span class="heb">מצא</span>) e o assassinem em vingança pela morte de seu irmão (Gn 4:14).</span><span class="lang-en">Cain builds his city because of his fear that someone will &ldquo;find&rdquo; (<span class="heb">מצא</span>) him and murder him in revenge for his brother&rsquo;s death (Gen. 4:14).</span></li>
+    <li><span class="lang-pt">Deus provê um “sinal” para Caim, mas Caim sai e edifica uma “cidade” (<span class="heb">עיר</span>) para sua própria proteção (Gn 4:17).</span><span class="lang-en">God provides a “sign” for Cain, but Cain goes out and builds a “city” (<span class="heb">עיר</span>) for his own protection (Gen. 4:17).</span></li>
+    <li><span class="lang-pt">Caim edifica sua cidade por medo de que alguém o “ache” (<span class="heb">מצא</span>) e o assassinem em vingança pela morte de seu irmão (Gn 4:14).</span><span class="lang-en">Cain builds his city because of his fear that someone will “find” (<span class="heb">מצא</span>) him and murder him in revenge for his brother’s death (Gen. 4:14).</span></li>
     <li><span class="lang-pt">A analogia entre Caim e Ló acentua o que era implícito na história de Caim: ambos os personagens rejeitam a provisão de Iavé e, em vez disso, provêm sua própria forma de livramento por meio de uma cidade (<span class="heb">עיר</span>).</span><span class="lang-en">The analogy between Cain and Lot accentuates what was implicit in the Cain story: Both characters reject the provision of Yahweh and instead provide their own form of deliverance through a city (<span class="heb">עיר</span>).</span></li>
   </ul>
 
   <h2 class="section reveal"><span class="lang-pt">Zoar e uma Coluna de Sal</span><span class="lang-en">Zoar and a Pillar of Salt</span></h2>
-  <p class="body reveal"><span class="lang-pt">O curioso detalhe de a mulher de Ló se transformar em uma coluna de sal (<span class="heb">נציב מלח</span>, Gn 19:26) é explicado por seu alinhamento estrutural com Zoar em Gênesis 19:23.</span><span class="lang-en">The curious detail about Lot&rsquo;s wife turning into a pillar of salt (<span class="heb">נציב מלח</span>, Gen. 19:26) is explained by its structural alignment with Zoar in Genesis 19:23.</span></p>
-  <p class="body reveal"><span class="lang-pt">As palavras &ldquo;Zoar&rdquo; e &ldquo;sal&rdquo; formam a moldura externa da curta unidade de resumo de Gênesis 19:23-26. Ambas as palavras são parte de uma macromoldura em torno de todos os capítulos 12-19. Os capítulos 14 e 19 formam o &ldquo;crescendo de dilúvio&rdquo; de suas respectivas unidades.</span><span class="lang-en">The words &ldquo;Zoar&rdquo; and &ldquo;salt&rdquo; form the outer frame of the short summary unit of Genesis 19:23-26. Both words are part of a macro frame around all of chapters 12-19. Chapters 14 and 19 form the &ldquo;flood-crescendo&rdquo; of their respective units.</span></p>
+  <p class="body reveal"><span class="lang-pt">O curioso detalhe de a mulher de Ló se transformar em uma coluna de sal (<span class="heb">נציב מלח</span>, Gn 19:26) é explicado por seu alinhamento estrutural com Zoar em Gênesis 19:23.</span><span class="lang-en">The curious detail about Lot’s wife turning into a pillar of salt (<span class="heb">נציב מלח</span>, Gen. 19:26) is explained by its structural alignment with Zoar in Genesis 19:23.</span></p>
+  <p class="body reveal"><span class="lang-pt">As palavras “Zoar” e “sal” formam a moldura externa da curta unidade de resumo de Gênesis 19:23-26. Ambas as palavras são parte de uma macromoldura em torno de todos os capítulos 12-19. Os capítulos 14 e 19 formam o “crescendo de dilúvio” de suas respectivas unidades.</span><span class="lang-en">The words “Zoar” and “salt” form the outer frame of the short summary unit of Genesis 19:23-26. Both words are part of a macro frame around all of chapters 12-19. Chapters 14 and 19 form the “flood-crescendo” of their respective units.</span></p>
   <ul class="bullets reveal">
-    <li><span class="lang-pt">O capítulo 14 traz Gênesis 12-14 ao seu clímax, e gira em torno do livramento de Ló por Avraham.</span><span class="lang-en">Chapter 14 brings Genesis 12-14 to its climax, and it revolves around Avraham&rsquo;s deliverance of Lot.</span></li>
-    <li><span class="lang-pt">O capítulo 19 traz Gênesis 18-19 ao seu clímax, e gira em torno do livramento de Ló por Avraham, de novo!</span><span class="lang-en">Chapter 19 brings Genesis 18-19 to its climax, and it revolves around Avraham&rsquo;s deliverance of Lot, again!</span></li>
+    <li><span class="lang-pt">O capítulo 14 traz Gênesis 12-14 ao seu clímax, e gira em torno do livramento de Ló por Avraham.</span><span class="lang-en">Chapter 14 brings Genesis 12-14 to its climax, and it revolves around Avraham’s deliverance of Lot.</span></li>
+    <li><span class="lang-pt">O capítulo 19 traz Gênesis 18-19 ao seu clímax, e gira em torno do livramento de Ló por Avraham, de novo!</span><span class="lang-en">Chapter 19 brings Genesis 18-19 to its climax, and it revolves around Avraham’s deliverance of Lot, again!</span></li>
   </ul>
-  <p class="body reveal"><span class="lang-pt">Em ambas as histórias, o remanescente que escapa foge para as montanhas (Gn 14:10, 19:17), enquanto os incrédulos ficam no vale e caem em poços de betume perto do mar de sal e de Zoar (Gn 14:2-3, 8-10). O paralelo de design de &ldquo;Zoar&rdquo; e &ldquo;sal&rdquo; aqui em Gênesis 19:23, 26 coloca a mulher de Ló na mesma categoria dos reis de Sodoma e Gomorra em fuga, que caem em poços de betume. Só que aqui ela é transformada em algo semelhante acima do solo, uma &ldquo;coluna de sal&rdquo;.</span><span class="lang-en">In both stories, the escaped remnant flees to the mountains (Gen. 14:10, 19:17), while the unbelieving stay in the valley and fall into pits of tar near the salt sea and Zoar (Gen. 14:2-3, 8-10). The design parallel of &ldquo;Zoar&rdquo; and &ldquo;salt&rdquo; here in Genesis 19:23, 26 places Lot&rsquo;s wife in the same category as the fleeing kings of Sodom and Gomorrah, who fall into pits of tar. Only here she is turned into something similar above ground, a &ldquo;pillar of salt.&rdquo;</span></p>
+  <p class="body reveal"><span class="lang-pt">Em ambas as histórias, o remanescente que escapa foge para as montanhas (Gn 14:10, 19:17), enquanto os incrédulos ficam no vale e caem em poços de betume perto do mar de sal e de Zoar (Gn 14:2-3, 8-10). O paralelo de design de “Zoar” e “sal” aqui em Gênesis 19:23, 26 coloca a mulher de Ló na mesma categoria dos reis de Sodoma e Gomorra em fuga, que caem em poços de betume. Só que aqui ela é transformada em algo semelhante acima do solo, uma “coluna de sal”.</span><span class="lang-en">In both stories, the escaped remnant flees to the mountains (Gen. 14:10, 19:17), while the unbelieving stay in the valley and fall into pits of tar near the salt sea and Zoar (Gen. 14:2-3, 8-10). The design parallel of “Zoar” and “salt” here in Genesis 19:23, 26 places Lot’s wife in the same category as the fleeing kings of Sodom and Gomorrah, who fall into pits of tar. Only here she is turned into something similar above ground, a “pillar of salt.”</span></p>
 
   <h2 class="section reveal"><span class="lang-pt">Tradução e Design Literário de Gênesis 19:27-29</span><span class="lang-en">Translation and Literary Design of Genesis 19:27-29</span></h2>
 
@@ -303,26 +324,44 @@
   <p class="caption reveal"><span class="lang-pt"><em>Gênesis 19:15-29</em>. Tradução e Design Literário por Tim Mackie para a BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Genesis 19:15-29</em>. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
 
   <h2 class="section reveal"><span class="lang-pt">Avraham, o Intercessor Justo</span><span class="lang-en">Avraham, the Righteous Intercessor</span></h2>
-  <p class="body reveal"><span class="lang-pt">O papel de Avraham no livramento de Ló ecoa um tema da narrativa do dilúvio; aqueles &ldquo;com&rdquo; Noé beneficiam do seu status de justo perante Deus e são livrados juntamente &ldquo;com ele&rdquo;.</span><span class="lang-en">Avraham&rsquo;s role in Lot&rsquo;s deliverance echoes a theme from the flood narrative; those &ldquo;with&rdquo; Noah benefitted from his righteous standing before God and were delivered along &ldquo;with him.&rdquo;</span></p>
+  <p class="body reveal"><span class="lang-pt">O papel de Avraham no livramento de Ló ecoa um tema da narrativa do dilúvio; aqueles “com” Noé beneficiam do seu status de justo perante Deus e são livrados juntamente “com ele”.</span><span class="lang-en">Avraham’s role in Lot’s deliverance echoes a theme from the flood narrative; those “with” Noah benefitted from his righteous standing before God and were delivered along “with him.”</span></p>
 
-  <div class="overflow-x-auto reveal" style="margin:1.5rem 0;">
-    <table class="doc-table" style="min-width:600px;">
-      <tbody>
-        <tr><td style="border-top:0;"><span class="lang-pt"><strong>Gênesis 6:18-19 — Tradução do Instrutor</strong></span><span class="lang-en"><strong>Genesis 6:18-19 Instructor&rsquo;s Translation</strong></span></td></tr>
-        <tr><td><span class="lang-pt">&hellip; Entra na arca, tu e teus filhos e tua mulher e as mulheres de teus filhos contigo; e de toda a carne viva, dois de cada, farás entrar na arca para os manteres vivos contigo.</span><span class="lang-en">&hellip; Go into the ark, you and your sons and your wife and the wives of your sons with you; and of every living thing of all flesh, two of everything, you will make go into the ark to keep them alive with you.</span></td></tr>
-        <tr><td><span class="lang-pt"><strong>Gênesis 7:1 — Tradução do Instrutor</strong></span><span class="lang-en"><strong>Genesis 7:1 Instructor&rsquo;s Translation</strong></span></td></tr>
-        <tr><td><span class="lang-pt">Entra, tu e toda a tua casa, na arca, pois te tenho visto como justo diante de mim nesta geração.</span><span class="lang-en">Enter, you and all your house into the ark, for you I have seen as righteous before me in this generation.</span></td></tr>
-        <tr><td><span class="lang-pt"><strong>Gênesis 7:7 — Tradução do Instrutor</strong></span><span class="lang-en"><strong>Genesis 7:7 Instructor&rsquo;s Translation</strong></span></td></tr>
-        <tr><td><span class="lang-pt">E entrou, Noé e seus filhos e sua mulher e as mulheres de seus filhos com ele, na arca &hellip;</span><span class="lang-en">And he entered, Noah and his sons and his wife and his wives&rsquo; sons with him, into the ark &hellip;</span></td></tr>
-        <tr><td><span class="lang-pt"><strong>Gênesis 7:23 — Tradução do Instrutor</strong></span><span class="lang-en"><strong>Genesis 7:23 Instructor&rsquo;s Translation</strong></span></td></tr>
-        <tr><td><span class="lang-pt">E tudo foi varrido de sobre a terra; mas Noé foi deixado, e os que com ele estavam na arca.</span><span class="lang-en">And everything was wiped out from the land, but Noah was left remaining, and those with him in the ark.</span></td></tr>
-        <tr><td><span class="lang-pt"><strong>Gênesis 8:1 — Tradução do Instrutor</strong></span><span class="lang-en"><strong>Genesis 8:1 Instructor&rsquo;s Translation</strong></span></td></tr>
-        <tr><td><span class="lang-pt">E Elohim se lembrou de Noé e de todos os seres vivos e de todas as criaturas que estavam com ele na arca &hellip;</span><span class="lang-en">And Elohim remembered Noah and all the living things and all the creatures who were with him in the ark &hellip;</span></td></tr>
-      </tbody>
-    </table>
+  <div class="scripture reveal">
+    <div class="scripture-label"><span class="lang-pt">Gênesis 6:18-19 — Tradução do Instrutor</span><span class="lang-en">Genesis 6:18-19 Instructor’s Translation</span></div>
+    <div class="scripture-text">
+      <p><sup class="vs">18</sup> <span class="lang-pt">… Entra na arca, tu e teus filhos e tua mulher e as mulheres de teus filhos contigo; <sup class="vs">19</sup> e de toda a carne viva, dois de cada, farás entrar na arca para os manteres vivos contigo.</span><span class="lang-en">... Go into the ark, you and your sons and your wife and the wives of your sons with you; 19 and of every living thing of all flesh, two of everything, you will make go into the ark to keep them alive with you.</span></p>
+    </div>
   </div>
 
-  <p class="body reveal"><span class="lang-pt">A narrativa destaca claramente o status de Noé como a pessoa com quem Deus lida e a quem livra do dilúvio. Mas a família de Noé e as criaturas com ele beneficiam do seu status de justo perante Deus, de modo que também são salvos do dilúvio.</span><span class="lang-en">The narrative clearly highlights Noah&rsquo;s status as the person God deals with and delivers from the flood. But Noah&rsquo;s family and the creatures with him benefit from his righteous status before God, so they too are saved from the flood.</span></p>
+  <div class="scripture reveal">
+    <div class="scripture-label"><span class="lang-pt">Gênesis 7:1 — Tradução do Instrutor</span><span class="lang-en">Genesis 7:1 Instructor’s Translation</span></div>
+    <div class="scripture-text">
+      <p><span class="lang-pt">Entra, tu e toda a tua casa, na arca, pois te tenho visto como justo diante de mim nesta geração.</span><span class="lang-en">Enter, you and all your house into the ark, for you I have seen as righteous before me in this generation.</span></p>
+    </div>
+  </div>
+
+  <div class="scripture reveal">
+    <div class="scripture-label"><span class="lang-pt">Gênesis 7:7 — Tradução do Instrutor</span><span class="lang-en">Genesis 7:7 Instructor’s Translation</span></div>
+    <div class="scripture-text">
+      <p><span class="lang-pt">E entrou, Noé e seus filhos e sua mulher e as mulheres de seus filhos com ele, na arca …</span><span class="lang-en">And he entered, Noah and his sons and his wife and his wives’ sons with him, into the ark ...</span></p>
+    </div>
+  </div>
+
+  <div class="scripture reveal">
+    <div class="scripture-label"><span class="lang-pt">Gênesis 7:23 — Tradução do Instrutor</span><span class="lang-en">Genesis 7:23 Instructor’s Translation</span></div>
+    <div class="scripture-text">
+      <p><span class="lang-pt">E tudo foi varrido de sobre a terra; mas Noé foi deixado, e os que com ele estavam na arca.</span><span class="lang-en">And everything was wiped out from the land, but Noah was left remaining, and those with him in the ark.</span></p>
+    </div>
+  </div>
+
+  <div class="scripture reveal">
+    <div class="scripture-label"><span class="lang-pt">Gênesis 8:1 — Tradução do Instrutor</span><span class="lang-en">Genesis 8:1 Instructor’s Translation</span></div>
+    <div class="scripture-text">
+      <p><span class="lang-pt">E Elohim se lembrou de Noé e de todos os seres vivos e de todas as criaturas que estavam com ele na arca …</span><span class="lang-en">And Elohim remembered Noah and all the living things and all the creatures who were with him in the ark ...</span></p>
+    </div>
+  </div>
+
+  <p class="body reveal"><span class="lang-pt">A narrativa destaca claramente o status de Noé como a pessoa com quem Deus lida e a quem livra do dilúvio. Mas a família de Noé e as criaturas com ele beneficiam do seu status de justo perante Deus, de modo que também são salvos do dilúvio.</span><span class="lang-en">The narrative clearly highlights Noah’s status as the person God deals with and delivers from the flood. But Noah’s family and the creatures with him benefit from his righteous status before God, so they too are saved from the flood.</span></p>
   <p class="body reveal"><span class="lang-pt">Este é precisamente o tema em ação na história de Avraham e Ló. Avraham é o escolhido, e já havia sido livrado do dilúvio de violência humana no capítulo 14. Imediatamente depois, sua confiança em Deus lhe foi creditada como posição de justiça perante Deus, de modo que sua intercessão em favor de Ló é eficaz.</span><span class="lang-en">This is precisely the theme at work in the Avraham and Lot story. Avraham is the chosen one, and he was already delivered from the flood of human violence back in chapter 14. Immediately after that, his trust in God was reckoned to him as right-standing before God, so his intercession on behalf of Lot is effective.</span></p>
 
   <h2 class="section reveal"><span class="lang-pt">Sodoma e Gomorra e o Dilúvio: Ícones da Justiça Divina</span><span class="lang-en">Sodom and Gomorrah and the Flood: Icons of Divine Justice</span></h2>
@@ -331,12 +370,12 @@
   <div class="scripture reveal">
     <div class="scripture-label"><span class="lang-pt">Deuteronômio 29:23-28 (NVI)</span><span class="lang-en">Deuteronomy 29:23-28 NIV</span></div>
     <div class="scripture-text">
-      <p><sup class="vs">23</sup> <span class="lang-pt">Toda a terra será uma devastação abrasada de sal e enxofre &mdash; nada plantado, nada brotando, nenhuma vegetação nela. Será como a destruição de Sodoma e Gomorra, Admá e Zeboim,</span><span class="lang-en">The whole land will be a burning waste of salt and sulfur&mdash;nothing planted, nothing sprouting, no vegetation growing on it. It will be like the destruction of Sodom and Gomorrah, Admah and Zeboyim,</span></p>
-      <p><sup class="vs">24</sup> <span class="lang-pt">que o SENHOR subverteu na sua ira fervente. &ldquo;Todas as nações perguntarão: Por que o SENHOR fez isso a esta terra? Por que tamanha ira ardente?&rdquo;</span><span class="lang-en">which the LORD overthrew in fierce anger. &ldquo;All the nations will ask: &lsquo;Why has the LORD done this to this land? Why this fierce, burning anger?&rsquo;&rdquo;</span></p>
-      <p><sup class="vs">25</sup> <span class="lang-pt">E a resposta será: &ldquo;Porque este povo abandonou o pacto do SENHOR, o Deus dos seus antepassados, que ele fizera com eles quando os tirou do Egito.</span><span class="lang-en">And the answer will be: &ldquo;It is because this people abandoned the covenant of the LORD, the God of their ancestors, the covenant he made with them when he brought them out of Egypt.</span></p>
+      <p><sup class="vs">23</sup> <span class="lang-pt">Toda a terra será uma devastação abrasada de sal e enxofre — nada plantado, nada brotando, nenhuma vegetação nela. Será como a destruição de Sodoma e Gomorra, Admá e Zeboim,</span><span class="lang-en">The whole land will be a burning waste of salt and sulfur—nothing planted, nothing sprouting, no vegetation growing on it. It will be like the destruction of Sodom and Gomorrah, Admah and Zeboyim,</span></p>
+      <p><sup class="vs">24</sup> <span class="lang-pt">que o SENHOR subverteu na sua ira fervente. “Todas as nações perguntarão: Por que o SENHOR fez isso a esta terra? Por que tamanha ira ardente?”</span><span class="lang-en">which the LORD overthrew in fierce anger. “All the nations will ask: ‘Why has the LORD done this to this land? Why this fierce, burning anger?’”</span></p>
+      <p><sup class="vs">25</sup> <span class="lang-pt">E a resposta será: “Porque este povo abandonou o pacto do SENHOR, o Deus dos seus antepassados, que ele fizera com eles quando os tirou do Egito.</span><span class="lang-en">And the answer will be: “It is because this people abandoned the covenant of the LORD, the God of their ancestors, the covenant he made with them when he brought them out of Egypt.</span></p>
       <p><sup class="vs">26</sup> <span class="lang-pt">Foram e serviram a outros deuses, e se prostraram diante deles, deuses que não conheciam, que ele não lhes dera.</span><span class="lang-en">They went off and worshiped other gods and bowed down to them, gods they did not know, gods he had not given them.</span></p>
-      <p><sup class="vs">27</sup> <span class="lang-pt">Por isso a ira do SENHOR se acendeu contra esta terra, trazendo sobre ela todas as maldições escritas neste livro.</span><span class="lang-en">Therefore the LORD&rsquo;s anger burned against this land, so that he brought on it all the curses written in this book.</span></p>
-      <p><sup class="vs">28</sup> <span class="lang-pt">Em fúria ardente e grande indignação, o SENHOR os upou da sua terra e os lançou noutra terra, como agora se vê.&rdquo;</span><span class="lang-en">In furious anger and in great wrath the LORD uprooted them from their land and thrust them into another land, as it is now.&rdquo;</span></p>
+      <p><sup class="vs">27</sup> <span class="lang-pt">Por isso a ira do SENHOR se acendeu contra esta terra, trazendo sobre ela todas as maldições escritas neste livro.</span><span class="lang-en">Therefore the LORD’s anger burned against this land, so that he brought on it all the curses written in this book.</span></p>
+      <p><sup class="vs">28</sup> <span class="lang-pt">Em fúria ardente e grande indignação, o SENHOR os upou da sua terra e os lançou noutra terra, como agora se vê.”</span><span class="lang-en">In furious anger and in great wrath the LORD uprooted them from their land and thrust them into another land, as it is now.”</span></p>
     </div>
   </div>
 
@@ -382,23 +421,23 @@
   <div class="scripture reveal">
     <div class="scripture-label"><span class="lang-pt">Jeremias 49:17-18 (NVI)</span><span class="lang-en">Jeremiah 49:17-18 NIV</span></div>
     <div class="scripture-text">
-      <p><sup class="vs">17</sup> <span class="lang-pt">&ldquo;Edom será objeto de horror; todos os que por ela passarem ficarão apavorados e zombarão de todas as suas feridas.</span><span class="lang-en">&ldquo;Edom will become an object of horror; all who pass by will be appalled and will scoff because of all its wounds.</span></p>
-      <p><sup class="vs">18</sup> <span class="lang-pt">Como Sodoma e Gomorra e suas cidades vizinhas foram subvertidas&rdquo;, diz o SENHOR, &ldquo;assim ninguém habitará nela; nenhum povo nela morará.&rdquo;</span><span class="lang-en">As Sodom and Gomorrah were overthrown, along with their neighboring towns,&rdquo; says the LORD, &ldquo;so no one will live there; no people will dwell in it.&rdquo;</span></p>
+      <p><sup class="vs">17</sup> <span class="lang-pt">“Edom será objeto de horror; todos os que por ela passarem ficarão apavorados e zombarão de todas as suas feridas.</span><span class="lang-en">“Edom will become an object of horror; all who pass by will be appalled and will scoff because of all its wounds.</span></p>
+      <p><sup class="vs">18</sup> <span class="lang-pt">Como Sodoma e Gomorra e suas cidades vizinhas foram subvertidas”, diz o SENHOR, “assim ninguém habitará nela; nenhum povo nela morará.”</span><span class="lang-en">As Sodom and Gomorrah were overthrown, along with their neighboring towns,” says the LORD, “so no one will live there; no people will dwell in it.”</span></p>
     </div>
   </div>
 
   <div class="scripture reveal">
     <div class="scripture-label"><span class="lang-pt">Amós 4:11-12 (NVI)</span><span class="lang-en">Amos 4:11-12 NIV</span></div>
     <div class="scripture-text">
-      <p><sup class="vs">11</sup> <span class="lang-pt">&ldquo;Subverti alguns de vós, como subverti Sodoma e Gomorra. Vocês eram como um tição arrancado do fogo, mas não se converteram a mim&rdquo;, diz o SENHOR.</span><span class="lang-en">&ldquo;I overthrew some of you as I overthrew Sodom and Gomorrah. You were like a burning stick snatched from the fire, yet you have not returned to me,&rdquo; declares the LORD.</span></p>
-      <p><sup class="vs">12</sup> <span class="lang-pt">&ldquo;Portanto, é isto que farei a vós, ó Israel, e porque farei isto a vós, ó Israel, preparai-vos para encontrar o vosso Deus.&rdquo;</span><span class="lang-en">&ldquo;Therefore this is what I will do to you, Israel, and because I will do this to you, Israel, prepare to meet your God.&rdquo;</span></p>
+      <p><sup class="vs">11</sup> <span class="lang-pt">“Subverti alguns de vós, como subverti Sodoma e Gomorra. Vocês eram como um tição arrancado do fogo, mas não se converteram a mim”, diz o SENHOR.</span><span class="lang-en">“I overthrew some of you as I overthrew Sodom and Gomorrah. You were like a burning stick snatched from the fire, yet you have not returned to me,” declares the LORD.</span></p>
+      <p><sup class="vs">12</sup> <span class="lang-pt">“Portanto, é isto que farei a vós, ó Israel, e porque farei isto a vós, ó Israel, preparai-vos para encontrar o vosso Deus.”</span><span class="lang-en">“Therefore this is what I will do to you, Israel, and because I will do this to you, Israel, prepare to meet your God.”</span></p>
     </div>
   </div>
 
   <div class="scripture reveal">
     <div class="scripture-label"><span class="lang-pt">Sofonias 2:9 (NVI)</span><span class="lang-en">Zephaniah 2:9 NIV</span></div>
     <div class="scripture-text">
-      <p><span class="lang-pt">&ldquo;Por isso, tão certamente como eu vivo&rdquo;, declara o SENHOR dos Exércitos, o Deus de Israel, &ldquo;certamente Moabe será como Sodoma, os amonitas como Gomorra &mdash; um lugar de ervas daninhas e covas de sal, uma desolação para sempre. O remanescente do meu povo os saqueará; os sobreviventes da minha nação herdarão a sua terra.&rdquo;</span><span class="lang-en">&ldquo;Therefore, as surely as I live,&rdquo; declares the LORD Almighty, the God of Israel, &ldquo;surely Moab will become like Sodom, the Ammonites like Gomorrah&mdash;a place of weeds and salt pits, a wasteland forever. The remnant of my people will plunder them; the survivors of my nation will inherit their land.&rdquo;</span></p>
+      <p><span class="lang-pt">“Por isso, tão certamente como eu vivo”, declara o SENHOR dos Exércitos, o Deus de Israel, “certamente Moabe será como Sodoma, os amonitas como Gomorra — um lugar de ervas daninhas e covas de sal, uma desolação para sempre. O remanescente do meu povo os saqueará; os sobreviventes da minha nação herdarão a sua terra.”</span><span class="lang-en">“Therefore, as surely as I live,” declares the LORD Almighty, the God of Israel, “surely Moab will become like Sodom, the Ammonites like Gomorrah—a place of weeds and salt pits, a wasteland forever. The remnant of my people will plunder them; the survivors of my nation will inherit their land.”</span></p>
     </div>
   </div>
 
@@ -413,7 +452,7 @@
     <div class="scripture-label"><span class="lang-pt">Judas 1:5-7 (NVI)</span><span class="lang-en">Jude 1:5-7 NIV</span></div>
     <div class="scripture-text">
       <p><sup class="vs">5</sup> <span class="lang-pt">Embora vocês já saibam de tudo isso, quero lembrar-lhes que o Senhor libertou o seu povo do Egito, mas depois destruiu os que não creram.</span><span class="lang-en">Though you already know all this, I want to remind you that the Lord at one time delivered his people out of Egypt, but later destroyed those who did not believe.</span></p>
-      <p><sup class="vs">6</sup> <span class="lang-pt">E aos anjos que não conservaram as suas posições de autoridade, mas abandonaram a sua própria habitação, estes ele tem guardado em trevas, presos com cadeias eternas para o juízo do grande Dia.</span><span class="lang-en">And the angels who did not keep their positions of authority but abandoned their proper dwelling&mdash;these he has kept in darkness, bound with everlasting chains for judgment on the great Day.</span></p>
+      <p><sup class="vs">6</sup> <span class="lang-pt">E aos anjos que não conservaram as suas posições de autoridade, mas abandonaram a sua própria habitação, estes ele tem guardado em trevas, presos com cadeias eternas para o juízo do grande Dia.</span><span class="lang-en">And the angels who did not keep their positions of authority but abandoned their proper dwelling—these he has kept in darkness, bound with everlasting chains for judgment on the great Day.</span></p>
       <p><sup class="vs">7</sup> <span class="lang-pt">Da mesma forma, Sodoma e Gomorra e as cidades vizinhas, dando-se à imoralidade sexual e a perversões, servem de exemplo do fogo eterno que sofrerão como punição.</span><span class="lang-en">In a similar way, Sodom and Gomorrah and the surrounding towns gave themselves up to sexual immorality and perversion. They serve as an example of those who suffer the punishment of eternal fire.</span></p>
     </div>
   </div>
@@ -425,7 +464,7 @@
       <p><sup class="vs">5</sup> <span class="lang-pt">se não poupou o mundo antigo, mas trouxe o dilúvio sobre os ímpios, tendo protegido Noé, pregador da justiça, e mais sete;</span><span class="lang-en">if he did not spare the ancient world when he brought the flood on its ungodly people, but protected Noah, a preacher of righteousness, and seven others;</span></p>
       <p><sup class="vs">6</sup> <span class="lang-pt">se condenou as cidades de Sodoma e Gomorra, reduzindo-as a cinzas, tornando-as exemplo do que há de acontecer aos ímpios;</span><span class="lang-en">if he condemned the cities of Sodom and Gomorrah by burning them to ashes, and made them an example of what is going to happen to the ungodly;</span></p>
       <p><sup class="vs">7</sup> <span class="lang-pt">e se livrou Ló, homem justo, atormentado pela conduta depravada dos libertinos</span><span class="lang-en">and if he rescued Lot, a righteous man, who was distressed by the depraved conduct of the lawless</span></p>
-      <p><sup class="vs">8</sup> <span class="lang-pt">(pois aquele justo, vivendo entre eles dia após dia, atormentava a sua alma justa com as obras leis que via e ouvia)&mdash;</span><span class="lang-en">(for that righteous man, living among them day after day, was tormented in his righteous soul by the lawless deeds he saw and heard)&mdash;</span></p>
+      <p><sup class="vs">8</sup> <span class="lang-pt">(pois aquele justo, vivendo entre eles dia após dia, atormentava a sua alma justa com as obras leis que via e ouvia)—</span><span class="lang-en">(for that righteous man, living among them day after day, was tormented in his righteous soul by the lawless deeds he saw and heard)—</span></p>
       <p><sup class="vs">9</sup> <span class="lang-pt">então o Senhor sabe livrar os piedosos da provação e reter os ímpios para o castigo no dia do juízo.</span><span class="lang-en">then the Lord knows how to rescue the godly from trials and to hold the unrighteous for punishment on the day of judgment.</span></p>
     </div>
   </div>
@@ -437,27 +476,27 @@
   <ul class="bullets reveal">
     <li><span class="lang-pt">violência (<span class="heb">חמס</span>)</span><span class="lang-en">violence (<span class="heb">חמס</span>)</span></li>
     <li><span class="lang-pt">abuso sexual</span><span class="lang-en">sexual abuse</span></li>
-    <li><span class="lang-pt">o clamor (<span class="heb">צעקה</span>)</span><span class="lang-en">the outcry (<span class="heb">צעקה</span>)</span></li>
+    <li><span class="lang-pt">o clamor (<span class="heb">זעקה/צעקה</span>)</span><span class="lang-en">the outcry (<span class="heb">זעקה/צעקה</span>)</span></li>
   </ul>
 
   <h3 class="sub reveal"><span class="lang-pt">O Vocabulário do Julgamento</span><span class="lang-en">The Vocabulary of Judgment</span></h3>
   <ul class="bullets reveal">
-    <li><span class="lang-pt">ruína (<span class="heb">הפכה</span>)</span><span class="lang-en">ruin (<span class="heb">הפכה</span>)</span></li>
+    <li><span class="lang-pt">ruína (<span class="heb">השחית/שחת</span>)</span><span class="lang-en">ruin (<span class="heb">השחית/שחת</span>)</span></li>
     <li><span class="lang-pt">varrer (<span class="heb">ספה</span>)</span><span class="lang-en">sweep away (<span class="heb">ספה</span>)</span></li>
     <li><span class="lang-pt">exterminar (<span class="heb">מחה</span>)</span><span class="lang-en">wipe out (<span class="heb">מחה</span>)</span></li>
     <li><span class="lang-pt">morrer (<span class="heb">מות</span>)</span><span class="lang-en">die (<span class="heb">מות</span>)</span></li>
     <li><span class="lang-pt">expirar (<span class="heb">גוע</span>)</span><span class="lang-en">expire (<span class="heb">גוע</span>)</span></li>
-    <li><span class="lang-pt">chuva/águas do dilúvio (<span class="heb">מטר</span> / <span class="heb">מבול</span>)</span><span class="lang-en">rain/flood waters (<span class="heb">מטר</span> / <span class="heb">מבול</span>)</span></li>
+    <li><span class="lang-pt">chuva/águas do dilúvio (<span class="heb">המטיר/מים</span>)</span><span class="lang-en">rain/flood waters (<span class="heb">המטיר/מים</span>)</span></li>
   </ul>
 
   <h3 class="sub reveal"><span class="lang-pt">O Vocabulário do Remanescente Justo</span><span class="lang-en">The Vocabulary of the Righteous Remnant</span></h3>
   <ul class="bullets reveal">
-    <li><span class="lang-pt">Noé / descanso / consolo (<span class="heb">נוח</span> / <span class="heb">נחם</span> / <span class="heb">נחם</span>)</span><span class="lang-en">Noah / rest / comfort (<span class="heb">נוח</span> / <span class="heb">נחם</span> / <span class="heb">נחם</span>)</span></li>
-    <li><span class="lang-pt">restar / remanescente (<span class="heb">שאר</span> / <span class="heb">שארית</span>)</span><span class="lang-en">remain / remnant (<span class="heb">שאר</span> / <span class="heb">שארית</span>)</span></li>
-    <li><span class="lang-pt">escapar / refugiado (<span class="heb">מלט</span>)</span><span class="lang-en">escape / refugee (<span class="heb">מלט</span>)</span></li>
-    <li><span class="lang-pt">fugir (<span class="heb">ברח</span>)</span><span class="lang-en">flee (<span class="heb">ברח</span>)</span></li>
-    <li><span class="lang-pt">imagens de refúgio: montanha (<span class="heb">הר</span>) / caverna (<span class="heb">מערה</span>) / arca (<span class="heb">תבה</span>) / casa (<span class="heb">בית</span>) / sombra (<span class="heb">צל</span>)</span><span class="lang-en">images of refuge: mountain (<span class="heb">הר</span>) / cave (<span class="heb">מערה</span>) / ark (<span class="heb">תבה</span>) / house (<span class="heb">בית</span>) / shadow (<span class="heb">צל</span>)</span></li>
-    <li><span class="lang-pt">vida / manter vivo (<span class="heb">חיה</span>)</span><span class="lang-en">life / to keep alive (<span class="heb">חיה</span>)</span></li>
+    <li><span class="lang-pt">Noé / descanso / consolo (<span class="heb">נח/נוח/נחם</span>)</span><span class="lang-en">Noah / rest / comfort (<span class="heb">נח/נוח/נחם</span>)</span></li>
+    <li><span class="lang-pt">permanecer / remanescente (<span class="heb">נשאר/שאר</span>)</span><span class="lang-en">remain / remnant (<span class="heb">נשאר/שאר</span>)</span></li>
+    <li><span class="lang-pt">escapar / refugiado (<span class="heb">מלט/המלט</span>)</span><span class="lang-en">escape / refugee (<span class="heb">מלט/המלט</span>)</span></li>
+    <li><span class="lang-pt">fugir (<span class="heb">נוס</span>)</span><span class="lang-en">flee (<span class="heb">נוס</span>)</span></li>
+    <li><span class="lang-pt">imagens de refúgio: montanha (<span class="heb">הר</span>) / caverna (<span class="heb">מערה</span>) / arca (<span class="heb">תבה</span>) / casa (<span class="heb">הבית</span>) / sombra (<span class="heb">צל</span>)</span><span class="lang-en">images of refuge: mountain (<span class="heb">הר</span>) / cave (<span class="heb">מערה</span>) / ark (<span class="heb">תבה</span>) / house (<span class="heb">הבית</span>) / shadow (<span class="heb">צל</span>)</span></li>
+    <li><span class="lang-pt">vida / manter vivo (<span class="heb">חי/החיה</span>)</span><span class="lang-en">life / to keep alive (<span class="heb">חי/החיה</span>)</span></li>
   </ul>
 
   <p class="body reveal"><span class="lang-pt">Todos esses termos e motivos temáticos serão retomados e desenvolvidos por toda a narrativa. Essa coesão verbal do dilúvio com Sodoma e Gomorra também explica por que judeus posteriores do período do Segundo Templo traçaram conexões tão estreitas entre essas histórias.</span><span class="lang-en">All of these terms and thematic motifs will be drawn upon and developed throughout the narrative. This verbal cohesion of the flood with Sodom and Gomorrah also explains why later Jews in the Second Temple period drew such close connections between these stories.</span></p>
@@ -466,104 +505,92 @@
 
   <div class="v-outer reveal">
     <div class="v-line" style="display:flex; gap:.9rem;">
-      <span class="lbl" style="padding-top:.35rem;">a 30</span>
+      <span class="lbl" style="padding-top:.35rem;">30</span>
       <div>
-        <p><span class="lang-pt">E Ló subiu de <span class="chip c-beige">Zoar</span> (<span class="heb">צוער</span>),</span><span class="lang-en">And Lot went up from <span class="chip c-beige">Zoar</span> (<span class="heb">צוער</span>),</span></p>
-        <p class="i1"><span class="lang-pt">b e habitou na montanha,</span><span class="lang-en">b and he dwelt on the mountain,</span></p>
-        <p class="i2"><span class="lang-pt">c e <span class="chip c-rose">as suas duas filhas</span> com ele,</span><span class="lang-en">c and <span class="chip c-rose">his two daughters</span> with him,</span></p>
+        <p><span class="lang-pt"><span class="chiastic">a</span> E Ló subiu de <span class="chip c-beige">Zoar</span> (<span class="heb">צוער</span>),</span><span class="lang-en"><span class="chiastic">a</span> And Lot went up from <span class="chip c-beige">Zoar</span> (<span class="heb">צוער</span>),</span></p>
+        <p class="i1"><span class="lang-pt"><span class="chiastic">b</span> e habitou na montanha,</span><span class="lang-en"><span class="chiastic">b</span> and he dwelt on the mountain,</span></p>
+        <p class="i2"><span class="lang-pt"><span class="chiastic">c</span> e <span class="chip c-rose">as suas duas filhas</span> com ele,</span><span class="lang-en"><span class="chiastic">c</span> and <span class="chip c-rose">his two daughters</span> with him,</span></p>
+        <p><span class="lang-pt"><span class="chiastic">a'</span> porque temia habitar em <span class="chip c-beige">Zoar</span> (<span class="heb">צוער</span>),</span><span class="lang-en"><span class="chiastic">a'</span> because he was afraid of dwelling in <span class="chip c-beige">Zoar</span> (<span class="heb">צוער</span>),</span></p>
+        <p class="i1"><span class="lang-pt"><span class="chiastic">b'</span> e habitou numa <span class="chip c-beige">caverna</span> (<span class="heb">מערה</span>),</span><span class="lang-en"><span class="chiastic">b'</span> and he dwelt in a <span class="chip c-beige">cave</span> (<span class="heb">מערה</span>),</span></p>
+        <p class="i2"><span class="lang-pt"><span class="chiastic">c'</span> ele e <span class="chip c-rose">as suas duas filhas</span>.</span><span class="lang-en"><span class="chiastic">c'</span> he and <span class="chip c-rose">his two daughters</span>.</span></p>
+      </div>
+    </div>
+    <hr class="v-div">
+    <div class="v-line" style="display:flex; gap:.9rem;">
+      <span class="lbl" style="padding-top:.35rem;">31</span>
+      <div>
+        <p><span class="lang-pt"><span class="chiastic">A</span> <span class="t-magenta">E a</span> <span class="chip c-purple-solid">primogênita</span> <span class="t-magenta">disse à</span> <span class="chip c-magenta">menor</span> (<span class="heb">צעירה</span>):</span><span class="lang-en"><span class="chiastic">A</span> <span class="t-magenta">And the</span> <span class="chip c-purple-solid">firstborn</span> <span class="t-magenta">said to the</span> <span class="chip c-magenta">little one</span> (<span class="heb">צעירה</span>):</span></p>
+        <p class="i1"><span class="lang-pt"><span class="chiastic">B</span> <span class="t-green">“Nosso pai</span> é velho,</span><span class="lang-en"><span class="chiastic">B</span> <span class="t-green">“Our father</span> is old,</span></p>
+        <p class="i2"><span class="lang-pt">e não há homem na terra para vir sobre nós,</span><span class="lang-en">and there is no man in the land to come over us,</span></p>
+        <p class="i2"><span class="lang-pt">como é o costume de toda a terra.</span><span class="lang-en">as is the way of all the land.</span></p>
+        <p class="i1"><span class="lang-pt"><span class="chiastic">C</span> <sup class="vs">32</sup> <span class="t-green">Vamos, façamos nosso pai beber vinho</span>,</span><span class="lang-en"><span class="chiastic">C</span> <sup class="vs">32</sup> <span class="t-green">Come, let’s make our father drink wine</span>,</span></p>
+        <p class="i2"><span class="lang-pt">e <span class="t-green">deitemos com ele</span>,</span><span class="lang-en">and <span class="t-green">let’s lie with him</span>,</span></p>
+        <p class="i2"><span class="lang-pt">e <span class="t-green">faremos</span> <span class="chip c-green">viver semente</span> (<span class="heb">זרע</span>) <span class="t-green">do nosso pai</span>.”</span><span class="lang-en">and <span class="t-green">we will make</span> <span class="chip c-green">seed</span> (<span class="heb">זרע</span>) <span class="t-green">come to life from our father</span>.”</span></p>
+        <p class="i1"><span class="lang-pt"><span class="chiastic">D</span> <sup class="vs">33</sup> <span class="t-brown">E naquela noite fizeram seu pai beber vinho</span>,</span><span class="lang-en"><span class="chiastic">D</span> <sup class="vs">33</sup> <span class="t-brown">And they made their father drink wine in that night</span>,</span></p>
+        <p class="i2"><span class="lang-pt">e a <span class="chip c-purple-solid">primogênita</span> <span class="t-brown">foi</span></span><span class="lang-en">and the <span class="chip c-purple-solid">firstborn</span> <span class="t-brown">went</span></span></p>
+        <p class="i2"><span class="lang-pt">e <span class="t-brown">deitou-se com seu pai</span>,</span><span class="lang-en">and <span class="t-brown">she laid with her father</span>,</span></p>
+        <p class="i2"><span class="lang-pt">e <span class="t-brown">ele não soube quando ela se deitou nem quando se levantou</span>.</span><span class="lang-en">and <span class="t-brown">he did not know when she laid down or when she got up</span>.</span></p>
       </div>
     </div>
     <div class="v-line" style="display:flex; gap:.9rem;">
-      <span class="lbl" style="padding-top:.35rem;">a&rsquo;</span>
+      <span class="lbl" style="padding-top:.35rem;">34</span>
       <div>
-        <p><span class="lang-pt">porque temia habitar em <span class="chip c-beige">Zoar</span> (<span class="heb">צוער</span>),</span><span class="lang-en">because he was afraid of dwelling in <span class="chip c-beige">Zoar</span> (<span class="heb">צוער</span>),</span></p>
-        <p class="i1"><span class="lang-pt">b&rsquo; e habitou numa <span class="chip c-beige">caverna</span> (<span class="heb">מערה</span>),</span><span class="lang-en">b&rsquo; and he dwelt in a <span class="chip c-beige">cave</span> (<span class="heb">מערה</span>),</span></p>
-        <p class="i2"><span class="lang-pt">c&rsquo; ele e <span class="chip c-rose">as suas duas filhas</span>.</span><span class="lang-en">c&rsquo; he and <span class="chip c-rose">his two daughters</span>.</span></p>
-      </div>
-    </div>
-    <div class="v-outer dark">
-      <div class="v-line" style="display:flex; gap:.9rem;">
-        <span class="lbl" style="padding-top:.35rem;">A 31</span>
-        <div>
-          <p><span class="lang-pt"><span class="t-magenta">E a</span> <span class="chip c-purple-solid">primogênita</span> <span class="t-magenta">disse à</span> <span class="chip c-magenta">menor</span> (<span class="heb">צעירה</span>):</span><span class="lang-en"><span class="t-magenta">And the</span> <span class="chip c-purple-solid">firstborn</span> <span class="t-magenta">said to the</span> <span class="chip c-magenta">little one</span> (<span class="heb">צעירה</span>):</span></p>
-          <p class="i1"><span class="lang-pt"><span class="t-green">&ldquo;Nosso pai</span> é velho,</span><span class="lang-en"><span class="t-green">&ldquo;Our father</span> is old,</span></p>
-          <p class="i1"><span class="lang-pt">B e não há homem na terra para vir sobre nós,</span><span class="lang-en">B and there is no man in the land to come over us,</span></p>
-          <p class="i1"><span class="lang-pt">como é o costume de toda a terra.</span><span class="lang-en">as is the way of all the land.</span></p>
-          <p class="i1"><span class="lang-pt">32 <span class="t-green">Vamos, façamos nosso pai beber vinho</span>,</span><span class="lang-en">32 <span class="t-green">Come, let&rsquo;s make our father drink wine</span>,</span></p>
-          <p class="i1"><span class="lang-pt">C e <span class="t-green">deitemos com ele</span>,</span><span class="lang-en">C and <span class="t-green">let&rsquo;s lie with him</span>,</span></p>
-          <p class="i1"><span class="lang-pt">e <span class="t-green">faremos</span> <span class="chip c-green">viver semente</span> (<span class="heb">זרע</span>) <span class="t-green">do nosso pai</span>.&rdquo;</span><span class="lang-en">and <span class="t-green">we will make</span> <span class="chip c-green">seed</span> (<span class="heb">זרע</span>) <span class="t-green">come to life from our father</span>.&rdquo;</span></p>
-          <p class="i1"><span class="lang-pt">33 <span class="t-brown">E naquela noite fizeram seu pai beber vinho</span>,</span><span class="lang-en">33 <span class="t-brown">And they made their father drink wine in that night</span>,</span></p>
-          <p class="i1"><span class="lang-pt">e a <span class="chip c-purple-solid">primogênita</span> <span class="t-brown">foi</span></span><span class="lang-en">and the <span class="chip c-purple-solid">firstborn</span> <span class="t-brown">went</span></span></p>
-          <p class="i1"><span class="lang-pt">D e <span class="t-brown">deitou-se com seu pai</span>,</span><span class="lang-en">D and <span class="t-brown">she laid with her father</span>,</span></p>
-          <p class="i1"><span class="lang-pt">e <span class="t-brown">ele não soube quando ela se deitou nem quando se levantou</span>.</span><span class="lang-en">and <span class="t-brown">he did not know when she laid down or when she got up</span>.</span></p>
-        </div>
-      </div>
-      <div class="v-line" style="display:flex; gap:.9rem;">
-        <span class="lbl" style="padding-top:.35rem;">34</span>
-        <div>
-          <p><span class="lang-pt">E aconteceu no dia seguinte,</span><span class="lang-en">And it came about on the next day,</span></p>
-          <p class="i1"><span class="lang-pt">A&rsquo; <span class="t-magenta">que a</span> <span class="chip c-purple-solid">primogênita</span> <span class="t-magenta">disse à</span> <span class="chip c-magenta">menor</span> (<span class="heb">צעירה</span>):</span><span class="lang-en">A&rsquo; <span class="t-magenta">that the</span> <span class="chip c-purple-solid">firstborn</span> <span class="t-magenta">said to the</span> <span class="chip c-magenta">little one</span> (<span class="heb">צעירה</span>):</span></p>
-          <p class="i1"><span class="lang-pt">B&rsquo; &ldquo;<span class="t-green">Olha</span>, na passada noite me deitei com meu pai.</span><span class="lang-en">B&rsquo; &ldquo;<span class="t-green">Look</span>, I laid last night with my father.</span></p>
-          <p class="i1"><span class="lang-pt"><span class="t-green">Vamos fazê-lo beber vinho também hoje à noite</span>,</span><span class="lang-en"><span class="t-green">Let&rsquo;s make him drink wine also tonight</span>,</span></p>
-          <p class="i1"><span class="lang-pt">C&rsquo; e vai, <span class="t-green">deita-te com ele</span>,</span><span class="lang-en">C&rsquo; and go, <span class="t-green">lie with him</span>,</span></p>
-          <p class="i1"><span class="lang-pt">para que <span class="t-green">façamos</span> <span class="chip c-green">viver semente</span> (<span class="heb">זרע</span>) <span class="t-green">do nosso pai</span>.&rdquo;</span><span class="lang-en">so we can <span class="t-green">make</span> <span class="chip c-green">seed</span> (<span class="heb">זרע</span>) <span class="t-green">come to life from our father</span>.&rdquo;</span></p>
-          <p class="i1"><span class="lang-pt">35 <span class="t-brown">E outra vez fizeram seu pai beber vinho naquela noite</span>,</span><span class="lang-en">35 <span class="t-brown">And they again made their father drink wine on that night</span>,</span></p>
-          <p class="i1"><span class="lang-pt">e a <span class="chip c-magenta">menor</span> (<span class="heb">צעירה</span>) <span class="t-brown">se levantou</span></span><span class="lang-en">and the <span class="chip c-magenta">little one</span> (<span class="heb">צעירה</span>) <span class="t-brown">got up</span></span></p>
-          <p class="i1"><span class="lang-pt">D&rsquo; e <span class="t-brown">deitou-se com</span> <span class="chip c-beige2">seu pai</span>,</span><span class="lang-en">D&rsquo; and <span class="t-brown">she laid with</span> <span class="chip c-beige2">her father</span>,</span></p>
-          <p class="i1"><span class="lang-pt">e ele não soube quando ela se deitou nem quando se levantou.</span><span class="lang-en">and he did not know when she laid down and when she got up.</span></p>
-        </div>
-      </div>
-      <div class="v-line" style="display:flex; gap:.9rem;">
-        <span class="lbl" style="padding-top:.35rem;">36</span>
-        <div>
-          <p><span class="lang-pt">E <span class="chip c-rose">as duas filhas de Ló</span> engravidaram de <span class="chip c-beige2">seu pai</span>.</span><span class="lang-en">And <span class="chip c-rose">the two daughters of Lot</span> became pregnant by <span class="chip c-beige2">their father</span>.</span></p>
-          <p class="i1"><span class="lang-pt">a 37 E a <span class="chip c-purple-solid">primogênita</span> deu à luz um filho,</span><span class="lang-en">a 37 And the <span class="chip c-purple-solid">firstborn</span> gave birth to a son,</span></p>
-          <p class="i1"><span class="lang-pt">b e chamou o seu nome de &ldquo;Moabe&rdquo;,</span><span class="lang-en">b and she called his name &ldquo;Moab&rdquo;,</span></p>
-          <p class="i1"><span class="lang-pt">c ele é o pai de Moabe até o dia de hoje.</span><span class="lang-en">c he is the father of Moab until this day.</span></p>
-          <p class="i1"><span class="lang-pt">a&rsquo; 38 E a <span class="chip c-magenta">menor</span> (<span class="heb">צעירה</span>), ela também deu à luz um filho,</span><span class="lang-en">a&rsquo; 38 And the <span class="chip c-magenta">little one</span> (<span class="heb">צעירה</span>), she also gave birth to a son,</span></p>
-          <p class="i1"><span class="lang-pt">b&rsquo; e chamou o seu nome de &ldquo;Amon&rdquo;,</span><span class="lang-en">b&rsquo; and she called his name &ldquo;Ammon&rdquo;,</span></p>
-          <p class="i1"><span class="lang-pt">c&rsquo; ele é o pai dos filhos de Amom até o dia de hoje.</span><span class="lang-en">c&rsquo; he is the father of the sons of Ammon until this day.</span></p>
-        </div>
+        <p><span class="lang-pt"><span class="chiastic">A'</span> E aconteceu no dia seguinte,</span><span class="lang-en"><span class="chiastic">A'</span> And it came about on the next day,</span></p>
+        <p class="i1"><span class="lang-pt"><span class="t-magenta">que a</span> <span class="chip c-purple-solid">primogênita</span> <span class="t-magenta">disse à</span> <span class="chip c-magenta">menor</span> (<span class="heb">צעירה</span>):</span><span class="lang-en"><span class="t-magenta">that the</span> <span class="chip c-purple-solid">firstborn</span> <span class="t-magenta">said to the</span> <span class="chip c-magenta">little one</span> (<span class="heb">צעירה</span>):</span></p>
+        <p class="i1"><span class="lang-pt"><span class="chiastic">B'</span> “<span class="t-green">Olha</span>, na passada noite me deitei com meu pai.</span><span class="lang-en"><span class="chiastic">B'</span> “<span class="t-green">Look</span>, I laid last night with my father.</span></p>
+        <p class="i1"><span class="lang-pt"><span class="chiastic">C'</span> <span class="t-green">Vamos fazê-lo beber vinho também hoje à noite</span>,</span><span class="lang-en"><span class="chiastic">C'</span> <span class="t-green">Let’s make him drink wine also tonight</span>,</span></p>
+        <p class="i2"><span class="lang-pt">e vai, <span class="t-green">deita-te com ele</span>,</span><span class="lang-en">and go, <span class="t-green">lie with him</span>,</span></p>
+        <p class="i2"><span class="lang-pt">para que <span class="t-green">façamos</span> <span class="chip c-green">viver semente</span> (<span class="heb">זרע</span>) <span class="t-green">do nosso pai</span>.”</span><span class="lang-en">so we can <span class="t-green">make</span> <span class="chip c-green">seed</span> (<span class="heb">זרע</span>) <span class="t-green">come to life from our father</span>.”</span></p>
+        <p class="i1"><span class="lang-pt"><span class="chiastic">D'</span> <sup class="vs">35</sup> <span class="t-brown">E outra vez fizeram seu pai beber vinho naquela noite</span>,</span><span class="lang-en"><span class="chiastic">D'</span> <sup class="vs">35</sup> <span class="t-brown">And they again made their father drink wine on that night</span>,</span></p>
+        <p class="i2"><span class="lang-pt">e a <span class="chip c-magenta">menor</span> (<span class="heb">צעירה</span>) <span class="t-brown">se levantou</span></span><span class="lang-en">and the <span class="chip c-magenta">little one</span> (<span class="heb">צעירה</span>) <span class="t-brown">got up</span></span></p>
+        <p class="i2"><span class="lang-pt">e <span class="t-brown">deitou-se com</span> <span class="chip c-beige2">seu pai</span>,</span><span class="lang-en">and <span class="t-brown">she laid with</span> <span class="chip c-beige2">her father</span>,</span></p>
+        <p class="i2"><span class="lang-pt">e ele não soube quando ela se deitou nem quando se levantou.</span><span class="lang-en">and he did not know when she laid down and when she got up.</span></p>
+        <p class="i1"><sup class="vs">36</sup> <span class="lang-pt">E <span class="chip c-rose">as duas filhas de Ló</span> engravidaram de <span class="chip c-beige2">seu pai</span>.</span><span class="lang-en">36 And <span class="chip c-rose">the two daughters of Lot</span> became pregnant by <span class="chip c-beige2">their father</span>.</span></p>
+        <p class="i1"><span class="lang-pt"><span class="chiastic">a</span> <sup class="vs">37</sup> E a <span class="chip c-purple-solid">primogênita</span> deu à luz um filho,</span><span class="lang-en"><span class="chiastic">a</span> <sup class="vs">37</sup> And the <span class="chip c-purple-solid">firstborn</span> gave birth to a son,</span></p>
+        <p class="i2"><span class="lang-pt"><span class="chiastic">b</span> e chamou o seu nome de “Moabe”,</span><span class="lang-en"><span class="chiastic">b</span> and she called his name “Moab”,</span></p>
+        <p class="i2"><span class="lang-pt"><span class="chiastic">c</span> ele é o pai de Moabe até o dia de hoje.</span><span class="lang-en"><span class="chiastic">c</span> he is the father of Moab until this day.</span></p>
+        <p class="i1"><span class="lang-pt"><span class="chiastic">a'</span> <sup class="vs">38</sup> E a <span class="chip c-magenta">menor</span> (<span class="heb">צעירה</span>), ela também deu à luz um filho,</span><span class="lang-en"><span class="chiastic">a'</span> <sup class="vs">38</sup> And the <span class="chip c-magenta">little one</span> (<span class="heb">צעירה</span>), she also gave birth to a son,</span></p>
+        <p class="i2"><span class="lang-pt"><span class="chiastic">b'</span> e chamou o seu nome de “Amon”,</span><span class="lang-en"><span class="chiastic">b'</span> and she called his name “Ammon”,</span></p>
+        <p class="i2"><span class="lang-pt"><span class="chiastic">c'</span> ele é o pai dos filhos de Amom até o dia de hoje.</span><span class="lang-en"><span class="chiastic">c'</span> he is the father of the sons of Ammon until this day.</span></p>
       </div>
     </div>
   </div>
   <p class="caption reveal"><span class="lang-pt"><em>Gênesis 19:30-38</em>. Tradução e Design Literário por Tim Mackie para a BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Genesis 19:30-38</em>. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
 
   <h2 class="section reveal"><span class="lang-pt">A Benção da Semente Distorcida</span><span class="lang-en">The Blessing of Seed Distorted</span></h2>
-  <p class="body reveal"><span class="lang-pt">Esta estranha e perturbadora história parece um desfecho estranho para a épica narrativa dramática da intercessão de Avraham e do livramento de Ló. O significado da cena só se esclarece quando é vista à luz de sua colocação no design de Gênesis 18:1-19:38 e à luz de sua relação com a história de Noé e Cão após o dilúvio.</span><span class="lang-en">This strange and disturbing story seems an odd conclusion to the dramatic narrative epic of Avraham&rsquo;s intercession and Lot&rsquo;s deliverance. The scene&rsquo;s significance is only clarified when it&rsquo;s seen in light of its placement in the design of Genesis 18:1-19:38 and in light of its relationship to the story of Noah and Ham after the flood.</span></p>
-  <p class="body reveal"><span class="lang-pt">Esta palavra de palavras continua na cena seguinte, mas, por ora, notemos como Ló é retratado como de visão curta e caprichoso no exato momento em que Deus está graciosamente salvando a vida de sua família.</span><span class="lang-en">This wordplay continues into the following scene, but for the moment, let&rsquo;s notice how Lot is depicted as short-sighted and fickle at the very moment God is graciously saving his family&rsquo;s life.</span></p>
+  <p class="body reveal"><span class="lang-pt">Esta estranha e perturbadora história parece um desfecho estranho para a épica narrativa dramática da intercessão de Avraham e do livramento de Ló. O significado da cena só se esclarece quando é vista à luz de sua colocação no design de Gênesis 18:1-19:38 e à luz de sua relação com a história de Noé e Cão após o dilúvio.</span><span class="lang-en">This strange and disturbing story seems an odd conclusion to the dramatic narrative epic of Avraham’s intercession and Lot’s deliverance. The scene’s significance is only clarified when it’s seen in light of its placement in the design of Genesis 18:1-19:38 and in light of its relationship to the story of Noah and Ham after the flood.</span></p>
 
   <h2 class="section reveal"><span class="lang-pt">O Design Literário de Gênesis 18-19</span><span class="lang-en">The Macro Design of Genesis 18-19</span></h2>
   <div class="macro reveal">
-    <div class="mcol">
+    <div class="card">
       <span class="mtag mtag-green">Genesis 18:1-15</span>
-      <div class="mcol-title"><span class="lang-pt">Avraham e Sara recebem a promessa de um &ldquo;filho/semente&rdquo; no &ldquo;tempo determinado da vida&rdquo;</span><span class="lang-en">Avraham and Sarah receive a promise of &ldquo;son/seed&rdquo; at the &ldquo;appointed time of life&rdquo;</span></div>
-      <p class="body" style="margin-bottom:.5rem; font-size:.97rem;"><span class="lang-pt">Inversão de Gênesis 3. Imagens do Éden: Avraham debaixo de uma árvore e Sara dentro de uma tenda.</span><span class="lang-en">Inversion of Genesis 3. Eden images: Avraham under a tree and Sarah inside a tent.</span></p>
+      <div class="card-title"><span class="lang-pt">Avraham e Sara recebem a promessa de um “filho/semente” no “tempo determinado da vida”</span><span class="lang-en">Avraham and Sarah receive a promise of “son/seed” at the “appointed time of life”</span></div>
+      <p class="card-text"><span class="lang-pt">Inversão de Gênesis 3. Imagens do Éden: Avraham debaixo de uma árvore e Sara dentro de uma tenda.</span><span class="lang-en">Inversion of Genesis 3. Eden images: Avraham under a tree and Sarah inside a tent.</span></p>
     </div>
-    <div class="mcol dark">
+    <div class="card">
       <span class="mtag mtag-dark">Genesis 18:16-33</span>
-      <div class="mcol-title"><span class="lang-pt">A intercessão de Avraham pelo livramento de Ló</span><span class="lang-en">Avraham&rsquo;s intercession for Lot&rsquo;s deliverance</span></div>
+      <div class="card-title"><span class="lang-pt">A intercessão de Avraham pelo livramento de Ló</span><span class="lang-en">Avraham’s intercession for Lot’s deliverance</span></div>
     </div>
-    <div class="mcol dark">
+    <div class="card">
       <span class="mtag mtag-dark">Genesis 19:1-26</span>
-      <div class="mcol-title"><span class="lang-pt">O livramento de Ló por causa da intercessão de Avraham</span><span class="lang-en">Lot&rsquo;s deliverance because of Avraham&rsquo;s intercession</span></div>
+      <div class="card-title"><span class="lang-pt">O livramento de Ló por causa da intercessão de Avraham</span><span class="lang-en">Lot’s deliverance because of Avraham’s intercession</span></div>
     </div>
-    <div class="mcol">
+    <div class="card">
       <span class="mtag mtag-green">Genesis 19:30-38</span>
-      <div class="mcol-title"><span class="lang-pt">As filhas de Ló arquitetam um plano para &ldquo;manter vivo&rdquo; seu &ldquo;semente&rdquo; e ter &ldquo;filhos&rdquo;</span><span class="lang-en">Lot&rsquo;s daughters scheme a plan to &ldquo;keep alive&rdquo; their &ldquo;seed&rdquo; and have &ldquo;sons&rdquo;</span></div>
-      <p class="body" style="margin-bottom:.5rem; font-size:.97rem;"><span class="lang-pt">Releitura de Gênesis 3. Imagens do Éden: numa montanha e dentro de uma caverna.</span><span class="lang-en">Replay of Genesis 3. Eden images: on a mountain and inside a cave.</span></p>
+      <div class="card-title"><span class="lang-pt">As filhas de Ló arquitetam um plano para “manter vivo” seu “semente” e ter “filhos”</span><span class="lang-en">Lot’s daughters scheme a plan to “keep alive” their “seed” and have “sons”</span></div>
+      <p class="card-text"><span class="lang-pt">Releitura de Gênesis 3. Imagens do Éden: numa montanha e dentro de uma caverna.</span><span class="lang-en">Replay of Genesis 3. Eden images: on a mountain and inside a cave.</span></p>
     </div>
   </div>
   <p class="caption reveal"><span class="lang-pt"><em>Gênesis 18:1-19:38 (Detalhado)</em>. Design Literário por Tim Mackie para a BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Genesis 18:1-19:38 (Detailed)</em>. Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
 
-  <p class="body reveal"><span class="lang-pt">As histórias de abertura e de fechamento dos capítulos 18-19 de Gênesis tratam da sobrevivência da semente futura. Depois do dilúvio de juízo e de misericórdia sobre Avraham em Gênesis 17, a promessa de Deus de uma semente/filho futuro permanece em Gênesis 18:1-15. A promessa é dada em dois pontos edênicos, debaixo de uma árvore e dentro de uma tenda.</span><span class="lang-en">The opening and closing stories of Genesis chapters 18-19 are about the survival of the future seed. After the flood of judgment and mercy on Avraham in Genesis 17, God&rsquo;s promise of a future seed/son remains in Genesis 18:1-15. The promise is given in two Eden spots, under a tree and inside a tent.</span></p>
-  <p class="body reveal"><span class="lang-pt">A história de fechamento do livramento de Ló do dilúvio de juízo sobre Sodoma também trata da sobrevivência da semente futura. Mas aqui as filhas transformam sua legítima preocupação em um esquema distorcido de incesto: enganarão o pai com vinho para manter a semente viva (Gn 19:32, 34).</span><span class="lang-en">The closing story of Lot&rsquo;s deliverance from the flood of judgment on Sodom is also about the survival of the future seed. But here, the daughters turn their legitimate concern into a distorted scheme of incest: They will deceive their father with wine in order to keep seed alive (Gen. 19:32, 34).</span></p>
+  <p class="body reveal"><span class="lang-pt">As histórias de abertura e de fechamento dos capítulos 18-19 de Gênesis tratam da sobrevivência da semente futura. Depois do dilúvio de juízo e de misericórdia sobre Avraham em Gênesis 17, a promessa de Deus de uma semente/filho futuro permanece em Gênesis 18:1-15. A promessa é dada em dois pontos edênicos, debaixo de uma árvore e dentro de uma tenda.</span><span class="lang-en">The opening and closing stories of Genesis chapters 18-19 are about the survival of the future seed. After the flood of judgment and mercy on Avraham in Genesis 17, God’s promise of a future seed/son remains in Genesis 18:1-15. The promise is given in two Eden spots, under a tree and inside a tent.</span></p>
+  <p class="body reveal"><span class="lang-pt">A história de fechamento do livramento de Ló do dilúvio de juízo sobre Sodoma também trata da sobrevivência da semente futura. Mas aqui as filhas transformam sua legítima preocupação em um esquema distorcido de incesto: enganarão o pai com vinho para manter a semente viva (Gn 19:32, 34).</span><span class="lang-en">The closing story of Lot’s deliverance from the flood of judgment on Sodom is also about the survival of the future seed. But here, the daughters turn their legitimate concern into a distorted scheme of incest: They will deceive their father with wine in order to keep seed alive (Gen. 19:32, 34).</span></p>
 
   <h2 class="section reveal"><span class="lang-pt">Noé e Cão, Ló e Suas Filhas</span><span class="lang-en">Noah and Ham, Lot and His Daughters</span></h2>
-  <p class="body reveal"><span class="lang-pt">O significado da história de Ló e suas filhas também é iluminado por sua colocação como uma peça de dobradiça entre a história de Sodoma e a próxima parte da história de Avraham. A narrativa sobre o livramento de Ló de Sodoma por causa da intercessão de Avraham chegou ao fim em 19:27-29, quando Avraham olha para baixo. A história em Gênesis 19:30-38, embora sobre Ló, na verdade constitui um episódio distinto após a ruína de Sodoma. Desse modo, a história se alinha precisamente com a história de Noé e Cão após o dilúvio.</span><span class="lang-en">The significance of the story of Lot and his daughters is also illuminated by its placement as a hinge piece between the Sodom story and the next part of the Avraham story. The narrative about Lot&rsquo;s deliverance from Sodom because of Avraham&rsquo;s intercession came to a close in 19:27-29, as Avraham looks down. The story in Genesis 19:30-38, while about Lot, actually stands as a distinct episode after the ruin of Sodom. In this way, the story is precisely aligned with the story of Noah and Ham after the flood.</span></p>
+  <p class="body reveal"><span class="lang-pt">O significado da história de Ló e suas filhas também é iluminado por sua colocação como uma peça de dobradiça entre a história de Sodoma e a próxima parte da história de Avraham. A narrativa sobre o livramento de Ló de Sodoma por causa da intercessão de Avraham chegou ao fim em 19:27-29, quando Avraham olha para baixo. A história em Gênesis 19:30-38, embora sobre Ló, na verdade constitui um episódio distinto após a ruína de Sodoma. Desse modo, a história se alinha precisamente com a história de Noé e Cão após o dilúvio.</span><span class="lang-en">The significance of the story of Lot and his daughters is also illuminated by its placement as a hinge piece between the Sodom story and the next part of the Avraham story. The narrative about Lot’s deliverance from Sodom because of Avraham’s intercession came to a close in 19:27-29, as Avraham looks down. The story in Genesis 19:30-38, while about Lot, actually stands as a distinct episode after the ruin of Sodom. In this way, the story is precisely aligned with the story of Noah and Ham after the flood.</span></p>
 
   <div class="two-col reveal">
-    <div class="mcol">
+    <div class="card">
       <span class="mtag mtag-dark">Gen. 6:1-9</span>
       <ul class="bullets" style="margin-top:.6rem;">
         <li><span class="lang-pt">Filhos de Elohim tomam filhas de homens como esposas</span><span class="lang-en">Sons of Elohim take human daughters as wives</span></li>
@@ -582,7 +609,7 @@
       </ul>
       <p class="caption" style="margin-top:.6rem;"><span class="lang-pt">Genealogias Divergentes. Criado por Tim Mackie para a BibleProject Classroom: Noé a Abraão (2020).</span><span class="lang-en">Diverging Genealogies. Created by Tim Mackie for BibleProject Classroom: Noah to Abraham (2020).</span></p>
     </div>
-    <div class="mcol">
+    <div class="card">
       <span class="mtag mtag-green">Gen. 19:1-14</span>
       <ul class="bullets" style="margin-top:.6rem;">
         <li><span class="lang-pt">Ló protege os anjos oferecendo suas filhas aos homens de Sodoma para violência sexual</span><span class="lang-en">Lot protects angels by offering his daughters to the men of Sodom for sexual violence</span></li>
@@ -602,11 +629,11 @@
     </div>
   </div>
 
-  <p class="body reveal"><span class="lang-pt">Comparar as duas histórias destaca múltiplas características da história de Ló. A loucura de Noé não foi em cultivar uma vinha, mas em beber tanto que se tornou vulnerável aos desejos predatórios de seu filho. A loucura de Ló não foi em aceitar o conselho dos anjos e o livramento que eles procuravam prover. Antes, sua loucura foi em seu desejo de garantir seu próprio livramento indo para uma cidade &ldquo;pequena&rdquo; (Zoar). Sua loucura cria problemas adicionais. Por algum motivo não declarado, Ló e suas filhas deixam Zoar e sobem para as colinas orientais, onde sua escolha de uma caverna isola toda a sua família. É precisamente esse isolamento que leva as filhas a pensar que são as únicas pessoas restantes na região e que precisam conceber seu próprio plano para &ldquo;manter a semente viva&rdquo; (Gn 19:32, 34).</span><span class="lang-en">Comparing the two stories highlights multiple features of Lot&rsquo;s story. Noah&rsquo;s folly was not in cultivating a vineyard but in drinking so much that he became vulnerable to his son&rsquo;s predatory desires. Lot&rsquo;s folly wasn&rsquo;t in accepting the counsel of the angels and the deliverance that they sought to provide. Rather, his folly was in his desire to secure his own deliverance by going to a &ldquo;little&rdquo; city (Zoar). His folly creates further problems. For some unstated reason, Lot and his daughters leave Zoar and go up to the eastern hills, where his choice of a cave isolates their entire family. It&rsquo;s precisely that isolation that leads the daughters to think that they&rsquo;re the only people left in the region and that they need to come up with their own plan to &ldquo;keep seed alive&rdquo; (Gen. 19:32, 34).</span></p>
-  <p class="body reveal"><span class="lang-pt">Em ambos os casos, o resultado da loucura do pai e do comportamento impróprio dos filhos é o nascimento de filhos que se tornarão hostis aos descendentes de Avraham pelo resto da Bíblia Hebraica.</span><span class="lang-en">In both cases, the result of the father&rsquo;s folly and the children&rsquo;s inappropriate behavior is the birth of sons who will become hostile to Avraham&rsquo;s descendants for the rest of the Hebrew Bible.</span></p>
+  <p class="body reveal"><span class="lang-pt">Comparar as duas histórias destaca múltiplas características da história de Ló. A loucura de Noé não foi em cultivar uma vinha, mas em beber tanto que se tornou vulnerável aos desejos predatórios de seu filho. A loucura de Ló não foi em aceitar o conselho dos anjos e o livramento que eles procuravam prover. Antes, sua loucura foi em seu desejo de garantir seu próprio livramento indo para uma cidade “pequena” (Zoar). Sua loucura cria problemas adicionais. Por algum motivo não declarado, Ló e suas filhas deixam Zoar e sobem para as colinas orientais, onde sua escolha de uma caverna isola toda a sua família. É precisamente esse isolamento que leva as filhas a pensar que são as únicas pessoas restantes na região e que precisam conceber seu próprio plano para “manter a semente viva” (Gn 19:32, 34).</span><span class="lang-en">Comparing the two stories highlights multiple features of Lot’s story. Noah’s folly was not in cultivating a vineyard but in drinking so much that he became vulnerable to his son’s predatory desires. Lot’s folly wasn’t in accepting the counsel of the angels and the deliverance that they sought to provide. Rather, his folly was in his desire to secure his own deliverance by going to a “little” city (Zoar). His folly creates further problems. For some unstated reason, Lot and his daughters leave Zoar and go up to the eastern hills, where his choice of a cave isolates their entire family. It’s precisely that isolation that leads the daughters to think that they’re the only people left in the region and that they need to come up with their own plan to “keep seed alive” (Gen. 19:32, 34).</span></p>
+  <p class="body reveal"><span class="lang-pt">Em ambos os casos, o resultado da loucura do pai e do comportamento impróprio dos filhos é o nascimento de filhos que se tornarão hostis aos descendentes de Avraham pelo resto da Bíblia Hebraica.</span><span class="lang-en">In both cases, the result of the father’s folly and the children’s inappropriate behavior is the birth of sons who will become hostile to Avraham’s descendants for the rest of the Hebrew Bible.</span></p>
 
   <h2 class="section reveal"><span class="lang-pt">Moabe, Amom e a Rivalidade Fraternal</span><span class="lang-en">Moab, Ammon, and Sibling Rivalry</span></h2>
-  <p class="body reveal"><span class="lang-pt">Os nascimentos de Moabe e Amom, cujos descendentes formarão os reinos a leste do Jordão, tornam-se a imagem espelhada dos cananeus a oeste do Jordão. Contudo, ao contrário dos cananeus que ficaram sob a maldição de Noé (Gn 9:25-27), os moabitas e amonitas são, como Ismael, familiares de Avraham (são seus bisnetos). Assim, sua hostilidade está aberta à resolução e talvez até à reconciliação.</span><span class="lang-en">The births of Moab and Ammon, whose descendants will form the kingdoms on the east side of the Jordan, become the mirror image of the Canaanites on the west side of the Jordan. However, unlike the Canaanites who came under the curse of Noah (Gen. 9:25-27), the Moabites and Ammonites are, like Yishmael, family with Avraham (they&rsquo;re his great-nephews). So their hostility is open to resolution and perhaps even reconciliation.</span></p>
+  <p class="body reveal"><span class="lang-pt">Os nascimentos de Moabe e Amom, cujos descendentes formarão os reinos a leste do Jordão, tornam-se a imagem espelhada dos cananeus a oeste do Jordão. Contudo, ao contrário dos cananeus que ficaram sob a maldição de Noé (Gn 9:25-27), os moabitas e amonitas são, como Ismael, familiares de Avraham (são seus bisnetos). Assim, sua hostilidade está aberta à resolução e talvez até à reconciliação.</span><span class="lang-en">The births of Moab and Ammon, whose descendants will form the kingdoms on the east side of the Jordan, become the mirror image of the Canaanites on the west side of the Jordan. However, unlike the Canaanites who came under the curse of Noah (Gen. 9:25-27), the Moabites and Ammonites are, like Yishmael, family with Avraham (they’re his great-nephews). So their hostility is open to resolution and perhaps even reconciliation.</span></p>
 
   <h3 class="sub reveal"><span class="lang-pt">A Hostilidade de Moabe e Amom</span><span class="lang-en">The Hostility of Moab and Ammon</span></h3>
   <ul class="bullets reveal">
@@ -623,14 +650,14 @@
     <li><span class="lang-pt">Jeremias antecipa a restauração final de Moabe (Jr 48:47) e de Amom (Jr 49:6).</span><span class="lang-en">Jeremiah anticipates the eventual restoration of Moab (Jer. 48:47) and Ammon (Jer. 49:6).</span></li>
   </ul>
 
-  <h2 class="section reveal"><span class="lang-pt">Caim, Ló e as Filhas de Ló</span><span class="lang-en">Cain, Lot, and Lot&rsquo;s Daughters</span></h2>
-  <p class="body reveal"><span class="lang-pt">Observe como a unidade de Gênesis 19:17-22, que relata como Ló foi forçado para fora de Sodoma pelos anjos, conclui com uma etiologia sobre a nomeação de Zoar (Gn 19:22). Toda esta unidade trata de como Deus mostra misericórdia a Ló e o dirige a fugir para as montanhas (<span class="heb">הר</span>, Gn 19:17). Mas Ló prefere fugir para uma cidade e habitar ali.</span><span class="lang-en">Notice how the unit of Genesis 19:17-22, which relates how Lot was forced outside of Sodom by the angels, concludes with an etiology about the naming of Zoar (Gen. 19:22). This entire unit is about how God shows mercy to Lot and directs him to flee to the mountains (<span class="heb">הר</span>, Gen. 19:17). But Lot would rather flee to a city and dwell there.</span></p>
-  <p class="body reveal"><span class="lang-pt">Toda esta cena recorda a história de Caim, quando Deus mostra misericórdia a ele após matar seu irmão (Gn 4:9-17). Deus promete proteger Caim, colocando um sinal sobre ele, mas Caim imediatamente vai para o exílio e constrói para si sua própria forma de proteção, uma cidade (<span class="heb">עיר</span>), à qual chama pelo nome de seu filho (<span class="heb">חנוך</span>, Gn 4:17).</span><span class="lang-en">This entire scene recalls the story of Cain, when God shows mercy to him after he murders his brother (Gen. 4:9-17). God promises to protect Cain by placing a sign upon him, but Cain immediately goes into exile and builds for himself his own form of protection, a city (<span class="heb">עיר</span>), which he calls by the name of his son (<span class="heb">חנוך</span>, Gen. 4:17).</span></p>
-  <p class="body reveal"><span class="lang-pt">Esta unidade final de Gênesis 19:17-22 desenvolve criativamente este tema, pois a Ló é mostrada a &ldquo;misericórdia de Yahweh&rdquo; (<span class="heb">חסד יהוה</span>, Gn 19:16). Em vez de aceitar o livramento de Yahweh, ele negocia seu próprio plano para ser poupado numa cidade (<span class="heb">עיר</span>), cujo nome está sujeito a vários jogos de palavras. A unidade conclui com a nomeação da cidade: &ldquo;Assim, chama-se o nome da cidade Zoar&rdquo; (19:22).</span><span class="lang-en">This final unit of Genesis 19:17-22 creatively develops this theme, as Lot is shown the &ldquo;mercy of Yahweh&rdquo; (<span class="heb">חסד יהוה</span>, Gen. 19:16). Instead of accepting Yahweh&rsquo;s deliverance, he negotiates his own plan to be spared in a city (<span class="heb">עיר</span>), the name of which is subject to various wordplays. The unit concludes with the naming of the city: &ldquo;So then, one calls the name of the city Zoar&rdquo; (19:22).</span></p>
-  <p class="body reveal"><span class="lang-pt">Observe como esta unidade de Gênesis 19:17-22 atua como uma moldura para as unidades bônus sobre as filhas de Ló (Gn 19:30-38). Ela provê um episódio espelhado da hesitação e das negociações de Ló com os anjos, ao mesmo tempo em que ecoa a história de Noé e Cão após o dilúvio.</span><span class="lang-en">Notice how this unit of Genesis 19:17-22 acts as a frame to the bonus units about Lot&rsquo;s daughters (Gen. 19:30-38). It provides a mirror episode of Lot&rsquo;s hesitation and negotiations with the angels while also echoing the story of Noah and Ham after the flood.</span></p>
-  <p class="body reveal"><span class="lang-pt">Ló teme ficar em Zoar, então acaba vivendo nas montanhas afinal (Gn 19:30, 17), especificamente numa caverna (<span class="heb">מערה</span>), um jogo de palavras com &ldquo;pequena&rdquo; (<span class="heb">מצער</span>) e &ldquo;nudez&rdquo; (<span class="heb">ערום</span>) e &ldquo;astúcia&rdquo; (<span class="heb">ערום</span>) da narrativa edênica (Gn 2:25, 3:1).</span><span class="lang-en">Lot is afraid to stay in Zoar, so he ends up living in the mountains after all (Gen. 19:30, 17), specifically, in a cave (<span class="heb">מערה</span>), a wordplay on &ldquo;little&rdquo; (<span class="heb">מצער</span>) and &ldquo;nakedness&rdquo; (<span class="heb">ערום</span>) and &ldquo;shrewd&rdquo; (<span class="heb">ערום</span>) from the Eden narrative (Gen. 2:25, 3:1).</span></p>
-  <p class="body reveal"><span class="lang-pt">A primogênita de Ló e a &ldquo;menor&rdquo; (<span class="heb">צעירה</span>) elaboram seu próprio plano para &ldquo;manter viva sua semente&rdquo; (<span class="heb">נחיה</span> &hellip; <span class="heb">זרע</span>, 19:32, 34), embora Deus já o tenha feito, assim como fez pela família de Noé (Gn 7:20). Assim como Ló propôs seu próprio plano que levou à pequena Zoar, agora suas filhas propõem seu próprio plano para salvar sua semente numa caverna (<span class="heb">מערה</span>).</span><span class="lang-en">Lot&rsquo;s firstborn and &ldquo;little one&rdquo; (<span class="heb">צעירה</span>) devise their own plan to &ldquo;keep alive their seed&rdquo; (<span class="heb">נחיה</span> &hellip; <span class="heb">זרע</span>, 19:32, 34), even though God has already done so, just as he did for Noah&rsquo;s family (Gen. 7:20). Just as Lot proposed his own plan that led to little Zoar, so now his daughters propose their own plan to save their seed in a cave (<span class="heb">מערה</span>).</span></p>
-  <p class="body reveal"><span class="lang-pt">Em ambos os casos, os personagens refletem uma ignorância do livramento de Yahweh e assim desenvolvem seu próprio plano, levando à nomeação de uma cidade (Zoar), e ao nascimento e nomeação de dois filhos (Moabe e Amom) que virão a causar problemas aos descendentes de Avraham.</span><span class="lang-en">In both cases, the characters reflect an ignorance of Yahweh&rsquo;s deliverance and so develop their own plan instead, leading to the naming of a city (Zoar), and to the birth and naming of two sons (Moab and Ammon) who will come to cause trouble for Avraham&rsquo;s descendants.</span></p>
+  <h2 class="section reveal"><span class="lang-pt">Caim, Ló e as Filhas de Ló</span><span class="lang-en">Cain, Lot, and Lot’s Daughters</span></h2>
+  <p class="body reveal"><span class="lang-pt">Observe como a unidade de Gênesis 19:17-22, que relata como Ló foi forçado para fora de Sodoma pelos anjos, conclui com uma etiologia sobre a nomeação de Zoar (Gn 19:22). Toda esta unidade trata de como Deus mostra misericórdia a Ló e o dirige a fugir para as montanhas (<span class="heb">ההרה המלט</span>, Gn 19:17). Mas Ló prefere fugir para uma cidade e habitar ali.</span><span class="lang-en">Notice how the unit of Genesis 19:17-22, which relates how Lot was forced outside of Sodom by the angels, concludes with an etiology about the naming of Zoar (Gen. 19:22). This entire unit is about how God shows mercy to Lot and directs him to flee to the mountains (<span class="heb">ההרה המלט</span>, Gen. 19:17). But Lot would rather flee to a city and dwell there.</span></p>
+  <p class="body reveal"><span class="lang-pt">Toda esta cena recorda a história de Caim, quando Deus mostra misericórdia a ele após matar seu irmão (Gn 4:9-17). Deus promete proteger Caim, colocando um sinal sobre ele, mas Caim imediatamente vai para o exílio e constrói para si sua própria forma de proteção, uma cidade (<span class="heb">עיר</span>), à qual chama pelo nome de seu filho (<span class="heb">,קרא + שם</span>) Gn 4:17).</span><span class="lang-en">This entire scene recalls the story of Cain, when God shows mercy to him after he murders his brother (Gen. 4:9-17). God promises to protect Cain by placing a sign upon him, but Cain immediately goes into exile and builds for himself his own form of protection, a city (<span class="heb">עיר</span>), which he calls by the name of his son (<span class="heb">,קרא + שם</span>) Gen. 4:17).</span></p>
+  <p class="body reveal"><span class="lang-pt">Esta unidade final de Gênesis 19:17-22 desenvolve criativamente este tema, pois a Ló é mostrada a “misericórdia de Yahweh” (<span class="heb">,חמלת יהוה</span>) Gn 19:16). Em vez de aceitar o livramento de Yahweh, ele negocia seu próprio plano para ser poupado numa cidade (<span class="heb">עיר</span>), cujo nome está sujeito a vários jogos de palavras (<span class="heb">צוער ,מצער</span>). A unidade conclui com a nomeação da cidade: “Assim, chama-se o nome da cidade Zoar” (19:22).</span><span class="lang-en">This final unit of Genesis 19:17-22 creatively develops this theme, as Lot is shown the “mercy of Yahweh” (<span class="heb">,חמלת יהוה</span>) Gen. 19:16). Instead of accepting Yahweh’s deliverance, he negotiates his own plan to be spared in a city (<span class="heb">עיר</span>), the name of which is subject to various wordplays (<span class="heb">צוער ,מצער</span>). The unit concludes with the naming of the city: “So then, one calls the name of the city Zoar” (19:22).</span></p>
+  <p class="body reveal"><span class="lang-pt">Observe como esta unidade de Gênesis 19:17-22 atua como uma moldura para as unidades bônus sobre as filhas de Ló (Gn 19:30-38). Ela provê um episódio espelhado da hesitação e das negociações de Ló com os anjos, ao mesmo tempo em que ecoa a história de Noé e Cão após o dilúvio.</span><span class="lang-en">Notice how this unit of Genesis 19:17-22 acts as a frame to the bonus units about Lot’s daughters (Gen. 19:30-38). It provides a mirror episode of Lot’s hesitation and negotiations with the angels while also echoing the story of Noah and Ham after the flood.</span></p>
+  <p class="body reveal"><span class="lang-pt">Ló teme ficar em Zoar, então acaba vivendo nas montanhas afinal (Gn 19:30, 17), especificamente numa caverna (<span class="heb">מערה</span>), um jogo de palavras com “pequena” (<span class="heb">מצער</span>) e “nudez” (<span class="heb">ערום</span>) e “astúcia” (<span class="heb">ערום</span>) da narrativa edênica (Gn 2:25, 3:1).</span><span class="lang-en">Lot is afraid to stay in Zoar, so he ends up living in the mountains after all (Gen. 19:30, 17), specifically, in a cave (<span class="heb">מערה</span>), a wordplay on “little” (<span class="heb">מצער</span>) and “nakedness” (<span class="heb">ערום</span>) and “shrewd” (<span class="heb">ערום</span>) from the Eden narrative (Gen. 2:25, 3:1).</span></p>
+  <p class="body reveal"><span class="lang-pt">A primogênita de Ló e a “menor” (<span class="heb">צעירה</span>) elaboram seu próprio plano para “manter viva sua semente” (<span class="heb">נחיה</span> … <span class="heb">זרע</span>, 19:32, 34), embora Deus já o tenha feito, assim como fez pela família de Noé (Gn 7:20). Assim como Ló propôs seu próprio plano que levou à pequena Zoar (<span class="heb">מצער ,צוער</span>), agora suas filhas propõem seu próprio plano para salvar sua semente numa caverna (<span class="heb">מערה ,זרע</span>).</span><span class="lang-en">Lot’s firstborn and “little one” (<span class="heb">צעירה</span>) devise their own plan to “keep alive their seed” (<span class="heb">נחיה</span> … <span class="heb">זרע</span>, 19:32, 34), even though God has already done so, just as he did for Noah’s family (Gen. 7:20). Just as Lot proposed his own plan that led to little Zoar (<span class="heb">מצער ,צוער</span>), so now his daughters propose their own plan to save their seed in a cave (<span class="heb">מערה ,זרע</span>).</span></p>
+  <p class="body reveal"><span class="lang-pt">Em ambos os casos, os personagens refletem uma ignorância do livramento de Yahweh e assim desenvolvem seu próprio plano, levando à nomeação de uma cidade (Zoar), e ao nascimento e nomeação de dois filhos (Moabe e Amom) que virão a causar problemas aos descendentes de Avraham.</span><span class="lang-en">In both cases, the characters reflect an ignorance of Yahweh’s deliverance and so develop their own plan instead, leading to the naming of a city (Zoar), and to the birth and naming of two sons (Moab and Ammon) who will come to cause trouble for Avraham’s descendants.</span></p>
 
   <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Questão para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
   <p class="body reveal"><span class="lang-pt">Amon e Moabe nascem de uma série de eventos trágicos e perturbadores. Que papel os seus descendentes desempenham no drama bíblico?</span><span class="lang-en">Ammon and Moab are born from a string of tragic and disturbing events. What role do their descendants play in the biblical drama?</span></p>
@@ -639,6 +666,7 @@
     <span>Class Notes: Abraham</span>
     <span><span class="lang-pt">Sessão 19 · Um Dilúvio de Fogo</span><span class="lang-en">Session 19 · A Flood of Fire</span></span>
   </div>
+
 </div>
 <script>
   function setLang(lang) {
