@@ -36,24 +36,40 @@
   .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem; }
 
   /* ---------- Macro design & Two Col (Cards) ---------- */
-  .macro, .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 2rem 0 .75rem; }
-  .card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 1.5rem; background: #fff; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05); transition: transform .2s, box-shadow .2s; }
-  .card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.05); }
+  .macro { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1rem; margin: 2rem 0 .75rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0 .75rem; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin: 2rem 0 .75rem; }
+  .card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 1.5rem; background: #fff; box-shadow: none; transition: none; }
+  /* Cards with green tag get green border */
+  .card:has(.mtag-green) { border-color: #2E8B57 !important; border-width: 1.5px; }
+  /* Cards with dark tag get dark border */
+  .card:has(.mtag-dark) { border-color: #6C7B8B !important; border-width: 1.5px; }
+  /* Cards with brown tag get brown border */
+  .card:has(.mtag-brown) { border-color: #8B7355 !important; border-width: 1.5px; }
+  /* Cards with gray tag get gray border */
+  .card:has(.mtag-gray) { border-color: #9CA3AF !important; border-width: 1px; }
   .mtag { display: inline-block; font-size: .85rem; font-weight: 700; color: #fff; padding: 4px 12px; border-radius: 6px; margin-bottom: .75rem; }
-  .mtag-dark { background: #4F5669; } .mtag-green { background: #3A8060; }
+  .mtag-dark { background: #475569; } .mtag-green { background: #2E8B57; } .mtag-brown { background: #8B7355; } .mtag-gray { background: #E2E8F0; color: #334155; }
   .card-title { font-size: 1.1rem; font-weight: 800; color: #17181a; margin-bottom: .65rem; line-height: 1.4; }
   .card-text { font-size: .95rem; line-height: 1.6; color: #4b5563; }
-  @media (max-width: 860px) { .macro, .two-col { grid-template-columns: 1fr; } }
+  /* Two-col cards: light gray border matching PDF */
+  .two-col .card { border-color: #D1D5DB !important; box-shadow: none; }
+  /* Grid-3 cards */
+  .grid-3 .card { border-radius: 10px; padding: 1.25rem; box-shadow: none; }
+  .grid-3 .card .mtag { margin-bottom: .5rem; }
+  @media (max-width: 860px) { .macro, .two-col, .grid-3 { grid-template-columns: 1fr; } }
 
   /* ---------- verse chips (Gen 19 translation) ---------- */
-  .v-outer { border: 1.5px solid #E4E8ED; border-radius: 20px; padding: 1.4rem 1.5rem; margin: 1.4rem 0; background: #fff; }
-  .v-outer.dark { border: 2.5px solid #17181a; border-radius: 16px; padding: 1.2rem 1.5rem; margin: 1.1rem 0; }
+  .v-outer { border: 1px solid #E0E0E0; border-radius: 14px; padding: 1.4rem 1.5rem; margin: 1.4rem 0; background: #fff; }
+  .v-outer.dark { border: 3px solid #1F2937; border-radius: 12px; padding: 1.5rem 1.5rem; margin: 1.1rem 0; }
+  .v-outer.light { border: 1px solid #E5E7EB; border-radius: 12px; padding: 1.2rem 1.5rem; margin: 1.1rem 0; background: #F9FAFB; }
   .v-line { font-size: 1.06rem; line-height: 2.1; color: #1f2937; }
   .chip { display: inline; padding: 2px 7px; border-radius: 6px; font-weight: 700; line-height: 1.9; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
   /* Cores exatas medidas do PDF */
   .c-beige  { background: #FAE4C4; color: #91362E; }   .c-blue   { background: #D9EDFD; color: #404CA6; }   .c-blue2  { background: #CCF1FA; color: #245791; }
   .c-green-solid { background: #3A8060; color: #fff; } .c-teal   { background: #B9EFF7; color: #00626F; }   .c-rose   { background: #F7E1F5; color: #713C92; }
   .c-gray-solid { background: #6B7384; color: #fff; }  .c-green  { background: #D3F2CD; color: #2B6146; }   .c-beige2 { background: #EFE7DA; color: #645537; }
+  .c-mint   { background: #D1FAE5; color: #065F46; }   .c-tan    { background: #FEF3C7; color: #92400E; }
   .c-maroon { background: #B5543A; color: #fff; }      .c-brown-solid { background: #4F4229; color: #fff; } .c-smoke  { background: #FBE8DE; color: #972A4E; }
   .c-purple-solid { background: #54305F; color: #fff; }.c-magenta { background: #9955A8; color: #fff; }     .c-life   { background: #3678B4; color: #fff; }
   /* Texto colorido SEM chip */
@@ -61,15 +77,15 @@
   .t-green  { color: #3A8060; font-weight: 700; } .t-brown  { color: #816F4D; font-weight: 700; } .t-olive  { color: #645537; font-weight: 700; }
   .v-div { border: 0; border-top: 1px solid #E4E8ED; margin: 1.1rem 0; }
   .lbl { color: #4F5669; font-weight: 700; font-size: .9rem; margin-right: .35rem; min-width: 2.5rem; display: inline-block; text-align: right; }
-  .speech-label { font-weight: 800; font-size: 1rem; color: #4F5669; letter-spacing: .01em; margin: .2rem 0 .35rem; }
+  .speech-label { font-weight: 800; font-size: 1.05rem; color: #111827; letter-spacing: .01em; margin: .2rem 0 .35rem; }
   .speech-label:first-child { margin-top: 0; }
   sup.vs { font-size: .72em; color: #333; font-weight: 700; margin-right: 2px; }
   .i1 { padding-left: 1.6rem; } .i2 { padding-left: 3.2rem; } .i3 { padding-left: 4.8rem; }
   .chiastic { font-weight: 800; color: #4F5669; margin-right: .4rem; display: inline-block; min-width: 1.2rem; }
 
   /* ---------- tables ---------- */
-  .doc-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 3px solid #d9dee6; border-radius: 14px; overflow: hidden; background: #fff; }
-  .doc-table th { background: #E4E8EC; text-align: left; padding: 1rem 1.3rem; font-weight: 800; font-size: 1.02rem; color: #17181a; }
+  .doc-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid #D1D5DB; border-radius: 12px; overflow: hidden; background: #F9FAFB; }
+  .doc-table th { background: #E5E7EB; text-align: left; padding: 1rem 1.3rem; font-weight: 800; font-size: 1.02rem; color: #111827; }
   .doc-table td { padding: 1.1rem 1.3rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.78; font-size: .97rem; color: #24262a; }
   .doc-table td + td { border-left: 1px solid #e5e7eb; }
   .doc-table tfoot td { border-top: 1px solid #d1d5db; background: #fbfcfd; color: #5b6472; font-size: .92rem; }
@@ -515,6 +531,8 @@
         <p class="i2"><span class="lang-pt"><span class="chiastic">c'</span> ele e <span class="chip c-rose">as suas duas filhas</span>.</span><span class="lang-en"><span class="chiastic">c'</span> he and <span class="chip c-rose">his two daughters</span>.</span></p>
       </div>
     </div>
+  </div>
+  <div class="v-outer dark reveal">
     <hr class="v-div">
     <div class="v-line" style="display:flex; gap:.9rem;">
       <span class="lbl" style="padding-top:.35rem;">31</span>
@@ -525,7 +543,7 @@
         <p class="i2"><span class="lang-pt">como é o costume de toda a terra.</span><span class="lang-en">as is the way of all the land.</span></p>
         <p class="i1"><span class="lang-pt"><span class="chiastic">C</span> <sup class="vs">32</sup> <span class="t-green">Vamos, façamos nosso pai beber vinho</span>,</span><span class="lang-en"><span class="chiastic">C</span> <sup class="vs">32</sup> <span class="t-green">Come, let’s make our father drink wine</span>,</span></p>
         <p class="i2"><span class="lang-pt">e <span class="t-green">deitemos com ele</span>,</span><span class="lang-en">and <span class="t-green">let’s lie with him</span>,</span></p>
-        <p class="i2"><span class="lang-pt">e <span class="t-green">faremos</span> <span class="chip c-green">viver semente</span> (<span class="heb">זרע</span>) <span class="t-green">do nosso pai</span>.”</span><span class="lang-en">and <span class="t-green">we will make</span> <span class="chip c-green">seed</span> (<span class="heb">זרע</span>) <span class="t-green">come to life from our father</span>.”</span></p>
+        <p class="i2"><span class="lang-pt">e <span class="t-green">faremos</span> <span class="chip c-mint">viver semente</span> (<span class="heb">זרע</span>) <span class="t-green">do nosso pai</span>.”</span><span class="lang-en">and <span class="t-green">we will make</span> <span class="chip c-mint">seed</span> (<span class="heb">זרע</span>) <span class="t-green">come to life from our father</span>.”</span></p>
         <p class="i1"><span class="lang-pt"><span class="chiastic">D</span> <sup class="vs">33</sup> <span class="t-brown">E naquela noite fizeram seu pai beber vinho</span>,</span><span class="lang-en"><span class="chiastic">D</span> <sup class="vs">33</sup> <span class="t-brown">And they made their father drink wine in that night</span>,</span></p>
         <p class="i2"><span class="lang-pt">e a <span class="chip c-purple-solid">primogênita</span> <span class="t-brown">foi</span></span><span class="lang-en">and the <span class="chip c-purple-solid">firstborn</span> <span class="t-brown">went</span></span></p>
         <p class="i2"><span class="lang-pt">e <span class="t-brown">deitou-se com seu pai</span>,</span><span class="lang-en">and <span class="t-brown">she laid with her father</span>,</span></p>
@@ -540,12 +558,18 @@
         <p class="i1"><span class="lang-pt"><span class="chiastic">B'</span> “<span class="t-green">Olha</span>, na passada noite me deitei com meu pai.</span><span class="lang-en"><span class="chiastic">B'</span> “<span class="t-green">Look</span>, I laid last night with my father.</span></p>
         <p class="i1"><span class="lang-pt"><span class="chiastic">C'</span> <span class="t-green">Vamos fazê-lo beber vinho também hoje à noite</span>,</span><span class="lang-en"><span class="chiastic">C'</span> <span class="t-green">Let’s make him drink wine also tonight</span>,</span></p>
         <p class="i2"><span class="lang-pt">e vai, <span class="t-green">deita-te com ele</span>,</span><span class="lang-en">and go, <span class="t-green">lie with him</span>,</span></p>
-        <p class="i2"><span class="lang-pt">para que <span class="t-green">façamos</span> <span class="chip c-green">viver semente</span> (<span class="heb">זרע</span>) <span class="t-green">do nosso pai</span>.”</span><span class="lang-en">so we can <span class="t-green">make</span> <span class="chip c-green">seed</span> (<span class="heb">זרע</span>) <span class="t-green">come to life from our father</span>.”</span></p>
+        <p class="i2"><span class="lang-pt">para que <span class="t-green">façamos</span> <span class="chip c-mint">viver semente</span> (<span class="heb">זרע</span>) <span class="t-green">do nosso pai</span>.”</span><span class="lang-en">so we can <span class="t-green">make</span> <span class="chip c-mint">seed</span> (<span class="heb">זרע</span>) <span class="t-green">come to life from our father</span>.”</span></p>
         <p class="i1"><span class="lang-pt"><span class="chiastic">D'</span> <sup class="vs">35</sup> <span class="t-brown">E outra vez fizeram seu pai beber vinho naquela noite</span>,</span><span class="lang-en"><span class="chiastic">D'</span> <sup class="vs">35</sup> <span class="t-brown">And they again made their father drink wine on that night</span>,</span></p>
         <p class="i2"><span class="lang-pt">e a <span class="chip c-magenta">menor</span> (<span class="heb">צעירה</span>) <span class="t-brown">se levantou</span></span><span class="lang-en">and the <span class="chip c-magenta">little one</span> (<span class="heb">צעירה</span>) <span class="t-brown">got up</span></span></p>
-        <p class="i2"><span class="lang-pt">e <span class="t-brown">deitou-se com</span> <span class="chip c-beige2">seu pai</span>,</span><span class="lang-en">and <span class="t-brown">she laid with</span> <span class="chip c-beige2">her father</span>,</span></p>
+        <p class="i2"><span class="lang-pt">e <span class="t-brown">deitou-se com</span> <span class="chip c-tan">seu pai</span>,</span><span class="lang-en">and <span class="t-brown">she laid with</span> <span class="chip c-tan">her father</span>,</span></p>
         <p class="i2"><span class="lang-pt">e ele não soube quando ela se deitou nem quando se levantou.</span><span class="lang-en">and he did not know when she laid down and when she got up.</span></p>
-        <p class="i1"><sup class="vs">36</sup> <span class="lang-pt">E <span class="chip c-rose">as duas filhas de Ló</span> engravidaram de <span class="chip c-beige2">seu pai</span>.</span><span class="lang-en">36 And <span class="chip c-rose">the two daughters of Lot</span> became pregnant by <span class="chip c-beige2">their father</span>.</span></p>
+      </div>
+    </div>
+  </div>
+  <div class="v-outer light reveal">
+    <div class="v-line" style="display:flex; gap:.9rem;">
+      <div style="flex:1;">
+        <p class="i1"><sup class="vs">36</sup> <span class="lang-pt">E <span class="chip c-rose">as duas filhas de Ló</span> engravidaram de <span class="chip c-tan">seu pai</span>.</span><span class="lang-en">36 And <span class="chip c-rose">the two daughters of Lot</span> became pregnant by <span class="chip c-tan">their father</span>.</span></p>
         <p class="i1"><span class="lang-pt"><span class="chiastic">a</span> <sup class="vs">37</sup> E a <span class="chip c-purple-solid">primogênita</span> deu à luz um filho,</span><span class="lang-en"><span class="chiastic">a</span> <sup class="vs">37</sup> And the <span class="chip c-purple-solid">firstborn</span> gave birth to a son,</span></p>
         <p class="i2"><span class="lang-pt"><span class="chiastic">b</span> e chamou o seu nome de “Moabe”,</span><span class="lang-en"><span class="chiastic">b</span> and she called his name “Moab”,</span></p>
         <p class="i2"><span class="lang-pt"><span class="chiastic">c</span> ele é o pai de Moabe até o dia de hoje.</span><span class="lang-en"><span class="chiastic">c</span> he is the father of Moab until this day.</span></p>
@@ -589,45 +613,56 @@
   <h2 class="section reveal"><span class="lang-pt">Noé e Cão, Ló e Suas Filhas</span><span class="lang-en">Noah and Ham, Lot and His Daughters</span></h2>
   <p class="body reveal"><span class="lang-pt">O significado da história de Ló e suas filhas também é iluminado por sua colocação como uma peça de dobradiça entre a história de Sodoma e a próxima parte da história de Avraham. A narrativa sobre o livramento de Ló de Sodoma por causa da intercessão de Avraham chegou ao fim em 19:27-29, quando Avraham olha para baixo. A história em Gênesis 19:30-38, embora sobre Ló, na verdade constitui um episódio distinto após a ruína de Sodoma. Desse modo, a história se alinha precisamente com a história de Noé e Cão após o dilúvio.</span><span class="lang-en">The significance of the story of Lot and his daughters is also illuminated by its placement as a hinge piece between the Sodom story and the next part of the Avraham story. The narrative about Lot’s deliverance from Sodom because of Avraham’s intercession came to a close in 19:27-29, as Avraham looks down. The story in Genesis 19:30-38, while about Lot, actually stands as a distinct episode after the ruin of Sodom. In this way, the story is precisely aligned with the story of Noah and Ham after the flood.</span></p>
 
-  <div class="two-col reveal">
+  <div class="grid-3 reveal">
     <div class="card">
-      <span class="mtag mtag-dark">Gen. 6:1-9</span>
+      <span class="mtag mtag-gray">Gen. 6:1-9</span>
       <ul class="bullets" style="margin-top:.6rem;">
         <li><span class="lang-pt">Filhos de Elohim tomam filhas de homens como esposas</span><span class="lang-en">Sons of Elohim take human daughters as wives</span></li>
         <li><span class="lang-pt">A terra se enche de violência (<span class="heb">חמס</span>)</span><span class="lang-en">Land is filled with violence (<span class="heb">חמס</span>)</span></li>
       </ul>
-      <span class="mtag mtag-dark" style="margin-top:.4rem; display:inline-block;">Gen. 6:10-9:17</span>
+    </div>
+    <div class="card">
+      <span class="mtag mtag-dark">Gen. 6:10-9:17</span>
       <ul class="bullets" style="margin-top:.6rem;">
         <li><span class="lang-pt">Um dilúvio de águas, chovendo justiça sobre a humanidade corrupta</span><span class="lang-en">A flood of waters, raining justice on the corrupt humanity</span></li>
       </ul>
-      <span class="mtag mtag-dark" style="margin-top:.4rem; display:inline-block;">Gen. 9:18-28 + Cap. 10</span>
+    </div>
+    <div class="card">
+      <span class="mtag mtag-brown">Gen. 9:18-28 + Cap. 10</span>
       <ul class="bullets" style="margin-top:.6rem;">
         <li><span class="lang-pt">Noé cria uma vinha semelhante ao Éden</span><span class="lang-en">Noah creates an Eden-like vineyard</span></li>
         <li><span class="lang-pt">Embriagado em sua tenda</span><span class="lang-en">Drunk in his tent</span></li>
         <li><span class="lang-pt">Filho tenta sexo ilícito</span><span class="lang-en">Son attempts illicit sex</span></li>
         <li><span class="lang-pt">resultando no nascimento dos cananeus</span><span class="lang-en">resulting in birth of the Canaanites</span></li>
       </ul>
-      <p class="caption" style="margin-top:.6rem;"><span class="lang-pt">Genealogias Divergentes. Criado por Tim Mackie para a BibleProject Classroom: Noé a Abraão (2020).</span><span class="lang-en">Diverging Genealogies. Created by Tim Mackie for BibleProject Classroom: Noah to Abraham (2020).</span></p>
     </div>
+  </div>
+  <p class="caption reveal"><span class="lang-pt">Genealogias Divergentes. Criado por Tim Mackie para a BibleProject Classroom: Noé a Abraão (2020).</span><span class="lang-en">Diverging Genealogies. Created by Tim Mackie for BibleProject Classroom: Noah to Abraham (2020).</span></p>
+
+  <div class="grid-3 reveal">
     <div class="card">
-      <span class="mtag mtag-green">Gen. 19:1-14</span>
+      <span class="mtag mtag-gray">Gen. 19:1-14</span>
       <ul class="bullets" style="margin-top:.6rem;">
         <li><span class="lang-pt">Ló protege os anjos oferecendo suas filhas aos homens de Sodoma para violência sexual</span><span class="lang-en">Lot protects angels by offering his daughters to the men of Sodom for sexual violence</span></li>
       </ul>
-      <span class="mtag mtag-green" style="margin-top:.4rem; display:inline-block;">Gen. 19:15-29</span>
+    </div>
+    <div class="card">
+      <span class="mtag mtag-dark">Gen. 19:15-29</span>
       <ul class="bullets" style="margin-top:.6rem;">
         <li><span class="lang-pt">Um dilúvio de justiça, chovendo fogo sobre a cidade humana corrupta</span><span class="lang-en">A flood of justice, raining fire on the corrupt human city</span></li>
       </ul>
-      <span class="mtag mtag-green" style="margin-top:.4rem; display:inline-block;">Gen. 19:30-38</span>
+    </div>
+    <div class="card">
+      <span class="mtag mtag-brown">Gen. 19:30-38</span>
       <ul class="bullets" style="margin-top:.6rem;">
         <li><span class="lang-pt">Ló encontra uma caverna semelhante ao Éden</span><span class="lang-en">Lot finds an Eden-like cave</span></li>
         <li><span class="lang-pt">Embriagado na caverna</span><span class="lang-en">Drunk in the cave</span></li>
         <li><span class="lang-pt">Filhas tentam sexo ilícito</span><span class="lang-en">Daughters attempt illicit sex</span></li>
         <li><span class="lang-pt">resultando no nascimento dos moabitas e amonitas</span><span class="lang-en">resulting in the birth of Moabites and Ammonites</span></li>
       </ul>
-      <p class="caption" style="margin-top:.6rem;"><span class="lang-pt">Genealogias Divergentes. Criado por Tim Mackie para a BibleProject Classroom: Noé a Abraão (2020).</span><span class="lang-en">Diverging Genealogies. Created by Tim Mackie for BibleProject Classroom: Noah to Abraham (2020).</span></p>
     </div>
   </div>
+  <p class="caption reveal"><span class="lang-pt">Genealogias Divergentes. Criado por Tim Mackie para a BibleProject Classroom: Noé a Abraão (2020).</span><span class="lang-en">Diverging Genealogies. Created by Tim Mackie for BibleProject Classroom: Noah to Abraham (2020).</span></p>
 
   <p class="body reveal"><span class="lang-pt">Comparar as duas histórias destaca múltiplas características da história de Ló. A loucura de Noé não foi em cultivar uma vinha, mas em beber tanto que se tornou vulnerável aos desejos predatórios de seu filho. A loucura de Ló não foi em aceitar o conselho dos anjos e o livramento que eles procuravam prover. Antes, sua loucura foi em seu desejo de garantir seu próprio livramento indo para uma cidade “pequena” (Zoar). Sua loucura cria problemas adicionais. Por algum motivo não declarado, Ló e suas filhas deixam Zoar e sobem para as colinas orientais, onde sua escolha de uma caverna isola toda a sua família. É precisamente esse isolamento que leva as filhas a pensar que são as únicas pessoas restantes na região e que precisam conceber seu próprio plano para “manter a semente viva” (Gn 19:32, 34).</span><span class="lang-en">Comparing the two stories highlights multiple features of Lot’s story. Noah’s folly was not in cultivating a vineyard but in drinking so much that he became vulnerable to his son’s predatory desires. Lot’s folly wasn’t in accepting the counsel of the angels and the deliverance that they sought to provide. Rather, his folly was in his desire to secure his own deliverance by going to a “little” city (Zoar). His folly creates further problems. For some unstated reason, Lot and his daughters leave Zoar and go up to the eastern hills, where his choice of a cave isolates their entire family. It’s precisely that isolation that leads the daughters to think that they’re the only people left in the region and that they need to come up with their own plan to “keep seed alive” (Gen. 19:32, 34).</span></p>
   <p class="body reveal"><span class="lang-pt">Em ambos os casos, o resultado da loucura do pai e do comportamento impróprio dos filhos é o nascimento de filhos que se tornarão hostis aos descendentes de Avraham pelo resto da Bíblia Hebraica.</span><span class="lang-en">In both cases, the result of the father’s folly and the children’s inappropriate behavior is the birth of sons who will become hostile to Avraham’s descendants for the rest of the Hebrew Bible.</span></p>
