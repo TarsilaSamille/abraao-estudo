@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>As Palavras “Céus” e “Terra” na Bíblia Hebraica</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+    .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+      ul.bullets { list-style: none; padding: 0; }
+      ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+      ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+      .bibleref { font-weight: 700; font-size: 1.05rem; margin-top: 2rem; margin-bottom: 0.3rem; letter-spacing: -0.005em; color: #2563eb; }
+      .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+      .scripture:hover { border-left-color: #9aa7b8; }
+      .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+      .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+      .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+
+<div id="reading-progress" aria-hidden="true"></div>
+
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+
+  <h1 class="title reveal"><span class="lang-pt">Sessão 2: As Palavras “Céus” e “Terra” na Bíblia Hebraica</span><span class="lang-en">Session 2: The Words “Heavens” and “Earth” in the Hebrew Bible</span></h1>
+  <hr class="rule">
+
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">Our modern views of Heaven and Earth are different from those of the biblical authors.</span><span class="lang-en">Our modern views of Heaven and Earth are different from those of the biblical authors.</span></li>
+    <li><span class="lang-pt">A common modern view of Heaven is that it is a blissful place you go when you die.</span><span class="lang-en">A common modern view of Heaven is that it is a blissful place you go when you die.</span></li>
+    <li><span class="lang-pt">A common modern view of Earth is that it is a planet that revolves around the sun.</span><span class="lang-en">A common modern view of Earth is that it is a planet that revolves around the sun.</span></li>
+    <li><span class="lang-pt">In the Hebrew Bible, “heavens” means &quot;sky&quot; and also represents God’s space.</span><span class="lang-en">In the Hebrew Bible, “heavens” means &quot;sky&quot; and also represents God’s space.</span></li>
+    <li><span class="lang-pt">In the Hebrew Bible, &quot;earth&quot; is the space of humanity and the animals.</span><span class="lang-en">In the Hebrew Bible, &quot;earth&quot; is the space of humanity and the animals.</span></li>
+    <li><span class="lang-pt">In the Hebrew Bible, the waters are a third space that can represent chaos or death.</span><span class="lang-en">In the Hebrew Bible, the waters are a third space that can represent chaos or death.</span></li>
+  </ul>
+  <h2 class="section reveal"><span class="lang-pt">Tim’s Initial Understanding of Heaven and Earth</span><span class="lang-en">Tim’s Initial Understanding of Heaven and Earth</span></h2>
+  <p class="body reveal"><span class="lang-pt">The modern conception of the words Heaven and Earth usually have a clear meaning: The Earth is the globe and the world as a whole. The Earth is passing away, and Jesus has opened up a way for sins to be forgiven so that Christians can go to Heaven after death. Heaven is a postmortem, spiritual dimension—a disembodied paradise of eternal life with God. Sometimes, this is shared as the “biblical” view of reality. However, the Bible uses the words “heaven” and “earth” in a way that not only challenges the modern view but also points to a different biblical story.</span><span class="lang-en">The modern conception of the words Heaven and Earth usually have a clear meaning: The Earth is the globe and the world as a whole. The Earth is passing away, and Jesus has opened up a way for sins to be forgiven so that Christians can go to Heaven after death. Heaven is a postmortem, spiritual dimension—a disembodied paradise of eternal life with God. Sometimes, this is shared as the “biblical” view of reality. However, the Bible uses the words “heaven” and “earth” in a way that not only challenges the modern view but also points to a different biblical story.</span></p>
+  <h2 class="section reveal"><span class="lang-pt">Old Testament Texts About Heaven and Earth</span><span class="lang-en">Old Testament Texts About Heaven and Earth</span></h2>
+  <h3 class="bibleref reveal"><span class="lang-pt">Genesis 1:1 NASB</span><span class="lang-en">Genesis 1:1 NASB</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">In the beginning God created the heavens and the earth.</span><span class="lang-en">In the beginning God created the heavens and the earth.</span></div></div>
+  <p class="body reveal"><span class="lang-pt">In this passage, notice that heavens is plural and refers to the sky in contrast to earth. Heaven, in this passage, is the literal sky above, not an afterlife dimension.</span><span class="lang-en">In this passage, notice that heavens is plural and refers to the sky in contrast to earth. Heaven, in this passage, is the literal sky above, not an afterlife dimension.</span></p>
+  <h3 class="bibleref reveal"><span class="lang-pt">Psalm 24:1-2 NASB</span><span class="lang-en">Psalm 24:1-2 NASB</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">1 The earth is the LORD’S, and all it contains, the world, and those who dwell in it. 2 For he has founded it upon the seas, and established it upon the rivers.</span><span class="lang-en">1 The earth is the LORD’S, and all it contains, the world, and those who dwell in it. 2 For he has founded it upon the seas, and established it upon the rivers.</span></div></div>
+  <p class="body reveal"><span class="lang-pt">In this passage, the earth is founded upon the seas and rivers. This is different from modern cosmology, which understands the Earth as a sphere floating in space.</span><span class="lang-en">In this passage, the earth is founded upon the seas and rivers. This is different from modern cosmology, which understands the Earth as a sphere floating in space.</span></p>
+  <h3 class="bibleref reveal"><span class="lang-pt">Psalm 104:1-5 NASB</span><span class="lang-en">Psalm 104:1-5 NASB</span></h3>
+  <p class="body reveal"><span class="lang-pt">1 Bless the LORD, O my soul! O LORD my God, you are very great; you are clothed with splendor and majesty, 2 covering yourself with light as with a cloak, stretching out heaven like a tent curtain. 3 He lays the beams of his upper chambers in the waters; he makes the clouds his chariot; he walks on the wings of the wind; 4 he makes the winds his messengers, flaming fire his ministers. 5 He established the earth upon its foundations, so that it will not totter forever and ever. Here, Heaven is like a tent where God lives in the waters up above, and the Earth sits on pillars so that it won’t tip over.</span><span class="lang-en">1 Bless the LORD, O my soul! O LORD my God, you are very great; you are clothed with splendor and majesty, 2 covering yourself with light as with a cloak, stretching out heaven like a tent curtain. 3 He lays the beams of his upper chambers in the waters; he makes the clouds his chariot; he walks on the wings of the wind; 4 he makes the winds his messengers, flaming fire his ministers. 5 He established the earth upon its foundations, so that it will not totter forever and ever. Here, Heaven is like a tent where God lives in the waters up above, and the Earth sits on pillars so that it won’t tip over.</span></p>
+  <h2 class="section reveal"><span class="lang-pt">The Biblical Understanding of the Cosmos</span><span class="lang-en">The Biblical Understanding of the Cosmos</span></h2>
+  <p class="body reveal"><span class="lang-pt">The following is a helpful place to begin for our understanding of the biblical definitions of the cosmos. Heavens = God’s space Earth = Human’s space Waters = Nobody’s space</span><span class="lang-en">The following is a helpful place to begin for our understanding of the biblical definitions of the cosmos. Heavens = God’s space Earth = Human’s space Waters = Nobody’s space</span></p>
+  <h3 class="bibleref reveal"><span class="lang-pt">Exodus 20:3-4 NASB</span><span class="lang-en">Exodus 20:3-4 NASB</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">3 You shall have no other gods before me. 4 You shall not make for yourself an idol, or any likeness of what is in heaven above or on the earth beneath or in the water under the earth.</span><span class="lang-en">3 You shall have no other gods before me. 4 You shall not make for yourself an idol, or any likeness of what is in heaven above or on the earth beneath or in the water under the earth.</span></div></div>
+  <p class="body reveal"><span class="lang-pt">This passage is one of the Ten Commandments. If Heaven is another dimension of God’s space that’s only for the afterlife, how does someone know how to make an idol of a creature who lives there? Therefore, “heaven above,” as used here, must mean “skies.” But what are the “waters under the earth”?</span><span class="lang-en">This passage is one of the Ten Commandments. If Heaven is another dimension of God’s space that’s only for the afterlife, how does someone know how to make an idol of a creature who lives there? Therefore, “heaven above,” as used here, must mean “skies.” But what are the “waters under the earth”?</span></p>
+  <h3 class="bibleref reveal"><span class="lang-pt">Jonah 2:1-7 NASB</span><span class="lang-en">Jonah 2:1-7 NASB</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">1 Then Jonah prayed to the LORD his God from the stomach of the fish, 2 and he said, “I called out of my distress to the LORD, and he answered me. I cried for help from the depth of Sheol; you heard my voice. 3</span><span class="lang-en">1 Then Jonah prayed to the LORD his God from the stomach of the fish, 2 and he said, “I called out of my distress to the LORD, and he answered me. I cried for help from the depth of Sheol; you heard my voice. 3</span></div></div>
+  <p class="body reveal"><span class="lang-pt">For you had cast me into the deep, into the heart of the seas, and the current engulfed me. All your breakers and waves passed over me. 4 So I said, ‘I have been expelled from your sight. Nevertheless I will look again toward your holy temple.’ 5 Water encompassed me to the point of death. The great deep engulfed me, weeds were wrapped around my head. 6 I descended to the roots of the mountains. The earth with its bars was around me forever, but you have brought up my life from the pit, O LORD my God. 7 While I was fainting away, I remembered the LORD, and my prayer rose up to you, into your holy temple.” There are a variety of terms used for “the stomach of the fish.” For example: Sheol (an untranslated Hebrew word for “the grave”), the deep, death, the earth, the mountain roots, and the pit. Jonah’s prayer “rose up” to God’s temple, which we assume means the temple in Jerusalem. But why use “rise up” language when the temple is on the dry land in Jerusalem?</span><span class="lang-en">For you had cast me into the deep, into the heart of the seas, and the current engulfed me. All your breakers and waves passed over me. 4 So I said, ‘I have been expelled from your sight. Nevertheless I will look again toward your holy temple.’ 5 Water encompassed me to the point of death. The great deep engulfed me, weeds were wrapped around my head. 6 I descended to the roots of the mountains. The earth with its bars was around me forever, but you have brought up my life from the pit, O LORD my God. 7 While I was fainting away, I remembered the LORD, and my prayer rose up to you, into your holy temple.” There are a variety of terms used for “the stomach of the fish.” For example: Sheol (an untranslated Hebrew word for “the grave”), the deep, death, the earth, the mountain roots, and the pit. Jonah’s prayer “rose up” to God’s temple, which we assume means the temple in Jerusalem. But why use “rise up” language when the temple is on the dry land in Jerusalem?</span></p>
+  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">How have you typically understood the words “Heaven” and “Earth”? How does this understanding compare to the biblical authors’ view of the heavens and the earth?</span><span class="lang-en">How have you typically understood the words “Heaven” and “Earth”? How does this understanding compare to the biblical authors’ view of the heavens and the earth?</span></p>
+
+  <div class="page-footer">
+    <span>Class Notes: Heaven and Earth</span>
+    <span><span class="lang-pt">Sessão 2 · As Palavras “Céus” e “Terra” na Bíblia Hebraica</span><span class="lang-en">Session 2 · The Words “Heavens” and “Earth” in the Hebrew Bible</span></span>
+  </div>
+</div>
+
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s2-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s2-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+  <script src="../js/verse-modal.js"></script>
+</body>
+</html>
