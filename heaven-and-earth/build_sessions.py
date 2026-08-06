@@ -265,7 +265,7 @@ def build_block_html(block):
     if mode == "bibleref":
         return f'  <h3 class="bibleref reveal"><span class="lang-pt">{pt_h}</span><span class="lang-en">{en_h}</span></h3>'
     if mode == "scripture":
-        return f'  <blockquote class="scripture reveal"><span class="lang-pt">{pt_h}</span><span class="lang-en">{en_h}</span></blockquote>'
+        return f'  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">{pt_h}</span><span class="lang-en">{en_h}</span></div></div>'
     if mode == "refq":
         return f'  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflex\u00e3o</span><span class="lang-en">Reflection Question</span></h3>\n  <p class="body reveal"><span class="lang-pt">{pt_h}</span><span class="lang-en">{en_h}</span></p>'
     if mode == "caption":
@@ -291,13 +291,16 @@ SHELL_HEAD = """<!DOCTYPE html>
   h2.section {{ font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }}
   h3.sub {{ font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }}
   p.body {{ font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }}
-    .rule {{ border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }}
-  ul.bullets {{ list-style: none; padding: 0; }}
-  ul.bullets > li {{ padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }}
-    ul.bullets > li:before {{ content: "\\2022"; position: absolute; left: .55rem; color: #1a1a1a; }}
-        .bibleref {{ font-weight: 700; font-size: 1.05rem; margin-top: 2rem; margin-bottom: 0.3rem; letter-spacing: -0.005em; color: #2563eb; }}
-        blockquote.scripture {{ margin: 0.6rem 0 1.2rem 1.2rem; padding: 0.6rem 1.2rem; border-left: 3px solid #d1d5db; font-style: italic; color: #374151; font-size: 1.0rem; line-height: 1.72; background: #f9fafb; border-radius: 0 6px 6px 0; }}
-        .caption {{ font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }}
+    .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+      ul.bullets { list-style: none; padding: 0; }
+      ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+      ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+      .bibleref { font-weight: 700; font-size: 1.05rem; margin-top: 2rem; margin-bottom: 0.3rem; letter-spacing: -0.005em; color: #2563eb; }
+      .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+      .scripture:hover { border-left-color: #9aa7b8; }
+      .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+      .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+      .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
   .page-footer {{ display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }}
   #reading-progress {{ position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }}
   .reveal {{ opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }}
