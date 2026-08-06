@@ -8,7 +8,7 @@ Modulo 3
 11 12 13 14 15
 
 Modulo 4
-16 17 18
+16 17 18 (19-pode melhorar)
 
 Modulo 5 
 
