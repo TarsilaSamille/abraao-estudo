@@ -133,6 +133,16 @@ def _is_heading(line):
     caps = sum(1 for w in words if w[:1].isupper())
     return caps >= max(1, len(words) * 0.6)
 
+def _is_bible_ref(line):
+    # "Genesis 1:1 NASB", "Psalm 24:1-2 NASB", "Exodus 20:3-4 NASB", "Jonah 2:1-7 NASB"
+    # also "Psalm 104:1-5 NASB"
+    return bool(re.match(r'^(1\s+)?(Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|1\s*Samuel|2\s*Samuel|1\s*Kings|2\s*Kings|1\s*Chronicles|2\s*Chronicles|Ezra|Nehemiah|Esther|Job|Psalm|Proverbs|Ecclesiastes|Song\s+of\s+Songs|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi|Matthew|Mark|Luke|John|Acts|Romans|1\s*Corinthians|2\s*Corinthians|Galatians|Ephesians|Philippians|Colossians|1\s*Thessalonians|2\s*Thessalonians|1\s*Timothy|2\s*Timothy|Titus|Philemon|Hebrews|James|1\s*Peter|2\s*Peter|1\s*John|2\s*John|3\s*John|Jude|Revelation)\s+\d+:\d+', line))
+
+_COMMENTARY_STARTERS = {"in", "here", "therefore", "this", "for", "however", "so", "thus", "but", "and in", "there are", "we all", "the following"}
+def _is_commentary_start(line):
+    lower_first = line.split()[0].lower().rstrip(",:;")
+    return lower_first in _COMMENTARY_STARTERS
+
 def parse_session_body(raw):
     """Parse raw PDF text of one session into structured blocks.
 
@@ -163,8 +173,12 @@ def parse_session_body(raw):
             flush(); i += 1; continue
         if _is_page_header(line):
             i += 1; continue
+        # consume multi-line session title: "Session N: ...\nmore title\nKey Takeaways"
         if re.match(r'^Session \d+:', line):
-            i += 1; continue
+            i += 1
+            while i < len(lines) and lines[i].strip().lower() != "key takeaways" and lines[i].strip():
+                i += 1
+            continue
         if low == "key takeaways":
             flush(); mode = "bullets"; i += 1; continue
         if low == "reflection question":
@@ -184,7 +198,34 @@ def parse_session_body(raw):
             flush()
             blocks.append(("caption", line))
             i += 1; continue
-        if _is_heading(line) and mode in (None, "p", "section", "caption", "refq", "bullets"):
+        if _is_bible_ref(line):
+            flush()
+            blocks.append(("bibleref", line))
+            # next mode is scripture quote — consume until blank line
+            mode = "scripture"
+            buf = []
+            i += 1
+            while i < len(lines):
+                nxt = lines[i].strip()
+                if nxt == "" or _is_page_header(nxt) or _is_bible_ref(nxt) or nxt.lower() in ("key takeaways", "reflection question") or _is_caption(nxt):
+                    break
+                # scripture quotes are verse-numbered ("1 Bless the LORD..."),
+                # commentary lines start with commentary patterns
+                if nxt and nxt[0].isupper() and not nxt[0].isdigit() and buf:
+                    # "In this passage, ...", "Here, ...", "Therefore, ..." -> commentary, not scripture
+                    lower_first_word = nxt.split()[0].lower().rstrip(",")
+                    if lower_first_word in ("in", "here", "therefore", "this", "for", "however", "so", "thus", "but", "and in"):
+                        break
+                    # short commentary lines that explain: "This passage is one..."
+                    if buf and _is_commentary_start(nxt):
+                        break
+                buf.append(nxt); i += 1
+            text = " ".join(b.strip() for b in buf).strip()
+            text = re.sub(r'\s+', ' ', text)
+            if text:
+                blocks.append(("scripture", text))
+            buf = []; continue
+        if _is_heading(line) and mode in (None, "p", "section", "caption", "refq", "bullets", "bibleref", "scripture"):
             flush(); mode = "section"; buf.append(line); flush(); i += 1; continue
         if mode == "bullets":
             # accumulate lines until blank/heading/page-header — each sentence = one bullet
@@ -192,7 +233,7 @@ def parse_session_body(raw):
             j = i + 1
             while j < len(lines):
                 nxt = lines[j].strip()
-                if nxt == "" or _is_page_header(nxt) or nxt.lower() in ("key takeaways", "reflection question") or _is_caption(nxt) or (_is_heading(nxt) and _is_heading(nxt)):
+                if nxt == "" or _is_page_header(nxt) or nxt.lower() in ("key takeaways", "reflection question") or _is_caption(nxt) or _is_bible_ref(nxt) or (_is_heading(nxt) and _is_heading(nxt)):
                     break
                 buf.append(nxt); j += 1
             text = " ".join(b.strip() for b in buf).strip()
@@ -221,6 +262,10 @@ def build_block_html(block):
     pt_h = html.escape(pt)
     if mode == "section":
         return f'  <h2 class="section reveal"><span class="lang-pt">{pt_h}</span><span class="lang-en">{en_h}</span></h2>'
+    if mode == "bibleref":
+        return f'  <h3 class="bibleref reveal"><span class="lang-pt">{pt_h}</span><span class="lang-en">{en_h}</span></h3>'
+    if mode == "scripture":
+        return f'  <blockquote class="scripture reveal"><span class="lang-pt">{pt_h}</span><span class="lang-en">{en_h}</span></blockquote>'
     if mode == "refq":
         return f'  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflex\u00e3o</span><span class="lang-en">Reflection Question</span></h3>\n  <p class="body reveal"><span class="lang-pt">{pt_h}</span><span class="lang-en">{en_h}</span></p>'
     if mode == "caption":
@@ -246,11 +291,13 @@ SHELL_HEAD = """<!DOCTYPE html>
   h2.section {{ font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }}
   h3.sub {{ font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }}
   p.body {{ font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }}
-  .rule {{ border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }}
+    .rule {{ border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }}
   ul.bullets {{ list-style: none; padding: 0; }}
   ul.bullets > li {{ padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }}
-  ul.bullets > li:before {{ content: "\\2022"; position: absolute; left: .55rem; color: #1a1a1a; }}
-  .caption {{ font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }}
+    ul.bullets > li:before {{ content: "\\2022"; position: absolute; left: .55rem; color: #1a1a1a; }}
+        .bibleref {{ font-weight: 700; font-size: 1.05rem; margin-top: 2rem; margin-bottom: 0.3rem; letter-spacing: -0.005em; color: #2563eb; }}
+        blockquote.scripture {{ margin: 0.6rem 0 1.2rem 1.2rem; padding: 0.6rem 1.2rem; border-left: 3px solid #d1d5db; font-style: italic; color: #374151; font-size: 1.0rem; line-height: 1.72; background: #f9fafb; border-radius: 0 6px 6px 0; }}
+        .caption {{ font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }}
   .page-footer {{ display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }}
   #reading-progress {{ position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }}
   .reveal {{ opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }}
