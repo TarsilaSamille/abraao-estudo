@@ -27,8 +27,11 @@
   .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
 
   /* ---------- translation boxes (A/B/C/B'/A' width chiasm, sibling) ---------- */
-  .v-outer { border: 1.5px solid #e4e8ed; border-radius: 20px; padding: 1.4rem 1.5rem; margin: 1.4rem 0; background: #fff; }
-  .v-light { border: 1.5px solid #e4e8ed; border-radius: 16px; padding: 1.2rem 1.4rem; margin: 1.1rem 0; background: #fff; }
+  .v-outer { padding: 1.4rem 1.5rem; margin: 1.4rem 0; background: #fff; }
+  .v-light { border-radius: 16px; padding: 1.2rem 1.4rem; margin: 1.1rem 0; background: #fff; }
+  .v-blk { border-left: 4px solid #1b1b1b; }
+  .v-grn { border-left: 4px solid #3a8060; }
+  .v-none { }
   .v-line { font-size: 1.07rem; line-height: 2.1; color: #1f2937; position: relative; padding-left: 1.4rem; }
   .v-div { border: 0; border-top: 1px solid #e6eaf0; margin: 1.1rem 0; }
   .lbl { color: #6b7280; font-weight: 600; font-size: .85rem; margin-right: .25rem; }
@@ -47,16 +50,16 @@
   .k-rose  { background: #be4967; color: #fff; font-weight: 700; }
   .k-lblue { background: #d9ecfd; color: #404ca6; font-weight: 600; }
 
-  /* ---------- macro design boxes (5 siblings, colored borders + pills) ---------- */
-  .macro { border: 2px solid; border-radius: 14px; padding: 1.15rem 1.3rem; margin: 1rem 0; background: #fff; }
+  /* ---------- macro design boxes (5 siblings, colored borders + pills, light-grey fill per PDF p1) ---------- */
+  .macro { border: 2px solid; border-radius: 14px; padding: 1.15rem 1.3rem; margin: 1rem 0; background: #e4e8ed; }
   .macro-tag { display: inline-block; font-size: .9rem; font-weight: 700; color: #fff; padding: 2px 11px; border-radius: 999px; margin-bottom: .8rem; }
   .macro h4 { font-weight: 800; font-size: 1.03rem; color: #17181a; margin: 0 0 .7rem; line-height: 1.35; }
   .macro ul.bullets { margin-top: 0; }
   .macro ul.bullets > li { font-size: .98rem; margin-bottom: .4rem; line-height: 1.6; }
   .m-navy { border-color: #3e4054; } .m-navy .macro-tag { background: #3e4054; }
-  .m-grey { border-color: #6b7384; } .m-grey .macro-tag { background: #6b7384; }
-  .m-light { border-color: #e4e8ed; } .m-light .macro-tag { background: #e4e8ed; color: #4f5669; }
-  .stair-1 { margin-left: 3.5rem; } .stair-2 { margin-left: 7rem; }
+  .m-grey { border-color: #6b7384; background: #fff; } .m-grey .macro-tag { background: #6b7384; }
+  .m-light { border-color: #c4ccd6; background: #fff; } .m-light .macro-tag { background: #aab3c0; color: #1b1b1b; }
+  .stair-1 { margin-left: 1.25rem; } .stair-2 { margin-left: 2.5rem; }
   @media(max-width:640px){ .stair-1, .stair-2 { margin-left: 0; } }
 
   /* ---------- blockquotes (Sarna / Hawk): white box, thin black left border ---------- */
@@ -72,12 +75,14 @@
   .doc-table .desc { font-weight: 700; color: #17181a; }
   .doc-table .q { margin-top: .5rem; font-size: .95rem; line-height: 1.75; color: #333; }
 
-  /* ---------- instructor's translation block ---------- */
-  .instr { background: #e4e8ed; border-radius: 12px; padding: 1.2rem 1.4rem; margin: 1.3rem 0; }
+  /* ---------- instructor's translation block (white + black left bar, per PDF p5) ---------- */
+  .instr { background: #fff; border-left: 3px solid #e4e8ed; border-radius: 0 12px 12px 0; padding: 1.2rem 1.4rem; margin: 1.3rem 0; }
   .instr-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
   .instr-type { color: #4f5669; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
   .instr p { font-size: 1.02rem; line-height: 1.85; color: #1b1b1b; margin-bottom: .35rem; }
   .instr .note { color: #6b7280; }
+  /* plunder block = plain (PDF p5 top block has NO border/line) */
+  .instr-block { background: #fff; border-left: 0; border-radius: 0; padding: 0; margin: 1.3rem 0; }
 
   .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
   #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
@@ -127,7 +132,7 @@
   <h2 class="section reveal" style="margin-top:1.5rem;"><span class="lang-pt">Tradução e Design Literário de Gênesis 12:10-20</span><span class="lang-en">Translation and Literary Design of Genesis 12:10-20</span></h2>
 
   <!-- ============ BOX 1: INTRODUCTION (A, full width) ============ -->
-  <div class="v-outer reveal">
+  <div class="v-outer v-none reveal">
     <span class="box-pill"><span class="lang-pt">Introdução: Abrão Desce ao Egito por Causa da Fome</span><span class="lang-en">Introduction: Avram Goes to Egypt Because of a Famine</span></span>
     <p class="v-line"><span class="lbl">a</span><sup class="vs">10</sup> <span class="lang-pt">Ora, houve uma <span class="k k-sand">fome na terra</span>;</span><span class="lang-en">Now there was a <span class="k k-sand">famine in the land</span>;</span></p>
     <p class="v-line i1"><span class="lbl">b</span><span class="lang-pt">e Abrão desceu ao Egito para peregrinar ali,</span><span class="lang-en">and Avram went down to Egypt to sojourn there,</span></p>
@@ -135,7 +140,7 @@
   </div>
 
   <!-- ============ BOX 2: AVRAM NEARS EGYPT (B, indented) ============ -->
-  <div class="v-light reveal stair-1">
+  <div class="v-light v-blk reveal stair-1">
     <span class="box-pill"><span class="lang-pt">Abrão se Aproxima do Egito + o Discurso de Abrão a Sarai</span><span class="lang-en">Avram Nears Egypt + Avram&rsquo;s Speech to Sarai</span></span>
     <p class="v-line"><sup class="vs">11</sup> <span class="lang-pt">E aconteceu que, quando ele se aproximou de entrar no Egito, e ele disse a Sarai, sua esposa,</span><span class="lang-en">And it came about when he came near to entering Egypt, and he said to Sarai his wife,</span></p>
     <p class="v-line i1"><span class="lang-pt">&ldquo;Vê agora, eu sei que você é <span class="k k-blush">uma mulher bela de aparência</span>;</span><span class="lang-en">&ldquo;See now, I know that you are <span class="k k-blush">a woman beautiful of sight</span>;</span></p>
@@ -145,7 +150,7 @@
   </div>
 
   <!-- ============ BOX 3: EGYPTIANS SEE SARAI (C, most indented) ============ -->
-  <div class="v-light reveal stair-2">
+  <div class="v-light v-grn reveal stair-2">
     <span class="box-pill"><span class="lang-pt">Os Egípcios Veem Sarai e o Faraó a Toma</span><span class="lang-en">Egyptians See Sarai and Pharaoh Takes Her</span></span>
     <p class="v-line"><sup class="vs">14</sup> <span class="lang-pt">E aconteceu que, quando Abrão entrou no Egito, e <span class="k k-rose">os egípcios viram que a mulher era muito bela</span>.</span><span class="lang-en">And it came about when Avram came into Egypt, and <span class="k k-rose">the Egyptians saw that the woman was very beautiful</span>.</span></p>
     <p class="v-line"><sup class="vs">15</sup> <span class="lang-pt">E os oficiais do Faraó <span class="k k-rose">a viram</span> e a elogiaram ao Faraó; e a mulher foi <span class="k k-rose">levada</span> para a casa do Faraó.</span><span class="lang-en">And Pharaoh&rsquo;s officials <span class="k k-rose">saw her</span> and praised her to Pharaoh; and the woman was <span class="k k-rose">taken</span> into Pharaoh&rsquo;s house.</span></p>
@@ -154,7 +159,7 @@
   </div>
 
   <!-- ============ BOX 4: PLAGUES ON PHARAOH (B', indented) ============ -->
-  <div class="v-light reveal stair-1">
+  <div class="v-light v-blk reveal stair-1">
     <span class="box-pill"><span class="lang-pt">Pragas sobre o Faraó + o Discurso do Faraó a Abrão</span><span class="lang-en">Plagues on Pharaoh + Pharaoh&rsquo;s Speech to Avram</span></span>
     <p class="v-line"><sup class="vs">17</sup> <span class="lang-pt">E Iavé feriu o Faraó e a sua casa com grandes pragas por causa de Sarai, <span class="k k-seed">a esposa de Abrão</span>.</span><span class="lang-en">And Yahweh plagued Pharaoh and his house with great plagues on account of Sarai, <span class="k k-seed">Avram&rsquo;s wife</span>.</span></p>
     <p class="v-line"><sup class="vs">18</sup> <span class="lang-pt">E o Faraó chamou Abrão e disse:</span><span class="lang-en">And Pharaoh called Avram and he said,</span></p>
@@ -164,15 +169,14 @@
   </div>
 
   <!-- ============ BOX 5: CONCLUSION (A', full width) ============ -->
-  <div class="v-outer reveal">
+  <div class="v-outer v-none reveal">
     <span class="box-pill"><span class="lang-pt">Conclusão: Abrão Enviado do Egito pelo Faraó</span><span class="lang-en">Conclusion: Avram Sent Away From Egypt by Pharaoh</span></span>
     <p class="v-line"><sup class="vs">20</sup> <span class="lang-pt">E o Faraó ordenou aos seus homens a respeito dele;</span><span class="lang-en">And Pharaoh commanded his men concerning him;</span></p>
     <p class="v-line i1"><span class="lang-pt">e eles o despediram, com a sua esposa e tudo o que lhe pertencia.</span><span class="lang-en">and they sent him away, with his wife and all that belonged to him.</span></p>
   </div>
   <p class="caption reveal"><span class="lang-pt"><em>Gênesis 12:10-20</em>. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: Introdução à Bíblia Hebraica (2019).</span><span class="lang-en"><em>Genesis 12:10-20</em>. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Introduction to the Hebrew Bible (2019).</span></p>
 
-  <!-- ================= MACRO DESIGN ================= -->
-  <h2 class="section reveal" style="margin-top:2.5rem;"><span class="lang-pt">Design do Macro</span><span class="lang-en">Macro Design</span></h2>
+  <!-- ================= MACRO DESIGN (no heading in PDF — flows after caption) ================= -->
 
   <div class="macro m-navy reveal">
     <span class="macro-tag"><span class="lang-pt">Gênesis 12:10</span><span class="lang-en">Genesis 12:10</span></span>
@@ -317,13 +321,15 @@
   </div>
 
   <!-- ================= AVRAM'S EGYPTIAN PLUNDER ================= -->
-  <h2 class="section reveal"><span class="lang-pt">O Despojo Egípcio de Abrão</span><span class="lang-en">Avram&rsquo;s Egyptian Plunder</span></h2>
-  <p class="body reveal"><span class="lang-pt">Esta história também estabelece uma série de temas que serão desenvolvidos em episódios futuros.</span><span class="lang-en">This story also sets up a number of themes that will be developed in future episodes.</span></p>
-  <ul class="bullets reveal" style="margin-bottom:2.5rem;">
+  <div class="instr-block reveal">
+  <h2 class="section" style="margin-top:0;margin-bottom:1.25rem;"><span class="lang-pt">O Despojo Egípcio de Abrão</span><span class="lang-en">Avram&rsquo;s Egyptian Plunder</span></h2>
+  <p class="body" style="margin-bottom:1.1rem;"><span class="lang-pt">Esta história também estabelece uma série de temas que serão desenvolvidos em episódios futuros.</span><span class="lang-en">This story also sets up a number of themes that will be developed in future episodes.</span></p>
+  <ul class="bullets" style="margin-bottom:2.5rem;">
     <li><span class="lang-pt">A falta de confiança de Abrão na proteção e na promessa de Deus. Isso será abordado novamente no capítulo 15.</span><span class="lang-en">Avram&rsquo;s lack of trust in God&rsquo;s protection and promise. This will be addressed again in chapter 15.</span></li>
     <li><span class="lang-pt">Os esquemas de curto prazo de Abrão para obter ou reter a bênção de Deus por sua própria sabedoria. Isso se repetirá novamente nos capítulos 16, 21 e 22.</span><span class="lang-en">Avram&rsquo;s short-sighted schemes to get or retain God&rsquo;s blessing by his own wisdom. This will replay itself again in chapters 16, 21, and 22.</span></li>
     <li><span class="lang-pt">O &ldquo;despojo&rdquo; de Abrão consiste em rebanhos de animais e escravos, ambos os quais causarão problemas em histórias posteriores.</span><span class="lang-en">Avram&rsquo;s &ldquo;plunder&rdquo; consists of animal flocks and slaves, both of which will cause problems in later stories.</span></li>
   </ul>
+  </div>
 
   <!-- ================= INSTRUCTOR'S TRANSLATION ================= -->
   <div class="instr reveal">
