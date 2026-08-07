@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O Princípio e o Nada</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+    .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+      ul.bullets { list-style: none; padding: 0; }
+      ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+      ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+      .bibleref { font-weight: 700; font-size: 1.05rem; margin-top: 2rem; margin-bottom: 0.3rem; letter-spacing: -0.005em; color: #2563eb; }
+      .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+      .scripture:hover { border-left-color: #9aa7b8; }
+      .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+      .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+      .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+
+<div id="reading-progress" aria-hidden="true"></div>
+
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+
+  <h1 class="title reveal"><span class="lang-pt">Sessão 10: O Princípio e o Nada</span><span class="lang-en">Session 10: The Beginning and Nothingness</span></h1>
+  <hr class="rule">
+
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">__TR__:Ancient creation accounts are about function rather than material existence.__/TR__</span><span class="lang-en">Ancient creation accounts are about function rather than material existence.</span></li>
+    <li><span class="lang-pt">__TR__:Things are thought to exist only when they are given a purpose and a name.__/TR__</span><span class="lang-en">Things are thought to exist only when they are given a purpose and a name.</span></li>
+    <li><span class="lang-pt">__TR__:Gênesis 1 then is mainly about the purpose of the universe rather than its material creation.__/TR__</span><span class="lang-en">Genesis 1 then is mainly about the purpose of the universe rather than its material creation.</span></li>
+    <li><span class="lang-pt">__TR__:(While Yahweh is the creator of all things out of nothing, this may not be what Genesis 1 is about.)__/TR__</span><span class="lang-en">(While Yahweh is the creator of all things out of nothing, this may not be what Genesis 1 is about.)</span></li>
+  </ul>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Gênesis 1:1-2: The Introduction and the Pre-Creation State__/TR__</span><span class="lang-en">Genesis 1:1-2: The Introduction and the Pre-Creation State</span></h3>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Gênesis 1:1 NASB*__/TR__</span><span class="lang-en">Genesis 1:1 NASB*</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:In the beginning, God created the skies and the land. *Key Words Adapted by Teacher__/TR__</span><span class="lang-en">In the beginning, God created the skies and the land. *Key Words Adapted by Teacher</span></div></div>
+  <p class="body reveal"><span class="lang-pt">__TR__:In this verse, “beginning” (Hebrew: reshīt / ראשית) refers not to a first point in time but to a preliminary period of time.__/TR__</span><span class="lang-en">In this verse, “beginning” (Hebrew: reshīt / ראשית) refers not to a first point in time but to a preliminary period of time.</span></p>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Jó 8:6-7 NASB*__/TR__</span><span class="lang-en">Job 8:6-7 NASB*</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:6 If you are pure and upright, surely then [God] will rouse himself for you and restore your rightful habitation. 7 Even though your reshīt was insignificant, your end will be very great. *Key Words Adapted by Teacher__/TR__</span><span class="lang-en">6 If you are pure and upright, surely then [God] will rouse himself for you and restore your rightful habitation. 7 Even though your reshīt was insignificant, your end will be very great. *Key Words Adapted by Teacher</span></div></div>
+  <p class="body reveal"><span class="lang-pt">__TR__:Here, the entire period of Job’s life before his suffering is called the reshīt, the beginning period.__/TR__</span><span class="lang-en">Here, the entire period of Job’s life before his suffering is called the reshīt, the beginning period.</span></p>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Jeremias 27:1 NASB*__/TR__</span><span class="lang-en">Jeremiah 27:1 NASB*</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:In the reshīt of the reign of Zedekiah the son of Josiah, king of Judah, this word came to Jeremiah from the LORD, saying ... *Key Words Adapted by Teacher__/TR__</span><span class="lang-en">In the reshīt of the reign of Zedekiah the son of Josiah, king of Judah, this word came to Jeremiah from the LORD, saying ... *Key Words Adapted by Teacher</span></div></div>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Jeremias 28:1 NASB*__/TR__</span><span class="lang-en">Jeremiah 28:1 NASB*</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:Now in the same year, in the reshīt of the reign of Zedekiah king of Judah, in the fourth year, in the fifth month, Hananiah the son of Azzur, the prophet, who was from Gibeon, spoke to me in the house of the LORD in the presence of the priests and all the people, saying ... *Key Words Adapted by Teacher__/TR__</span><span class="lang-en">Now in the same year, in the reshīt of the reign of Zedekiah king of Judah, in the fourth year, in the fifth month, Hananiah the son of Azzur, the prophet, who was from Gibeon, spoke to me in the house of the LORD in the presence of the priests and all the people, saying ... *Key Words Adapted by Teacher</span></div></div>
+  <p class="body reveal"><span class="lang-pt">__TR__:Notice how the reshīt of Zedekiah’s reign extends over four years. The word here refers to the initial period of his reign before the crucial events of his downfall began. “In Genesis, the ‘beginning’ (reshīt) refers to a preliminary period of time rather than a first point in time … This leads us to conclude that the ‘beginning’ is a way of labeling the seven-day period of creation described in the remainder of Genesis 1 rather than a point in time prior to the seven days … It provides a literary introduction to the period of creativity that then flows into the … rest of the book.” Walton, John H. (2011). Genesis 1 as Ancient Cosmology. Eisenbrauns. 126-127.__/TR__</span><span class="lang-en">Notice how the reshīt of Zedekiah’s reign extends over four years. The word here refers to the initial period of his reign before the crucial events of his downfall began. “In Genesis, the ‘beginning’ (reshīt) refers to a preliminary period of time rather than a first point in time … This leads us to conclude that the ‘beginning’ is a way of labeling the seven-day period of creation described in the remainder of Genesis 1 rather than a point in time prior to the seven days … It provides a literary introduction to the period of creativity that then flows into the … rest of the book.” Walton, John H. (2011). Genesis 1 as Ancient Cosmology. Eisenbrauns. 126-127.</span></p>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Gênesis 1:2 as the pre-creation state is described by the use of waters, darkness, and wilderness. Specifically,__/TR__</span><span class="lang-en">Genesis 1:2 as the pre-creation state is described by the use of waters, darkness, and wilderness. Specifically,</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:the land is described as wild and waste or in Hebrew, tohu vavohu. What is meant by tohu vavohu? Other Uses of Tohu or Vohu: “Empty/Uninhabited/Wasteland”__/TR__</span><span class="lang-en">the land is described as wild and waste or in Hebrew, tohu vavohu. What is meant by tohu vavohu? Other Uses of Tohu or Vohu: “Empty/Uninhabited/Wasteland”</span></div></div>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Deuteronômio 32:9-10 NASB*__/TR__</span><span class="lang-en">Deuteronomy 32:9-10 NASB*</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:9 For the LORD’S portion is his people; Jacob is the allotment of his inheritance. 10 He found him in a desert land, and in the howling tohu of a wilderness; he encircled him, he cared for him, he guarded him as the pupil of his eye. *Key Words Adapted by Teacher__/TR__</span><span class="lang-en">9 For the LORD’S portion is his people; Jacob is the allotment of his inheritance. 10 He found him in a desert land, and in the howling tohu of a wilderness; he encircled him, he cared for him, he guarded him as the pupil of his eye. *Key Words Adapted by Teacher</span></div></div>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Isaías 24:10-12 NASB*__/TR__</span><span class="lang-en">Isaiah 24:10-12 NASB*</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:10 The city of tohu is broken down; every house is shut up so that none may enter. 11 There is an outcry in the streets concerning the wine; all joy turns to gloom. The gaiety of the earth is banished. 12 Desolation is left in the city and the gate is battered to ruins. *Key Words Adapted by Teacher__/TR__</span><span class="lang-en">10 The city of tohu is broken down; every house is shut up so that none may enter. 11 There is an outcry in the streets concerning the wine; all joy turns to gloom. The gaiety of the earth is banished. 12 Desolation is left in the city and the gate is battered to ruins. *Key Words Adapted by Teacher</span></div></div>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Isaías 45:18 NIV*__/TR__</span><span class="lang-en">Isaiah 45:18 NIV*</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:For this is what the LORD says— he who created the heavens, he is God; he who fashioned and made the earth, he founded it; he did not create it to be tohu, but formed it to be inhabited—he says: “I am the LORD, and there is no other.” *Key Words Adapted by Teacher__/TR__</span><span class="lang-en">For this is what the LORD says— he who created the heavens, he is God; he who fashioned and made the earth, he founded it; he did not create it to be tohu, but formed it to be inhabited—he says: “I am the LORD, and there is no other.” *Key Words Adapted by Teacher</span></div></div>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Salmos 107:40 Instructor’s Translation__/TR__</span><span class="lang-en">Psalm 107:40 Instructor’s Translation</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:[Yahweh] pours contempt on nobles, and he makes them wander in a tohu that has no road.__/TR__</span><span class="lang-en">[Yahweh] pours contempt on nobles, and he makes them wander in a tohu that has no road.</span></div></div>
+  <p class="body reveal"><span class="lang-pt">__TR__:This verse is related to Job 12:21, 24.__/TR__</span><span class="lang-en">This verse is related to Job 12:21, 24.</span></p>
+  <h2 class="section reveal"><span class="lang-pt">__TR__:Uses of Tehom__/TR__</span><span class="lang-en">Uses of Tehom</span></h2>
+  <p class="body reveal"><span class="lang-pt">__TR__:The text continues with “… and darkness was over the face of the deep abyss” (Hebrew: tehom, Gen. 1:2). Below are other biblical passages that use tehom.__/TR__</span><span class="lang-en">The text continues with “… and darkness was over the face of the deep abyss” (Hebrew: tehom, Gen. 1:2). Below are other biblical passages that use tehom.</span></p>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Jó 38:16-17 NASB*__/TR__</span><span class="lang-en">Job 38:16-17 NASB*</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:16 Have you entered into the springs of the sea, or walked in the recesses of the tehom? 17 Have the gates of death been revealed to you, or have you seen the gates of deep darkness? *Key Words Adapted by Teacher__/TR__</span><span class="lang-en">16 Have you entered into the springs of the sea, or walked in the recesses of the tehom? 17 Have the gates of death been revealed to you, or have you seen the gates of deep darkness? *Key Words Adapted by Teacher</span></div></div>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Jonas 2:5-6 NASB*__/TR__</span><span class="lang-en">Jonah 2:5-6 NASB*</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:5 Water encompassed me to the point of death. The tehom engulfed me, weeds were wrapped around my head. 6 I descended to the roots of the mountains. The earth with its bars was around me forever, but you have brought up my life from the pit, O LORD my God. *Key Words Adapted by Teacher__/TR__</span><span class="lang-en">5 Water encompassed me to the point of death. The tehom engulfed me, weeds were wrapped around my head. 6 I descended to the roots of the mountains. The earth with its bars was around me forever, but you have brought up my life from the pit, O LORD my God. *Key Words Adapted by Teacher</span></div></div>
+  <p class="body reveal"><span class="lang-pt">__TR__:In modern cosmologies, water is “something,” but in ancient Near Eastern cosmology, the “cosmic sea” belongs to the pre-creation state, which is a neutral, functionless state of non-organization and lifelessness.__/TR__</span><span class="lang-en">In modern cosmologies, water is “something,” but in ancient Near Eastern cosmology, the “cosmic sea” belongs to the pre-creation state, which is a neutral, functionless state of non-organization and lifelessness.</span></p>
+  <h2 class="section reveal"><span class="lang-pt">__TR__:The Pre-Creation State and Biblical Ontology__/TR__</span><span class="lang-en">The Pre-Creation State and Biblical Ontology</span></h2>
+  <p class="body reveal"><span class="lang-pt">__TR__:Take a look at the following quotes from Dr. John Walton as he describes how the pre-creation state connects to biblical ontology. “Genesis 1:2 ... describes the pre-cosmic condition as it was understood in Israelite thought. As in the rest of the ancient world [the pre-creation state] is not absent of matter, as the primordial waters are already present … [T]hey are the functionless cosmic waters … where order has not yet been imposed, the desert and cosmic waters above and below.” Walton, John H. (2011). Genesis 1 as Ancient Cosmology. Eisenbrauns. 139, 143. “Very little in ancient Near Easter cosmologies [including Genesis 1] relates to the manufacture of the material cosmos … Rather, they recount the organization and ordering of the elements of the cosmos as a functional whole. If we are going to understand ancient views about how the cosmos came into existence (creation cosmology), it is essential that we understand ancient views about what constitutes existence (creation ontology). In the ancient world, something came into existence when it was separated out as a distinct entity and given a function and a name … this is a function-oriented ontology. This is in stark__/TR__</span><span class="lang-en">Take a look at the following quotes from Dr. John Walton as he describes how the pre-creation state connects to biblical ontology. “Genesis 1:2 ... describes the pre-cosmic condition as it was understood in Israelite thought. As in the rest of the ancient world [the pre-creation state] is not absent of matter, as the primordial waters are already present … [T]hey are the functionless cosmic waters … where order has not yet been imposed, the desert and cosmic waters above and below.” Walton, John H. (2011). Genesis 1 as Ancient Cosmology. Eisenbrauns. 139, 143. “Very little in ancient Near Easter cosmologies [including Genesis 1] relates to the manufacture of the material cosmos … Rather, they recount the organization and ordering of the elements of the cosmos as a functional whole. If we are going to understand ancient views about how the cosmos came into existence (creation cosmology), it is essential that we understand ancient views about what constitutes existence (creation ontology). In the ancient world, something came into existence when it was separated out as a distinct entity and given a function and a name … this is a function-oriented ontology. This is in stark</span></p>
+  <p class="body reveal"><span class="lang-pt">__TR__:contrast to modern ontology, which is focused on the material existence or structure of something. For us, the existence of the world is perceived in physical, material terms … this is a substance-oriented ontology. … [For the ancient biblical authors,] creation was about the establishment of the functioning cosmos, not about the origins of the material structure or substance of the cosmos.” Walton, John H. (2006). Ancient Near Eastern Thought and The Old Testament. Baker Academic. 180-181.__/TR__</span><span class="lang-en">contrast to modern ontology, which is focused on the material existence or structure of something. For us, the existence of the world is perceived in physical, material terms … this is a substance-oriented ontology. … [For the ancient biblical authors,] creation was about the establishment of the functioning cosmos, not about the origins of the material structure or substance of the cosmos.” Walton, John H. (2006). Ancient Near Eastern Thought and The Old Testament. Baker Academic. 180-181.</span></p>
+  <h2 class="section reveal"><span class="lang-pt">__TR__:Three Elements of Disorder in Genesis 1 Solved__/TR__</span><span class="lang-en">Three Elements of Disorder in Genesis 1 Solved</span></h2>
+  <p class="body reveal"><span class="lang-pt">__TR__:In the chart below, notice that the three elements of disorder in Genesis 1:2 all find parallels in ancient Near Eastern cosmologies, and each one is separately addressed in days one through three of Genesis 1. Now, the land was wild and waste and darkness was over the face of the deep abyss Day 1: Light contains the darkness Day 2: Waters separated and ordered Day 3: Dry land and edible plants emerge from the waters Three Elements of Disorder in Genesis 1. Created by Tim Mackie for BibleProject Classroom: Heaven and Earth (2019).__/TR__</span><span class="lang-en">In the chart below, notice that the three elements of disorder in Genesis 1:2 all find parallels in ancient Near Eastern cosmologies, and each one is separately addressed in days one through three of Genesis 1. Now, the land was wild and waste and darkness was over the face of the deep abyss Day 1: Light contains the darkness Day 2: Waters separated and ordered Day 3: Dry land and edible plants emerge from the waters Three Elements of Disorder in Genesis 1. Created by Tim Mackie for BibleProject Classroom: Heaven and Earth (2019).</span></p>
+  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">__TR__:According to John Walton, what are ancient Near Eastern “beginnings” stories about? The universe’s material existence or something else? If something else, what?__/TR__</span><span class="lang-en">According to John Walton, what are ancient Near Eastern “beginnings” stories about? The universe’s material existence or something else? If something else, what?</span></p>
+
+  <div class="page-footer">
+    <span>Class Notes: Heaven and Earth</span>
+    <span><span class="lang-pt">Sessão 10 · O Princípio e o Nada</span><span class="lang-en">Session 10 · The Beginning and Nothingness</span></span>
+  </div>
+</div>
+
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s10-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s10-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+  <script src="../js/verse-modal.js"></script>
+</body>
+</html>

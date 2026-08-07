@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O Propósito da Luz no Primeiro Dia</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+    .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+      ul.bullets { list-style: none; padding: 0; }
+      ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+      ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+      .bibleref { font-weight: 700; font-size: 1.05rem; margin-top: 2rem; margin-bottom: 0.3rem; letter-spacing: -0.005em; color: #2563eb; }
+      .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+      .scripture:hover { border-left-color: #9aa7b8; }
+      .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+      .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+      .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+
+<div id="reading-progress" aria-hidden="true"></div>
+
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+
+  <h1 class="title reveal"><span class="lang-pt">Sessão 7: O Propósito da Luz no Primeiro Dia</span><span class="lang-en">Session 7: The Purpose of Light on Day One</span></h1>
+  <hr class="rule">
+
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">__TR__:The creation of light and its separation from darkness generates the fundamental order of time that governs the rest of the chapter—day and night.__/TR__</span><span class="lang-en">The creation of light and its separation from darkness generates the fundamental order of time that governs the rest of the chapter—day and night.</span></li>
+    <li><span class="lang-pt">__TR__:The light of Genesis 1 is called “day.” Day is a period of time that then gets used throughout the rest of the chapter.__/TR__</span><span class="lang-en">The light of Genesis 1 is called “day.” Day is a period of time that then gets used throughout the rest of the chapter.</span></li>
+    <li><span class="lang-pt">__TR__:For example, “It was evening, it was morning, day one.” Rather than recounting the creation of photons, the narrative portrays the creation of light as the fundamental order of time so that life can flourish and the narrative can progress.__/TR__</span><span class="lang-en">For example, “It was evening, it was morning, day one.” Rather than recounting the creation of photons, the narrative portrays the creation of light as the fundamental order of time so that life can flourish and the narrative can progress.</span></li>
+    <li><span class="lang-pt">__TR__:The Creation of Light in Genesis 1:3-5 In Genesis 1:3-5, we read about the creation of light.__/TR__</span><span class="lang-en">The Creation of Light in Genesis 1:3-5 In Genesis 1:3-5, we read about the creation of light.</span></li>
+    <li><span class="lang-pt">__TR__:Gênesis 1:3 reads, “Let there be light” (יהי אור).__/TR__</span><span class="lang-en">Genesis 1:3 reads, “Let there be light” (יהי אור).</span></li>
+    <li><span class="lang-pt">__TR__:But what is actually being created here?__/TR__</span><span class="lang-en">But what is actually being created here?</span></li>
+    <li><span class="lang-pt">__TR__:In modern cosmologies, light consists of photons, tiny packets of energy that behave like a wave and also as particles.__/TR__</span><span class="lang-en">In modern cosmologies, light consists of photons, tiny packets of energy that behave like a wave and also as particles.</span></li>
+    <li><span class="lang-pt">__TR__:When we (living in modern society) read that light is created in Genesis 1, this is what might come to our minds.__/TR__</span><span class="lang-en">When we (living in modern society) read that light is created in Genesis 1, this is what might come to our minds.</span></li>
+    <li><span class="lang-pt">__TR__:But is that how the biblical authors understood light?__/TR__</span><span class="lang-en">But is that how the biblical authors understood light?</span></li>
+    <li><span class="lang-pt">__TR__:Let’s take a closer look.__/TR__</span><span class="lang-en">Let’s take a closer look.</span></li>
+    <li><span class="lang-pt">__TR__:In Genesis 1:5, we are told what is being created.__/TR__</span><span class="lang-en">In Genesis 1:5, we are told what is being created.</span></li>
+    <li><span class="lang-pt">__TR__:The light is called “day,” and the darkness is called “night.” Are day and night material entities?__/TR__</span><span class="lang-en">The light is called “day,” and the darkness is called “night.” Are day and night material entities?</span></li>
+    <li><span class="lang-pt">__TR__:We likely wouldn’t describe these as material entities, such as protons and particles, but as periods of time.__/TR__</span><span class="lang-en">We likely wouldn’t describe these as material entities, such as protons and particles, but as periods of time.</span></li>
+    <li><span class="lang-pt">__TR__:Light here is not a thing that is brought into existence at a specific moment in time.__/TR__</span><span class="lang-en">Light here is not a thing that is brought into existence at a specific moment in time.</span></li>
+    <li><span class="lang-pt">__TR__:Rather, on day one, the order of time is named into meaningful and functional existence.__/TR__</span><span class="lang-en">Rather, on day one, the order of time is named into meaningful and functional existence.</span></li>
+    <li><span class="lang-pt">__TR__:Think for a moment about what is missing.__/TR__</span><span class="lang-en">Think for a moment about what is missing.</span></li>
+    <li><span class="lang-pt">__TR__:According to the text, have the sun, moon, or stars been created yet?__/TR__</span><span class="lang-en">According to the text, have the sun, moon, or stars been created yet?</span></li>
+    <li><span class="lang-pt">__TR__:They haven’t!__/TR__</span><span class="lang-en">They haven’t!</span></li>
+    <li><span class="lang-pt">__TR__:So where does this light come from?__/TR__</span><span class="lang-en">So where does this light come from?</span></li>
+    <li><span class="lang-pt">__TR__:The light is emanating from God himself.__/TR__</span><span class="lang-en">The light is emanating from God himself.</span></li>
+    <li><span class="lang-pt">__TR__:Later biblical authors understood that the light of Genesis 1 is God’s glorious being, emanating into the darkness to bring order (e.g., Ps.__/TR__</span><span class="lang-en">Later biblical authors understood that the light of Genesis 1 is God’s glorious being, emanating into the darkness to bring order (e.g., Ps.</span></li>
+    <li><span class="lang-pt">__TR__:36:5-9; Isa.__/TR__</span><span class="lang-en">36:5-9; Isa.</span></li>
+    <li><span class="lang-pt">__TR__:60:19-20; Rev.__/TR__</span><span class="lang-en">60:19-20; Rev.</span></li>
+    <li><span class="lang-pt">__TR__:22:5).__/TR__</span><span class="lang-en">22:5).</span></li>
+    <li><span class="lang-pt">__TR__:A Thesis on the Meaning of Genesis 1 “The early chapters of Genesis accurately present accounts of cosmic and human origins in the language and conceptual categories of the ancient Israelite authors of the Bible.__/TR__</span><span class="lang-en">A Thesis on the Meaning of Genesis 1 “The early chapters of Genesis accurately present accounts of cosmic and human origins in the language and conceptual categories of the ancient Israelite authors of the Bible.</span></li>
+    <li><span class="lang-pt">__TR__:These texts should not be removed from their ancient context and read as if they describe cosmic or human origins in 21st century scientific terms.__/TR__</span><span class="lang-en">These texts should not be removed from their ancient context and read as if they describe cosmic or human origins in 21st century scientific terms.</span></li>
+    <li><span class="lang-pt">__TR__:They speak in terms of an ancient Near Eastern perception of the world, and should be interpreted within that setting.__/TR__</span><span class="lang-en">They speak in terms of an ancient Near Eastern perception of the world, and should be interpreted within that setting.</span></li>
+    <li><span class="lang-pt">__TR__:When we discern the meaning of the texts in their ancient context, we find that they constitute a worldview statement about God and his relationship to the world, and about humans and their relation to God and the world.__/TR__</span><span class="lang-en">When we discern the meaning of the texts in their ancient context, we find that they constitute a worldview statement about God and his relationship to the world, and about humans and their relation to God and the world.</span></li>
+    <li><span class="lang-pt">__TR__:This basic worldview statement transcends its ancient cultural setting, and commands the attention of God’s people in all places and all times.”__/TR__</span><span class="lang-en">This basic worldview statement transcends its ancient cultural setting, and commands the attention of God’s people in all places and all times.”</span></li>
+    <li><span class="lang-pt">__TR__:Adapted from Carlson, Richard and Longman, Tremper (2010).__/TR__</span><span class="lang-en">Adapted from Carlson, Richard and Longman, Tremper (2010).</span></li>
+    <li><span class="lang-pt">__TR__:Science, Creation, and the Bible: Reconciling Rival Theories of World Origins.__/TR__</span><span class="lang-en">Science, Creation, and the Bible: Reconciling Rival Theories of World Origins.</span></li>
+    <li><span class="lang-pt">__TR__:InterVarsity Press.__/TR__</span><span class="lang-en">InterVarsity Press.</span></li>
+  </ul>
+  <h2 class="section reveal"><span class="lang-pt">__TR__:Worldview__/TR__</span><span class="lang-en">Worldview</span></h2>
+  <p class="body reveal"><span class="lang-pt">__TR__:A worldview is a comprehensive and cosmic story through which a cultural group orders and makes sense of their life experience. Worldviews answer the basic questions of human existence. Questions such as: 1. Who are we? 2. Where are we? 3. What is the problem? 4. What is the solution? 5. Where are we located in the story? Genesis 1 is designed to answer these core questions. And we are going to tackle these questions in three large steps. 1. “Where are we?” We will examine this question by observing the world picture of Genesis 1 (i.e., cosmology). 2. “Who are we?” We will examine this question by observing the creation of humanity in Genesis 1 (i.e., anthropology). 3. “Where are we located in the story?” We will examine this question by observing the creation of time in Genesis 1 (i.e., eschatology). Seeking to understand the worldview of the biblical authors is an important step in discerning the meaning of the biblical texts in their ancient contexts.__/TR__</span><span class="lang-en">A worldview is a comprehensive and cosmic story through which a cultural group orders and makes sense of their life experience. Worldviews answer the basic questions of human existence. Questions such as: 1. Who are we? 2. Where are we? 3. What is the problem? 4. What is the solution? 5. Where are we located in the story? Genesis 1 is designed to answer these core questions. And we are going to tackle these questions in three large steps. 1. “Where are we?” We will examine this question by observing the world picture of Genesis 1 (i.e., cosmology). 2. “Who are we?” We will examine this question by observing the creation of humanity in Genesis 1 (i.e., anthropology). 3. “Where are we located in the story?” We will examine this question by observing the creation of time in Genesis 1 (i.e., eschatology). Seeking to understand the worldview of the biblical authors is an important step in discerning the meaning of the biblical texts in their ancient contexts.</span></p>
+  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">__TR__:In Genesis 1:3-5, light is created. What is this light named? And is the account of light’s creation about material being created (like photons) or the purpose of light?__/TR__</span><span class="lang-en">In Genesis 1:3-5, light is created. What is this light named? And is the account of light’s creation about material being created (like photons) or the purpose of light?</span></p>
+
+  <div class="page-footer">
+    <span>Class Notes: Heaven and Earth</span>
+    <span><span class="lang-pt">Sessão 7 · O Propósito da Luz no Primeiro Dia</span><span class="lang-en">Session 7 · The Purpose of Light on Day One</span></span>
+  </div>
+</div>
+
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s7-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s7-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+  <script src="../js/verse-modal.js"></script>
+</body>
+</html>

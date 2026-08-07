@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rios de Vida</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+    .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+      ul.bullets { list-style: none; padding: 0; }
+      ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+      ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+      .bibleref { font-weight: 700; font-size: 1.05rem; margin-top: 2rem; margin-bottom: 0.3rem; letter-spacing: -0.005em; color: #2563eb; }
+      .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+      .scripture:hover { border-left-color: #9aa7b8; }
+      .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+      .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+      .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+
+<div id="reading-progress" aria-hidden="true"></div>
+
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+
+  <h1 class="title reveal"><span class="lang-pt">Sessão 20: Rios de Vida</span><span class="lang-en">Session 20: Rivers of Life</span></h1>
+  <hr class="rule">
+
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">__TR__:Rivers and springs are life-giving in the Bible.__/TR__</span><span class="lang-en">Rivers and springs are life-giving in the Bible.</span></li>
+    <li><span class="lang-pt">__TR__:A river flows out of Eden to water the whole Earth, and rivers flow down from holy mountains in Ezekiel, Psalm 46, and Revelation.__/TR__</span><span class="lang-en">A river flows out of Eden to water the whole Earth, and rivers flow down from holy mountains in Ezekiel, Psalm 46, and Revelation.</span></li>
+    <li><span class="lang-pt">__TR__:Rivers, springs, and wells become divine gifts of life in the desert at just the right moment for Hagar, the Israelites, and the Samaritan woman when Jesus gives her living water.__/TR__</span><span class="lang-en">Rivers, springs, and wells become divine gifts of life in the desert at just the right moment for Hagar, the Israelites, and the Samaritan woman when Jesus gives her living water.</span></li>
+    <li><span class="lang-pt">__TR__:The book of Revelation also talks about a river of life flowing down.__/TR__</span><span class="lang-en">The book of Revelation also talks about a river of life flowing down.</span></li>
+    <li><span class="lang-pt">__TR__:The Biblical Earth and Its Foundations in a Modern Worldview “We have seen that in biblical cosmology, the earth is flat ...__/TR__</span><span class="lang-en">The Biblical Earth and Its Foundations in a Modern Worldview “We have seen that in biblical cosmology, the earth is flat ...</span></li>
+    <li><span class="lang-pt">__TR__:and held in place by pillars.__/TR__</span><span class="lang-en">and held in place by pillars.</span></li>
+    <li><span class="lang-pt">__TR__:We might well ask, &#x27;But what are the pillars standing on?&#x27; And the biblical authors never even try to answer that question.__/TR__</span><span class="lang-en">We might well ask, &#x27;But what are the pillars standing on?&#x27; And the biblical authors never even try to answer that question.</span></li>
+    <li><span class="lang-pt">__TR__:Had they done so, they would certainly not have appealed to an eternal regress of pillars upon pillars.__/TR__</span><span class="lang-en">Had they done so, they would certainly not have appealed to an eternal regress of pillars upon pillars.</span></li>
+    <li><span class="lang-pt">__TR__:Here we may recall the obscure comment from the book of Job: &#x27;[God] ...__/TR__</span><span class="lang-en">Here we may recall the obscure comment from the book of Job: &#x27;[God] ...</span></li>
+    <li><span class="lang-pt">__TR__:hangs the land upon nothing (Job 26:7).__/TR__</span><span class="lang-en">hangs the land upon nothing (Job 26:7).</span></li>
+    <li><span class="lang-pt">__TR__:The pillars, we might say, are suspended over nothing!__/TR__</span><span class="lang-en">The pillars, we might say, are suspended over nothing!</span></li>
+    <li><span class="lang-pt">__TR__:So why don’t they drop?__/TR__</span><span class="lang-en">So why don’t they drop?</span></li>
+    <li><span class="lang-pt">__TR__:Because, says Job, God suspends them there ...__/TR__</span><span class="lang-en">Because, says Job, God suspends them there ...</span></li>
+    <li><span class="lang-pt">__TR__:For the biblical authors, the pillars speak simply of the stability of the earth ...__/TR__</span><span class="lang-en">For the biblical authors, the pillars speak simply of the stability of the earth ...</span></li>
+    <li><span class="lang-pt">__TR__:and the earth is utterly dependent on God, not just for its beginning, but at each and every moment of its existence.__/TR__</span><span class="lang-en">and the earth is utterly dependent on God, not just for its beginning, but at each and every moment of its existence.</span></li>
+    <li><span class="lang-pt">__TR__:The universe does not ground itself; it does not explain its own being ...__/TR__</span><span class="lang-en">The universe does not ground itself; it does not explain its own being ...</span></li>
+    <li><span class="lang-pt">__TR__:To speak of the earth’s pillar is not a primitive physical claim, but a profound metaphysical one.” Parry, Robin A.__/TR__</span><span class="lang-en">To speak of the earth’s pillar is not a primitive physical claim, but a profound metaphysical one.” Parry, Robin A.</span></li>
+    <li><span class="lang-pt">__TR__:(2014).__/TR__</span><span class="lang-en">(2014).</span></li>
+    <li><span class="lang-pt">__TR__:The Biblical Cosmos: A Pilgrim&#x27;s Guide to the Weird and Wonderful World of the Bible.__/TR__</span><span class="lang-en">The Biblical Cosmos: A Pilgrim&#x27;s Guide to the Weird and Wonderful World of the Bible.</span></li>
+    <li><span class="lang-pt">__TR__:Cascade Books.__/TR__</span><span class="lang-en">Cascade Books.</span></li>
+    <li><span class="lang-pt">__TR__:199-200.__/TR__</span><span class="lang-en">199-200.</span></li>
+    <li><span class="lang-pt">__TR__:Mountains and Rivers in Genesis 1-2 Genesis 1 and 2 depict the emergence of the dry land and Eden as a cosmic mountain where Heaven and Earth overlap.__/TR__</span><span class="lang-en">Mountains and Rivers in Genesis 1-2 Genesis 1 and 2 depict the emergence of the dry land and Eden as a cosmic mountain where Heaven and Earth overlap.</span></li>
+    <li><span class="lang-pt">__TR__:In Genesis 1, God tames the sea, and in Genesis 2, God channels the dark waters below into life- giving waters on the dry land.__/TR__</span><span class="lang-en">In Genesis 1, God tames the sea, and in Genesis 2, God channels the dark waters below into life- giving waters on the dry land.</span></li>
+    <li><span class="lang-pt">__TR__:1:2a: “And the land was wild (Heb.__/TR__</span><span class="lang-en">1:2a: “And the land was wild (Heb.</span></li>
+    <li><span class="lang-pt">__TR__:tohu / תהו) and waste” 1:2b: “And darkness was on the face of the deep abyss (Heb.__/TR__</span><span class="lang-en">tohu / תהו) and waste” 1:2b: “And darkness was on the face of the deep abyss (Heb.</span></li>
+    <li><span class="lang-pt">__TR__:tehom / תהום)” 1:2c: “And the wind/spirit of God was hovering on the face of the waters (Heb.__/TR__</span><span class="lang-en">tehom / תהום)” 1:2c: “And the wind/spirit of God was hovering on the face of the waters (Heb.</span></li>
+    <li><span class="lang-pt">__TR__:hamayim / המים)” These three lines are parallel, matching key terms in order to contrast them.__/TR__</span><span class="lang-en">hamayim / המים)” These three lines are parallel, matching key terms in order to contrast them.</span></li>
+    <li><span class="lang-pt">__TR__:In the place of darkness, we find the opposite, the Spirit of God, through whom the spoken word of God will bring about light.__/TR__</span><span class="lang-en">In the place of darkness, we find the opposite, the Spirit of God, through whom the spoken word of God will bring about light.</span></li>
+    <li><span class="lang-pt">__TR__:Tree of Life in the Center of Eden.__/TR__</span><span class="lang-en">Tree of Life in the Center of Eden.</span></li>
+    <li><span class="lang-pt">__TR__:Illustration created by Tim Mackie for BibleProject Classroom: Heaven and Earth (2019).__/TR__</span><span class="lang-en">Illustration created by Tim Mackie for BibleProject Classroom: Heaven and Earth (2019).</span></li>
+    <li><span class="lang-pt">__TR__:The double “on the face of the” (על־פני) highlights the two parallel terms for waters.__/TR__</span><span class="lang-en">The double “on the face of the” (על־פני) highlights the two parallel terms for waters.</span></li>
+    <li><span class="lang-pt">__TR__:These refer to the same reality (i.e., ocean waters) but with two different interpretations.__/TR__</span><span class="lang-en">These refer to the same reality (i.e., ocean waters) but with two different interpretations.</span></li>
+    <li><span class="lang-pt">__TR__:2b: When darkness is present, the waters are threatening and destructive.__/TR__</span><span class="lang-en">2b: When darkness is present, the waters are threatening and destructive.</span></li>
+    <li><span class="lang-pt">__TR__:2c: When God’s Spirit is present, the waters are controlled and can be life-giving.__/TR__</span><span class="lang-en">2c: When God’s Spirit is present, the waters are controlled and can be life-giving.</span></li>
+    <li><span class="lang-pt">__TR__:“Water is commonly conceived [in the Bible and ANE literature] as a symbol of the oppositional forces of life, an ambiguous symbol of life and death ...__/TR__</span><span class="lang-en">“Water is commonly conceived [in the Bible and ANE literature] as a symbol of the oppositional forces of life, an ambiguous symbol of life and death ...</span></li>
+    <li><span class="lang-pt">__TR__:Water is symbolic of death when it is uncontrolled (too much or too little), and of life when it is controlled, because it provides growth and fertility.__/TR__</span><span class="lang-en">Water is symbolic of death when it is uncontrolled (too much or too little), and of life when it is controlled, because it provides growth and fertility.</span></li>
+    <li><span class="lang-pt">__TR__:This summarizes the movement from Genesis 1:2 to 2:10-14, from the chaotic waters of the dark abyss to the fructifying rivers of Eden.__/TR__</span><span class="lang-en">This summarizes the movement from Genesis 1:2 to 2:10-14, from the chaotic waters of the dark abyss to the fructifying rivers of Eden.</span></li>
+    <li><span class="lang-pt">__TR__:In the Hebrew Bible, this decisive control of the waters is the prerogative of God who is sovereign over death and life ...__/TR__</span><span class="lang-en">In the Hebrew Bible, this decisive control of the waters is the prerogative of God who is sovereign over death and life ...</span></li>
+    <li><span class="lang-pt">__TR__:In this sense, &#x27;deep abyss&#x27; signifies the negative or threatening aspect of the waters, while &#x27;the waters&#x27; represent the positive aspect of water under control.” Morales, Michael (2012).__/TR__</span><span class="lang-en">In this sense, &#x27;deep abyss&#x27; signifies the negative or threatening aspect of the waters, while &#x27;the waters&#x27; represent the positive aspect of water under control.” Morales, Michael (2012).</span></li>
+    <li><span class="lang-pt">__TR__:Tabernacle Prefigured: Cosmic Mountain Ideology in Genesis and Exodus.__/TR__</span><span class="lang-en">Tabernacle Prefigured: Cosmic Mountain Ideology in Genesis and Exodus.</span></li>
+    <li><span class="lang-pt">__TR__:Peeters Publishers.__/TR__</span><span class="lang-en">Peeters Publishers.</span></li>
+    <li><span class="lang-pt">__TR__:54-55.__/TR__</span><span class="lang-en">54-55.</span></li>
+  </ul>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Gênesis 2:10-14: The River of Eden__/TR__</span><span class="lang-en">Genesis 2:10-14: The River of Eden</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:“And a river went out from Eden to water the garden, and from there it was separated and it became four heads.” 1. “The name of the first was Pishon (פישון = &#x27;leaper/springer&#x27;); it went around the whole land of Havilah where there is gold. And the gold of that land is good. There is the bdellium and onyx stone.”__/TR__</span><span class="lang-en">“And a river went out from Eden to water the garden, and from there it was separated and it became four heads.” 1. “The name of the first was Pishon (פישון = &#x27;leaper/springer&#x27;); it went around the whole land of Havilah where there is gold. And the gold of that land is good. There is the bdellium and onyx stone.”</span></div></div>
+  <p class="body reveal"><span class="lang-pt">__TR__:2. “The name of the second river is Gihon (גיחון = &#x27;gusher&#x27;); it goes around all the land of Cush.” 3. “The name of the third river is Hideqel; it goes east of Assyria.” 4. “And the fourth river is the Euphrates.” Rivers were commonly viewed as having their source in the deep abyss below the land.__/TR__</span><span class="lang-en">2. “The name of the second river is Gihon (גיחון = &#x27;gusher&#x27;); it goes around all the land of Cush.” 3. “The name of the third river is Hideqel; it goes east of Assyria.” 4. “And the fourth river is the Euphrates.” Rivers were commonly viewed as having their source in the deep abyss below the land.</span></p>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Deuteronômio 33:13-16 Instructor&#x27;s Translation__/TR__</span><span class="lang-en">Deuteronomy 33:13-16 Instructor&#x27;s Translation</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:13 About Joseph he said: “May the LORD bless his land with the precious dew from heaven above and with the deep abyss (Heb. tehom) that lie below; 14 with the best the sun brings forth and the finest the moon can yield; 15 with the choicest gifts of the ancient mountains and the fruitfulness of the everlasting hills; 16 with the best gifts of the earth and its fullness and the favor of him who dwelt in the burning bush. Let all these rest on the head of Joseph, on the brow of the prince among his brothers. Rivers and Mountains in the Biblical Story The following are examples of more rivers and mountain imagery in the Bible. The Zion temple, the place where Heaven and Earth are one (see cosmic symbolism in Ps. 46, 48) The future restored temple (Isa. 2; Ezek. 47; Joel 4; Zech. 14) Jesus as the Temple/Source of the River of Life John chapters 1, 2, 4, 7, 12, and 18 explore Jesus as the tabernacle, the temple body, and the water of life. We see him exalted and lifted up for his crucified body to provide the water of life to humanity.__/TR__</span><span class="lang-en">13 About Joseph he said: “May the LORD bless his land with the precious dew from heaven above and with the deep abyss (Heb. tehom) that lie below; 14 with the best the sun brings forth and the finest the moon can yield; 15 with the choicest gifts of the ancient mountains and the fruitfulness of the everlasting hills; 16 with the best gifts of the earth and its fullness and the favor of him who dwelt in the burning bush. Let all these rest on the head of Joseph, on the brow of the prince among his brothers. Rivers and Mountains in the Biblical Story The following are examples of more rivers and mountain imagery in the Bible. The Zion temple, the place where Heaven and Earth are one (see cosmic symbolism in Ps. 46, 48) The future restored temple (Isa. 2; Ezek. 47; Joel 4; Zech. 14) Jesus as the Temple/Source of the River of Life John chapters 1, 2, 4, 7, 12, and 18 explore Jesus as the tabernacle, the temple body, and the water of life. We see him exalted and lifted up for his crucified body to provide the water of life to humanity.</span></div></div>
+  <p class="body reveal"><span class="lang-pt">__TR__:In Revelation 21-22, the new creation is a unified Heaven and Earth as a garden/city/temple on a mountain with a river.__/TR__</span><span class="lang-en">In Revelation 21-22, the new creation is a unified Heaven and Earth as a garden/city/temple on a mountain with a river.</span></p>
+  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">__TR__:In a previous session, we learned that the seas represent chaos and are a force that God confronts and defeats. But what connotation do rivers have?__/TR__</span><span class="lang-en">In a previous session, we learned that the seas represent chaos and are a force that God confronts and defeats. But what connotation do rivers have?</span></p>
+
+  <div class="page-footer">
+    <span>Class Notes: Heaven and Earth</span>
+    <span><span class="lang-pt">Sessão 20 · Rios de Vida</span><span class="lang-en">Session 20 · Rivers of Life</span></span>
+  </div>
+</div>
+
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s20-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s20-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+  <script src="../js/verse-modal.js"></script>
+</body>
+</html>

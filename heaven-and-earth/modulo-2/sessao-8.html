@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cosmologia do Egito Antigo</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+    .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+      ul.bullets { list-style: none; padding: 0; }
+      ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+      ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+      .bibleref { font-weight: 700; font-size: 1.05rem; margin-top: 2rem; margin-bottom: 0.3rem; letter-spacing: -0.005em; color: #2563eb; }
+      .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+      .scripture:hover { border-left-color: #9aa7b8; }
+      .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+      .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+      .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+
+<div id="reading-progress" aria-hidden="true"></div>
+
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+
+  <h1 class="title reveal"><span class="lang-pt">Sessão 8: Cosmologia do Egito Antigo</span><span class="lang-en">Session 8: Ancient Egyptian Cosmology</span></h1>
+  <hr class="rule">
+
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">__TR__:Israel existed in the same cultural environment as its ancient neighbors.__/TR__</span><span class="lang-en">Israel existed in the same cultural environment as its ancient neighbors.</span></li>
+    <li><span class="lang-pt">__TR__:So the biblical authors speak from within their ancient Near Eastern perceptions of the world.__/TR__</span><span class="lang-en">So the biblical authors speak from within their ancient Near Eastern perceptions of the world.</span></li>
+    <li><span class="lang-pt">__TR__:They are making worldview claims about the God of Israel through their cultural constructs.__/TR__</span><span class="lang-en">They are making worldview claims about the God of Israel through their cultural constructs.</span></li>
+    <li><span class="lang-pt">__TR__:Because of this, it can be helpful to compare Israel’s cosmology with its neighbors to see what stands out.__/TR__</span><span class="lang-en">Because of this, it can be helpful to compare Israel’s cosmology with its neighbors to see what stands out.</span></li>
+  </ul>
+  <h2 class="section reveal"><span class="lang-pt">__TR__:Gênesis 1 in Its Ancient Near Eastern Context__/TR__</span><span class="lang-en">Genesis 1 in Its Ancient Near Eastern Context</span></h2>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Gênesis 1:1-2 NASB__/TR__</span><span class="lang-en">Genesis 1:1-2 NASB</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:1 In the beginning, God created the skies and the land. 2 Now, the land was wild and waste (tohu va-vohu/ תהו ובהו) and darkness was over the face of the deep abyss (tehom/תהום) but the breath of Elohim was hovering over the face of the waters (hamayim/המים). “The framers of creation in the Bible inherited a treasure trove of venerable traditions from their cultural neighbors. Instead of creating their accounts ex nihilo, the composers of Scripture developed their traditions in dialogue with some of the great religious traditions of the surrounding cultures, particularly those originating from Mesopotamia and Egypt, as well as those of their more immediate Canaanite neighbors.” Brown, William (2010). Seven Pillars Of Creation: The Bible, Science, and the Ecology of Wonder. Oxford University Press. A key point to remember is that the Bible’s creation narratives are not in dialogue with modern scientific ideas about world origins. Rather, they are in dialogue with Egyptian, Babylonian, and Canaanite cosmologies. And within that dialogue, Genesis 1-3 shows many similarities with other ancient Near Eastern cosmologies, along with many key differences. But before we get into this, we need to answer this question: What is an ancient Near Eastern cosmology? As we’ve looked at previously, a cosmology is an account of the origins of the universe as humans experience it. So an ancient Near Eastern cosmology is an account of the origins of the universe according to those living in the ancient Near East, including the biblical authors. How are ancient cosmologies different from modern cosmologies? The primary purpose of ancient cosmology narratives is not to describe the physical-material processes by which the universe came into being in language or categories that make sense to a modern audience.__/TR__</span><span class="lang-en">1 In the beginning, God created the skies and the land. 2 Now, the land was wild and waste (tohu va-vohu/ תהו ובהו) and darkness was over the face of the deep abyss (tehom/תהום) but the breath of Elohim was hovering over the face of the waters (hamayim/המים). “The framers of creation in the Bible inherited a treasure trove of venerable traditions from their cultural neighbors. Instead of creating their accounts ex nihilo, the composers of Scripture developed their traditions in dialogue with some of the great religious traditions of the surrounding cultures, particularly those originating from Mesopotamia and Egypt, as well as those of their more immediate Canaanite neighbors.” Brown, William (2010). Seven Pillars Of Creation: The Bible, Science, and the Ecology of Wonder. Oxford University Press. A key point to remember is that the Bible’s creation narratives are not in dialogue with modern scientific ideas about world origins. Rather, they are in dialogue with Egyptian, Babylonian, and Canaanite cosmologies. And within that dialogue, Genesis 1-3 shows many similarities with other ancient Near Eastern cosmologies, along with many key differences. But before we get into this, we need to answer this question: What is an ancient Near Eastern cosmology? As we’ve looked at previously, a cosmology is an account of the origins of the universe as humans experience it. So an ancient Near Eastern cosmology is an account of the origins of the universe according to those living in the ancient Near East, including the biblical authors. How are ancient cosmologies different from modern cosmologies? The primary purpose of ancient cosmology narratives is not to describe the physical-material processes by which the universe came into being in language or categories that make sense to a modern audience.</span></div></div>
+  <h2 class="section reveal"><span class="lang-pt">__TR__:A Quick Survey of Egyptian Cosmology__/TR__</span><span class="lang-en">A Quick Survey of Egyptian Cosmology</span></h2>
+  <p class="body reveal"><span class="lang-pt">__TR__:Modern Egyptology began after Napoleon overtook Egypt in the early 1800s, opening it to European colonial powers. Jean-Francois Champollion, the first famous Egyptologist, deciphered the Rosetta Stone and unlocked the Egyptian hieroglyphic system. Key texts containing Egyptian cosmologies are:__/TR__</span><span class="lang-en">Modern Egyptology began after Napoleon overtook Egypt in the early 1800s, opening it to European colonial powers. Jean-Francois Champollion, the first famous Egyptologist, deciphered the Rosetta Stone and unlocked the Egyptian hieroglyphic system. Key texts containing Egyptian cosmologies are:</span></p>
+  <h2 class="section reveal"><span class="lang-pt">__TR__:The Pyramids Texts (Old Kingdom, 2600-2100 B.C.E.)__/TR__</span><span class="lang-en">The Pyramids Texts (Old Kingdom, 2600-2100 B.C.E.)</span></h2>
+  <h2 class="section reveal"><span class="lang-pt">__TR__:The Coffin Texts (1900s-1600s B.C.E.)__/TR__</span><span class="lang-en">The Coffin Texts (1900s-1600s B.C.E.)</span></h2>
+  <p class="body reveal"><span class="lang-pt">__TR__:The Book of the Dead (1500s-1000s B.C.E.) “The waters speak I am the Waters, unique, without second. Atum speaks That is where I evolved, on the great occasion of my floating that happened to me. I (Atum the creator) am the one who once evolved— Circlet, who is in his egg. I am the one who began therein, (in) the Waters. See, the Flood is subtracted from me: see, I am the remainder. I made my body evolve through my own effectiveness. I am the one who made me. I built myself as I wished, according to my heart.” Hallo, William W. (1997). “The Coffin Texts 714.” The Context of Scripture: Canonical Compositions from the Biblical World, Vol. 1. Brill. 6-7.__/TR__</span><span class="lang-en">The Book of the Dead (1500s-1000s B.C.E.) “The waters speak I am the Waters, unique, without second. Atum speaks That is where I evolved, on the great occasion of my floating that happened to me. I (Atum the creator) am the one who once evolved— Circlet, who is in his egg. I am the one who began therein, (in) the Waters. See, the Flood is subtracted from me: see, I am the remainder. I made my body evolve through my own effectiveness. I am the one who made me. I built myself as I wished, according to my heart.” Hallo, William W. (1997). “The Coffin Texts 714.” The Context of Scripture: Canonical Compositions from the Biblical World, Vol. 1. Brill. 6-7.</span></p>
+  <h2 class="section reveal"><span class="lang-pt">__TR__:Egyptian Heliopolitan Cosmology__/TR__</span><span class="lang-en">Egyptian Heliopolitan Cosmology</span></h2>
+  <p class="body reveal"><span class="lang-pt">__TR__:The following is Egyptian Heliopolitan cosmology as summarized by Bernard Batto in his book In the Beginning: Essays on Creation Motifs in the Ancient Near East and the Bible. The primeval creator is called Atum, who is equated with Nun, the unordered watery substance from which all things emerged. This state of non-creation was a chaotic watery condition devoid of elements or structures necessary for life, but it possessed the potential for development. Atum began to evolve and differentiate himself from his watery incubation onto a primeval mound of dirt, which is symbolized as the prototypical pyramid, and from there he began a process of self- development or “creation.” He generated the rest of the Ennea (a cluster of eight other deities) by self-impregnation: He swallows his own reproductive fluids and generates Shu (goddess of air) and Tefnut (goddess of moisture), from whom come Nut (goddess of sky) and Geb (god of earth). Atum took his role as the “eye” of all creation, the sun god Re, and they all worked together in a form of order called Ma’at, the eternal divine order that undergirds all creation.__/TR__</span><span class="lang-en">The following is Egyptian Heliopolitan cosmology as summarized by Bernard Batto in his book In the Beginning: Essays on Creation Motifs in the Ancient Near East and the Bible. The primeval creator is called Atum, who is equated with Nun, the unordered watery substance from which all things emerged. This state of non-creation was a chaotic watery condition devoid of elements or structures necessary for life, but it possessed the potential for development. Atum began to evolve and differentiate himself from his watery incubation onto a primeval mound of dirt, which is symbolized as the prototypical pyramid, and from there he began a process of self- development or “creation.” He generated the rest of the Ennea (a cluster of eight other deities) by self-impregnation: He swallows his own reproductive fluids and generates Shu (goddess of air) and Tefnut (goddess of moisture), from whom come Nut (goddess of sky) and Geb (god of earth). Atum took his role as the “eye” of all creation, the sun god Re, and they all worked together in a form of order called Ma’at, the eternal divine order that undergirds all creation.</span></p>
+  <p class="body reveal"><span class="lang-pt">__TR__:Keel, Othmar (2016). “Figure 32” (p. 36). Symbolism of the Biblical World: Ancient Near Eastern Iconography and the Book of Psalms. Eisenbraums. Nut is the sky goddess who is the sky-dome full of stars. Geb is the land god, and Shu, the god of air, kneels on Geb and supports Nut. The sun god Re travels in the waters above the Nut, riding his boat across the sky (upper left) and descending into the realm of darkness and death to the waters under the land. Keel, Othmar (1997). “Figure 55” (p. 55). Symbolism of the Biblical World: Ancient Near Eastern Iconography and the Book of Psalms. Eisenbraums. The sun god Re is pulled through the underworld sea at night. The god Seth spears and defeats the death god Apophis (a snake), while the boat is pulled by subjugated night demons (jackals and snakes).__/TR__</span><span class="lang-en">Keel, Othmar (2016). “Figure 32” (p. 36). Symbolism of the Biblical World: Ancient Near Eastern Iconography and the Book of Psalms. Eisenbraums. Nut is the sky goddess who is the sky-dome full of stars. Geb is the land god, and Shu, the god of air, kneels on Geb and supports Nut. The sun god Re travels in the waters above the Nut, riding his boat across the sky (upper left) and descending into the realm of darkness and death to the waters under the land. Keel, Othmar (1997). “Figure 55” (p. 55). Symbolism of the Biblical World: Ancient Near Eastern Iconography and the Book of Psalms. Eisenbraums. The sun god Re is pulled through the underworld sea at night. The god Seth spears and defeats the death god Apophis (a snake), while the boat is pulled by subjugated night demons (jackals and snakes).</span></p>
+  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">__TR__:How do you make sense of Israel’s creation story having similarities to other ancient Near Eastern creation stories?__/TR__</span><span class="lang-en">How do you make sense of Israel’s creation story having similarities to other ancient Near Eastern creation stories?</span></p>
+
+  <div class="page-footer">
+    <span>Class Notes: Heaven and Earth</span>
+    <span><span class="lang-pt">Sessão 8 · Cosmologia do Egito Antigo</span><span class="lang-en">Session 8 · Ancient Egyptian Cosmology</span></span>
+  </div>
+</div>
+
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s8-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s8-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+  <script src="../js/verse-modal.js"></script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Os Governantes de Baixo</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+    .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+      ul.bullets { list-style: none; padding: 0; }
+      ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+      ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+      .bibleref { font-weight: 700; font-size: 1.05rem; margin-top: 2rem; margin-bottom: 0.3rem; letter-spacing: -0.005em; color: #2563eb; }
+      .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+      .scripture:hover { border-left-color: #9aa7b8; }
+      .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+      .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+      .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+
+<div id="reading-progress" aria-hidden="true"></div>
+
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+
+  <h1 class="title reveal"><span class="lang-pt">Sessão 27: Os Governantes de Baixo</span><span class="lang-en">Session 27: The Rulers Below</span></h1>
+  <hr class="rule">
+
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">__TR__:Humans are meant to image or mirror God (Gen.__/TR__</span><span class="lang-en">Humans are meant to image or mirror God (Gen.</span></li>
+    <li><span class="lang-pt">__TR__:1:26-27).__/TR__</span><span class="lang-en">1:26-27).</span></li>
+    <li><span class="lang-pt">__TR__:Humans image God by their unity and diversity as one humanity made of male and female (Gen.__/TR__</span><span class="lang-en">Humans image God by their unity and diversity as one humanity made of male and female (Gen.</span></li>
+    <li><span class="lang-pt">__TR__:1:26- 27).__/TR__</span><span class="lang-en">1:26- 27).</span></li>
+    <li><span class="lang-pt">__TR__:God is dianthropic—he desires and designs to work through (Grk.__/TR__</span><span class="lang-en">God is dianthropic—he desires and designs to work through (Grk.</span></li>
+    <li><span class="lang-pt">__TR__:dia) human beings (Grk.__/TR__</span><span class="lang-en">dia) human beings (Grk.</span></li>
+    <li><span class="lang-pt">__TR__:anthropos).__/TR__</span><span class="lang-en">anthropos).</span></li>
+    <li><span class="lang-pt">__TR__:Humans image God by ruling, or cultivating, creation as partners with God.__/TR__</span><span class="lang-en">Humans image God by ruling, or cultivating, creation as partners with God.</span></li>
+    <li><span class="lang-pt">__TR__:God imparts a huge amount of dignity to humanity by appointing them to rule as his partners.__/TR__</span><span class="lang-en">God imparts a huge amount of dignity to humanity by appointing them to rule as his partners.</span></li>
+    <li><span class="lang-pt">__TR__:Humanity in Genesis 1 (Anthropology) Within the framework of the six days of Genesis 1, the appointment of humanity as God’s image is clearly the climactic act of God’s work because it’s saved for last.__/TR__</span><span class="lang-en">Humanity in Genesis 1 (Anthropology) Within the framework of the six days of Genesis 1, the appointment of humanity as God’s image is clearly the climactic act of God’s work because it’s saved for last.</span></li>
+    <li><span class="lang-pt">__TR__:The key moment in Genesis 1:26-28 is designed as a literary symmetry.__/TR__</span><span class="lang-en">The key moment in Genesis 1:26-28 is designed as a literary symmetry.</span></li>
+  </ul>
+  <h2 class="section reveal"><span class="lang-pt">A&#x27;</span><span class="lang-en">A&#x27;</span></h2>
+  <p class="body reveal"><span class="lang-pt">__TR__:26 And God said, &quot;Let us make human in our image, according to our likeness; and let them rule over the fish of the sea and over the birds of the sky and over the cattle and over all the land and over every creeper that creeps on the land .&quot; 27 And God created human in his image, in the image of God he created him ; male and female he created them . 28 And God blessed them , &quot;Be fruitful and multiply, and fill the land, and subdue it; and rule__/TR__</span><span class="lang-en">26 And God said, &quot;Let us make human in our image, according to our likeness; and let them rule over the fish of the sea and over the birds of the sky and over the cattle and over all the land and over every creeper that creeps on the land .&quot; 27 And God created human in his image, in the image of God he created him ; male and female he created them . 28 And God blessed them , &quot;Be fruitful and multiply, and fill the land, and subdue it; and rule</span></p>
+  <h2 class="section reveal"><span class="lang-pt">__TR__:Day 6: God Delegates Earthly Rulers__/TR__</span><span class="lang-en">Day 6: God Delegates Earthly Rulers</span></h2>
+  <p class="body reveal"><span class="lang-pt">__TR__:Gênesis 1-2:3. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Heaven and Earth (2020).__/TR__</span><span class="lang-en">Genesis 1-2:3. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Heaven and Earth (2020).</span></p>
+  <h2 class="section reveal"><span class="lang-pt">__TR__:Observations__/TR__</span><span class="lang-en">Observations</span></h2>
+  <p class="body reveal"><span class="lang-pt">__TR__:The literary symmetries invite the reader to compare the corresponding sections. The “image of God” statements are immediately followed by sections that unpack the meaning and significance of the divine image. 1. “And Let Them Rule Over …” In Hebrew grammar and syntax, when you have a verb of command or invitation (called a “jussive”) followed by a clause that also has a jussive (“and let them rule …”), it is meant to be understood as a purpose statement: “Let us make human in our image … in order that they may rule …” For this point, see Thomas Lambdin’s book Introduction to Biblical Hebrew (1971 edition), section 107c. 2. “Male and Female” = “In His Image” Notice in Genesis 1:27 how the three-line poem has three key elements in each line. Parallelism of Genesis 1:27 Line 1 God created human in his image Line 2 He created him in the image of God Line 3 He created them male and female Parallelism of Genesis 1:27. Created by Tim Mackie for BibleProject Classroom: Heaven and Earth (2019). This poetic parallelism makes clear that the divine image is constituted in some crucial way by the duality of gender. Somehow God is imaged in a special way through the unity of humanity as one species that consists of two distinct others. Humanity is one and more than one at the same time, and this offers an important image of God’s divine identity. 3. The Preposition “In” The preposition “in” (Heb. be-/-ב) attached to “his image” means “in the place of” or “instead of” (called beth pretii, see Gesenius’ Hebrew Grammar, sec. 102p). Therefore, this verse can be read as “God created human in the place of his image/as his image.” over the fish of the sea and over the birds of the sky and over every living creature that creeps on the land .&quot;__/TR__</span><span class="lang-en">The literary symmetries invite the reader to compare the corresponding sections. The “image of God” statements are immediately followed by sections that unpack the meaning and significance of the divine image. 1. “And Let Them Rule Over …” In Hebrew grammar and syntax, when you have a verb of command or invitation (called a “jussive”) followed by a clause that also has a jussive (“and let them rule …”), it is meant to be understood as a purpose statement: “Let us make human in our image … in order that they may rule …” For this point, see Thomas Lambdin’s book Introduction to Biblical Hebrew (1971 edition), section 107c. 2. “Male and Female” = “In His Image” Notice in Genesis 1:27 how the three-line poem has three key elements in each line. Parallelism of Genesis 1:27 Line 1 God created human in his image Line 2 He created him in the image of God Line 3 He created them male and female Parallelism of Genesis 1:27. Created by Tim Mackie for BibleProject Classroom: Heaven and Earth (2019). This poetic parallelism makes clear that the divine image is constituted in some crucial way by the duality of gender. Somehow God is imaged in a special way through the unity of humanity as one species that consists of two distinct others. Humanity is one and more than one at the same time, and this offers an important image of God’s divine identity. 3. The Preposition “In” The preposition “in” (Heb. be-/-ב) attached to “his image” means “in the place of” or “instead of” (called beth pretii, see Gesenius’ Hebrew Grammar, sec. 102p). Therefore, this verse can be read as “God created human in the place of his image/as his image.” over the fish of the sea and over the birds of the sky and over every living creature that creeps on the land .&quot;</span></p>
+  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">__TR__:What does it say about God that he creates humans in his image to rule with him?__/TR__</span><span class="lang-en">What does it say about God that he creates humans in his image to rule with him?</span></p>
+
+  <div class="page-footer">
+    <span>Class Notes: Heaven and Earth</span>
+    <span><span class="lang-pt">Sessão 27 · Os Governantes de Baixo</span><span class="lang-en">Session 27 · The Rulers Below</span></span>
+  </div>
+</div>
+
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s27-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s27-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+  <script src="../js/verse-modal.js"></script>
+</body>
+</html>

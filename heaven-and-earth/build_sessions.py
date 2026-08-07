@@ -81,41 +81,10 @@ def split_pages():
 _trans_cache = {}
 
 def translate_en_to_pt(text):
-    """Translate a block of English to Portuguese using MyMemory."""
-    from deep_translator import MyMemoryTranslator
-    # MyMemory has a ~500-char-per-request soft limit; chunk by sentences.
-    if text in _trans_cache:
-        return _trans_cache[text]
-    # split into sentence-ish chunks under 450 chars
-    parts = re.split(r'(?<=[.!?])\s+', text)
-    out_parts = []
-    buf = ""
-    for part in parts:
-        if not part.strip():
-            continue
-        if len(buf) + len(part) < 450:
-            buf += part + " "
-        else:
-            if buf:
-                out_parts.append(_do_translate(buf.strip()))
-            buf = part + " "
-    if buf:
-        out_parts.append(_do_translate(buf.strip()))
-    result = " ".join(out_parts)
-    _trans_cache[text] = result
-    return result
-
-def _do_translate(seg):
-    from deep_translator import MyMemoryTranslator
-    import time
-    # ponytail: MyMemory free tier, single call; tiny sleep avoids burst 429s.
-    for attempt in range(3):
-        try:
-            return MyMemoryTranslator(source="en-GB", target="pt-PT").translate(seg)
-        except Exception:
-            if attempt == 2:
-                return seg  # fall back to EN if translation truly fails
-            time.sleep(0.6 * (attempt + 1))
+    """Placeholder: wraps text in a marker for later subagent translation."""
+    if not text or len(text.strip()) < 3:
+        return text
+    return f"__TR__:{text}__/TR__"
 
 def _is_page_header(line):
     return bool(line.startswith("Class Notes:") or re.match(r'^\d+ of \d+$', line))

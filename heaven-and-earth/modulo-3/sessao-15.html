@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relações Entre os Dias</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+    .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+      ul.bullets { list-style: none; padding: 0; }
+      ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+      ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+      .bibleref { font-weight: 700; font-size: 1.05rem; margin-top: 2rem; margin-bottom: 0.3rem; letter-spacing: -0.005em; color: #2563eb; }
+      .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+      .scripture:hover { border-left-color: #9aa7b8; }
+      .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+      .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+      .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+
+<div id="reading-progress" aria-hidden="true"></div>
+
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+
+  <h1 class="title reveal"><span class="lang-pt">Sessão 15: Relações Entre os Dias</span><span class="lang-en">Session 15: Relationships Between Days</span></h1>
+  <hr class="rule">
+
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">__TR__:Days one through three describe the environments that God creates, and days four through six describe the inhabitants.__/TR__</span><span class="lang-en">Days one through three describe the environments that God creates, and days four through six describe the inhabitants.</span></li>
+    <li><span class="lang-pt">__TR__:Creation is all about ordering and populating the skies and the land.__/TR__</span><span class="lang-en">Creation is all about ordering and populating the skies and the land.</span></li>
+    <li><span class="lang-pt">__TR__:Days four and six repeat the similar theme of rulers.__/TR__</span><span class="lang-en">Days four and six repeat the similar theme of rulers.</span></li>
+    <li><span class="lang-pt">__TR__:Day four is about the rulers above, and day six is about the rulers below.__/TR__</span><span class="lang-en">Day four is about the rulers above, and day six is about the rulers below.</span></li>
+    <li><span class="lang-pt">__TR__:The story culminates in the creation of the human rulers below who will partner with God.__/TR__</span><span class="lang-en">The story culminates in the creation of the human rulers below who will partner with God.</span></li>
+  </ul>
+  <h2 class="section reveal"><span class="lang-pt">__TR__:The Cosmos of Genesis 1: Days One Through Six__/TR__</span><span class="lang-en">The Cosmos of Genesis 1: Days One Through Six</span></h2>
+  <h2 class="section reveal"><span class="lang-pt">__TR__:Days One Through Three__/TR__</span><span class="lang-en">Days One Through Three</span></h2>
+  <p class="body reveal"><span class="lang-pt">__TR__:Days one through six have been neatly organized as two triads that each address the problems presented in__/TR__</span><span class="lang-en">Days one through six have been neatly organized as two triads that each address the problems presented in</span></p>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Gênesis 1:2—disorder and emptiness.__/TR__</span><span class="lang-en">Genesis 1:2—disorder and emptiness.</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:Days one through three address the problem of creation being unordered and uninhabited as God organizes the cosmos into distinct realms: the heavens above, the middle heaven/earth, and the land below. Days Four Through Six Days four through six supply each of these realms with their appropriate inhabitants: the heavenly realm with lights, the middle heaven/earth with birds and fish, and the dry land with creatures and humans.__/TR__</span><span class="lang-en">Days one through three address the problem of creation being unordered and uninhabited as God organizes the cosmos into distinct realms: the heavens above, the middle heaven/earth, and the land below. Days Four Through Six Days four through six supply each of these realms with their appropriate inhabitants: the heavenly realm with lights, the middle heaven/earth with birds and fish, and the dry land with creatures and humans.</span></div></div>
+  <p class="body reveal"><span class="lang-pt">__TR__:Origami of Genesis 1. Adapted from David Andrew Teeter by Tim Mackie for BibleProject Classroom: Adam to Noah (2020).__/TR__</span><span class="lang-en">Origami of Genesis 1. Adapted from David Andrew Teeter by Tim Mackie for BibleProject Classroom: Adam to Noah (2020).</span></p>
+  <h2 class="section reveal"><span class="lang-pt">__TR__:Design Structure of Days One Through Three__/TR__</span><span class="lang-en">Design Structure of Days One Through Three</span></h2>
+  <p class="body reveal"><span class="lang-pt">__TR__:3 And God said, &quot; Let there be light &quot;;__/TR__</span><span class="lang-en">3 And God said, &quot; Let there be light &quot;;</span></p>
+  <h2 class="section reveal"><span class="lang-pt">__TR__:Day 1: God Orders the Heavens__/TR__</span><span class="lang-en">Day 1: God Orders the Heavens</span></h2>
+  <h2 class="section reveal"><span class="lang-pt">A</span><span class="lang-en">A</span></h2>
+  <p class="body reveal"><span class="lang-pt">__TR__:and there was light. 4 God saw that the light was good ; and God separated the light from the darkness . 5 And God called the light day , and the darkness he called night . And there was evening and there was morning, one day (יום אחד) .__/TR__</span><span class="lang-en">and there was light. 4 God saw that the light was good ; and God separated the light from the darkness . 5 And God called the light day , and the darkness he called night . And there was evening and there was morning, one day (יום אחד) .</span></p>
+  <h2 class="section reveal"><span class="lang-pt">B</span><span class="lang-en">B</span></h2>
+  <p class="body reveal"><span class="lang-pt">__TR__:6 And God said, “Let there be a dome in the middle of the waters, and let it separate the waters from the waters.&quot; 7 And God made the dome , and separated the waters which were below the dome from the waters which were above the dome ; and it was so. 8 God called the dome skies . And there was evening and there was morning, a second day . 9 And God said, “ Let the waters below the skies be gathered into one place (מקום אחד) , and let the dry ground be seen&quot;; and it was so. 10 And God called the dry ground land, and the gathering of the waters he called seas. God saw that it was good. . 11 And God said, “Let the land sprout vegetation, Day 2: God Commands the Chaos Waters To Be Split__/TR__</span><span class="lang-en">6 And God said, “Let there be a dome in the middle of the waters, and let it separate the waters from the waters.&quot; 7 And God made the dome , and separated the waters which were below the dome from the waters which were above the dome ; and it was so. 8 God called the dome skies . And there was evening and there was morning, a second day . 9 And God said, “ Let the waters below the skies be gathered into one place (מקום אחד) , and let the dry ground be seen&quot;; and it was so. 10 And God called the dry ground land, and the gathering of the waters he called seas. God saw that it was good. . 11 And God said, “Let the land sprout vegetation, Day 2: God Commands the Chaos Waters To Be Split</span></p>
+  <h2 class="section reveal"><span class="lang-pt">__TR__:Day 3: God Orders the Land__/TR__</span><span class="lang-en">Day 3: God Orders the Land</span></h2>
+  <p class="body reveal"><span class="lang-pt">__TR__:Gênesis 1-2:3. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Heaven and Earth (2020). This design structure invites the reader to compare and contrast the matching elements. Days one and three both portray God as addressing the two most iconic images of disorder, chaos, and death in the biblical imagination: darkness and the waters (note that they were already paired in 1:2). We are encouraged to see both as corresponding images of anti-creation. Day two is set apart from days one and three because it has the most elaborate “command/fulfillment” structure of the three days. While days one and three each have a command and a short fulfillment, day two has a lengthy, repetitive command followed by an equally lengthy fulfillment. But note that the two halves match, nearly identically. This is a literary embodiment of the theme of day two, which is the complete division between the heavenly and earthly by splitting the waters. The reader walks away from days one through three with a robust awareness of the makeup of the biblical cosmos. Heaven and Earth are mirror realities. The provision of divine light contains the darkness and creates the most basic condition necessary for life to flourish. In a similar way, the provision of the land on Earth pushes back the waters, creating a space where life can flourish. God’s “conflict” with the darkness is a foundational image of the spiritual conflict that underlies the story of the Bible. Similarly, God and humanity’s conflict with the chaos-waters can function as an image of the human conflict (the metaphor scheme of humans as chaos waters). God’s victory over darkness on day one and the waters on day three happens by speaking a word. Day two focuses on God’s splitting the waters, again by speaking a word. But this is followed by an act of creation as God separates the chaos waters.__/TR__</span><span class="lang-en">Genesis 1-2:3. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Heaven and Earth (2020). This design structure invites the reader to compare and contrast the matching elements. Days one and three both portray God as addressing the two most iconic images of disorder, chaos, and death in the biblical imagination: darkness and the waters (note that they were already paired in 1:2). We are encouraged to see both as corresponding images of anti-creation. Day two is set apart from days one and three because it has the most elaborate “command/fulfillment” structure of the three days. While days one and three each have a command and a short fulfillment, day two has a lengthy, repetitive command followed by an equally lengthy fulfillment. But note that the two halves match, nearly identically. This is a literary embodiment of the theme of day two, which is the complete division between the heavenly and earthly by splitting the waters. The reader walks away from days one through three with a robust awareness of the makeup of the biblical cosmos. Heaven and Earth are mirror realities. The provision of divine light contains the darkness and creates the most basic condition necessary for life to flourish. In a similar way, the provision of the land on Earth pushes back the waters, creating a space where life can flourish. God’s “conflict” with the darkness is a foundational image of the spiritual conflict that underlies the story of the Bible. Similarly, God and humanity’s conflict with the chaos-waters can function as an image of the human conflict (the metaphor scheme of humans as chaos waters). God’s victory over darkness on day one and the waters on day three happens by speaking a word. Day two focuses on God’s splitting the waters, again by speaking a word. But this is followed by an act of creation as God separates the chaos waters.</span></p>
+  <h2 class="section reveal"><span class="lang-pt">A&#x27;</span><span class="lang-en">A&#x27;</span></h2>
+  <p class="body reveal"><span class="lang-pt">__TR__:vegetative plants that produce seed , fruit trees that make fruit according to its kind which has its seed inside it upon the land &quot;; and it was so. 12 And the land brought out vegetative plants that produce seed according to its kind, and trees that make fruit which has its seed in it, according to its kind; and God saw that it was good . 13 And there was evening and there was morning, a third day .__/TR__</span><span class="lang-en">vegetative plants that produce seed , fruit trees that make fruit according to its kind which has its seed inside it upon the land &quot;; and it was so. 12 And the land brought out vegetative plants that produce seed according to its kind, and trees that make fruit which has its seed in it, according to its kind; and God saw that it was good . 13 And there was evening and there was morning, a third day .</span></p>
+  <p class="body reveal"><span class="lang-pt">__TR__:Every single part of this network of images will be developed throughout the remainder of the biblical narrative. Waters // darkness // death // enemies Dry land // light // life // refuge God splitting the waters to create life // God’s victory over chaos and evil We are invited to consider the design of days four through six in a similar way. And the comparisons and contrasts will again yield rich results about biblical imagery.__/TR__</span><span class="lang-en">Every single part of this network of images will be developed throughout the remainder of the biblical narrative. Waters // darkness // death // enemies Dry land // light // life // refuge God splitting the waters to create life // God’s victory over chaos and evil We are invited to consider the design of days four through six in a similar way. And the comparisons and contrasts will again yield rich results about biblical imagery.</span></p>
+  <h2 class="section reveal"><span class="lang-pt">__TR__:Design Structure of Days Four Through Six__/TR__</span><span class="lang-en">Design Structure of Days Four Through Six</span></h2>
+  <h2 class="section reveal"><span class="lang-pt">A</span><span class="lang-en">A</span></h2>
+  <p class="body reveal"><span class="lang-pt">__TR__:14 And God said, &quot; Let there be lights in the expanse of the skies to separate the day from the night , and let them be for signs and for festivals and for days and years; 15 and let them be for lights in the dome of the skies to give light on the land”; and it was so. 16 And God made the two great lights , the great light to rule the day , and the small light to rule the night ; and also the stars. 17 And God placed them in the dome of the skies to give light on the land, 18 and to rule the day and the night , and to separate the light from the darkness ; and God saw that it was good . 19 And there was evening and there was morning, a fourth day .__/TR__</span><span class="lang-en">14 And God said, &quot; Let there be lights in the expanse of the skies to separate the day from the night , and let them be for signs and for festivals and for days and years; 15 and let them be for lights in the dome of the skies to give light on the land”; and it was so. 16 And God made the two great lights , the great light to rule the day , and the small light to rule the night ; and also the stars. 17 And God placed them in the dome of the skies to give light on the land, 18 and to rule the day and the night , and to separate the light from the darkness ; and God saw that it was good . 19 And there was evening and there was morning, a fourth day .</span></p>
+  <h2 class="section reveal"><span class="lang-pt">A</span><span class="lang-en">A</span></h2>
+  <p class="body reveal"><span class="lang-pt">__TR__:20 And God said, “Let the waters swarm with swarms of living creatures, and let birds fly above the land__/TR__</span><span class="lang-en">20 And God said, “Let the waters swarm with swarms of living creatures, and let birds fly above the land</span></p>
+  <h2 class="section reveal"><span class="lang-pt">__TR__:Day 4: God Delegates Heavenly Rulers__/TR__</span><span class="lang-en">Day 4: God Delegates Heavenly Rulers</span></h2>
+  <h2 class="section reveal"><span class="lang-pt">__TR__:Day 5: God Apportions the Waters Above and Below__/TR__</span><span class="lang-en">Day 5: God Apportions the Waters Above and Below</span></h2>
+  <h2 class="section reveal"><span class="lang-pt">B</span><span class="lang-en">B</span></h2>
+  <p class="body reveal"><span class="lang-pt">__TR__:against the face of the dome of the skies .&quot;__/TR__</span><span class="lang-en">against the face of the dome of the skies .&quot;</span></p>
+  <h2 class="section reveal"><span class="lang-pt">B</span><span class="lang-en">B</span></h2>
+  <p class="body reveal"><span class="lang-pt">__TR__:21 And God created the great sea monsters and every living creature that moves, with which the waters swarmed after their kind, and every bird of wing after its kind; and God saw that it was good .__/TR__</span><span class="lang-en">21 And God created the great sea monsters and every living creature that moves, with which the waters swarmed after their kind, and every bird of wing after its kind; and God saw that it was good .</span></p>
+  <h2 class="section reveal"><span class="lang-pt">A&#x27;</span><span class="lang-en">A&#x27;</span></h2>
+  <p class="body reveal"><span class="lang-pt">__TR__:22 And God blessed them, saying, “Be fruitful and multiply, and fill the waters in the seas, and let birds multiply on the land.” 23 And there was evening and there was morning, a fifth day . 24 And God said, “ Let the land bring out living creatures according to their kind, cattle and creeping things and beasts of the land according to their kind”; and it was so. 25 And God made the beasts of the land according to their kind, and the cattle according to their kind, and the creepers of the ground according to its kind; and God saw that it was good. 26 And God said, &quot;Let us make human in our image, according to our likeness; and let them rule over the fish of the sea__/TR__</span><span class="lang-en">22 And God blessed them, saying, “Be fruitful and multiply, and fill the waters in the seas, and let birds multiply on the land.” 23 And there was evening and there was morning, a fifth day . 24 And God said, “ Let the land bring out living creatures according to their kind, cattle and creeping things and beasts of the land according to their kind”; and it was so. 25 And God made the beasts of the land according to their kind, and the cattle according to their kind, and the creepers of the ground according to its kind; and God saw that it was good. 26 And God said, &quot;Let us make human in our image, according to our likeness; and let them rule over the fish of the sea</span></p>
+  <h2 class="section reveal"><span class="lang-pt">__TR__:Day 6: God Delegates Earthly Rulers__/TR__</span><span class="lang-en">Day 6: God Delegates Earthly Rulers</span></h2>
+  <p class="body reveal"><span class="lang-pt">__TR__:Gênesis 1-2:3. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Heaven and Earth (2020). This design structure invites the reader to make new contrasts and comparisons. God’s delegated rulers mirror each other. On day four, the sun and moon rule day and night. Note that the stars are not included in the delegated rule; rather, they make up the part that is ruled (the darkness__/TR__</span><span class="lang-en">Genesis 1-2:3. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Heaven and Earth (2020). This design structure invites the reader to make new contrasts and comparisons. God’s delegated rulers mirror each other. On day four, the sun and moon rule day and night. Note that the stars are not included in the delegated rule; rather, they make up the part that is ruled (the darkness</span></p>
+  <h2 class="section reveal"><span class="lang-pt">A&#x27;</span><span class="lang-en">A&#x27;</span></h2>
+  <p class="body reveal"><span class="lang-pt">__TR__:and over the birds of the sky and over the cattle and over all the land and over every creeper that creeps on the land .&quot; 27 And God created human in his image, in the image of God he created him ; male and female he created them . 28 And God blessed them , &quot;Be fruitful and multiply, and fill the land, and subdue it; and rule over the fish of the sea and over the birds of the sky and over every living creature that creeps on the land .&quot; 29 And God said, “Behold, I have given to you every plant producing seed that is on the surface of all the earth, and every tree which has fruit producing seed ; it shall be food for you; 30 and to every beast of the land and to every bird of the sky and to every thing that moves on the land which has animal life in it, every green plant for food”; and it was so. 31 And God saw all that he had made, and behold, it was very good. And there was evening and there was morning, a sixth day .__/TR__</span><span class="lang-en">and over the birds of the sky and over the cattle and over all the land and over every creeper that creeps on the land .&quot; 27 And God created human in his image, in the image of God he created him ; male and female he created them . 28 And God blessed them , &quot;Be fruitful and multiply, and fill the land, and subdue it; and rule over the fish of the sea and over the birds of the sky and over every living creature that creeps on the land .&quot; 29 And God said, “Behold, I have given to you every plant producing seed that is on the surface of all the earth, and every tree which has fruit producing seed ; it shall be food for you; 30 and to every beast of the land and to every bird of the sky and to every thing that moves on the land which has animal life in it, every green plant for food”; and it was so. 31 And God saw all that he had made, and behold, it was very good. And there was evening and there was morning, a sixth day .</span></p>
+  <p class="body reveal"><span class="lang-pt">__TR__:and night). Similarly, on day six, the man and woman function as a ruling pair over the land and animals. This last point fosters the comparison between the objects in the heavenly and earthly realm that are subjected to the rule of God’s images: the stars and the animals (consider how these implicitly come together in Gen. 3). Notice how all three days have an extra created object that sticks out of the other lists: the stars (// the rulers), the sea monsters (// Leviathan), and the cattle (// Behemoth). When this overlapping set of design structures are laid on top of each other, we can see what scholar David Andrew Teeter calls “literary origami.” The six days of Genesis 1 are arranged along two “folds,” a vertical axis that forms two matching triads, and a horizontal axis that forms each triad into a mirror shape.__/TR__</span><span class="lang-en">and night). Similarly, on day six, the man and woman function as a ruling pair over the land and animals. This last point fosters the comparison between the objects in the heavenly and earthly realm that are subjected to the rule of God’s images: the stars and the animals (consider how these implicitly come together in Gen. 3). Notice how all three days have an extra created object that sticks out of the other lists: the stars (// the rulers), the sea monsters (// Leviathan), and the cattle (// Behemoth). When this overlapping set of design structures are laid on top of each other, we can see what scholar David Andrew Teeter calls “literary origami.” The six days of Genesis 1 are arranged along two “folds,” a vertical axis that forms two matching triads, and a horizontal axis that forms each triad into a mirror shape.</span></p>
+  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">__TR__:Summarize what you learned about the structure of days one through six in Genesis 1.__/TR__</span><span class="lang-en">Summarize what you learned about the structure of days one through six in Genesis 1.</span></p>
+  <p class="body reveal"><span class="lang-pt">__TR__:Module 4: A Tour of the Cosmos SESSIONS 16-22 Explore the significance of each element of the cosmos, as understood by the ancient Israelites, to bring Genesis 1 into clearer focus.__/TR__</span><span class="lang-en">Module 4: A Tour of the Cosmos SESSIONS 16-22 Explore the significance of each element of the cosmos, as understood by the ancient Israelites, to bring Genesis 1 into clearer focus.</span></p>
+
+  <div class="page-footer">
+    <span>Class Notes: Heaven and Earth</span>
+    <span><span class="lang-pt">Sessão 15 · Relações Entre os Dias</span><span class="lang-en">Session 15 · Relationships Between Days</span></span>
+  </div>
+</div>
+
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s15-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s15-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+  <script src="../js/verse-modal.js"></script>
+</body>
+</html>

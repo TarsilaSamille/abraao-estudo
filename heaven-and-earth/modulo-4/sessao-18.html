@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Terra Seca</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+    .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+      ul.bullets { list-style: none; padding: 0; }
+      ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+      ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+      .bibleref { font-weight: 700; font-size: 1.05rem; margin-top: 2rem; margin-bottom: 0.3rem; letter-spacing: -0.005em; color: #2563eb; }
+      .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+      .scripture:hover { border-left-color: #9aa7b8; }
+      .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+      .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+      .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+
+<div id="reading-progress" aria-hidden="true"></div>
+
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+
+  <h1 class="title reveal"><span class="lang-pt">Sessão 18: A Terra Seca</span><span class="lang-en">Session 18: The Dry Land</span></h1>
+  <hr class="rule">
+
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">__TR__:The biblical authors portrayed the dry land as a disc surrounded by and resting on the waters.__/TR__</span><span class="lang-en">The biblical authors portrayed the dry land as a disc surrounded by and resting on the waters.</span></li>
+    <li><span class="lang-pt">__TR__:It is set up on pillars that God upholds by his power.__/TR__</span><span class="lang-en">It is set up on pillars that God upholds by his power.</span></li>
+    <li><span class="lang-pt">__TR__:The dry land often symbolizes salvation, most notably, in Genesis 1 and the Exodus narrative.__/TR__</span><span class="lang-en">The dry land often symbolizes salvation, most notably, in Genesis 1 and the Exodus narrative.</span></li>
+  </ul>
+  <h2 class="section reveal"><span class="lang-pt">__TR__:The Dry Land__/TR__</span><span class="lang-en">The Dry Land</span></h2>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Gênesis 1:9-10 NASB__/TR__</span><span class="lang-en">Genesis 1:9-10 NASB</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:9 Then God said, “Let the waters below the heavens be gathered into one place, and let the dry ground appear”; and it was so. 10 And God called the dry ground land, and the gathering of the waters he called seas, and God saw that it was good.__/TR__</span><span class="lang-en">9 Then God said, “Let the waters below the heavens be gathered into one place, and let the dry ground appear”; and it was so. 10 And God called the dry ground land, and the gathering of the waters he called seas, and God saw that it was good.</span></div></div>
+  <p class="body reveal"><span class="lang-pt">__TR__:This passage gives us a mental picture of the waters receding from a mound of dry land and gathering into waters around it. The following biblical phrases assume we are familiar with this picture.__/TR__</span><span class="lang-en">This passage gives us a mental picture of the waters receding from a mound of dry land and gathering into waters around it. The following biblical phrases assume we are familiar with this picture.</span></p>
+  <h2 class="section reveal"><span class="lang-pt">__TR__:The Ends/Edges of the Land__/TR__</span><span class="lang-en">The Ends/Edges of the Land</span></h2>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Salmos 19:1, 4 Instructor&#x27;s Translation__/TR__</span><span class="lang-en">Psalm 19:1, 4 Instructor&#x27;s Translation</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:1 The heavens declare the glory of God, and the dome declares the work of his hands. ... 4 Their line has gone out through all the land and their utterance to the edge of the world.__/TR__</span><span class="lang-en">1 The heavens declare the glory of God, and the dome declares the work of his hands. ... 4 Their line has gone out through all the land and their utterance to the edge of the world.</span></div></div>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Daniel 4:10-11 NASB*__/TR__</span><span class="lang-en">Daniel 4:10-11 NASB*</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:10 Now these were the visions in my mind as I lay on my bed: I was looking, and behold, there was a tree in the midst of the land and its height was great. 11 The tree grew large and became strong, and its height reached to the sky, and it was visible to the end of all the land. *Key Words Adapted by Teacher See also Isaiah 26:15; Isaiah 41:9; Jeremiah 16:19; Psalm 19:4; Psalm 48:10; Psalm 65:5; Psalm 67:7;__/TR__</span><span class="lang-en">10 Now these were the visions in my mind as I lay on my bed: I was looking, and behold, there was a tree in the midst of the land and its height was great. 11 The tree grew large and became strong, and its height reached to the sky, and it was visible to the end of all the land. *Key Words Adapted by Teacher See also Isaiah 26:15; Isaiah 41:9; Jeremiah 16:19; Psalm 19:4; Psalm 48:10; Psalm 65:5; Psalm 67:7;</span></div></div>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Jó 28:24; Job 37:3; Job 38:13; Daniel 4:11; Acts 13:47__/TR__</span><span class="lang-en">Job 28:24; Job 37:3; Job 38:13; Daniel 4:11; Acts 13:47</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:The Four Corners of the Land and the Four Winds of the Heavens__/TR__</span><span class="lang-en">The Four Corners of the Land and the Four Winds of the Heavens</span></div></div>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Isaías 11:12 NASB__/TR__</span><span class="lang-en">Isaiah 11:12 NASB</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:And he will lift up a standard for the nations and assemble the banished ones of Israel, and will gather the dispersed of Judah from the four corners of the earth.__/TR__</span><span class="lang-en">And he will lift up a standard for the nations and assemble the banished ones of Israel, and will gather the dispersed of Judah from the four corners of the earth.</span></div></div>
+  <p class="body reveal"><span class="lang-pt">__TR__:See also Ezekiel 7:2; Zechariah 2:10; Zechariah 6:5; Revelation 7:1 In this world picture, the land disc is suspended over the dark abysmal waters below.__/TR__</span><span class="lang-en">See also Ezekiel 7:2; Zechariah 2:10; Zechariah 6:5; Revelation 7:1 In this world picture, the land disc is suspended over the dark abysmal waters below.</span></p>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Salmos 24:1-2 NASB__/TR__</span><span class="lang-en">Psalm 24:1-2 NASB</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:1 The land is the LORD’S, and all it contains, the world, and those who dwell in it. 2 For he has founded it upon the seas and established it upon the rivers.__/TR__</span><span class="lang-en">1 The land is the LORD’S, and all it contains, the world, and those who dwell in it. 2 For he has founded it upon the seas and established it upon the rivers.</span></div></div>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Salmos 136:5-6 NASB__/TR__</span><span class="lang-en">Psalm 136:5-6 NASB</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:5 [Give thanks] to him who made the heavens with skill, for his lovingkindness is everlasting; 6 to him who spread out the land above the waters, for his lovingkindness is everlasting.__/TR__</span><span class="lang-en">5 [Give thanks] to him who made the heavens with skill, for his lovingkindness is everlasting; 6 to him who spread out the land above the waters, for his lovingkindness is everlasting.</span></div></div>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Êxodo 20:4 NASB__/TR__</span><span class="lang-en">Exodus 20:4 NASB</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:You shall not make for yourself an idol, or any likeness of what is in heaven above or on the land beneath or in the water under the earth. The Waters Surrounding the Land Disc__/TR__</span><span class="lang-en">You shall not make for yourself an idol, or any likeness of what is in heaven above or on the land beneath or in the water under the earth. The Waters Surrounding the Land Disc</span></div></div>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Provérbios 8:27-30 NASB__/TR__</span><span class="lang-en">Proverbs 8:27-30 NASB</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:27 When he established the heavens, I [Wisdom] was there, when he inscribed a horizon on the face of the deep, 28 when he made firm the skies above, when the springs of the deep became fixed, 29 when he set for the sea its boundary so that the water would not transgress his command, when he marked out the foundations of the land; 30 then I was beside him, as a master workman; and I was daily his delight, rejoicing always before him ...__/TR__</span><span class="lang-en">27 When he established the heavens, I [Wisdom] was there, when he inscribed a horizon on the face of the deep, 28 when he made firm the skies above, when the springs of the deep became fixed, 29 when he set for the sea its boundary so that the water would not transgress his command, when he marked out the foundations of the land; 30 then I was beside him, as a master workman; and I was daily his delight, rejoicing always before him ...</span></div></div>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Jó 26:10-13 NASB__/TR__</span><span class="lang-en">Job 26:10-13 NASB</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:10 He has inscribed a circle/horizon on the surface of the waters at the boundary of light and darkness. 11 The pillars of heaven tremble and are amazed at his rebuke. 12 He quieted the sea with his power, and by his understanding he shattered Rahab. 13 By his breath the heavens are cleared; his hand has pierced the fleeing serpent.__/TR__</span><span class="lang-en">10 He has inscribed a circle/horizon on the surface of the waters at the boundary of light and darkness. 11 The pillars of heaven tremble and are amazed at his rebuke. 12 He quieted the sea with his power, and by his understanding he shattered Rahab. 13 By his breath the heavens are cleared; his hand has pierced the fleeing serpent.</span></div></div>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Isaías 40:21-22 NASB__/TR__</span><span class="lang-en">Isaiah 40:21-22 NASB</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:21 Do you not know? Have you not heard? Has it not been declared to you from the beginning? Have you not understood the foundations of the earth? 22 It is he who sits above the circle of the earth, and its inhabitants are like grasshoppers, who stretches out the heavens like a curtain and spreads them out like a tent to dwell in. These passages do not describe a sphere floating in space, like we might think of. Rather they are talking about the horizon line (Job 26) or the round disc of the land surrounded by waters (Prov. 8; Isa. 40).__/TR__</span><span class="lang-en">21 Do you not know? Have you not heard? Has it not been declared to you from the beginning? Have you not understood the foundations of the earth? 22 It is he who sits above the circle of the earth, and its inhabitants are like grasshoppers, who stretches out the heavens like a curtain and spreads them out like a tent to dwell in. These passages do not describe a sphere floating in space, like we might think of. Rather they are talking about the horizon line (Job 26) or the round disc of the land surrounded by waters (Prov. 8; Isa. 40).</span></div></div>
+  <p class="body reveal"><span class="lang-pt">__TR__:In many psalms, the dry land of Genesis 1 is identified with God’s provision of salvation from the waters of chaos.__/TR__</span><span class="lang-en">In many psalms, the dry land of Genesis 1 is identified with God’s provision of salvation from the waters of chaos.</span></p>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Salmos 18:2-3 NASB__/TR__</span><span class="lang-en">Psalm 18:2-3 NASB</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:2 The Lord is my rock and my fortress and my deliverer, my God, my rock, in whom I take refuge; my shield and the horn of my salvation, my stronghold. 3 I call upon the Lord, who is worthy to be praised, and I am saved from my enemies.__/TR__</span><span class="lang-en">2 The Lord is my rock and my fortress and my deliverer, my God, my rock, in whom I take refuge; my shield and the horn of my salvation, my stronghold. 3 I call upon the Lord, who is worthy to be praised, and I am saved from my enemies.</span></div></div>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Salmos 89:8-11 NASB__/TR__</span><span class="lang-en">Psalm 89:8-11 NASB</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:8 O LORD God of hosts, who is like you, O mighty LORD? Your faithfulness also surrounds you. 9 You rule the swelling of the sea; when its waves rise, you still them. 10 You yourself crushed Rahab like one who is slain; you scattered your enemies with your mighty arm. 11 The heavens are yours, the earth also is yours; the world and all it contains, you have founded them.__/TR__</span><span class="lang-en">8 O LORD God of hosts, who is like you, O mighty LORD? Your faithfulness also surrounds you. 9 You rule the swelling of the sea; when its waves rise, you still them. 10 You yourself crushed Rahab like one who is slain; you scattered your enemies with your mighty arm. 11 The heavens are yours, the earth also is yours; the world and all it contains, you have founded them.</span></div></div>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Salmos 104:1-9 retells the story of creation, flood, and re-creation from Genesis 1 and 6-8 by using the imagery__/TR__</span><span class="lang-en">Psalm 104:1-9 retells the story of creation, flood, and re-creation from Genesis 1 and 6-8 by using the imagery</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:of waters rising or receding from the land.__/TR__</span><span class="lang-en">of waters rising or receding from the land.</span></div></div>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Salmos 104:1-9 NASB__/TR__</span><span class="lang-en">Psalm 104:1-9 NASB</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:1 Bless the LORD, O my soul! O LORD my God, you are very great; you are clothed with splendor and majesty, 2 covering yourself with light as with a cloak, stretching out heaven like a tent curtain. 3 He lays the beams of his upper chambers in the waters; he makes the clouds his chariot; he walks upon the wings of the wind; 4 he makes the winds his messengers, flaming fire his ministers. 5 He established the earth upon its foundations, so that it will not totter forever and ever. 6 You covered it with the deep as with a garment; the waters were standing above the mountains. 7 At your rebuke they fled, at the sound of your thunder they hurried away. 8 The mountains rose; the valleys sank down to the place which you established for them. 9 You set a boundary that they may not pass over, so that they will not return to cover the earth.__/TR__</span><span class="lang-en">1 Bless the LORD, O my soul! O LORD my God, you are very great; you are clothed with splendor and majesty, 2 covering yourself with light as with a cloak, stretching out heaven like a tent curtain. 3 He lays the beams of his upper chambers in the waters; he makes the clouds his chariot; he walks upon the wings of the wind; 4 he makes the winds his messengers, flaming fire his ministers. 5 He established the earth upon its foundations, so that it will not totter forever and ever. 6 You covered it with the deep as with a garment; the waters were standing above the mountains. 7 At your rebuke they fled, at the sound of your thunder they hurried away. 8 The mountains rose; the valleys sank down to the place which you established for them. 9 You set a boundary that they may not pass over, so that they will not return to cover the earth.</span></div></div>
+  <p class="body reveal"><span class="lang-pt">__TR__:This language makes sense only within a flat Earth model. While we still use some of these phrases, we do so in a non-literal sense. This is not so for the biblical authors. See the following examples.__/TR__</span><span class="lang-en">This language makes sense only within a flat Earth model. While we still use some of these phrases, we do so in a non-literal sense. This is not so for the biblical authors. See the following examples.</span></p>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Mateus 4:8: Jesus is taken to a tall mountain and shown all the nations of the land.__/TR__</span><span class="lang-en">Matthew 4:8: Jesus is taken to a tall mountain and shown all the nations of the land.</span></h3>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Apocalipse 1:7: “Every eye will see him …”__/TR__</span><span class="lang-en">Revelation 1:7: “Every eye will see him …”</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:Reflection on the Dry Land What thoughts or questions do you have about the biblical understanding of the dry land? Exodus 14: The Exodus as an Act of New Creation__/TR__</span><span class="lang-en">Reflection on the Dry Land What thoughts or questions do you have about the biblical understanding of the dry land? Exodus 14: The Exodus as an Act of New Creation</span></div></div>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Êxodo 14:6-7 Instructor&#x27;s Translation__/TR__</span><span class="lang-en">Exodus 14:6-7 Instructor&#x27;s Translation</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:6 Pharaoh took his chariot and took his people with him, 7 and he took 600 choice chariots and all the chariotry of Egypt ...__/TR__</span><span class="lang-en">6 Pharaoh took his chariot and took his people with him, 7 and he took 600 choice chariots and all the chariotry of Egypt ...</span></div></div>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Êxodo 14:13-14 Instructor&#x27;s Translation__/TR__</span><span class="lang-en">Exodus 14:13-14 Instructor&#x27;s Translation</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:13 And Moses said to the people, “Don’t be afraid! Stand here and see the salvation of Yahweh which he will accomplish for you today. For the Egyptians you see today, you will not see them anymore, ever. 14 Yahweh__/TR__</span><span class="lang-en">13 And Moses said to the people, “Don’t be afraid! Stand here and see the salvation of Yahweh which he will accomplish for you today. For the Egyptians you see today, you will not see them anymore, ever. 14 Yahweh</span></div></div>
+  <p class="body reveal"><span class="lang-pt">__TR__:will fight for you, but you, keep quiet.”__/TR__</span><span class="lang-en">will fight for you, but you, keep quiet.”</span></p>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Êxodo 14:16 Instructor&#x27;s Translation__/TR__</span><span class="lang-en">Exodus 14:16 Instructor&#x27;s Translation</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:Moses, lift your staff and extend your hand over the sea and split (בקע) them, and let the sons of Israel go in the midst of the sea on dry land (יבשה).__/TR__</span><span class="lang-en">Moses, lift your staff and extend your hand over the sea and split (בקע) them, and let the sons of Israel go in the midst of the sea on dry land (יבשה).</span></div></div>
+  <h3 class="bibleref reveal"><span class="lang-pt">__TR__:Êxodo 14:20-30 Instructor&#x27;s Translation__/TR__</span><span class="lang-en">Exodus 14:20-30 Instructor&#x27;s Translation</span></h3>
+  <div class="scripture reveal"><div class="scripture-text"><span class="lang-pt">__TR__:20 [God sets the pillar of cloud and fire between the camps of Egypt and Israel “all the night” (כל־הלילה).”] 21 And Moses stretched his hand over the sea and Yahweh led away the sea by a strong east wind ( רוח קדים עזה) all the night, and he turned the sea into dry ground (חרבה), and the waters were split (נבקע). 22 And the sons of Israel went into the midst of the sea on dry land (יבשה), and the waters were a wall for them, on their right and on their left. 23 And Egypt chased and came after them, every horse of Pharaoh, his chariots and horsemen into the midst of the sea. 24 And it came about at the morning watch ( אשמרת הבקר) that Yahweh, in the pillar of fire and cloud, looked down at the camp of Egypt and confused the camp of Egypt. ... 28 And the waters turned back (וישבו המים) and covered the chariots and horsemen … in the sea, and there was not one of them remaining (שאר). 29 But the sons of Israel walked on dry land ( יבשה) ... 30 And Yahweh saved Israel on that day. “It should be evident that within the worldview of the ancient Near East, including the Hebrew Bible, their physical-technical and poetic-mythical statements and conceptions are not susceptible to consistent separation. To people in the ancient Near East, the empirical world, as manifestation and symbol, points beyond its superficial reality. A blurring occurs between the actual and the symbolic, and conversely between the symbolic and the actual. This openness of the everyday, earthly world to the spheres of divine life and bottomless, devastating lostness is probably the chief difference between ancient Near Eastern conception of the world and our own, which views the world as a virtually closed mechanical system. The principal error of conventional representations of the ANE view of the world lies in their profanity and lifelessness. In the biblical and ANE conception, the world is open and transparent to things above and beneath the earth. It is not a lifeless stage. The universe is thoroughly alive and, therefore, the more capable of sympathy with humans and of response to the rule of its creator, on whom both humanity and the universe directly depend. Certainly we have here more than a poetical personification of the cosmos, when it is invited to shout for joy!” Keel, Othmar (1997). The Symbolism Of The Biblical World: Ancient Near Eastern Iconography and the Book Of Psalms. Eisenbrauns. 56.__/TR__</span><span class="lang-en">20 [God sets the pillar of cloud and fire between the camps of Egypt and Israel “all the night” (כל־הלילה).”] 21 And Moses stretched his hand over the sea and Yahweh led away the sea by a strong east wind ( רוח קדים עזה) all the night, and he turned the sea into dry ground (חרבה), and the waters were split (נבקע). 22 And the sons of Israel went into the midst of the sea on dry land (יבשה), and the waters were a wall for them, on their right and on their left. 23 And Egypt chased and came after them, every horse of Pharaoh, his chariots and horsemen into the midst of the sea. 24 And it came about at the morning watch ( אשמרת הבקר) that Yahweh, in the pillar of fire and cloud, looked down at the camp of Egypt and confused the camp of Egypt. ... 28 And the waters turned back (וישבו המים) and covered the chariots and horsemen … in the sea, and there was not one of them remaining (שאר). 29 But the sons of Israel walked on dry land ( יבשה) ... 30 And Yahweh saved Israel on that day. “It should be evident that within the worldview of the ancient Near East, including the Hebrew Bible, their physical-technical and poetic-mythical statements and conceptions are not susceptible to consistent separation. To people in the ancient Near East, the empirical world, as manifestation and symbol, points beyond its superficial reality. A blurring occurs between the actual and the symbolic, and conversely between the symbolic and the actual. This openness of the everyday, earthly world to the spheres of divine life and bottomless, devastating lostness is probably the chief difference between ancient Near Eastern conception of the world and our own, which views the world as a virtually closed mechanical system. The principal error of conventional representations of the ANE view of the world lies in their profanity and lifelessness. In the biblical and ANE conception, the world is open and transparent to things above and beneath the earth. It is not a lifeless stage. The universe is thoroughly alive and, therefore, the more capable of sympathy with humans and of response to the rule of its creator, on whom both humanity and the universe directly depend. Certainly we have here more than a poetical personification of the cosmos, when it is invited to shout for joy!” Keel, Othmar (1997). The Symbolism Of The Biblical World: Ancient Near Eastern Iconography and the Book Of Psalms. Eisenbrauns. 56.</span></div></div>
+  <p class="body reveal"><span class="lang-pt">__TR__:Keel, Othmar (1997). &#x27;&#x27;Figure 14&#x27;&#x27; (p. 161). Symbolism of the Biblical World: Ancient Near Eastern Iconography and the Book of Psalms. Eisenbrauns. Reconstruction of the Israelite image of the world on the basis of biblical passages and iconographic elements from Palestine/Israel and its surroundings.__/TR__</span><span class="lang-en">Keel, Othmar (1997). &#x27;&#x27;Figure 14&#x27;&#x27; (p. 161). Symbolism of the Biblical World: Ancient Near Eastern Iconography and the Book of Psalms. Eisenbrauns. Reconstruction of the Israelite image of the world on the basis of biblical passages and iconographic elements from Palestine/Israel and its surroundings.</span></p>
+  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">__TR__:How do the biblical authors talk about the dry land? In other words, what did it rest upon, what marked its edges, what shape was it in, and what held it up? And did it carry a positive, negative, or neutral connotation?__/TR__</span><span class="lang-en">How do the biblical authors talk about the dry land? In other words, what did it rest upon, what marked its edges, what shape was it in, and what held it up? And did it carry a positive, negative, or neutral connotation?</span></p>
+
+  <div class="page-footer">
+    <span>Class Notes: Heaven and Earth</span>
+    <span><span class="lang-pt">Sessão 18 · A Terra Seca</span><span class="lang-en">Session 18 · The Dry Land</span></span>
+  </div>
+</div>
+
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s18-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s18-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+  <script src="../js/verse-modal.js"></script>
+</body>
+</html>
