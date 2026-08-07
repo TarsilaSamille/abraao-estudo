@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 9: O Dilúvio e a Promessa</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<script src="../js/verse-modal.js"></script>
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .figure { margin: 1.75rem 0; }
+  .figure img { width: 100%; height: auto; border-radius: 10px; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .hebrew { font-family: 'Newsreader', serif; }
+  .quote { border-left: 4px solid #aeb6bf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a3f47; font-style: italic; }
+  .cite { color: #4f5669; font-size: .95rem; line-height: 1.7; margin-top: .35rem; }
+  .poem { background: #f8fafc; border-left: 4px solid #cbd5e1; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.4rem 0; font-family: 'Newsreader', serif; line-height: 1.9; font-size: 1.05rem; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+<div id="reading-progress" aria-hidden="true"></div>
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="../index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 0 0 0 2-2h16a2 0 0 1 2 2v5a2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+  <h1 class="title reveal"><span class="lang-pt">Sessão 9: O Dilúvio e a Promessa</span><span class="lang-en">Session 9: The Flood and the Promise</span></h1>
+  <hr class="rule">
+
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">A saída da arca marca um novo começo, mas também repete o padrão de falha humana.</span><span class="lang-en">Leaving the ark marks a new beginning, but also repeats the pattern of human failure.</span></li>
+    <li><span class="lang-pt">Deus promete nunca mais destruir a terra por meio de um dilúvio, estabelecendo uma aliança com toda a criação.</span><span class="lang-en">God promises never again to destroy the earth with a flood, establishing a covenant with all creation.</span></li>
+    <li><span class="lang-pt">A maldição de Cam aponta para a tensão entre a bênção de Noé e a realidade do pecado que continua na terra.</span><span class="lang-en">Ham’s curse points to the tension between Noah’s blessing and the ongoing reality of sin in the world.</span></li>
+  </ul>
+
+  <h3 class="sub reveal"><span class="lang-pt">Saindo da Arca</span><span class="lang-en">Leaving the Ark</span></h3>
+
+  <p class="body reveal"><span class="lang-pt">Quando as águas recuam, Deus ordena que Noé saia da arca com sua família e todos os animais. A terra está renovada, mas a humanidade começa de novo com a mesma estrutura de falha e potencial que caracterizou o jardim do Éden.</span><span class="lang-en">When the waters recede, God orders Noah to leave the ark with his family and all the animals. The land is renewed, but humanity begins again with the same pattern of failure and potential that characterized the garden of Eden.</span></p>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-9/p43-page.png" alt="Noah Leaving the Ark">
+    <figcaption class="caption"><span class="lang-pt">Noé Saindo da Arca. Por Tim Mackie para BibleProject Classroom: De Noé a Abraão (2020).</span><span class="lang-en">Noah Leaving the Ark. Created by Tim Mackie for BibleProject Classroom: Noah to Abraham (2020).</span></figcaption>
+  </figure>
+
+  <h3 class="sub reveal"><span class="lang-pt">O Sacrifício de Noé</span><span class="lang-en">Noah's Sacrifice</span></h3>
+
+  <p class="body reveal"><span class="lang-pt">Noé edifica um altar a Yahweh e oferece sacrifícios de animais puros. O texto diz que Yahweh “cheirou o aroma agradável” e prometeu nunca mais amaldiçoar a terra por causa do homem, embora a inclinação do coração humano seja má desde a juventude.</span><span class="lang-en">Noah builds an altar to Yahweh and offers sacrifices of clean animals. The text says Yahweh “smelled a soothing aroma” and promised never again to curse the ground because of man, although the inclination of the human heart is evil from youth.</span></p>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-9/p44-page.png" alt="Noah's Sacrifice">
+    <figcaption class="caption"><span class="lang-pt">O Sacrifício de Noé. Por Tim Mackie para BibleProject Classroom: De Noé a Abraão (2020).</span><span class="lang-en">Noah’s Sacrifice. Created by Tim Mackie for BibleProject Classroom: Noah to Abraham (2020).</span></figcaption>
+  </figure>
+
+  <h3 class="sub reveal"><span class="lang-pt">A Aliança com Noé</span><span class="lang-en">The Covenant with Noah</span></h3>
+
+  <p class="body reveal"><span class="lang-pt">Deus estabelece uma aliança com Noé, sua família e todos os seres vivos, prometendo que nunca mais destruirá a terra com um dilúvio. O sinal da aliança é o arco-íris nas nuvens — um símbolo da fidelidade de Deus a toda a criação.</span><span class="lang-en">God establishes a covenant with Noah, his family, and all living creatures, promising never again to destroy the earth with a flood. The sign of the covenant is the rainbow in the clouds — a symbol of God’s faithfulness to all creation.</span></p>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-9/p45-page.png" alt="The Covenant with Noah">
+    <figcaption class="caption"><span class="lang-pt">A Aliança com Noé. Por Tim Mackie para BibleProject Classroom: De Noé a Abraão (2020).</span><span class="lang-en">The Covenant with Noah. Created by Tim Mackie for BibleProject Classroom: Noah to Abraham (2020).</span></figcaption>
+  </figure>
+
+  <h3 class="sub reveal"><span class="lang-pt">A Maldição de Cam</span><span class="lang-en">The Curse of Ham</span></h3>
+
+  <p class="body reveal"><span class="lang-pt">Noé plantou uma vinha, bebeu vinho e ficou embriagado, deitando-se nu em sua tenda. Cam, pai de Canaã, viu a nudez de seu pai e contou a seus irmãos. Sem e Jafé, porém, cobriram a nudez de seu pai sem olhar. Quando Noé despertou e soube o que Cam fizera, pronunciou uma maldição sobre Canaã e uma bênção sobre Sem e Jafé.</span><span class="lang-en">Noah planted a vineyard, drank wine, and became drunk, lying uncovered in his tent. Ham, father of Canaan, saw the nakedness of his father and told his brothers. Shem and Japheth, however, covered their father’s nakedness without looking. When Noah awoke and learned what Ham had done, he pronounced a curse on Canaan and a blessing on Shem and Japheth.</span></p>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-9/p46-page.png" alt="The Curse of Ham">
+    <figcaption class="caption"><span class="lang-pt">A Maldição de Cam. Por Tim Mackie para BibleProject Classroom: De Noé a Abraão (2020).</span><span class="lang-en">The Curse of Ham. Created by Tim Mackie for BibleProject Classroom: Noah to Abraham (2020).</span></figcaption>
+  </figure>
+
+  <p class="body reveal"><span class="lang-pt">Essa narrativa introduz a tensão entre a bênção de Noé e a realidade do pecado que continua na terra. A maldição sobre Canaã aponta para a futura conquista de Canaã por Israel, enquanto a bênção sobre Sem prepara o caminho para a linhagem que culminará em Abraão.</span><span class="lang-en">This narrative introduces the tension between Noah’s blessing and the ongoing reality of sin in the world. The curse on Canaan points toward the future conquest of Canaan by Israel, while the blessing on Shem prepares the way for the lineage that will culminate in Abraham.</span></p>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-9/p47-page.png" alt="Noah's Blessing and Curse">
+    <figcaption class="caption"><span class="lang-pt">A Bênção e Maldição de Noé. Por Tim Mackie para BibleProject Classroom: De Noé a Abraão (2020).</span><span class="lang-en">Noah’s Blessing and Curse. Created by Tim Mackie for BibleProject Classroom: Noah to Abraham (2020).</span></figcaption>
+  </figure>
+
+  <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">Como a aliança com Noé molda a sua compreensão da bondade de Deus para com a criação?</span><span class="lang-en">How does the covenant with Noah shape your understanding of God’s goodness toward creation?</span></p>
+
+  <footer class="page-footer">
+    <span>Class Notes: Noah to Abraham</span>
+    <span>Session 9</span>
+  </footer>
+</div>
+</body>
+</html>

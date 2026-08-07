@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 20: As Águas Recuam da Terra</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<script src="../js/verse-modal.js"></script>
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .figure { margin: 1.75rem 0; }
+  .figure img { width: 100%; height: auto; border-radius: 10px; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .hebrew { font-family: 'Newsreader', serif; }
+  .quote { border-left: 4px solid #aeb6bf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a3f47; font-style: italic; }
+  .cite { color: #4f5669; font-size: .95rem; line-height: 1.7; margin-top: .35rem; }
+  .poem { background: #f8fafc; border-left: 4px solid #cbd5e1; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.4rem 0; font-family: 'Newsreader', serif; line-height: 1.9; font-size: 1.05rem; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+<div id="reading-progress" aria-hidden="true"></div>
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="../index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 0 0 0 2-2h16a2 0 0 1 2 2v5a2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+  <h1 class="title reveal"><span class="lang-pt">Sessão 20: As Águas Recuam da Terra</span><span class="lang-en">Session 20: The Flood Waters Recede from the Land</span></h1>
+  <hr class="rule">
+
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">A restauração de pessoas e animais à terra depois do dilúvio é tanto uma recriação quanto uma nova criação.</span><span class="lang-en">The restoration of people and animals to the land after the flood is both a re-creation and a new creation.</span></li>
+    <li><span class="lang-pt">A criação na imaginação bíblica é sobre mais do que onde as coisas começaram; é sobre a transição da não-ordem para a ordem e a transição da morte para a vida.</span><span class="lang-en">Creation in the biblical imagination is about more than where things began; it’s about the transition from non-order to order and the transition from death to life.</span></li>
+    <li><span class="lang-pt">Noé, sua família e os animais saem da arca no primeiro dia do calendário — a nova criação coincidindo com o início do ano. Esse padrão se repete ao longo das Escrituras.</span><span class="lang-en">Noah, his family, and the animals exit the ark on the first day of the calendar—the new creation coinciding with the start of the year. This pattern recurs throughout Scripture.</span></li>
+  </ul>
+
+  <h3 class="sub reveal"><span class="lang-pt">O Novo Espírito-Criador de Deus</span><span class="lang-en">God’s New Creation Spirit-Wind</span></h3>
+
+  <p class="body reveal"><span class="lang-pt">A imagem do ruakh (רוח) de Deus soprando sobre o caos aquático liga de volta a Gênesis 1:2.</span><span class="lang-en">The image of God’s ruakh (רוח) blowing over the watery chaos links back to Genesis 1:2.</span></p>
+
+  <div class="poem reveal">
+    <span class="lang-pt">Gênesis 8:1 (tradução do instrutor):<br>E Elohim causou um ruakh para passar sobre a terra, e as águas baixaram.</span>
+    <span class="lang-pt">Genesis 8:1 Instructor's Translation:<br>And Elohim caused a ruakh to pass over the land, and the waters subsided.</span>
+    <span class="lang-en">And Elohim caused a ruakh to pass over the land, and the waters subsided.</span>
+  </div>
+
+  <div class="poem reveal">
+    <span class="lang-pt">Gênesis 1:2 (tradução do instrutor):<br>Agora, a terra era selvagem e vazia<br>e trevas estavam sobre a face do abismo profundo,<br>mas o ruakh de Elohim pairava sobre a face das águas.</span>
+    <span class="lang-pt">Genesis 1:2 Instructor's Translation:<br>Now, the land was wild and waste<br>and darkness was over the face of the deep abyss,<br>but the ruakh of Elohim was hovering over the face of the waters.</span>
+    <span class="lang-en">Now, the land was wild and waste<br>and darkness was over the face of the deep abyss,<br>but the ruakh of Elohim was hovering over the face of the waters.</span>
+  </div>
+
+  <p class="body reveal"><span class="lang-pt">Esta é a primeira alusão em uma rede de alusões a Gênesis 1. Todas essas alusões retratam a recessão das águas como uma narrativa de recriação por analogia com Gênesis 1. Joshua Berman mostra como quase todos os elementos narrativos em Gênesis 8-9 adaptam vocabulário de Gênesis 1 na ordem precisa dos dias da criação.</span><span class="lang-en">This is the first allusion in a network of allusions to Genesis 1. All these allusions portray the recession of the waters as a re-creation narrative on analogy with Genesis 1. Joshua Berman shows how nearly all of the narrative elements in Genesis 8-9 adapt vocabulary from Genesis 1 in the precise order of the days of creation.</span></p>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-20/p109-page.png" alt="Genesis 8-9 Re-Creation">
+    <figcaption class="caption"><span class="lang-pt">Gênesis 8-9 Recriação. Adaptado de Berman, Joshua (2017). Inconsistency in the Torah. Oxford University Press. Por BibleProject para Classroom: De Noé a Abraão (2020).</span><span class="lang-en">Genesis 8-9 Re-Creation. Adapted from Berman, Joshua (2017). Inconsistency in the Torah. Oxford University Press. By BibleProject for Classroom: Noah to Abraham (2020).</span></figcaption>
+  </figure>
+
+  <h3 class="sub reveal"><span class="lang-pt">As Águas do Dilúvio Recuam da Terra: Tradução e Design Literário de Gênesis 8:2-5</span><span class="lang-en">The Flood Waters Recede from the Land: Translation and Literary Design of Genesis 8:2-5</span></h3>
+
+  <p class="body reveal"><span class="lang-pt">A recessão das águas do dilúvio é descrita como a inversão do começo das águas em Gênesis 7:17-20.</span><span class="lang-en">The recession of the flood waters is described as the inversion of the flood’s beginning in Genesis 7:17-20.</span></p>
+
+  <div class="poem reveal">
+    <span class="lang-pt">2 E elas foram fechadas,<br>as fontes do abismo<br>e as janelas dos céus,<br>e foi contido,<br>a chuva dos céus.<br>3 E as águas se voltaram de sobre a terra,<br>voltando e as águas diminuíram<br>ao final de cento e cinquenta dias,<br>4 e a arca descansou (נוח),<br>no sétimo mês,<br>no décimo sétimo dia do mês,<br>sobre os montes de Ararat.<br>5 E as águas iam e diminuíam<br>até o décimo mês;<br>no décimo mês,<br>no primeiro dia do mês,<br>os topos dos montes se tornaram visíveis.</span>
+    <span class="lang-pt">2 And they were closed,<br>the fountains of the deep<br>and the windows of the skies,<br>and it was restrained,<br>the rain from the skies.<br>3 And the waters turned back from upon the land,<br>going back and the waters decreased<br>at the end of one hundred and fifty days,<br>4 and the ark rested (נוח),<br>in the seventh month,<br>on the seventeenth day of the month,<br>upon the mountains of Ararat.<br>5 And the waters were going and decreasing<br>until the tenth month;<br>in the tenth month,<br>on the first day of the month,<br>the heads of the mountains became visible.</span>
+    <span class="lang-en">2 And they were closed,<br>the fountains of the deep<br>and the windows of the skies,<br>and it was restrained,<br>the rain from the skies.<br>3 And the waters turned back from upon the land,<br>going back and the waters decreased<br>at the end of one hundred and fifty days,<br>4 and the ark rested (נוח),<br>in the seventh month,<br>on the seventeenth day of the month,<br>upon the mountains of Ararat.<br>5 And the waters were going and decreasing<br>until the tenth month;<br>in the tenth month,<br>on the first day of the month,<br>the heads of the mountains became visible.</span>
+  </div>
+
+  <p class="body reveal"><span class="lang-pt">As águas acima e abaixo foram liberadas, mais tarde elas são fechadas. A arca foi levantada e elevou-se alto. Então a arca descansa e toca o chão. As águas eram grandes e aumentaram sobre a terra. As águas recuam e se voltam. As águas cobriram os montes. Os topos dos montes são revelados.</span><span class="lang-en">The waters above and below were released, later they are closed. The ark was lifted and rose up high. Then the ark rests and touches down. The waters were great and increased over the land. The waters recede and turn back. The waters covered the mountains. The heads of the mountains are revealed.</span></p>
+
+  <h3 class="sub reveal"><span class="lang-pt">O Monte Ararate</span><span class="lang-en">Mount Ararat</span></h3>
+
+  <p class="body reveal"><span class="lang-pt">Observe que o narrador não diz qual montanha particular a arca descansou. O narrador simplesmente diz que ela veio descansar nas “montanhas de Ararat.” A palavra “Ararat” (Heb. אררט) é derivada do acádio Urartu, e refere-se à região que hoje está na fronteira leste da Turquia, perto da Armênia.</span><span class="lang-en">Notice that the narrator doesn’t say which particular mountain the ark rested upon. The narrator simply says that it came to rest in “the mountains of Ararat.” The word “Ararat” (Heb. אררט) is derived from Akkadian Urartu, and it refers to the region that today is on the far eastern border of Turkey, near Armenia.</span></p>
+
+  <p class="body reveal"><span class="lang-pt">Curiosamente, em outras histórias mesopotâmicas do dilúvio, como a Epopeia de Gilgamés, a arca de Utnapishtim repousa no “Monte Nimush” nos montes Zagros. No entanto, na conta de Berossus, ele nomeia a região semelhante à conta bíblica, nas montanhas da Armênia.</span><span class="lang-en">Interestingly, in other Mesopotamian flood stories like the Epic of Gilgamesh, Utnapishtim’s ark rests on “Mount Nimush” in the Zagros mountains. However, in Berossus’ account, he names the region similar to the biblical account, in the mountains of Armenia.</span></p>
+
+  <p class="body reveal"><span class="lang-pt">Observe que o nome Ararat forma um elaborado jogo de palavras com a história de nascimento de Noé em Gênesis 5:29. O jogo de palavras Ararat se relaciona com o que Noé fará nesta montanha quando sair do barco.</span><span class="lang-en">Notice that the name Ararat forms an elaborate wordplay on Noah’s birth story in Genesis 5:29. The Ararat wordplay relates to what Noah will do on this mountain when he gets out of the boat.</span></p>
+
+  <div class="poem reveal">
+    <span class="lang-pt">Gênesis 5:28-29:<br>E Lemek viveu cento e oitenta e dois anos, e gerou um filho.<br>29 E ele chamou seu nome “Noé (נח),” dizendo:<br>“Este nos dará conforto (נחם) do nosso trabalho e do trabalho de nossas mãos da terra (האדמה) que Yahweh amaldiçoou (אררה).”</span>
+    <span class="lang-pt">Genesis 5:28-29 NASB*:<br>28 And Lemek lived one hundred and eighty-two years, and he caused the birth of a son.<br>29 And he called his name “Noah (נח),” saying,<br>“This one will give us comfort (נחם) from our work and from the toil of our hands from the ground (האדמה) which the LORD has cursed (אררה).”</span>
+    <span class="lang-en">Genesis 5:28-29 NASB*:<br>28 And Lemek lived one hundred and eighty-two years, and he caused the birth of a son.<br>29 And he called his name “Noah (נח),” saying,<br>“This one will give us comfort (נחם) from our work and from the toil of our hands from the ground (האדמה) which the LORD has cursed (אררה).”</span>
+  </div>
+
+  <div class="poem reveal">
+    <span class="lang-pt">Gênesis 8:4:<br>e a arca descansou (נוח) na montanha de Ararat (אררט).</span>
+    <span class="lang-pt">Genesis 8:4 NASB*:<br>and the ark rested (נוח) in the mountain of Ararat (אררט).</span>
+    <span class="lang-en">and the ark rested (נוח) in the mountain of Ararat (אררט).</span>
+  </div>
+
+  <div class="poem reveal">
+    <span class="lang-pt">Gênesis 8:18-21 (tradução do instrutor):<br>18 Noé saiu da arca ... 20 E ele edificou um altar a Yahweh e fez uma oferta subir sobre o altar, 21 e Yahweh cheirou o cheiro descansado (ניחוח) e Yahweh disse ao seu coração, “Nunca mais amaldiçoarei (קלל) a terra (האדמה) por causa da humanidade.”</span>
+    <span class="lang-pt">Genesis 8:18-21 Instructor's Translation:<br>18 Noah went out from the ark ... 20 And he built an altar to Yahweh and he caused an offering to go up on the altar, 21 and Yahweh smelled the restful smell (ניחוח) and Yahweh said to his heart, “I will never again curse (קלל) the ground (האדמה) on account of humanity.”</span>
+    <span class="lang-en">18 Noah went out from the ark ... 20 And he built an altar to Yahweh and he caused an offering to go up on the altar, 21 and Yahweh smelled the restful smell (ניחוח) and Yahweh said to his heart, “I will never again curse (קלל) the ground (האדמה) on account of humanity.”</span>
+  </div>
+
+  <p class="body reveal"><span class="lang-pt">O nome de Noé, descanso (noakh), alude ao seu destino, que é trazer conforto (nakham) à terra que Deus amaldiçoou (’erarah). Então a arca de Noé descansa (נוח) nos montes de “carse” (’ararat) e oferece um cheiro sacrificial (nikhoakh), e Deus diz que não amaldiçoará mais a terra.</span><span class="lang-en">Noah’s name, rest (noakh), alludes to his destiny, which is to bring comfort (nakham) to the ground that God has cursed (’erarah). So Noah’s ark rests (נוח) in the mountains of “carse” (’ararat) and offers a sacrificial smell (nikhoakh), and God says he won’t curse the ground anymore.</span></p>
+
+  <h3 class="sub reveal"><span class="lang-pt">No Sétimo Mês, no Décimo Sétimo Dia</span><span class="lang-en">In the Seventh Month, on the 17th Day</span></h3>
+
+  <p class="body reveal"><span class="lang-pt">O tempo de Noé na arca foi coordenado com o calendário litúrgico de Israel que aparece muito mais tarde na Torá (Lv 23). O sétimo mês é a celebração do novo ano no outono, e o décimo sétimo dia está bem no meio da festa de Sukkot/Tabernáculos.</span><span class="lang-en">Noah’s time on the ark has been coordinated with Israel’s liturgical calendar that appears much later in the Torah (Lev. 23). The seventh month is the Fall new year celebration, and the 17th day is right in the middle of the festival of Sukkot/Tabernacles.</span></p>
+
+  <p class="body reveal"><span class="lang-pt">Dada a importância da arca como um proto-templo, isso não pode ser sem significado: a arca, como um proto-tabernáculo, passa pelas águas do caos e vem descansar em uma montanha cósmica no mesmo momento do ano em que os israelitas mais tarde viverão em seus micro-tabernáculos durante a festa de Sukcot para recordar sua jornada pelo deserto a caminho da terra prometida.</span><span class="lang-en">Given the importance of the ark as a proto-temple, this cannot be without significance: The ark, as a proto-tabernacle, goes through the chaos waters and comes to rest on a cosmic mountain at the same time of the year when the Israelites will later live in their micro-tabernacles during the feast of Sukkot to recall their journey through the desert on their way to the promised land.</span></p>
+
+  <h3 class="sub reveal"><span class="lang-pt">Noé, os Pássaros e a Terra Secando: Tradução e Design Literário de Gênesis 8:6-14</span><span class="lang-en">Noah, the Birds, and the Drying Land: Translation and Literary Design of Genesis 8:6-14</span></h3>
+
+  <div class="poem reveal">
+    <span class="lang-pt">6 E aconteceu ao final de quarenta dias,<br>a e Noé abriu a janela da arca que ele tinha feito;<br>b 7 e ele enviou um corvo,<br>e ele voou para cá e para lá até que as águas secassem de sobre a terra.<br>A 8 E ele enviou uma pomba dele,<br>a para ver se as águas haviam baixado da face da terra;<br>b 9 e a pomba não encontrou lugar de descanso (מנוח) para a sola de seu pé,<br>c e ela retornou a ele para a arca,<br>c' porque as águas estavam sobre a superfície de toda a terra.<br>b' E ele estendeu sua mão e a tomou,<br>a' e a trouxe para a arca para si mesmo.<br>a' B 10 E ele esperou mais sete dias;<br>e novamente ele enviou a pomba da arca.<br>11 E a pomba veio a ele na hora da tarde,<br>e eis que, em sua boca estava uma folha de oliveira, fresca colhida,<br>e Noé soube que as águas haviam baixado de sobre a terra.</span>
+    <span class="lang-pt">6 And it came about at the end of forty days,<br>a and Noah opened the window of the ark which he had made;<br>b 7 and he sent out a raven,<br>and it flew here and there until the waters were dried up from upon the land.<br>A 8 And he sent out a dove from him,<br>a to see if the waters were abated from the face of the ground;<br>b 9 and the dove found no place of rest (מנוח) for the sole of its foot,<br>c and it returned to him into the ark,<br>c' because the waters were on the surface of all the land.<br>b' And he sent out his hand and took it,<br>a' and he brought it into the ark to himself.<br>a' B 10 And he waited yet another seven days;<br>and again he sent out the dove from the ark.<br>11 And the dove came to him at the time of evening,<br>and behold, in its mouth was an olive leaf, freshly picked,<br>and Noah knew that the waters were abated from upon the land.</span>
+    <span class="lang-en">6 And it came about at the end of forty days,<br>a and Noah opened the window of the ark which he had made;<br>b 7 and he sent out a raven,<br>and it flew here and there until the waters were dried up from upon the land.<br>A 8 And he sent out a dove from him,<br>a to see if the waters were abated from the face of the ground;<br>b 9 and the dove found no place of rest (מנוח) for the sole of its foot,<br>c and it returned to him into the ark,<br>c' because the waters were on the surface of all the land.<br>b' And he sent out his hand and took it,<br>a' and he brought it into the ark to himself.<br>a' B 10 And he waited yet another seven days;<br>and again he sent out the dove from the ark.<br>11 And the dove came to him at the time of evening,<br>and behold, in its mouth was an olive leaf, freshly picked,<br>and Noah knew that the waters were abated from upon the land.</span>
+  </div>
+
+  <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">De que modo a saída da arca no primeiro dia do sétimo mês molda a sua compreensão do tempo e do propósito de Deus na história?</span><span class="lang-en">How does the exit from the ark on the first day of the seventh month shape your understanding of God’s timing and purpose in history?</span></p>
+
+  <footer class="page-footer">
+    <span>Class Notes: Noah to Abraham</span>
+    <span>Session 20</span>
+  </footer>
+</div>
+</body>
+</html>

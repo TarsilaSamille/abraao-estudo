@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 5: História de Duas Sementes</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<script src="../js/verse-modal.js"></script>
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .figure { margin: 1.75rem 0; }
+  .figure img { width: 100%; height: auto; border-radius: 10px; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .hebrew { font-family: 'Newsreader', serif; }
+  .quote { border-left: 4px solid #aeb6bf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a3f47; font-style: italic; }
+  .cite { color: #4f5669; font-size: .95rem; line-height: 1.7; margin-top: .35rem; }
+  .poem { background: #f8fafc; border-left: 4px solid #cbd5e1; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.4rem 0; font-family: 'Newsreader', serif; line-height: 1.9; font-size: 1.05rem; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+<div id="reading-progress" aria-hidden="true"></div>
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="../index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 0 0 0 2-2h16a2 0 0 1 2 2v5a2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+  <h1 class="title reveal"><span class="lang-pt">Sessão 5: História de Duas Sementes</span><span class="lang-en">Session 5: Tale of Two Seeds</span></h1>
+  <hr class="rule">
+
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">Não é inevitável que Caim reproduza o fracasso de seus pais. Cada geração enfrenta sua própria prova.</span><span class="lang-en">It is not inevitable that Cain replays his parents’ failure. Each generation faces its own testing.</span></li>
+    <li><span class="lang-pt">Gênesis 4 e 5 nos dá duas genealogias, primeiro a de Caim e depois a de Sete — a semente da serpente e a semente da mulher. Caim começa como a semente da mulher, mas por suas escolhas, ele se alinha com a semente da serpente.</span><span class="lang-en">Genesis 4 and 5 gives us two genealogies, first Cain’s and then Seth’s—the seed of the snake and the seed of the woman. Cain starts off as the seed of the woman, but by his choices, he aligns himself with the seed of the snake.</span></li>
+    <li><span class="lang-pt">A continuação da genealogia de Noé em 6:9-10, 7:6 e 9:28-29 mostra as costuras onde os autores bíblicos teceram duas narrativas em uma história unificada.</span><span class="lang-en">The continuation of Noah’s genealogy in 6:9-10, 7:6, and 9:28-29 shows the seams where biblical authors wove two narratives into a unified story.</span></li>
+  </ul>
+
+  <h3 class="sub reveal"><span class="lang-pt">O Ciclo de Temas em Gênesis 1-11</span><span class="lang-en">The Cycle of Themes in Genesis 1-11</span></h3>
+
+  <p class="body reveal"><span class="lang-pt">A história de Noé em Gênesis 6-11 se encaixa dentro de um padrão maior em ação em Gênesis 1-11. Os capítulos 1-5 representam um ciclo de temas, e os capítulos 6-11 reproduzem e desenvolvem o ciclo.</span><span class="lang-en">The Noah story in Genesis 6-11 fits within a larger pattern at work in Genesis 1-11. Chapters 1-5 play out a cycle of themes, and chapters 6-11 replay and develop the cycle.</span></p>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-5/p17-page.png" alt="Macro-Design of Genesis 1-11">
+    <figcaption class="caption"><span class="lang-pt">Macrodesign de Gênesis 1-11. Por Tim Mackie para BibleProject Classroom: Adam to Noah (2020).</span><span class="lang-en">Macro-Design of Genesis 1-11. Created by Tim Mackie for BibleProject Classroom: Adam to Noah (2020).</span></figcaption>
+  </figure>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-5/p18-page.png" alt="Macro-Design of Genesis 1-11 continued">
+    <figcaption class="caption"><span class="lang-pt">Macrodesign de Gênesis 1-11 (continuação). Por Tim Mackie para BibleProject Classroom: Adam to Noah (2020).</span><span class="lang-en">Macro-Design of Genesis 1-11 (continued). Created by Tim Mackie for BibleProject Classroom: Adam to Noah (2020).</span></figcaption>
+  </figure>
+
+  <h2 class="section reveal"><span class="lang-pt">Gênesis 5:1-32: Dez Gerações de Adão a Noé</span><span class="lang-en">Genesis 5:1-32: Ten Generations From Adam to Noah</span></h2>
+
+  <p class="body reveal"><span class="lang-pt">Depois que os humanos são exilados do Éden, e após o drama da eleição que divide a família de Adão e Eva em duas linhas, a narrativa reinicia e começa de novo. Desta vez, a genealogia segue a linha de Sete, a linha de Caim tendo sido concluída com Lemek e seus filhos. Esta genealogia tem uma forma altamente esquemática, que faz com que as três “inserções narrativas” se destaquem.</span><span class="lang-en">After the humans are exiled from Eden, and after the drama of election that splits Adam and Eve’s family into two lines, the narrative reboots and begins again. This time, the genealogy follows the line of Seth, Cain’s line having been concluded with Lemek and sons. This genealogy has a highly schematic form, which makes the three “narrative inserts” stick out.</span></p>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-5/p19-page.png" alt="From Adam to Noah's Three Sons">
+    <figcaption class="caption"><span class="lang-pt">De Adão aos Três Filhos de Noé. Criado por Tim Mackie para BibleProject Classroom: De Noé a Abraão (2020).</span><span class="lang-en">From Adam to Noah’s Three Sons. Created by Tim Mackie for BibleProject Classroom: Noah to Abraham (2020).</span></figcaption>
+  </figure>
+
+  <h3 class="sub reveal"><span class="lang-pt">Design Literário de Cada Geração</span><span class="lang-en">Literary Design of Each Generation</span></h3>
+
+  <p class="body reveal"><span class="lang-pt">Esta genealogia lista dez gerações de Adão a Noé. Cada uma é apresentada em uma forma literária idêntica:</span><span class="lang-en">This genealogy lists ten generations from Adam to Noah. Each one is given in an identical literary form:</span></p>
+
+  <div class="poem reveal">
+    <span class="lang-pt">E ____ viveu _____ anos, e ele causou o nascimento de [nome do filho].<br>E ____ viveu _____ anos depois de causar o nascimento de [nome do filho], e ele causou o nascimento de filhos e filhas,<br>e todos os dias de ____ foram _____ anos,<br>e ele morreu.</span>
+    <span class="lang-en">And ____ lived _____ years, and he caused the birth of [son’s name].<br>And ____ lived _____ years after he caused the birth of [son’s name], and he caused the birth of sons and daughters,<br>and all the days of ____ were _____ years,<br>and he died.</span>
+  </div>
+
+  <h3 class="sub reveal"><span class="lang-pt">Três Pessoas Especiais em Gênesis 5</span><span class="lang-en">Three Special People in Genesis 5</span></h3>
+
+  <p class="body reveal"><span class="lang-pt">Há três figuras cuja entrada genealógica se desvia dessa forma, e é precisamente nesses três pontos que encontramos inserções narrativas que destacam temas importantes de Gênesis. Preste atenção especial a Adão, Enoque e Lemek/Noé.</span><span class="lang-en">There are three figures whose genealogical entry deviates from this form, and at precisely these three points we find narrative inserts that highlight important themes of Genesis. Pay special attention to Adam, Enoch, and Lemek/Noah.</span></p>
+
+  <h3 class="sub reveal"><span class="lang-pt">Prologue</span><span class="lang-en">Prologue</span></h3>
+
+  <div class="poem reveal">
+    <span class="lang-pt">1 Este é o livro das gerações de Adão .<br>No dia em que Elohim criou a humanidade,<br>à semelhança de Elohim ele o fez.<br>2 Macho e fêmea ele os criou, e os abençoou, e os chamou pelo nome de 'humanos' no dia em que foram criados.</span>
+    <span class="lang-en">1 This is the scroll of the generations of Adam ;<br>In the day when Elohim created humanity ,<br>he made him as the likeness of Elohim,<br>2 male and female he created them, and he blessed them, and he called their name 'human' in the day when they were created.</span>
+  </div>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-5/p20-page.png" alt="Ten Generations from Adam to Noah">
+    <figcaption class="caption"><span class="lang-pt">Dez Gerações de Adão a Noé. Criado por Tim Mackie para BibleProject Classroom: De Noé a Abraão (2020).</span><span class="lang-en">Ten Generations Adam to Noah. Created by Tim Mackie for BibleProject Classroom: Noah to Abraham (2020).</span></figcaption>
+  </figure>
+
+  <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">O que você acha do padrão cíclico de temas em Gênesis 1-11?</span><span class="lang-en">What do you make of the cyclical pattern of themes in Genesis 1-11?</span></p>
+
+  <footer class="page-footer">
+    <span>Class Notes: Noah to Abraham</span>
+    <span>Session 5</span>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 7: A Narrativa do Dilúvio no Contexto do Antigo Oriente Próximo</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<script src="../js/verse-modal.js"></script>
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .figure { margin: 1.75rem 0; }
+  .figure img { width: 100%; height: auto; border-radius: 10px; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .hebrew { font-family: 'Newsreader', serif; }
+  .quote { border-left: 4px solid #aeb6bf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a3f47; font-style: italic; }
+  .cite { color: #4f5669; font-size: .95rem; line-height: 1.7; margin-top: .35rem; }
+  .poem { background: #f8fafc; border-left: 4px solid #cbd5e1; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.4rem 0; font-family: 'Newsreader', serif; line-height: 1.9; font-size: 1.05rem; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+<div id="reading-progress" aria-hidden="true"></div>
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="../index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 0 0 0 2-2h16a2 0 0 1 2 2v5a2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+  <h1 class="title reveal"><span class="lang-pt">Sessão 7: A Narrativa do Dilúvio no Contexto do Antigo Oriente Próximo</span><span class="lang-en">Session 7: The Flood Narrative in Ancient Near Eastern Context</span></h1>
+  <hr class="rule">
+
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">Gênesis 8:1 é um ponto de virada da de-criação para a nova criação.</span><span class="lang-en">Genesis 8:1 is a pivot from de-creation to new creation.</span></li>
+    <li><span class="lang-pt">A história bíblica do dilúvio é desenhada para estar em diálogo com as outras histórias de dilúvio do Antigo Oriente Próximo.</span><span class="lang-en">The biblical flood story is designed to be in dialogue with the other ancient Near Eastern flood stories.</span></li>
+    <li><span class="lang-pt">As diferenças entre a conta bíblica e outras histórias de dilúvio delimitam retratos rivais de Deus.</span><span class="lang-en">The differences between the biblical account and other flood stories outline rival portraits of God.</span></li>
+  </ul>
+
+  <h3 class="sub reveal"><span class="lang-pt">O Macrodesign da Narrativa do Dilúvio</span><span class="lang-en">The Macro-Design of the Flood Narrative</span></h3>
+
+  <p class="body reveal"><span class="lang-pt">A composição da narrativa do dilúvio é complexa porque parece arranjar mais de uma fonte preexistente (chamadas “J” e “P” pelos estudiosos do Antigo Testamento). No entanto, todo o material preexistente foi cuidadosamente organizado em um design simétrico com painéis dobrados, de modo que a história conduz ao seu clímax em um padrão de dois passos e depois retrace aproximadamente o desenvolvimento temático na ordem inversa.</span><span class="lang-en">The composition of the flood narrative is complex because it seems to arrange more than one preexisting source (called “J” and “P” by Old Testament scholars). However, all of the preexisting material has been carefully arranged in a symmetrical design with doubled panels so that the story leads up to its climax in a two-step pattern and then roughly retraces the thematic development in reverse order.</span></p>
+
+  <p class="body reveal"><span class="lang-pt">A composição da narrativa do dilúvio também foi apresentada como um ato de de-criação e recriação modelado em Gênesis 1, e assim tem 10 atos divinos de fala assim como em Gênesis 1:1-2:3.</span><span class="lang-en">The composition of the flood narrative has also been presented as an act of de-creation and re-creation modeled on Genesis 1, and so it has 10 divine speech acts just as in Genesis 1:1-2:3.</span></p>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-7/p27-page.png" alt="Horizontal Macrodesign of the Flood Story">
+    <figcaption class="caption"><span class="lang-pt">Macrodesign Horizontal da História do Dilúvio. Adaptado de Teeter, Andrew (2019). "Aulas de Gênesis." Por BibleProject para Classroom: De Noé a Abraão (2020).</span><span class="lang-en">Horizontal Macrodesign of the Flood Story. Adapted from Teeter, Andrew (2019). "Genesis Class Notes." By BibleProject for Classroom: Noah to Abraham (2020).</span></figcaption>
+  </figure>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-7/p28-page.png" alt="Macrodesign of the Flood Story">
+    <figcaption class="caption"><span class="lang-pt">Macrodesign da História do Dilúvio. Adaptado de Teeter, Andrew (2019). "Aulas de Gênesis." Por BibleProject para Classroom: De Noé a Abraão (2020).</span><span class="lang-en">Macrodesign of the Flood Story. Adapted from Teeter, Andrew (2019). "Genesis Class Notes." By BibleProject for Classroom: Noah to Abraham (2020).</span></figcaption>
+  </figure>
+
+  <h3 class="sub reveal"><span class="lang-pt">Principais Características do Design da Narrativa do Dilúvio</span><span class="lang-en">Major Features of the Design of the Flood Narrative</span></h3>
+
+  <p class="body reveal"><span class="lang-pt">A história começa com uma unidade pareada (6:1-4 e 6:5-12) sobre a crise no céu e na terra que torna o dilúvio necessário. Essas duas unidades estão conectadas por vocabulário e tema: os habitantes do céu e da terra perturbam a ordem cósmica violando os limites colocados sobre eles em Gênesis 1-2.</span><span class="lang-en">The story begins with a paired unit (6:1-4 and 6:5-12) about the crisis in Heaven and Earth that necessitates the flood. These two units are connected by vocabulary and theme: The inhabitants of Heaven and Earth disrupt cosmic order by violating the boundaries placed on them in Genesis 1-2.</span></p>
+
+  <h3 class="sub reveal"><span class="lang-pt">Duas Rebeliões</span><span class="lang-en">Two Rebellions</span></h3>
+
+  <p class="body reveal"><span class="lang-pt">A rebelião terrena (6:5-12) descreve a ruína da terra e a condição corrupta da humanidade que leva Deus a purificar a terra com um dilúvio. Esta linguagem é adotada na história do sacrifício de Noé após o dilúvio (8:20-22). Deus decide mudar sua estratégia com humanos corruptos sustentando a ordem cósmica, apesar do mal da humanidade.</span><span class="lang-en">The earthly rebellion (6:5-12) describes the ruin of the land and the corrupt condition of humanity that drives God to purify the land with a flood. This language is adopted in the story of Noah’s sacrifice after the flood (8:20-22). God decides to change his strategy with corrupt humans by sustaining the cosmic order despite humanity’s evil.</span></p>
+
+  <p class="body reveal"><span class="lang-pt">A rebelião celestial (6:1-4) permanece no fundo da narrativa do dilúvio, mas sua linguagem e temas são retomados na narrativa conclusiva da rebelião de Cam (9:18-27). Sexo ilícito e violação de limites ligam os filhos rebeldes de Elohim aos filhos de Cam, ou seja, os cananeus.</span><span class="lang-en">The heavenly rebellion (6:1-4) remains in the background of the flood narrative, but its language and themes are picked up in the concluding narrative of Ham’s rebellion (9:18-27). Illicit sex and violation of boundaries bind the rebellious sons of Elohim to the sons of Ham, that is, the Canaanites.</span></p>
+
+  <h3 class="sub reveal"><span class="lang-pt">Dois Discursos Divinos</span><span class="lang-en">Two Divine Speeches</span></h3>
+
+  <p class="body reveal"><span class="lang-pt">O primeiro discurso divino alertando Noé sobre o dilúvio (6:13-22) introduz os temas de (1) a construção da arca, (2) o chamado para entrar nela junto com todos os animais, (3) a promessa de uma aliança entre Deus e Noé, e (4) a provisão de alimento. Os dois primeiros temas são desenvolvidos imediatamente nas unidades seguintes (construindo e entrando na arca com os animais), mas os dois restantes não são retomados até chegarmos aos pares simétricos em 9:1-7 (a provisão de alimento) e 9:8-17 (a aliança).</span><span class="lang-en">The first divine speech warning Noah about the flood (6:13-22) introduces the themes of (1) the construction of the ark, (2) the call to enter it along with all the animals, (3) the promise of a covenant between God and Noah, and (4) the provision of food. The first two themes are developed immediately in following units (building and entering the ark with the animals), but the remaining two themes are not picked up until we come to the symmetrical pairs in 9:1-7 (the provision of food) and 9:8-17 (the covenant).</span></p>
+
+  <p class="body reveal"><span class="lang-pt">O segundo discurso divino para entrar na arca (7:1-5) corresponde ao primeiro discurso (6:13-22), mas difere no fato de que Noé é chamado a tomar animais puros e impuros na arca e um prazo é dado para o dilúvio. Em sete dias o dilúvio virá, e choverá por 40 dias. Este discurso é pareado com seu parceiro simétrico em 8:15-19, onde Noé e os animais são chamados a sair da arca na linguagem exata de seu convite para entrar.</span><span class="lang-en">The second divine speech to enter the ark (7:1-5) corresponds to the first speech (6:13-22), but it differs in that Noah is called to take pure and impure animals into the ark and a timeline is given for the flood. In seven more days the flood will come, and it will rain for 40 days. This speech is paired with its symmetrical partner in 8:15-19, where Noah and the animals are called to leave the ark in precisely the language of their invitation to enter it.</span></p>
+
+  <h3 class="sub reveal"><span class="lang-pt">Esperando e Aguardando o Dilúvio</span><span class="lang-en">Awaiting and Waiting Out the Flood</span></h3>
+
+  <p class="body reveal"><span class="lang-pt">A narrativa sobre Noé e os animais entrando na arca (7:6-16) acontece em dois painéis paralelos, 7:6-10 e 7:11-16. Cada unidade começa notando a idade de Noé (600 anos em 7:6 e 7:11) e como ele entrou na arca com os animais (os puros em 7:8 e a lista de Gn 1 em 7:14). Essas duas unidades correspondem à narrativa da espera paciente de Noé pelas águas do dilúvio secarem (8:6-14). A idade de Noé é notada novamente (601 anos em 8:13). Ele emprega duas aves (uma pura e uma impura) e espera por múltiplos estágios de sete dias.</span><span class="lang-en">The narrative about Noah and the animals entering the ark (7:6-16) happens in two parallel panels, 7:6-10 and 7:11-16. Each unit begins by noting the age of Noah (600 years in 7:6 and 7:11) and how he entered the ark with the animals (the pure ones in 7:8 and the Gen. 1 list in 7:14). These two units match the narrative of Noah’s patient waiting for the waters of the flood to dry up (8:6-14). Noah’s age is noted again (601 years in 8:13). He employs two birds (one pure and one impure) and waits through multiple stages of seven days.</span></p>
+
+  <p class="body reveal"><span class="lang-pt">A descrição da chegada e do poder avassalador do dilúvio em 7:17-24 leva à declaração climática de que apenas Noé e os que estavam com ele na arca “permaneceram” (7:23). As águas aumentam até cobrir os montes (7:19-20). Correspondendo a isso está a recessão em múltiplos estágios das águas em 8:2-5, quando os montes se tornam visíveis novamente.</span><span class="lang-en">The description of the flood’s arrival and overwhelming power in 7:17-24 leads to the climactic statement that only Noah and those with him in the ark “remained” (7:23). The waters surge until they cover the mountains (7:19-20). Corresponding to this is the multistage recession of the waters in 8:2-5 as the mountains become visible again.</span></p>
+
+  <p class="body reveal"><span class="lang-pt">Gênesis 8:1 está no centro de toda a unidade. Deus se lembra de Noé e faz seu vento soprar sobre as águas do dilúvio para que elas recuem.</span><span class="lang-en">Genesis 8:1 is at the center of the entire unit. God remembers Noah and causes his wind to blow upon the flood waters so they recede.</span></p>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-7/p29-page.png" alt="Macrodesign of the Flood Story Expanded">
+    <figcaption class="caption"><span class="lang-pt">Macrodesign Expandido da História do Dilúvio. Adaptado de Teeter, Andrew (2019). "Aulas de Gênesis." Por BibleProject para Classroom: De Noé a Abraão (2020).</span><span class="lang-en">Macrodesign of the Flood Story Expanded. Adapted from Teeter, Andrew (2019). "Genesis Class Notes." By BibleProject for Classroom: Noah to Abraham (2020).</span></figcaption>
+  </figure>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-7/p30-page.png" alt="Macrodesign of the Flood Story Expanded detail">
+    <figcaption class="caption"><span class="lang-pt">Macrodesign Expandido da História do Dilúvio (detalhe). Adaptado de Teeter, Andrew (2019). "Aulas de Gênesis." Por BibleProject para Classroom: De Noé a Abraão (2020).</span><span class="lang-en">Macrodesign of the Flood Story Expanded. Adapted from Teeter, Andrew (2019). "Genesis Class Notes." By BibleProject for Classroom: Noah to Abraham (2020).</span></figcaption>
+  </figure>
+
+  <h2 class="section reveal"><span class="lang-pt">A Narrativa do Dilúvio no Contexto do Antigo Oriente Próximo</span><span class="lang-en">The Flood Narrative in Ancient Near Eastern Context</span></h2>
+
+  <p class="body reveal"><span class="lang-pt">Em 1847, Austen Henry Layard descobriu perto de Mosul a primeira de milhares de tabuletas cuneiformes que pertenciam à biblioteca de Ashurbanipal (Rei da Assíria, século VII a.C.).</span><span class="lang-en">In 1847, Austin Henry Layard discovered near Mosul the first of thousands of cuneiform tablets that belonged to the library of Ashurbanipal (King of Assyria, 7th century B.C.E.).</span></p>
+
+  <p class="body reveal"><span class="lang-pt">Em 1872, George Smith apresentou seu trabalho cuidadoso de reunir muitas tabuletas chamadas a Epopeia de Gilgamés (“A Conta Caldeia do Dilúvio”).</span><span class="lang-en">In 1872, George Smith presented his careful work of bringing together many tablets called the Epic of Gilgamesh ("The Chaldean Account of the Deluge").</span></p>
+
+  <div class="quote reveal">
+    <span class="lang-pt">“Há pouco tempo atrás, descobri entre as tabuletas assírias no museu britânico uma conta do dilúvio ... Eu tinha dividido a coleção de tabuletas em seções de acordo com o assunto. Eu tenho examinado recentemente a divisão que compreende as tabuletas mitológicas e desta seção havia uma cópia da história do dilúvio. Ao descobrir esses documentos, eu procurei por toda a coleção de fragmentos, consistindo de vários milhares de pedaços, e recuperei 80 fragmentos dessas lendas; com a ajuda dos quais eu fui capaz de restaurar quase todo o texto da descrição do dilúvio, e porções de outras lendas também ... Da inscrição descrevendo o dilúvio, existem fragmentos de três cópias contendo os mesmos textos ... Todos esses relatos, juntamente com porções consideráveis de outras mitologias, têm, eu acredito, uma origem comum nas planícies da Caldeia. Este país, o berço da civilização, o local de nascimento das artes e das ciências, por 2.000 anos está em ruínas; sua literatura, contendo os registros mais preciosos da antiguidade, é dificilmente conhecida por nós, exceto pelos textos dos assírios, mas debaixo de montes e cidades arruinadas, agora aguardando exploração, jaziam, junto com cópias mais antigas do dilúvio, outras lendas e histórias das primeiras civilizações do mundo.”</span>
+    <span class="lang-en">“A short time back I discovered among the Assyrian tablets in the British museum an account of the flood ... I had divided the collection of tablets into sections according to subject matter. I have recently been examining the division comprising the mythological tablets and from this section there was a copy of the story of the flood. On discovering these documents, I searched all over the collection of fragments, consisting of several thousand pieces, and I recovered 80 fragments of these legends; by the aid of which I was enabled to restore nearly all of the text of the description of the flood, and portions of other legends as well ... Of the inscription describing the flood, there are fragments of three copies containing the same texts ... All these accounts, together with considerable portions of other mythologies, have, I believe, a common origin in the plains of Chaldea. This country, the cradle of civilization, the birthplace of the arts and sciences, for 2,000 years has been in ruins; its literature, containing the most precious records from antiquity, is scarcely known to us, except from the texts of the Assyrians, but beneath mounds and ruined cities, now awaiting exploration, lay, together with older copies of the flood, other legends and histories of the earliest civilizations of the world.”</span>
+    <p class="cite">— Smith, George (1873). The Chaldean Account of the Deluge (2). Transactions of the Society of Biblical Archaeology. 213-34.</p>
+  </div>
+
+  <p class="body reveal"><span class="lang-pt">A Criação e Caos no Início e no Fim, de Hermann Gunkel, reivindicou que Gênesis 1-11 exibia dependência extensiva das tradições babilônicas.</span><span class="lang-en">Hermann Gunkel’s Creation and Chaos in the Beginning and the End claimed that Genesis 1-11 displayed extensive dependence upon Babylonian traditions.</span></p>
+
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">Criação a partir de batalhas com o dragão das águas do caos</span><span class="lang-en">Creation from battles with the chaos-water dragon</span></li>
+    <li><span class="lang-pt">Criação de humanos do pó</span><span class="lang-en">Creation of humans from the dust</span></li>
+    <li><span class="lang-pt">Listas de reis antigos: reis pré-dilúvio vivendo por milhares de anos</span><span class="lang-en">Ancient king lists: pre-flood kings living for thousands of years</span></li>
+    <li><span class="lang-pt">Histórias de dilúvio</span><span class="lang-en">Flood stories</span></li>
+  </ul>
+
+  <p class="body reveal"><span class="lang-pt">No século XX, versões mais antigas dessa história mesopotâmica do dilúvio foram descobertas, totalizando cinco versões separadas em quatro idiomas.</span><span class="lang-en">In the 20th century, older versions of this Mesopotamian flood story were discovered, bringing it to a total of five separate versions in four languages.</span></p>
+
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">Século XVI a.C., versão sumério-babilônica: Eridu Genesis</span><span class="lang-en">16th century B.C.E. Sumerian-Babylonian version: Eridu Genesis</span></li>
+    <li><span class="lang-pt">Século XVII a.C., versão acadiana: Epopeia de Atrahasis</span><span class="lang-en">17th century B.C.E. Akkadian version: Epic of Atrahasis</span></li>
+    <li><span class="lang-pt">Século XIII a.C., versão acadiana na Epopeia de Gilgamés</span><span class="lang-en">13th century B.C.E. Akkadian version in the Epic of Gilgamesh</span></li>
+    <li><span class="lang-pt">A versão bíblica, datada de qualquer momento entre os séculos XII-VI a.C.</span><span class="lang-en">The biblical version, dated anywhere from the 12th-6th century B.C.E.</span></li>
+    <li><span class="lang-pt">Século III a.C., versão grega preservada nos escritos do sacerdote babilônio Berossus</span><span class="lang-en">3rd century B.C.E. Greek version preserved in the writings of the Babylonian priest Berossus</span></li>
+  </ul>
+
+  <p class="body reveal"><span class="lang-pt">Essas versões são todas descendentes de um ancestral comum, pois compartilham uma lista única de semelhanças em detalhes.</span><span class="lang-en">These versions are all descendants of a common ancestor, as they share a unique list of similarities in detail.</span></p>
+
+  <h3 class="sub reveal"><span class="lang-pt">A Estrutura Comum Entre Todas as Três Contas</span><span class="lang-en">The Common Framework Between All Three Accounts</span></h3>
+
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">Uma decisão divina é tomada para enviar um dilúvio punitivo</span><span class="lang-en">A divine decision is made to send a punishing flood</span></li>
+    <li><span class="lang-pt">Um homem escolhido é informado para salvar a si mesmo, sua família e criaturas construindo um barco</span><span class="lang-en">One chosen man is told to save himself, his family, and creatures by building a boat</span></li>
+    <li><span class="lang-pt">As proporções e o design do barco imitam um templo sagrado</span><span class="lang-en">The boat’s proportions and design imitate a sacred temple</span></li>
+    <li><span class="lang-pt">Um grande dilúvio destrói as outras pessoas</span><span class="lang-en">A great flood destroys the rest of the people</span></li>
+    <li><span class="lang-pt">O barco encalha em uma montanha</span><span class="lang-en">The boat runs aground on a mountain</span></li>
+    <li><span class="lang-pt">Aves são enviadas para determinar a disponibilidade de terra habitável</span><span class="lang-en">Birds are sent out to determine the availability of habitable land</span></li>
+    <li><span class="lang-pt">O herói oferece um sacrifício aos deuses</span><span class="lang-en">The hero offers a sacrifice to the gods</span></li>
+    <li><span class="lang-pt">A humanidade é renovada na terra</span><span class="lang-en">Humanity is renewed on the land</span></li>
+  </ul>
+
+  <p class="cite">— Tsumura, David Toshio (1994). “Genesis and Ancient Near Eastern Stories of Creation and Flood.” I Studied Inscriptions from Before the Flood: Ancient Near Eastern, Literary, and Linguistic Approaches to Genesis 1-11. Eisenbrauns. 54-55.</p>
+
+  <h3 class="sub reveal"><span class="lang-pt">Semelhanças entre Gênesis e a Tábua 11 da Epopeia de Gilgamés</span><span class="lang-en">Similarities Between Genesis and Tablet 11 of the Gilgamesh Epic</span></h3>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-7/p33-page.png" alt="Similarities Between Genesis and Gilgamesh">
+    <figcaption class="caption"><span class="lang-pt">Semelhanças entre Gênesis e a Epopeia de Gilgamés. Por Tim Mackie para BibleProject Classroom: De Noé a Abraão (2020).</span><span class="lang-en">Similarities Between Genesis and Tablet 11 of the Gilgamesh Epic. Created by Tim Mackie for BibleProject Classroom: Noah to Abraham (2020).</span></figcaption>
+  </figure>
+
+  <p class="cite">— Adaptado de Wenham, Gordon (1978). “The Coherence of the Flood Narrative.” Vetus Testamentum, Volume 28 (July). 346-347.</p>
+
+  <h3 class="sub reveal"><span class="lang-pt">Principais Diferenças entre as Contas Mesopotâmicas e Gênesis</span><span class="lang-en">Key Differences Between the Mesopotamian Accounts and Genesis</span></h3>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-7/p34-page.png" alt="Key Differences Between Flood Stories">
+    <figcaption class="caption"><span class="lang-pt">Principais Diferenças entre Histórias de Dilúvio. Por Tim Mackie para BibleProject Classroom: De Noé a Abraão (2020).</span><span class="lang-en">Key Differences Between Flood Stories. Created by Tim Mackie for BibleProject Classroom: Noah to Abraham (2020).</span></figcaption>
+  </figure>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-7/p35-page.png" alt="Key Differences Between Flood Stories continued">
+    <figcaption class="caption"><span class="lang-pt">Principais Diferenças entre Histórias de Dilúvio (continuação). Por Tim Mackie para BibleProject Classroom: De Noé a Abraão (2020).</span><span class="lang-en">Key Differences Between Flood Stories (continued). Created by Tim Mackie for BibleProject Classroom: Noah to Abraham (2020).</span></figcaption>
+  </figure>
+
+  <p class="body reveal"><span class="lang-pt">Gordon Wenham descreve três abordagens básicas para explicar essas conexões em Word Biblical Commentary, Volume 1: Genesis 1-15 (Wenham, 1987).</span><span class="lang-en">Gordon Wenham outlines three basic approaches to explaining these connections in Word Biblical Commentary, Volume 1: Genesis 1-15 (Wenham, 1987).</span></p>
+
+  <ul class="bullets reveal">
+    <li><span class="lang-pt"><strong>Minimalistas:</strong> As diferenças são grandes demais para supor dependência direta da conta de Gênesis nas tradições mesopotâmicas. Ambas são desenvolvimentos independentes de uma tradição comum anterior.</span><span class="lang-en"><strong>Minimalists:</strong> The differences are too great to suppose direct dependence of the Genesis account on the Mesopotamian. Both are independent developments of an earlier common tradition.</span></li>
+    <li><span class="lang-pt"><strong>Maximalistas:</strong> O autor de Gênesis estava familiarizado e dependente das tradições mesopotâmicas em algo como sua forma presente. O escritor está portanto se opondo deliberadamente, subvertendo ou expandindo-as.</span><span class="lang-en"><strong>Maximalists:</strong> The author of Genesis was familiar with and dependent upon Mesopotamian traditions in something like their present form. The writer is therefore deliberately opposing, subverting, or expanding on them.</span></li>
+    <li><span class="lang-pt"><strong>Moderados:</strong> A verdade está em algum lugar entre o minimalista e o maximalista, dependendo do motivo ou detalhamento textual específico.</span><span class="lang-en"><strong>Moderates:</strong> The truth lies somewhere between the minimalist and the maximalist, depending on the specific motif or textual detail.</span></li>
+  </ul>
+
+  <div class="quote reveal">
+    <span class="lang-pt">“Todos no Antigo Oriente Próximo sabiam que houve um grande dilúvio (assim como todos hoje sabiam que houve um Holocausto.) Está no rio cultural. A questão era, o que Deus estava fazendo? Por que ele enviou o dilúvio? Sobre este ponto, diferentes textos oferecem interpretações vastamente diferentes, e cada cultura deu à tradição sua própria forma. As contas mesopotâmicas estão tirando do rio cultural e girando de acordo com suas ideias culturais e teologia. Os autores bíblicos estão fazendo o mesmo. Não precisamos nos preocupar se os autores israelitas tinham acesso a cópias das contas mesopotâmicas ... O que é importante é a diferença na interpretação do evento. Aqui há diferenças notáveis entre as contas do Antigo Oriente Próximo, e a conta bíblica tem uma interpretação vastamente diferente a oferecer.”</span>
+    <span class="lang-en">“Everyone in the ancient Near East knew there was a great flood (just like everyone today knows there was a Holocaust.) It is in the cultural river. The question was, what was God up to? Why did he send the flood? On this point, different texts offer vastly different interpretations, and every culture gave the tradition its own shape. The Mesopotamian accounts are drawing out of the cultural river and spinning it according to their cultural ideas and theology. The biblical authors are doing the same. We need not concern ourselves with whether the Israelite authors had access to copies of the Mesopotamian accounts … What is important is the difference in the interpretation of the event. Here there are noticeable differences between the ancient Near Eastern accounts, and the biblical account has a vastly different interpretation to offer.”</span>
+    <p class="cite">— Longman, Tremper e Walton, J. H. (2018). The Lost World of the Flood: Mythology, Theology, and the Deluge Debate. IVP Academic. 62-63.</p>
+  </div>
+
+  <h3 class="sub reveal"><span class="lang-pt">Contas do Dilúvio do Mundo Mesopotâmico Antigo</span><span class="lang-en">Flood Accounts From the Ancient Mesopotamian World</span></h3>
+
+  <p class="body reveal"><span class="lang-pt"><strong>Epopeia de Gilgamés, Tábua 11</strong><br>Idioma: Acadiano / Data: aproximadamente século XVIII a.C.</span><span class="lang-en"><strong>Gilgamesh Epic, Tablet 11</strong><br>Language: Akkadian / Date: roughly 18th century B.C.E.</span></p>
+
+  <div class="poem reveal">
+    <span class="lang-pt">Gilgamés falou a Utnapishtim ...<br>'Diga-me, como é que você está na assembleia dos Deuses, e encontrou a vida?'<br>Utnapishtim disse a ele, a Gilgamés,<br>'Deixe-me revelar a você, ó Gilgamés, um assunto oculto,<br>E um segredo dos deuses deixe-me contar.<br>Shuruppak, uma cidade que você conhece,<br>[E que na] margem do Eufrates está situada,<br>Aquela cidade era antiga e os deuses estavam dentro dela.<br>Os grandes deuses resolveram enviar o dilúvio.<br>Eles juraram seu pai Anu,<br>Seu conselheiro o guerreiro Enlil,<br>Seu portador de trono Ninurta,<br>Seu oficial de canal Ennugi,<br>O líder Ea estava sob juramento com eles.<br>Ele repetiu seus planos para a cabana de junco,<br>“Cabana de junco, cabana de junco, parede, parede!<br>Ouça cabana de junco, esteja atenta, parede!<br>Homem de Shuruppak, filho de Ubartutu,<br>Destrua esta casa, construa um navio,<br>Abandone possessões, busque vida,<br>Construa uma arca e salve a vida.<br>Leve a bordo do navio a semente de todas as coisas vivas.<br>O navio que você construirá,<br>Que suas dimensões sejam medidas.<br>Que sua largura e comprimento sejam iguais,<br>Telhe-o como uma profundidade oculta.”<br>Eu entendi muito bem, eu disse a Ea meu senhor,<br>[Seu comando], meu senhor, que você falou assim,<br>Eu executarei fielmente ..."<br>No quinto dia eu coloquei sua estrutura,<br>Um acre completo era o espaço de seu convés,</span>
+    <span class="lang-en">Gilgamesh spoke to Utnapishtim ...<br>'Tell me, how is it that you stand in the assembly of the Gods, and have found life?'<br>Utnapishtim said to him, to Gilgamesh,<br>'Let me reveal to you, O Gilgamesh, a hidden matter,<br>And a secret of the gods let me tell you.<br>Shuruppak, a city you know of,<br>[And which on] Euphrates [bank] is situate,<br>That city was ancient and the gods were within it.<br>The great gods resolved to send the deluge.<br>They [sw]ore their father Anu,<br>Their counselor the warrior Enlil,<br>Their throne-bearer Ninurta,<br>Their canal-officer Ennugi,<br>The leader Ea was under oath with them.<br>He repeated their plans to the reed hut,<br>“Reed hut, reed hut, wall, wall!<br>Listen reed hut, be mindful, wall!<br>Man of Shuruppak, son of Ubartutu,<br>Destroy this house, build a ship,<br>Forsake possessions, seek life,<br>Build an ark and save life.<br>Take aboard ship seed of all living things.<br>The ship which you shall build,<br>Let her dimensions be measured off.<br>Let her width and length be equal,<br>Roof her over like a hidden depth.”<br>I understood full well, I said to Ea my lord,<br>[Your command], my lord, which you spoke just so,<br>I shall faithfully execute ..."<br>On the fifth day I laid her framework,<br>One full acre was her floor space,</span>
+  </div>
+
+  <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">Uma vez que Adão e Eva já haviam pecado, você acha que os pecados de seus filhos, como Caim assassinando Abel, eram inevitáveis?</span><span class="lang-en">Since Adam and Eve had already sinned, do you think the sins of their children, such as Cain murdering Abel, were unavoidable?</span></p>
+
+  <footer class="page-footer">
+    <span>Class Notes: Noah to Abraham</span>
+    <span>Session 7</span>
+  </footer>
+</div>
+</body>
+</html>

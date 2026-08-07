@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 18: O Dilúvio Avassalador da Terra</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<script src="../js/verse-modal.js"></script>
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .figure { margin: 1.75rem 0; }
+  .figure img { width: 100%; height: auto; border-radius: 10px; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .hebrew { font-family: 'Newsreader', serif; }
+  .quote { border-left: 4px solid #aeb6bf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a3f47; font-style: italic; }
+  .cite { color: #4f5669; font-size: .95rem; line-height: 1.7; margin-top: .35rem; }
+  .poem { background: #f8fafc; border-left: 4px solid #cbd5e1; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.4rem 0; font-family: 'Newsreader', serif; line-height: 1.9; font-size: 1.05rem; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+<div id="reading-progress" aria-hidden="true"></div>
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="../index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 0 0 0 2-2h16a2 0 0 1 2 2v5a2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+  <h1 class="title reveal"><span class="lang-pt">Sessão 18: O Dilúvio Avassalador da Terra</span><span class="lang-en">Session 18: The Flood Overwhelms the Land</span></h1>
+  <hr class="rule">
+
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">O remanescente sofrendo através do caos em um refúgio divinamente fornecido é uma imagem que os autores bíblicos usarão repetidamente para ilustrar o plano de resgate de Deus.</span><span class="lang-en">The remnant suffering through chaos in a divinely provided refuge is an image that the biblical authors will use repeatedly to illustrate God’s plan of rescue.</span></li>
+    <li><span class="lang-pt">Os autores bíblicos confrontam sentimentos de ira, abandono e tristeza. Textos como os Salmos servem como um guia para lidar com emoções negativas diante de Deus.</span><span class="lang-en">The biblical authors confront feelings of anger, abandonment, and grief. Texts like the Psalms serve as a guide for dealing with negative emotions before God.</span></li>
+    <li><span class="lang-pt">A entrada de Noé na arca se torna um arquétipo do desejo de Davi de tomar refúgio no templo e do anseio do remanescente justo de entrar no templo no dia de Yahweh.</span><span class="lang-en">Noah’s entrance into the ark becomes an archetype of David’s desire to take refuge in the temple and of the righteous remnant’s longing to enter the temple on the day of Yahweh.</span></li>
+  </ul>
+
+  <h3 class="sub reveal"><span class="lang-pt">O Dilúvio Avassalador da Terra: Tradução e Design Literário de Gênesis 7:17-24</span><span class="lang-en">The Flood Overwhelms the Land: Translation and Literary Design of Genesis 7:17-24</span></h3>
+
+  <div class="poem reveal">
+    <span class="lang-pt">A 17 E o dilúvio foi de quarenta dias sobre a terra,<br>e as águas eram grandes (רבה),<br>B e elas levantaram a arca, e ela se elevou sobre a terra.<br>A' 18 E as águas eram poderosas (גבר), e eram muito grandes (רבה) sobre a terra,<br>B' e a arca andava sobre a face das águas.<br>A 19 E as águas eram poderosas (גבר), muito muito, sobre a terra,<br>B e elas cobriram todos os montes altos que estão debaixo dos céus,<br>A' 15 cúbitos acima,<br>B' e as águas cobriram os montes.<br>A 21 E toda carne expirou,<br>B o que se arrasta sobre a terra,<br>com as aves,<br>com os animais,<br>com as criaturas vivas,<br>e com todos os enxameadores que enxameiam sobre a terra,<br>e toda a humanidade,<br>22 tudo que tinha a inalação do fôlego de vida em suas narinas,<br>de tudo que estava sobre a terra seca,<br>A eles morreram.<br>A 23 E ele apagou todo ser de pé que estava sobre a face da terra,<br>B da humanidade aos animais, aos rastejantes e às aves dos céus,<br>A e eles foram apagados da terra;<br>C e apenas Noé ficou restante, e os que estavam com ele na arca.<br>A 24 E as águas eram poderosas (גבר) sobre a terra cento e cinquenta dias.</span>
+    <span class="lang-pt">A 17 And the flood was forty days upon the land,<br>and the waters were great (רבה),<br>B and they lifted up the ark, and it rose up over the land.<br>A' 18 And the waters were mighty (גבר), and they were very great (רבה) upon the land,<br>B' and the ark went on the face of the waters.<br>A 19 And the waters were mighty (גבר), very very much, upon the land,<br>B and they covered all the high mountains which are under the skies,<br>A' 15 cubits above,<br>B' and the waters covered the mountains.<br>A 21 And all flesh expired,<br>B what creeps on the land,<br>with the birds,<br>with the beasts,<br>with the living creatures,<br>and with all the swarmers that swarm upon the land,<br>and all humanity,<br>22 all that had the inhalation of the breath of life in its nostrils,<br>from all that was on the dry land,<br>A they died.<br>A 23 And he wiped away every standing-thing that was upon the face of the land,<br>B from humanity to animals to creepers and to birds of the skies,<br>A and they were wiped away from the land;<br>C and only Noah was left remaining, and those with him in the ark.<br>A 24 And the waters were mighty (גבר) upon the land one hundred and fifty days.</span>
+    <span class="lang-en">A 17 And the flood was forty days upon the land,<br>and the waters were great (רבה),<br>B and they lifted up the ark, and it rose up over the land.<br>A' 18 And the waters were mighty (גבר), and they were very great (רבה) upon the land,<br>B' and the ark went on the face of the waters.<br>A 19 And the waters were mighty (גבר), very very much, upon the land,<br>B and they covered all the high mountains which are under the skies,<br>A' 15 cubits above,<br>B' and the waters covered the mountains.<br>A 21 And all flesh expired,<br>B what creeps on the land,<br>with the birds,<br>with the beasts,<br>with the living creatures,<br>and with all the swarmers that swarm upon the land,<br>and all humanity,<br>22 all that had the inhalation of the breath of life in its nostrils,<br>from all that was on the dry land,<br>A they died.<br>A 23 And he wiped away every standing-thing that was upon the face of the land,<br>B from humanity to animals to creepers and to birds of the skies,<br>A and they were wiped away from the land;<br>C and only Noah was left remaining, and those with him in the ark.<br>A 24 And the waters were mighty (גבר) upon the land one hundred and fifty days.</span>
+  </div>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-18/p102-page.png" alt="The Flood Overwhelms the Land">
+    <figcaption class="caption"><span class="lang-pt">O Dilúvio Avassalador da Terra. Por Tim Mackie para BibleProject Classroom: De Noé a Abraão (2020).</span><span class="lang-en">The Flood Overwhelms the Land. Created by Tim Mackie for BibleProject Classroom: Noah to Abraham (2020).</span></figcaption>
+  </figure>
+
+  <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">Para entender a história do dilúvio, ajuda saber a cosmologia dos autores bíblicos? Se sim, como? E o que a história do dilúvio tem a ver com o segundo dia da criação em Gênesis 1?</span><span class="lang-en">To understand the flood story, does it help us to know the cosmology of the biblical authors? If so, how? And what does the flood story have to do with day two of creation in Genesis 1?</span></p>
+
+  <footer class="page-footer">
+    <span>Class Notes: Noah to Abraham</span>
+    <span>Session 18</span>
+  </footer>
+</div>
+</body>
+</html>

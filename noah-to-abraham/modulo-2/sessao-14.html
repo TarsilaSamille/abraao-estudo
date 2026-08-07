@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 14: Noé, o Remanescente Justo</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<script src="../js/verse-modal.js"></script>
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .figure { margin: 1.75rem 0; }
+  .figure img { width: 100%; height: auto; border-radius: 10px; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .hebrew { font-family: 'Newsreader', serif; }
+  .quote { border-left: 4px solid #aeb6bf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a3f47; font-style: italic; }
+  .cite { color: #4f5669; font-size: .95rem; line-height: 1.7; margin-top: .35rem; }
+  .poem { background: #f8fafc; border-left: 4px solid #cbd5e1; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.4rem 0; font-family: 'Newsreader', serif; line-height: 1.9; font-size: 1.05rem; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+<div id="reading-progress" aria-hidden="true"></div>
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="../index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 0 0 0 2-2h16a2 0 0 1 2 2v5a2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+  <h1 class="title reveal"><span class="lang-pt">Sessão 14: Noé, o Remanescente Justo</span><span class="lang-en">Session 14: Noah the Righteous Remnant</span></h1>
+  <hr class="rule">
+
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">Um conceito chave para entender o fluxo narrativo de toda a Bíblia é que a justiça de um pode contar para muitos. A história de Noé é a primeira vez que vemos isso na Bíblia.</span><span class="lang-en">A key concept for understanding the narrative flow of the whole Bible is that the righteousness of one can count for the many. The story of Noah is the first time we see this in the Bible.</span></li>
+    <li><span class="lang-pt">A própria Bíblia fornece as perguntas para interrogar o caráter de Deus.</span><span class="lang-en">The Bible itself provides the questions to interrogate God’s character.</span></li>
+    <li><span class="lang-pt">O dilúvio é parte do padrão bíblico onde vemos o julgamento e a misericórdia de Deus trabalhando simultaneamente.</span><span class="lang-en">The flood is part of the biblical pattern where we see God’s judgment and his mercy at work simultaneously.</span></li>
+  </ul>
+
+  <h3 class="sub reveal"><span class="lang-pt">Duas Advertências Divinas Sobre o Dilúvio (Gn 6:13-7:5)</span><span class="lang-en">Two Divine Warnings About the Flood (Gen. 6:13-7:5)</span></h3>
+
+  <p class="body reveal"><span class="lang-pt">A fala de Deus a Noé vem em dois painéis paralelos que se sobrepõem e diferem da mesma forma que as linhas poéticas hebraicas fazem.</span><span class="lang-en">God’s speech to Noah comes in two parallel panels that overlap and differ in the way that Hebrew poetic lines do.</span></p>
+
+  <h3 class="sub reveal"><span class="lang-pt">Discurso Divino #1: Tradução e Design Literário de 6:13-22</span><span class="lang-en">Divine Speech #1: Translation and Literary Design of 6:13-22</span></h3>
+
+  <div class="poem reveal">
+    <span class="lang-pt">13 E Elohim disse a Noé:<br>“O fim de toda carne chegou diante de mim,<br>porque a terra está cheia de violência por causa deles,<br>e eis que eu vou arruiná-los com a terra.<br>14 Faça para você uma arca de madeira de gopher (גפר);<br>a você fará a arca de juncos,<br>b e você a calafetará (כפר) por dentro e por fora com betume (כפר).<br>15 Assim você a fará:<br>300 cúbitos: o comprimento da arca<br>50 cúbitos: sua largura<br>30 cúbitos: sua altura.<br>16 Você fará uma janela para a arca,<br>a e a terminarás a um cúbito do topo;<br>b e você porá a porta da arca em seu lado;<br>a' com andares inferiores, segundos e terceiros você a fará.<br>17 E quanto a mim, eis que vou trazer o dilúvio de água sobre a terra,<br>para arruinar toda carne, que tem nela o fôlego de vida, de debaixo dos céus;<br>tudo que está na terra expirará.<br>18 E eu estabelecerei minha aliança com você [veja 9:8-17]<br>a e você entrará na arca,<br>b você e seus filhos e sua mulher, e as mulheres de seus filhos com você.<br>c 19 E de todo ser vivente de toda carne,<br>c' dois de tudo você fará entrar na arca,<br>b' para os manter vivos com você;<br>a eles serão macho e fêmea,<br>b 20 das aves segundo sua espécie,<br>c e dos animais segundo sua espécie,<br>c' de toda criatura rasteira da terra segundo sua espécie,<br>c'' dois de cada espécie virão a você<br>b' para os manter vivos.<br>a' 21 E quanto a você, tome para você de todo alimento comestível que você comerá,<br>a e o ajunte para você;<br>b' e será para alimento para você e para eles.”<br>a' 22 E Noé fez conforme tudo que Elohim lhe havia mandado, assim ele fez.</span>
+    <span class="lang-en">13 And Elohim said to Noah,<br>“The end of all flesh has come before me,<br>because the land is filled with violence because of them,<br>and behold, I am going to ruin them with the land.<br>14 Make for yourself an ark of gopher (גפר) trees;<br>a you will make the ark of reeds,<br>b and you will pitch (כפר) it inside and out with pitch (כפר).<br>15 This is how you will make it:<br>300 cubits: the length of the ark<br>50 cubits: its width<br>30 cubits: its height.<br>16 You will make a window for the ark,<br>a and you will finish it to a cubit from the top;<br>b and you will set the door of the ark in its side;<br>a' with lowers, seconds, and thirds you will make it.<br>17 And as for me, behold, I am going to bring the flood of water upon the land,<br>to ruin all flesh, which has in it the breath of life, from under the skies,<br>everything that is on the land will expire.<br>18 And I will set up my covenant with you [see 9:8-17]<br>a and you will go into the ark,<br>b you and your sons and your wife, and your sons’ wives with you.<br>c 19 And of every living thing of all flesh,<br>c' two of everything you will make go into the ark,<br>b' to keep them alive with you;<br>a they shall be male and female,<br>b 20 of the birds after their kind,<br>c and of the animals after their kind,<br>c' of every creeping thing of the ground after its kind,<br>c'' two of every kind will go to you<br>b' to keep them alive.<br>a' 21 And as for you, take for yourself some of all edible-food that you will eat,<br>a and gather it to yourself;<br>b' and it shall be for edible-food for yourself and for them.”<br>a' 22 And Noah did according to all that Elohim had commanded him,<br>so he did.</span>
+  </div>
+
+  <h3 class="sub reveal"><span class="lang-pt">Observações sobre o Discurso #1</span><span class="lang-en">Observations on Speech #1</span></h3>
+
+  <p class="body reveal"><span class="lang-pt">A unidade começa e termina com um relato de comando e cumprimento. Há dois anúncios do dilúvio como uma iniciativa divina, cada um seguido por um chamado de Deus a Noé para que Noé inicie uma resposta. Primeiro, fazer a arca, o veículo de sua libertação, e segundo, encher a arca com sua família, os animais e comida.</span><span class="lang-en">The unit begins and ends with a report of command and fulfillment. There are two announcements of the flood as a divine initiative, each followed by a call from God to Noah that Noah initiate a response. First to make the ark, the vehicle of his deliverance, and second to fill the ark with his family, the animals, and food.</span></p>
+
+  <h3 class="sub reveal"><span class="lang-pt">O Propósito de Deus ao Trazer o Dilúvio (Gn 6:11-13)</span><span class="lang-en">God’s Purpose in Bringing the Flood (Gen. 6:11-13)</span></h3>
+
+  <p class="body reveal"><span class="lang-pt">Como observado em 6:5-7, a decisão de Deus de trazer o dilúvio não foi motivada pela ira, mas pela tristeza. Este retrato é preenchido de uma forma importante em 6:11-13, que faz a transição da narrativa da corrupção da criação para a resposta e endereço de Deus a Noé.</span><span class="lang-en">As noted in 6:5-7, God’s decision to bring the flood was not motivated by anger, but by grief. This portrait is filled out in an important way in 6:11-13, which transitions from the narrative of creation’s corruption to God’s response and address to Noah.</span></p>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-14/p74-page.png" alt="Violence in the Land Preceding Genesis 6">
+    <figcaption class="caption"><span class="lang-pt">Violência na Terra Precedendo Gênesis 6. Por Tim Mackie para BibleProject Classroom: De Noé a Abraão (2020).</span><span class="lang-en">Violence in the Land Preceding Genesis 6:5-6, 11-12. Created by Tim Mackie for BibleProject Classroom: Noah to Abraham (2020).</span></figcaption>
+  </figure>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-14/p76-page.png" alt="God's Purpose in Bringing the Flood">
+    <figcaption class="caption"><span class="lang-pt">O Propósito de Deus ao Trazer o Dilúvio. Por Tim Mackie para BibleProject Classroom: De Noé a Abraão (2020).</span><span class="lang-en">God’s Purpose in Bringing the Flood. Created by Tim Mackie for BibleProject Classroom: Noah to Abraham (2020).</span></figcaption>
+  </figure>
+
+  <p class="body reveal"><span class="lang-pt">Note o paralelismo entre “toda carne causou a ruína de seu caminho na terra” e “eu vou causar sua ruína com a terra.” Isso mostra que a decisão de Deus de trazer o dilúvio está interconectada com o desastre que os próprios humanos estão escolhendo e perpetuando na terra. A decisão de Deus não é imposta de fora. Pelo contrário, sua decisão é promptada pelo e trabalha através da ruína auto-enacted da humanidade na terra.</span><span class="lang-en">Note the parallelism between “all flesh has caused the ruin of its way on the land” and “I am going to cause their ruin with the land.” This shows that God’s decision to bring the flood is interconnected with the disaster that humans are themselves choosing and perpetuating in the land. God’s decision is not imposed from the outside. Rather, his decision is prompted by and works through humanity’s self-enacted ruin in the land.</span></p>
+
+  <div class="quote reveal">
+    <span class="lang-pt">“A redação de 6:13 é crucial: ‘O fim de toda carne chegou bem na minha frente.’ [Deus] ‘não é o sujeito da cláusula [‘o fim veio’] ... a noção é que o fim de toda carne passou diante de [Deus] e assim se tornou evidente. A construção hebraica distancia a divindade do processo de tomada de decisão, quase como se esse resultado fosse inevitável.”</span>
+    <span class="lang-pt">“The wording of 6:13 is crucial: ‘The end of all flesh has come up right in front of me.’ [God] ‘is not the subject of the clause [‘the end has come’] … the notion is that the demise of all flesh has passed before [God] and so made itself evident. The Hebrew construction distances the deity from the decision making process, almost as if this outcome was inevitable.”</span>
+    <span class="lang-en">“The wording of 6:13 is crucial: ‘The end of all flesh has come up right in front of me.’ [God] ‘is not the subject of the clause [‘the end has come’] … the notion is that the demise of all flesh has passed before [God] and so made itself evident. The Hebrew construction distances the deity from the decision making process, almost as if this outcome was inevitable.”</span>
+    <p class="cite">— Bandstra, Barry (2008). Genesis 1-11: A Handbook on the Hebrew Text. Baylor University Press. 358.</p>
+  </div>
+
+  <div class="quote reveal">
+    <span class="lang-pt">“O [versículo] sugere que Deus viu para onde a ruinação da criação está caminhando e decidiu acelerar o processo até sua conclusão ... o sentido simples do texto hebraico transmite algo muito diferente da maioria das traduções inglesas, que são talvez influenciadas pela visão de uma divindade punitiva e zangada. ... O dilúvio era um antigo símbolo de destruição e desordem, assim é um meio adequado para a dissolução da criação quando ele overwhelma cada limite e retorna a criação ao primordial indiferenciado ‘profundo’ que existia antes que Yahweh falasse limites para existirem. ... Somos deixados com a sensação de que Deus não está tanto enviando o dilúvio para punir o mundo, mas sim facilitando, através do dilúvio, a inevitável descida ao caos causada pela destrutividade e violência humanas. Deus arruína uma criação já arruinada, e ao fazê-lo cria condições para que um reordenamento e uma renovação tenham lugar.”</span>
+    <span class="lang-pt">“The [verse] suggests that God has seen where the ruination of creation is headed and has decided to accelerate the process to its completion … the plain sense of the Hebrew text conveys something very different from most English translations, which are perhaps influenced by the view of an angry, punitive deity. ... The flood was an ancient symbol of destruction and disorder, as so is a fitting medium for the dissolution of creation as it overwhelms every boundary and returns creation to the primordial undifferentiated ‘deep’ that existed before Yahweh spoke boundaries into being. ... We are left with the sense that God is not so much sending the flood to punish the world as much as facilitating, through the flood, the inevitable descent into chaos caused by human destructiveness and violence. God ruins an already ruined creation, and in so doing creates conditions for a reordering and a renewal to take place.”</span>
+    <span class="lang-en">“The [verse] suggests that God has seen where the ruination of creation is headed and has decided to accelerate the process to its completion … the plain sense of the Hebrew text conveys something very different from most English translations, which are perhaps influenced by the view of an angry, punitive deity. ... The flood was an ancient symbol of destruction and disorder, as so is a fitting medium for the dissolution of creation as it overwhelms every boundary and returns creation to the primordial undifferentiated ‘deep’ that existed before Yahweh spoke boundaries into being. ... We are left with the sense that God is not so much sending the flood to punish the world as much as facilitating, through the flood, the inevitable descent into chaos caused by human destructiveness and violence. God ruins an already ruined creation, and in so doing creates conditions for a reordering and a renewal to take place.”</span>
+    <p class="cite">— Hawk, L. Daniel (2018). The Violence of the Biblical God: Canonical Narrative and Christian Faith. Eerdmans. 32-33.</p>
+  </div>
+
+  <h3 class="sub reveal"><span class="lang-pt">Discurso Divino #2: Tradução e Design Literário de 7:1-5</span><span class="lang-en">Divine Speech #2: Translation and Literary Design of 7:1-5</span></h3>
+
+  <div class="poem reveal">
+    <span class="lang-pt">1 E Yahweh disse a Noé:<br>“Vá, você e toda a sua casa, para a arca,<br>pois a você eu vi como um justo diante de mim nesta geração.<br>2 Você tomará para você<br>a de todo animal puro,<br>b sete cada, macho e sua fêmea,<br>c e do animal que não é puro,<br>b' dois cada, macho e sua fêmea,<br>3 também das aves dos céus,<br>b'' sete cada, macho e fêmea,<br>c'' para manter viva a semente sobre a face da terra.<br>a 4 Pois em sete dias mais,<br>b eu enviarei chuva sobre a terra<br>c quarenta dias e quarenta noites;<br>b' e eu vou apagar todo ser de pé que fiz<br>c' da face da terra.”<br>a' 5 E Noé fez conforme tudo que Yahweh lhe havia mandado.</span>
+    <span class="lang-pt">1 And Yahweh said to Noah,<br>“Go, you and all your household, into the ark,<br>for you I have seen as a righteous one before me in this generation.<br>2 You will take for yourself<br>a from every pure animal,<br>b seven each, a man and his wife,<br>c and from the animal which is not pure,<br>b' two each, a man and his wife,<br>3 also from the birds of the skies,<br>b'' seven each, male and female,<br>c'' to keep alive seed on the face of the land.<br>a 4 For in seven days more,<br>b I will send rain on the land<br>c forty days and forty nights;<br>b' and I will wipe away every standing-thing that I have made<br>c' from the face of the land.”<br>a' 5 And Noah did according to all that Yahweh had commanded him.</span>
+  </div>
+
+  <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">O que motiva Deus a enviar o dilúvio?</span><span class="lang-en">What is God responding to that motivates him to send the flood?</span></p>
+
+  <footer class="page-footer">
+    <span>Class Notes: Noah to Abraham</span>
+    <span>Session 14</span>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="title">Anotações de Aula: De Noé a Abraão</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white font-sans text-slate-800">
+  <div class="min-h-screen">
+    <div class="flex min-h-screen flex-col items-center justify-center md:p-12">
+      <main class="flex flex-1 flex-col items-center justify-center text-center">
+        <div class="flex min-h-screen flex-col p-8 md:p-12">
+          <main class="flex flex-1 flex-col items-center justify-center text-center">
+            <img src="../assets/covers/noah-to-abraham.jpg" alt="De Noé a Abraão" class="mb-8 h-48 w-48 rounded-2xl object-cover shadow-lg" />
+            <p class="mb-2 font-semibold text-slate-500" data-i18n="kicker">Anotações de Aula</p>
+            <h1 class="text-6xl font-bold text-slate-900" data-i18n="h1">De Noé a Abraão</h1>
+            <h2 class="mt-4 text-2xl text-slate-600" data-i18n="scripture">Gênesis 6-11</h2>
+            <h3 class="mt-2 text-xl text-slate-500">Dr. Tim Mackie</h3>
+            <p class="mt-3 text-base text-slate-400 font-medium">The Bible Project</p>
+            <p class="mt-8 max-w-2xl text-lg text-slate-700" data-i18n="desc">Por que Deus decidiu inundar o mundo? Há muito para descobrir na história de Noé e seus descendentes, pois esses capítulos desenvolvem temas importantes vistos em toda a Bíblia.</p>
+            <div class="mt-6 p-4 bg-slate-50 rounded-lg border-l-4 border-slate-300">
+              <p class="text-xs text-slate-500" data-i18n="source"><strong>Fonte:</strong> Material baseado nas anotações de aula do curso "Noah to Abraham" do The Bible Project, ministrado por Dr. Tim Mackie. Conteúdo original disponível em <a href="https://bibleproject.com" class="text-sky-600 hover:underline" target="_blank">bibleproject.com</a></p>
+            </div>
+          </main>
+        </div>
+        <div id="modgrid" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-10"></div>
+      </main>
+    </div>
+  </div>
+  <script>
+    const MODULES = [{"pos": 1, "first": 1, "last": 6, "title_en": "Introduction to the Flood Narrative", "title_pt": "Introdução à Narrativa do Dilúvio"}, {"pos": 2, "first": 7, "last": 10, "title_en": "Cosmic Rebellion in the Time of Noah", "title_pt": "Rebelião Cósmica no Tempo de Noé"}, {"pos": 3, "first": 11, "last": 14, "title_en": "God's Warnings About the Flood", "title_pt": "Os Avisos de Deus Sobre o Dilúvio"}, {"pos": 4, "first": 15, "last": 18, "title_en": "The Flood", "title_pt": "O Dilúvio"}, {"pos": 5, "first": 19, "last": 22, "title_en": "After the Flood", "title_pt": "Depois do Dilúvio"}, {"pos": 6, "first": 23, "last": 28, "title_en": "The Cycle Begins Again", "title_pt": "O Ciclo Começa de Novo"}];
+    const I18N = {"pt": {"title": "Anotações de Aula: De Noé a Abraão", "kicker": "Anotações de Aula", "h1": "De Noé a Abraão", "scripture": "Gênesis 6-11", "desc": "Por que Deus decidiu inundar o mundo? Há muito para descobrir na história de Noé e seus descendentes, pois esses capítulos desenvolvem temas importantes vistos em toda a Bíblia.", "source": "<strong>Fonte:</strong> Material baseado nas anotações de aula do curso \"Noah to Abraham\" do The Bible Project, ministrado por Dr. Tim Mackie. Conteúdo original disponível em <a href=\"https://bibleproject.com\" class=\"text-sky-600 hover:underline\" target=\"_blank\">bibleproject.com</a>", "module": "Módulo", "sessions": "Sessões", "back": "Voltar"}, "en": {"title": "Class Notes: Noah to Abraham", "kicker": "Class Notes", "h1": "Noah to Abraham", "scripture": "Genesis 6-11", "desc": "Why did God choose to flood the world? There's much to discover in the story of Noah and his descendants, as these chapters develop major themes seen throughout the biblical story.", "source": "<strong>Source:</strong> Material based on the class notes from the \"Noah to Abraham\" course by The Bible Project, taught by Dr. Tim Mackie. Original content available at <a href=\"https://bibleproject.com\" class=\"text-sky-600 hover:underline\" target=\"_blank\">bibleproject.com</a>", "module": "Module", "sessions": "Sessions", "back": "Back"}};
+    function render(lang){
+      const g=document.getElementById('modgrid');
+      g.innerHTML=MODULES.map(m=>`
+        <a href="modulo-${m.pos}/index.html"
+          class="group block rounded-xl border-2 border-slate-200 bg-white p-8 transition-all hover:-translate-y-1 hover:border-sky-500 hover:shadow-xl">
+          <div class="mb-4 flex justify-center">
+            <img src="image/img-${m.pos}.jpeg" alt="${lang==='pt'?m.title_pt:m.title_en}" loading="lazy" class="h-32 w-32 rounded-xl object-cover shadow-md" />
+          </div>
+          <h3 class="mb-2 text-2xl font-bold text-slate-900 group-hover:text-sky-600">${I18N[lang].module} ${m.pos}</h3>
+          <p class="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-500">${I18N[lang].sessions} ${m.first}-${m.last}</p>
+          <p class="text-slate-600">${lang==='pt'?m.title_pt:m.title_en}</p>
+        </a>`).join('');
+    }
+    function setLang(lang){
+      localStorage.setItem('bp_lang',lang);
+      document.documentElement.lang=lang==='pt'?'pt':'en';
+      const t=I18N[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(t[k]!==undefined)el.innerHTML=t[k];});
+      document.title=t.title;
+      render(lang);
+    }
+    setLang(localStorage.getItem('bp_lang')||'pt');
+  </script>
+</body>
+</html>

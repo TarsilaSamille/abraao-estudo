@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 19: As Águas Avassaladoras da Terra</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<script src="../js/verse-modal.js"></script>
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .figure { margin: 1.75rem 0; }
+  .figure img { width: 100%; height: auto; border-radius: 10px; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .hebrew { font-family: 'Newsreader', serif; }
+  .quote { border-left: 4px solid #aeb6bf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a3f47; font-style: italic; }
+  .cite { color: #4f5669; font-size: .95rem; line-height: 1.7; margin-top: .35rem; }
+  .poem { background: #f8fafc; border-left: 4px solid #cbd5e1; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.4rem 0; font-family: 'Newsreader', serif; line-height: 1.9; font-size: 1.05rem; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+<div id="reading-progress" aria-hidden="true"></div>
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="../index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 0 0 0 2-2h16a2 0 0 1 2 2v5a2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+  <h1 class="title reveal"><span class="lang-pt">Sessão 19: As Águas Avassaladoras da Terra</span><span class="lang-en">Session 19: The Flood Overwhelms the Land</span></h1>
+  <hr class="rule">
+
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">O verbo “ser poderoso” (Heb. gabar / גבר) é a mesma raiz de “guerreiro poderoso” (Heb. gibbor / גבור), uma palavra que aparece nas duas introduções da história do dilúvio (Gn 6:4).</span><span class="lang-en">The verb “be mighty” (Heb. gabar / גבר) is the same root as “mighty warrior” (Heb. gibbor / גבור), a word that is featured in the twin introduction to the flood story (Gen. 6:4).</span></li>
+    <li><span class="lang-pt">As águas poderosas não são simplesmente uma de-criação cósmica, mas também uma resposta medida-por-medida à violência e ao derramamento de sangue perpetrados pelos “guerreiros poderosos” de Gênesis 6:4.</span><span class="lang-en">The mighty waters are not simply a cosmic de-creation but also a measure-for-measure response to the violence and bloodshed perpetrated by the “mighty warriors” of Genesis 6:4.</span></li>
+    <li><span class="lang-pt">Os guerreiros poderosos desencadearam o caos e a morte violenta no mundo bom de Deus, e assim ele liberou as águas poderosas para tanto julgar seu mal quanto purificar sua criação da contaminação do derramamento de sangue.</span><span class="lang-en">The mighty warriors unleashed chaos and violent death into God’s good world, and so he released the mighty waters to both judge their evil and purify his creation from the defilement of bloodshed.</span></li>
+  </ul>
+
+  <h3 class="sub reveal"><span class="lang-pt">O Pivô: Deus Se Lembra de Noé: Tradução e Design Literário de Gênesis 8:1</span><span class="lang-en">The Pivot: God Remembers Noah: Translation and Literary Design of Genesis 8:1</span></h3>
+
+  <div class="poem reveal">
+    <span class="lang-pt">a 8:1 E Elohim se lembrou<br>b de Noé<br>e de todas as criaturas vivas<br>e de todas as bestas que estavam com ele na arca;<br>a e Elohim fez passar<br>b um Espírito/vento para cobrir a terra<br>c e as águas baixaram.</span>
+    <span class="lang-pt">a 8:1 And Elohim remembered<br>b Noah<br>and all the living creatures<br>and all the beasts that were with him in the ark;<br>a and Elohim caused to pass<br>b a Spirit/wind to cover the land<br>c and the waters subsided.</span>
+    <span class="lang-en">a 8:1 And Elohim remembered<br>b Noah<br>and all the living creatures<br>and all the beasts that were with him in the ark;<br>a and Elohim caused to pass<br>b a Spirit/wind to cover the land<br>c and the waters subsided.</span>
+  </div>
+
+  <p class="body reveal"><span class="lang-pt">Essas duas declarações são o pivô literário de toda a narrativa do dilúvio. Elas mudam o foco da história da desordem cósmica e morte para renascimento e nova ordem.</span><span class="lang-en">These two statements are the literary pivot of the entire flood narrative. They shift the story’s focus from cosmic disorder and death to rebirth and new order.</span></p>
+
+  <h3 class="sub reveal"><span class="lang-pt">E Deus Se Lembrou</span><span class="lang-en">And God Remembered</span></h3>
+
+  <p class="body reveal"><span class="lang-pt">Depois que Deus entregou a humanidade e o cosmos à desordem, o ato de nova criação começa com Deus “se lembrando,” isto é, recordando, sua promessa a Noé. Essa linha alcança de volta à promessa de Deus a Noé em Gênesis 6:17-19.</span><span class="lang-en">After God has handed humanity and the cosmos over to disorder, the act of new creation begins with God “remembering,” that is, recalling, his promise to Noah. This line reaches back to God’s promise to Noah in Genesis 6:17-19.</span></p>
+
+  <p class="body reveal"><span class="lang-pt">O “se lembrar” de Deus é o estágio um do cumprimento da promessa de Deus de resgatar Noé e trazê-lo e aos que estão com ele através das águas da morte. Essa narrativa estabelece o paradigma do compromisso confiável de Deus com suas promessas de aliança, mesmo quando o mal humano desencadeou dor e caos em seu mundo.</span><span class="lang-en">God’s remembering is stage one of the fulfillment of God’s promise to rescue Noah and bring him and those with him through the waters of death. This narrative sets the paradigm for God’s reliable commitment to his covenant promises, even when human evil has unleashed hurt and chaos into his world.</span></p>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-19/p105-page.png" alt="The Pattern of Human Evil and God's Deliverance">
+    <figcaption class="caption"><span class="lang-pt">O Padrão do Mal Humano e da Libertação de Deus. Por Tim Mackie para BibleProject Classroom: De Noé a Abraão (2020).</span><span class="lang-en">The Pattern of Human Evil and God’s Deliverance. Created by Tim Mackie for BibleProject Classroom: Noah to Abraham (2020).</span></figcaption>
+  </figure>
+
+  <p class="body reveal"><span class="lang-pt">A entrada de Noé na arca se torna um arquétipo do desejo de Davi de tomar refúgio no templo e do anseio do remanescente justo de entrar no templo no dia de Yahweh. A questão de “quem subirá” no Salmo 15 e na entrada de Noé na arca está ligada ao Dia da Expiação.</span><span class="lang-en">Noah’s entrance into the ark becomes an archetype of David’s desire to take refuge in the temple and of the righteous remnant’s longing to enter the temple on the day of Yahweh. The question of “who shall ascend” in Psalm 15 [and Noah’s entrance into the ark] is linked to the Day of Atonement.</span></p>
+
+  <p class="body reveal"><span class="lang-pt">Em Isaías 26, o remanescente justo entra na “cidade forte” através de suas portas. Assim como Yahweh fecha a porta antes das águas (Gn 7:16), assim agora seu povo fecha as portas atrás de si mesmo por um pouco de tempo. Aqui não é mais a filiação étnica em Israel, mas sim o comportamento ético que é a medida da salvação.</span><span class="lang-en">In Isaiah 26, the righteous remnant enters the “strong city” through its doors. Just as Yahweh closes the door before the waters (Gen. 7:16), so now his people close the doors behind themselves for a little while. Here it is no longer ethnic membership in Israel, but rather ethical behavior that is the measuring rod of salvation.</span></p>
+
+  <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">Discuta as maneiras pelas quais as pessoas podem acabar sentindo que Deus as esqueceu ou abandonou. Quando você vê Deus se lembrando de Noé, o que vem à sua mente de sua própria experiência de vida?</span><span class="lang-en">Discuss the ways people might end up feeling like God has forgotten or abandoned them. When you see God remembering Noah, what comes to mind from your own experience of life?</span></p>
+
+  <footer class="page-footer">
+    <span>Class Notes: Noah to Abraham</span>
+    <span>Session 19</span>
+  </footer>
+</div>
+</body>
+</html>
