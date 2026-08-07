@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 2: Como Jesus e os Apóstolos Liram Suas Bíblias</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+    .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+      ul.bullets { list-style: none; padding: 0; }
+      ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+      ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+      .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+
+  /* Key Takeaways heading per PDF (bold black, no box) */
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+
+  /* Bible quote block (PDF: left grey rule, white interior) */
+  .verse-block { border-left: 4px solid #E3E7EC; padding-left: 1.25rem; margin: 1.5rem 0; }
+  .bibleref { font-weight: 800; color: #17181a; font-size: 1.05rem; margin-top: 0; margin-bottom: 0.3rem; letter-spacing: -0.005em; }
+  .bibleref .trans { color: #586574; font-weight: 600; vertical-align: super; font-size: .78em; }
+  .scripture { margin: .2rem 0 0; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+  .scripture sup.vs { font-size: .72em; color: #333; vertical-align: super; margin-right: 2px; }
+  .kw-note { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .5rem; }
+
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+
+<div id="reading-progress" aria-hidden="true"></div>
+
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+
+  <h1 class="title reveal"><span class="lang-pt">Sessão 2: Como Jesus e os Apóstolos Liram Suas Bíblias</span><span class="lang-en">Session 2: How Jesus and the Apostles Read Their Bibles</span></h1>
+  <hr class="rule">
+
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">Jesus e seus primeiros seguidores retratam a Bíblia Hebraica como uma coleção unificada de literatura sapiencial que conta uma história sobre um futuro ungido que resgatará a humanidade.</span><span class="lang-en">Jesus and his first followers portray the Hebrew Bible as a unified collection of wisdom literature that tells a story about a future anointed one who will rescue humanity.</span></li>
+    <li><span class="lang-pt">A Bíblia Hebraica trata de um representante ungido que entra no sofrimento e na morte, atravessa a morte e sai do outro lado, e oferece nova vida para a humanidade.</span><span class="lang-en">The Hebrew Bible is about an anointed representative who enters into suffering and death, goes through death and out the other side, and offers new life for humanity.</span></li>
+    <li><span class="lang-pt">Ao recuperar uma maneira de ler esses textos que corresponda aos contornos de suas intenções de design, aprenderemos a ler a Bíblia Hebraica como Jesus leu.</span><span class="lang-en">By recovering a way of reading these texts that matches the contours of their design intentions, we will learn to read the Hebrew Bible as Jesus did.</span></li>
+  </ul>
+
+  <h2 class="section reveal"><span class="lang-pt">Jesus e o TaNaK</span><span class="lang-en">Jesus and the TaNaK</span></h2>
+  <p class="body reveal"><span class="lang-pt">Jesus e seus primeiros seguidores consistentemente retratam a Bíblia Hebraica como uma coleção unificada de literatura sapiencial que conta uma história que aponta para frente.</span><span class="lang-en">Jesus and his first followers consistently portray the Hebrew Bible as a unified collection of wisdom literature that tells a forward-pointing story.</span></p>
+
+  <div class="verse-block reveal">
+    <p class="bibleref"><span class="lang-pt">Lucas 24:25-27 NVI*</span><span class="lang-en">Luke 24:25-27 NIV*</span></p>
+    <p class="scripture"><span class="lang-pt"><sup class="vs">25</sup>[Jesus] disse aos [discípulos]: “Como vocês são tolos e lentos de coração para crer em tudo o que os profetas falaram! <sup class="vs">26</sup>Não era necessário que o Messias sofresse essas coisas e então entrasse na sua glória?” <sup class="vs">27</sup>E <strong>começando por Moisés e todos os Profetas</strong>, explicou-lhes o que constava em todas as Escrituras a respeito dele.</span><span class="lang-en"><sup class="vs">25</sup>[Jesus] said to [the disciples], “How foolish you are, and how slow to believe all that the prophets have spoken! <sup class="vs">26</sup>Did not the Messiah have to suffer these things and then enter his glory?” <sup class="vs">27</sup>And <strong>beginning with Moses and all the Prophets</strong>, he explained to them what was said in all the Scriptures concerning himself.</span></p>
+    <p class="kw-note"><span class="lang-pt">*Palavras-Chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+  </div>
+
+  <div class="verse-block reveal">
+    <p class="bibleref"><span class="lang-pt">Lucas 24:44-47 NAA*</span><span class="lang-en">Luke 24:44-47 NASB*</span></p>
+    <p class="scripture"><span class="lang-pt"><sup class="vs">44</sup>Então ele lhes disse: “Estas são as minhas palavras que vos falei enquanto ainda estava convosco: que todas as coisas que estão <strong>escritas a meu respeito na Torá de Moisés, nos Profetas e nos Salmos</strong> precisavam ser cumpridas.” <sup class="vs">45</sup>Então lhes abriu o entendimento para compreenderem as Escrituras, <sup class="vs">46</sup>e lhes disse: “Assim está escrito, que o Messias sofreria e ressuscitaria dos mortos no terceiro dia, <sup class="vs">47</sup>e que o arrependimento para o perdão de pecados seria proclamado em seu nome a todas as nações, começando por Jerusalém.”</span><span class="lang-en"><sup class="vs">44</sup>Now he said to them, “These are my words which I spoke to you while I was still with you, that all things which are <strong>written about me in the Torah of Moses and the Prophets and the Psalms</strong> must be fulfilled.” <sup class="vs">45</sup>Then he opened their minds to understand the Scriptures, <sup class="vs">46</sup>and he said to them, “Thus it is written, that the Messiah would suffer and rise again from the dead the third day, <sup class="vs">47</sup>and that repentance for forgiveness of sins would be proclaimed in his name to all the nations, beginning from Jerusalem.”</span></p>
+    <p class="kw-note"><span class="lang-pt">*Palavras-Chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+  </div>
+
+  <div class="verse-block reveal">
+    <p class="bibleref"><span class="lang-pt">2 Timóteo 3:14-17 Tradução do Instrutor</span><span class="lang-en">2 Timothy 3:14-17 Instructor’s Translation</span></p>
+    <p class="scripture"><span class="lang-pt"><sup class="vs">14</sup>Você [Timóteo], permaneça nas coisas que aprendeu e das quais ficou convencido, sabendo de quem as aprendeu, <sup class="vs">15</sup>pois desde a infância você conhece <strong>as sagradas Escrituras</strong>, que são capazes de <strong>lhe dar sabedoria</strong> que conduz à salvação mediante a fé, que está no Messias Jesus. <sup class="vs">16</sup>Toda a Escritura é inspirada por Deus e proveitosa para o ensino, para a repreensão, para a correção, para o treinamento em fazer o que é certo, <sup class="vs">17</sup>a fim de que o povo de Deus seja competente, equipado para fazer o bem.</span><span class="lang-en"><sup class="vs">14</sup>You [Timothy], continue in the things you have learned and become convinced of, knowing from whom you have learned, <sup class="vs">15</sup>how from childhood you have known <strong>the sacred scriptures</strong> which are able to <strong>give you wisdom</strong> that leads to salvation through faith, which is in Messiah Jesus. <sup class="vs">16</sup>All Scripture is God-breathed and profitable for teaching, for reproof, for correction, for training in doing what is right, <sup class="vs">17</sup>so that God’s people can be proficient, equipped for doing good.</span></p>
+    <p class="kw-note"><span class="lang-pt">*Palavras-Chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+  </div>
+
+  <p class="body reveal"><span class="lang-pt">Como Jesus e seus seguidores chegaram a essa conclusão? Eles não inventaram essa maneira de ler a Bíblia Hebraica. Em vez disso, herdaram de sua tradição judaica um conjunto de convicções sobre a origem, a natureza e o significado desses textos. Eles também cresceram em comunidades que modelaram como ler e dar sentido à Bíblia Hebraica.</span><span class="lang-en">How did Jesus and his followers reach this conclusion? They did not invent this way of reading the Hebrew Bible. Rather, they inherited from their Jewish tradition a set of convictions about the origin, nature, and meaning of these texts. They also grew up in communities that modeled how to read and make sense of the Hebrew Bible.</span></p>
+  <p class="body reveal"><span class="lang-pt">Observe que Jesus se refere à Bíblia Hebraica como uma coleção de duas partes (“Torá ... e Profetas”) ou de três partes (“Torá ... Profetas ... Salmos”). Jesus não está sozinho nisso. Ele está expressando a maneira mais comum pela qual a Bíblia era referida na cultura judaica durante esse período.</span><span class="lang-en">Notice that Jesus refers to the Hebrew Bible as a two-part (“Torah ... and Prophets”) or three-part (“Torah ... Prophets ... Psalms”) collection. Jesus is not alone in this. He is expressing the most common way the Bible was referred to in Jewish culture during this period.</span></p>
+
+  <h2 class="section reveal"><span class="lang-pt">Os Apóstolos e o TaNaK</span><span class="lang-en">The Apostles and the TaNaK</span></h2>
+  <p class="body reveal"><span class="lang-pt">Além disso, quando observamos como Jesus e os apóstolos realmente interpretam e apelam à Bíblia Hebraica, eles a veem como um repositório de padrões ou “tipos” (τύπος) em grego.</span><span class="lang-en">Also, when we look at how Jesus and the apostles actually interpret and appeal to the Hebrew Bible, they see it as a repository of patterns or “types” (τύπος) in Greek.</span></p>
+
+  <div class="verse-block reveal">
+    <p class="bibleref"><span class="lang-pt">Romanos 5:14 NAA*</span><span class="lang-en">Romans 5:14 NASB*</span></p>
+    <p class="scripture"><span class="lang-pt">No entanto, a morte reinou desde Adão até Moisés, até mesmo sobre aqueles que não pecaram à semelhança da transgressão de Adão, <strong>que é um tipo/padrão</strong> daquele que haveria de vir.</span><span class="lang-en">Nevertheless death reigned from Adam until Moses, even over those who had not sinned in the likeness of the offense of Adam, <strong>who is a type/pattern</strong> of him who was to come.</span></p>
+    <p class="kw-note"><span class="lang-pt">*Palavras-Chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+  </div>
+
+  <div class="verse-block reveal">
+    <p class="bibleref"><span class="lang-pt">1 Coríntios 10:1-11 NAA*</span><span class="lang-en">1 Corinthians 10:1-11 NASB*</span></p>
+    <p class="scripture"><span class="lang-pt"><sup class="vs">1</sup>Pois não quero que vocês ignorem, irmãos, que nossos pais estiveram todos sob a nuvem e todos passaram pelo mar; <sup class="vs">2</sup>e todos foram batizados em Moisés, na nuvem e no mar; <sup class="vs">3</sup>e todos comeram do mesmo alimento espiritual; <sup class="vs">4</sup>e todos beberam da mesma bebida espiritual, pois bebiam de uma rocha espiritual que os seguia; e a rocha era Cristo. ... <sup class="vs">11</sup>Ora, essas coisas lhes aconteceram como <strong>tipo/padrão</strong>, e <strong>foram escritas para nossa instrução</strong>, sobre quem os fins dos tempos têm chegado.</span><span class="lang-en"><sup class="vs">1</sup>For I do not want you to be unaware, brethren, that our fathers were all under the cloud and all passed through the sea; <sup class="vs">2</sup>and all were baptized into Moses in the cloud and in the sea; <sup class="vs">3</sup>and all ate the same spiritual food; <sup class="vs">4</sup>and all drank the same spiritual drink, for they were drinking from a spiritual rock which followed them; and the rock was Christ. ... <sup class="vs">11</sup>Now these things happened to them as a <strong>type/pattern</strong>, and <strong>they were written for our instruction</strong>, upon whom the ends of the ages have come.</span></p>
+    <p class="kw-note"><span class="lang-pt">*Palavras-Chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+  </div>
+
+  <div class="verse-block reveal">
+    <p class="bibleref"><span class="lang-pt">1 Pedro 3:20-21 NAA*</span><span class="lang-en">1 Peter 3:20-21 NASB*</span></p>
+    <p class="scripture"><span class="lang-pt"><sup class="vs">20</sup>que outrora foram desobedientes, quando a paciência de Deus esperava nos dias de Noé, durante a construção da arca, na qual poucos, isto é, oito pessoas, foram salvos através da água. <sup class="vs">21</sup>Um <strong>tipo/padrão</strong> correspondente a isso, o batismo agora vos salva—não a remoção da sujeira da carne, mas um apelo a Deus por uma boa consciência—através da ressurreição de Jesus Cristo ...</span><span class="lang-en"><sup class="vs">20</sup>who once were disobedient, when the patience of God kept waiting in the days of Noah, during the construction of the ark, in which a few, that is, eight persons, were brought safely through the water. <sup class="vs">21</sup>A matching <strong>type/pattern</strong> to that, baptism now saves you—not the removal of dirt from the flesh, but an appeal to God for a good conscience—through the resurrection of Jesus Christ ...</span></p>
+    <p class="kw-note"><span class="lang-pt">*Palavras-Chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+  </div>
+
+  <h2 class="section reveal"><span class="lang-pt">Lendo Como Jesus e os Apóstolos</span><span class="lang-en">Reading Like Jesus and the Apostles</span></h2>
+  <p class="body reveal"><span class="lang-pt">Essas passagens nos ajudam a definir uma agenda para esta aula.</span><span class="lang-en">These passages help us set an agenda for this class.</span></p>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">Examinaremos a escrita, a coleção e a composição da Bíblia Hebraica.</span><span class="lang-en">We will examine the writing, collection, and composition of the Hebrew Bible.</span></li>
+    <li><span class="lang-pt">Recuperaremos uma maneira de ler esses textos que corresponda aos contornos de suas intenções de design.</span><span class="lang-en">We will recover a way of reading these texts that matches the contours of their design intentions.</span></li>
+  </ul>
+
+  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">Resuma como você expressaria o que Jesus e os apóstolos pensavam que a Bíblia Hebraica era, afinal. E o que você acha dessa ideia? Ela é semelhante ou diferente de como você normalmente vê a Bíblia Hebraica?</span><span class="lang-en">Summarize how you would express what Jesus and the apostles thought the Hebrew Bible was all about. And what do you make of this idea? Is it similar or different from how you typically view the Hebrew Bible?</span></p>
+
+  <div class="page-footer">
+    <span>Class Notes: Introduction to the Hebrew Bible</span>
+    <span><span class="lang-pt">Sessão 2 · Como Jesus e os Apóstolos Liram Suas Bíblias</span><span class="lang-en">Session 2 · How Jesus and the Apostles Read Their Bibles</span></span>
+  </div>
+</div>
+
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s2-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s2-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+  <script src="../js/verse-modal.js"></script>
+</body>
+</html>
