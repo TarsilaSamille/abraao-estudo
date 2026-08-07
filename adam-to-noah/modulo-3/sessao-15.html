@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 15: O Problema do Humano Sozinho</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .figure { margin: 1.75rem 0; }
+  .figure img { width: 100%; height: auto; border-radius: 10px; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .hebrew { font-family: 'Newsreader', serif; }
+  .quote { border-left: 4px solid #aeb6bf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a3f47; font-style: italic; }
+  .cite { color: #4f5669; font-size: .95rem; line-height: 1.7; margin-top: .35rem; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+<div id="reading-progress" aria-hidden="true"></div>
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span></button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+  <h1 class="title reveal"><span class="lang-pt">Sessão 15: O Problema do Humano Sozinho</span><span class="lang-en">Session 15: The Problem of the Human Alone</span></h1>
+  <hr class="rule">
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">A primeira coisa que Deus declara como "não bom" é o humano solitário. O humano em isolamento não é o ideal de Deus expresso em Gênesis 1.</span><span class="lang-en">The first thing God declares as "not good" is the solitary human. The human in isolation is not God's ideal expressed in Genesis 1.</span></li>
+    <li><span class="lang-pt">Quando a diversidade da humanidade se une em Cristo, refletimos mais plenamente a imagem de Deus neste mundo.</span><span class="lang-en">When the diversity of humanity unites in Christ, we more fully reflect the image of God in this world.</span></li>
+  </ul>
+  <h2 class="section reveal"><span class="lang-pt">Humano Solitário Agora É Dois: Tradução e Design Literário: Gênesis 2:18-25</span><span class="lang-en">Lone Human is Now Two: Translation and Literary Design: Genesis 2:18-25</span></h2>
+  <div class="poem reveal">
+    <div><span class="hebrew">18a</span> e disse Yahweh Deus,</div>
+    <div class="indent">"Não é bom que o humano esteja sozinho (<span class="hebrew">לבדו</span>)</div>
+    <div><span class="hebrew">18b</span> farei para ele uma auxiliadora-correspondente</div>
+    <div class="indent"><span class="hebrew">A</span> 19a e formou Yahweh da terra</div>
+    <div class="indent2">todo animal do campo</div>
+    <div class="indent2">e toda ave dos céus</div>
+    <div class="indent"><span class="hebrew">B</span> 19b e os trouxe ao humano para ver como os chamaria,</div>
+    <div class="indent2">e tudo que o humano chamasse de ser vivente,</div>
+    <div class="indent2">este era o seu nome."</div>
+    <div class="indent"><span class="hebrew">A'</span> 20a e chamou o humano os nomes</div>
+    <div class="indent2">de todo animal e ave dos céus</div>
+    <div class="indent2">e todo animal do campo</div>
+    <div class="indent"><span class="hebrew">B'</span> 20b mas para o humano não se achou auxiliadora-correspondente</div>
+  </div>
+  <figure class="figure reveal">
+    <img src="img/sessao-15/p1-vector.png" alt="Genesis 2:18-25 Translation and Literary Design">
+    <figcaption class="caption"><span class="lang-pt">Gênesis 2:18-25. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: Adão a Noé (2020).</span><span class="lang-en">Genesis 2:18-25. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Adam to Noah (2020).</span></figcaption>
+  </figure>
+    <div class="poem reveal">
+    <div><span class="hebrew">A</span> 21 e fez Yahweh cair um sono profundo sobre o humano, e ele dormiu,</div>
+    <div class="indent">e tomou uma de suas costelas,</div>
+    <div class="indent">e fechou a carne no seu lugar</div>
+    <div><span class="hebrew">B</span> 22 e construiu Yahweh a costela que tomou do humano em mulher,</div>
+    <div class="indent">e a trouxe ao humano</div>
+    <div><span class="hebrew">A'</span> 23 e disse o humano,</div>
+    <div class="indent">"Desta vez, osso dos meus ossos e carne da minha carne.</div>
+    <div class="indent">Esta será chamada (<span class="hebrew">יקרא</span>) mulher, pois do homem foi tomada esta."</div>
+    <div><span class="hebrew">24</span> Por esta razão,</div>
+    <div class="indent">deixará o homem seu pai e sua mãe,</div>
+    <div class="indent">e se apegará à sua mulher,</div>
+    <div class="indent">e serão uma só carne.</div>
+    <div><span class="hebrew">25a</span> e estavam nus, os dois,</div>
+    <div><span class="hebrew">25b</span> o humano e sua mulher,</div>
+    <div class="indent">e não se envergonhavam."</div>
+  </div>
+  <h2 class="section reveal"><span class="lang-pt">Observações de Macro Design: De Sozinho a Uma Só Carne</span><span class="lang-en">Macro Design Observations: From Alone to One Flesh</span></h2>
+  <p class="body reveal"><span class="lang-pt">Esta provisão divina em duas etapas do "auxílio" (עזר) é crucial. Ela imita Gênesis 1 (dias 1-3 são o primeiro passo, dias 4-6 são o segundo passo), e cria um modelo ou expectativa. Deus é o primeiro a notar "não bom" em sua criação (Gn 2:18). O humano solitário é incapaz de cumprir sua vocação sem um outro. O design narrativo de Gênesis 2:18-25 vai do problema à solução. Um humano solitário não pode realizar o chamado colocado sobre "a imagem-estátua de Elohim" em Gênesis 1:26-28 de governar a criação como parceiros de Deus, de imaginar Deus através da diferença de gênero, e de ser frutífero e multiplicar.</span><span class="lang-en">This two-step divine provision of the "help" (עזר) is crucial. It mimics Genesis 1 (days 1-3 are step one, days 4-6 are step two), and it creates a model or expectation. God is the first one to notice "no good" in his creation (Gen. 2:18). The lone human is unable to fulfill his vocation without an other. The narrative design of Genesis 2:18-25 goes from problem to solution. A solitary human cannot accomplish the calling placed upon "the image-statue of Elohim" in Genesis 1:26-28 to rule creation as God's partners, to image God through gender difference, and to be fruitful and multiply.</span></p>
+  <figure class="figure reveal">
+    <img src="img/sessao-15/p2-vector.png" alt="Macro Design Observations: From Alone to One Flesh">
+    <figcaption class="caption"><span class="lang-pt">Observações de Macro Design: De Sozinho a Uma Só Carne. Por Tim Mackie para BibleProject Classroom: Adão a Noé (2020).</span><span class="lang-en">Macro Design Observations: From Alone to One Flesh. By Tim Mackie for BibleProject Classroom: Adam to Noah (2020).</span></figcaption>
+  </figure>
+  <p class="body reveal"><span class="lang-pt">Para cumprir esta tarefa, a família humana deve simultaneamente tornar-se "muitos" e "um/unificada", e deve fazer tudo isso como uma imagem de Deus.</span><span class="lang-en">To fulfill this task, the human family must simultaneously become "many" and "one/unified," and they must do all of this as an image of God.</span></p>
+    <h3 class="sub reveal"><span class="lang-pt">Gênesis 2:24 — O Fundamento do Relacionamento Humano</span><span class="lang-en">Genesis 2:24 — The Foundation of Human Relationship</span></h3>
+  <p class="body reveal"><span class="lang-pt">Gênesis 2:24 (NAA): "Portanto, deixará o homem a seu pai e a sua mãe, e apegar-se-á à sua mulher, e serão ambos uma só carne." Gênesis 2:24 aborda uma questão fundamental sobre relacionamentos humanos: Por que uma pessoa deixaria seu relacionamento biológico mais próximo (uma criança aos seus pais) e se uniria àquele que não é da sua família? A afirmação de Gênesis 2:24 é que o casamento supera esta divisão biológica e recupera um estado original, unificado da humanidade. A mulher não é uma "ajudante" ou simplesmente uma parceira de acasalamento em Gênesis 2. Ela é metade dele e ele é metade dela; somente juntos podem tornar-se a humanidade unificada que Deus nos chamou a ser. O "uma só carne" de Gênesis 2:24 transcende a união do ato sexual (embora seja uma maneira pela qual a unidade "uma só carne" possa ser experimentada). É um exemplo primordial de como dois humanos que são genuínos outros um para o outro podem experimentar unidade e totalidade. Observe os papéis altamente surpreendentes do homem e da mulher em Gênesis 2:24. É o homem quem deixa sua família para se unir a uma estranha biológica, sua esposa, para criar uma nova família. Esta formulação é o oposto de todos os casamentos na Bíblia Hebraica, onde a mulher deixa sua família para se unir ao homem (p.ex. Rebeca, Raquel e Leia, etc.). As palavras "abandonar" (‘azab / עזב) e "apegar-se" (dabaq / דקב) são termos de pacto que falam do abandono de laços anteriores e do "apego" ao seu parceiro de pacto (Dt 4:4; 10:20; 11:22; 22:16).</span><span class="lang-en">Genesis 2:24 (NASB): "For this reason a man shall leave his father and his mother, and cling to his wife; and they shall become one flesh." Genesis 2:24 addresses a foundational question about human relationships: Why would a person leave their closest biological relationship (a child to their parent) and join themselves to one who is not in their family? The claim of Genesis 2:24 is that marriage overcomes this biological divide and recovers an original, unified state of humanity. The woman is not a "helper" or simply a mating partner in Genesis 2. She is half of him and he is half of her; only together can they become the unified humanity that God has called us to be. The "one flesh" of Genesis 2:24 transcends the union of the sexual act (though it is one way the "one flesh" unity may be experienced). It is a prime example of how two humans who are genuine others to one another may experience unity and oneness. Notice the highly surprising roles of man and woman in Genesis 2:24. It is the man who leaves his family to join a biological stranger, his wife, to create a new family. This formulation is the opposite of every marriage in the Hebrew Bible, where the woman leaves her family to join the man (e.g. Rebekah, Rachel and Leah, etc.). The words "abandon" (‘azab / עזב) and "cling" (dabaq / דקב) are covenantal terms that speak to the forsaking of previous bonds and "clinging" to one's covenant partner (Deut. 4:4; 10:20; 11:22; 22:16).</span></p>
+  <h3 class="sub reveal"><span class="lang-pt">O Ideal Fraturado em Gênesis 1-11</span><span class="lang-en">The Fractured Ideal in Genesis 1-11</span></h3>
+  <p class="body reveal"><span class="lang-pt">Gênesis 1-11 seguirá explorando a fratura desta unidade ideal em todos os níveis da família humana, preparando a expectativa do leitor de que Deus novamente resolverá esta situação de "não bom" de uma humanidade incapaz de fazer o que Deus a chamou para fazer.</span><span class="lang-en">Genesis 1-11 will go on to explore the fracturing of this ideal unity on all levels of the human family, setting up the reader's expectation that God will again solve this "no good" situation of a humanity unable to do what God has called them to do.</span></p>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">Gênesis 2-3: Fraturando a unidade entre homem e mulher (casamento)</span><span class="lang-en">Genesis 2-3: Fracturing the unity between a man and a woman (marriage)</span></li>
+    <li><span class="lang-pt">Gênesis 4:1-15: Fraturando a unidade entre dois irmãos (família)</span><span class="lang-en">Genesis 4:1-15: Fracturing the unity between two siblings (family)</span></li>
+    <li><span class="lang-pt">Gênesis 4:16-25: Fraturando a unidade de uma cidade (comunidade)</span><span class="lang-en">Genesis 4:16-25: Fracturing the unity of a city (community)</span></li>
+    <li><span class="lang-pt">Gênesis 6:1-4: Distorcendo a unidade do Céu e da Terra (cosmos)</span><span class="lang-en">Genesis 6:1-4: Distorting the unity of Heaven and Earth (cosmos)</span></li>
+    <li><span class="lang-pt">Gênesis 9:18-27: Fraturando a unidade da família estendida (tribos)</span><span class="lang-en">Genesis 9:18-27: Fracturing the unity of the extended family (tribes)</span></li>
+    <li><span class="lang-pt">Gênesis 11: Distorcendo a unidade da família humana (nações)</span><span class="lang-en">Genesis 11: Distorting the unity of the human family (nations)</span></li>
+  </ul>
+  <p class="body reveal"><span class="lang-pt">Para reparar estas distorções em camadas da humanidade ideal unificada, narrativas futuras explorarão como a família humana fraturada se torna uma novamente através do compromisso do pacto.</span><span class="lang-en">To repair these layered distortions of the ideal unified humanity, future narratives will explore how the fractured human family becomes one again through covenant commitment.</span></p>
+    <h3 class="sub reveal"><span class="lang-pt">Por que a Solução em Duas Etapas — Animais Primeiro e Depois o Humano Correspondente?</span><span class="lang-en">Why the Two-Step Solution—Animals First Then the Matching Human?</span></h3>
+  <p class="body reveal"><span class="lang-pt">Esta cena primeiro permite que o humano chegue à sua própria consciência da solidão. Quando Deus "traz" os animais ao humano, podemos inferir que ele observa que eles vêm em pares. A próxima repetição deste motif, quando Deus traz os animais a Noé e à arca, enfatiza que os animais vêm "dois a dois" (Gn 6:19-20; 7:2-3).</span><span class="lang-en">This scene first allows the human to come to their own awareness of the solitude. When God "brings" the animals to the human, we can infer that he observes that they come in pairs. The next repetition of this motif, when God brings the animals to Noah and the ark, emphasizes that animals come "two by two" (Gen. 6:19-20; 7:2-3).</span></p>
+  <blockquote class="quote reveal"><span class="lang-pt">"Apesar da identificação por Deus da necessidade do homem, há um atraso em sua provisão: contrasta com o cumprimento instantâneo da palavra divina no capítulo 1. Este deflectir cria suspense. Ele nos permite sentir a solidão do homem. Todos os animais são trazidos diante dele, e vemos ele olhando para cada um na esperança de que fizesse um companheiro adequado para o homem. Ber. Rab. 17:5 retrata os animais passando em pares e o homem comentando: 'Tudo tem seu par, mas eu não tenho par.' O patos é intensificado na ênfase da narrativa no fato de que os animais, como o homem (v 7), são formados da terra (v 19), e, como ele, são 'criaturas viventes'. Além disso, a palavra para 'animal' e 'vivo', ḥayyāh, antecipa 'Eva', ḥawwāh. Embora em hebraico os nomes destas criaturas soem tão semelhantes ao de Eva, elas não são o que o homem procura. Apesar da superioridade do homem sobre as outras criaturas, demonstrada por seu nomear delas (dar um nome a algo é afirmar autoridade sobre ele; cf. 1:26, 28), nenhuma ajudante adequada é encontrada."</span><span class="lang-en">"Despite God's identification of man's need, there is a delay in his provision: contrast the instantaneous fulfillment of the divine word in chapter 1. This hold-up creates suspense. It allows us to feel man's loneliness. All the animals are brought before him, and we see him looking at each one in the hope it would make a suitable companion for man. Ber. Rab. 17:5 pictures the animals passing by in pairs and man commenting, 'Everything has its partner but I have no partner.' The pathos is heightened in the narrative's emphasis on the fact that the animals, like man (v 7), are shaped from the land (v 19), and, like him, are 'living creatures.' Furthermore, the word for 'animal' and 'living,' ḥayyāh, anticipates 'Eve,' ḥawwāh. Though in Hebrew these creatures' names sound so similar to Eve's, they are not what man is looking for. Despite man's superiority to the other creatures, demonstrated by his naming of them (to give a name to something is to assert authority over it; cf. 1:26, 28), no suitable helper is found."</span></blockquote>
+  <p class="cite reveal"><span class="lang-pt">Wenham, Gordon J. (1987). World Biblical Commentary, Vol. 1: Genesis 1-15. Thomas Nelson.</span><span class="lang-en">Wenham, Gordon J. (1987). World Biblical Commentary, Vol. 1: Genesis 1-15. Thomas Nelson.</span></p>
+  <blockquote class="quote reveal"><span class="lang-pt">"[Alguns] comentaristas consideram que esta cena implica que o SENHOR Deus fez, por assim dizer, várias tentativas malsucedidas, criando vários tipos de criaturas e passando-as em revista diante de Adão, para ver se o homem acharia em uma delas uma ajudante correspondente a ele; mas tudo foi em vão, pois nenhuma delas o satisfez. Esta interpretação é inaceitável pelas seguintes razões: 1) Seria estranho declarar que Deus não entendeu, por assim dizer, o que o homem entendeu, que entre os animais não havia nenhum ... correspondente a ele ... também é inconcebível que o experimento tenha sido realizado com todas as bestas do campo e todas as criaturas voadoras do ar sem exceção, isto é, mesmo com criaturas mais diferentes do homem. 2) Está explicitamente escrito no v. 20 que o propósito do SENHOR Deus em trazer as criaturas diante do homem era apenas ver como ele as chamaria. Parece que o texto pretende nos dizer apenas que o SENHOR Deus quis engendrar no coração do homem um desejo por uma ajudante que lhe correspondesse exatamente. Quando o homem inspecionasse todas as espécies de animais por sua vez, e achasse que algumas delas eram de fato aptas para servi-lo e ajudá-lo em alguma medida, mas que ainda não havia entre elas uma que fosse seu semelhante keneghdō, ele se tornaria consciente de sua solidão e anelaria por uma que pudesse ser sua verdadeira companheira ... no pleno sentido das palavras, e, em consequência, estaria pronto para apreciar e prezar o dom que o SENHOR Deus lhe daria."</span><span class="lang-en">"[Some] commentators consider that this scene implies that the Lord God made, as it were, a number of unsuccessful attempts, by creating various kinds of creatures and by passing them in review before Adam, to see if the man would find in one of them a helper corresponding to him; but it was all in vain, for not one of them satisfied him. This interpretation is unacceptable for the following reasons: 1) It would be strange to declare that God did not understand, so to speak, what man understood, that among the animals there was none ... corresponding to him ... it is [also] inconceivable that the experiment was carried out with all the beasts of the field and all the flying creatures of the air without exception, that is, even with creatures that were most unlike man. 2) It is explicitly written in v. 20 that the purpose of the Lord God in bringing the creatures before man, was only to see what he would call each one. It would seem that the text intends to tell us only that the Lord God wished to engender in the heart of man a desire for a helper who should correspond to him exactly. When the man would inspect all the species of animals in turn, and would find that some of them were indeed suited to serve him and help him to some extent, but yet there was not one among them that was his like keneghdō, he would become conscious of his loneliness and would yearn for one who could be his true companion ... in the full sense of the words, and, in consequence, he would be ready to appreciate and cherish the gift that the Lord God was to give him."</span></blockquote>
+  <p class="cite reveal"><span class="lang-pt">Cassuto, Umberto (1961). A Commentary on the Book of Genesis: Part I, From Adam to Noah. Hebrew University Magnes Press.</span><span class="lang-en">Cassuto, Umberto (1961). A Commentary on the Book of Genesis: Part I, From Adam to Noah. Hebrew University Magnes Press.</span></p>
+  <h3 class="sub reveal"><span class="lang-pt">O Nomear dos Animais em Gênesis 2:19-20</span><span class="lang-en">The Naming of the Animals in Genesis 2:19-20</span></h3>
+  <p class="body reveal"><span class="lang-pt">Em Gênesis 1:1-2:3, a atividade criativa de Deus envolve nomear entidades, isto é, separá-las e conferir-lhes uma identidade e propósito distintos. Aqui, Deus convida o humano a imitar o ato criativo divino nomeando os animais. O retrato de Deus nesta cena é de um criador que quer compartilhar responsabilidade com sua criação para que ela se torne o que foi feita para ser. "Este retrato de Deus, o criador do céu e da terra, conduzindo todos os animais um a um, e então a mulher, a um encontro face a face com o 'adam, é verdadeiramente notável ... Deus o Criador coloca o divino self a serviço do 'bem' do ser humano ... O papel de Deus é colocar as várias possibilidades diante do humano, mas é a criatura que recebe a liberdade de decidir. Deus valoriza tanto a liberdade humana que Deus levará em conta a resposta humana livre desde dentro do processo criativo ao moldar o futuro ... O nomear de cada criatura pelo ser humano destina-se a ser paralelo ao nomear divino em Gn 1:5-10. Este ato não é perfunctório, como rotular as gaiolas de um zoológico. Nomear é parte do próprio processo criativo ... decisões humanas se mostram importantes para o desenvolvimento contínuo da ordem criada."</span><span class="lang-en">In Genesis 1:1-2:3, God's creative activity involves naming entities, that is, separating them out and conferring upon them a distinct identity and purpose. Here, God invites the human to imitate the divine creative act by naming the animals. The portrait of God in this scene is of a creator who wants to share responsibility with his creation so that it can become what it is made to be. "This portrayal of God, the creator of heaven and earth, leading all the animals one by one, and then the woman, to a face-to-face meeting with the 'adam, is truly remarkable ... God the Creator places the divine self at the service of the 'good' of the human being ... God's role is to place the various possibilities before the human, but it is the creature that is given freedom to decide. God so values human freedom that God will take into account the free human response from within the creative process in shaping the future ... The human being's naming of each creature is meant to be parallel to the divine naming in Gen. 1:5-10. This act is not perfunctory, like labeling the cages of a zoo. Naming is a part of the creative process itself ... human decisions are shown to be important to the ongoing development of the created order."</span></p>
+  <p class="cite reveal"><span class="lang-pt">Fretheim, Terence E. (2005). God and the World in the Old Testament: A Relational Theology of Creation. Abingdon Press.</span><span class="lang-en">Fretheim, Terence E. (2005). God and the World in the Old Testament: A Relational Theology of Creation. Abingdon Press.</span></p>
+  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">Resuma como os dois se tornando uma só carne em Gênesis 2:24 é uma imagem do plano supremo de Deus para a humanidade.</span><span class="lang-en">Summarize how the two becoming one flesh in Genesis 2:24 is a picture of God's ultimate plan for humanity.</span></p>
+  <div class="page-footer">
+    <span>Class Notes: Adam to Noah</span>
+    <span><span class="lang-pt">Sessão 15 · O Problema do Humano Sozinho</span><span class="lang-en">Session 15 · The Problem of the Human Alone</span></span>
+  </div>
+</div>
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s15-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s15-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+  (function () { var bar = document.getElementById('reading-progress'); function update() { var h = document.documentElement; var max = h.scrollHeight - h.clientHeight; bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; } window.addEventListener('scroll', update, { passive: true }); window.addEventListener('resize', update); update(); })();
+  (function () { var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; var targets = document.querySelectorAll('.reveal'); if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; } var io = new IntersectionObserver(function (entries) { entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } }); }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' }); targets.forEach(function (el) { io.observe(el); }); })();
+</script>
+<script src="../js/verse-modal.js"></script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 27: Caim Falha em Sua Provação</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .figure { margin: 1.75rem 0; }
+  .figure img { width: 100%; height: auto; border-radius: 10px; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .hebrew { font-family: 'Newsreader', serif; }
+  .quote { border-left: 4px solid #aeb6bf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a3f47; font-style: italic; }
+  .cite { color: #4f5669; font-size: .95rem; line-height: 1.7; margin-top: .35rem; }
+  .poem { background: #f8fafc; border-left: 4px solid #cbd5e1; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.4rem 0; font-family: 'Newsreader', serif; line-height: 1.9; font-size: 1.05rem; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+<div id="reading-progress" aria-hidden="true"></div>
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span></button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+  <h1 class="title reveal"><span class="lang-pt">Sessão 27: Caim Falha em Sua Provação</span><span class="lang-en">Session 27: Cain Fails His Test</span></h1>
+  <hr class="rule">
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">O sangue do inocente clamando a Deus desde a terra é um motivo-chave na narrativa bíblica que move Deus à ação.</span><span class="lang-en">The blood of the innocent crying out to God from the ground is a key motif in the biblical narrative that moves God to action.</span></li>
+    <li><span class="lang-pt">As ações de Caim o alinham com a "descendência da serpente", não com a "descendência da mulher".</span><span class="lang-en">The actions of Cain align him with the "seed of the snake" not the "seed of the woman."</span></li>
+  </ul>
+  <div class="poem reveal">
+    <div><span class="hebrew">8</span> E Caim falou com Abel seu irmão <span class="hebrew">a</span></div>
+    <div class="indent">e aconteceu que, quando estavam no campo, <span class="hebrew">b</span></div>
+    <div class="indent">Caim se levantou contra Abel seu irmão <span class="hebrew">a'</span></div>
+    <div class="indent">e o matou. <span class="hebrew">b'</span></div>
+    <div><span class="hebrew">9</span> E Yahweh disse a Caim, <span class="hebrew">a</span></div>
+    <div class="indent">"Onde está Abel, teu irmão?" <span class="hebrew">b</span></div>
+    <div class="indent">E ele disse, <span class="hebrew">a'</span></div>
+    <div class="indent">"Não sei. Sou eu o guarda do meu irmão?" <span class="hebrew">b'</span></div>
+    <div><span class="hebrew">10</span> E ele disse,</div>
+    <div class="indent">"O que fizeste?"</div>
+    <div class="indent">A voz do sangue derramado de teu irmão <span class="hebrew">a</span></div>
+    <div class="indent">está clamando a mim desde a terra. <span class="hebrew">b</span></div>
+    <div><span class="hebrew">11</span> E agora, estás amaldiçoado desde a terra, <span class="hebrew">b'</span></div>
+    <div class="indent">a qual abriu sua boca <span class="hebrew">a'</span></div>
+    <div class="indent">para receber o sangue derramado de teu irmão da tua mão. <span class="hebrew">a'</span></div>
+    <div><span class="hebrew">12</span> Quando trabalhares a terra,</div>
+    <div class="indent">ela não mais lhe dará sua força;</div>
+    <div class="indent">serás um fugitivo e um errante na terra."</div>
+    <div><span class="hebrew">13</span> E Caim disse ao Senhor,</div>
+    <div class="indent">"Minha punição é grande demais para ser levantada; <span class="hebrew">a</span></div>
+    <div><span class="hebrew">14</span> Eis que me expeliste hoje <span class="hebrew">b</span></div>
+    <div class="indent">da face da terra;</div>
+    <div class="indent">e de tua face serei escondido, <span class="hebrew">c</span></div>
+    <div class="indent">e serei um fugitivo e um errante na terra; <span class="hebrew">b'</span></div>
+    <div class="indent">e quem quer que me encontre, me matará." <span class="hebrew">a'</span></div>
+    <div><span class="hebrew">15</span> E Yahweh lhe disse,</div>
+    <div class="indent">"Portanto, qualquer que matar Caim,</div>
+    <div class="indent">sete vezes será vingado."</div>
+    <div class="indent">E Yahweh estabeleceu um sinal para Caim,</div>
+    <div class="indent">para que ninguém que o encontrasse o ferisse.</div>
+    <div><span class="hebrew">16</span> E Caim saiu da presença de Yahweh,</div>
+    <div class="indent">e habitou na terra de Nod, a leste do Éden.</div>
+  </div>
+  <figure class="figure reveal">
+    <img src="img/sessao-27/p1-vector.png" alt="Yahweh's Dialogue With Cain: Translation and Literary Design of Genesis 4:8-16">
+    <figcaption class="caption"><span class="lang-pt">O Diálogo de Yahweh com Caim: Tradução e Design Literário de Gênesis 4:8-16. Por Tim Mackie para BibleProject Classroom Adão a Noé (2020).</span><span class="lang-en">Yahweh's Dialogue With Cain: Translation and Literary Design of Genesis 4:8-16. By Tim Mackie for BibleProject Classroom Adam to Noah (2020).</span></figcaption>
+  </figure>
+    <h2 class="section reveal"><span class="lang-pt">O Sangue Clama</span><span class="lang-en">The Blood Cries Out</span></h2>
+  <p class="body reveal"><span class="lang-pt">Em Gênesis 4:10-4:11, Deus diz a Caim que a voz do sangue de seu irmão está clamando desde a terra. Observe que a terra tornou-se um personagem ativo (ela "clama" e "abre sua boca" e "recebe") que testemunha o assassinato de Abel, é contaminada por ele, e testifica como testemunha. A humanidade foi feita de barro feito de água e pó (Gn 2:7), mas agora um humano retorna ao solo na forma de sangue, o que resulta não em a terra ser amaldiçoada mas Caim ser amaldiçoado desde a terra. Isto inicia um importante padrão de design por toda a Bíblia Hebraica, relacionado à "cidade de derramamento de sangue." Quando sociedades humanas se edificam sobre o sangue do inocente, Deus ouve seu clamor e responde. Gênesis 6:13 (NASB): "Então Deus disse a Noé: 'Chegou ao meu conhecimento o fim de toda a carne, porque a terra está cheia de violência por causa deles; e eis que estou para destruí-los com a terra.'" Gênesis 18:20-21 (NASB): "20 E o SENHOR disse: 'O clamor de Sodoma e Gomorra é, na verdade, grande, e o seu pecado é excessivamente grave. 21 Descerei agora, e verei se com toda a certeza têm praticado segundo o seu clamor que tem chegado a mim; e se não, saberei.'" Êxodo 2:23 (NASB): "E aconteceu que, depois de muitos dias, morreu o rei do Egito; e os filhos de Israel suspiraram por causa da servidão, e clamaram; e o seu clamor de socorro, por causa da sua servidão, subiu a Deus."</span><span class="lang-en">In Genesis 4:10-4:11, God tells Cain that the voice of his brother's blood is crying out from the ground. Notice that the ground has become an active character (it "cries" and "opens its mouth" and "receives") that witnesses Abel's murder, is defiled by it, and testifies as a witness. Humanity was made from clay made by water and dust (Gen. 2:7), but now a human returns to the dirt in the form of blood, which results not in the ground being cursed but Cain being cursed from the ground. This begins an important design pattern throughout the Hebrew Bible, related to the "city of bloodshed." When human societies build themselves upon the blood of the innocent, God hears their cry and responds. Genesis 6:13 NASB: "Then God said to Noah, 'The end of all flesh has come before me; for the earth is filled with violence because of them; and behold, I am about to destroy them with the earth.'" Genesis 18:20-21 NASB: "20 And the Lord said, 'The outcry of Sodom and Gomorrah is indeed great, and their sin is exceedingly grave. 21 I will go down now, and see if they have done entirely according to its outcry, which has come to me; and if not, I will know.'" Exodus 2:23 NASB: "Now it came about in the course of those many days that the king of Egypt died. And the sons of Israel sighed because of the bondage, and they cried out; and their cry for help because of their bondage rose up to God."</span></p>
+  <h2 class="section reveal"><span class="lang-pt">Deus Mostra Misericórdia e Dá um Sinal</span><span class="lang-en">God Shows Mercy and Gives a Sign</span></h2>
+  <p class="body reveal"><span class="lang-pt">Em Gênesis 4:13-4:14, Caim reclama da severidade das consequências e então culpa a Deus por seu exílio. Caim também levanta o importante fator de que tem sangue em suas mãos e que um "vingador de sangue" pode "encontrá-lo" e exercer justiça. Sua linguagem antecipa o parente-redentor, cuja responsabilidade familiar era vingar o assassinato de um parente (Nm 35:12-25). Deus "estabelece um sinal para Caim" (não "sobre" ele). A história de interpretação deste versículo é repleta de especulações imaginativas que não têm base no texto. A coleção mais antiga de interpretações é encontrada em um antigo comentário judeu sobre Gênesis (séc. IV-VI d.C.) chamado Gênesis Rabbá (Ginzberg, Louis, As Lendas dos Judeus, p. 107). Sete Opiniões Interpretativas sobre o Sinal de Caim: 1. Deus fez o sol nascer (como sinal de que Caim não seria morto por animais). 2. Ele o marcou infligindo-lhe lepra. 3. Ele lhe deu um cão para protegê-lo contra animais. 4. Ele o marcou com um chifre em sua testa (como degradação de sua forma humana). 5. Ele puniu Caim como um sinal (aviso) para futuros assassinos. 6. Ele perdoou parcialmente seu pecado como um sinal (exemplo) para futuros pecadores que se arrependem. 7. Ele permitiu que vivesse até o dilúvio.</span><span class="lang-en">In Genesis 4:13-4:14, Cain complains of the severity of the consequences and then blames God for his exile. Cain also raises the important factor that he has blood on his hands and that an "avenger of blood" may "find" him and exact justice. His language hints forward to the kinsman redeemer, whose family responsibility it was to avenge the murder of a relative (Num. 35:12-25). God "sets a sign for Cain" (not "on" him). The history of interpretation for this verse is littered with imaginative speculations that are not grounded in the text. The earliest collection of interpretations is found in an early Jewish commentary on Genesis (4th-6th century A.D.) called Genesis Rabbah (Ginzberg, Louis, The Legends of the Jews, p. 107). Seven Interpretive Opinions on the Sign of Cain: 1. God caused the sun to rise (as a sign that Cain was not to be slain by animals). 2. He marked him by inflicting leprosy on him. 3. He gave him a dog to protect him against animals. 4. He marked him with a horn on his forehead (as a degradation of his human form). 5. He punished Cain as a sign (warning) to future murderers. 6. He partly pardoned his sin as a sign (example) for future sinners who repent. 7. He allowed him to live until the flood.</span></p>
+  <h3 class="sub reveal"><span class="lang-pt">O Motivo do Sinal</span><span class="lang-en">The Sign Motif</span></h3>
+  <p class="body reveal"><span class="lang-pt">O "sinal para Caim" inicia um padrão de design-motivo na Bíblia Hebraica. Quando Deus conforta o mal da humanidade, ele geralmente traz justiça enquanto também mostra misericórdia. E ele marca esta distinção por meio de um sinal ('ot / אות), um símbolo que ele mesmo comunica o significado do evento em um nível profundo. Gênesis 9:11-15 (NASB*): "11 'Estabeleço a minha aliança convosco; e nunca mais toda a carne será exterminada pelas águas do dilúvio, nem haverá mais dilúvio para destruir a terra.' 12 E Elohim disse: 'Este é o sinal da aliança que estou firmando entre mim e vós e todo ser vivente que está convosco, para todas as gerações: 13 Ponho o meu arco nas nuvens, e ele será por sinal da aliança entre mim e a terra. 14 E acontecerá que, quando eu trouxer uma nuvem sobre a terra, o arco será visto nas nuvens; 15 e lembrarei da minha aliança, que é entre mim e vós e todo ser vivente de toda a carne, e nunca mais as águas se tornarão dilúvio para destruir toda a carne.'" *Palavras-Chave Adaptadas pelo Professor. O arco-íris é um sinal do julgamento e do resgate de Deus. Gênesis 17:10-14 (NASB): "10 'Esta é a minha aliança, que guardareis entre mim e vós e a tua descendência depois de ti: todo macho entre vós será circuncidado. 11 E sereis circuncidados na carne do vosso prepúcio, e isto será o sinal da aliança entre mim e vós.'" A circuncisão é um sinal do julgamento de Deus e de sua promessa eterna de suscitar uma descendência para Abraão. Êxodo 8:21-24; Êxodo 10:1-2; Êxodo 12:12-13: As pragas que Deus envia sobre o Egito são sinais do julgamento de Deus e de seu compromisso de salvar os israelitas. O sangue do cordeiro da páscoa nos umbrais é um sinal do julgamento e da misericórdia de Deus. Josué 2:12-13, 17-19: Os cordões escarlates de Raabe em Jericó são um sinal para Deus poupar sua família quando ele trouxer seu julgamento sobre a cidade. O sinal de Caim é o arquétipo de todos estes "sinais de poupança." Em cada instância, Yahweh poderia ferir e trazer ruína indiscriminadamente, mas em vez disso, ele disponibiliza sua misericórdia a um remanescente, mostrando sua misericórdia com um sinal visual. A história que estabelece este padrão de design não nos diz o que é o sinal, mas apenas o que ele significa: que Caim está sob o julgamento de Deus por seu assassinato, e ninguém mais tem o direito legal ou moral de exercer vingança sobre ele. Mas Caim também está sob a misericórdia de Deus, que é marcada por "um sinal para Caim." Este é um bom exemplo de como os padrões de design funcionam na Bíblia Hebraica. Neste caso, a primeira aparição de um motivo é a mais ambígua, e é apenas através da repetição que o motivo ganha clareza. Note que todos os sinais são fenômenos visuais (arco no céu, corte de carne, sangue no umbral, cordão de fio escarlate na janela). Também é possível que em Gênesis 4:15, nos seja dado o conteúdo do sinal na forma da declaração de proteção de Yahweh para Caim.</span><span class="lang-en">The "sign for Cain" begins a design pattern motif in the Hebrew Bible. When God confronts humanity's evil, he usually brings justice while also showing mercy. And he marks this distinction by means of a sign ('ot / אות), a symbol that itself communicates the meaning of the event on a deep level. Genesis 9:11-15 NASB*: "11 'I set up my covenant with you; and all flesh shall never again be cut off by the water of the flood, neither shall there again be a flood to ruin the earth.' 12 And Elohim said, 'This is the sign of the covenant, which I am giving between me and you and every living creature that is with you, for all successive generations; 13 I give my bow in the cloud, and it shall be for a sign of a covenant between me and the earth. 14 It shall come about, when I bring a cloud over the earth, that the bow will be seen in the cloud, 15 and I will remember my covenant, which is between me and you and every living creature of all flesh and never again shall the water become a flood to ruin all flesh.'" *Key Words Adapted by Teacher. The rainbow is a sign of God's judgment and rescue. Genesis 17:10-14 NASB: "10 'This is my covenant, which you shall keep, between me and you and your seed after you: every male among you shall be circumcised. 11 And you shall be circumcised in the flesh of your foreskin, and it shall be the sign of the covenant between me and you.'" Circumcision is a sign of God's judgment and his eternal promise to raise up a seed for Abraham. Exodus 8:21-24; Exodus 10:1-2; Exodus 12:12-13: The plagues that God sends on Egypt are signs of God's judgment and his commitment to save the Israelites. The blood of the passover lamb on the doorposts is a sign of God's judgment and mercy. Joshua 2:12-13, 17-19: Rahab's scarlet cords in Jericho are a sign for God to spare her family when he brings his judgment on the city. Cain's sign is the archetype of all these "signs of sparing." In each instance, Yahweh could strike and bring ruin indiscriminately, but instead, he makes his mercy available to a remnant, showing his mercy with a visual sign. The story that sets up this design pattern does not tell us what the sign is but only what it means: that Cain stands under God's judgment for his murder, and no one else has the legal or moral right to exact vengeance on him. But Cain also stands under God's mercy, which is marked by "a sign for Cain." This is a good example of how design patterns work in the Hebrew Bible. In this case, the first appearance of a motif is the most ambiguous, and it is only through repetition that the motif gains clarity. Notice that all of the signs are visual phenomena (bow in the sky, cutting of flesh, blood on door frame, cord of scarlet thread on window). It's also possible that in Genesis 4:15, we are given the content of the sign in the form of Yahweh's declaration of protection for Cain.</span></p>
+  <figure class="figure reveal">
+    <img src="img/sessao-27/p2-vector.png" alt="The Cain and Abel Story">
+    <figcaption class="caption"><span class="lang-pt">A História de Caim e Abel. Criado por Tim Mackie para BibleProject Classroom Adão a Noé (2020).</span><span class="lang-en">The Cain and Abel Story. Created by Tim Mackie for BibleProject Classroom Adam to Noah (2020).</span></figcaption>
+  </figure>
+    <blockquote class="quote reveal"><span class="lang-pt">"[O] significado não é: quem matar Caim será punido sete vezes mais do que um que mata qualquer outra pessoa; tal pena não estaria de acordo com a justiça. Sete (שבע, šebhaʿ) é o número da completude (veja Gênesis 1); e שבעתים šibhāthayim — isto é, sete vezes — denota em medida completa, com toda a severidade da lei. Compare Salmo 12:6 'ouro purificado sete vezes'; ou Salmo 79:12 'retribui sete vezes ao peito de nossos vizinhos.' Aquele que mata Caim merecerá ser punido com a máxima severidade, porque será culpado de uma dupla ofensa: o crime de derramar sangue, e o pecado de desprezar o julgamento do Senhor ao aumentar o castigo divino."</span><span class="lang-en">"[T]he meaning is not: whoever slays Cain will be punished seven times as much as one who kills any other person; such a penalty would not be in accord with justice. Seven (שבע, šebhaʿ) is the number of completeness (see Genesis 1); and שבעתים šibhāthayim—that is, seven times—connotes in complete measure, with the full stringency of the law. Compare Psalm 12:6 'gold that is purified seven times;' or Psalm 79:12 'return sevenfold into the bosom of our neighbors.' The one who slays Cain will deserve to be punished with the utmost severity, because he will be guilty of a dual offense: the crime of shedding blood, and the sin of contemning the Lord's judgement by augmenting the divine punishment."</span></blockquote>
+  <p class="cite reveal"><span class="lang-pt">Cassuto, U. (1961). Um Comentário sobre o Livro de Gênesis (Parte I): de Adão a Noé. Magnes Press.</span><span class="lang-en">Cassuto, U. (1961). A Commentary on the Book of Genesis (Part I): from Adam to Noah. Magnes Press.</span></p>
+  <blockquote class="quote reveal"><span class="lang-pt">"A natureza precisa do sinal permanece incerta, mas sua função é clara. Assim como as vestes dadas a Adão e Eva após a queda (Gênesis 3:21) serviam para lembrá-los de seu pecado e da misericórdia de Deus, assim também a marca colocada em Caim. Como um dispositivo protetor contra inimigos potenciais ela pode evitar a morte; nesse sentido, a punição antecipada é suavizada. Mas ao mesmo tempo serve como um lembrete constante do banimento de Caim, seu isolamento de outras pessoas."</span><span class="lang-en">"The precise nature of the sign remains uncertain, but its function is clear. As the clothing given to Adam and Eve after the fall (Gen. 3:21) served to remind them of their sin and God's mercy, so does the mark placed on Cain. As a protective device against potential enemies it may stay death; in that sense, the anticipated punishment is softened. But at the same time it serves as a constant reminder of Cain's banishment, his isolation from other people."</span></blockquote>
+  <p class="cite reveal"><span class="lang-pt">Wenham, Gordon J. (1987). Gênesis 1-15 (Comentário Bíblico Word). Thomas Nelson Inc.</span><span class="lang-en">Wenham, Gordon J. (1987). Genesis 1-15 (Word Biblical Commentary). Thomas Nelson Inc.</span></p>
+  <!--REST-->
+</div>
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s27-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s27-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+  (function () { var bar = document.getElementById('reading-progress'); function update() { var h = document.documentElement; var max = h.scrollHeight - h.clientHeight; bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; } window.addEventListener('scroll', update, { passive: true }); window.addEventListener('resize', update); update(); })();
+  (function () { var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; var targets = document.querySelectorAll('.reveal'); if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; } var io = new IntersectionObserver(function (entries) { entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } }); }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' }); targets.forEach(function (el) { io.observe(el); }); })();
+</script>
+<script src="../js/verse-modal.js"></script>
+</body>
+</html>

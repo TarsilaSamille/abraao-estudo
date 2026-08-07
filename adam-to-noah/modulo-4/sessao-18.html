@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 18: A Serpente Astuta que Fala</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .figure { margin: 1.75rem 0; }
+  .figure img { width: 100%; height: auto; border-radius: 10px; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .hebrew { font-family: 'Newsreader', serif; }
+  .quote { border-left: 4px solid #aeb6bf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a3f47; font-style: italic; }
+  .cite { color: #4f5669; font-size: .95rem; line-height: 1.7; margin-top: .35rem; }
+  .poem { background: #f8fafc; border-left: 4px solid #cbd5e1; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.4rem 0; font-family: 'Newsreader', serif; line-height: 1.9; font-size: 1.05rem; }
+  .poem .indent { padding-left: 1.5rem; }
+  .poem .indent2 { padding-left: 3rem; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+<div id="reading-progress" aria-hidden="true"></div>
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span></button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+  <h1 class="title reveal"><span class="lang-pt">Sessão 18: A Serpente Astuta que Fala</span><span class="lang-en">Session 18: The Shrewd Talking Snake</span></h1>
+  <hr class="rule">
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">A serpente é descrita usando a palavra hebraica arum, que significa "prudente, astuta ou sensata." A descrição não é negativa, e a palavra não indica necessariamente ardil ou falsidade.</span><span class="lang-en">The snake is described using the Hebrew word arum, which means "prudent, cunning, or sensible." The description isn't a negative one, and the word does not necessarily indicate trickery or falsehood.</span></li>
+    <li><span class="lang-pt">Dada a introdução ambígua, até positiva, da serpente, muitos têm interpretado Gênesis 3 como mostrando a rebelião inicial da serpente em conjunto com a falha dos humanos.</span><span class="lang-en">Given the ambiguous, even positive, introduction of the snake, many have interpreted Genesis 3 as showing the snake's initial rebellion in conjunction with the humans' failure.</span></li>
+  </ul>
+  <h2 class="section reveal"><span class="lang-pt">A Serpente e a Mulher: Tradução e Design Literário de Gênesis 2:25-3:7</span><span class="lang-en">The Snake and the Woman: Translation and Literary Design of Genesis 2:25-3:7</span></h2>
+  <div class="poem reveal">
+    <div><span class="hebrew">2:25</span> E os dois estavam nus (<span class="hebrew">ערום</span>), o humano e sua mulher, e não se envergonhavam.</div>
+    <div><span class="hebrew">3:1a</span> Ora, a serpente era mais astuta (<span class="hebrew">ערום</span>) do que qualquer besta do campo que Yahweh Deus havia feito.</div>
+    <div><span class="hebrew">3:1b</span> E ela [a serpente] disse à mulher,</div>
+    <div class="indent"><span class="hebrew">a</span> "É verdade que Deus disse,</div>
+    <div class="indent2"><span class="hebrew">b</span> 'Não comereis de nenhuma árvore do jardim'?"</div>
+    <div class="indent"><span class="hebrew">c</span> 2 E a mulher disse à serpente,</div>
+    <div class="indent2"><span class="hebrew">a</span> "Do fruto das árvores do jardim podemos comer;</div>
+    <div class="indent2"><span class="hebrew">b</span> 3 mas do fruto da árvore que está no meio do jardim, Deus disse:</div>
+    <div class="indent2">'Não comereis dele, nem tocareis nele, para que não morrais.'"</div>
+    <div class="indent"><span class="hebrew">c</span> 4 E a serpente disse à mulher,</div>
+    <div class="indent2"><span class="hebrew">a</span> "Certamente não morrereis!</div>
+    <div class="indent2"><span class="hebrew">b</span> 5 Pois Deus sabe</div>
+    <div class="indent2">que no dia em que dele comerdes, vossos olhos serão abertos,</div>
+    <div class="indent2"><span class="hebrew">c</span> e sereis como elohim, conhecedores do bem e do mal."</div>
+    <div><span class="hebrew">6</span> E a mulher viu que a árvore era boa para comer,</div>
+    <div class="indent"><span class="hebrew">a</span> e que era agradável aos olhos,</div>
+    <div class="indent"><span class="hebrew">b</span> e que a árvore era desejável para dar sabedoria,</div>
+    <div class="indent">e tomou do seu fruto, e comeu;</div>
+    <div class="indent"><span class="hebrew">c</span> e deu também a seu marido com ela, e ele comeu.</div>
+    <div class="indent"><span class="hebrew">c'</span> 7a E os olhos de ambos foram abertos,</div>
+    <div class="indent2"><span class="hebrew">b'</span> 7b e souberam que estavam nus (<span class="hebrew">ערום</span>);</div>
+    <div class="indent2">e coseram folhas de figueira, e fizeram para si cintas.</div>
+    <div class="indent"><span class="hebrew">a'</span> O Ato</div>
+    <div class="indent">Nus e Sem Vergonha</div>
+  </div>
+  <figure class="figure reveal">
+    <img src="img/sessao-18/p1-vector.png" alt="Translation and Literary Design of Genesis 2:25-3:7">
+    <figcaption class="caption"><span class="lang-pt">Gênesis 2:25-3:7. Tradução e Design Literário por Tim Mackie para BibleProject Classroom Adão a Noé (2020).</span><span class="lang-en">Genesis 2:25-3:7. Translation and Literary Design by Tim Mackie for BibleProject Classroom Adam to Noah (2020).</span></figcaption>
+  </figure>
+    <h2 class="section reveal"><span class="lang-pt">Nus e Sem Vergonha, e Astuta</span><span class="lang-en">Naked and Unashamed and Shrewd</span></h2>
+  <p class="body reveal"><span class="lang-pt">Este potente detalhe narrativo é oferecido para descrever o novo estado ideal da criatura humana, que agora é uma pluralidade unificada. Nudez no mundo bíblico refere-se a um estado de vulnerabilidade última. Estar nu fora do ideal do jardim é estar exposto aos olhares lascivos de pessoas não confiáveis e está associado à humilhação e vergonha (veja Is 20:2-4; Os 2:5; Amós 2:16). Estar nu e sem vergonha é uma imagem de pura confiança, abertura, vulnerabilidade e segurança. "Nus e sem vergonha" é uma espécie de comentário sobre "os dois se tornam uma só carne." Quando se está verdadeiramente unificado com outro, não há necessidade de autoproteção ou projeção de um falso eu. Observe o trocadilho entre a nudez humana (heb. arom) e a "astúcia" da serpente (heb. arum). É precisamente esta característica da serpente que transformará a nudez dos humanos de vulnerabilidade em vergonha.</span><span class="lang-en">This potent narrative detail is offered to describe the new ideal state of the human creature, who is now a unified plurality. Nakedness in the biblical world refers to a state of ultimate vulnerability. To be naked outside of the garden ideal is to be exposed to the leering eyes of untrustworthy people and is associated with humiliation and shame (see Isa. 20:2-4; Hos. 2:5; Amos 2:16). To be naked and unashamed is an image of pure trust, openness, vulnerability, and safety. "Naked and unashamed" is a kind of commentary on "the two become one flesh." When one is truly unified with another, there is no need for self-protection or projection of a false self. Notice the wordplay between human nakedness (Heb. arom) and the snake's "shrewdness" (Heb. arum). It is precisely this characteristic of the snake that will transform the humans' nakedness from vulnerability into shame.</span></p>
+  <h3 class="sub reveal"><span class="lang-pt">Uma Serpente Astuta que Fala</span><span class="lang-en">A Shrewd, Talking Snake</span></h3>
+  <p class="body reveal"><span class="lang-pt">O caráter da serpente é uma imagem narrativa rica e densa, com muitas camadas de significado. Em Gênesis 3:1, a serpente é descrita como "astuta" ou "habilidosa." Esta palavra hebraica, arum (ערום), é moralmente neutra, pois pode descrever o justo e sábio, como no livro de Provérbios. Provérbios 22:3 (NAA): "O arum vê o mal e se esconde, mas os ingênuos seguem em frente e são castigados por isso." Provérbios 12:16 (NVI): "O tolo mostra sua irritação imediatamente, mas o arum ignora o insulto."</span><span class="lang-en">The character of the snake is a rich and dense narrative image with many layers of meaning. In Genesis 3:1, the snake is described as "shrewd" or "crafty." This Hebrew word, arum (ערום), is morally neutral, as it can describe the righteous and wise, like in the book of Proverbs. Proverbs 22:3 (NASB): "The arum sees the evil and hides himself, but the naive go on, and are punished for it." Proverbs 12:16 (NIV): "Fools show their annoyance at once, but the arum overlook an insult."</span></p>
+  <p class="body reveal"><span class="lang-pt">Provérbios 14:15 (NAA): "O ingênuo crê em tudo, mas o arum considera os seus passos." Provérbios 8:5 (NVI): "Vocês que são simples, ganhem ormah; vocês que são tolos, dediquem-se a isso." Quando a palavra é usada de pessoas de caráter questionável, a nuance de "habilidosa" é evidente. Salmo 83:2-3 (NVI): "2 Vê como teus inimigos rosnam, como teus adversários erguem a cabeça. 3 Com ormah eles conspiram contra o teu povo; eles tramam contra aqueles que tu prezas." Jó 5:12-13 (NVI): "12 Ele frustra os planos dos arum, de modo que suas mãos não alcançam sucesso. 13 Ele apanha os sábios em sua ormah, e os esquemas dos astutos são varridos."</span><span class="lang-en">Proverbs 14:15 (NASB): "The naive believes everything, but the arum considers his steps." Proverbs 8:5 (NIV): "You who are simple, gain ormah; you who are foolish, set your hearts on it." When the word is used of people with questionable character, the nuance of "crafty" is evident. Psalm 83:2-3 (NIV): "2 See how your enemies growl, how your foes rear their heads. 3 With ormah they conspire against your people; they plot against those you cherish." Job 5:12-13 (NIV): "12 He thwarts the plans of the arum, so that their hands achieve no success. 13 He catches the wise in their ormah, and the schemes of the wily are swept away."</span></p>
+  <blockquote class="quote reveal"><span class="lang-pt">"[Os 'arum] ocultam o que sentem e o que sabem (Prov. 12:16, 23). Eles valorizam o conhecimento e planejam como usá-lo para alcançar seus objetivos (Prov. 13:16; 14:8, 18); não creem em tudo o que ouvem (Prov. 14:15); e sabem como evitar problema e punição (Prov. 22:3; 27:12). Em suma, são astutos e calculistas, dispostos a dobrar e torturar os limites do comportamento aceitável mas não a cruzar a linha para a ilegalidade. Podem ser desagradáveis e propositalmente enganosos no falar, mas não são mentirosos declarados (Js 9:4; 1 Sm 23:22). Sabem como ler pessoas e situações e como voltar suas leituras em vantagem. Uma mente aguçada e uma língua afiada são suas ferramentas."</span><span class="lang-en">"[The 'arum] conceal what they feel and what they know (Prov. 12:16, 23). They esteem knowledge and plan how to use it in achieving their objectives (Prov. 13:16; 14:8, 18); they do not believe everything that they hear (Prov. 14:15); and they know how to avoid trouble and punishment (Prov. 22:3; 27:12). In sum, they are shrewd and calculating, willing to bend and torture the limits of acceptable behavior but not to cross the line into illegalities. They may be unpleasant and purposely misleading in speech but are not out-and-out liars (Josh. 9:4; 1 Sam. 23:22). They know how to read people and situations and how to turn their readings to advantage. A keen wit and a rapier tongue are their tools."</span></blockquote>
+  <p class="cite reveal"><span class="lang-pt">Zevit, Ziony (2013). What Really Happened in the Garden of Eden?. Yale University Press.</span><span class="lang-en">Zevit, Ziony (2013). What Really Happened in the Garden of Eden?. Yale University Press.</span></p>
+  <p class="body reveal"><span class="lang-pt">Observe também o trocadilho entre a introdução da serpente e seu destino final em 3:14. Gênesis 3:1 (NVI): "Ora, a serpente era astuta (ערום) mais do que todo animal do campo (מכל חית השדה) ..." Gênesis 3:14 (NVI): "Maldito (ארור) és tu mais do que todo animal e toda besta do campo (מכל חית השדה) ..." A astúcia da serpente é um retrato de uma criatura dotada com a bênção da sabedoria que abusa desse poder para fins egoístas. "Embora todas as traduções em inglês assumam que ערום tem um sentido negativo ('astuta') em Gênesis 3:1, um exame mais atento sugere o contrário. A descrição da serpente começa com seu ser 'mais prudente (arum) do que todas as criaturas do campo' (Gênesis 3:1), e depois de ter tentado Eva, conclui com seu ser 'mais amaldiçoado (arur) do que todas as criaturas do campo' (3:14). As duas linhas são quase idênticas em hebraico, sugerindo um contraste intencional entre elas: a serpente amaldiçoada é um contraste negativo de uma serpente inicialmente positiva e astuta. Não apenas 'prudente' faz mais sentido no fluxo narrativo dos eventos, como também distancia Deus de qualquer responsabilidade quanto à origem do mal. Deus não fez uma criatura 'astuta'; ele fez uma criatura sábia. A 'prudência' da serpente pode até ser um sinal do favor especial de Deus para com a serpente acima dos outros animais. A decisão da serpente de usar sua prudência para intenções malignas, porém, resultou em uma queda do favor divino para a humilhação eterna, e isto oferece uma solução para a antiga questão da queda da serpente (e de Satanás). Quando a serpente rebelou e caiu? Ela 'caiu' em Gênesis 3. Assim, Gênesis 3 retrata a queda de Adão, e Eva, e a serpente."</span><span class="lang-en">Notice also the wordplay between the snake's introduction and its final destiny in 3:14. Genesis 3:1 (NIV): "And the snake was shrewd (ערום) more than every animal of the field (מכל חית השדה) ..." Genesis 3:14 (NIV): "You are cursed (ארור) more than every beast and every animal of the field (מכל חית השדה) ..." The shrewdness of the snake is a portrait of a creature endowed with the blessing of wisdom who abuses that power for selfish ends. "Although it is assumed by all the English translations that ערום has a negative sense ('crafty') in Genesis 3:1, a closer examination suggests otherwise. The description of the serpent commences with its being 'more prudent (arum) than all the creatures of the field' (Genesis 3:1), and after having tempted Eve, concludes with its bing 'more cursed (arur) than all the creatures of the field (3:14). The two lines are nearly identical in Hebrew, suggesting an intentional contrast between them: the cursed serpent is a negative contrast to an initially positive shrewd serpent. Not only does 'prudent' make more sense of the narrative flow of events, it also distances God from any responsibility with respect to the origin of evil. God did not make a 'crafty' creature; he made a wise creature. The serpent's 'prudence' may even be a sign of God's special favor toward the serpent above the other animals. The serpent's decision to use its prudence for evil intentions, however, resulted in a fall from divine favor to eternal humiliation, and this offers a solution to the age-old question of the serpent's (and Satan's) fall. When did the serpent rebel and fall? It 'fell' in Genesis 3. Thus, Genesis 3 depicts the fall of Adam, and Eve, and the serpent."</span></p>
+  <p class="cite reveal"><span class="lang-pt">Postell, Seth (2011). Adam as Israel: Genesis 1-3 as the Introduction to the Torah and Tanakh. Pickwick Publications.</span><span class="lang-en">Postell, Seth (2011). Adam as Israel: Genesis 1-3 as the Introduction to the Torah and Tanakh. Pickwick Publications.</span></p>
+  <figure class="figure reveal">
+    <img src="img/sessao-18/p2-vector.png" alt="Naked and Unashamed and Shrewd, The Dialogue">
+    <figcaption class="caption"><span class="lang-pt">Nus e Sem Vergonha e Astuta. O Diálogo. Por Tim Mackie para BibleProject Classroom Adão a Noé (2020).</span><span class="lang-en">Naked and Unashamed and Shrewd, The Dialogue. By Tim Mackie for BibleProject Classroom Adam to Noah (2020).</span></figcaption>
+  </figure>
+  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">Gênesis 3:1 nos diz que "a serpente é mais astuta do que qualquer besta do campo." Esta astúcia implica que a serpente é má?</span><span class="lang-en">Genesis 3:1 tells us that "the snake is more shrewd than any beast of the field." Does this shrewdness imply that the snake is evil?</span></p>
+  <div class="page-footer">
+    <span>Class Notes: Adam to Noah</span>
+    <span><span class="lang-pt">Sessão 18 · A Serpente Astuta que Fala</span><span class="lang-en">Session 18 · The Shrewd Talking Snake</span></span>
+  </div>
+</div>
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s18-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s18-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+  (function () { var bar = document.getElementById('reading-progress'); function update() { var h = document.documentElement; var max = h.scrollHeight - h.clientHeight; bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; } window.addEventListener('scroll', update, { passive: true }); window.addEventListener('resize', update); update(); })();
+  (function () { var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; var targets = document.querySelectorAll('.reveal'); if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; } var io = new IntersectionObserver(function (entries) { entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } }); }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' }); targets.forEach(function (el) { io.observe(el); }); })();
+</script>
+<script src="../js/verse-modal.js"></script>
+</body>
+</html>

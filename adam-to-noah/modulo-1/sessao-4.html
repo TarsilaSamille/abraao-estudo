@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 4: Pedaços e Padrões na Narrativa Bíblica</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+  ol.steps { list-style: none; counter-reset: s; padding: 0; }
+  ol.steps > li { counter-increment: s; padding-left: 2.6rem; position: relative; margin-bottom: 1rem; line-height: 1.72; font-size: 1.05rem; }
+  ol.steps > li:before { content: counter(s) "."; position: absolute; left: .55rem; font-weight: 800; color: #1a1a1a; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .figure { margin: 1.75rem 0; }
+  .figure img { width: 100%; height: auto; border-radius: 10px; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  table.units { width: 100%; border-collapse: collapse; margin: 1.4rem 0; font-size: .92rem; }
+  table.units th, table.units td { border: 1px solid #d7dde5; padding: .5rem .7rem; text-align: left; vertical-align: top; }
+  table.units th { background: #f5f7f9; font-weight: 800; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+<div id="reading-progress" aria-hidden="true"></div>
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span></button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+  <h1 class="title reveal"><span class="lang-pt">Sessão 4: Pedaços e Padrões na Narrativa Bíblica</span><span class="lang-en">Session 4: Pieces and Patterns in Biblical Narrative</span></h1>
+  <hr class="rule">
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">A Bíblia é como um fotomosaico com unidades literárias menores identificáveis, elaboradas e arranjadas para trabalhar juntas e criar uma mensagem maior e abrangente.</span><span class="lang-en">The Bible is like a photo mosaic with identifiable smaller literary units crafted and arranged to work together and create a larger, overarching message.</span></li>
+    <li><span class="lang-pt">Os autores bíblicos usam cenas repetidas, muitas vezes com leves variações, para desenvolver temas ao longo da história.</span><span class="lang-en">Biblical authors use repeated scenes, often with slight variations, to develop themes throughout the story.</span></li>
+  </ul>
+  <h2 class="section reveal"><span class="lang-pt">Padrões de Design e Análise Literária</span><span class="lang-en">Design Patterns and Literary Analysis</span></h2>
+  <p class="body reveal"><span class="lang-pt">Lembre-se de nossa exploração anterior das origens da Bíblia Hebraica. É uma coleção de coleções que foi escrita, adaptada e editada em um todo unificado. Considere duas analogias adicionais que nos ajudarão a entender o significado desse fato para como lemos e interpretamos a literatura bíblica.</span><span class="lang-en">Recall our earlier exploration of the origins of the Hebrew Bible. It's a collection of collections that has been written, adapted, and edited into a unified whole. Consider two additional analogies that will help us understand the significance of this fact for how we read and interpret biblical literature.</span></p>
+  <h3 class="sub reveal"><span class="lang-pt">Analogia 1: Fotomosaicos</span><span class="lang-en">Analogy 1: Photo Mosaics</span></h3>
+  <figure class="figure reveal">
+    <img src="img/sessao-4/p1_5.png" alt="Louis Armstrong photomosaic">
+    <figcaption class="caption"><span class="lang-pt">Silvers, Robert (2000). Louis Armstrong. Photomosaic.com.</span><span class="lang-en">Silvers, Robert (2000). Louis Armstrong. Photomosaic.com.</span></figcaption>
+  </figure>
+  <p class="body reveal"><span class="lang-pt">A unidade única do fotomosaico maior é alcançada precisamente por sua natureza composta. O arranjo temático de pequenos quadrados de luz/escuridão/cores torna-se uma ferramenta para criar padrões maiores de cor que fornecem uma imagem ordenada e unificada do sujeito. A Bíblia Hebraica exibe esse tipo de unidade de mosaico em grande e pequena escala.</span><span class="lang-en">The unique unity of the larger photo mosaic is achieved precisely by its composite nature. The thematic arrangement of light/dark/great tiny squares becomes a tool to create larger patterns of color that provide an ordered, unified picture of the subject. The Hebrew Bible displays this kind of mosaic unity on a large and small scale.</span></p>
+  <h3 class="sub reveal"><span class="lang-pt">Analogia 2: Motivos e Temas Repetidos em Filmes</span><span class="lang-en">Analogy 2: Repeated Motifs and Themes in Film</span></h3>
+  <p class="body reveal"><span class="lang-pt">Cineastas frequentemente criam uma unidade coesa para os temas e a linha de trama de uma história por meio de repetição e variação. Ao construir expectativas no espectador através da repetição, o artista pode introduzir variação e surpresa.</span><span class="lang-en">Movie directors often create a cohesive unity to the themes and plot line of a story by repetition and variation. By building up viewer expectations through repetition, the artist can introduce variation and surprise.</span></p>
+  <p class="body reveal"><span class="lang-pt">Um exemplo disso é o motivo da cena da tentação do anel em O Senhor dos Anéis. Alguns personagens são tentados pelo poder do anel, e sucumbem a ele (Sméagol, Boromir, Frodo). Outros personagens resistem ao seu poder, mas de maneiras diferentes (Bilbo, por pouco, Gandalf e Galadriel, com temor e tremor, e Aragorn, como se não fosse problema!). Esse conjunto diversificado de respostas ao poder do anel cria uma rica paleta de personagens e um retrato complexo do poder na história.</span><span class="lang-en">One example of this is the motif of the ring temptation scene in The Lord of the Rings. Some characters are tempted by the ring's power, and they succumb to it (Smeagol, Boromir, Frodo). Other characters resist its power but in different ways (Bilbo, barely, Gandalf and Galadriel, through fear and trembling, and Aragorn, like it's no problem!). This diverse set of responses to the ring's power creates a rich palette of characters and a complex portrait of power in the story.</span></p>
+  <figure class="figure reveal">
+    <img src="img/sessao-4/p2_309.png" alt="The Lord of the Rings ring temptation scenes">
+    <figcaption class="caption"><span class="lang-pt">Jackson, P. (Diretor). (2001-2003). Série O Senhor dos Anéis [Filme]. New Line Cinema.</span><span class="lang-en">Jackson, P. (Director). (2001-2003). The Lord of the Rings Series [Film]. New Line Cinema.</span></figcaption>
+  </figure>
+  <p class="body reveal"><span class="lang-pt">Os autores bíblicos eram mestres dessa técnica. Na verdade, esse princípio básico de repetição e analogia padronizadas é a ferramenta mais fundamental em seu repertório. E é realizado pelos meios mais simples: a repetição estratégica de palavras-chave.</span><span class="lang-en">The biblical authors were masters of this technique. In fact, this basic principle of patterned repetition and analogy is the most fundamental tool in their repertoire. And it's accomplished through the simplest of means: strategic repetition of key words.</span></p>
+  <h2 class="section reveal"><span class="lang-pt">Estratégias de Leitura Baseadas nas Analogias</span><span class="lang-en">Reading Strategies Based on Analogies</span></h2>
+  <p class="body reveal"><span class="lang-pt">Essas duas analogias ilustram diferentes características da coleção do TaNaK que criam a necessidade de duas estratégias de leitura relacionadas.</span><span class="lang-en">These two analogies illustrate different features of the TaNaK collection that create the need for two related reading strategies.</span></p>
+  <ol class="steps reveal">
+    <li><span class="lang-pt"><strong>Identificar unidades literárias:</strong> Assim como um fotomosaico consiste em centenas de fotos menores, a narrativa bíblica épica consiste em centenas de episódios menores. Aprenda a identificar o início e o fim das unidades literárias que compõem o mosaico maior de um livro bíblico.</span><span class="lang-en"><strong>Identifying literary units:</strong> Just as a photo mosaic consists of hundreds of smaller photos, the epic biblical narrative consists of hundreds of smaller episodes. Learn to identify the beginning and ending of literary units that make up the larger mosaic of a biblical book.</span></li>
+    <li><span class="lang-pt"><strong>Identificar palavras e temas repetidos:</strong> Assim como as fotos menores em um fotomosaico são organizadas de acordo com padrões de cor, luz e tom, as unidades literárias da narrativa bíblica são entrelaçadas através de padrões de palavras, temas e imagens repetidos. Essas repetições convidam o leitor a ver continuidade e um argumento contínuo que se desenvolve ao longo da história.</span><span class="lang-en"><strong>Identifying repeated words and themes:</strong> Just as the smaller photos in a photo mosaic are organized according to patterns of color, light, and tone, the literary units of the biblical narrative are woven together through patterns of repeated words, themes, and images. These repetitions invite the reader to see continuity and an ongoing argument that develops throughout the course of the story.</span></li>
+  </ol>
+  <h2 class="section reveal"><span class="lang-pt">Aplicando as Estratégias à Narrativa do Éden</span><span class="lang-en">Applying the Strategies to the Eden Narrative</span></h2>
+  <p class="body reveal"><span class="lang-pt">Quando todos os princípios acima são aplicados a uma análise literária, isso produz o seguinte esboço da narrativa do Éden.</span><span class="lang-en">When all the above principles are applied to a literary analysis, it yields the following outline of the Eden narrative.</span></p>
+  <table class="units reveal">
+    <thead><tr><th><span class="lang-pt">Versos</span><span class="lang-en">Verses</span></th><th><span class="lang-pt">Unidade</span><span class="lang-en">Unit</span></th><th><span class="lang-pt">Parte</span><span class="lang-en">Part</span></th><th><span class="lang-pt">Movimento</span><span class="lang-en">Movement</span></th></tr></thead>
+    <tbody>
+      <tr><td>2:4-6</td><td rowspan="6"><span class="lang-pt">2:4-17<br>Do Deserto<br>ao Éden</span><span class="lang-en">2:4-17<br>From Wasteland<br>to Eden</span></td><td><span class="lang-pt">Sem jardim, humanos ou chuva</span><span class="lang-en">No garden, humans, or rain</span></td><td rowspan="9"><span class="lang-pt">2:4-25<br>Do Isolamento<br>no Deserto à<br>Comunhão no Éden</span><span class="lang-en">2:4-25<br>From Isolated<br>Wasteland to<br>Communion in Eden</span></td></tr>
+      <tr><td>2:7-9</td><td><span class="lang-pt">Deus planta um jardim e forma o humano</span><span class="lang-en">God plants a garden and forms human</span></td></tr>
+      <tr><td>2:10-14</td><td><span class="lang-pt">O rio do Éden flui para se tornar quatro rios</span><span class="lang-en">The Eden river flows to become four rivers</span></td></tr>
+      <tr><td>2:15-17</td><td><span class="lang-pt">Humano colocado no jardim + comando divino</span><span class="lang-en">Human put in the garden + divine command</span></td></tr>
+      <tr><td>2:18-20</td><td><span class="lang-pt">Problema: um humano sozinho</span><span class="lang-en">Problem: a human alone</span></td></tr>
+      <tr><td>2:21-23</td><td><span class="lang-pt">Solução: dois humanos a partir de um</span><span class="lang-en">Solution: two humans out of one</span></td></tr>
+      <tr><td>2:24-25</td><td><span class="lang-pt">2:4-3:24<br>A Narrativa do Éden:<br>Do Jardim ao Exílio</span><span class="lang-en">2:4-3:24<br>The Eden Narrative: From<br>Garden to Exile</span></td><td><span class="lang-pt">Dois humanos casados</span><span class="lang-en">Two humans married</span></td></tr>
+      <tr><td>3:1-5</td><td rowspan="6"><span class="lang-pt">3:1-13<br>Loucura e a Queda</span><span class="lang-en">3:1-13<br>Folly and the Fall</span></td><td><span class="lang-pt">Diálogo entre a serpente e a mulher</span><span class="lang-en">Dialogue between snake and woman</span></td></tr>
+      <tr><td>3:6-7</td><td><span class="lang-pt">A mulher e o homem comem da árvore</span><span class="lang-en">Woman and man eat from the tree</span></td></tr>
+      <tr><td>3:8-13</td><td><span class="lang-pt">Diálogo entre Deus e os humanos</span><span class="lang-en">Dialogue between God and humans</span></td><td rowspan="6"><span class="lang-pt">3:14-24<br>O Resultado e o<br>Exílio do Éden</span><span class="lang-en">3:14-24<br>The Fallout and<br>Exile from Eden</span></td></tr>
+      <tr><td>3:14-15</td><td><span class="lang-pt">Maldição sobre a serpente</span><span class="lang-en">Curse on the snake</span></td></tr>
+      <tr><td>3:16</td><td><span class="lang-pt">Consequências para a mulher</span><span class="lang-en">Consequences for the woman</span></td></tr>
+      <tr><td>3:17-19</td><td><span class="lang-pt">Consequências para o homem</span><span class="lang-en">Consequences for the man</span></td></tr>
+      <tr><td>3:20-21</td><td><span class="lang-pt">Provisão de vestes</span><span class="lang-en">Provision of garments</span></td></tr>
+      <tr><td>3:22-24</td><td><span class="lang-pt">3:14-24<br>O Resultado</span><span class="lang-en">3:14-24<br>The Fallout</span></td><td><span class="lang-pt">Humanos exilados do Éden</span><span class="lang-en">Humans exiled from Eden</span></td></tr>
+    </tbody>
+  </table>
+  <figure class="figure reveal">
+    <img src="img/sessao-4/literary-units-genesis2-3.png" alt="Identifying the Literary Units of Genesis 2-3">
+    <figcaption class="caption"><span class="lang-pt">Identificando as Unidades Literárias de Gênesis 2-3. Criado por Tim Mackie para BibleProject Classroom: Adão a Noé (2020).</span><span class="lang-en">Identifying the Literary Units of Genesis 2-3. Created by Tim Mackie for BibleProject Classroom: Adam to Noah (2020).</span></figcaption>
+  </figure>
+  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">Tim usa duas analogias para nos mostrar algumas habilidades importantes de estudo bíblico. No que o fotomosaico pode nos ajudar a prestar atenção? E as tentações do anel em O Senhor dos Anéis?</span><span class="lang-en">Tim uses two analogies to show us some important Bible study skills. What can the photo mosaic help us pay attention to? What about the ring temptations from The Lord of the Rings?</span></p>
+  <div class="page-footer">
+    <span>Class Notes: Adam to Noah</span>
+    <span><span class="lang-pt">Sessão 4 · Pedaços e Padrões na Narrativa Bíblica</span><span class="lang-en">Session 4 · Pieces and Patterns in Biblical Narrative</span></span>
+  </div>
+</div>
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s4-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s4-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+  (function () { var bar = document.getElementById('reading-progress'); function update() { var h = document.documentElement; var max = h.scrollHeight - h.clientHeight; bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; } window.addEventListener('scroll', update, { passive: true }); window.addEventListener('resize', update); update(); })();
+  (function () { var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; var targets = document.querySelectorAll('.reveal'); if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; } var io = new IntersectionObserver(function (entries) { entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } }); }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' }); targets.forEach(function (el) { io.observe(el); }); })();
+</script>
+<script src="../js/verse-modal.js"></script>
+</body>
+</html>
