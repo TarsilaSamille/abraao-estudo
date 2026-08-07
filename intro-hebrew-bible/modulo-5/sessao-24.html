@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 24: Palavras Repetidas e Design Literário</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .hebrew { font-family: 'Newsreader', serif; }
+
+  .poem { border-left: 4px solid #E3E7EC; padding: .25rem 0 .25rem 1.25rem; margin: 1.4rem 0; }
+  .poem .bibleref { font-weight: 800; color: #17181a; margin-bottom: .5rem; font-size: .98rem; }
+  .poem .ln { display: block; line-height: 1.7; }
+  .poem .vn { font-weight: 800; margin-right: .5rem; }
+
+  .figure { margin: 1.75rem 0; }
+  .figure img { width: 100%; height: auto; border-radius: 10px; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+
+<div id="reading-progress" aria-hidden="true"></div>
+
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+
+  <h1 class="title reveal"><span class="lang-pt">Sessão 24: Palavras Repetidas e Design Literário</span><span class="lang-en">Session 24: Repeated Words and Literary Design</span></h1>
+  <hr class="rule">
+
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">A mensagem do texto está ligada à sua forma literária, e a forma literária é parte da mensagem.</span><span class="lang-en">The message of the text is bound up with its literary form, and the literary form is part of the message.</span></li>
+    <li><span class="lang-pt">Assim como a poesia bíblica, a narrativa bíblica é intencionalmente desenhada com uma estrutura identificável.</span><span class="lang-en">Like biblical poetry, biblical narrative is intentionally designed with an identifiable structure.</span></li>
+    <li><span class="lang-pt">Embora possa não ser útil para todos, para alguns, estudar o design literário das passagens bíblicas pode ser exatamente o que precisam em sua jornada de leitura e compreensão da Bíblia.</span><span class="lang-en">Although it might not be helpful for everyone, for some, studying the literary design of Bible passages can be exactly what they need in their journey of reading and understanding the Bible.</span></li>
+  </ul>
+
+  <h2 class="section reveal"><span class="lang-pt">Design Literário de Gênesis 9:8-17</span><span class="lang-en">Literary Design of Genesis 9:8-17</span></h2>
+  <div class="poem reveal">
+    <p class="bibleref"><span class="lang-pt">Gênesis 9:8-17 — Tradução e Design Literário por Tim Mackie (2020)</span><span class="lang-en">Genesis 9:8-17. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Adam to Noah (2020).</span></p>
+    <span class="ln"><span class="vn">8</span><span class="lang-pt">E Elohim disse a Noé e aos seus filhos com ele, dizendo:</span><span class="lang-en">And Elohim said to Noah and to his sons with him, saying,</span></span>
+    <span class="ln"><span class="vn">9</span><span class="lang-pt">“E eu, eis que estabeleço a minha aliança convosco,</span><span class="lang-en">“And I myself, behold, I set up my covenant with y’all,</span></span>
+    <span class="ln"><span class="lang-pt">e com a vossa descendência depois de vós;</span><span class="lang-en">and with your seed after you;</span></span>
+    <span class="ln"><span class="vn">10</span><span class="lang-pt">e com todo ser vivente que está convosco,</span><span class="lang-en">and with every living creature that is with you,</span></span>
+    <span class="ln"><span class="lang-pt">as aves, os animais e todo ser vivente da terra convosco;</span><span class="lang-en">the birds, the beasts, and every living creature of the land with you;</span></span>
+    <span class="ln"><span class="lang-pt">de tudo o que sai da arca, até todo ser vivente da terra.</span><span class="lang-en">from everything that comes out of the ark, even every living creature of the land.</span></span>
+    <span class="ln"><span class="vn">11</span><span class="lang-pt">E estabeleço a minha aliança convosco;</span><span class="lang-en">And I set up my covenant with y’all;</span></span>
+    <span class="ln"><span class="lang-pt">e nunca mais toda carne será exterminada pelas águas do dilúvio,</span><span class="lang-en">and never again will all flesh be cut off by the waters of the flood,</span></span>
+    <span class="ln"><span class="lang-pt">e nunca mais haverá dilúvio para arruinar a terra.”</span><span class="lang-en">and never again will there be a flood to ruin the land.”</span></span>
+    <span class="ln"><span class="vn">12</span><span class="lang-pt">E Elohim disse: “Este é o sinal da aliança que dou</span><span class="lang-en">And Elohim said, “This is the sign of the covenant which I am giving</span></span>
+    <span class="ln"><span class="lang-pt">entre mim e entre vós,</span><span class="lang-en">between me and between you</span></span>
+    <span class="ln"><span class="lang-pt">e entre todo ser vivente que está convosco, por gerações eternas;</span><span class="lang-en">and between every living creature that is with you, for everlasting generations;</span></span>
+    <span class="ln"><span class="vn">13</span><span class="lang-pt">ponho o meu arco na nuvem,</span><span class="lang-en">I give my bow in the cloud,</span></span>
+    <span class="ln"><span class="lang-pt">e ele será por sinal de aliança</span><span class="lang-en">and it will be for a sign of a covenant</span></span>
+    <span class="ln"><span class="lang-pt">entre mim e entre a terra;</span><span class="lang-en">between me and between the land;</span></span>
+    <span class="ln"><span class="vn">14</span><span class="lang-pt">e acontecerá que, quando eu tragar uma nuvem sobre a terra,</span><span class="lang-en">and it will come about when I cloud a cloud over the land,</span></span>
+    <span class="ln"><span class="lang-pt">será visto o arco na nuvem,</span><span class="lang-en">that it will be seen, the bow in the cloud,</span></span>
+    <span class="ln"><span class="vn">15</span><span class="lang-pt">e lembrarei da minha aliança,</span><span class="lang-en">and I will remember my covenant,</span></span>
+    <span class="ln"><span class="lang-pt">que é entre mim e entre vós</span><span class="lang-en">which is between me and between you</span></span>
+    <span class="ln"><span class="lang-pt">e entre todo ser vivente de toda carne;</span><span class="lang-en">and between every living creature of all flesh;</span></span>
+    <span class="ln"><span class="lang-pt">e nunca mais as águas se tornarão dilúvio para arruinar</span><span class="lang-en">and never again will the waters become a flood to ruin</span></span>
+    <span class="ln"><span class="lang-pt">toda carne.</span><span class="lang-en">all flesh.”</span></span>
+    <span class="ln"><span class="vn">16</span><span class="lang-pt">E o arco está na nuvem,</span><span class="lang-en">And the bow is in the cloud,</span></span>
+    <span class="ln"><span class="lang-pt">então eu o verei,</span><span class="lang-en">then I will see it,</span></span>
+    <span class="ln"><span class="lang-pt">para lembrar da aliança eterna</span><span class="lang-en">to remember the everlasting covenant</span></span>
+    <span class="ln"><span class="lang-pt">entre Elohim e todo ser vivente,</span><span class="lang-en">between Elohim and between every living creature,</span></span>
+    <span class="ln"><span class="lang-pt">com toda carne que está sobre a terra.”</span><span class="lang-en">with all flesh that is on the land.”</span></span>
+    <span class="ln"><span class="vn">17</span><span class="lang-pt">E Elohim disse a Noé: “Este é o sinal da aliança</span><span class="lang-en">And Elohim said to Noah, “This is the sign of</span></span>
+    <span class="ln"><span class="lang-pt">que estabeleci entre mim e toda carne que está sobre a terra.”</span><span class="lang-en">the covenant which I have set up between me and all flesh that is on the land.”</span></span>
+  </div>
+  <p class="body reveal"><span class="lang-pt">A fala de Deus é desenhada com as características da poesia hebraica. Os elementos simetricamente pareados se iluminam mutuamente e aprofundam o significado através da semelhança e da diferença.</span><span class="lang-en">God’s speech is designed with the features of Hebrew poetry. The symmetrically paired elements illuminate each other and deepen the significance through similarity and difference.</span></p>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">Fontes de identidade: a sua terra // a sua família</span><span class="lang-en">Sources of identity: one’s land // one’s family</span></li>
+    <li><span class="lang-pt">Sinais de bênção: grande nação // grande nome</span><span class="lang-en">Signs of blessing: great nation // great name</span></li>
+    <li><span class="lang-pt">Sinais de proteção divina: bênção // maldição</span><span class="lang-en">Signs of divine protection: blessing // curse</span></li>
+  </ul>
+  <p class="body reveal"><span class="lang-pt">A frase final também é destacada por sua falta de um parceiro simétrico, identificando-a como uma declaração de clímax.</span><span class="lang-en">The final sentence is also offset by its lack of a symmetrical partner, identifying it as a climactic statement.</span></p>
+
+  <h2 class="section reveal"><span class="lang-pt">Design Literário de 2 Reis 4:1-7</span><span class="lang-en">Literary Design of 2 Kings 4:1-7</span></h2>
+  <p class="body reveal"><span class="lang-pt">Primeiro, lemos o texto e usamos padrões de cor para registrar todas as palavras-chave repetidas.</span><span class="lang-en">First, let’s read the text and use color patterns to register all of the key repeated words.</span></p>
+  <p class="body reveal"><span class="lang-pt">A história parece um emaranhado de repetição, mas os temas principais e o arco de enredo da história são claros. A situação da mulher muda de morte e dívida para vida e abundância, tudo porque ela obedece à palavra do profeta. No entanto, se o leitor pondera (e memoriza) a história, recitando-a e dividindo-a em suas menores unidades literárias, as repetições caem em um arranjo literário sofisticado.</span><span class="lang-en">The story seems like a jumble of repetition, but the main themes and the plot arc of the story are clear. The woman’s situation changes from death and debt into life and abundance, all because she obeys the word of the prophet. However, if the reader ponders (and memorizes) the story, reciting it and breaking it down into its smallest literary units, the repetitions fall into a sophisticated literary arrangement.</span></p>
+
+  <div class="poem reveal">
+    <p class="bibleref"><span class="lang-pt">2 Reis 4:1-7 — Tradução e Design Literário por Tim Mackie (2019)</span><span class="lang-en">2 Kings 4:1-7. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Introduction to the Hebrew Bible (2019).</span></p>
+    <span class="ln"><span class="vn">A</span> <span class="lang-pt">1 Ora, uma certa mulher das esposas dos filhos dos profetas clamou a Eliseu,</span><span class="lang-en">1 Now a certain woman of the wives of the sons of the prophets cried out to Elisha,</span></span>
+    <span class="ln"><span class="lang-pt">“Teu servo, meu marido, é morto,</span><span class="lang-en">“Your servant my husband is dead,</span></span>
+    <span class="ln"><span class="lang-pt">e tu sabes que teu servo temia a Yahweh;</span><span class="lang-en">and you know that your servant feared Yahweh;</span></span>
+    <span class="ln"><span class="lang-pt">e o credor veio tomar meus dois filhos para serem seus escravos.”</span><span class="lang-en">and the lender has come to take my two children to be his slaves.”</span></span>
+    <span class="ln"><span class="vn">B</span> <span class="lang-pt">2 E Eliseu lhe disse, “Que te farei? Dize-me, que tens na casa?”</span><span class="lang-en">2 And Elisha said to her, “What shall I do for you? Tell me, what do you have in the house?”</span></span>
+    <span class="ln"><span class="lang-pt">E ela disse, “Tua serva não tem nada na casa</span><span class="lang-en">And she said, “Your maidservant has nothing in the house</span></span>
+    <span class="ln"><span class="lang-pt">exceto um jarro de óleo.”</span><span class="lang-en">except a jar of oil.”</span></span>
+    <span class="ln"><span class="vn">C</span> <span class="lang-pt">3 E ele disse, “Vai, pede para ti vasos de fora,</span><span class="lang-en">3 And he said, “Go, request for yourself vessels from outside,</span></span>
+    <span class="ln"><span class="lang-pt">de todos os teus vizinhos, vasos vazios;</span><span class="lang-en">from all your neighbors, empty vessels;</span></span>
+    <span class="ln"><span class="lang-pt">não pegues poucos.</span><span class="lang-en">do not get a few.</span></span></span>
+    <span class="ln"><span class="vn">4</span> <span class="lang-pt">“E entrarás e fecharás a porta atrás de ti e de teus filhos,</span><span class="lang-en">4 “And you shall go in and shut the door behind you and your sons,</span></span>
+    <span class="ln"><span class="lang-pt">e derramarás em todos esses vasos,</span><span class="lang-en">and you shall pour out into all these vessels,</span></span>
+    <span class="ln"><span class="lang-pt">e apartarás o que estiver cheio.”</span><span class="lang-en">and you shall set aside what is full.”</span></span>
+    <span class="ln"><span class="vn">C'</span> <span class="lang-pt">5 E ela saiu dele e fechou a porta atrás de si e de seus filhos;</span><span class="lang-en">5 And she went from him and shut the door behind her and her sons;</span></span>
+    <span class="ln"><span class="lang-pt">eles a traziam e ela derramava.</span><span class="lang-en">they were bringing to her and she was pouring.</span></span>
+    <span class="ln"><span class="vn">6</span> <span class="lang-pt">E aconteceu que, quando os vasos se encheram,</span><span class="lang-en">6 And it came about when the vessels were full,</span></span>
+    <span class="ln"><span class="vn">B'</span> <span class="lang-pt">ela disse a seu filho, “Traze-me outro vaso.”</span><span class="lang-en">and she said to her son, “Bring near to me another vessel.”</span></span>
+    <span class="ln"><span class="lang-pt">E ele lhe disse, “Não há outro vaso.” E o óleo parou.</span><span class="lang-en">And he said to her, “There is not another vessel.” And the oil stopped.</span></span>
+    <span class="ln"><span class="vn">A'</span> <span class="lang-pt">7 E ela veio e contou ao homem de Deus, e ele disse,</span><span class="lang-en">7 And she came and she told the man of God, and he said,</span></span>
+    <span class="ln"><span class="lang-pt">“Vai, vende o óleo e paga teu credor,</span><span class="lang-en">“Go, sell the oil and pay your lender,</span></span>
+    <span class="ln"><span class="lang-pt">e tu e teus filhos podeis viver do resto.”</span><span class="lang-en">and you and your sons can live on the rest.”</span></span>
+  </div>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-24/p3_367.jpeg" alt="Different Ways of Reading">
+    <figcaption class="caption"><span class="lang-pt">Diferentes Maneiras de Ler. Ilustração criada por Tim Mackie para BibleProject Classroom: Introdução à Bíblia Hebraica (2019).</span><span class="lang-en">Different Ways of Reading. Illustration created by Tim Mackie for BibleProject Classroom: Introduction to the Hebrew Bible (2019).</span></figcaption>
+  </figure>
+
+  <p class="body reveal"><span class="lang-pt">Quando o leitor presta atenção à sequência narrativa e às repetições, torna-se claro que a história tem uma forma simétrica composta tanto de palavras-chave quanto de elementos de enredo/personagem (todos indicados na coluna à direita).</span><span class="lang-en">When the reader pays attention to the narrative sequence and the repetitions, it becomes clear that the story has a symmetrical shape made up of both key words and plot/character elements (all indicated in the right column).</span></p>
+  <p class="body reveal"><span class="lang-pt">O leitor é convidado a ler a história em duas dimensões (assim como a poesia bíblica). A história pode ser lida (1) em uma sequência linear para frente e também (2) em uma sequência simétrica não linear.</span><span class="lang-en">The reader is invited to read the story in two dimensions (just like biblical poetry). The story can be read (1) in a forward linear sequence and also (2) in a non-linear symmetrical sequence.</span></p>
+  <p class="body reveal"><span class="lang-pt">Assim como na poesia hebraica, cada parte correspondente da narrativa convida o leitor a comparar e contrastar cenas que se correspondem como se fossem linhas paralelas que se correspondem. Quando o leitor justapõe cenas paralelas, certos detalhes se tornam mais significativos.</span><span class="lang-en">Just as in Hebrew poetry, each corresponding part of the narrative invites the reader to compare and contrast matching scenes as though they were matching parallel lines. When the reader juxtaposes parallel scenes, certain details become more significant.</span></p>
+  <p class="body reveal"><span class="lang-pt">A história se move da morte (A) para a vida (A’) e da potencial escravidão (A) para a liberdade (A’). Estas são imagens coordenadas importantes extraídas da narrativa do êxodo, onde morte e escravidão são o oposto de vida e libertação.</span><span class="lang-en">The story moves from death (A) to life (A’) and from potential slavery (A) to freedom (A'). These are important coordinated images drawn from the exodus narrative where death and slavery are the opposite of life and liberation.</span></p>
+  <p class="body reveal"><span class="lang-pt">O agente-chave que transforma morte em vida é a palavra do profeta, que é chamado de “o profeta” (A) e “o homem de Deus” (A’).</span><span class="lang-en">The key agent who turns death into life is the word of the prophet, who is called “the prophet” (A) and “the man of God” (A’).</span></p>
+  <p class="body reveal"><span class="lang-pt">A palavra de Deus através do profeta cria um teste de fé para a mulher. Ela confiará que Deus pode prover óleo (um alimento agrícola) do nada (B e B’)?</span><span class="lang-en">The word of God through the prophet creates a test of faith for the woman. Will she trust that God can provide oil (an agricultural staple) out of nothing (B and B’)?</span></p>
+  <p class="body reveal"><span class="lang-pt">A casa e os jarros da mulher mudam de vazios (C) para cheios (C’) por causa de sua confiança no poder de Deus.</span><span class="lang-en">The woman’s home and jars change from empty (C) to full (C’) because of her trust in God’s power.</span></p>
+  <p class="body reveal"><span class="lang-pt">Esta história é sobre como a palavra de Deus, através dos profetas, pode transformar morte em vida e criar abundância do nada, se apenas o povo de Deus confiar nele como criador.</span><span class="lang-en">This story is about how the word of God, through the prophets, can turn death into life and create abundance out of nothing if only God’s people will trust him as creator.</span></p>
+
+  <h2 class="section reveal"><span class="lang-pt">Gênesis 39: Um Exemplo Complexo</span><span class="lang-en">Genesis 39: A Complex Example</span></h2>
+  <div class="poem reveal">
+    <p class="bibleref"><span class="lang-pt">Gênesis 39 — Tradução e Design Literário por Tim Mackie (2019)</span><span class="lang-en">Genesis 39. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Introduction to the Hebrew Bible (2019).</span></p>
+    <span class="ln"><span class="vn">a</span> <span class="lang-pt">1 Ora, José foi levado para o Egito;</span><span class="lang-en">1 Now Joseph had been taken down to Egypt;</span></span>
+    <span class="ln"><span class="lang-pt">e Potifar o comprou:</span><span class="lang-en">and Potiphar bought him:</span></span>
+    <span class="ln"><span class="vn">b</span> <span class="lang-pt">um oficial de Faraó,</span><span class="lang-en">an officer of Pharaoh,</span></span>
+    <span class="ln"><span class="vn">c</span> <span class="lang-pt">o capitão (<span class="hebrew">שר</span>) da guarda,</span><span class="lang-en">the captain (שר) of the bodyguard,</span></span>
+    <span class="ln"><span class="vn">c'</span> <span class="lang-pt">um homem egípcio (<span class="hebrew">מצרי איש</span>),</span><span class="lang-en">an Egyptian man (מצרי איש)</span></span>
+    <span class="ln"><span class="vn">c''</span> <span class="lang-pt">da mão dos ismaelitas,</span><span class="lang-en">from the hand of the Ishmaelites,</span></span>
+    <span class="ln"><span class="vn">b'</span> <span class="lang-pt">que o tinham levado para lá.</span><span class="lang-en">who had taken him down there.</span></span>
+    <span class="ln"><span class="vn">a'</span> <span class="lang-pt">2 E Yahweh estava com José,</span><span class="lang-en">2 And Yahweh was with Joseph,</span></span>
+    <span class="ln"><span class="lang-pt">e ele se tornou um homem bem-sucedido (<span class="hebrew">איש מצליח</span>).</span><span class="lang-en">so he became a successful man (איש מצליח).</span></span>
+    <span class="ln"><span class="lang-pt">3 E seu senhor viu que Yahweh estava com ele</span><span class="lang-en">3 And his master saw that Yahweh was with him</span></span>
+    <span class="ln"><span class="lang-pt">e que tudo o que ele fazia (<span class="hebrew">כל אשר הוא עשה</span>) Yahweh prosperava (<span class="hebrew">מצליח</span>) em sua mão.</span><span class="lang-en">and how everything that he did (כל אשר הוא עשה) Yahweh made successful (מצליח) in his hand.</span></span>
+    <span class="ln"><span class="lang-pt">4 E José achou graça aos seus olhos (<span class="hebrew">חן בעיניו</span>) e o serviu,</span><span class="lang-en">4 And Joseph found favor in his eyes (חן בעיניו) and he attended him,</span></span>
+    <span class="ln"><span class="lang-pt">e o pôs sobre sua casa, e tudo o que era seu (<span class="hebrew">כל יש לו</span>) deu em sua mão.</span><span class="lang-en">and he appointed him over his house, and everything that was his (כל יש לו), he gave into his hand.</span></span>
+    <span class="ln"><span class="lang-pt">5 E aconteceu que, quando o pôs sobre sua casa e sobre tudo o que era seu (<span class="hebrew">כל אשר יש לו</span>),</span><span class="lang-en">5 And it came about when he appointed him in his house and over everything that was his (כל אשר יש לו),</span></span>
+    <span class="ln"><span class="lang-pt">Yahweh abençoou a casa do egípcio por causa de José;</span><span class="lang-en">Yahweh blessed the Egyptian’s house on account of Joseph;</span></span>
+    <span class="ln"><span class="lang-pt">assim a bênção de Yahweh estava sobre tudo o que era seu (<span class="hebrew">כל אשר יש לו</span>), na casa e no campo.</span><span class="lang-en">thus Yahweh’s blessing was upon everything that was his (כל אשר יש לו), in the house and in the field.</span></span>
+    <span class="ln"><span class="lang-pt">6 Assim ele abandonou (<span class="hebrew">עזב</span>) tudo o que era seu (<span class="hebrew">כל אשר יש לו</span>) na mão de José;</span><span class="lang-en">6 So he abandoned (עזב) everything that was his (כל אשר יש לו) in the hand of Joseph;</span></span>
+    <span class="ln"><span class="lang-pt">e não soube nada com ele, exceto o alimento que comia.</span><span class="lang-en">and he did not know anything with him, except the food which he ate.</span></span>
+    <span class="ln"><span class="lang-pt">E José era formoso de porte e formoso de semblante.</span><span class="lang-en">And Joseph was beautiful of form and beautiful of sight.</span></span>
+    <span class="ln"><span class="lang-pt">7 E aconteceu depois destas coisas</span><span class="lang-en">7 And it came about after these things</span></span>
+    <span class="ln"><span class="lang-pt">que a mulher de seu senhor levantou seus olhos para José e disse: “Deita contigo.”</span><span class="lang-en">and his master’s wife lifted her eyes toward Joseph and said, “Lie with me.”</span></span>
+    <span class="ln"><span class="lang-pt">8 E ele recusou</span><span class="lang-en">8 And he refused</span></span>
+    <span class="ln"><span class="lang-pt">e disse à mulher de seu senhor,</span><span class="lang-en">and he said to his master’s wife,</span></span>
+    <span class="ln"><span class="lang-pt">“Eis que meu senhor não sabe, comigo, o que há na casa,</span><span class="lang-en">“Behold, my master does not know, with me, what is in the house,</span></span>
+    <span class="ln"><span class="lang-pt">e tudo o que é seu (<span class="hebrew">לו יש אשר כל</span>) ele deu em minha mão.</span><span class="lang-en">and everything that is his (לו יש אשר כל) he has given into my hand.</span></span>
+    <span class="ln"><span class="lang-pt">9 Não há ninguém maior na casa do que eu,</span><span class="lang-en">9 There is no one greater in the house than me,</span></span>
+    <span class="ln"><span class="lang-pt">e ele não me negou nada, exceto a ti, porque és sua mulher.</span><span class="lang-en">and he has withheld nothing from me except you, because you are his wife.</span></span>
+    <span class="ln"><span class="lang-pt">Como, pois, cometeria eu este grande mal e pecaria contra Deus?”</span><span class="lang-en">And how could I do this great evil and sin against God?”</span></span>
+    <span class="ln"><span class="lang-pt">10 E aconteceu que, falando ela a José dia após dia,</span><span class="lang-en">10 And it came about as she spoke to Joseph day after day,</span></span>
+    <span class="ln"><span class="lang-pt">ele não a ouviu para deitar com ela, para estar com ela.</span><span class="lang-en">he did not listen to her to lie with her, to be with her.</span></span>
+    <span class="ln"><span class="lang-pt">11 E aconteceu neste dia</span><span class="lang-en">11 And it came about on this day</span></span>
+    <span class="ln"><span class="lang-pt">que ele entrou na casa para fazer sua obra, e nenhum homem dos homens da casa estava ali na casa.</span><span class="lang-en">that he went into the house to do his work, and no man from the men of the house was there in the house.</span></span>
+    <span class="ln"><span class="lang-pt">12 E ela o pegou pela sua roupa, dizendo: “Deita comigo!”</span><span class="lang-en">12 And she seized him by his garment, saying, “Lie with me!”</span></span>
+    <span class="ln"><span class="lang-pt">E ele abandonou (<span class="hebrew">עזב</span>)</span><span class="lang-en">And he abandoned (עזב)</span></span>
+    <span class="ln"><span class="lang-pt">sua roupa na mão dela e fugiu, e saiu.</span><span class="lang-en">his garment in her hand and fled, and went outside.</span></span>
+    <span class="ln"><span class="lang-pt">13 E aconteceu que, quando ela viu</span><span class="lang-en">13 And it came about when she saw</span></span>
+    <span class="ln"><span class="lang-pt">que ele abandonou (<span class="hebrew">עזב</span>) sua roupa na mão dela</span><span class="lang-en">that he abandoned (עזב) his garment in her hand</span></span>
+    <span class="ln"><span class="lang-pt">e tinha fugido para fora,</span><span class="lang-en">and had fled outside,</span></span>
+    <span class="ln"><span class="lang-pt">14 então ela chamou os homens de sua casa</span><span class="lang-en">14 then she called to the men of her house</span></span>
+    <span class="ln"><span class="lang-pt">e disse-lhes: “Vede, trouxe-nos um hebreu para zombar de nós;</span><span class="lang-en">and she said to them, “Look, he has brought in a Hebrew to us to make fun of us;</span></span>
+    <span class="ln"><span class="lang-pt">ele entrou a mim para deitar comigo, e eu levantei a voz e clamei.</span><span class="lang-en">he came in to me to lie with me, and I cried out with a great voice.</span></span>
+    <span class="ln"><span class="lang-pt">15 E quando ouviu que levantei a voz e clamei, ele abandonou (<span class="hebrew">עזב</span>)</span><span class="lang-en">15 And when he heard that I raised my voice and cried out, he abandoned (עזב)</span></span>
+    <span class="ln"><span class="lang-pt">sua roupa junto a mim e fugiu e saiu.”</span><span class="lang-en">his garment beside me and fled and went outside.”</span></span>
+    <span class="ln"><span class="lang-pt">16 Assim ela deixou sua roupa junto a si até que seu senhor veio à sua casa.</span><span class="lang-en">16 So she rested his garment beside her until his master came to his house.</span></span>
+    <span class="ln"><span class="lang-pt">17 E falou-lhe com estas palavras: “O escravo hebreu que trouxeste a nós</span><span class="lang-en">17 And she spoke to him with these words, “The Hebrew slave, whom you brought to us,</span></span>
+    <span class="ln"><span class="lang-pt">entrou a mim para zombar de mim;</span><span class="lang-en">came in to me to make fun of me;</span></span>
+    <span class="ln"><span class="lang-pt">18 e quando levantei a voz e clamei, então ele abandonou (<span class="hebrew">עזב</span>)</span><span class="lang-en">18 and as I raised my voice and cried out, then he abandoned (עזב)</span></span>
+    <span class="ln"><span class="lang-pt">sua roupa junto a mim e fugiu para fora.”</span><span class="lang-en">his garment beside me and fled outside.”</span></span>
+    <span class="ln"><span class="lang-pt">19 E aconteceu que, quando seu senhor ouviu as palavras de sua mulher,</span><span class="lang-en">19 And it came about when his master listened to the words of his wife,</span></span>
+    <span class="ln"><span class="lang-pt">que ela lhe falava, dizendo: “Isto é o que teu escravo me fez,”</span><span class="lang-en">which she spoke to him, saying, “This is what your slave did to me,”</span></span>
+    <span class="ln"><span class="lang-pt">sua ira se acendeu.</span><span class="lang-en">his anger burned hot.</span></span>
+    <span class="ln"><span class="lang-pt">20 E o senhor de José o tomou e o deu na casa da prisão, onde estavam os prisioneiros do rei.</span><span class="lang-en">20 And Joseph’s master took him and gave him into the house of the prison, where the king’s prisoners were.</span></span>
+    <span class="ln"><span class="lang-pt">21 E Yahweh estava com José e lhe estendeu benevolência,</span><span class="lang-en">21 And Yahweh was with Joseph and extended kindness to him,</span></span>
+    <span class="ln"><span class="lang-pt">e lhe deu graça aos olhos (<span class="hebrew">חן בעיניו</span>) do capitão (<span class="hebrew">שר</span>) da casa da prisão.</span><span class="lang-en">and gave him favor in the eyes (חן בעיניו) of the captain (שר) of the house of prison.</span></span>
+    <span class="ln"><span class="lang-pt">22 O capitão (<span class="hebrew">שר</span>) da casa da prisão deu na mão de José todos os prisioneiros na casa da prisão,</span><span class="lang-en">22 The captain (שר) of the house of prison gave into the hand of Joseph all the prisoners in the house of the prison,</span></span>
+    <span class="ln"><span class="lang-pt">e tudo o que eles faziam, ele o fazia (<span class="hebrew">כל אשר עשים…הוא עשה</span>).</span><span class="lang-en">and everything they were doing, he was doing (כל אשר עשים…הוא עשה).</span></span>
+    <span class="ln"><span class="lang-pt">23 O capitão (<span class="hebrew">שר</span>) da casa da prisão não via nada em sua mão,</span><span class="lang-en">23 The captain (שר) of the house of prison did not see anything in his hand</span></span>
+    <span class="ln"><span class="lang-pt">visto que Yahweh estava com ele, e tudo o que ele fazia (<span class="hebrew">אשר הוא עשה</span>), Yahweh o prosperava (<span class="hebrew">מצליח</span>).</span><span class="lang-en">in as much as Yahweh was with him, and whatever he was doing (אשר הוא עשה), Yahweh made it successful (מצליח).</span></span>
+  </div>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-24/garment.png" alt="The Role of the Garment in the Joseph Story">
+    <figcaption class="caption"><span class="lang-pt">O Papel da Roupa na História de José. Criado por Tim Mackie para BibleProject Classroom: Introdução à Bíblia Hebraica (2019).</span><span class="lang-en">The Role of the Garment in the Joseph Story. Created by Tim Mackie for BibleProject Classroom: Introduction to the Hebrew Bible (2019).</span></figcaption>
+  </figure>
+
+  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">Quais são alguns prós e contras de dividir passagens de acordo com suas estruturas? O que isso ajuda você a ver?</span><span class="lang-en">What are some pros and cons of breaking passages down according to their structures? What does it help you see?</span></p>
+
+  <div class="page-footer">
+    <span>Class Notes: Introduction to the Hebrew Bible</span>
+    <span><span class="lang-pt">Sessão 24 · Palavras Repetidas e Design Literário</span><span class="lang-en">Session 24 · Repeated Words and Literary Design</span></span>
+  </div>
+</div>
+
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s24-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s24-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+  <script src="../js/verse-modal.js"></script>
+</body>
+</html>

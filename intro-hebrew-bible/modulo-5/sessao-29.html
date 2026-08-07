@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 29: Padrões de Design no Novo Testamento</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .hebrew { font-family: 'Newsreader', serif; }
+  .poem { border-left: 4px solid #E3E7EC; padding: .25rem 0 .25rem 1.25rem; margin: 1.4rem 0; }
+  .poem .bibleref { font-weight: 800; color: #17181a; margin-bottom: .5rem; font-size: .98rem; }
+  .poem .ln { display: block; line-height: 1.7; }
+  .poem .vn { font-weight: 800; margin-right: .5rem; }
+  .figure { margin: 1.75rem 0; }
+  .figure img { width: 100%; height: auto; border-radius: 10px; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+<div id="reading-progress" aria-hidden="true"></div>
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span></button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+  <h1 class="title reveal"><span class="lang-pt">Sessão 29: Padrões de Design no Novo Testamento</span><span class="lang-en">Session 29: Design Patterns in the New Testament</span></h1>
+  <hr class="rule">
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">Padrões de design são a principal maneira pela qual os autores bíblicos unificam centenas de histórias. E cada padrão desenvolve um tema central por toda a história bíblica que leva a Jesus.</span><span class="lang-en">Design patterns are the main way biblical authors unify hundreds of stories. And every pattern develops a core theme throughout the whole biblical story that leads to Jesus.</span></li>
+    <li><span class="lang-pt">As histórias de Jesus nos Evangelhos foram desenhadas para levar os padrões da Bíblia Hebraica adiante até seu clímax, a saber, Jesus.</span><span class="lang-en">The stories of Jesus in the Gospels have been designed to carry the patterns of the Hebrew forward to their climax, namely, Jesus.</span></li>
+  </ul>
+  <h2 class="section reveal"><span class="lang-pt">Exemplos de Padrões de Design no Novo Testamento</span><span class="lang-en">New Testament Examples of Design Patterns</span></h2>
+  <p class="body reveal"><span class="lang-pt">O julgamento de Jesus no deserto recorda o julgamento de Israel no deserto. Os autores do Novo Testamento retratam Jesus como o Adão e o Israel obedientes.</span><span class="lang-en">Jesus' trial in the wilderness recalls Israel's trial in the wilderness. The New Testament authors portray Jesus as the obedient Adam and Israel.</span></p>
+  <div class="poem reveal">
+    <p class="bibleref"><span class="lang-pt">Mateus 4:1-4 NAA*</span><span class="lang-en">Matthew 4:1-4 NASB*</span></p>
+    <span class="ln"><span class="vn">1</span> <span class="lang-pt">Então Jesus foi levado pelo Espírito ao deserto para ser tentado pelo caluniador.</span><span class="lang-en">1 Then Jesus was led up by the Spirit into the wilderness to be tested by the slanderer.</span></span>
+    <span class="ln"><span class="vn">2</span> <span class="lang-pt">E depois de ter jejuado quarenta dias e quarenta noites, teve fome.</span><span class="lang-en">2 And after he had fasted forty days and forty nights, and he became hungry.</span></span>
+    <span class="ln"><span class="vn">3</span> <span class="lang-pt">E o tentador, chegando, lhe disse: "Se és o Filho de Deus, manda que estas pedras se tornem pães."</span><span class="lang-en">3 And the tester came and said to him, "If you are the Son of God, command that these stones become bread."</span></span>
+    <span class="ln"><span class="vn">4</span> <span class="lang-pt">Mas ele, respondendo, disse: "Está escrito: Nem só de pão viverá o homem, mas de toda palavra que procede da boca de Deus."</span><span class="lang-en">4 But he answered and said, "It is written, 'A human cannot live on bread only, but on every word that proceeds out of the mouth of God.'"</span></span>
+    <span class="ln"><span class="lang-pt">*Palavras-chave adaptadas pelo professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></span>
+  </div>
+  <div class="poem reveal">
+    <p class="bibleref"><span class="lang-pt">Deuteronômio 8:2-6, 15-16 NAA*</span><span class="lang-en">Deuteronomy 8:2-6, 15-16 NASB*</span></p>
+    <span class="ln"><span class="vn">2</span> <span class="lang-pt">Lembrar-te-ás de todo o caminho pelo qual o SENHOR, teu Deus, te guiou no deserto estes quarenta anos, para te humilhar, provando-te, para saber o que havia no teu coração, se guardarias os seus mandamentos ou não.</span><span class="lang-en">2 You shall remember all the way which the LORD your God has led you in the wilderness these forty years, that he might humble you, testing you, to know what was in your heart, whether you would keep his commandments or not.</span></span>
+    <span class="ln"><span class="vn">3</span> <span class="lang-pt">Ele te humilhou, e te deixou ter fome, e te deu a comer o maná, que tu não conheceste, nem teus pais o conheceram, para te dar a entender que o homem não viverá só de pão, mas de tudo o que procede da boca do SENHOR viverá o homem.</span><span class="lang-en">3 He humbled you and let you be hungry, and fed you with manna which you did not know, nor did your fathers know, that he might make you understand that man does not live by bread alone, but a human lives by everything that proceeds out of the mouth of the LORD.</span></span>
+    <span class="ln"><span class="vn">4</span> <span class="lang-pt">A tua roupa não se envelheceu sobre ti, nem o teu pé se inchou nestes quarenta anos.</span><span class="lang-en">4 Your clothing did not wear out on you, nor did your foot swell these forty years.</span></span>
+    <span class="ln"><span class="vn">5</span> <span class="lang-pt">Saberás, pois, no teu coração, que, como um homem disciplina a seu filho, assim o SENHOR, teu Deus, te disciplina.</span><span class="lang-en">5 Thus you are to know in your heart that the LORD your God was disciplining you just as a man disciplines his son.</span></span>
+    <span class="ln"><span class="vn">6</span> <span class="lang-pt">Guardarás, pois, os mandamentos do SENHOR, teu Deus, para andares nos seus caminhos e para o temeres.</span><span class="lang-en">6 Therefore, you shall keep the commandments of the LORD your God, to walk in his ways and to fear him.</span></span>
+    <span class="ln"><span class="vn">15</span> <span class="lang-pt">Ele te guiou pelo grande e terrível deserto, cheio de serpentes abrasadoras, e de escorpiões, e de terra sedenta, onde não havia água; e tirou água para ti da rocha de pederneira.</span><span class="lang-en">15 He led you through the great and terrible wilderness, with its fiery serpents and scorpions and thirsty ground where there was no water; he brought water for you out of the rock of flint.</span></span>
+    <span class="ln"><span class="vn">16</span> <span class="lang-pt">No deserto te deu a comer maná, que teus pais não conheceram, para te humilhar e te provar, para te fazer bem no fim.</span><span class="lang-en">16 In the wilderness he fed you manna which your fathers did not know, that he might humble you and that he might test you, to do good for you in the end.</span></span>
+    <span class="ln"><span class="lang-pt">*Palavras-chave adaptadas pelo professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></span>
+  </div>
+  <p class="body reveal"><span class="lang-pt">Vemos mais vislumbres do padrão em passagens como as seguintes.</span><span class="lang-en">We see further glimpses of the pattern in passages like the following.</span></p>
+  <div class="poem reveal">
+    <span class="ln"><span class="lang-pt">Em Êxodo 16:3, os israelitas murmuram. "Quem dera tivéssemos morrido... no Egito, quando estávamos sentados junto às panelas de carne, quando comíamos pão até fartar." Deus os ouve e diz que fará chover "pão dos céus" por seis dias e então descansará por um dia.</span><span class="lang-en">In Exodus 16:3, the Israelites grumble. "Oh that we would have died ... in Egypt, when we sat by pots of meat, when we ate bread to fullness." God hears them and says he will rain "bread from the heavens" for six days and then rest for one day.</span></span>
+    <span class="ln"><span class="lang-pt">Em Êxodo 16:4, Yahweh diz: "Eu os provarei, se andarão na minha Torá ou não."</span><span class="lang-en">In Exodus 16:4, Yahweh says, "I will test them, whether they will walk in my Torah or not."</span></span>
+    <span class="ln"><span class="lang-pt">Em Êxodo 16:14-15, os israelitas acordam com o maná. "Pela manhã havia uma camada de orvalho ao redor do arraial... uma fina escama, fina como geada... e os israelitas o viram e disseram... 'Que é isto (<span class="hebrew">מן הוא</span>)?'"</span><span class="lang-en">In Exodus 16:14-15, the Israelites wake up to manna. "In the morning there was a layer of dew around the camp ... a thin flake, thin like frost ... and the Israelites saw it and said ... 'What is it (<span class="hebrew">מן הוא</span>)?'"</span></span>
+    <span class="ln"><span class="lang-pt">Em Números 11:4-5, os israelitas murmuram novamente. "A mistura... desejou um desejo, e voltou e chorou... e disse: 'Quem nos dará carne a comer? Lembramo-nos do peixe que comíamos no Egito.'"</span><span class="lang-en">In Numbers 11:4-5, the Israelites grumble again. "The mixed multitude ... desired a desire, and turned and wept ... and said, 'Who will feed us meat? We remember the fish we ate in Egypt.'"</span></span>
+    <span class="ln"><span class="lang-pt">Em Números 11:6-7, os israelitas continuam a queixar-se. "'Não há senão este maná.' Ora, o maná era como semente de coentro, e a sua aparência tinha o semblante de goma aromática."</span><span class="lang-en">In Numbers 11:6-7, the Israelites continue to complain. "'There's nothing but this manna.' Now, the manna was like coriander seed, and its appearance had the look of fragrant gum."</span></span>
+    <span class="ln"><span class="lang-pt">Em Números 11:18b, Deus os ouve. "Yahweh vos dará carne, e comereis."</span><span class="lang-en">In Numbers 11:18b, God hears them. "Yahweh will give you meat and you will eat it."</span></span>
+  </div>
+  <p class="body reveal"><span class="lang-pt">Em Gênesis 1-3, a palavra de Deus ordena divinamente o mundo em seis dias mais um dia de descanso, e nesse tempo a palavra de Deus provê o jardim. No jardim, a humanidade é tentada pela serpente a respeito de comida proibida.</span><span class="lang-en">In Genesis 1-3, God's word divinely orders the world in six days plus one day of rest, and in that time God's word provides the garden. In the garden, humanity is tested by the snake about forbidden food.</span></p>
+  <h3 class="sub reveal"><span class="lang-pt">O "Esmagador de Serpentes" de Gênesis 3:15</span><span class="lang-en">The "Snake-Crusher" of Genesis 3:15</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">A semente de Abraão que conquista inimigos e abençoa nações (Gn 12:3; Gn 22:17)</span><span class="lang-en">Abraham's seed who conquers enemies and blesses nations (Gen. 12:3; Gen. 22:17)</span></li>
+    <li><span class="lang-pt">A estrela messiânica de Jacó (Nm 24:17)</span><span class="lang-en">The messianic star from Jacob (Num. 24:17)</span></li>
+    <li><span class="lang-pt">Josué contra os cinco reis cananeus (Js 10:24) // os cinco reis em Gênesis 14</span><span class="lang-en">Joshua versus the five Canaanite kings (Josh. 10:24) // the five kings in Genesis 14</span></li>
+    <li><span class="lang-pt">Jael e Sísera (Jz 4:21; Jz 5:26-27)</span><span class="lang-en">Jael and Sisera (Judg. 4:21; Judg. 5:26-27)</span></li>
+    <li><span class="lang-pt">Davi e Golias (1 Sm 17)</span><span class="lang-en">David and Goliath (1 Sam. 17)</span></li>
+    <li><span class="lang-pt">No novo êxodo, Yahweh esmagará a cabeça do futuro "Faraó" (Hc 3:13)</span><span class="lang-en">In the new exodus, Yahweh will crush the head of the future "Pharaoh" (Hab. 3:13)</span></li>
+    <li><span class="lang-pt">Os justos "pisam os ímpios debaixo dos vossos pés" (Ml 4:2)</span><span class="lang-en">The righteous "trample the wicked under your feet" (Mal. 4:2)</span></li>
+    <li><span class="lang-pt">No novo êxodo, Yahweh libertará seu povo da região da "serpente" (Heb. Bashan), e "esmagará a cabeça" de seus inimigos (Sl 68:21)</span><span class="lang-en">In the new exodus, Yahweh will deliver his people from the region of "snake" (Heb. bashan), and "crush the head" of his enemies (Ps. 68:21)</span></li>
+    <li><span class="lang-pt">O sacerdote-real de Jerusalém ferirá a cabeça de todos os poderes rebeldes até que todos os inimigos de Deus se tornem seu escabelo (Sl 110:1, 6)</span><span class="lang-en">The royal-priest of Jerusalem will strike the head of all rebel powers until all of God's enemies become his footstool (Ps. 110:1, 6)</span></li>
+  </ul>
+  <div class="poem reveal">
+    <p class="bibleref"><span class="lang-pt">Salmo 110:1-2, 5-6 — Tradução do Instrutor</span><span class="lang-en">Psalm 110:1-2, 5-6 Instructor's Translation</span></p>
+    <span class="ln"><span class="vn">1</span> <span class="lang-pt">Yahweh diz ao meu Senhor: "Assenta-te à minha mão direita, até que eu ponha os teus inimigos por escabelo de teus pés."</span><span class="lang-en">1 Yahweh says to my Lord: "Sit at my right hand until I make your enemies a footstool for your feet."</span></span>
+    <span class="ln"><span class="vn">2</span> <span class="lang-pt">O SENHOR estenderá o cetro do teu poder desde Sião, dizendo: "Domina no meio de teus inimigos!"</span><span class="lang-en">2 The LORD will extend your mighty scepter from Zion, saying, "Rule in the midst of your enemies!"</span></span>
+    <span class="ln"><span class="vn">5</span> <span class="lang-pt">Yahweh está à tua mão direita; ele ferirá reis no dia da sua ira.</span><span class="lang-en">5 Yahweh is at your right hand; he will crush kings on the day of his wrath.</span></span>
+    <span class="ln"><span class="vn">6</span> <span class="lang-pt">Ele julgará as nações, amontoando os mortos e esmagando as cabeças de toda a terra.</span><span class="lang-en">6 He will judge the nations, heaping up the dead and crushing the heads of the whole earth.</span></span>
+  </div>
+  <p class="body reveal"><span class="lang-pt">Na mente de Jesus e dos apóstolos, todos estes textos estão conectados. Estas conexões explicam suas constantes alusões ao Salmo 110, que ativam a rede de imagens que remontam a Gênesis 3:15.</span><span class="lang-en">In the minds of Jesus and the apostles, all of these texts are connected. These connections explain their constant allusions to Psalm 110, which activate the network of images that lead back to Genesis 3:15.</span></p>
+  <div class="poem reveal">
+    <p class="bibleref"><span class="lang-pt">1 João 3:7-8 NVI*</span><span class="lang-en">1 John 3:7-8 NIV*</span></p>
+    <span class="ln"><span class="vn">7</span> <span class="lang-pt">Filhinhos, ninguém vos engane. Aquele que pratica a justiça é justo, assim como ele é justo.</span><span class="lang-en">7 Dear children, do not let anyone lead you astray. The one who does what is right is righteous, just as he is righteous.</span></span>
+    <span class="ln"><span class="vn">8</span> <span class="lang-pt">Aquele que pratica o pecado é do diabo, porque o diabo peca desde o princípio. Para isto se manifestou o Filho de Deus: para destruir as obras do diabo.</span><span class="lang-en">8 The one who does what is sinful is of the devil, because the devil has been sinning from the beginning. The reason the Son of God appeared was to destroy what the devil has accomplished.</span></span>
+    <span class="ln"><span class="lang-pt">*Palavras-chave adaptadas pelo professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></span>
+  </div>
+  <div class="poem reveal">
+    <p class="bibleref"><span class="lang-pt">1 Coríntios 15:21-27a NVI</span><span class="lang-en">1 Corinthians 15:21-27a NIV</span></p>
+    <span class="ln"><span class="vn">21</span> <span class="lang-pt">Visto que a morte veio por um homem, também a ressurreição dos mortos veio por um homem.</span><span class="lang-en">21 For since death came through a man, the resurrection of the dead comes also through a man.</span></span>
+    <span class="ln"><span class="vn">22</span> <span class="lang-pt">Pois assim como em Adão todos morrem, assim também em Cristo todos serão vivificados.</span><span class="lang-en">22 For as in Adam all die, so in Christ all will be made alive.</span></span>
+    <span class="ln"><span class="vn">23</span> <span class="lang-pt">Mas cada um por sua ordem: Cristo, as primícias; depois, os que são de Cristo, na sua vinda.</span><span class="lang-en">23 But each in turn: Christ, the firstfruits; then, when he comes, those who belong to him.</span></span>
+    <span class="ln"><span class="vn">24</span> <span class="lang-pt">Depois, virá o fim, quando ele entregar o reino a Deus, o Pai, depois de ter destruído todo domínio, toda autoridade e todo poder.</span><span class="lang-en">24 Then the end will come, when he hands over the kingdom to God the Father after he has destroyed all dominion, authority and power.</span></span>
+    <span class="ln"><span class="vn">25</span> <span class="lang-pt">Pois é necessário que ele reine até que ponha todos os seus inimigos debaixo de seus pés.</span><span class="lang-en">25 For he must reign until he has put all his enemies under his feet.</span></span>
+    <span class="ln"><span class="vn">26</span> <span class="lang-pt">O último inimigo a ser destruído é a morte.</span><span class="lang-en">26 The last enemy to be destroyed is death.</span></span>
+    <span class="ln"><span class="vn">27</span> <span class="lang-pt">Pois [as Escrituras] dizem: "Pôs todas as coisas debaixo de seus pés."</span><span class="lang-en">27 For he "has put everything under his feet."</span></span>
+  </div>
+  <div class="poem reveal">
+    <p class="bibleref"><span class="lang-pt">Efésios 1:19-23 NVI</span><span class="lang-en">Ephesians 1:19-23 NIV</span></p>
+    <span class="ln"><span class="vn">19</span> <span class="lang-pt">e qual é a suprema grandeza do seu poder para conosco, os que cremos, segundo a eficácia da força do seu poder,</span><span class="lang-en">19 and his incomparably great power for us who believe. That power is the same as the mighty strength</span></span>
+    <span class="ln"><span class="vn">20</span> <span class="lang-pt">que ele exerceu em Cristo, ressuscitando-o dentre os mortos e fazendo-o sentar-se à sua direita nas regiões celestiais,</span><span class="lang-en">20 he exerted when he raised Christ from the dead and seated him at his right hand in the heavenly realms,</span></span>
+    <span class="ln"><span class="vn">21</span> <span class="lang-pt">muito acima de todo principado, e autoridade, e poder, e domínio, e de todo nome que se invoca, não só no presente século, mas também no vindouro.</span><span class="lang-en">21 far above all rule and authority, power and dominion, and every name that is invoked, not only in the present age but also in the one to come.</span></span>
+    <span class="ln"><span class="vn">22</span> <span class="lang-pt">E sujeitou todas as coisas debaixo de seus pés, e para ser o cabeça sobre todas as coisas, o deu à igreja,</span><span class="lang-en">22 And God placed all things under his feet and appointed him to be head over everything for the church,</span></span>
+    <span class="ln"><span class="vn">23</span> <span class="lang-pt">a qual é o seu corpo, a plenitude daquele que a tudo enche em tudo.</span><span class="lang-en">23 which is his body, the fullness of him who fills everything in every way.</span></span>
+  </div>
+  <div class="poem reveal">
+    <p class="bibleref"><span class="lang-pt">1 Pedro 3:21-22 NVI</span><span class="lang-en">1 Peter 3:21-22 NIV</span></p>
+    <span class="ln"><span class="vn">21</span> <span class="lang-pt">que também agora vos salva, Batismo, o qual não é a remoção da imundícia da carne, mas a indagação de uma boa consciência para com Deus, pela ressurreição de Jesus Cristo,</span><span class="lang-en">21 and this water symbolizes baptism that now saves you also—not the removal of dirt from the body but the pledge of a clear conscience toward God. It saves you by the resurrection of Jesus Christ,</span></span>
+    <span class="ln"><span class="vn">22</span> <span class="lang-pt">o qual, havendo subido ao céu, está à direita de Deus, estando-lhe sujeitos os anjos, e as autoridades, e as potestades.</span><span class="lang-en">22 who has gone into heaven and is at God's right hand —with angels, authorities and powers in submission to him.</span></span>
+  </div>
+  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">Qual é a sua principal lição deste curso como um todo? Ou que perguntas principais ainda restam para você?</span><span class="lang-en">What is your main takeaway from this course overall? Or what main questions still remain for you?</span></p>
+  <div class="page-footer"><span>Class Notes: Introduction to the Hebrew Bible</span><span><span class="lang-pt">Sessão 29 · Padrões de Design no Novo Testamento</span><span class="lang-en">Session 29 · Design Patterns in the New Testament</span></span></div>
+</div>
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s29-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') { pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full"; en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full"; }
+    else { en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full"; pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full"; }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s29-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+  (function () { var bar = document.getElementById('reading-progress'); function update() { var h = document.documentElement; var max = h.scrollHeight - h.clientHeight; bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; } window.addEventListener('scroll', update, { passive: true }); window.addEventListener('resize', update); update(); })();
+  (function () { var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; var targets = document.querySelectorAll('.reveal'); if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; } var io = new IntersectionObserver(function (entries) { entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } }); }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' }); targets.forEach(function (el) { io.observe(el); }); })();
+</script>
+<script src="../js/verse-modal.js"></script>
+</body>
+</html>

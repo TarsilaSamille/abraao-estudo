@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 26: Palavras Repetidas Entre Unidades Literárias Distantes</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .hebrew { font-family: 'Newsreader', serif; }
+  .poem { border-left: 4px solid #E3E7EC; padding: .25rem 0 .25rem 1.25rem; margin: 1.4rem 0; }
+  .poem .bibleref { font-weight: 800; color: #17181a; margin-bottom: .5rem; font-size: .98rem; }
+  .poem .ln { display: block; line-height: 1.7; }
+  .poem .vn { font-weight: 800; margin-right: .5rem; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+<div id="reading-progress" aria-hidden="true"></div>
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span></button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+  <h1 class="title reveal"><span class="lang-pt">Sessão 26: Palavras Repetidas Entre Unidades Literárias Distantes</span><span class="lang-en">Session 26: Repeated Words Between Distant Literary Units</span></h1>
+  <hr class="rule">
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">Às vezes a comparação narrativa é provocada por uma repetição idêntica em narrativas distantes.</span><span class="lang-en">Sometimes the narrative comparison is prompted by an identical repetition in distant narratives.</span></li>
+    <li><span class="lang-pt">Por meio do uso de repetições de palavras-chave, os autores bíblicos nos levam a comparar e contrastar personagens para fazer avançar o argumento narrativo.</span><span class="lang-en">Through the use of key word repetitions, biblical authors lead us to compare and contrast characters in order to advance the narrative argument.</span></li>
+    <li><span class="lang-pt">Os autores bíblicos frequentemente comparam narrativas e criam padrões de maneiras sutis. Para encontrar um padrão, observe palavras-chave e imagens embutidas que ligam as histórias, como a repetição de "ver e tomar" em Gênesis 3 e Gênesis 6.</span><span class="lang-en">Biblical authors often compare narratives and create patterns in subtle ways. To find a pattern, watch for embedded key words and images that link stories together, like the repetition of "see and take" in Genesis 3 and Genesis 6.</span></li>
+  </ul>
+  <h2 class="section reveal"><span class="lang-pt">Analogia Narrativa Entre Unidades Literárias Distantes</span><span class="lang-en">Narrative Analogy Between Distant Literary Units</span></h2>
+  <p class="body reveal"><span class="lang-pt">Lembre o princípio mais básico da poesia hebraica: palavras e imagens paralelas convidam o leitor a fazer comparações e contrastes, criando insight mais profundo em ambos os textos. O mesmo princípio está em ação aqui.</span><span class="lang-en">Recall the most basic principle of Hebrew poetry: Parallel words and images invite the reader to make comparisons and contrasts, creating deeper insight into both texts. The same principle is at work here.</span></p>
+  <h3 class="sub reveal"><span class="lang-pt">Gênesis 6:1-8 e Gênesis 3</span><span class="lang-en">Genesis 6:1-8 and Genesis 3</span></h3>
+  <div class="poem reveal">
+    <p class="bibleref"><span class="lang-pt">Gênesis 1:1-2:3</span><span class="lang-en">Genesis 1:1-2:3</span></p>
+    <span class="ln"><span class="lang-pt">E Deus viu que era "bom" [7x] — e Deus os abençoou: "Frutificai e multiplicai-vos (<span class="hebrew">רבה</span>), enchei a terra (<span class="hebrew">ארץ+מלא</span>)."</span><span class="lang-en">And God saw that it was "good" [7x] — And God blessed them, "Be fruitful and multiply (<span class="hebrew">רבה</span>), fill the land (<span class="hebrew">ארץ+מלא</span>)."</span></span>
+  </div>
+  <div class="poem reveal">
+    <p class="bibleref"><span class="lang-pt">Gênesis 3:6</span><span class="lang-en">Genesis 3:6</span></p>
+    <span class="ln"><span class="lang-pt">E a mulher viu (<span class="hebrew">ראה</span>) que a árvore era boa (<span class="hebrew">כי טוב</span>) para comer, e que era agradável aos olhos, e desejável para adquirir sabedoria; e tomou (<span class="hebrew">לקח</span>) do seu fruto, e comeu, e deu também a seu marido com ela, e ele comeu.</span><span class="lang-en">And the woman saw (<span class="hebrew">ראה</span>) that the tree was good (<span class="hebrew">כי טוב</span>) for eating and that it was enticing to the eyes and it was desirable for gaining wisdom; and she took (<span class="hebrew">לקח</span>) its fruit and she ate and she gave to her husband with her and he ate.</span></span>
+  </div>
+  <div class="poem reveal">
+    <p class="bibleref"><span class="lang-pt">Gênesis 6:1-2</span><span class="lang-en">Genesis 6:1-2</span></p>
+    <span class="ln"><span class="lang-pt">E aconteceu que, como os homens começaram a multiplicar-se (<span class="hebrew">רבה</span>) sobre a face da terra (<span class="hebrew">ארץ</span>)... e os filhos de Deus viram (<span class="hebrew">ויראו</span>) as filhas dos homens (<span class="hebrew">בנות האדם</span>) que eram boas...</span><span class="lang-en">And it came about when humanity began to multiply (<span class="hebrew">רבה</span>) on the face of the land (<span class="hebrew">ארץ</span>) ... and the sons of God saw (<span class="hebrew">ויראו</span>) the daughters of humanity (<span class="hebrew">בנות האדם</span>) that they were good</span></span>
+  </div>
+  <div class="poem reveal">
+    <p class="bibleref"><span class="lang-pt">Gênesis 6:5</span><span class="lang-en">Genesis 6:5</span></p>
+    <span class="ln"><span class="lang-pt">E viu (<span class="hebrew">וירא</span>) Yahweh que (<span class="hebrew">כי</span>) se tinha multiplicado (<span class="hebrew">רבה</span>) a maldade do homem (<span class="hebrew">רעת האדם</span>) na terra (<span class="hebrew">ארץ</span>).</span><span class="lang-en">And Yahweh saw (<span class="hebrew">וירא</span>) that (<span class="hebrew">כי</span>) multiplied (<span class="hebrew">רבה</span>) was the evil of humanity (<span class="hebrew">רעת האדם</span>) in the land (<span class="hebrew">ארץ</span>).</span></span>
+  </div>
+  <div class="poem reveal">
+    <p class="bibleref"><span class="lang-pt">Gênesis 6:11</span><span class="lang-en">Genesis 6:11</span></p>
+    <span class="ln"><span class="lang-pt">E a terra (<span class="hebrew">ארץ</span>) estava corrompida diante de Deus, e a terra estava cheia (<span class="hebrew">מלא+ארץ</span>) de violência.</span><span class="lang-en">And the land (<span class="hebrew">ארץ</span>) was ruined before God, and the land was filled (<span class="hebrew">מלא+ארץ</span>) with violence.</span></span>
+  </div>
+  <p class="body reveal"><span class="lang-pt">As duas introduções à narrativa do dilúvio consistem em duas unidades literárias, Gênesis 6:1-4 e 6:5-8, cuidadosamente moldadas para coordenar uma com a outra em uma analogia narrativa.</span><span class="lang-en">The twin introductions to the flood narrative consist of two literary units, Genesis 6:1-4 and 6:5-8, carefully shaped to coordinate with each other in a narrative analogy.</span></p>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">Gênesis 6:1-4: A multiplicação da humanidade leva seres espirituais rebeldes a ver e tomar mulheres humanas.</span><span class="lang-en">Genesis 6:1-4: Humanity's multiplication leads to rebel spiritual beings seeing and taking human women.</span></li>
+    <li><span class="lang-pt">Gênesis 6:5-8: Yahweh vê como, como resultado de 6:1-4, o mal e a violência se multiplicaram na terra.</span><span class="lang-en">Genesis 6:5-8: Yahweh sees how, as a result of 6:1-4, evil and violence have multiplied in the land.</span></li>
+  </ul>
+  <p class="body reveal"><span class="lang-pt">Ambas as analogias se aprofundam quando reconhecemos sua dependência da analogia narrativa em Gênesis 1-3.</span><span class="lang-en">Both of these analogies are deepened when we recognize their dependence on the narrative analogy in Genesis 1-3.</span></p>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">Os filhos de Deus e as filhas dos homens são comparados com Eva e a serpente.</span><span class="lang-en">The sons of God and daughters of men are compared with Eve and the snake.</span></li>
+    <li><span class="lang-pt">As filhas dos homens são comparadas com a árvore do conhecimento do bem e do mal.</span><span class="lang-en">The daughters of men are compared with the tree of knowing good and bad.</span></li>
+    <li><span class="lang-pt">A bênção sobre a multiplicação dos humanos na terra em Gênesis 1 é tristemente transformada em uma multiplicação da morte em Gênesis 6.</span><span class="lang-en">The blessing about the multiplication of humans on the land in Genesis 1 is sadly turned into a multiplication of death in Genesis 6.</span></li>
+  </ul>
+  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">Palavras repetidas podem conectar seções de texto que estão tanto próximas quanto distantes. A questão é: como você pode saber quando uma repetição se destina a conectar seções diferentes ou quando é apenas uma coincidência? Quais são algumas ideias que você tem?</span><span class="lang-en">Repeated words can connect sections of text that are both close together and far apart. The question is, how can you know when a repetition is meant to connect different sections or when it is just a coincidence? What are some ideas you have?</span></p>
+  <div class="page-footer"><span>Class Notes: Introduction to the Hebrew Bible</span><span><span class="lang-pt">Sessão 26 · Palavras Repetidas Entre Unidades Literárias Distantes</span><span class="lang-en">Session 26 · Repeated Words Between Distant Literary Units</span></span></div>
+</div>
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s26-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') { pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full"; en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full"; }
+    else { en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full"; pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full"; }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s26-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+  (function () { var bar = document.getElementById('reading-progress'); function update() { var h = document.documentElement; var max = h.scrollHeight - h.clientHeight; bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; } window.addEventListener('scroll', update, { passive: true }); window.addEventListener('resize', update); update(); })();
+  (function () { var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; var targets = document.querySelectorAll('.reveal'); if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; } var io = new IntersectionObserver(function (entries) { entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } }); }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' }); targets.forEach(function (el) { io.observe(el); }); })();
+</script>
+<script src="../js/verse-modal.js"></script>
+</body>
+</html>
