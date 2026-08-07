@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 1: Jacó na Imaginação Bíblica</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="../js/verse-modal.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
+  .ref:hover { color: #2563eb; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+  .scripture:hover { border-left-color: #9aa7b8; }
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+  .quote { border-left: 4px solid #aeb6bf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a3f47; font-style: italic; }
+  .book-link { color: #1a5fb4; text-decoration: underline; font-style: normal; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
+  .table-img img { width: 100%; display: block; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
+  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
+  .nav-btn:hover { background: #f1f5f9; }
+  .nav-back { left: 1rem; }
+  .nav-lang { right: 1rem; }
+</style>
+</head>
+<body class="bg-white">
+  <a href="../index.html" class="nav-btn nav-back"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
+  <div class="nav-lang" style="right:1rem; position:fixed; top:1rem; z-index:50; display:inline-flex; gap:.25rem;">
+    <button onclick="setLang('pt')" class="nav-btn" style="position:static" id="lang-pt-btn">PT</button>
+    <button onclick="setLang('en')" class="nav-btn" style="position:static" id="lang-en-btn">EN</button>
+  </div>
+  <div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
+    <h1 class="title reveal"><span class="lang-pt">Sessão 1: Jacó na Imaginação Bíblica</span><span class="lang-en">Session 1: Jacob in the Biblical Imagination</span></h1>
+    <hr class="rule">
+    <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt">A Bíblia menciona Yaaqov/Yisrael milhares de vezes, destacando a importância de sua história para o povo que leva o seu nome.</span><span class="lang-en">The Bible mentions Yaaqov/Yisrael thousands of times, highlighting the importance of his story for the people who bear his name.</span></li>
+      <li><span class="lang-pt">A história de Yaaqov dá, em forma de semente, uma prévia da história que seus descendentes viverão do Êxodo até o fim da Bíblia Hebraica.</span><span class="lang-en">Yaaqov's story gives, in seed form, a preview of the story that his descendants will experience from Exodus through the end of the Hebrew Bible.</span></li>
+      <li><span class="lang-pt">Os profetas e autores do Novo Testamento empregam a história de Yaaqov como uma lente para ajudar a entender a própria história deles.</span><span class="lang-en">The prophets and New Testament authors employ Yaaqov's story as a lens to help understand their own story.</span></li>
+    </ul>
+
+    <h2 class="section reveal"><span class="lang-pt">Yaaqov: O Patriarca de Israel</span><span class="lang-en">Yaaqov: The Patriarch of Israel</span></h2>
+    <p class="body reveal"><span class="lang-pt">Yaaqov é um dos personagens mais importantes do rolo de Gênesis. Sua história ocupa metade do rolo, desde seu nascimento (Gn 25:20-26) até sua morte (Gn 50). A história de Abraão ocupa 13 capítulos em Gênesis, e ele é muito importante como ancestral da família de Israel. Mas a história de Yaaqov ocupa 25 capítulos, e ele é o pai dos 12 filhos que se tornarão as 12 tribos de Israel. O resto da Bíblia Hebraica conta a história daquelas tribos. Yaaqov é mencionado com mais frequência do que Abraão tanto em Gênesis quanto na Bíblia Hebraica.</span><span class="lang-en">Yaaqov is one of the most important characters in the Genesis scroll. His story takes up half the scroll, from his birth (Gen. 25:20-26) to his death (Gen. 50). Abraham's story takes up 13 chapters in Genesis, and he is very important as the ancestor of the family of Israel. But Yaaqov's story takes up 25 chapters, and he is the father of the 12 sons who will become the 12 tribes of Israel. The rest of the Hebrew Bible tells the story of those tribes. Yaaqov is mentioned more often than Abraham in both Genesis and the Hebrew Bible.</span></p>
+
+    <div class="table-img reveal">
+      <img src="img/sessao-1/p1-vector.png" alt="Yaacov Mentioned in Genesis and Hebrew Bible">
+      <p class="caption"><span class="lang-pt">Yaaqov em Gênesis e na Bíblia Hebraica. Criado por Tim Mackie para BibleProject Classroom: Jacó (2021).</span><span class="lang-en">Yaaqov in Genesis and Hebrew Bible. Created by Tim Mackie for BibleProject Classroom: Jacob (2021).</span></p>
+    </div>
+
+    <p class="body reveal"><span class="lang-pt">O personagem de Yaaqov em Gênesis é fundamental para toda a história dos israelitas narrada em Êxodo-2 Reis e refletida nos Profetas e nos Escritos. Cada aspecto da história de Israel influencia a forma como a história de seu ancestral é contada.</span><span class="lang-en">Yaaqov's character in Genesis is foundational for the entire story of the Israelites told in Exodus-2 Kings and reflected upon in the Prophets and Writings. Every aspect of Israel's story influences the way their ancestor's story is told.</span></p>
+    <p class="body reveal"><span class="lang-pt">Yaaqov tem dois nomes em português: "Yaaqov" (heb. ya'aqov = יעקב / gr. Ιακωβ), que em hebraico significa "agarrrador do calcanhar, usurpador"; e "Israel" (heb. yisra'el = ישראל / gr. Ισραηλ), que significa "lutou com El".</span><span class="lang-en">Yaaqov has two names in English: "Yaaqov" (Heb. ya'aqov = יעקב / Grk. Ιακωβ) which in Hebrew means "heel grabber, usurper"; and "Israel" (Heb. yisra'el = ישראל / Grk. Ισραηλ) which means "struggled with El."</span></p>
+
+    <h2 class="section reveal"><span class="lang-pt">A História de Yaaqov e a História de Israel</span><span class="lang-en">Yaaqov's Story and Israel's Story</span></h2>
+    <p class="body reveal"><span class="lang-pt">A história de Yaaqov está cheia de engano e astúcia, exílio e retorno, e descreve sua luta com Yahweh. Tudo isso é lembrado pelos autores bíblicos posteriores como uma explicação para a corrupção de Israel, mas também como uma fonte de esperança para um futuro após o exílio.</span><span class="lang-en">Yaaqov's story is filled with deception and trickery, exile and return, and it describes his struggle with Yahweh. All of this is remembered by later biblical authors as an explanation for Israel's corruption, but also as a source of hope for a future after exile.</span></p>
+
+    <h3 class="sub reveal"><span class="lang-pt">Oséias 12:1-5 (NASB)</span><span class="lang-en">Hosea 12:1-5 (NASB)</span></h3>
+    <div class="scripture reveal">
+      <div class="scripture-label"><span class="lang-pt">Oséias 12:1-5</span><span class="lang-en">Hosea 12:1-5</span><span class="scripture-type">NASB</span></div>
+      <p class="scripture-text"><span class="lang-pt">1 Efraim se alimenta de vento, e persegue continuamente o vento leste; multiplica mentiras e violência. Além disso, faz aliança com a Assíria, e o azeite é levado ao Egito. 2 Também o SENHOR tem uma contenda com Judá, e punirá Jacó conforme os seus caminhos; retribuir-lhe-á conforme as suas obras. 3 No ventre agarrou o seu irmão pelo calcanhar, e na sua força lutou com Deus. 4Sim, lutou com o anjo e prevaleceu; chorou e buscou o seu favor. Encontrou-o em Betel, e ali falou conosco,</span><span class="lang-en">1 Ephraim feeds on wind, and pursues the east wind continually; he multiplies lies and violence. Moreover, he makes a covenant with Assyria, and oil is carried to Egypt. 2 The LORD also has a dispute with Judah, and will punish Jacob according to his ways; he will repay him according to his deeds. 3 In the womb he took his brother by the heel, and in his strength he contended with God. 4 Yes, he wrestled with the angel and prevailed; he wept and sought his favor. He found him at Bethel and there he spoke with us,</span></p>
+    </div>
+    <p class="body reveal"><span class="lang-pt">5 até o SENHOR, o Deus dos exércitos, o SENHOR é o seu nome. Oséias vê a dependência de Israel de potências estrangeiras como uma repetição do engano de Yaaqov e de sua falta de confiança na promessa de Yahweh em Gênesis. A natureza trapaceira de Yaaqov ao nascer continua em sua luta vitalícia com Deus, e essa é a mesma história sendo elaborada nos dias de Oséias.</span><span class="lang-en">5 even the LORD, the God of hosts, the LORD is his name. Hosea sees Israel's dependence on foreign powers as a replay of Yaaqov's deceit and lack of trust in Yahweh's promise back in Genesis. Yaaqov's trickster nature at birth continues into his lifelong struggle with God, and this is the same story being worked out in Hosea's own day.</span></p>
+    <h3 class="sub reveal"><span class="lang-pt">Isaías 29:22-23 (NASB)</span><span class="lang-en">Isaiah 29:22-23 (NASB)</span></h3>
+    <div class="scripture reveal">
+      <div class="scripture-label"><span class="lang-pt">Isaías 29:22-23</span><span class="lang-en">Isaiah 29:22-23</span><span class="scripture-type">NASB</span></div>
+      <p class="scripture-text"><span class="lang-pt">22 Portanto, assim diz o SENHOR, que redimiu Abraão, a respeito da casa de Jacó: "Jacó não será agora envergonhado, nem seu rosto se tornará pálido agora; 23 mas, quando vir seus filhos, a obra de minhas mãos, no meio dele, santificarão o meu nome; sim, santificarão o Santo de Jacó e temerão o Deus de Israel."</span><span class="lang-en">22 Therefore thus says the LORD, who redeemed Abraham, concerning the house of Jacob: "Jacob shall not now be ashamed, nor shall his face now turn pale; 23 but when he sees his children, the work of my hands, in his midst, they will sanctify my name; indeed, they will sanctify the Holy One of Jacob and will stand in awe of the God of Israel."</span></p>
+    </div>
+    <p class="body reveal"><span class="lang-pt">Esta passagem de Isaías recorda o exílio de Yaaqov como uma figura solitária caminhando para a Mesopotâmia, porque essa história terminou com Yaaqov florescendo no exílio com muitos filhos. Aqui Isaías retrata o futuro de Israel como uma repetição dessa história anterior, para que o agora exilado povo de Israel possa confiar que Yahweh, mais uma vez, trará abundância ao seu povo em meio ao seu sofrimento.</span><span class="lang-en">This passage from Isaiah recalls Yaaqov's exile as a lone figure trekking to Mesopotamia because that story ended with Yaaqov flourishing in exile with many children. Here Isaiah portrays Israel's future as a replay of this previous story so the now-exiled people of Israel can trust that Yahweh will once again bring abundance to his people in the midst of their suffering.</span></p>
+
+    <h3 class="sub reveal"><span class="lang-pt">Isaías 41:8-9 (NASB)</span><span class="lang-en">Isaiah 41:8-9 (NASB)</span></h3>
+    <div class="scripture reveal">
+      <div class="scripture-label"><span class="lang-pt">Isaías 41:8-9</span><span class="lang-en">Isaiah 41:8-9</span><span class="scripture-type">NASB</span></div>
+      <p class="scripture-text"><span class="lang-pt">8 Mas você, Israel, meu servo, Jacó a quem escolhi, descendente de Abraão, meu amigo, 9 você a quem tomei das extremidades da terra, e chamei das suas partes mais remotas, e disse a você: "Você é meu servo, escolhi você e não o rejeitei."</span><span class="lang-en">8 But you, Israel, my servant, Jacob whom I have chosen, descendant of Abraham, my friend, 9 you whom I have taken from the ends of the earth, and called from its remotest parts and said to you, "You are my servant, I have chosen you and not rejected you."</span></p>
+    </div>
+    <p class="body reveal"><span class="lang-pt">Aqui a história do exílio e retorno de Yaaqov é recordada e transformada em um modelo para a geração de Israel no exílio, aguardando seu retorno. As histórias de Gênesis foram moldadas pelos profetas com os olhos voltados para o futuro.</span><span class="lang-en">Here the story of Yaaqov's exile and return is recalled and turned into a model for the generation of Israel in exile, waiting for their return. The stories of Genesis have been shaped by the prophets with an eye toward the future.</span></p>
+
+    <h3 class="sub reveal"><span class="lang-pt">Jeremias 31:15-17 (NASB)</span><span class="lang-en">Jeremiah 31:15-17 (NASB)</span></h3>
+    <div class="scripture reveal">
+      <div class="scripture-label"><span class="lang-pt">Jeremias 31:15-17</span><span class="lang-en">Jeremiah 31:15-17</span><span class="scripture-type">NASB</span></div>
+      <p class="scripture-text"><span class="lang-pt">15 Assim diz o SENHOR: "Uma voz se ouve em Ramá, lamentação e amargo choro. Raquel chora por seus filhos; recusa-se a ser consolada por seus filhos, porque já não existem." 16 Assim diz o SENHOR: "Refreie sua voz de chorar e seus olhos de lágrimas; pois sua obra será recompensada," declara o SENHOR, "e eles retornarão da terra do inimigo. 17 Há esperança para o seu futuro," declara o SENHOR, "e seus filhos retornarão ao seu próprio território."</span><span class="lang-en">15 Thus says the LORD, "A voice is heard in Ramah, lamentation and bitter weeping. Rachel is weeping for her children; she refuses to be comforted for her children, because they are no more." 16 Thus says the LORD, "Restrain your voice from weeping and your eyes from tears; for your work will be rewarded," declares the LORD, "and they will return from the land of the enemy. 17 There is hope for your future," declares the LORD, "and your children will return to their own territory."</span></p>
+    </div>
+    <p class="body reveal"><span class="lang-pt">Aqui a história da morte de Rakhel (de Gn 35) é recordada e transformada em uma imagem dos antepassados de Israel lamentando o sofrimento, derrota e exílio da nação nas mãos dos babilônios. Mas, assim como Rakhel morreu ao dar à luz Benjamim, também a geração atual no exílio está passando por uma espécie de morte que será seguida por um retorno à terra. Lembre-se de que o papel de Benjamim na história dos filhos de Yaaqov (Gn 43-45) é pivotal para a entrada deles no exílio egípcio e seu eventual retorno à terra prometida.</span><span class="lang-en">Here the story of Rakhel's death (from Gen. 35) is recalled and turned into an image of Israel's ancestors grieving over the nation's suffering, defeat, and exile at the hands of the Babylonians. But, just as Rakhel died while giving birth to Benjamin, so also the current generation in exile is undergoing a kind of death that will be followed by a return to the land. Remember that Benjamin's role in the story of Yaaqov's sons (Gen. 43-45) is pivotal to their entry into Egyptian exile and their eventual return into the promised land.</span></p>
+
+    <h3 class="sub reveal"><span class="lang-pt">Ezequiel 28:25 (NASB)</span><span class="lang-en">Ezekiel 28:25 (NASB)</span></h3>
+    <div class="scripture reveal">
+      <div class="scripture-label"><span class="lang-pt">Ezequiel 28:25</span><span class="lang-en">Ezekiel 28:25</span><span class="scripture-type">NASB</span></div>
+      <p class="scripture-text"><span class="lang-pt">Assim diz o Senhor Deus: "Quando eu reunir a casa de Israel dentre os povos entre os quais estão dispersos, e manifestar minha santidade neles à vista das nações, então habitarão na sua terra, a qual dei ao meu servo Jacó."</span><span class="lang-en">Thus says the Lord God, "When I gather the house of Israel from the peoples among whom they are scattered, and will manifest my holiness in them in the sight of the nations, then they will live in their land which I gave to my servant Jacob."</span></p>
+    </div>
+    <p class="body reveal"><span class="lang-pt">Assim como Yaaqov retornou do exílio e recebeu a terra prometida, à geração de exilados babilônios será concedida a mesma esperança e promessa.</span><span class="lang-en">Just like Yaaqov returned from exile and was promised land, the generation of Babylonian exiles will be granted the same hope and promise.</span></p>
+
+    <h3 class="sub reveal"><span class="lang-pt">Malaquias 1:1-3 (NASB)</span><span class="lang-en">Malachi 1:1-3 (NASB)</span></h3>
+    <div class="scripture reveal">
+      <div class="scripture-label"><span class="lang-pt">Malaquias 1:1-3</span><span class="lang-en">Malachi 1:1-3</span><span class="scripture-type">NASB</span></div>
+      <p class="scripture-text"><span class="lang-pt">1 O oráculo da palavra do SENHOR a Israel por meio de Malaquias. 2 "Eu vos amei," diz o SENHOR. Mas vós dizeis: "Como nos amaste?" "Acaso Esaú não era irmão de Jacó?" declara o SENHOR. "Todavia amei Jacó; 3 mas odiei Esaú, e fiz de suas montanhas uma desolação, e destinei sua herança para os chacais do deserto."</span><span class="lang-en">1 The oracle of the word of the LORD to Israel through Malachi. 2 "I have loved you," says the LORD. But you say, "How have you loved us?" "Was not Esau Jacob's brother?" declares the LORD. "Yet I have loved Jacob; 3 but I have hated Esau, and I have made his mountains a desolation and appointed his inheritance for the jackals of the wilderness."</span></p>
+    </div>
+    <p class="body reveal"><span class="lang-pt">Aqui a história da escolha de Yaaqov por Deus em vez de Esaú é transformada em um paradigma para seus respectivos descendentes, de modo que as escolhas e o destino de Edom espelharão as escolhas e o destino de seus antepassados.</span><span class="lang-en">Here the story of God's selection of Yaaqov instead of Esau is turned into a paradigm for their respective descendants, so Edom's choices and fate will mirror the choices and fate of their ancestors.</span></p>
+
+    <h2 class="section reveal"><span class="lang-pt">Yaaqov no Novo Testamento</span><span class="lang-en">Yaaqov in the New Testament</span></h2>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt">Yaaqov é mencionado nas genealogias de Jesus apresentadas em Mateus 1 e Lucas 3. Isso faz parte de mostrar a identidade de Jesus como israelita.</span><span class="lang-en">Yaaqov is mentioned in the genealogies of Jesus provided in Matthew 1 and Luke 3. This is part of showing Jesus' identity as an Israelite.</span></li>
+      <li><span class="lang-pt">Yaaqov também é mencionado de formas que mostram como a história de Jesus repete e cumpre a história de Yaaqov.</span><span class="lang-en">Yaaqov is also mentioned in ways that show how Jesus' story replays and fulfills Yaaqov's story.</span></li>
+      <li><span class="lang-pt">Jesus encontra a mulher samaritana no "poço de Yaaqov", espelhando a história de Yaaqov encontrando Rakhel em um poço (João 4 e Gn 29).</span><span class="lang-en">Jesus meets the Samaritan women at "Yaaqov's well," mirroring the story of Yaaqov meeting Rakhel at a well (John 4 and Gen. 29).</span></li>
+      <li><span class="lang-pt">Jesus foi favorecido por seu Pai celestial e rejeitado por seus irmãos israelitas, assim como José foi favorecido por Yaaqov e rejeitado por seus irmãos (Atos 7:8-15).</span><span class="lang-en">Jesus was favored by his heavenly Father and rejected by his Israelite brothers, just as Joseph was favored by Yaaqov and rejected by his brothers (Acts 7:8-15).</span></li>
+      <li><span class="lang-pt">A escolha das nações por Deus para participar da vitória da mensagem de Israel, enquanto muitos israelitas rejeitam seu próprio Messias, foi prefigurada pela escolha dos indignos israelitas e não dos edomitas, que por sua vez foi prefigurada pela história da escolha de Yaaqov e não de Esaú (veja Rm 9:6-13, aludindo a Ml 1:2-4, aludindo a Gn 25-27).</span><span class="lang-en">God's selection of the nations to participate in the victory of Israel's message, while many Israelites reject their own Messiah, was pre-figured by God's selection of the unworthy Israelites and not the Edomites, which was itself prefigured by the story of God's selection of Yaaqov and not Esau (see Rom. 9:6-13, alluding to Mal. 1:2-4, alluding to Gen. 25-27).</span></li>
+    </ul>
+
+    <h2 class="section reveal"><span class="lang-pt">O Resumo</span><span class="lang-en">The Takeaway</span></h2>
+    <p class="body reveal"><span class="lang-pt">A história de Yaaqov em Gênesis 25:18-37:1 não foi reunida e escrita por mero interesse histórico. Antes, cada parte de sua história foi desenhada para antecipar e prefigurar a história posterior de seus descendentes, a nação chamada pelo seu próprio nome: Israel! No entanto, a história de Yaaqov não foi desenhada apenas para apontar adiante. Ela também foi desenhada para levar adiante os temas e ideias principais do rolo de Gênesis até aqui.</span><span class="lang-en">Yaaqov's story in Genesis 25:18-37:1 was not collected and written out of mere historical interest. Rather, every part of his story was designed to anticipate and prefigure the later history of his descendants, the nation called by his own name: Israel! However, Yaaqov's story is not only designed to point forward. It was also designed to carry forward the themes and main ideas of the Genesis scroll so far.</span></p>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt">Gênesis 1:1-2:3: Deus abençoa a humanidade e promete bênção para todas as nações.</span><span class="lang-en">Genesis 1:1-2:3: God blesses humanity and promises blessing for all nations.</span></li>
+      <li><span class="lang-pt">Gênesis 2:4-25: Deus transforma um deserto árido em um jardim e coloca seus representantes que levam sua imagem na boa terra, cheia de abundância e fertilidade.</span><span class="lang-en">Genesis 2:4-25: God turns a barren desert into a garden and places his image-bearing representatives in the good land, full of abundance and fertility.</span></li>
+      <li><span class="lang-pt">Gênesis 3:1-24: Os representantes de Deus são enganados e falham ao comer da árvore que traz a morte, resultando em seu exílio.</span><span class="lang-en">Genesis 3:1-24: God's representatives are deceived and fail by eating from the death-dealing tree, resulting in their exile.</span></li>
+      <li><span class="lang-pt">Gênesis 4-5: Deus seleciona um irmão para a linhagem de bênção, criando hostilidade entre o escolhido e o não-escolhido.</span><span class="lang-en">Genesis 4-5: God selects one brother for the lineage of blessing, creating hostility between the chosen and the non-chosen.</span></li>
+      <li><span class="lang-pt">Gênesis 6-9: A hostilidade aumenta até um ponto de crise e só é levada ao fim por um evento de des-criação e re-criação que resulta em uma aliança e uma nova bênção.</span><span class="lang-en">Genesis 6-9: The hostility increases to a crisis point and is only brought to an end by a de-creation and re-creation event that results in a covenant and a new blessing.</span></li>
+    </ul>
+
+    <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+    <p class="body reveal"><span class="lang-pt">Como os profetas fazem uso da história de Yaaqov (por exemplo, Oséias 12:1-5)?</span><span class="lang-en">How do the prophets make use of Yaaqov's story (e.g., Hosea 12:1-5)?</span></p>
+<!--REST-->
+  </div>
+  <script>
+    function setLang(l){ localStorage.setItem('jacob-s1-lang',l); document.documentElement.lang=l; var pt=document.getElementById('lang-pt-btn'), en=document.getElementById('lang-en-btn'); if(l==='pt'){pt.className='nav-btn bg-sky-600 text-white';en.className='nav-btn';} else {en.className='nav-btn bg-sky-600 text-white';pt.className='nav-btn';} }
+    (function(){ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1}); document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);}); })();
+    setLang(localStorage.getItem('jacob-s1-lang')||'pt');
+  </script>
+</body>
+</html>

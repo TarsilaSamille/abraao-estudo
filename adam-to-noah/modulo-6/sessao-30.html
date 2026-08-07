@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 30: Como os Autores Bíblicos Dizem a Verdade</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .figure { margin: 1.75rem 0; }
+  .figure img { width: 100%; height: auto; border-radius: 10px; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .hebrew { font-family: 'Newsreader', serif; }
+  .quote { border-left: 4px solid #aeb6bf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a3f47; font-style: italic; }
+  .cite { color: #4f5669; font-size: .95rem; line-height: 1.7; margin-top: .35rem; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+<div id="reading-progress" aria-hidden="true"></div>
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span></button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+  <h1 class="title reveal"><span class="lang-pt">Sessão 30: Como os Autores Bíblicos Dizem a Verdade</span><span class="lang-en">Session 30: How Biblical Authors Tell the Truth</span></h1>
+  <hr class="rule">
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">Os autores bíblicos pensavam "imagisticamente" e usavam imagens, simbolismo e imaginação para falar sobre a realidade do mundo.</span><span class="lang-en">The biblical authors thought "imagistically" and used imagery, symbolism, and imagination to talk about the reality of the world.</span></li>
+    <li><span class="lang-pt">Narrativa imagística não é mitologia.</span><span class="lang-en">Imagistic narrative is not mythological.</span></li>
+  </ul>
+  <h2 class="section reveal"><span class="lang-pt">A História do Éden como Narrativa Imagística (Não Mitologia)</span><span class="lang-en">The Eden Story As Imagistic Narrative (Not Mythology)</span></h2>
+  <blockquote class="quote reveal"><span class="lang-pt">"[O debate sobre o estilo literário de Gênesis 1-11] vai além do rótulo de um gênero de literatura; diz respeito ao processo pelo qual a literatura de qualquer gênero é concebida e composta. Os antigos pensam de maneira diferente; eles percebem o mundo de modos diferentes, com categorias e prioridades distintas das nossas. Em nossa cultura, pensamos 'cientificamente.' Estamos primariamente preocupados com causalidade, composição e sistematização. No mundo antigo, eles são mais propensos a pensar o mundo em termos de símbolos e a expressar sua compreensão por meio de imagens. Estamos primariamente interessados em eventos e realia materiais, enquanto eles estão mais interessados em ideias e sua representação. [Para descrever esse modo de representar a história] o grupo de palavras imagem/imagética/imaginação/imaginativa funcionaria bem (embora imaginário estaria incorreto). Uma retórica usando imagens míticas é facilmente discernível na poesia bíblica (e.g., 'dos céus as estrelas lutaram' ou 'esmagou as cabeças de Leviatã' [Sal. 74:14]), e se torna formalizada no gênero do apocalipse. Não obstante, não está ausente da prosa. Para descrever esse tipo de pensamento, eu gostaria de adaptar o termo 'imagístico.' Em vez de tentar defini-lo, em concordância com o verdadeiro pensamento imagístico, eu o descreverei por ilustrações. Pensamento e representação imagísticos se colocariam em contraste com pensamento científico ou analítico. Podemos ver a diferença se compararmos duas representações visuais do céu noturno — uma tirada pelo telescópio Hubble, a outra apresentada por A Noite Estrelada de Vincent van Gogh. As pessoas jamais considerariam fazer astronomia a partir do van Gogh e não poderiam fazê-lo mesmo se quisessem; a imagem não contém nada da composição ou posição das estrelas. Ao mesmo tempo, não diríamos que é uma falsa representação do céu noturno. Artistas visuais retratam o mundo imagisticamente, e reconhecemos que essa representação é independente da ciência, mas não independente da verdade. Os antigos aplicam essa mesma concepção imagística a todos os gêneros de literatura, incluindo aqueles que não podemos conceber como nada além de científicos. História imagística, como a preservada em Gênesis, é para a história como A Noite Estrelada é para uma fotografia do Hubble."</span><span class="lang-en">"[The debate about the literary style of Genesis 1-11] goes beyond the labeling of a genre of literature; it concerns the process by which literature of any genre is conceived and composed. The ancients think differently; they perceive the world in different ways, with different categories and priorities than we do. In our culture, we think 'scientifically.' We are primarily concerned with causation, composition, and systematization. In the ancient world, they are more likely to think of the world in terms of symbols and to express their understanding by means of imagery. We are primarily interested in events and material realia whereas they are more interested in ideas and their representation. [To describe this way of representing history] the word group image/imagery/imagination/imaginative would work well (though imaginary would be incorrect). A rhetoric using mythical imagery is easily discernible in biblical poetry (e.g., 'from the heavens the stars fought' or 'crushed the heads of Leviathan' [Ps. 74:14]), and it becomes formalized in the genre of apocalyptic. Nevertheless, it is not absent from prose. To describe this sort of thinking, I would like to adapt the term 'imagistic.' Rather than attempting to define it, in accordance with true imagistic thinking, I will instead describe it by illustrations. Imagistic thinking and representation would stand in contrast to scientific or analytical thinking. We can see the difference if we compare two visual representations of the night sky—one taken by the Hubble telescope, the other presented by Vincent van Gogh's The Starry Night. People would never consider doing astronomy from the van Gogh and could not do so even if they wanted to; the image contains nothing of the composition or position of stars. At the same time, we would not say that it is a false depiction of the night sky. Visual artists depict the world imagistically, and we recognize that this depiction is independent of science, but not independent of truth. The ancients apply this same imagistic conception to all genres of literature, including those that we cannot conceive of as anything other than scientific. Imagistic history, like that preserved in Genesis, is to history as The Starry Night is to a Hubble photograph."</span></blockquote>
+    <p class="body reveal"><span class="lang-pt">O pensamento imagístico apresenta dificuldades [para pessoas modernas]. Israelitas não tinham problemas em pensar sobre a visão de Ezequiel de Egito como uma árvore cósmica (Ez. 31). Isso não justifica rotular a literatura de mitologia, nem diz respeito a questões de realidade ou verdade. Alguns podem considerar as árvores, o jardim e a serpente como exemplos de pensamento imagístico sem com isso negar realidade e verdade ao relato. O autor entende árvores de um modo que não indica simplesmente uma espécie botânica de flora com notáveis propriedades químicas. Quando colocamos esses elementos em seu contexto do antigo Oriente Próximo e reconhecemos a capacidade de Israel, e mesmo a propensão, de pensar em termos imagísticos, podemos achar que ganhamos uma compreensão mais profunda de importantes realidades teológicas. Alguns estudiosos de hoje acreditam que Israel tinha o hábito de tomar emprestados os mitos de outros povos e transformá-los em uma mitologia própria. Eu não compartilho dessa perspectiva. O que às vezes é percebido como uma mitologia compartilhada é mais frequentemente uma propensão compartilhada de pensar imagisticamente sobre as mesmas questões usando um vocabulário simbólico compartilhado.</span><span class="lang-en">Imagistic thinking presents difficulties [for modern people]. Israelites found no problems thinking about Ezekiel's vision of Egypt as a cosmic tree (Ezek. 31). This does not warrant labeling the literature mythology, nor does it concern questions of reality or truth. Some might consider the trees, the garden and the snake to be examples of imagistic thinking without thereby denying reality and truth to the account. The author understands trees in a way that does not simply indicate a botanical species of flora with remarkable chemical properties. When we put these elements in their ancient Near Eastern context and recognize the Israelite capacity, and even propensity, to think in imagistic terms, we may find that we gain a deeper understanding of important theological realities. Some scholars today believe that Israel was in the habit of borrowing other people's myths and transforming them into a mythology of their own. I do not share that perspective. What is sometimes perceived as a shared mythology is more often a shared propensity to think imagistically about the same issues using a shared symbolic vocabulary.</span></p>
+  <p class="cite reveal"><span class="lang-pt">Walton, John H. (2015). O Mundo Perdido de Adão e Eva: Gênesis 2-3 e o Debate das Origens Humanas. IVP Academic: Um Selo da InterVarsity Press.</span><span class="lang-en">Walton, John H. (2015). The Lost World of Adam and Eve: Genesis 2–3 and the Human Origins Debate. IVP Academic: An Imprint of InterVarsity Press.</span></p>
+  <figure class="figure reveal">
+    <img src="img/sessao-30/hubble.png" alt="Hubble Deep Field Image">
+    <figcaption class="caption"><span class="lang-pt">Telescópio Hubble (2009). Imagem do Campo Profundo do Hubble. Wikimedia Commons.</span><span class="lang-en">Hubble Telescope (2009). Hubble Deep Field Image. Wikimedia Commons.</span></figcaption>
+  </figure>
+  <figure class="figure reveal">
+    <img src="img/sessao-30/van-gogh.png" alt="The Starry Night">
+    <figcaption class="caption"><span class="lang-pt">van Gogh, Vincent (1889). A Noite Estrelada. Wikimedia Commons.</span><span class="lang-en">van Gogh, Vincent (1889). The Starry Night. Wikimedia Commons.</span></figcaption>
+  </figure>
+  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">Resuma o que John Walton quer dizer quando afirma que a narrativa da Bíblia Hebraica é "imagística." A descrição de Walton ajuda você a entender Gênesis melhor?</span><span class="lang-en">Summarize what John Walton means when he says Hebrew Bible narrative is "imagistic." Does Walton's description help you understand Genesis better?</span></p>
+  <div class="page-footer">
+    <span>Class Notes: Adam to Noah</span>
+    <span><span class="lang-pt">Sessão 30 · Como os Autores Bíblicos Dizem a Verdade</span><span class="lang-en">Session 30 · How Biblical Authors Tell the Truth</span></span>
+  </div>
+</div>
+</div>
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s30-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s30-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+  (function () { var bar = document.getElementById('reading-progress'); function update() { var h = document.documentElement; var max = h.scrollHeight - h.clientHeight; bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; } window.addEventListener('scroll', update, { passive: true }); window.addEventListener('resize', update); update(); })();
+  (function () { var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; var targets = document.querySelectorAll('.reveal'); if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; } var io = new IntersectionObserver(function (entries) { entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } }); }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' }); targets.forEach(function (el) { io.observe(el); }); })();
+</script>
+<script src="../js/verse-modal.js"></script>
+</body>
+</html>
