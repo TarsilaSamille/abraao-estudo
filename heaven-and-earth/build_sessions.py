@@ -102,10 +102,47 @@ def _is_heading(line):
     caps = sum(1 for w in words if w[:1].isupper())
     return caps >= max(1, len(words) * 0.6)
 
+_BOOK_NAMES_PT = {
+    "Genesis": "Gênesis", "Exodus": "Êxodo", "Leviticus": "Levítico",
+    "Numbers": "Números", "Deuteronomy": "Deuteronômio",
+    "Joshua": "Josué", "Judges": "Juízes", "Ruth": "Rute",
+    "1 Samuel": "1 Samuel", "2 Samuel": "2 Samuel",
+    "1 Kings": "1 Reis", "2 Kings": "2 Reis",
+    "1 Chronicles": "1 Crônicas", "2 Chronicles": "2 Crônicas",
+    "Ezra": "Esdras", "Nehemiah": "Neemias", "Esther": "Ester",
+    "Job": "Jó", "Psalm": "Salmos", "Proverbs": "Provérbios",
+    "Ecclesiastes": "Eclesiastes", "Song of Songs": "Cânticos",
+    "Isaiah": "Isaías", "Jeremiah": "Jeremias", "Lamentations": "Lamentações",
+    "Ezekiel": "Ezequiel", "Daniel": "Daniel",
+    "Hosea": "Oseias", "Joel": "Joel", "Amos": "Amós",
+    "Obadiah": "Obadias", "Jonah": "Jonas", "Micah": "Miqueias",
+    "Nahum": "Naum", "Habakkuk": "Habacuque", "Zephaniah": "Sofonias",
+    "Haggai": "Ageu", "Zechariah": "Zacarias", "Malachi": "Malaquias",
+    "Matthew": "Mateus", "Mark": "Marcos", "Luke": "Lucas", "John": "João",
+    "Acts": "Atos", "Romans": "Romanos",
+    "1 Corinthians": "1 Coríntios", "2 Corinthians": "2 Coríntios",
+    "Galatians": "Gálatas", "Ephesians": "Efésios", "Philippians": "Filipenses",
+    "Colossians": "Colossenses",
+    "1 Thessalonians": "1 Tessalonicenses", "2 Thessalonians": "2 Tessalonicenses",
+    "1 Timothy": "1 Timóteo", "2 Timothy": "2 Timóteo",
+    "Titus": "Tito", "Philemon": "Filemom", "Hebrews": "Hebreus",
+    "James": "Tiago", "1 Peter": "1 Pedro", "2 Peter": "2 Pedro",
+    "1 John": "1 João", "2 John": "2 João", "3 John": "3 João",
+    "Jude": "Judas", "Revelation": "Apocalipse",
+}
+_SORTED_BOOKS_EN = sorted(_BOOK_NAMES_PT.keys(), key=len, reverse=True)
+
+def _translate_book_names(text):
+    """Replace English Bible book names in text with Portuguese."""
+    for en, pt in [(b, _BOOK_NAMES_PT[b]) for b in _SORTED_BOOKS_EN]:
+        text = text.replace(en, pt)
+    return text
+
 def _is_bible_ref(line):
-    # "Genesis 1:1 NASB", "Psalm 24:1-2 NASB", "Exodus 20:3-4 NASB", "Jonah 2:1-7 NASB"
-    # also "Psalm 104:1-5 NASB"
-    return bool(re.match(r'^(1\s+)?(Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|1\s*Samuel|2\s*Samuel|1\s*Kings|2\s*Kings|1\s*Chronicles|2\s*Chronicles|Ezra|Nehemiah|Esther|Job|Psalm|Proverbs|Ecclesiastes|Song\s+of\s+Songs|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi|Matthew|Mark|Luke|John|Acts|Romans|1\s*Corinthians|2\s*Corinthians|Galatians|Ephesians|Philippians|Colossians|1\s*Thessalonians|2\s*Thessalonians|1\s*Timothy|2\s*Timothy|Titus|Philemon|Hebrews|James|1\s*Peter|2\s*Peter|1\s*John|2\s*John|3\s*John|Jude|Revelation)\s+\d+:\d+', line))
+    # English AND Portuguese book names
+    books_en = r"(?:1\s+)?(?:Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|1\s*Samuel|2\s*Samuel|1\s*Kings|2\s*Kings|1\s*Chronicles|2\s*Chronicles|Ezra|Nehemiah|Esther|Job|Psalm|Proverbs|Ecclesiastes|Song\s+of\s+Songs|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi|Matthew|Mark|Luke|John|Acts|Romans|1\s*Corinthians|2\s*Corinthians|Galatians|Ephesians|Philippians|Colossians|1\s*Thessalonians|2\s*Thessalonians|1\s*Timothy|2\s*Timothy|Titus|Philemon|Hebrews|James|1\s*Peter|2\s*Peter|1\s*John|2\s*John|3\s*John|Jude|Revelation)"
+    books_pt = r"(?:1\s+)?(?:Gênesis|Êxodo|Levitico|Levítico|Números|Deuteronômio|Deuteronomio|Josué|Josue|Juízes|Juizes|Rute|1\s*Samuel|2\s*Samuel|1\s*Reis|2\s*Reis|1\s*Crônicas|1\s*Cronicas|2\s*Crônicas|2\s*Cronicas|Esdras|Neemias|Ester|Jó|Jo|Salmos|Provérbios|Provérbios|Eclesiastes|Cânticos|Cantares|Isaías|Isaias|Jeremias|Lamentações|Lamentacoes|Ezequiel|Daniel|Oseias|Oseias|Joel|Amós|Amos|Obadias|Jonas|Miqueias|Naum|Habacuque|Sofonias|Ageu|Zacarias|Malaquias|Mateus|Marcos|Lucas|João|Joao|Atos|Romanos|1\s*Coríntios|1\s*Corintios|2\s*Coríntios|2\s*Corintios|Gálatas|Galatas|Efésios|Efesios|Filipenses|Colossenses|1\s*Tessalonicenses|2\s*Tessalonicenses|1\s*Timóteo|1\s*Timoteo|2\s*Timóteo|2\s*Timoteo|Tito|Filemom|Hebreus|Tiago|1\s*Pedro|2\s*Pedro|1\s*João|1\s*Joao|2\s*João|2\s*Joao|3\s*João|3\s*Joao|Judas|Apocalipse)"
+    return bool(re.match(rf'^({books_en}|{books_pt})\s+\d+:\d+', line))
 
 _COMMENTARY_STARTERS = {"in", "here", "therefore", "this", "for", "however", "so", "thus", "but", "and in", "there are", "we all", "the following"}
 def _is_commentary_start(line):
@@ -356,6 +393,7 @@ SHELL_FOOT = """
 """
 
 def build_session(n, raw):
+    raw = _translate_book_names(raw)
     mod_dir, tpt, ten = SESSIONS[n]
     blocks = parse_session_body(raw)
     # merge consecutive 'bullets' blocks into one <ul>
