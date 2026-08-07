@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 14: Como a Poesia Bíblica se Comunica</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+
+  .figure { margin: 1.75rem 0; }
+  .figure img { width: 100%; height: auto; border-radius: 10px; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+
+  /* Poem block: Psalm 29 */
+  .poem { border-left: 4px solid #E3E7EC; padding-left: 1.25rem; margin: 1.5rem 0; }
+  .poem .pair { display: block; margin-bottom: .15rem; font-size: 1.05rem; line-height: 1.7; color: #24262a; }
+  .poem .verse-num { font-weight: 800; color: #17181a; margin-right: .5rem; }
+  .poem .src { font-size: .92rem; color: #5b6472; font-style: italic; margin-top: .5rem; }
+
+  blockquote { border-left: 4px solid #E3E7EC; padding-left: 1.25rem; margin: 1.5rem 0; font-style: italic; color: #24262a; }
+
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+
+<div id="reading-progress" aria-hidden="true"></div>
+
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+
+  <h1 class="title reveal"><span class="lang-pt">Sessão 14: Como a Poesia Bíblica se Comunica</span><span class="lang-en">Session 14: How Biblical Poetry Communicates</span></h1>
+  <hr class="rule">
+
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">A poesia hebraica é moldada em um ritmo de linha ou versículo. Não é métrica (baseada em contagem de sílabas), mas uma forma de versolibre.</span><span class="lang-en">Hebrew poetry is shaped into a line-rhythm or verse. It is not metrical (based on syllable counts) but a form of free verse.</span></li>
+    <li><span class="lang-pt">A poesia hebraica usa linguagem intencional e criativa (por exemplo, uso pesado de metáfora) com combinações de palavras únicas, repetição, padrões e interligação a outras partes da Escritura.</span><span class="lang-en">Hebrew poetry uses intentional, creative language (e.g., heavy use of metaphor) with unique word combinations, repetition, patterns, and hyperlinking to other parts of Scripture.</span></li>
+    <li><span class="lang-pt">Os autores bíblicos constroem sua teologia do caráter, essência e propósito de Deus a partir de dentro de sua cosmovisão.</span><span class="lang-en">The biblical authors build out their theology of God’s character, essence, and purpose from within their worldview.</span></li>
+  </ul>
+
+  <h2 class="section reveal"><span class="lang-pt">A Poética da Poesia Bíblica: Tradução e Design Literário do Salmo 29</span><span class="lang-en">The Poetics of Biblical Poetry: Translation and Literary Design of Psalm 29</span></h2>
+  <div class="poem reveal">
+    <span class="pair"><span class="verse-num">1</span><span class="lang-pt">Dai a Yahweh, ó filhos de Deus,<br>dai a Yahweh glória e força.</span><span class="lang-en">Give to Yahweh, O sons of God<br>give to Yahweh glory and strength.</span></span>
+    <span class="pair"><span class="verse-num">2</span><span class="lang-pt">Dai a Yahweh a glória devida ao seu nome;<br>adorai a Yahweh na majestade de sua santidade.</span><span class="lang-en">Give to Yahweh the glory due his name;<br>worship Yahweh in the majesty of his holiness.</span></span>
+    <span class="pair"><span class="verse-num">3</span><span class="lang-pt">A voz de Yahweh está sobre as águas;<br>o Deus da glória troveja,<br>Yahweh sobre as poderosas águas.</span><span class="lang-en">The voice of Yahweh is over the waters;<br>the God of glory thunders,<br>Yahweh over the mighty waters.</span></span>
+    <span class="pair"><span class="verse-num">4</span><span class="lang-pt">A voz de Yahweh é poderosa;<br>a voz de Yahweh é majestosa.</span><span class="lang-en">The voice of Yahweh is powerful;<br>the voice of Yahweh is majestic.</span></span>
+    <span class="pair"><span class="verse-num">5</span><span class="lang-pt">A voz de Yahweh quebra os cedros;<br>Yahweh despedaça os cedros do Líbano.</span><span class="lang-en">The voice of Yahweh breaks the cedars;<br>Yahweh breaks in pieces the cedars of Lebanon.</span></span>
+    <span class="pair"><span class="verse-num">6</span><span class="lang-pt">Ele faz o Líbano saltar como um bezerro,<br>o Monte Sirion como um jovem boi selvagem.</span><span class="lang-en">He makes Lebanon leap like a calf,<br>Mount Sirion like a young wild ox.</span></span>
+    <span class="pair"><span class="verse-num">7</span><span class="lang-pt">A voz de Yahweh golpeia com relâmpagos.</span><span class="lang-en">The voice of Yahweh strikes with flashes of fire.</span></span>
+    <span class="pair"><span class="verse-num">8</span><span class="lang-pt">A voz de Yahweh faz tremer o deserto;<br>Yahweh faz tremer o Deserto de Cades.</span><span class="lang-en">The voice of Yahweh shakes the desert;<br>Yahweh shakes the Desert of Kadesh.</span></span>
+    <span class="pair"><span class="verse-num">9</span><span class="lang-pt">a voz de Yahweh faz estremecer os carvalhos<br>e deixa as florestas nuas.</span><span class="lang-en">the voice of Yahweh shakes apart the oaks<br>and strips the forests bare.</span></span>
+    <div class="src"><span class="lang-pt">Salmo 29. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: Introdução à Bíblia Hebraica (2019).</span><span class="lang-en">Psalm 29. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Introduction to the Hebrew Bible (2019).</span></div>
+  </div>
+
+  <h2 class="section reveal"><span class="lang-pt">Definições e Características da Poesia em Geral</span><span class="lang-en">Definitions and Features of Poetry in General</span></h2>
+  <p class="body reveal"><span class="lang-pt">A Encyclopedia Brittanica define poesia como “um tipo de literatura que evoca uma concentrada consciência imaginativa da experiência ou emoções de alguém por meio de linguagem bem-elaborada que é escolhida por seu significado, som e ritmo.”</span><span class="lang-en">Encyclopedia Brittanica defines poetry as “a kind of literature that evokes a concentrated imaginative awareness of one’s experience or emotions by means of well-crafted language that is chosen for its meaning, sound, and rhythm.”</span></p>
+  <blockquote class="reveal">
+    <span class="lang-pt">“A poesia é um tipo de linguagem humana que diz mais, e o diz com mais intensidade do que a linguagem comum.”</span>
+    <span class="lang-en">“Poetry is a kind of human language that says more, and says it more intensely than does ordinary language.”</span>
+    <footer style="font-style:normal;font-size:.9rem;color:#5b6472;margin-top:.6rem;">— Perrine, Laurence (1968). <span class="lang-pt">Som e Sentido: Uma Introdução à Poesia</span><span class="lang-en">Sound and Sense: An Introduction to Poetry</span>. Harcourt College Publishers. 3-4.</footer>
+  </blockquote>
+  <blockquote class="reveal">
+    <span class="lang-pt">“A poesia transmite pensamento; há algo que o poeta quer comunicar. E a poesia transmite esse pensamento de maneira autoconsciente, através de uma estruturação especial da linguagem que chama a atenção para o ‘como’ da mensagem tanto quanto para o ‘o quê’. Na verdade, na boa poesia, o ‘como’ e o ‘o quê’ se tornam indistinguíveis. Como diz Robert Alter: ‘A poesia ... não é apenas um conjunto de técnicas para dizer de forma impressionante o que poderia ser dito de outra forma. Em vez disso, é uma maneira particular de imaginar o mundo.’”</span>
+    <span class="lang-en">“Poetry conveys thought; there is something the poet wants to communicate. And poetry conveys that thought in a self-conscious manner, through a special structuring of the language that calls attention to the ‘how’ of the message as well as the ‘what.’ In fact, in good poetry, the ‘how’ and the ‘what’ become indistinguishable. As Robert Alter puts it: ‘Poetry ... is not just a set of techniques for saying impressively what could be said otherwise. Rather, it is a particular way of imagining the world.’”</span>
+    <footer style="font-style:normal;font-size:.9rem;color:#5b6472;margin-top:.6rem;">— Berlin, Adele (1996). “<span class="lang-pt">Introdução à Poesia Bíblica</span><span class="lang-en">Introduction to Biblical Poetry</span>.” <span class="lang-pt">A Bíblia do Intérprete</span><span class="lang-en">New Interpreter’s Bible</span>, Vol. IV. 301-315.</footer>
+  </blockquote>
+
+  <h3 class="sub reveal"><span class="lang-pt">Características Típicas da Poesia</span><span class="lang-en">Typical Features of Poetry</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">Densidade de expressão, concisão = menos palavras do que a fala normal</span><span class="lang-en">Density of expression, terseness = fewer words than normal speech</span></li>
+    <li><span class="lang-pt">Uso intencional e criativo da linguagem (combinações de palavras únicas ou repetição)</span><span class="lang-en">Intentionally creative use of language (unique word combinations or repetition)</span></li>
+    <li><span class="lang-pt">Uso pesado de imagética e metáfora: combinar imagens que normalmente não nos ocorrem (derrota em batalha = lavada pelas águas caóticas)</span><span class="lang-en">Heavy use of imagery and metaphor: combining images that don’t normally occur to us (defeat in battle = washed away by chaotic waters)</span></li>
+    <li><span class="lang-pt">A poesia convida você a uma experiência imaginativa para comunicar mais</span><span class="lang-en">Poetry invites you into an imaginative experience in order to communicate more</span></li>
+    <li><span class="lang-pt">Um uso rítmico da linguagem (metro, rima, medida) que impõe restrições ao poeta e força uma economia de expressão, uma compressão</span><span class="lang-en">A rhythmic use of language (meter, rhyme, measure) that places constraints on the poet and forces an economy of expression, a compression</span></li>
+  </ul>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-14/p2_345.jpeg" alt="Rough Map of Israel">
+    <figcaption class="caption"><span class="lang-pt">Mapa Esquemático de Israel. Ilustração criada por Tim Mackie para BibleProject Classroom: Introdução à Bíblia Hebraica (2019).</span><span class="lang-en">Rough Map of Israel. Illustration created by Tim Mackie for BibleProject Classroom: Introduction to the Hebrew Bible (2019).</span></figcaption>
+  </figure>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-14/p3_349.jpeg" alt="God's Throne Over All Creation">
+    <figcaption class="caption"><span class="lang-pt">O Trono de Deus Sobre Toda a Criação. Ilustração criada por Tim Mackie para BibleProject Classroom: Introdução à Bíblia Hebraica (2019).</span><span class="lang-en">God’s Throne Over All Creation. Illustration created by Tim Mackie for BibleProject Classroom: Introduction to the Hebrew Bible (2019).</span></figcaption>
+  </figure>
+
+  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">Resuma o que você aprendeu até agora sobre como a poesia bíblica funciona. Quais são algumas das coisas a se procurar enquanto você lê?</span><span class="lang-en">Summarize what you’ve learned so far about how biblical poetry works. What are some of the things to look for as you read?</span></p>
+
+  <div class="page-footer">
+    <span>Class Notes: Introduction to the Hebrew Bible</span>
+    <span><span class="lang-pt">Sessão 14 · Como a Poesia Bíblica se Comunica</span><span class="lang-en">Session 14 · How Biblical Poetry Communicates</span></span>
+  </div>
+</div>
+
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s14-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s14-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+  <script src="../js/verse-modal.js"></script>
+</body>
+</html>

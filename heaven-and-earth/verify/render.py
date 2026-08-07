@@ -37,7 +37,10 @@ def render_html(session, module):
     js = f"""
     const {{ chromium }} = require({PW!r});
     (async () => {{
-      const browser = await chromium.launch();
+      const browser = await chromium.launch({{
+        executablePath: '/Users/macbook/Library/Caches/ms-playwright/chromium-1228/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing',
+        args: ['--no-sandbox']
+      }});
       const page = await browser.newPage({{ viewport: {{ width: 935, height: 1200 }} }});
       await page.goto({url!r}, {{ waitUntil: 'networkidle' }});
       await page.evaluate(() => {{ document.documentElement.lang='pt'; document.querySelectorAll('.reveal').forEach(e=>e.classList.add('visible')); }});

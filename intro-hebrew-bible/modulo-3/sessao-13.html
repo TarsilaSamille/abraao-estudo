@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 13: As Diferentes “Enciclopédias” de Autores e Leitores</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .ordered { list-style: none; counter-reset: item; padding: 0; }
+  .ordered > li { counter-increment: item; padding-left: 2.2rem; position: relative; margin-bottom: .8rem; line-height: 1.72; font-size: 1.05rem; }
+  .ordered > li:before { content: counter(item) "."; position: absolute; left: .55rem; font-weight: 800; }
+
+  .figure { margin: 1.75rem 0; }
+  .figure img { width: 100%; height: auto; border-radius: 10px; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  blockquote { border-left: 4px solid #E3E7EC; padding-left: 1.25rem; margin: 1.5rem 0; font-style: italic; color: #24262a; }
+
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+
+<div id="reading-progress" aria-hidden="true"></div>
+
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+
+  <h1 class="title reveal"><span class="lang-pt">Sessão 13: As Diferentes “Enciclopédias” de Autores e Leitores</span><span class="lang-en">Session 13: The Different “Encyclopedias” of Authors and Readers</span></h1>
+  <hr class="rule">
+
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">Aprender a ler bem a Bíblia Hebraica requer uma consciência de nossas “enciclopédias de recepção” pessoais e a descoberta das “enciclopédias de produção” assumidas pelos autores bíblicos ao se comunicarem.</span><span class="lang-en">Learning to read the Hebrew Bible well requires an awareness of our personal “encyclopedias of reception” and a discovery of the “encyclopedias of production” assumed by the biblical authors as they communicate.</span></li>
+    <li><span class="lang-pt">A Bíblia Hebraica é literatura cuidadosamente elaborada, com cada palavra colocada intencionalmente para transmitir uma mensagem específica.</span><span class="lang-en">The Hebrew Bible is carefully crafted literature with every word placed intentionally to convey a specific message.</span></li>
+    <li><span class="lang-pt">Aprender a ler a Bíblia Hebraica requer estudar as convenções específicas e os modos como os autores bíblicos escreveram narrativa, poesia e discurso.</span><span class="lang-en">Learning to read the Hebrew Bible requires studying the specific conventions and ways the biblical authors wrote narrative, poetry, and discourse.</span></li>
+  </ul>
+
+  <h2 class="section reveal"><span class="lang-pt">Duas Ideias Revolucionárias Sobre a Bíblia Hebraica</span><span class="lang-en">Two Revolutionary Ideas About the Hebrew Bible</span></h2>
+  <ol class="ordered reveal">
+    <li><span class="lang-pt">O Antigo Testamento é um texto antigo.</span><span class="lang-en">The Old Testament is an ancient text.</span></li>
+    <li><span class="lang-pt">Um texto é um ato de comunicação literária intencional.</span><span class="lang-en">A text is an act of intentional literary communication.</span></li>
+  </ol>
+
+  <h2 class="section reveal"><span class="lang-pt">Teoria da Comunicação Textual</span><span class="lang-en">Theory of Textual Communication</span></h2>
+  <figure class="figure reveal">
+    <img src="img/sessao-13/p3_335.jpeg" alt="Textual Communication diagram">
+    <figcaption class="caption"><span class="lang-pt">Comunicação Textual. Criado por Tim Mackie para BibleProject Classroom: Introdução à Bíblia Hebraica (2019).</span><span class="lang-en">Textual Communication. Created by Tim Mackie for BibleProject Classroom: Introduction to the Hebrew Bible (2019).</span></figcaption>
+  </figure>
+  <p class="body reveal"><span class="lang-pt">Onde o significado está localizado? A princípio, está na mente de um autor. Mas, no caso de autores antigos, não temos mais acesso às suas mentes senão através do texto. O texto é a incorporação literária da comunicação intencional de um autor.</span><span class="lang-en">Where is meaning located? At first, it is in the mind of an author. But in the case of ancient authors, we no longer have access to their minds apart from the text. The text is the literary embodiment of an author’s purposed communication.</span></p>
+
+  <h2 class="section reveal"><span class="lang-pt">“Enciclopédia de Produção” e “Enciclopédia de Recepção”</span><span class="lang-en">“Encyclopedia of Production” and “Encyclopedia of Reception”</span></h2>
+  <p class="body reveal"><span class="lang-pt">Nossa “enciclopédia” é o depósito mental de palavras, ideias, imagens e histórias que reunimos e armazenamos em nossas memórias desde nossos primeiros momentos de vigília. Todo texto que lemos será interpretado e compreendido à luz de nossa enciclopédia operante atual. Os autores têm suas enciclopédias a partir das quais produzem textos, e os leitores têm enciclopédias que usam para processar e compreender textos.</span><span class="lang-en">Our “encyclopedia” is the mental storehouse of words, ideas, images, and stories that we gather and store in our memories from our first waking moments. Every text we read will be interpreted and understood in light of our current operating encyclopedia. Authors have their encyclopedias from which they produce texts, and readers have encyclopedias they use to process and understand texts.</span></p>
+  <p class="body reveal"><span class="lang-pt">O leitor modelo que quer entender um autor em seus próprios termos adaptará sua enciclopédia de recepção aprendendo sobre a enciclopédia de produção do autor.</span><span class="lang-en">The model reader who wants to understand an author on their own terms will adapt their encyclopedia of reception by learning about the author’s encyclopedia of production.</span></p>
+  <p class="body reveal"><span class="lang-pt">Para mais sobre essa distinção entre a enciclopédia de produção e a enciclopédia de recepção, veja Stefan Alkier, Reading the Bible Intertextually (pages 3-21).</span><span class="lang-en">For more on this distinction between the encyclopedia of production and encyclopedia of reception, see Stefan Alkier, Reading the Bible Intertextually (pages 3-21).</span></p>
+
+  <h2 class="section reveal"><span class="lang-pt">Superando Desafios de Enciclopédias Diferentes</span><span class="lang-en">Overcoming Challenges of Differing Encyclopedias</span></h2>
+  <p class="body reveal"><span class="lang-pt">Um dos grandes desafios em ler a Bíblia é que exige esforço tornar-se consciente de nossas próprias enciclopédias de recepção modernas que (inconscientemente) impomos ao autor bíblico. Isso aparece quando, por exemplo, impomos a cosmologia moderna sobre a cosmologia antiga de Gênesis 1, ou quando atribuímos ideias/debates doutrinários muito posteriores aos autores bíblicos (por exemplo, debates sobre calvinismo versus arminianismo, soberania divina e livre-arbítrio humano, etc.).</span><span class="lang-en">One of the great challenges in reading the Bible is that it takes work to become aware of our own modern encyclopedias of reception that we (unknowingly) impose upon the biblical author. This shows up when we, for example, impose modern cosmology onto the ancient cosmology of Genesis 1, or when we attribute much later doctrinal ideas/debates to the biblical authors (e.g., debates about Calvinism versus Arminianism, divine sovereignty and human free will, etc.).</span></p>
+  <p class="body reveal"><span class="lang-pt">Outro desafio significativo é que exige esforço descobrir a enciclopédia de produção assumida pelo autor ao se comunicar. Podemos aumentar nossa compreensão da enciclopédia do autor aprendendo algo sobre hebraico, cosmovisões do antigo Oriente Próximo e história e cultura do antigo Israel. Os autores bíblicos também assumem um alto grau de familiaridade com o TaNaK porque ele foi produzido e lido primeiramente dentro de uma pequena comunidade que estava imersa em seu mundo textual. É um conjunto de textos altamente interligados, cujos enigmas e ambiguidades se tornam mais claros após repetidas releituras ao longo de uma vida.</span><span class="lang-en">Another significant challenge is that it takes effort to discover the encyclopedia of production assumed by the author as they communicate. We can increase our understanding of the author’s encyclopedia by learning something about Hebrew, ancient Near Eastern worldviews, and ancient Israelite history and culture. The biblical authors also assume a high degree of familiarity with the TaNaK because it was first produced and read within a small community that was immersed in its textual world. It is a highly hyperlinked set of texts, whose puzzles and ambiguities become more clear after repeated re-reading over a lifetime.</span></p>
+
+  <h2 class="section reveal"><span class="lang-pt">Literatura e Poética</span><span class="lang-en">Literature and Poetics</span></h2>
+  <p class="body reveal"><span class="lang-pt">O que é literatura? Literatura é uma forma de comunicação escrita que...</span><span class="lang-en">What is literature? Literature is a form of written communication th...</span></p>
+  <blockquote class="reveal">
+    <span class="lang-pt">“Uma leitura coerente de qualquer obra de arte, qualquer que seja o meio, requer alguma consciência detalhada da grade de convenções sobre as quais e contra as quais esta obra particular opera. Normalmente, esses são conjuntos elaborados de acordos tácitos entre artista e audiência que criam o contexto habilitador no qual ocorre a comunicação complexa da arte. Através de nossa consciência da convenção podemos reconhecer padrões significativos ou simplesmente agradáveis de repetição, simetria ou contraste; podemos detectar pistas sutis quanto ao significado da obra; podemos identificar o que é inovador e o que é tradicional em cada parte da criação artística. … Uma das principais dificuldades que os leitores modernos têm em perceber a arte na narrativa bíblica é precisamente que perdemos a maior parte das chaves para as convenções a partir das quais esses textos foram moldados.”</span>
+    <span class="lang-en">“A coherent reading of any work of art, whatever the medium, requires some detailed awareness of the grid of conventions upon which and against which this particular work operates. Usually, these are elaborate sets of tacit agreements between artist and audience that create the enabling context in which the complex communication of art occurs. Through our awareness of convention we can recognize significant or simply pleasing patterns of repetition, symmetry, or contrast; we can detect subtle cues and clues as to the meaning of the work; we can spot what is innovative and what is traditional at each part of the artistic creation. ... One of the chief difficulties modern readers have in perceiving the artistry in biblical narrative is precisely that we have lost most of the keys to the conventions out of which these texts were shaped.”</span>
+    <footer style="font-style:normal;font-size:.9rem;color:#5b6472;margin-top:.6rem;">— Alter, Robert (2011). <span class="lang-pt">A Arte da Narrativa Bíblica</span><span class="lang-en">The Art of Biblical Narrative</span>. Basic Books. 47.</footer>
+  </blockquote>
+
+  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">Como você responderia a alguém que diz: “Eu não preciso entender as convenções antigas do autor porque acho que Deus falará comigo através do texto mesmo que eu não entenda o contexto antigo”?</span><span class="lang-en">How would you respond to someone who says, “I don’t need to understand the ancient conventions of the author because I think God will speak to me through the text even though I don’t understand the ancient context”?</span></p>
+
+  <div class="page-footer">
+    <span>Class Notes: Introduction to the Hebrew Bible</span>
+    <span><span class="lang-pt">Sessão 13 · As Diferentes “Enciclopédias” de Autores e Leitores</span><span class="lang-en">Session 13 · The Different “Encyclopedias” of Authors and Readers</span></span>
+  </div>
+</div>
+
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s13-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s13-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+  <script src="../js/verse-modal.js"></script>
+</body>
+</html>
