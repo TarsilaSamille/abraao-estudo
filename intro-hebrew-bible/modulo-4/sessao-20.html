@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 20: Enredos e Subenredos</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+
+  .figure { margin: 1.75rem 0; }
+  .figure img { width: 100%; height: auto; border-radius: 10px; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+
+<div id="reading-progress" aria-hidden="true"></div>
+
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+
+  <h1 class="title reveal"><span class="lang-pt">Sessão 20: Enredos e Subenredos</span><span class="lang-en">Session 20: Plots and Subplots</span></h1>
+  <hr class="rule">
+
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">Uma maneira pela qual a narrativa bíblica usa o enredo é através do embutimento de enredo, ou camadas de linhas de história trabalhando juntas para contar a história geral da Bíblia.</span><span class="lang-en">One way biblical narrative uses plot is through plot embedding, or layers of storylines working together to tell the overall story of the Bible.</span></li>
+    <li><span class="lang-pt">Narrativas individuais são enquadradas dentro de um contexto maior que lhes dá um significado que transcende os eventos individuais.</span><span class="lang-en">Individual narratives are framed within a larger context that gives them a meaning that transcends the individual events.</span></li>
+    <li><span class="lang-pt">A Bíblia Hebraica é sobre nossa necessidade do messias, e o Novo Testamento revela que Jesus é o Messias de que precisamos. Tanto Jesus quanto os apóstolos apelam à Bíblia Hebraica para revelar a verdadeira identidade de Jesus.</span><span class="lang-en">The Hebrew Bible is about our need for the messiah, and the New Testament reveals that Jesus is the Messiah we need. Both Jesus and the apostles appeal to the Hebrew Bible to reveal Jesus’ true identity.</span></li>
+  </ul>
+
+  <h2 class="section reveal"><span class="lang-pt">Enredos Dentro de Enredos Dentro de Enredos</span><span class="lang-en">Plots Within Plots Within Plots</span></h2>
+  <p class="body reveal"><span class="lang-pt">Toda a narrativa bíblica funciona como um complexo entrelaçamento de camadas de enredo. Cada subenredo contribui para o nível superior, e cada nível superior determina o significado último do subenredo.</span><span class="lang-en">The entire biblical narrative works like a complex interweaving of plot layers. Each subplot contributes to the higher level, and each higher level determines the ultimate meaning of the subplot.</span></p>
+
+  <h3 class="sub reveal"><span class="lang-pt">Nível de Enredo 1: Deus e as Nações</span><span class="lang-en">Plot Level 1: God and the Nations</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">Gênesis 1-11 coloca a história em movimento.</span><span class="lang-en">Genesis 1-11 sets the story in motion.</span></li>
+    <li><span class="lang-pt">Humanos são instalados como imagens divinas para governar em nome de Deus</span><span class="lang-en">Humans are installed as divine images to rule on God’s behalf</span></li>
+    <li><span class="lang-pt">Humanos tolamente renunciam sua responsabilidade, e são exilados para a terra da morte</span><span class="lang-en">Humans foolishly forfeit their responsibility, and they are exiled unto the land of death</span></li>
+    <li><span class="lang-pt">Mas Deus promete levantar uma “semente” que vencerá o mal através da morte</span><span class="lang-en">But God promises to raise up a “seed” who will overcome evil through death</span></li>
+    <li><span class="lang-pt">De fora do Éden a Babilônia (Gn. 4-11)</span><span class="lang-en">From outside Eden to Babylon (Gen. 4-11)</span></li>
+  </ul>
+
+  <h3 class="sub reveal"><span class="lang-pt">Nível de Enredo 2: Deus e a Família de Abraão</span><span class="lang-en">Plot Level 2: God and Abraham’s Family</span></h3>
+  <p class="body reveal"><span class="lang-pt">Gênesis 12 até o resto da Bíblia Hebraica conta a história de Deus e Israel.</span><span class="lang-en">Genesis 12 through the rest of the Hebrew Bible tells the story of God and Israel.</span></p>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">A família de Abraão e a promessa da aliança (Gn. 12-50)</span><span class="lang-en">Abraham’s family and the covenant promise (Gen. 12-50)</span></li>
+    <li><span class="lang-pt">O êxodo (Êx. 1-18)</span><span class="lang-en">The exodus (Exod. 1-18)</span></li>
+    <li><span class="lang-pt">A aliança no Monte Sinai (Êx. 19-Nm. 10)</span><span class="lang-en">The covenant at Mount Sinai (Exod. 19-Num. 10)</span></li>
+    <li><span class="lang-pt">Peregrinações no deserto (Nm. 10-Dt. 34)</span><span class="lang-en">Wilderness wanderings (Num. 10-Deut. 34)</span></li>
+    <li><span class="lang-pt">Entrada na terra prometida (Js.)</span><span class="lang-en">Entry to the promised land (Josh.)</span></li>
+    <li><span class="lang-pt">A falha dos juízes (Jz.)</span><span class="lang-en">The failure of the judges (Jud.)</span></li>
+    <li><span class="lang-pt">A falha da monarquia (Sm.-Rs.)</span><span class="lang-en">The failure of the monarchy (Sam.-Kgs.)</span></li>
+    <li><span class="lang-pt">Retorno do exílio e esperanças não realizadas (Ed-Ne)</span><span class="lang-en">Return from exile and unrealized hopes (Ezra-Neh.)</span></li>
+  </ul>
+
+  <h3 class="sub reveal"><span class="lang-pt">Níveis 1 e 2 se Combinam: Jesus e a Restauração do Reino de Deus</span><span class="lang-en">Plot Levels 1 and 2 Combine: Jesus and the Restoration of God’s Reign</span></h3>
+  <p class="body reveal"><span class="lang-pt">O Novo Testamento reúne ambos os níveis do enredo da Bíblia Hebraica. Jesus é tanto a imagem humana fiel que governa o mundo com Deus (nível de enredo 1) quanto o israelita fiel através de quem as promessas da aliança de Deus podem se espalhar para as nações (nível de enredo 2).</span><span class="lang-en">The New Testament brings together both levels of the plot of the Hebrew Bible. Jesus is both the faithful human image that rules the world with God (plot level 1) and the faithful Israelite through whom God’s covenant promises can spread to the nations (plot level 2).</span></p>
+
+  <h3 class="sub reveal"><span class="lang-pt">Nível de Enredo 3: O Enredo de Cada Narrativa Bíblica</span><span class="lang-en">Plot Level 3: The Plot of Each Biblical Narrative</span></h3>
+  <p class="body reveal"><span class="lang-pt">O enredo nos níveis 1 e 2 é levado adiante por um vasto número de narrativas mais curtas, cada uma com suas próprias linhas de enredo.</span><span class="lang-en">The plot at levels 1 and 2 is carried along by a vast number of shorter narratives, each with their own plotlines.</span></p>
+  <p class="body reveal"><span class="lang-pt">Centenas de narrativas individuais compõem todos os grandes movimentos. Cada narrativa individual é enquadrada dentro de seu contexto de enredo maior. O significado último destas histórias individuais depende de sua colocação na história geral.</span><span class="lang-en">Hundreds of individual narratives make up all of the larger movements. Every individual narrative is framed within its larger plot context. The ultimate meaning of these individual stories depends on their placement in the overall story.</span></p>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-20/p1_243.jpeg" alt="The Plotline of the Bible">
+    <figcaption class="caption"><span class="lang-pt">A Linha de Enredo da Bíblia. Ilustração criada por Tim Mackie para BibleProject Classroom: Introdução à Bíblia Hebraica (2019).</span><span class="lang-en">The Plotline of the Bible. Illustration created by Tim Mackie for BibleProject Classroom: Introduction to the Hebrew Bible (2019).</span></figcaption>
+  </figure>
+
+  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">Como você resumiria a maneira pela qual a história da família de Abraão se relaciona com a história de toda a Bíblia Hebraica?</span><span class="lang-en">How would you summarize the way that the story of Abraham’s family relates to the story of the whole Hebrew Bible?</span></p>
+
+  <div class="page-footer">
+    <span>Class Notes: Introduction to the Hebrew Bible</span>
+    <span><span class="lang-pt">Sessão 20 · Enredos e Subenredos</span><span class="lang-en">Session 20 · Plots and Subplots</span></span>
+  </div>
+</div>
+
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s20-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s20-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+  <script src="../js/verse-modal.js"></script>
+</body>
+</html>

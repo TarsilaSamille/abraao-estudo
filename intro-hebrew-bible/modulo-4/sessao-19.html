@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 19: Enredo na Narrativa Bíblica: A História de Jonas</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  blockquote { border-left: 4px solid #E3E7EC; padding-left: 1.25rem; margin: 1.5rem 0; font-style: italic; color: #24262a; }
+
+  .figure { margin: 1.75rem 0; }
+  .figure img { width: 100%; height: auto; border-radius: 10px; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+
+<div id="reading-progress" aria-hidden="true"></div>
+
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+
+  <h1 class="title reveal"><span class="lang-pt">Sessão 19: Enredo na Narrativa Bíblica: A História de Jonas</span><span class="lang-en">Session 19: Plot in Biblical Narrative: The Story of Jonah</span></h1>
+  <hr class="rule">
+
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">O enredo de uma narrativa investe a história com significado — o conflito dentro de um enredo e como o conflito é resolvido investem a narrativa com sua mensagem ética.</span><span class="lang-en">The plot of a narrative invests the story with meaning—the conflict within a plot and how the conflict is resolved invests the narrative with its ethical message.</span></li>
+    <li><span class="lang-pt">O significado da narrativa também pode ser encontrado através da sequência de enredo, ou o uso de conflito, clímax e resolução para transmitir uma mensagem. Os mesmos personagens no mesmo conflito, mas com diferentes resoluções do conflito, podem ter uma mensagem diferente.</span><span class="lang-en">Narrative meaning can also be found through plot sequence, or the use of conflict, climax, and resolution to convey a message. The same characters in the same conflict but with different resolutions of the conflict can have a different message.</span></li>
+  </ul>
+
+  <h2 class="section reveal"><span class="lang-pt">Chaves para Interpretar a Narrativa Bíblica: Enredo</span><span class="lang-en">Keys for Interpreting Biblical Narrative: Plot</span></h2>
+  <p class="body reveal"><span class="lang-pt">Enredo é o arranjo de personagens e eventos em uma sequência significativa a fim de comunicar o significado da história.</span><span class="lang-en">Plot is the arrangement of characters and events into a meaningful sequence in order to communicate the meaning of the story.</span></p>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-19/plot-structure.png" alt="Plot Structure">
+    <figcaption class="caption"><span class="lang-pt">Estrutura de Enredo. Criado por Tim Mackie para BibleProject Classroom: Introdução à Bíblia Hebraica (2019).</span><span class="lang-en">Plot Structure. Created by Tim Mackie for BibleProject Classroom: Introduction to the Hebrew Bible (2019).</span></figcaption>
+  </figure>
+
+  <blockquote class="reveal">
+    <span class="lang-pt">“Histórias e enredos são os agentes cruciais que investem eventos com significado. A maneira como os fatos são descritos, o ponto em que a tensão é criada e o clímax ocorre, a seleção e o arranjo das partes, todos estes indicam o significado que se acredita que os eventos possuem, e assim o que um autor pretende comunicar ao contá-los ao leitor.”</span>
+    <span class="lang-en">“Stories and plots are the crucial agents that invest events with meaning. The way the facts are described, the point at which the tension is created and the climax occurs, the selection and arrangement of the parts, these all indicate the meaning which the events are believed to possess, and thus what an author means to communicate by telling them to the reader.”</span>
+    <footer style="font-style:normal;font-size:.9rem;color:#5b6472;margin-top:.6rem;">— Wright, N.T. (1992). <span class="lang-pt">O Novo Testamento e o Povo de Deus</span><span class="lang-en">The New Testament and the People of God</span>. Fortress Press. 79.</footer>
+  </blockquote>
+
+  <h3 class="sub reveal"><span class="lang-pt">Significado da Narrativa e Sequência de Enredo</span><span class="lang-en">Narrative Meaning and Plot Sequence</span></h3>
+  <p class="body reveal"><span class="lang-pt">As narrativas comunicam identificando um evento particular como o problema que inflama a tensão e força os personagens para uma história de encontrar uma resolução. Com a seleção do problema e a maneira como os personagens o superam e encontram uma solução, esses pontos de enredo assumem e manifestam o conjunto de valores éticos do narrador, e são parte de como as histórias fazem reivindicações morais sobre o leitor.</span><span class="lang-en">Narratives communicate by identifying a particular event as the problem that ignites tension and forces the characters into a story of finding a resolution. With the selection of the problem and the way characters overcome it and find a solution, these plot points assume and manifest the narrator’s ethical value set, and they are part of how stories make moral claims on the reader.</span></p>
+  <p class="body reveal"><span class="lang-pt">A mesma exata série de eventos pode carregar uma mensagem totalmente diferente baseada no conflito de enredo escolhido e na resolução.</span><span class="lang-en">The same exact series of events can carry a totally different moral message based on the chosen plot conflict and resolution.</span></p>
+  <p class="body reveal"><span class="lang-pt">História #1: Billy é um menino em crescimento. Ele continua roubando biscoitos dos armários à noite. Sua mãe continua pegando-o, e assim ele desenvolve maneiras cada vez mais criativas de roubar os biscoitos.</span><span class="lang-en">Story #1: Billy is a growing young boy. He keeps sneaking cookies from the cupboards at night. His mom keeps catching him, and so he develops more and more creative ways to steal the cookies.</span></p>
+  <p class="body reveal"><span class="lang-pt">História #2: Billy é um menino em crescimento. Ele continua roubando biscoitos dos armários à noite. Sua mãe fica cada vez mais preocupada, e eventualmente desenvolve um sistema de recompensas para que, se ele limpar seu quarto semanalmente, possa ganhar muitos biscoitos.</span><span class="lang-en">Story #2: Billy is a growing young boy. He keeps sneaking cookies from the cupboards at night. His mom gets more and more concerned, and eventually develops a reward system so that if he cleans his room weekly he can earn lots of cookies.</span></p>
+
+  <h3 class="sub reveal"><span class="lang-pt">Rastreando o Enredo: Jonas</span><span class="lang-en">Tracking the Plot: Jonah</span></h3>
+  <p class="body reveal"><span class="lang-pt">Ler a narrativa bíblica requer a habilidade desenvolvida de rastrear o enredo para que obtenhamos a mensagem pretendida pelo autor.</span><span class="lang-en">Reading biblical narrative requires the developed skill of tracking the plot so that we get the message intended by the author.</span></p>
+  <p class="body reveal"><span class="lang-pt">Vejamos a história de Jonas. Qual é o verdadeiro conflito de enredo?</span><span class="lang-en">Let’s look at the story of Jonah. What is the real plot conflict?</span></p>
+  <p class="body reveal"><span class="lang-pt">Em Jonas 1, somos apresentados a dois conflitos de enredo:</span><span class="lang-en">In Jonah 1, we are presented two plot conflicts:</span></p>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">1. Deus e Nínive: Veio a palavra de Yahweh a Jonas: “Levanta-te, vai a Nínive, a grande cidade, e clama contra ela, porque a sua malícia subiu até mim.” (1:1-2)</span><span class="lang-en">1. God and Nineveh: The word of Yahweh came to Jonah, “Arise, go to Nineveh the great city and cry against it, for their wickedness has come up before me.” (1:1-2)</span></li>
+    <li><span class="lang-pt">2. Deus e Jonas: “Mas Jonas se levantou para fugir para Társis da presença do SENHOR.” (1:3)</span><span class="lang-en">2. God and Jonah: “But Jonah rose up to flee to Tarshish from the presence of the Lord.” (1:3)</span></li>
+  </ul>
+  <p class="body reveal"><span class="lang-pt">Em Jonas 2, o segundo conflito de enredo é abordado conforme Jonas se aproxima da morte, ora a Deus e é libertado.</span><span class="lang-en">In Jonah 2, the second plot conflict is addressed as Jonah nears death, prays to God, and is delivered.</span></p>
+  <p class="body reveal"><span class="lang-pt">Em Jonas 3, o primeiro conflito de enredo é abordado conforme os ninivitas se afastam do seu mal após a mensagem de Jonas.</span><span class="lang-en">In Jonah 3, the first plot conflict is addressed as the Ninevites turn away from their evil after Jonah’s message.</span></p>
+  <p class="body reveal"><span class="lang-pt">Se a história terminasse no capítulo 3 (como acontece em muitos livros infantis), seria uma história limpa e arrumada: As pessoas devem se afastar do seu mal (como os ninivitas) e rebelião (como Jonas) e obedecer a Deus.</span><span class="lang-en">If the story ended in chapter 3 (as it does in many children’s books), it would be a nice and neat story: People should turn away from their evil (like the Ninevites) and rebellion (like Jonah) and obey God.</span></p>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-19/p2_324.jpeg" alt="Jonah Plot Through Chapter 3">
+    <figcaption class="caption"><span class="lang-pt">Enredo de Jonas Através do Capítulo 3. Diagrama criado por Tim Mackie para BibleProject Classroom: Introdução à Bíblia Hebraica (2019).</span><span class="lang-en">Jonah Plot Through Chapter 3. Diagram created by Tim Mackie for BibleProject Classroom: Introduction to the Hebrew Bible (2019).</span></figcaption>
+  </figure>
+
+  <p class="body reveal"><span class="lang-pt">Mas o capítulo 4 de Jonas problematiza tudo isso! Aqui descobrimos que, embora Jonas tenha obedecido tecnicamente, ele ainda abriga raiva, ressentimento e desprezo por Deus. Em outras palavras, o conflito de enredo #2 nunca foi realmente resolvido, e o livro termina com aquele conflito no ar.</span><span class="lang-en">But Jonah chapter 4 problematizes all this! Here we find out that while Jonah has technically obeyed, he still harbors anger, resentment, and contempt for God. In other words, plot conflict #2 was never really resolved, and the book ends with that conflict up in the air.</span></p>
+  <p class="body reveal"><span class="lang-pt">O livro de quatro capítulos é sobre como o próprio povo de Deus pode se tornar o maior obstáculo para os propósitos de Deus no mundo!</span><span class="lang-en">The four-chapter book is about how God’s own people can become the biggest obstacle to God’s purposes in the world!</span></p>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-19/p3_351.jpeg" alt="Jonah Plot Through Chapter 4">
+    <figcaption class="caption"><span class="lang-pt">Enredo de Jonas Através do Capítulo 4. Diagrama criado por Tim Mackie para BibleProject Classroom: Introdução à Bíblia Hebraica (2019).</span><span class="lang-en">Jonah Plot Through Chapter 4. Diagram created by Tim Mackie for BibleProject Classroom: Introduction to the Hebrew Bible (2019).</span></figcaption>
+  </figure>
+
+  <h3 class="sub reveal"><span class="lang-pt">Linhas de Enredo Sobrepostas: Abraão</span><span class="lang-en">Overlapping Plotlines: Abraham</span></h3>
+  <p class="body reveal"><span class="lang-pt">As histórias bíblicas consistem em múltiplas linhas de enredo sobrepostas. O leitor deve distinguir entre a linha de enredo geral e os muitos subenredos que compõem os “episódios” de uma história maior. Mas não apenas isso, as linhas de enredo de nível inferior todas se conectam e contribuem para a linha de enredo maior.</span><span class="lang-en">Biblical stories consist of multiple overlapping plotlines. The reader must distinguish between the overall plotline and the many subplots that make up the “episodes” of a larger story. But not only that, the lower-level plotlines all connect with and contribute to the bigger plotline.</span></p>
+  <p class="body reveal"><span class="lang-pt">Gênesis 15: Deus promete a Abraão que um filho virá do seu corpo e não de outro, e este descendente se tornará a bênção de Deus para as nações.</span><span class="lang-en">Genesis 15: God promises Abraham that a child will come from his body and not another, and this descendant will become God’s blessing to the nations.</span></p>
+  <p class="body reveal"><span class="lang-pt">Gênesis 16: Sara e Abraão abusam sexualmente de Agar, uma escrava egípcia, em um esforço para produzir um filho por sua própria sabedoria, resultando no nascimento de Ismael.</span><span class="lang-en">Genesis 16: Sarah and Abraham sexually abuse Hagar, an Egyptian slave, in an effort to produce a son by their own wisdom, resulting in the birth of Ishmael.</span></p>
+  <p class="body reveal"><span class="lang-pt">Gênesis 21: Abraão e Sara têm seu próprio filho, Isaque, e Sara invejosa exila Agar e Ismael. Assim Abraão os abandona ao seu destino, enviando-os para o deserto com uma pequena quantidade de água. Ele perde seu filho primogênito.</span><span class="lang-en">Genesis 21: Abraham and Sarah have their own child, Isaac, and Sarah jealously exiles Hagar and Ishmael. So Abraham abandons them to their fate by sending them out into the desert with a small amount of water. He loses his firstborn son.</span></p>
+  <p class="body reveal"><span class="lang-pt">Gênesis 22: Deus “prova” Abraão exigindo de volta a vida de seu amado filho. Abraão finalmente entrega seu filho mais precioso e valorizado, e Deus o poupa provendo um substituto (o carneiro). É por isso que Deus diz que cumprirá sua promessa de Gênesis 12:3 (veja Gn. 22:15-18).</span><span class="lang-en">Genesis 22: God “tests” Abraham by demanding back the life of his beloved son. Abraham finally surrenders his most precious and valued son, and God spares him by providing a substitute (the ram). This is why God says he will fulfill his promise from Genesis 12:3 (see Gen. 22:15-18).</span></p>
+  <p class="body reveal"><span class="lang-pt">Conforme traçamos o conflito de enredo através da história de Abraão, vemos como o autor bíblico estabeleceu as perguntas que impulsionam a narrativa adiante. O conflito de enredo abrangente de Gênesis 12-22 é criado pela escolha de Deus de Abraão. Deus se comprometeu a espalhar sua bênção divina a todas as nações através deste homem e de sua esposa. Mas Abraão e Sara realmente se tornam o problema que Deus tem de superar!</span><span class="lang-en">As we trace the plot conflict through the Abraham story, we see how the biblical author has set up the questions driving the narrative forward. The overarching plot conflict of Genesis 12-22 is created by God’s choice of Abraham. God has committed to spreading his divine blessing to all nations through this man and his wife. But Abraham and Sarah actually become the problem that God has to overcome!</span></p>
+  <blockquote class="reveal">
+    <span class="lang-pt">“A primeira, e única realmente rígida, regra na teoria literária é que os textos devem ser lidos do início ao fim. O significado de uma palavra não é determinado por sua definição, mas por seu contexto. Assim também o significado de uma única história só é determinado pela relação de todos os seus elementos com o texto todo.”</span>
+    <span class="lang-en">“The very first, and only really rigid, rule in literary theory is that texts must be read from beginning to end. The meaning of a word is not determined by its definition, but by its context. So also a single story’s meaning is only determined by the relationship of all its elements to the whole text.”</span>
+    <footer style="font-style:normal;font-size:.9rem;color:#5b6472;margin-top:.6rem;">— McEvenue, Sean (1994). <span class="lang-pt">Interpretação e Bíblia: Ensaios sobre a Verdade na Literatura</span><span class="lang-en">Interpretation and Bible: Essays on Truth in Literature</span>. Liturgical Press. 171.</footer>
+  </blockquote>
+
+  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">Quais são algumas de suas principais lições desta discussão sobre enredo bíblico e subenredo no livro de Jonas?</span><span class="lang-en">What are some of your main takeaways from this discussion on biblical plot and subplot in the book of Jonah?</span></p>
+
+  <div class="page-footer">
+    <span>Class Notes: Introduction to the Hebrew Bible</span>
+    <span><span class="lang-pt">Sessão 19 · Enredo na Narrativa Bíblica: A História de Jonas</span><span class="lang-en">Session 19 · Plot in Biblical Narrative: The Story of Jonah</span></span>
+  </div>
+</div>
+
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s19-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s19-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+  <script src="../js/verse-modal.js"></script>
+</body>
+</html>

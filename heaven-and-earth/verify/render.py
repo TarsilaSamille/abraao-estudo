@@ -38,7 +38,7 @@ def render_html(session, module):
     const {{ chromium }} = require({PW!r});
     (async () => {{
       const browser = await chromium.launch({{
-        executablePath: '/Users/macbook/Library/Caches/ms-playwright/chromium-1228/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing',
+        executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
         args: ['--no-sandbox']
       }});
       const page = await browser.newPage({{ viewport: {{ width: 935, height: 1200 }} }});

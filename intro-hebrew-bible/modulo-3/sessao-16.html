@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 16: Como o Paralelismo Hebraico Funciona</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  blockquote { border-left: 4px solid #E3E7EC; padding-left: 1.25rem; margin: 1.5rem 0; font-style: italic; color: #24262a; }
+
+  /* Poem block */
+  .poem { border-left: 4px solid #E3E7EC; padding-left: 1.25rem; margin: 1.5rem 0; }
+  .poem .pair { display: block; margin-bottom: .15rem; font-size: 1.05rem; line-height: 1.7; color: #24262a; }
+  .poem .verse-num { font-weight: 800; color: #17181a; margin-right: .5rem; }
+  .poem .bibleref { font-weight: 800; color: #17181a; font-size: 1.05rem; margin-bottom: .3rem; }
+  .poem .bibleref .trans { color: #586574; font-weight: 600; vertical-align: super; font-size: .78em; }
+  .poem .kw-note { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .4rem; }
+
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+
+<div id="reading-progress" aria-hidden="true"></div>
+
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+
+  <h1 class="title reveal"><span class="lang-pt">Sessão 16: Como o Paralelismo Hebraico Funciona</span><span class="lang-en">Session 16: How Hebrew Parallelism Works</span></h1>
+  <hr class="rule">
+
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">Os autores bíblicos frequentemente usam paralelismo em sua poesia, o que faz os leitores colocarem duas ou mais coisas em comparação uma com a outra para mostrar sua relação.</span><span class="lang-en">Biblical authors often use parallelism in their poetry, which causes the readers to place two or more things in comparison with each other to show their relation.</span></li>
+    <li><span class="lang-pt">Em sua raiz, o paralelismo é uma forma de comparação e analogia. Ele assume que, para realmente entender e experimentar uma coisa, você precisa compreender não apenas aquela coisa, mas também outra coisa que é simultaneamente similar e distinta.</span><span class="lang-en">At its root, parallelism is a form of comparison and analogy. It assumes that to truly understand and experience a thing, you need to grasp not only that thing but also another thing that is both similar and distinct at the same time.</span></li>
+    <li><span class="lang-pt">O paralelismo emprega técnicas de comparação como analogia, complemento, contraste e sequência.</span><span class="lang-en">Parallelism employs comparison techniques such as analogy, complement, contrast, and sequence.</span></li>
+  </ul>
+
+  <h2 class="section reveal"><span class="lang-pt">Convenções Poéticas no Antigo Israel</span><span class="lang-en">Poetic Conventions in Ancient Israel</span></h2>
+  <p class="body reveal"><span class="lang-pt">A poesia israelita antiga preservada para nós na Bíblia não se ajusta a nenhum tipo de sistema mestre como o metro (embora alguns pensem assim). No entanto, os israelitas estavam cientes de um certo tipo de fala que era poética, densa e distinta da fala normal. Eles até têm vocabulário para isso.</span><span class="lang-en">The ancient Israelite poetry preserved for us in the Bible doesn’t fit any kind of master system like meter (though some think so). However, the Israelites were aware of a certain kind of speech that was poetic, dense, and distinct from normal speech. They even have vocabulary for it.</span></p>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">Cântico (heb. shir / shirah): “Então Moisés e os israelitas cantaram este cântico …” (Êx. 15:1)</span><span class="lang-en">Song (Heb. shir / shirah): “Then Moses and the Israelites sang this song …” (Exod. 15:1)</span></li>
+    <li><span class="lang-pt">Salmo (heb. mizmor): “Um mizmor de Davi” (Salmo 3; muitos salmos têm esses títulos)</span><span class="lang-en">Psalm (Heb. mizmor): “A mizmor of David” (Psalm 3; many psalms have these headings)</span></li>
+    <li><span class="lang-pt">Lamento (heb. qinah): “Davi lamentou este qinah sobre Saul e Jônatas” (2 Sm. 1:17)</span><span class="lang-en">Lament (Heb. qinah): “David lamented this qinah over Saul and Jonathan” (2 Sam. 1:17)</span></li>
+  </ul>
+  <p class="body reveal"><span class="lang-pt">Essas composições mostram uma forma cultural única de poesia hebraica que não é um sistema formal, mas uma série de características.</span><span class="lang-en">These compositions show a unique, cultural form of Hebrew poetry that is not a formal system but a series of characteristics.</span></p>
+  <blockquote class="reveal">
+    <span class="lang-pt">“O Verso da Bíblia Hebraica é estranho<br>O metro dos Salmos e dos Provérbios perplexo<br>Não é uma questão de número,<br>Nenhuma contagem de batidas ou sílabas<br>Seu canto é uma música de correspondência,<br>Seu ritmo um tipo de paralelismo<br>Uma linha faz uma afirmação;<br>A outra parte expressa em outras palavras<br>Às vezes uma terceira parte variará novamente.”</span>
+    <span class="lang-en">“The Verse of the Hebrew Bible is strange<br>The meter of Psalms and Proverbs perplexes<br>It is not a matter of number,<br>No counting of beats or syllables<br>Its song is a music of matching,<br>Its rhythm a kind of paralleling<br>One line makes an assertion;<br>The other part expresses in other words<br>Sometimes a third part will vary yet again.”</span>
+    <footer style="font-style:normal;font-size:.9rem;color:#5b6472;margin-top:.6rem;">— Hollander, John (2001). <span class="lang-pt">A Razão da Rima, Um Guia para o Verso em Inglês</span><span class="lang-en">Rhyme’s Reason, A Guide to English Verse</span>. Yale University Press. 26.</footer>
+  </blockquote>
+
+  <h3 class="sub reveal"><span class="lang-pt">Ritmo e Versolibre</span><span class="lang-en">Rhythm and Free Verse</span></h3>
+  <p class="body reveal"><span class="lang-pt">A poesia hebraica é moldada em um ritmo de linha ou versículo. Não é métrica (baseada em contagem de sílabas), mas uma forma de versolibre composta de linhas poéticas.</span><span class="lang-en">Hebrew poetry is shaped into a line-rhythm or verse. It is not metrical (based on syllable counts), but a form of free verse composed of poetic lines.</span></p>
+  <p class="body reveal"><span class="lang-pt">Versículo = uma descrição da forma poética: “Uma sucessão de palavras arranjadas de acordo com regras naturais ou artificialmente criadas, formando uma linha completa; um versículo é uma das linhas de um poema ou de uma versificação” (Oxford English Dictionary).</span><span class="lang-en">Verse = a description of poetic form: “A succession of words arranged according to natural or artificially created rules, forming a complete line; a verse is one of the lines of a poem or a piece of versification” (Oxford English Dictionary).</span></p>
+  <p class="body reveal"><span class="lang-pt">Linha = O menor segmento da poesia, consistindo em uma declaração densa e completa. As pessoas propuseram muitas palavras para descrever a linha poética (stich, colon, verse, membrum), mas “linha” é a palavra inglesa mais simples e comum.</span><span class="lang-en">Line = The smallest segment of poetry, consisting of a dense, complete statement. People have proposed many words to describe the poetic line (stich, colon, verse, membrum), but “line” is the most simple and common English word.</span></p>
+  <blockquote class="reveal">
+    <span class="lang-pt">“A poesia da Bíblia Hebraica é um sistema natural, livre e rítmico. Os poemas não têm esquema métrico consistente, e assim têm liberdade de arranjos predeterminados. Mas sua linguagem é organizada de modo a criar impressões e cumprir as funções do ritmo poético. O versolibre é totalmente livre, é verso, mas é livre para brincar com o ritmo do versículo de várias maneiras, fazendo uso de toda sorte de artesanato linguístico.”</span>
+    <span class="lang-en">“The poetry of the Hebrew Bible is a natural, free, and rhythmic system. The poems have no consistent metrical scheme, and so have a freedom from predetermined arrangments. But their language is organized so as to create impressions and fulfill the functions of poetic rhythm. Free verse is totally free, it is verse, but it’s free to play with the verse rhythm in a variety of ways, making use of all manner of linguistic artistry.”</span>
+    <footer style="font-style:normal;font-size:.9rem;color:#5b6472;margin-top:.6rem;">— Dobbs-Allsopp, F.W. (2015). <span class="lang-pt">Sobre a Poesia Bíblica</span><span class="lang-en">On Biblical Poetry</span>. Oxford University Press. 120-121.</footer>
+  </blockquote>
+  <p class="body reveal"><span class="lang-pt">A linha na poesia hebraica é na maioria das vezes (1) uma frase completa ou cláusula subordinada (2) consistindo de três a cinco palavras (3) marcada por repetição e claros sinais de fim de linha.</span><span class="lang-en">The line in Hebrew poetry is most often (1) a complete sentence or subordinate clause (2) consisting of three to five words (3) marked by repetition and clear end-stop signals.</span></p>
+  <p class="body reveal"><span class="lang-pt">Por exemplo, dê uma olhada no Salmo 51.</span><span class="lang-en">For example, take a look at Psalm 51.</span></p>
+
+  <div class="poem reveal">
+    <p class="bibleref"><span class="lang-pt">Salmo 51:1-4 NAA</span><span class="lang-en">Psalm 51:1-4 NASB</span></p>
+    <span class="pair"><span class="verse-num">1</span><span class="lang-pt">Sê propício a mim, ó Deus, conforme a tua benignidade;<br>conforme a grandeza da tua compaixão, apaga as minhas transgressões.</span><span class="lang-en">Be gracious to me, O God, according to your lovingkindness;<br>according to the greatness of your compassion blot out my transgressions.</span></span>
+    <span class="pair"><span class="verse-num">2</span><span class="lang-pt">Lava-me completamente da minha iniquidade<br>e purifica-me do meu pecado.</span><span class="lang-en">Wash me thoroughly from my iniquity<br>and cleanse me from my sin.</span></span>
+    <span class="pair"><span class="verse-num">3</span><span class="lang-pt">Pois conheço as minhas transgressões,<br>e o meu pecado está sempre diante de mim.</span><span class="lang-en">For I know my transgressions,<br>and my sin is ever before me.</span></span>
+    <span class="pair"><span class="verse-num">4</span><span class="lang-pt">Contra ti, contra ti somente, tenho pecado<br>e feito o que é mau diante de ti,<br>para que sejas justificado quando falares<br>e irrepreensível quando julgares.</span><span class="lang-en">Against you, you only, I have sinned<br>and done what is evil in your sight,<br>so that you are justified when you speak<br>and blameless when you judge.</span></span>
+  </div>
+
+  <h3 class="sub reveal"><span class="lang-pt">Paralelismo</span><span class="lang-en">Parallelism</span></h3>
+  <p class="body reveal"><span class="lang-pt">Em Lectures on the Sacred Poetry of the Hebrews e seu comentário de Isaías, Robert Lowth criou a primeira síntese abrangente de características da poesia bíblica (Lowth, 2004).</span><span class="lang-en">In Lectures on the Sacred Poetry of the Hebrews and his commentary on Isaiah, Robert Lowth created the first comprehensive synthesis of features in biblical poetry (Lowth, 2004).</span></p>
+  <blockquote class="reveal">
+    <span class="lang-pt">“Há uma certa conformação das sentenças, que é principalmente observável naquelas passagens que ocorrem frequentemente na poesia hebraica, nas quais eles tratam um assunto de muitas maneiras diferentes, e demoram-se no mesmo sentimento; quando expressam a mesma coisa em palavras diferentes, ou coisas diferentes em uma forma similar de palavras: e visto que este artifício de composição …”</span>
+    <span class="lang-en">“There is a certain conformation of the sentences, which is chiefly observable in those passages which frequently occur in Hebrew poetry, in which they treat one subject in many different ways, and dwell upon the same sentiment; when they express the same thing in different words, or different things in a similar form of words: and since this artifice of composition s…”</span>
+    <footer style="font-style:normal;font-size:.9rem;color:#5b6472;margin-top:.6rem;">— Lowth, Robert (2004). <span class="lang-pt">Palestras sobre a Poesia Sacra dos Hebreus</span><span class="lang-en">Lectures on the Sacred Poetry of the Hebrews</span>. Kessinger Publishing.</footer>
+  </blockquote>
+  <p class="body reveal"><span class="lang-pt">A correspondência de uma linha ou versículo com outra, eu chamo de Paralelismo. Quando uma proposição é entregue, e uma segunda lhe é subjuntada ou submetida, equivalente ou contrastada com ela em sentido; ou similar a ela na forma de construção gramatical; estas eu chamo de linhas paralelas; e as palavras ou frases que respondem uma à outra na linha correspondente, eu chamo de termos paralelos.</span><span class="lang-en">The correspondence of one verse or line with another, I call Parallelism. When a proposition is delivered, and a second is subjoined to it, or drawn under it, equivalent, or contrasted with it, in sense; or similar to it in the form of grammatical construction; these I call parallel lines; and the words or phrases answering one to another in the corresponding line, I call parallel terms.</span></p>
+  <p class="body reveal"><span class="lang-pt">Lowth, Robert (2021). Isaías. HardPress Limited. 14.</span><span class="lang-en">Lowth, Robert (2021). Isaiah. HardPress Limited. 14.</span></p>
+  <p class="body reveal"><span class="lang-pt">Há muitos tipos diversos de relações paralelas. Isso nos faz colocar duas ou mais coisas em comparação uma com a outra, de modo que sua singularidade e significado se tornem mais visíveis após a comparação.</span><span class="lang-en">There are many diverse types of parallel relationships. It causes us to place two or more things in comparison with each other so that their uniqueness and meaning becomes more visible after the comparison.</span></p>
+
+  <h3 class="sub reveal"><span class="lang-pt">Comparação/Analogia</span><span class="lang-en">Comparison/Analogy</span></h3>
+  <p class="body reveal"><span class="lang-pt">As palavras e imagens correspondentes destinam-se a estimular reflexão imaginativa sobre os atributos metafóricos compartilhados dos itens pareados.</span><span class="lang-en">The corresponding words and images are meant to stimulate imaginative reflection on the shared metaphorical attributes of the paired items.</span></p>
+  <div class="poem reveal">
+    <p class="bibleref"><span class="lang-pt">Salmo 33:6 NAA*</span><span class="lang-en">Psalm 33:6 NASB*</span></p>
+    <span class="pair"><span class="lang-pt">Pela palavra de Yahweh os céus foram feitos,</span><span class="lang-en">By the word of Yahweh the heavens were made,</span></span>
+    <span class="pair"><span class="lang-pt">e pelo sopro de sua boca todo o seu exército.</span><span class="lang-en">and by the breath of his mouth all their host.</span></span>
+    <p class="kw-note"><span class="lang-pt">*Palavras-Chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+  </div>
+  <div class="poem reveal">
+    <p class="bibleref"><span class="lang-pt">Isaías 44:3 NAA</span><span class="lang-en">Isaiah 44:3 NASB</span></p>
+    <span class="pair"><span class="lang-pt">Pois derramarei água sobre a terra sedenta,</span><span class="lang-en">For I will pour out water on the thirsty land,</span></span>
+    <span class="pair"><span class="lang-pt">e riachos sobre o solo seco;</span><span class="lang-en">and streams on the dry ground;</span></span>
+    <span class="pair"><span class="lang-pt">derramarei o meu Espírito sobre a sua descendência</span><span class="lang-en">I will pour out my Spirit on your offspring</span></span>
+    <span class="pair"><span class="lang-pt">e a minha bênção sobre os seus descendentes;</span><span class="lang-en">and my blessing on your descendants;</span></span>
+  </div>
+
+  <h3 class="sub reveal"><span class="lang-pt">Contraste</span><span class="lang-en">Contrast</span></h3>
+  <p class="body reveal"><span class="lang-pt">As palavras e imagens correspondentes estimulam reflexão imaginativa sobre as diferenças destacadas pelo contraste.</span><span class="lang-en">The corresponding words and images stimulate imaginative reflection on the differences highlighted by the contrast.</span></p>
+  <div class="poem reveal">
+    <p class="bibleref"><span class="lang-pt">Provérbios 10:11 NAA</span><span class="lang-en">Proverbs 10:11 NASB</span></p>
+    <span class="pair"><span class="lang-pt">A boca do justo é uma fonte de vida,</span><span class="lang-en">The mouth of the righteous is a fountain of life,</span></span>
+    <span class="pair"><span class="lang-pt">mas a boca dos perversos esconde a violência.</span><span class="lang-en">but the mouth of the wicked conceals violence.</span></span>
+  </div>
+
+  <h3 class="sub reveal"><span class="lang-pt">Complemento</span><span class="lang-en">Complement</span></h3>
+  <p class="body reveal"><span class="lang-pt">A segunda linha complementa a primeira de um modo geral, para completar um pensamento ou imagem, ou para intensificar o ponto de alguma forma.</span><span class="lang-en">The second line complements the first in a general way, to complete a thought or image, or to heighten the point in some way.</span></p>
+  <div class="poem reveal">
+    <p class="bibleref"><span class="lang-pt">Salmo 133:1 NAA</span><span class="lang-en">Psalm 133:1 NASB</span></p>
+    <span class="pair"><span class="lang-pt">Eis quão bom e quão agradável é</span><span class="lang-en">Behold, how good and how pleasant it is</span></span>
+    <span class="pair"><span class="lang-pt">que irmãos vivam juntos em unidade!</span><span class="lang-en">for brothers to dwell together in unity!</span></span>
+  </div>
+
+  <h3 class="sub reveal"><span class="lang-pt">Sequência</span><span class="lang-en">Sequence</span></h3>
+  <p class="body reveal"><span class="lang-pt">As linhas não são estritamente paralelas, mas desenvolvem uma curta sequência narrativa.</span><span class="lang-en">The lines are not strictly parallel but develop a short narrative sequence.</span></p>
+  <div class="poem reveal">
+    <p class="bibleref"><span class="lang-pt">Habacuque 3:2 Tradução do Instrutor</span><span class="lang-en">Habakkuk 3:2 Instructor’s Translation</span></p>
+    <span class="pair"><span class="lang-pt">Ó SENHOR, ouvi a tua fama, e temi.</span><span class="lang-en">LORD, I have heard the report about you; I fear.</span></span>
+    <span class="pair"><span class="lang-pt">Yahweh, aviva a tua obra no meio dos anos,</span><span class="lang-en">Yahweh, renew your work in the midst of the years,</span></span>
+    <span class="pair"><span class="lang-pt">no meio dos anos faze-a conhecida;</span><span class="lang-en">in the midst of the years make it known;</span></span>
+    <span class="pair"><span class="lang-pt">na ira, lembra-te da misericórdia.</span><span class="lang-en">in wrath remember mercy.</span></span>
+  </div>
+  <div class="poem reveal">
+    <p class="bibleref"><span class="lang-pt">Salmo 31:1 NAA*</span><span class="lang-en">Psalm 31:1 NASB*</span></p>
+    <span class="pair"><span class="lang-pt">Em ti, Yahweh, me refugiei;</span><span class="lang-en">In you, Yahweh, I have taken refuge;</span></span>
+    <span class="pair"><span class="lang-pt">nunca me deixes ser envergonhado;</span><span class="lang-en">let me never be ashamed;</span></span>
+    <span class="pair"><span class="lang-pt">na tua justiça livra-me.</span><span class="lang-en">in your righteousness deliver me.</span></span>
+    <p class="kw-note"><span class="lang-pt">*Palavras-Chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+  </div>
+  <div class="poem reveal">
+    <p class="bibleref"><span class="lang-pt">Salmo 31:22 Tradução do Instrutor</span><span class="lang-en">Psalm 31:22 Instructor’s Translation</span></p>
+    <span class="pair"><span class="lang-pt">Quanto a mim, eu disse no meu alarme:</span><span class="lang-en">As for me, I said in my alarm,</span></span>
+    <span class="pair"><span class="lang-pt">“Estou cortado de diante dos teus olhos”;</span><span class="lang-en">“I am cut off from before your eyes”;</span></span>
+    <span class="pair"><span class="lang-pt">todavia tu ouviste a voz da minha súplica</span><span class="lang-en">however, you heard the voice of my petition</span></span>
+    <span class="pair"><span class="lang-pt">quando a ti clamei.</span><span class="lang-en">when I cried to you.</span></span>
+  </div>
+  <p class="body reveal"><span class="lang-pt">Para um exemplo mais longo, dê uma olhada no Salmo 32.</span><span class="lang-en">For a longer example, take a look at Psalm 32.</span></p>
+  <div class="poem reveal">
+    <p class="bibleref"><span class="lang-pt">Salmo 32:1-7 NAA*</span><span class="lang-en">Psalm 32:1-7 NASB*</span></p>
+    <span class="pair"><span class="verse-num">1</span><span class="lang-pt">Quão bem-aventurado aquele cuja transgressão é perdoada,</span><span class="lang-en">How fortunate the one whose transgression is forgiven,</span></span>
+    <span class="pair"><span class="lang-pt">cujo pecado é coberto!</span><span class="lang-en">whose sin is covered!</span></span>
+    <span class="pair"><span class="verse-num">2</span><span class="lang-pt">Quão bem-aventurado aquele a quem Yahweh não imputa iniquidade,</span><span class="lang-en">How fortunate the one to whom Yahweh does not impute iniquity,</span></span>
+    <span class="pair"><span class="lang-pt">e em cujo espírito não há engano!</span><span class="lang-en">and in whose spirit there is no deceit!</span></span>
+    <span class="pair"><span class="verse-num">3</span><span class="lang-pt">Quando mantive silêncio, o meu corpo definhou,</span><span class="lang-en">When I kept silent, my body wasted away,</span></span>
+    <span class="pair"><span class="lang-pt">pelo meu gemido o dia todo.</span><span class="lang-en">through my groaning all day long.</span></span>
+    <span class="pair"><span class="verse-num">4</span><span class="lang-pt">Pois dia e noite a tua mão pesava sobre mim;</span><span class="lang-en">For day and night your hand was heavy upon me;</span></span>
+    <span class="pair"><span class="lang-pt">a minha energia foi drenada,</span><span class="lang-en">my energy was drained,</span></span>
+    <span class="pair"><span class="lang-pt">com o calor do verão.</span><span class="lang-en">with the heat of summer.</span></span>
+    <span class="pair"><span class="verse-num">5</span><span class="lang-pt">Confessei o meu pecado a ti,</span><span class="lang-en">I acknowledged my sin to you,</span></span>
+    <span class="pair"><span class="lang-pt">e a minha iniquidade não ocultei;</span><span class="lang-en">and my iniquity I did not hide;</span></span>
+    <span class="pair"><span class="lang-pt">disse: “Confessarei as minhas transgressões ao SENHOR;”</span><span class="lang-en">I said, “I will confess my transgressions to the LORD;”</span></span>
+    <span class="pair"><span class="lang-pt">e tu perdoaste a culpa do meu pecado.</span><span class="lang-en">and you forgave the guilt of my sin.</span></span>
+    <span class="pair"><span class="verse-num">6</span><span class="lang-pt">Portanto, que todo aquele que é piedoso ore a ti</span><span class="lang-en">Therefore, let everyone who is godly pray to you</span></span>
+    <p class="kw-note"><span class="lang-pt">*Palavras-Chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+  </div>
+
+  <h3 class="sub reveal"><span class="lang-pt">A Função da Repetição e da Expressão Poética Dupla</span><span class="lang-en">The Function of Repetition and Double-Poetic Expression</span></h3>
+  <p class="body reveal"><span class="lang-pt">Esse “falar em pares” cria oportunidades de usar múltiplas palavras e imagens para comunicar uma ideia central a partir de muitos ângulos. Esse tipo de estilo poético é uma maneira maravilhosa de expressar pensamentos complexos através do emparelhamento de palavras e imagens a fim de comunicar mais através...</span><span class="lang-en">This “speaking in pairs” creates opportunities to use multiple words and images to communicate one core idea from many angles. This type of poetic style is a wonderful way to express complex thoughts through pairing words and images in order to communicate more thro...</span></p>
+  <p class="body reveal"><span class="lang-pt">Os autores bíblicos desenvolveram vocabulário para essa técnica. A palavra hebraica mashal (משל) significa “comparação, analogia, provérbio”.</span><span class="lang-en">The biblical authors developed vocabulary for this technique. The Hebrew word mashal (משל) means “comparison, analogy, proverb.”</span></p>
+  <blockquote class="reveal">
+    <span class="lang-pt">“As linhas paralelas da poesia bíblica são como um par de binóculos. Alguns séculos atrás, as lentes de um binóculo de campo eram fixadas em cilindros que podiam deslizar para dentro e para fora, mas permaneciam em um único tubo. O vigia em um navio olhava através dele com um olho. O binóculo de campo de hoje é binocular: olhamos através de dois cilindros, com ambos os olhos, de modo que temos a vantagem de ver profundidade. Nossos olhos, com ou sem binóculos, vêem ‘em estéreo’. O efeito resulta do fato de que um olho tem um ângulo ligeiramente diferente do outro, e assim produz uma imagem minimamente diferente. Essas duas imagens são facilmente sobrepostas e montadas em uma única imagem dentro de nosso cérebro. O paralelismo bíblico faz algo comparável: este dispositivo poético cria duas imagens sutilmente diferentes com duas linhas que devem ser associadas através da expressão paralela. Ele nos permite considerar ambas as imagens separadamente, e então deixá-las assentar juntas … O ponto de similaridade entre duas linhas paralelas é a sua própria diferença! Apenas aqueles que olham de perto e têm paciência descobrirão e saborearão o papel desempenhado pela dissimilaridade, suas surpresas e sua riqueza de significado.”</span>
+    <span class="lang-en">“The parallel lines of biblical poetry are like a pair of binoculars. Some centuries, the lenses of a field glass were set in cylinders that could be slid in and out, but they remained in a single tube. The lookout on a ship looked through it with one eye. Today’s field glass is a binocular: we look through two cylinders, with both eyes, so that we have the advantage of seeing depth. Our eyes, with or without binoculars, see ‘in stereo.’ The effect results from the fact that one eye has a slightly different angle than the other, and so produces a minimally different image. These two pictures are easily superimposed and assembled into one image inside our brain. Biblical parallelism does something comparable: this poetic device creates two subtly different images with two lines that are to be associated through parallel expression. It allows us an opportunity to consider both pictures separately, and then let them sink in together ... The point of similarity between two parallel lines is their very difference! Only those who look closely and have patience will discover and savor the role played by dissimilarity, its surprises, and its richness of meaning.”</span>
+    <footer style="font-style:normal;font-size:.9rem;color:#5b6472;margin-top:.6rem;">— Fokkelman, J.P. (2001). <span class="lang-pt">Lendo a Poesia Bíblica</span><span class="lang-en">Reading Biblical Poetry</span>. Westminster John Knox Press. 8-79.</footer>
+  </blockquote>
+  <div class="poem reveal">
+    <p class="bibleref"><span class="lang-pt">Salmo 62:11-12a Tradução do Instrutor</span><span class="lang-en">Psalm 62:11-12a Instructor’s Translation</span></p>
+    <span class="pair"><span class="verse-num">11</span><span class="lang-pt">Uma coisa Deus falou,</span><span class="lang-en">One thing God has spoken</span></span>
+    <span class="pair"><span class="lang-pt">duas coisas tenho ouvido:</span><span class="lang-en">two things I have heard:</span></span>
+    <span class="pair"><span class="lang-pt">que o poder pertence a Deus,</span><span class="lang-en">that power belongs to God,</span></span>
+    <span class="pair"><span class="verse-num">12</span><span class="lang-pt">e a lealdade da aliança é tua, ó SENHOR.</span><span class="lang-en">and covenant loyalty is yours, O LORD.</span></span>
+  </div>
+
+  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">O que você diria que é o benefício de comunicar com paralelismo? O que ele faz que a narrativa e o discurso não fazem?</span><span class="lang-en">What would you say is the benefit of communicating with parallelism? What does it do that narrative and discourse do not?</span></p>
+
+  <div class="page-footer">
+    <span>Class Notes: Introduction to the Hebrew Bible</span>
+    <span><span class="lang-pt">Sessão 16 · Como o Paralelismo Hebraico Funciona</span><span class="lang-en">Session 16 · How Hebrew Parallelism Works</span></span>
+  </div>
+</div>
+
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s16-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s16-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+  <script src="../js/verse-modal.js"></script>
+</body>
+</html>

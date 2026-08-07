@@ -4,7 +4,14 @@ from playwright.sync_api import sync_playwright
 BASE = "http://localhost:8411/intro-hebrew-bible"
 # path, expected_imgs
 pages = [
-    ("modulo-2/sessao-10.html", 2),
+    ("modulo-4/sessao-18.html", 3),
+    ("modulo-4/sessao-19.html", 3),
+    ("modulo-4/sessao-20.html", 1),
+    ("modulo-4/sessao-21.html", 0),
+
+    ("modulo-3/sessao-15.html", 0),
+    ("modulo-3/sessao-16.html", 0),
+    ("modulo-3/sessao-17.html", 1),
     ("modulo-3/sessao-11.html", 2),
     ("modulo-3/sessao-12.html", 2),
     ("modulo-3/sessao-13.html", 1),
