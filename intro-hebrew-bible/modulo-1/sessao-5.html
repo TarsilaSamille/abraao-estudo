@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 5: O Profeta que Viria: As Costuras da Torá e dos Profetas</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+
+  /* Seam blocks: bold small heading + body */
+  .seam { margin: 1.5rem 0; }
+  .seam-title { font-weight: 800; font-size: 1.08rem; letter-spacing: -0.005em; margin-bottom: .5rem; }
+  .seam-note { margin: .2rem 0 .7rem; font-size: 1.05rem; line-height: 1.78; color: #24262a; }
+  .seam-note .ref { font-weight: 800; }
+
+  .figure { margin: 1.75rem 0; }
+  .figure img { width: 100%; height: auto; border-radius: 10px; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+
+<div id="reading-progress" aria-hidden="true"></div>
+
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+
+  <h1 class="title reveal"><span class="lang-pt">Sessão 5: O Profeta que Viria: As Costuras da Torá e dos Profetas</span><span class="lang-en">Session 5: The Prophet to Come: The Seams of the Torah and Prophets</span></h1>
+  <hr class="rule">
+
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">As frases finais da Torá e as frases de abertura dos Profetas (“Costura Um”) antecipam um profeta vindouro semelhante a Moisés, que é prometido, mas ainda está por vir.</span><span class="lang-en">The final sentences of the Torah and the opening sentences of the Prophets (“Seam One”) anticipate a coming Moses-like prophet who is promised but is yet to come.</span></li>
+    <li><span class="lang-pt">As frases finais dos Profetas e as frases de abertura do Ketuvim (“Costura Dois”) antecipam um profeta vindouro semelhante a Elias, que chamará o povo de volta à Torá e restaurará os corações de Israel a Yahweh.</span><span class="lang-en">The final sentences of the Prophets and the opening sentences of the Ketuvim (“Seam Two”) anticipate a coming Elijah-like prophet who will call the people back to the Torah and restore the hearts of Israel to Yahweh.</span></li>
+  </ul>
+
+  <h2 class="section reveal"><span class="lang-pt">As Costuras do TaNaK</span><span class="lang-en">The Seams of the TaNaK</span></h2>
+
+  <div class="seam reveal">
+    <p class="seam-title"><span class="lang-pt">Costura Um</span><span class="lang-en">Seam One</span></p>
+    <p class="seam-note"><span class="lang-pt">As frases finais da Torá e as frases de abertura dos Profetas:</span><span class="lang-en">The final sentences of the Torah and opening sentences of the Prophets:</span></p>
+    <p class="seam-note"><span class="ref"><span class="lang-pt">Deuteronômio 34:10-12:</span><span class="lang-en">Deuteronomy 34:10-12:</span></span> <span class="lang-pt">Antecipação de um profeta vindouro semelhante a Moisés, que foi prometido, mas nunca veio.</span><span class="lang-en">Anticipation of a coming Moses-like prophet who was promised but never came.</span></p>
+    <p class="seam-note"><span class="ref"><span class="lang-pt">Josué 1:1-9:</span><span class="lang-en">Joshua 1:1-9:</span></span> <span class="lang-pt">O líder designado por Deus, Josué, que guiará o povo para a terra prometida, deve meditar na Torá dia e noite para encontrar sucesso.</span><span class="lang-en">God’s appointed leader Joshua, who will lead the people into the promised land, must meditate on the Torah day and night to find success.</span></p>
+  </div>
+
+  <div class="seam reveal">
+    <p class="seam-title"><span class="lang-pt">Costura Dois</span><span class="lang-en">Seam Two</span></p>
+    <p class="seam-note"><span class="lang-pt">As frases finais dos Profetas e as frases de abertura do Ketuvim:</span><span class="lang-en">The final sentences of the Prophets and the opening sentences of the Ketuvim:</span></p>
+    <p class="seam-note"><span class="ref"><span class="lang-pt">Malaquias 4:4-6:</span><span class="lang-en">Malachi 4:4-6:</span></span> <span class="lang-pt">Antecipação de um profeta vindouro semelhante a Elias, que chamará o povo de volta à Torá e restaurará os corações de Israel antes do Dia do Senhor.</span><span class="lang-en">Anticipation of a coming Elijah-like prophet who will call the people back to the Torah and restore the hearts of Israel before the Day of the Lord.</span></p>
+    <p class="seam-note"><span class="ref"><span class="lang-pt">Salmo 1-2:</span><span class="lang-en">Psalm 1-2:</span></span> <span class="lang-pt">O justo que será vindicado no julgamento final é aquele que medita na Torá dia e noite para encontrar sucesso (Sl. 1). Esse justo é o futuro rei messiânico da linhagem de Davi, que é designado por Deus para governar as nações e vencer o mal de uma vez por todas (Sl. 2).</span><span class="lang-en">The righteous one who will be vindicated in the final judgment is one who meditates on the Torah day and night to find success (Ps. 1). This righteous one is the future messianic king from the line of David, who is appointed by God to rule the nations and overcome evil once and for all (Ps. 2).</span></p>
+  </div>
+
+  <figure class="figure reveal">
+    <img src="img/sessao-5/p1_251.png" alt="TaNaK Seams: The Torah and Latter Prophets">
+    <figcaption class="caption"><span class="lang-pt">Costuras do TaNaK: A Torá e os Profetas Posteriores. Ilustração criada por Tim Mackie para BibleProject Classroom: Introdução à Bíblia Hebraica (2019).</span><span class="lang-en">TaNaK Seams: The Torah and Latter Prophets. Illustration created by Tim Mackie for BibleProject Classroom: Introduction to the Hebrew Bible (2019).</span></figcaption>
+  </figure>
+
+  <h2 class="section reveal"><span class="lang-pt">A Estrutura Revela o Propósito</span><span class="lang-en">Structure Reveals Purpose</span></h2>
+  <p class="body reveal"><span class="lang-pt">As costuras do TaNaK ajudam a iluminar o que os autores e compiladores da Bíblia Hebraica pretenderam como propósito desta coleção de escritos.</span><span class="lang-en">The seams of the TaNaK help illuminate what the authors and compilers of the Hebrew Bible intended as the purpose of this collection of writings.</span></p>
+  <p class="body reveal"><span class="lang-pt">A Bíblia Hebraica é literatura de meditação projetada para promover:</span><span class="lang-en">The Hebrew Bible is meditation literature that is designed to foster:</span></p>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">Uma prática de leitura e ponderação ao longo da vida do significado desses textos.</span><span class="lang-en">A lifetime practice of reading and pondering the meaning of these texts.</span></li>
+    <li><span class="lang-pt">Esperança futura no profeta prometido que anunciará a chegada do Dia do Senhor e do reino messiânico (Dt. 34; Ml. 4).</span><span class="lang-en">Future hope in the promised prophet who will herald the arrival of the Day of the Lord and the messianic kingdom (Deut. 34; Mal. 4).</span></li>
+    <li><span class="lang-pt">Um modo de vida de aliança que cria uma contracultura aos sistemas mundiais predominantes (Js. 1; Sl. 1).</span><span class="lang-en">A covenantal way of life that creates a counterculture to the prevailing world systems (Josh. 1; Ps. 1).</span></li>
+  </ul>
+
+  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">As costuras do TaNaK descrevem o tipo de líder que a humanidade realmente precisa. O que a Torá e os Profetas dizem que essa pessoa é como?</span><span class="lang-en">The seams of the TaNaK describe the kind of leader humanity really needs. What do the Torah and Prophets say this person is like?</span></p>
+
+  <div class="page-footer">
+    <span>Class Notes: Introduction to the Hebrew Bible</span>
+    <span><span class="lang-pt">Sessão 5 · O Profeta que Viria: As Costuras da Torá e dos Profetas</span><span class="lang-en">Session 5 · The Prophet to Come: The Seams of the Torah and Prophets</span></span>
+  </div>
+</div>
+
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s5-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s5-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+  <script src="../js/verse-modal.js"></script>
+</body>
+</html>

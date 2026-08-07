@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 3: A Forma Antiga das Escrituras</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+
+  /* Bible quote block */
+  .verse-block { border-left: 4px solid #E3E7EC; padding-left: 1.25rem; margin: 1.5rem 0; }
+  .bibleref { font-weight: 800; color: #17181a; font-size: 1.05rem; margin-top: 0; margin-bottom: 0.3rem; letter-spacing: -0.005em; }
+  .bibleref .trans { color: #586574; font-weight: 600; vertical-align: super; font-size: .78em; }
+  .scripture { margin: .2rem 0 0; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+  .scripture sup.vs { font-size: .72em; color: #333; vertical-align: super; margin-right: 2px; }
+  .kw-note { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .5rem; }
+
+  /* Evidence quotes */
+  .evidence { margin: 1.2rem 0; padding-left: 1.5rem; position: relative; font-size: 1.05rem; line-height: 1.78; color: #24262a; }
+  .evidence:before { content: "\2022"; position: absolute; left: .35rem; color: #1a1a1a; }
+  .evidence .src { font-style: italic; color: #3a3f47; }
+
+  /* Comparison table */
+  .doc-table { border-collapse: separate; border-spacing: 0; width: 100%; margin: 1.5rem 0 0; font-size: .98rem; line-height: 1.6; }
+  .doc-table th { background: #E3E8ED; font-weight: 800; text-align: left; padding: .7rem 1.1rem; color: #1a1a1a; }
+  .doc-table th:first-child { border-radius: 10px 0 0 0; }
+  .doc-table th:last-child { border-radius: 0 10px 0 0; }
+  .doc-table td { border: 1px solid #E3E8ED; padding: .7rem 1.1rem; vertical-align: top; }
+  .doc-table td.sep { border-top-width: 2px; }
+  .doc-table td:first-child { border-left: 1px solid #E3E8ED; }
+  .doc-table td:last-child { border-right: 1px solid #E3E8ED; }
+  .doc-table .cat { display: inline-block; border-radius: 9999px; padding: .1rem .8rem; font-weight: 800; font-size: .92rem; margin-bottom: .5rem; }
+  .doc-table .cat.tanak { background: #F7E1F5; color: #713c92; }
+  .doc-table .cat.christian { background: #FAE4C4; color: #91362e; }
+  .doc-table .sub { font-weight: 800; margin: .3rem 0 .15rem; }
+  .doc-table .books { margin: .1rem 0 .6rem; }
+  .doc-table .foot { background: #E3E8ED; color: #4f5669; border-radius: 0 0 10px 10px; font-size: .85rem; padding: .5rem 1.1rem; font-style: italic; }
+
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+
+<div id="reading-progress" aria-hidden="true"></div>
+
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+
+  <h1 class="title reveal"><span class="lang-pt">Sessão 3: A Forma Antiga das Escrituras</span><span class="lang-en">Session 3: The Ancient Shape of the Scriptures</span></h1>
+  <hr class="rule">
+
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">A Bíblia de Jesus era uma coleção de rolos em três partes chamada TaNaK. TaNaK é uma designação para a Bíblia Hebraica tirada da primeira letra de suas três seções principais. T significa Torá, que é hebraico para “instrução;” N é para Nevi’im, significando “profetas;” e K é para Ketuvim, significando “escritos.”</span><span class="lang-en">Jesus’ Bible was a three-part collection of scrolls called the TaNaK. TaNaK is a designation for the Hebrew Bible taken from the first letter of its three major sections. T stands for Torah, which is Hebrew for "instruction;" N is for Nevi'im, meaning "prophets;" and K is for Ketuvim, meaning "writings."</span></li>
+    <li><span class="lang-pt">O macro-design em três partes data de algum lugar entre os séculos 3º e 2º a.C. Essa ordem é preservada na tradição judaica moderna e é bem atestada em textos judaicos do Segundo Templo e no Novo Testamento.</span><span class="lang-en">The three-part macro design dates to somewhere in the 3rd-2nd century B.C.E. This order is preserved in modern Jewish tradition and is well-attested in Second Temple Jewish texts and the New Testament.</span></li>
+  </ul>
+
+  <h2 class="section reveal"><span class="lang-pt">A Macro-Forma do TaNaK</span><span class="lang-en">The Macro-Shape of the TaNaK</span></h2>
+
+  <div class="verse-block reveal">
+    <p class="bibleref"><span class="lang-pt">Lucas 24:25-27 NVI</span><span class="lang-en">Luke 24:25-27 NIV</span></p>
+    <p class="scripture"><span class="lang-pt"><sup class="vs">25</sup>[Jesus] disse aos [discípulos]: “Como vocês são tolos e lentos de coração para crer em tudo o que os profetas falaram! <sup class="vs">26</sup>Não era necessário que o Messias sofresse essas coisas e então entrasse na sua glória?” <sup class="vs">27</sup>E começando por Moisés e todos os Profetas, explicou-lhes o que constava em todas as Escrituras a respeito dele.</span><span class="lang-en"><sup class="vs">25</sup>[Jesus] said to [the disciples], “How foolish you are, and how slow to believe all that the prophets have spoken! <sup class="vs">26</sup>Did not the Messiah have to suffer these things and then enter his glory?” <sup class="vs">27</sup>And beginning with Moses and all the Prophets, he explained to them what was said in all the Scriptures concerning himself.</span></p>
+  </div>
+
+  <p class="body reveal"><span class="lang-pt">As Escrituras Hebraicas e Gregas que Jesus e os apóstolos leram consistiam em uma coleção de três partes chamada TaNaKh (também conhecida como TaNaK) na tradição judaica posterior.</span><span class="lang-en">The Hebrew and Greek Scriptures that Jesus and the apostles read consisted of a three-part collection called the TaNaKh (a.k.a. TaNaK) in later Jewish tradition.</span></p>
+  <p class="body reveal"><span class="lang-pt">A composição final dos rolos do TaNaK data de algum lugar entre os séculos 3º e 2º a.C. Essa data é fornecida pelos livros mais recentes adicionados à coleção (Crônicas e Ester no século 4º-3º a.C.), e também pela data provável da atividade editorial final que adaptou os rolos para a coleção (as edições expandidas de Jeremias, Ezequiel, Daniel, etc.).</span><span class="lang-en">The final composition of the TaNaK scrolls dates somewhere in the 3rd-2nd centuries B.C.E. This date is provided by the latest books added to the collection (Chronicles and Esther in the 4th-3rd century B.C.E.), and also by the probable date of the final editorial activity that adapted scrolls into the collection (the expanded editions of Jeremiah, Ezekiel, Daniel, etc.).</span></p>
+
+  <h2 class="section reveal"><span class="lang-pt">TaNaK Comparado com o Antigo Testamento Cristão</span><span class="lang-en">TaNaK Compared with the Christian Old Testament</span></h2>
+  <p class="body reveal"><span class="lang-pt">A organização e a ordem do TaNaK diferem de algumas maneiras significativas da maneira como o mesmo conteúdo é organizado no Antigo Testamento das Bíblias cristãs modernas.</span><span class="lang-en">The organization and order of the TaNaK differs in a couple significant ways from the way the same content is arranged in the Old Testament of modern Christian Bibles.</span></p>
+
+  <table class="doc-table reveal">
+    <thead>
+      <tr>
+        <th>TaNaK</th>
+        <th><span class="lang-pt">Antigo Testamento Cristão</span><span class="lang-en">Christian Old Testament</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="cat tanak"><span class="lang-pt">Torá (A Lei)</span><span class="lang-en">Torah (The Law)</span></span></td>
+        <td><span class="cat christian"><span class="lang-pt">Pentateuco</span><span class="lang-en">Pentateuch</span></span></td>
+      </tr>
+      <tr>
+        <td>Gênesis, Êxodo, Levítico, Números, Deuteronômio</td>
+        <td>Gênesis, Êxodo, Levítico, Números, Deuteronômio</td>
+      </tr>
+      <tr>
+        <td><span class="cat tanak"><span class="lang-pt">Nevi’im (Os Profetas)</span><span class="lang-en">Nevi’im (The Prophets)</span></span></td>
+        <td><span class="cat christian"><span class="lang-pt">História</span><span class="lang-en">History</span></span></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="sub"><span class="lang-pt">Profetas Anteriores</span><span class="lang-en">Former Prophets</span></div>
+          <div class="books">Josué, Juízes, Samuel, Reis</div>
+          <div class="sub"><span class="lang-pt">Profetas Posteriores</span><span class="lang-en">Latter Prophets</span></div>
+          <div class="books">Isaías, Jeremias, Ezequiel</div>
+          <div class="books">Oseias, Joel, Amós, Obadias, Jonas, Miqueias, Naum, Habacuque, Sofonias, Ageu, Zacarias, Malaquias</div>
+        </td>
+        <td>
+          <div class="books">Josué, Juízes, Rute</div>
+          <div class="books">1-2 Samuel, 1-2 Reis</div>
+          <div class="books">1-2 Crônicas</div>
+          <div class="books">Esdras, Neemias, Ester</div>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="cat tanak"><span class="lang-pt">Ketuvim (Os Escritos)</span><span class="lang-en">Ketuvim (The Writings)</span></span></td>
+        <td><span class="cat christian"><span class="lang-pt">Poesia</span><span class="lang-en">Poetry</span></span></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="books">Salmos, Jó, Provérbios</div>
+          <div class="books">Rute, Cântico dos Cânticos, Eclesiastes, Lamentações, Ester [Os Megillot]</div>
+          <div class="books">Daniel, Esdras-Neemias, Crônicas</div>
+        </td>
+        <td>
+          <div class="books">Jó, Salmos, Provérbios, Eclesiastes, Cântico dos Cânticos</div>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><span class="cat christian"><span class="lang-pt">Profetas</span><span class="lang-en">Prophets</span></span></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <div class="books">Isaías, Jeremias, Lamentações</div>
+          <div class="books">Ezequiel, Daniel</div>
+          <div class="books">Oseias, Joel, Amós, Obadias, Jonas, Miqueias, Naum, Habacuque, Sofonias, Ageu, Zacarias, Malaquias</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="doc-table foot reveal"><span class="lang-pt">TaNaK Comparado com o Antigo Testamento Cristão. Criado por Tim Mackie para BibleProject Classroom: Introdução à Bíblia Hebraica (2019).</span><span class="lang-en">TaNaK Compared with the Christian Old Testament. Created by Tim Mackie for BibleProject Classroom: Introduction to the Hebrew Bible (2019).</span></p>
+
+  <h2 class="section reveal"><span class="lang-pt">Evidências Antigas para a Forma do TaNaK</span><span class="lang-en">Ancient Evidence for the Shape of the TaNaK</span></h2>
+  <p class="body reveal"><span class="lang-pt">Quando Jesus alude à ordem da Bíblia Hebraica, ele pressupõe um design de três partes, o que concorda com outros autores judeus contemporâneos que aludem às seções ordenadas.</span><span class="lang-en">When Jesus alludes to the order of the Hebrew Bible, he assumes a three-part design, which agrees with other contemporary Jewish authors who allude to the ordered sections.</span></p>
+
+  <div class="evidence reveal"><span class="lang-pt"><span class="src">Lucas 24:44:</span> “Isto é o que eu lhes disse enquanto ainda estava com vocês: Tudo precisa ser cumprido que está escrito sobre mim na Torá de Moisés, nos Profetas e nos Salmos.”</span><span class="lang-en"><span class="src">Luke 24:44:</span> “This is what I told you while I was still with you: Everything must be fulfilled that is written about me in the Torah of Moses, the Prophets and the Psalms.”</span></div>
+  <div class="evidence reveal"><span class="lang-pt"><span class="src">Lucas 11:50-51:</span> “Portanto, esta geração será responsabilizada pelo sangue de todos os profetas que foi derramado desde o princípio do mundo, do sangue de Abel ao sangue de Zacarias, que foi morto entre o altar e o santuário.”</span><span class="lang-en"><span class="src">Luke 11:50-51:</span> “Therefore this generation will be held responsible for the blood of all the prophets that has been shed since the beginning of the world, from the blood of Abel to the blood of Zechariah, who was killed between the altar and the sanctuary.”</span></div>
+  <p class="body reveal" style="padding-left:1.5rem;"><span class="lang-pt">Abel foi assassinado por Caim em Gênesis 4, e Zacarias, filho de Jeoiada, foi assassinado por Joás em 2 Crônicas 24, o que corresponde à ordem do TaNaK.</span><span class="lang-en">Abel was murdered by Cain in Genesis 4, and Zechariah son of Jehoiadah was murdered by Joash in 2 Chronicles 24, which corresponds to the TaNaK order.</span></p>
+  <div class="evidence reveal"><span class="lang-pt"><span class="src">Prólogo da Sabedoria de Ben Siraque:</span> “Muitos grandes ensinamentos nos foram dados através da Lei [= Torá], e dos Profetas [= Nevi’im], e dos outros que os seguem [= Ketuvim] … Então meu avô Yeshua se dedicou especialmente à leitura da Lei, dos Profetas e dos outros rolos de nossos Antepassados.”</span><span class="lang-en"><span class="src">Prologue to the Wisdom of Ben Sirach:</span> “Many great teachings have been given to us through the Law [= Torah], and the Prophets [= Nevi’im], and the others that follow them [= Ketuvim] … So my grandfather Yeshua devoted himself especially to the reading of the Law and the Prophets and the other scrolls of our Ancestors.”</span></div>
+  <div class="evidence reveal"><span class="lang-pt"><span class="src">Manuscritos do Mar Morto (4QMMT):</span> “Os rolos de Moisés, as palavras dos profetas, e de Davi.”</span><span class="lang-en"><span class="src">Dead Sea Scrolls (4QMMT):</span> “The scrolls of Moses, the words of the prophets, and of David.”</span></div>
+  <div class="evidence reveal"><span class="lang-pt"><span class="src">Fílon de Alexandria (De Vita Contemplativa, 25):</span> “As leis e os oráculos dados por inspiração através dos profetas e dos Salmos, e os outros rolos pelos quais o conhecimento e a piedade são aumentados e completados.”</span><span class="lang-en"><span class="src">Philo of Alexandria (De Vita Contemplativa, 25):</span> “The laws and the oracles given by inspiration through the prophets and the Psalms, and the other scrolls whereby knowledge and piety are increased and completed.”</span></div>
+
+  <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">Quais são algumas das principais diferenças entre a organização do TaNaK e a organização cristã do Antigo Testamento/Bíblia Hebraica? Uma organização diferente poderia mudar o significado de um texto na Bíblia?</span><span class="lang-en">What are some of the main differences between the TaNaK arrangement and the Christian arrangement of the Old Testament/Hebrew Bible? Could a different arrangement change the meaning of a text in the Bible?</span></p>
+
+  <div class="page-footer">
+    <span>Class Notes: Introduction to the Hebrew Bible</span>
+    <span><span class="lang-pt">Sessão 3 · A Forma Antiga das Escrituras</span><span class="lang-en">Session 3 · The Ancient Shape of the Scriptures</span></span>
+  </div>
+</div>
+
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s3-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s3-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+  <script src="../js/verse-modal.js"></script>
+</body>
+</html>
