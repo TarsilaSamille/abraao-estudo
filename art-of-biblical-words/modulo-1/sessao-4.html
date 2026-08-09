@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 4: Palavras e Significados</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="../js/verse-modal.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
+  .ref:hover { color: #2563eb; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  ol.numbered { padding-left: 1.5rem; }
+  ol.numbered > li { margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+  .scripture:hover { border-left-color: #9aa7b8; }
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+  .vs { font-weight: 700; color: #5b7285; font-size: .78em; margin-right: .15em; }
+  .quote { border-left: 4px solid #aeb6bf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a3f47; font-style: italic; }
+  .poem { font-family: 'Newsreader', Georgia, serif; font-size: 1.05rem; line-height: 1.85; color: #24262a; margin: 1.1rem 0; }
+  .book-link { color: #1a5fb4; text-decoration: underline; font-style: normal; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
+  .table-img img { width: 100%; display: block; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
+  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
+  .nav-btn:hover { background: #f1f5f9; }
+  .nav-back { left: 1rem; }
+  .nav-lang { right: 1rem; }
+</style>
+</head>
+<body class="bg-white">
+  <a href="../index.html" class="nav-btn nav-back"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
+  <div class="nav-lang" style="right:1rem; position:fixed; top:1rem; z-index:50; display:inline-flex; gap:.25rem;">
+    <button onclick="setLang('pt')" class="nav-btn" style="position:static" id="lang-pt-btn">PT</button>
+    <button onclick="setLang('en')" class="nav-btn" style="position:static" id="lang-en-btn">EN</button>
+  </div>
+  <div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
+    <h1 class="title reveal"><span class="lang-pt">Sessão 4: Palavras e Significados</span><span class="lang-en">Session 4: Words and Meanings</span></h1>
+    <hr class="rule">
+    <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt">A maioria das palavras tem uma amplitude de significados, e precisamos de contexto para determinar qual aspecto do significado de uma palavra um autor pretende.</span><span class="lang-en">Most words have a range of meanings, and we need context to determine what aspect of a word’s meaning an author intends.</span></li>
+      <li><span class="lang-pt">Use uma variedade de traduções quando estudar. Traduções diferentes são como ferramentas projetadas para propósitos diferentes.</span><span class="lang-en">Use a variety of translations when you study. Different translations are like tools designed for different purposes.</span></li>
+    </ul>
+
+    <h2 class="section reveal"><span class="lang-pt">Amplitude Semântica</span><span class="lang-en">Semantic Range</span></h2>
+    <p class="body reveal"><span class="lang-pt">As palavras que mais usamos não têm um significado específico. Em vez disso, elas têm uma amplitude semântica de significados que podem ser ativados por diferentes características do contexto. Em outras palavras, uma palavra em si é apenas um fator na descoberta de seu significado.</span><span class="lang-en">The words we use the most often do not have a specific meaning. Rather, they have a semantic range of meanings that can be activated by different features of the context. In other words, a word itself is only one factor of discovering its meaning.</span></p>
+
+    <h3 class="sub reveal"><span class="lang-pt">Exemplo em Inglês: Run</span><span class="lang-en">English Example: Run</span></h3>
+    <div class="table-img reveal">
+      <img src="img/sessao-4/p16-vector.png" alt="Range of Meaning of Run">
+      <p class="caption"><span class="lang-pt">Amplitude de Significado de “Run.”. Criado por Tim Mackie para BibleProject Classroom: Arte das Palavras Bíblicas (2021).</span><span class="lang-en">Range of Meaning of “Run.”. Created by Tim Mackie for BibleProject Classroom: Art of Biblical Words (2021).</span></p>
+    </div>
+
+    <h3 class="sub reveal"><span class="lang-pt">Exemplo em Hebraico: Raysheet (ראשית)</span><span class="lang-en">Hebrew Example: Raysheet (ראשית)</span></h3>
+    <div class="table-img reveal">
+      <img src="img/sessao-4/p17-vector.png" alt="Raysheet Range of Meaning">
+      <p class="caption"><span class="lang-pt">Amplitude de Significado de Raysheet. Criado por Tim Mackie para BibleProject Classroom: Arte das Palavras Bíblicas (2021).</span><span class="lang-en">Raysheet Range of Meaning. Created by Tim Mackie for BibleProject Classroom: Art of Biblical Words (2021).</span></p>
+    </div>
+
+    <h3 class="sub reveal"><span class="lang-pt">A Primeira, Mais Antiga Coisa</span><span class="lang-en">The First, Earliest Thing</span></h3>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Deuteronômio 11:11-12</span><span class="lang-en">Deuteronomy 11:11-12</span></span><span class="scripture-type">NIV*</span></div>
+      <div class="scripture-text"><span class="lang-pt"><sup class="vs">11</sup> Mas a terra que estais atravessando o Jordão para tomar posse é uma terra de montes e vales que bebe a chuva do céu. <sup class="vs">12</sup> É uma terra da qual o SENHOR teu Deus cuida; os olhos do SENHOR teu Deus estão continuamente sobre ela desde o <strong>raysheet</strong> do ano até o seu fim.</span><span class="lang-en"><sup class="vs">11</sup> But the land you are crossing the Jordan to take possession of is a land of mountains and valleys that drinks rain from heaven. <sup class="vs">12</sup> It is a land the LORD your God cares for; the eyes of the LORD your God are continually on it from the <strong>raysheet</strong> of the year to its end.</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+
+    <h3 class="sub reveal"><span class="lang-pt">O Período da Origem de Algo</span><span class="lang-en">The Period of Something’s Origin</span></h3>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Gênesis 10:8, 10</span><span class="lang-en">Genesis 10:8, 10</span></span><span class="scripture-type">NASB*</span></div>
+      <div class="scripture-text"><span class="lang-pt"><sup class="vs">8</sup> Ora, Cuxe gerou a Ninrode; ele se tornou um poderoso na terra …<br><sup class="vs">10</sup> O <strong>raysheet</strong> do seu reino foi Babel e Ereque e Acade e Calné, na terra de Sinar.</span><span class="lang-en"><sup class="vs">8</sup> Now Cush became the father of Nimrod; he became a mighty one on the earth …<br><sup class="vs">10</sup> The <strong>raysheet</strong> of his kingdom was Babylon and Erech and Accad and Calneh, in the land of Shinar.</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+
+    <h3 class="sub reveal"><span class="lang-pt">O Mais Importante</span><span class="lang-en">The Most Important</span></h3>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Amós 6:1</span><span class="lang-en">Amos 6:1</span></span><span class="scripture-type">NASB*</span></div>
+      <div class="scripture-text"><span class="lang-pt">Ai dos que vivem à vontade em Sião e dos que se sentem seguros no monte de Samaria, os homens distintos do <strong>raysheet</strong> das nações, aos quais vem a casa de Israel.</span><span class="lang-en">Woe to those who are at ease in Zion and to those who feel secure in the mountain of Samaria, the distinguished men of the <strong>raysheet</strong> of nations, to whom the house of Israel comes.</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+
+    <h3 class="sub reveal"><span class="lang-pt">A Porção das Primícias</span><span class="lang-en">The First-Fruit Portion</span></h3>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Êxodo 23:19</span><span class="lang-en">Exodus 23:19</span></span><span class="scripture-type">NASB*</span></div>
+      <div class="scripture-text"><span class="lang-pt">Trarás o melhor <strong>raysheet</strong> do teu solo à casa do SENHOR teu Deus.</span><span class="lang-en">You shall bring the choice <strong>raysheet</strong> of your soil into the house of the LORD your God.</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+
+    <h2 class="section reveal"><span class="lang-pt">Exemplo em Grego: Pistis (πιστις)</span><span class="lang-en">Greek Example: Pistis (πιστις)</span></h2>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Efésios 2:8-9</span><span class="lang-en">Ephesians 2:8-9</span></span><span class="scripture-type">NIV</span></div>
+      <div class="scripture-text"><span class="lang-pt"><sup class="vs">8</sup> Pois pela graça sois salvos, por meio da fé—e isto não vem de vós, é dom de Deus—<sup class="vs">9</sup> não por obras, para que ninguém se glorie.</span><span class="lang-en"><sup class="vs">8</sup> For it is by grace you have been saved, through faith—and this is not from yourselves, it is the gift of God—<sup class="vs">9</sup> not by works, so that no one can boast.</span></div>
+    </div>
+    <p class="body reveal"><span class="lang-pt">Esta passagem familiar contém tantas palavras fundamentais na teologia do Novo Testamento: graça, salvação e fé versus obras.</span><span class="lang-en">This familiar passage contains so many foundational words in New Testament theology: grace, salvation, and faith versus works.</span></p>
+    <p class="body reveal"><span class="lang-pt">Se tornássemos esta passagem central para nossa compreensão da fé, ela nos levaria a concluir que a fé se opõe às obras. Se tirarmos esse contraste de seu contexto em Efésios e do tratamento muito matizado que Paulo dá à fé e às obras da Torá, essa oposição fé/obras pode levar a uma compreensão muito distorcida da fé como crença posta em oposição às obras.</span><span class="lang-en">If we made this passage central to our understanding of faith, it would lead us to conclude that faith is set in opposition to works. If we take this contrast out of its context in Ephesians and in Paul’s very nuanced treatment of faith and works of the Torah, this faith/works opposition can lead to a very distorted understanding of faith as belief set in opposition to works.</span></p>
+    <p class="body reveal"><span class="lang-pt">Isso é frequentemente reformulado na teologia protestante popular para significar que o status de uma pessoa como “salva” diante de Deus não tem relação com suas ações, mas apenas com suas crenças corretas. Isso introduz uma dicotomia entre crença e comportamento que tem sido muito prejudicial na história da tradição protestante.</span><span class="lang-en">This is often restated in popular Protestant theology to mean that a person’s status as “saved” before God bears no relation to their actions, but only to their correct beliefs. It introduces a dichotomy between belief and behavior that has been very damaging in the history of the Protestant tradition.</span></p>
+    <p class="body reveal"><span class="lang-pt">O que significa fé no Novo Testamento grego? Qual é a amplitude semântica dessa palavra?</span><span class="lang-en">What does faith mean in the Greek New Testament? What is the semantic range of this word?</span></p>
+
+    <h3 class="sub reveal"><span class="lang-pt">O Ato de Confiar em Alguém</span><span class="lang-en">The Act of Trusting in Someone</span></h3>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">2 Coríntios 5:6-7</span><span class="lang-en">2 Corinthians 5:6-7</span></span><span class="scripture-type">NIV*</span></div>
+      <div class="scripture-text"><span class="lang-pt"><sup class="vs">6</sup> Portanto, estamos sempre confiantes e sabemos que enquanto estamos em casa no corpo estamos ausentes do Senhor. <sup class="vs">7</sup> Pois vivemos por <strong>pistis</strong>, não por vista.</span><span class="lang-en"><sup class="vs">6</sup> Therefore we are always confident and know that as long as we are at home in the body we are away from the Lord. <sup class="vs">7</sup> For we live by <strong>pistis</strong>, not by sight.</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">1 Pedro 1:21</span><span class="lang-en">1 Peter 1:21</span></span><span class="scripture-type">NIV*</span></div>
+      <div class="scripture-text"><span class="lang-pt">Por meio dele tendes <strong>pistis</strong> em Deus, que o ressuscitou dos mortos e o glorificou, e assim vossa <strong>pistis</strong> e esperança estão em Deus.</span><span class="lang-en">Through him you have <strong>pistis</strong> in God, who raised him from the dead and glorified him, and so your <strong>pistis</strong> and hope are in God.</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+    <p class="body reveal"><span class="lang-pt">Esses exemplos mostram um significado semelhante às nossas palavras inglesas “believe” (crer) ou “have faith” (ter fé). É principalmente uma atividade mental—a escolha de crer em alguém ou em algo.</span><span class="lang-en">These examples show a similar meaning to our English words “believe” or “have faith.” It’s primarily a mental activity—the choice to believe in someone or something.</span></p>
+
+    <h3 class="sub reveal"><span class="lang-pt">Um Conjunto de Convicções e Crenças Que Definem um Grupo Social</span><span class="lang-en">A Set of Convictions and Beliefs That Define a Social Group</span></h3>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Atos 6:7</span><span class="lang-en">Acts 6:7</span></span><span class="scripture-type">NIV*</span></div>
+      <div class="scripture-text"><span class="lang-pt">Assim a palavra de Deus se espalhou. O número de discípulos em Jerusalém aumentou rapidamente, e um grande número de sacerdotes tornou-se obediente à <strong>pistis</strong>.</span><span class="lang-en">So the word of God spread. The number of disciples in Jerusalem increased rapidly, and a large number of priests became obedient to the <strong>pistis</strong>.</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Efésios 4:4-6</span><span class="lang-en">Ephesians 4:4-6</span></span><span class="scripture-type">NIV*</span></div>
+      <div class="scripture-text"><span class="lang-pt"><sup class="vs">4</sup> Há um só corpo e um só Espírito, assim como fostes chamados a uma só esperança quando fostes chamados;<br><sup class="vs">5</sup> um só Senhor, uma só <strong>pistis</strong>, um só batismo; <sup class="vs">6</sup> um só Deus e Pai de todos, que está sobre todos, por todos e em todos.</span><span class="lang-en"><sup class="vs">4</sup> There is one body and one Spirit, just as you were called to one hope when you were called;<br><sup class="vs">5</sup> one Lord, one <strong>pistis</strong>, one baptism; <sup class="vs">6</sup> one God and Father of all, who is over all and through all and in all.</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+    <p class="body reveal"><span class="lang-pt">Esses exemplos mostram que um grupo social pode ser identificado com as crenças ou convicções que o distinguem de outros grupos.</span><span class="lang-en">These examples show that a social group can be identified with the beliefs or convictions that set it apart from other groups.</span></p>
+
+    <h3 class="sub reveal"><span class="lang-pt">Ações Que Demonstram a Confiança ou Fidelidade de uma Pessoa</span><span class="lang-en">Actions That Display a Person’s Trust or Faithfulness</span></h3>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 9:1-2</span><span class="lang-en">Matthew 9:1-2</span></span><span class="scripture-type">NIV*</span></div>
+      <div class="scripture-text"><span class="lang-pt"><sup class="vs">1</sup> Jesus entrou num barco, atravessou e veio à sua própria cidade. <sup class="vs">2</sup> Alguns homens trouxeram-lhe um paralítico, deitado numa esteira. Quando Jesus viu a <strong>pistis</strong> deles, disse ao homem: “Tem ânimo, filho; teus pecados estão perdoados.”</span><span class="lang-en"><sup class="vs">1</sup> Jesus stepped into a boat, crossed over and came to his own town. <sup class="vs">2</sup> Some men brought to him a paralyzed man, lying on a mat. When Jesus saw their <strong>pistis</strong>, he said to the man, “Take heart, son; your sins are forgiven.”</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">1 Tessalonicenses 1:3</span><span class="lang-en">1 Thessalonians 1:3</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor’s Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">Lembramos diante do nosso Deus e Pai<br>vossa obra que procede da <strong>pistis</strong>,<br>vosso trabalho que procede do amor,<br>e vossa perseverança que procede da esperança em nosso Senhor Jesus Cristo.</span><span class="lang-en">We remember before our God and Father<br>your work that is from <strong>pistis</strong>,<br>your labor that is from love,<br>and your endurance that is from hope in our Lord Jesus Christ.</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Romanos 1:5</span><span class="lang-en">Romans 1:5</span></span><span class="scripture-type">NIV*</span></div>
+      <div class="scripture-text"><span class="lang-pt">Por meio dele recebemos graça e apostolado para chamar todos os gentios à obediência que procede da <strong>pistis</strong> por causa do seu nome.</span><span class="lang-en">Through him we received grace and apostleship to call all the Gentiles to the obedience from <strong>pistis</strong> for his name’s sake.</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Tiago 2:14, 17</span><span class="lang-en">James 2:14, 17</span></span><span class="scripture-type">NIV*</span></div>
+      <div class="scripture-text"><span class="lang-pt"><sup class="vs">14</sup> De que adianta, meus irmãos e irmãs, se alguém afirma ter <strong>pistis</strong> mas não tem obras? Pode tal <strong>pistis</strong> salvá-lo? … <sup class="vs">17</sup> a <strong>pistis</strong> por si mesma, se não for acompanhada de obras, está morta.</span><span class="lang-en"><sup class="vs">14</sup> What good is it, my brothers and sisters, if someone claims to have <strong>pistis</strong> but has no works? Can such <strong>pistis</strong> save them? … <sup class="vs">17</sup> <strong>pistis</strong> by itself, if it is not accompanied by works, is dead.</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+    <p class="body reveal"><span class="lang-pt">Em cada um desses textos, <em>pistis</em> refere-se claramente a ação e comportamento visíveis, não principalmente a uma atividade ou escolha mental. Em outras palavras, <em>pistis</em> pode se referir tanto à escolha de crer em algo quanto aos comportamentos que resultam dessa crença. Eles são uma e a mesma coisa.</span><span class="lang-en">In each of these texts, pistis clearly refers to visible action and behavior, not primarily to a mental activity or choice. In other words, pistis can refer to both the choice to believe something and also to the behaviors that result from that belief. They are one and the same.</span></p>
+
+    <h2 class="section reveal"><span class="lang-pt">O Uso que Paulo Faz da Amplitude Semântica de Pistis</span><span class="lang-en">Paul’s Use of the Semantic Range of Pistis</span></h2>
+    <p class="body reveal"><span class="lang-pt">Conhecer essa amplitude semântica ajuda a esclarecer usos de <em>pistis</em> em que Paulo explora e combina essas diferentes nuances.</span><span class="lang-en">Knowing this semantic range helps clarify uses of pistis where Paul exploits and combines these different nuances.</span></p>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Romanos 3:21-24</span><span class="lang-en">Romans 3:21-24</span></span><span class="scripture-type">NIV*</span></div>
+      <div class="scripture-text"><span class="lang-pt"><sup class="vs">21</sup> Mas agora, à parte da Torá, a justiça de Deus foi manifestada, da qual a Lei e os Profetas dão testemunho. <sup class="vs">22</sup> Essa justiça é através da <strong>pistis</strong> de Jesus Messias para todos os que demonstram <strong>pistis</strong>. Não há diferença entre judeu e gentio, <sup class="vs">23</sup> pois todos pecaram e destituídos estão da glória de Deus, <sup class="vs">24</sup> e todos são justificados gratuitamente por sua graça mediante a redenção que veio por Cristo Jesus.</span><span class="lang-en"><sup class="vs">21</sup> But now apart from the Torah the righteousness of God has been made known, to which the Law and the Prophets testify. <sup class="vs">22</sup> This righteousness is through <strong>pistis</strong> of Jesus Messiah for all who show <strong>pistis</strong>. There is no difference between Jew and Gentile, <sup class="vs">23</sup> for all have sinned and fall short of the glory of God, <sup class="vs">24</sup> and all are justified freely by his grace through the redemption that came by Christ Jesus.</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Gálatas 2:16</span><span class="lang-en">Galatians 2:16</span></span><span class="scripture-type">NIV*</span></div>
+      <div class="scripture-text"><span class="lang-pt">... sabendo que uma pessoa não é justificada pelas obras da Torá, mas através da <strong>pistis</strong> de Jesus Messias. Assim nós também demonstramos <strong>pistis</strong> em Messias Jesus para que sejamos justificados pela <strong>pistis</strong> do Messias e não pelas obras da Torá, porque pelas obras da lei ninguém será justificado.</span><span class="lang-en">... know that a person is not justified by the works of the Torah, but through <strong>pistis</strong> of Jesus Messiah. So we, too, have shown <strong>pistis</strong> in Messiah Jesus that we may be justified by <strong>pistis</strong> of Messiah and not by the works of the Torah, because by the works of the law no one will be justified.</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+    <p class="body reveal"><span class="lang-pt">Note como Paulo usa a frase “<em>pistis</em> de Jesus” ao lado da frase “demonstrar <em>pistis</em> em Jesus” em ambas as passagens. Os estudiosos debatem se essas são duas maneiras de enfatizar uma nuance, o ato de confiar em alguém, ou se Paulo está ativando duas nuances semânticas.</span><span class="lang-en">Notice how Paul uses the phrase “pistis of Jesus” alongside the phrase “showing pistis in Jesus” in both passages. Scholars debate whether these are two ways of emphasizing one nuance, the act of trusting in someone, or whether Paul is activating two semantic nuances.</span></p>
+    <p class="body reveal"><span class="lang-pt">Uma maneira de ler isso como ativando duas nuances semânticas seria dizer que, porque as ações de Jesus demonstraram <em>pistis</em> a Deus (isto é, o ato de confiar em alguém), podemos agora estar em relação correta de aliança com Deus se demonstrarmos uma atitude de <em>pistis</em> em Jesus (isto é, um conjunto de convicções e crenças que definem um grupo social).</span><span class="lang-en">One way to read this as activating two semantic nuances would be to say that because Jesus’ actions displayed pistis to God (i.e., the act of trusting in someone), we can now be in right covenant relationship with God if we display an attitude of pistis in Jesus (i.e., a set of convictions and beliefs that define a social group).</span></p>
+
+    <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+    <p class="body reveal"><span class="lang-pt">Pense em uma palavra com uma ampla gama de significados, como a palavra “run” (correr), que usamos como exemplo nesta sessão. Todos os seus significados possíveis são pretendidos sempre que alguém usa a palavra “run”? Por que isso é importante?</span><span class="lang-en">Think about a word with a wide range of meanings such as the word “run,” which we use as an example in this session. Are all of its possible meanings intended whenever someone uses the word “run”? Why is this important?</span></p>
+  </div>
+  <script>
+    function setLang(l){ localStorage.setItem('art-of-biblical-words-s4-lang',l); document.documentElement.lang=l; var pt=document.getElementById('lang-pt-btn'), en=document.getElementById('lang-en-btn'); if(l==='pt'){pt.className='nav-btn bg-sky-600 text-white';en.className='nav-btn';} else {en.className='nav-btn bg-sky-600 text-white';pt.className='nav-btn';} }
+    (function(){ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1}); document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);}); })();
+    setLang(localStorage.getItem('art-of-biblical-words-s4-lang')||'pt');
+  </script>
+</body>
+</html>

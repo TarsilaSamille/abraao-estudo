@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 5: Juntando Todos os Pedaços</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="../js/verse-modal.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
+  .ref:hover { color: #2563eb; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  ol.numbered { padding-left: 1.5rem; list-style: decimal; }
+  ol.numbered > li { margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; list-style: decimal; }
+  ol.numbered > li > ul { list-style: none; padding: 0; margin-top: .4rem; }
+  ol.numbered > li > ul > li { padding-left: 1.4rem; position: relative; margin-bottom: .35rem; line-height: 1.68; }
+  ol.numbered > li > ul > li:before { content: "•"; position: absolute; left: .4rem; color: #1a1a1a; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+  .scripture:hover { border-left-color: #9aa7b8; }
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+  .vs { font-weight: 700; color: #5b7285; font-size: .78em; margin-right: .15em; }
+  .quote { border-left: 4px solid #aeb6bf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a3f47; font-style: italic; }
+  .poem { font-family: 'Newsreader', Georgia, serif; font-size: 1.05rem; line-height: 1.85; color: #24262a; margin: 1.1rem 0; }
+  .book-link { color: #1a5fb4; text-decoration: underline; font-style: normal; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .commentary { background: #f5f7f9; border-radius: 10px; padding: .9rem 1.2rem; margin: .8rem 0 1.1rem; font-size: 1.05rem; line-height: 1.78; color: #24262a; }
+  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
+  .table-img img { width: 100%; display: block; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
+  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
+  .nav-btn:hover { background: #f1f5f9; }
+  .nav-back { left: 1rem; }
+  .nav-lang { right: 1rem; }
+</style>
+</head>
+<body class="bg-white">
+  <a href="../index.html" class="nav-btn nav-back"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
+  <div class="nav-lang" style="right:1rem; position:fixed; top:1rem; z-index:50; display:inline-flex; gap:.25rem;">
+    <button onclick="setLang('pt')" class="nav-btn" style="position:static" id="lang-pt-btn">PT</button>
+    <button onclick="setLang('en')" class="nav-btn" style="position:static" id="lang-en-btn">EN</button>
+  </div>
+  <div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
+    <h1 class="title reveal"><span class="lang-pt">Sessão 5: Juntando Todos os Pedaços</span><span class="lang-en">Session 5: Bringing All the Pieces Together</span></h1>
+    <hr class="rule">
+    <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt">Cada autor bíblico escreve com suas próprias ênfases, estilos e ideias.</span><span class="lang-en">Each biblical author writes with their own emphases, styles, and ideas.</span></li>
+      <li><span class="lang-pt">Para entender melhor como um autor usa uma palavra, estude-a em círculos cada vez maiores de contexto—o mesmo livro, outras obras do mesmo autor, a mesma coleção e a Bíblia inteira.</span><span class="lang-en">To better understand how an author is using a word, study it in expanding circles of context—the same book, other works by the same author, the same collection, and the entire Bible.</span></li>
+    </ul>
+
+    <h2 class="section reveal"><span class="lang-pt">Foco Semântico</span><span class="lang-en">Semantic Focus</span></h2>
+    <p class="body reveal"><span class="lang-pt">Todos nós usamos palavras de maneiras únicas, o que significa que usar um dicionário e conhecer a amplitude semântica de uma palavra não é suficiente. Devemos, na verdade, estudar o uso de uma palavra por um autor, livro ou unidade literária em particular para descobrir a nuance única de uma palavra em contexto.</span><span class="lang-en">All of us use words in unique ways, which means that using a dictionary and knowing a word’s semantic range is not enough. We must actually study the use of a word by a particular author, book, or literary unit to discover the unique nuance of a word in context.</span></p>
+
+    <h2 class="section reveal"><span class="lang-pt">Passo Um: Estude a Amplitude Semântica de Justiça</span><span class="lang-en">Step One: Study the Semantic Range of Righteousness</span></h2>
+    <p class="body reveal"><span class="lang-pt">Estude as seguintes passagens para descobrir a amplitude semântica das palavras hebraicas para “justiça,” tsedeq/tsedaqah (צדקה/צדק), e “justo,” tsaddiq (צדיק).</span><span class="lang-en">Study the following passages to discover the semantic range of the Hebrew words for “righteousness,” tsedeq/tsedaqah (צדקה/צדק), and “righteous,” tsaddiq (צדיק).</span></p>
+
+    <h3 class="sub reveal"><span class="lang-pt">As Ações de uma Pessoa Que Faz o Que é Certo por Outra Pessoa no Contexto de Seu Relacionamento</span><span class="lang-en">The Actions of a Person Who Does Right by Another Person in the Context of Their Relationship</span></h3>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">1 Samuel 12:6-7</span><span class="lang-en">1 Samuel 12:6-7</span></span><span class="scripture-type">NIV*</span></div>
+      <div class="scripture-text"><span class="lang-pt"><sup class="vs">6</sup> Então Samuel disse ao povo: “Foi o SENHOR quem nomeou Moisés e Arão e tirou vossos antepassados do Egito. <sup class="vs">7</sup> Agora, pois, permanecei aqui, porque vou confrontar-vos com evidências perante o SENHOR quanto a toda a <strong>tsedaqah</strong> que o SENHOR realizou por vós e por vossos antepassados.”</span><span class="lang-en"><sup class="vs">6</sup> Then Samuel said to the people, “It is the LORD who appointed Moses and Aaron and brought your ancestors up out of Egypt. <sup class="vs">7</sup> Now then, stand here, because I am going to confront you with evidence before the LORD as to all the <strong>tsedaqah</strong> performed by the LORD for you and your ancestors.”</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Gênesis 30:33</span><span class="lang-en">Genesis 30:33</span></span><span class="scripture-type">NIV*</span></div>
+      <div class="scripture-text"><span class="lang-pt">E minha <strong>tsedaqah</strong> testemunhará a meu favor no futuro, sempre que verificar o salário que me pagaste. Qualquer cabra que eu possuir e que não for salpicada ou manchada, ou qualquer cordeiro que não for escuro, será considerado roubado.</span><span class="lang-en">And my <strong>tsedaqah</strong> will testify for me in the future, whenever you check on the wages you have paid me. Any goat in my possession that is not speckled or spotted, or any lamb that is not dark-colored, will be considered stolen.</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Gênesis 38:26</span><span class="lang-en">Genesis 38:26</span></span><span class="scripture-type">NIV*</span></div>
+      <div class="scripture-text"><span class="lang-pt">Judá os reconheceu e disse: “Ela agiu com mais <strong>tsedaqah</strong> do que eu, pois não a dei ao meu filho Selá.” E ele não voltou a deitar-se com ela.</span><span class="lang-en">Judah recognized them and said, “She has acted with more <strong>tsedaqah</strong> than I, since I wouldn’t give her to my son Shelah.” And he did not sleep with her again.</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+
+    <h3 class="sub reveal"><span class="lang-pt">Comportamento Ético Que se Alinha com a Vontade de Deus</span><span class="lang-en">Ethical Behavior That Aligns With God’s Will</span></h3>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Deuteronômio 6:24-25</span><span class="lang-en">Deuteronomy 6:24-25</span></span><span class="scripture-type">NIV*</span></div>
+      <div class="scripture-text"><span class="lang-pt"><sup class="vs">24</sup> O SENHOR nos ordenou obedecer a todos estes decretos e temer o SENHOR nosso Deus, para que sempre prosperemos e sejamos mantidos vivos, como é o caso hoje. <sup class="vs">25</sup> E se tivermos o cuidado de obedecer a toda esta lei perante o SENHOR nosso Deus, como ele nos ordenou, essa será a nossa <strong>tsedaqah</strong>.</span><span class="lang-en"><sup class="vs">24</sup> The LORD commanded us to obey all these decrees and to fear the LORD our God, so that we might always prosper and be kept alive, as is the case today. <sup class="vs">25</sup> And if we are careful to obey all this law before the LORD our God, as he has commanded us, that will be our <strong>tsedaqah</strong>.</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Salmo 106:3</span><span class="lang-en">Psalm 106:3</span></span><span class="scripture-type">NIV*</span></div>
+      <div class="scripture-text"><span class="lang-pt">Bem-aventurados os que agem com justiça, os que sempre fazem <strong>tsedaqah</strong>.</span><span class="lang-en">Blessed are those who act justly, who always do <strong>tsedaqah</strong>.</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Provérbios 21:3</span><span class="lang-en">Proverbs 21:3</span></span><span class="scripture-type">NIV*</span></div>
+      <div class="scripture-text"><span class="lang-pt">Fazer <strong>tsedaqah</strong> e justiça é mais aceitável ao SENHOR do que sacrifício.</span><span class="lang-en">To do <strong>tsedaqah</strong> and justice is more acceptable to the LORD than sacrifice.</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+    <h3 class="sub reveal"><span class="lang-pt">Estar em Posição Relacional Correta com Deus</span><span class="lang-en">Being in Right Relational Standing With God</span></h3>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Gênesis 15:6</span><span class="lang-en">Genesis 15:6</span></span><span class="scripture-type">NIV*</span></div>
+      <div class="scripture-text"><span class="lang-pt">Abrão creu no SENHOR, e ele lhe creditou isso como <strong>tsedaqah</strong>.</span><span class="lang-en">Abram believed the LORD, and he credited it to him as <strong>tsedaqah</strong>.</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Isaías 53:11</span><span class="lang-en">Isaiah 53:11</span></span><span class="scripture-type">NIV*</span></div>
+      <div class="scripture-text"><span class="lang-pt">Depois que [meu servo] tiver sofrido,<br>ele verá a luz da vida e ficará satisfeito;<br>pelo seu conhecimento meu servo <strong>tsaddiq</strong> tornará muitos <strong>tsaddiq</strong>,<br>e ele levará as iniquidades deles.</span><span class="lang-en">After [my servant] has suffered,<br>he will see the light of life and be satisfied;<br>by his knowledge my <strong>tsaddiq</strong> servant will make many <strong>tsaddiq</strong>,<br>and he will bear their iniquities.</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+
+    <h2 class="section reveal"><span class="lang-pt">Passo Dois: Aprenda a Palavra Grega Usada na Septuaginta para Traduzir a Palavra Hebraica</span><span class="lang-en">Step Two: Learn the Greek Word Used in the Septuagint to Translate the Hebrew Word</span></h2>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Salmo 10:7 LXX/Septuaginta</span><span class="lang-en">Psalm 10:7 LXX/Septuagint</span></span><span class="scripture-type">*</span></div>
+      <div class="scripture-text"><span class="lang-pt">... porque o Senhor é <em>dikaios</em> e amou a <em>dikaiosune</em>. Sua face viu a retidão.</span><span class="lang-en">... because the Lord is <em>dikaios</em> and he loved <em>dikaiosune</em>. His face saw uprightness.</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+
+    <h2 class="section reveal"><span class="lang-pt">Passo Três: Estude a Amplitude Semântica de Dikaiosune</span><span class="lang-en">Step Three: Study the Semantic Range of Dikaiosune</span></h2>
+    <p class="body reveal"><span class="lang-pt">Estude a amplitude semântica da palavra no Novo Testamento grego, prestando atenção ao foco semântico em diferentes autores e livros.</span><span class="lang-en">Study the semantic range of the word in the Greek New Testament, paying attention to semantic focus in different authors and books.</span></p>
+
+    <h3 class="sub reveal"><span class="lang-pt">Mateus</span><span class="lang-en">Matthew</span></h3>
+    <p class="body reveal"><span class="lang-pt">No Evangelho de Mateus, a palavra “dikaiosune” tem um foco semântico no comportamento que se alinha com a vontade de Deus, especialmente como revelado na Torá.</span><span class="lang-en">In Matthew’s Gospel, the word “dikaiosune” has a semantic focus on behavior that aligns with God’s will, especially as revealed in the Torah.</span></p>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 1:18-19</span><span class="lang-en">Matthew 1:18-19</span></span><span class="scripture-type">NASB</span></div>
+      <div class="scripture-text"><span class="lang-pt"><sup class="vs">18</sup> Ora, o nascimento de Jesus Cristo foi assim: quando sua mãe Maria estava desposada com José, antes de se ajuntarem, ela foi achada grávida pelo Espírito Santo. <sup class="vs">19</sup> E José, seu marido, sendo homem justo e não querendo envergonhá-la, planejou enviá-la embora em segredo.</span><span class="lang-en"><sup class="vs">18</sup> Now the birth of Jesus Christ was as follows: when his mother Mary had been betrothed to Joseph, before they came together she was found to be with child by the Holy Spirit. <sup class="vs">19</sup> And Joseph her husband, being a righteous man and not wanting to disgrace her, planned to send her away secretly.</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 3:15</span><span class="lang-en">Matthew 3:15</span></span><span class="scripture-type">NIV</span></div>
+      <div class="scripture-text"><span class="lang-pt">Jesus respondeu: “Deixe assim por agora; convém que façamos isso para cumprir toda a justiça.” Então João consentiu.</span><span class="lang-en">Jesus replied, “Let it be so now; it is proper for us to do this to fulfill all righteousness.” Then John consented.</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 5:20</span><span class="lang-en">Matthew 5:20</span></span><span class="scripture-type">NIV</span></div>
+      <div class="scripture-text"><span class="lang-pt">Pois eu vos digo que, a menos que a vossa justiça exceda a dos fariseus e mestres da lei, de modo algum entrareis no reino dos céus.</span><span class="lang-en">For I tell you that unless your righteousness surpasses that of the Pharisees and the teachers of the law, you will certainly not enter the kingdom of heaven.</span></div>
+    </div>
+
+    <h3 class="sub reveal"><span class="lang-pt">Paulo</span><span class="lang-en">Paul</span></h3>
+    <p class="body reveal"><span class="lang-pt">Na carta de Paulo aos Romanos, ele usa o grupo de palavras dikaiosune para ativar toda a amplitude semântica das palavras hebraicas para “justiça.”</span><span class="lang-en">In Paul’s letter to the Romans, he uses the dikaiosune word group to activate the entire semantic range of the Hebrew words for “righteousness.”</span></p>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Romanos 1:17</span><span class="lang-en">Romans 1:17</span></span><span class="scripture-type">NIV</span></div>
+      <div class="scripture-text"><span class="lang-pt">Pois no evangelho a justiça de Deus é revelada—uma justiça que vem da fé e resulta em fidelidade, assim como está escrito: “O justo viverá pela fé.”</span><span class="lang-en">For in the gospel the righteousness of God is revealed—a righteousness that is from faith and results in faithfulness, just as it is written: “The righteous will live by faith.”</span></div>
+    </div>
+    <div class="commentary reveal"><span class="lang-pt">Aqui justiça significa tanto o caráter de Deus de fazer o certo por suas promessas de aliança quanto a posição relacional correta de uma pessoa com Deus.</span><span class="lang-en">Here righteousness means both God’s character of doing right by his covenant promises and a person’s right relational status with God.</span></div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Romanos 6:13</span><span class="lang-en">Romans 6:13</span></span><span class="scripture-type">NIV</span></div>
+      <div class="scripture-text"><span class="lang-pt">Não ofereçais nenhuma parte de vós mesmos ao pecado como instrumento de maldade, mas oferecei-vos a Deus como aqueles que foram trazidos da morte para a vida; e oferecei cada parte de vós mesmos a ele como instrumento de justiça.</span><span class="lang-en">Do not offer any part of yourself to sin as an instrument of wickedness, but rather offer yourselves to God as those who have been brought from death to life; and offer every part of yourself to him as an instrument of righteousness.</span></div>
+    </div>
+    <div class="commentary reveal"><span class="lang-pt">Aqui justiça significa comportamento ético que se alinha com a vontade de Deus.</span><span class="lang-en">Here righteousness means ethical behavior that aligns with God’s will.</span></div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Romanos 4:23-25</span><span class="lang-en">Romans 4:23-25</span></span><span class="scripture-type">NIV*</span></div>
+      <div class="scripture-text"><span class="lang-pt"><sup class="vs">23</sup> As palavras “isso lhe foi creditado” foram escritas não somente para ele, <sup class="vs">24</sup> mas também para nós, a quem Deus creditará justiça—para nós que cremos naquele que ressuscitou Jesus, nosso Senhor, dos mortos. <sup class="vs">25</sup> Ele foi entregue à morte por nossos pecados e ressuscitado para a nossa justificação [= para criar nossa posição relacional correta com Deus].</span><span class="lang-en"><sup class="vs">23</sup> The words “it was credited to [Abraham]” were written not for him alone, <sup class="vs">24</sup> but also for us, to whom God will credit righteousness—for us who believe in him who raised Jesus our Lord from the dead. <sup class="vs">25</sup> He was delivered over to death for our sins and was raised to life for our justification [= to create our right relational status with God].</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+    <div class="commentary reveal"><span class="lang-pt">Aqui justiça significa estar em relacionamento correto com Deus.</span><span class="lang-en">Here righteousness means being in right relationship with God.</span></div>
+    <p class="body reveal"><span class="lang-pt">Paulo está ciente da ampla amplitude semântica de dikaiosune, e ele ativa essas diferentes nuances dependendo do ponto contextual que quer enfatizar. Mateus, por outro lado, usa a mesma palavra para ativar consistentemente uma nuance de significado. Conhecer a definição de dicionário de uma palavra é apenas uma parte da compreensão do que um autor em particular quer dizer. Precisamos acompanhar as maneiras únicas como cada autor usa as palavras para obter uma compreensão mais profunda.</span><span class="lang-en">Paul is aware of the wide semantic range of dikaiosune, and he activates those different nuances depending on the contextual point he wants to make. Matthew, on the other hand, uses the same word to consistently activate one nuance of meaning. Knowing the dictionary definition of a word is only one part of understanding what a particular author means. We need to track with the unique ways each author uses words to gain a deeper understanding.</span></p>
+    <h2 class="section reveal"><span class="lang-pt">Recursos-Chave para Estudar Vocabulário Bíblico</span><span class="lang-en">Key Resources for Studying Biblical Vocabulary</span></h2>
+    <h3 class="sub reveal"><span class="lang-pt">Para Aqueles Sem Conhecimento de Grego e Hebraico</span><span class="lang-en">For Those With No Knowledge of Greek and Hebrew</span></h3>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt"><a class="book-link" href="#">Lexham Theological Wordbook</a> (somente digital no software Logos Bible)</span><span class="lang-en"><a class="book-link" href="#">Lexham Theological Wordbook</a> (digital only in Logos Bible software)</span></li>
+    </ul>
+    <h3 class="sub reveal"><span class="lang-pt">Para Aqueles Com Conhecimento de Grego e Hebraico</span><span class="lang-en">For Those With Knowledge of Greek and Hebrew</span></h3>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt"><a class="book-link" href="#">New International Dictionary of Old Testament Theology and Exegesis</a>, editado por Willem VanGemeren (impresso e digital no Logos)</span><span class="lang-en"><a class="book-link" href="#">New International Dictionary of Old Testament Theology and Exegesis</a>, edited by Willem VanGemeren (print and digital in Logos)</span></li>
+      <li><span class="lang-pt"><a class="book-link" href="#">New International Dictionary of New Testament Theology and Exegesis</a>, editado por Moisés Silva (impresso e digital no Logos)</span><span class="lang-en"><a class="book-link" href="#">New International Dictionary of New Testament Theology and Exegesis</a>, edited by Moisés Silva (print and digital in Logos)</span></li>
+    </ul>
+    <p class="body reveal"><span class="lang-pt">Os dicionários padrão em inglês do hebraico, aramaico e grego bíblicos antigos pressupõem um conhecimento das línguas. Todos estão disponíveis em formas digitais ou impressas.</span><span class="lang-en">The standard English dictionaries of ancient biblical Hebrew, Aramaic, and Greek presuppose a knowledge of the languages. All are available in digital or print forms.</span></p>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt"><a class="book-link" href="#">BDB: A Hebrew and English Lexicon of the Old Testament, with an Appendix Containing the Biblical Aramaic</a>, editado por Francis Brown, Samuel Rolles Driver e Charles Augustus Briggs (1977). Clarendon Press.</span><span class="lang-en"><a class="book-link" href="#">BDB: A Hebrew and English Lexicon of the Old Testament, with an Appendix Containing the Biblical Aramaic</a>, edited by Francis Brown, Samuel Rolles Driver, and Charles Augustus Briggs (1977). Clarendon Press.</span></li>
+      <li><span class="lang-pt"><a class="book-link" href="#">HALOT: The Hebrew and Aramaic Lexicon of the Old Testament</a>, editado por L. Koehler e Walter Baumgartner (1994). Brill.</span><span class="lang-en"><a class="book-link" href="#">HALOT: The Hebrew and Aramaic Lexicon of the Old Testament</a>, edited by L. Koehler and Walter Baumgartner (1994). Brill.</span></li>
+      <li><span class="lang-pt"><a class="book-link" href="#">BDAG: A Greek-English Lexicon of the New Testament and Other Early Christian Literature</a>, editado por Walter Bauer, F.W. Danker, W.F. Arndt e W.F. Gingrich (2000). University of Chicago Press.</span><span class="lang-en"><a class="book-link" href="#">BDAG: A Greek-English Lexicon of the New Testament and Other Early Christian Literature</a>, edited by Walter Bauer, F.W. Danker, W.F. Arndt, and W.F. Gingrich (2000). University of Chicago Press.</span></li>
+    </ul>
+    <h3 class="sub reveal"><span class="lang-pt">Livros Úteis sobre Palavras Bíblicas e Como Fazer Estudos de Palavras</span><span class="lang-en">Helpful Books on Biblical Words and How to Do Word Studies</span></h3>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt"><a class="book-link" href="#">70 Hebrew Words Every Christian Should Know</a>, Schlimm, Matthew Richard (2018). Abingdom Press.</span><span class="lang-en"><a class="book-link" href="#">70 Hebrew Words Every Christian Should Know</a>, Schlimm, Matthew Richard (2018). Abingdom Press.</span></li>
+      <li><span class="lang-pt"><a class="book-link" href="#">Exegetical Fallacies</a>, Carson, D.A. (1996). Baker Academic.</span><span class="lang-en"><a class="book-link" href="#">Exegetical Fallacies</a>, Carson, D.A. (1996). Baker Academic.</span></li>
+      <li><span class="lang-pt"><a class="book-link" href="#">Linguistics and Biblical Exegesis</a>, Mangum, Douglas e Josh Westbury (2017). Lexham Press.</span><span class="lang-en"><a class="book-link" href="#">Linguistics and Biblical Exegesis</a>, Mangum, Douglas and Josh Westbury (2017). Lexham Press.</span></li>
+      <li><span class="lang-pt"><a class="book-link" href="#">Biblical Words and Their Meaning: An Introduction to Lexical Semantics</a>, Silva, Moisés (1995). Zondervan Academic.</span><span class="lang-en"><a class="book-link" href="#">Biblical Words and Their Meaning: An Introduction to Lexical Semantics</a>, Silva, Moisés (1995). Zondervan Academic.</span></li>
+    </ul>
+
+    <h2 class="section reveal"><span class="lang-pt">Hábitos Recomendados para Estudar Palavras Bíblicas</span><span class="lang-en">Recommended Habits for Studying Biblical Words</span></h2>
+    <ol class="numbered reveal">
+      <li><span class="lang-pt"><strong>Defina sua Mentalidade</strong><br>Estamos buscando entender a enciclopédia de significado dos autores bíblicos para suas escolhas de palavras. Queremos deixar que o contexto da Bíblia pinte um quadro do significado pretendido pelos autores e evitar impor nossas próprias suposições.</span><span class="lang-en"><strong>Set Your Mindset</strong><br>We’re seeking to understand the biblical authors’ encyclopedia of meaning for their word choices. We want to let the context of the Bible paint a picture of the authors’ intended meaning and avoid imposing our own assumptions.</span></li>
+      <li><span class="lang-pt"><strong>Escolha uma Palavra</strong><br>Para começar, selecione uma palavra de um versículo na Bíblia. Tente escolher uma palavra que você sinta ter significado para a compreensão da passagem. Na aula, usamos os exemplos de fé, justiça, princípio, coração e habitou (e sua conexão com o tabernáculo).</span><span class="lang-en"><strong>Choose a Word</strong><br>To get started, select a word from a verse in the Bible. Try to pick a word that you sense has significance for the understanding of the passage. In class, we use the examples of faith, righteousness, beginning, heart, and dwelt (and its connection to the tabernacle).</span></li>
+      <li><span class="lang-pt"><strong>Compare Múltiplas Traduções</strong><br>Use uma Bíblia paralela ou ferramenta semelhante (Logos, Bible Gateway) para ver como essa palavra foi traduzida em múltiplas traduções bíblicas. Recomendamos comparar pelo menos quatro—NASB, NIV, ESV e NLT. Anote quaisquer diferenças entre as traduções e comece a esboçar características da amplitude semântica da palavra com base no contexto da passagem.</span><span class="lang-en"><strong>Compare Multiple Translations</strong><br>Use a parallel Bible or similar tool (Logos, Bible Gateway) to see how this word was translated in multiple biblical translations. We recommend comparing at least four—NASB, NIV, ESV, and NLT. Note any differences between the translations and begin to sketch out characteristics of the semantic range of the word based on the passage’s context.</span></li>
+      <li><span class="lang-pt"><strong>Identifique a Palavra na Língua Original</strong><br>Você pode usar uma Bíblia interlinear ou ferramenta semelhante que mostre as palavras da língua original junto com a tradução. Você também pode considerar experimentar a ferramenta de estudo bíblico Logos que Tim usa em aula.</span><span class="lang-en"><strong>Identify the Original Language Word</strong><br>You can use an interlinear Bible or similar tool that shows the original language words along with the translation. You may also consider trying the Bible study tool Logos that Tim uses in class.</span></li>
+      <li><span class="lang-pt"><strong>Consulte a Definição e Traduções</strong><br>Consulte a palavra grega/hebraica/aramaica com uma ferramenta online como blueletterbible.org ou o recurso Word Study no software Logos Bible. Anote a definição dada e todas as maneiras como essa palavra é traduzida em sua tradução bíblica.</span><span class="lang-en"><strong>Look up Definition and Translations</strong><br>Look up the Greek/Hebrew/Aramaic word with an online tool like blueletterbible.org or the Word Study feature in Logos Bible software. Note the given definition and all the ways that this word is translated in your Bible translation.</span></li>
+      <li><span class="lang-pt"><strong>Encontre Todos os Usos desta Palavra na Bíblia</strong><br>Use uma concordância ou ferramenta de busca bíblica para identificar cada lugar onde os autores bíblicos usam esta palavra.<ul><li><strong>Usos no mesmo livro:</strong> Concentre-se no contexto mais imediato e examine o uso da palavra pelo autor no mesmo livro. Preste atenção às nuances e continue esboçando a amplitude semântica da palavra.</li><li><strong>Usos pelo mesmo autor:</strong> Em seguida, observe outras ocorrências da palavra dentro de outros escritos do mesmo autor. Por exemplo, se você começar com a palavra “fé” na carta de Paulo aos Efésios, que é pistis em grego, examine a maneira como Paulo usa a palavra “pistis” em suas outras cartas.</li><li><strong>Todos os usos na Bíblia:</strong> Finalmente, examine todos os outros lugares onde esta palavra aparece na Bíblia. No exemplo de pistis em Efésios, este passo renderia uma lista de 243 versículos no Novo Testamento.</li></ul></span><span class="lang-en"><strong>Find All Uses of This Word in the Bible</strong><br>Use a concordance or Bible search tool to identify every place the biblical authors use this word.<ul><li><strong>Uses within the same book:</strong> Focus on the most immediate context and examine the author’s use of the word in the same book. Pay attention to nuances and continue sketching out the word’s semantic range.</li><li><strong>Uses by the same author:</strong> Next, look at other occurrences of the word within the same author’s other writing. For example, if you start with the word “faith” in Paul’s letter to the Ephesians, which is pistis in Greek, examine the way Paul uses the word “pistis” in his other letters.</li><li><strong>All uses in the Bible:</strong> Finally, examine all of the other places this word shows up in the Bible. In the example of pistis in Ephesians, this step would yield a list of 243 verses in the New Testament.</li></ul></span></li>
+      <li><span class="lang-pt"><strong>Categorize as Ocorrências Segundo a Semelhança no Foco Semântico</strong><br>Agrupe versículos com nuances de significado semelhantes e dê a esses grupos títulos ou descrições curtos. Pense no exemplo da palavra inglesa “run” (correr). Você pode criar uma categoria relacionada a mover-se muito rápido (“correu 100m”), uma categoria para coisas operando ou funcionando (“a produção está funcionando bem”), e assim por diante.</span><span class="lang-en"><strong>Categorize Occurrences According to Similarity in Semantic Focus</strong><br>Group verses with similar nuances of meaning together and give those groups short titles or descriptions. Think about the example of the English word “run.” You might create a category having to do with moving very fast (“ran 100m”), a category for things operating or functioning (“production is running smoothly”), and so on.</span></li>
+      <li><span class="lang-pt"><strong>Trace uma Palavra Grega Através da Septuaginta até Palavras Relacionadas da Bíblia Hebraica</strong><br>Nota: Os passos 8 e 9 se aplicam somente a palavras gregas do Novo Testamento, então se você está fazendo um estudo de palavra hebraica/aramaica, pule para o passo 10.<ul><li>Use o recurso Word Study no Logos (ou ferramenta semelhante) para encontrar as palavras hebraicas originais que os autores estavam traduzindo para sua palavra grega escolhida ao criar a Septuaginta.</li><li>Faça observações sobre os resultados do seu estudo de palavras. Esta palavra grega foi usada pela Septuaginta para traduzir muitas palavras hebraicas diferentes ou apenas um punhado? Há uma palavra hebraica que parece mais frequentemente associada a esta palavra grega?</li><li>Identifique a(s) palavra(s) hebraica(s) mais aplicável(is). Consulte essa palavra em sua ferramenta de estudo de palavras (ou dicionário bíblico). Esta palavra hebraica tem uma amplitude semântica à qual precisamos prestar atenção?</li><li>Trace esta palavra hebraica até todas as suas ocorrências na Bíblia Hebraica. O que esta palavra hebraica significava em vários contextos na Bíblia Hebraica?</li><li>Construa sua entrada de enciclopédia para este grupo de palavras. Categorize essas ocorrências segundo suas semelhanças no foco semântico. Agrupe ocorrências com uma nuance semelhante e dê a esse grupo um título ou descrição curto.</li></ul></span><span class="lang-en"><strong>Trace a Greek Word Through the Septuagint to Related Words From the Hebrew Bible</strong><br>Note: Steps 8 and 9 only apply to New Testament Greek words, so if you are doing a Hebrew/Aramaic word study, skip to step 10.<ul><li>Use the Word Study feature in Logos (or a similar tool) to find the original Hebrew words that the authors were translating into your chosen Greek word when creating the Septuagint.</li><li>Make observations about your word study results. Was this Greek word used by the Septuagint to translate many different Hebrew words or just a handful? Is there one Hebrew word that seems most frequently associated with this Greek word?</li><li>Identify the most applicable Hebrew word(s). Look up that word in your word study tool (or Bible dictionary). Does this Hebrew word have a semantic range we need to pay attention to?</li><li>Trace this Hebrew word to all of its occurrences in the Hebrew Bible. What did this Hebrew word mean in various contexts in the Hebrew Bible?</li><li>Build your encyclopedia entry for this word group. Categorize these occurrences according to their similarities in semantic focus. Group occurrences with a similar nuance of meaning together and give that group a short title or description.</li></ul></span></li>
+      <li><span class="lang-pt"><strong>Combine Seus Resultados</strong><br>Observe a amplitude de significado nas palavras hebraicas, e observe a amplitude de significado nas ocorrências da palavra grega em sua passagem.<ul><li>Que tipos de conexões esta palavra tem com a história bíblica mais ampla?</li><li>Que nuances de significado parecem mais provavelmente pretendidas pelo autor do Novo Testamento?</li><li>Que nuances de significado você pode deixar de lado como interpretações improváveis?</li></ul></span><span class="lang-en"><strong>Combine Your Results</strong><br>Observe the range of meaning in the Hebrew word(s), and observe the range of meaning in the occurrences of the Greek word in your passage.<ul><li>What kinds of connections does this word have to the larger biblical story?</li><li>What nuances of meaning seem most likely intended by the New Testament author?</li><li>What nuances of meaning can you set aside as unlikely interpretations?</li></ul></span></li>
+      <li><span class="lang-pt"><strong>Consulte Outros Estudiosos</strong><br>Use um dicionário teológico ou comentário para obter insights dos estudos de outras pessoas sobre palavras bíblicas.</span><span class="lang-en"><strong>Consult Other Scholars</strong><br>Use a theological wordbook or commentary to gain insights from other peoples’ studies of biblical words.</span></li>
+    </ol>
+
+    <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+    <p class="body reveal"><span class="lang-pt">Por que é importante considerar a singularidade de um autor ou livro ao buscar o significado de uma palavra?</span><span class="lang-en">Why is it important to consider the uniqueness of an author or book when searching for a word’s meaning?</span></p>
+  </div>
+  <script>
+    function setLang(l){ localStorage.setItem('art-of-biblical-words-s5-lang',l); document.documentElement.lang=l; var pt=document.getElementById('lang-pt-btn'), en=document.getElementById('lang-en-btn'); if(l==='pt'){pt.className='nav-btn bg-sky-600 text-white';en.className='nav-btn';} else {en.className='nav-btn bg-sky-600 text-white';pt.className='nav-btn';} }
+    (function(){ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1}); document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);}); })();
+    setLang(localStorage.getItem('art-of-biblical-words-s5-lang')||'pt');
+  </script>
+</body>
+</html>

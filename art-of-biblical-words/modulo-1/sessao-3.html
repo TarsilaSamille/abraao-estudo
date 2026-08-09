@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 3: As Línguas da Bíblia</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="../js/verse-modal.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
+  .ref:hover { color: #2563eb; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  ol.numbered { padding-left: 1.5rem; }
+  ol.numbered > li { margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+  .scripture:hover { border-left-color: #9aa7b8; }
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+  .vs { font-weight: 700; color: #5b7285; font-size: .78em; margin-right: .15em; }
+  .quote { border-left: 4px solid #aeb6bf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a3f47; font-style: italic; }
+  .poem { font-family: 'Newsreader', Georgia, serif; font-size: 1.05rem; line-height: 1.85; color: #24262a; margin: 1.1rem 0; }
+  .book-link { color: #1a5fb4; text-decoration: underline; font-style: normal; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
+  .table-img img { width: 100%; display: block; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
+  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
+  .nav-btn:hover { background: #f1f5f9; }
+  .nav-back { left: 1rem; }
+  .nav-lang { right: 1rem; }
+</style>
+</head>
+<body class="bg-white">
+  <a href="../index.html" class="nav-btn nav-back"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
+  <div class="nav-lang" style="right:1rem; position:fixed; top:1rem; z-index:50; display:inline-flex; gap:.25rem;">
+    <button onclick="setLang('pt')" class="nav-btn" style="position:static" id="lang-pt-btn">PT</button>
+    <button onclick="setLang('en')" class="nav-btn" style="position:static" id="lang-en-btn">EN</button>
+  </div>
+  <div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
+    <h1 class="title reveal"><span class="lang-pt">Sessão 3: As Línguas da Bíblia</span><span class="lang-en">Session 3: The Languages of the Bible</span></h1>
+    <hr class="rule">
+    <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt">A Bíblia foi escrita em hebraico antigo, aramaico antigo e grego koiné.</span><span class="lang-en">The Bible was written in ancient Hebrew, ancient Aramaic, and Koine Greek.</span></li>
+      <li><span class="lang-pt">Jesus e os autores do Novo Testamento foram criados com uma enciclopédia que vinha da Bíblia Hebraica, frequentemente por meio de sua tradução grega.</span><span class="lang-en">Jesus and the New Testament authors were raised with an encyclopedia that came from the Hebrew Bible, often by way of its Greek translation.</span></li>
+      <li><span class="lang-pt">Rastrear cada ocorrência de uma palavra ao longo da Bíblia é uma maneira poderosa de entender melhor a amplitude de significado dessa palavra.</span><span class="lang-en">Tracing every occurrence of a word throughout the Bible is a powerful way to better understand the range of meaning for that word.</span></li>
+      <li><span class="lang-pt">Rastrear uma palavra do Novo Testamento de volta através de seu uso na tradução grega da Bíblia Hebraica pode revelar conexões que o autor pretendia fazer.</span><span class="lang-en">Tracing a New Testament word back through its use in the Greek translation of the Hebrew Bible can reveal connections the author intended to make.</span></li>
+    </ul>
+
+    <h2 class="section reveal"><span class="lang-pt">As Línguas da Bíblia e Como Estudar Seu Vocabulário</span><span class="lang-en">The Languages of the Bible and How to Study Their Vocabulary</span></h2>
+    <p class="body reveal"><span class="lang-pt">A Bíblia cristã consiste em duas grandes coleções literárias: a Bíblia Hebraica/Antigo Testamento e o Novo Testamento.</span><span class="lang-en">The Christian Bible consists of two large literary collections: the Hebrew Bible/Old Testament and the New Testament.</span></p>
+    <p class="body reveal"><span class="lang-pt">A Bíblia desenvolve um conjunto inteiro de ideias em duas línguas diferentes. Se queremos estudar palavras bíblicas, precisamos saber trabalhar em duas línguas.</span><span class="lang-en">The Bible develops one whole set of ideas in two different languages. If we want to study biblical words, we need to know how to work in two languages.</span></p>
+
+    <div class="table-img reveal">
+      <img src="img/sessao-3/p11-vector.png" alt="The Languages of the Bible">
+      <p class="caption"><span class="lang-pt">As Línguas da Bíblia. Criado por Tim Mackie para BibleProject Classroom: Arte das Palavras Bíblicas (2021).</span><span class="lang-en">The Languages of the Bible. Created by Tim Mackie for BibleProject Classroom: Art of Biblical Words (2021).</span></p>
+    </div>
+
+    <p class="body reveal"><span class="lang-pt">Uma obra faz a ponte entre essas duas línguas e coleções literárias. Chama-se Septuaginta, e é a tradução grega da Bíblia Hebraica.</span><span class="lang-en">One work bridges these two languages and literary collections. It’s called the Septuagint, and it’s the Greek translation of the Hebrew Bible.</span></p>
+
+    <div class="table-img reveal">
+      <img src="img/sessao-3/p12-image.png" alt="Septuagint Bridges Hebrew Bible and New Testament">
+      <p class="caption"><span class="lang-pt">A Septuaginta Faz a Ponte entre a Bíblia Hebraica e o Novo Testamento. Ilustração criada por Tim Mackie para BibleProject Classroom: Arte das Palavras Bíblicas (2021).</span><span class="lang-en">Septuagint Bridges Hebrew Bible and New Testament. Illustration created by Tim Mackie for BibleProject Classroom: Art of Biblical Words (2021).</span></p>
+    </div>
+
+    <blockquote class="quote reveal"><span class="lang-pt">“A comunicação eficaz requer um conjunto de palavras, termos e ideias acordados, um terreno comum de entendimento. Para o falante, isso frequentemente exige acomodação à audiência usando palavras e ideias que eles compreenderão. Para a audiência, se ela não é nativa da língua e da matriz cultural do falante, isso significa que alcançar terreno comum pode exigir buscar informações ou explicações adicionais. Em outras palavras, a audiência tem que se adaptar a uma cultura nova e desconhecida.”</span><span class="lang-en">“Effective communication requires a body of agreed-upon words, terms, and ideas, a common ground of understanding. For the speaker this often requires accommodation to the audience by using words and ideas they will understand. For the audience, if they are not native to the language and cultural matrix of the speaker, this means reaching common ground may require seeking out additional information or explanation. In other words, the audience has to adapt to a new and unfamiliar culture.”</span></blockquote>
+    <p class="caption reveal"><span class="lang-pt">Walton, John (2006). <span class="book-link">Ancient Near Eastern Thought and the Old Testament</span>. Baker Books. 19-20.</span><span class="lang-en">Walton, John (2006). <span class="book-link">Ancient Near Eastern Thought and the Old Testament</span>. Baker Books. 19-20.</span></p>
+
+    <h2 class="section reveal"><span class="lang-pt">Exemplo 1: “Tenda/Habitar” em João 1:14 e Êxodo 25:7-8</span><span class="lang-en">Example 1: “Tent/Dwell” in John 1:14 and Exodus 25:7-8</span></h2>
+    <h3 class="sub reveal"><span class="lang-pt">Bíblia Hebraica / Antigo Testamento</span><span class="lang-en">Hebrew Bible/ Old Testament</span></h3>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Êxodo 25:8-9</span><span class="lang-en">Exodus 25:8-9</span></span><span class="scripture-type">NASB*</span></div>
+      <div class="scripture-text"><span class="lang-pt"><sup class="vs">8</sup> Que me construam um santuário, para que eu possa <strong>habitar</strong> (Heb. shakhan / שכן) entre eles. <sup class="vs">9</sup> Conforme tudo o que vou te mostrar, como o modelo do <strong>tabernáculo</strong> (“tenda” Heb. mishkhan / משכן) e o modelo de todos os seus móveis, assim mesmo o construireis.</span><span class="lang-en"><sup class="vs">8</sup> Let them construct a sanctuary for me, that I may <strong>dwell</strong> (Heb. shakhan / שכן) among them. <sup class="vs">9</sup> According to all that I am going to show you, as the pattern of the <strong>tabernacle</strong> (“tent” Heb. mishkhan / משכן) and the pattern of all its furniture, just so you shall construct it.</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+
+    <h3 class="sub reveal"><span class="lang-pt">O Antigo Testamento Grego / Septuaginta</span><span class="lang-en">The Greek Old Testament/Septuagint</span></h3>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Êxodo 25:8-9</span><span class="lang-en">Exodus 25:8-9</span></span><span class="scripture-type">LXX/Septuagint*</span></div>
+      <div class="scripture-text"><span class="lang-pt"><sup class="vs">8</sup> E fareis para mim um santuário, e eu me tornarei visível entre vós. <sup class="vs">9</sup> E o fareis para mim conforme tudo o que te mostro no monte—o modelo da <strong>tenda</strong> (Gr. skenes / σκηνής) e o modelo de todos os seus utensílios. Assim os fareis.</span><span class="lang-en"><sup class="vs">8</sup> And you shall make a sanctuary for me, and I will become visible among you. <sup class="vs">9</sup> And you shall make it for me according to everything I show you on the mountain—the pattern of the <strong>tent</strong> (Grk. skenes / σκηνής) and the pattern of all its vessels. So you will make them.</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+
+    <h3 class="sub reveal"><span class="lang-pt">Novo Testamento Grego</span><span class="lang-en">Greek New Testament</span></h3>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">João 1:14</span><span class="lang-en">John 1:14</span></span><span class="scripture-type">NASB*</span></div>
+      <div class="scripture-text"><span class="lang-pt">E o Verbo se fez carne, e <strong>habitou</strong> (Gr. skenaoh / σκηνόω) entre nós, e vimos a sua glória, glória como do unigênito do Pai, cheio de graça e de verdade.</span><span class="lang-en">And the Word became flesh, and <strong>dwelt</strong> (Grk. skenaoh / σκηνόω) among us, and we saw his glory, glory as of the only begotten from the Father, full of grace and truth.</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+
+    <p class="body reveal"><span class="lang-pt">Em hebraico, o substantivo “tenda” (mishkhan) e o verbo “habitar em uma tenda” (shakhan) vêm da mesma raiz e estão intimamente conectados ao tabernáculo, a tenda sagrada no centro de Israel no período do deserto.</span><span class="lang-en">In Hebrew, the noun “tent” (mishkhan) and the verb “dwell in a tent” (shakhan) come from the same root word and are closely connected to the tabernacle, the sacred tent at the center of Israel in the wilderness period.</span></p>
+    <p class="body reveal"><span class="lang-pt">Na Septuaginta, os tradutores gregos usaram a palavra comum para “viver em uma tenda” (skenaoh) e “tenda” (skenes). Mas o foco específico da Bíblia Hebraica na tenda/tabernáculo significa que a palavra grega foi adotada e ajustada para se referir especificamente à tenda do tabernáculo.</span><span class="lang-en">In the Septuagint, the Greek translators used the common word for “live in a tent” (skenaoh) and “tent” (skenes). But the Hebrew Bible’s specific focus on the tent/tabernacle means that the Greek word has been adopted and tweaked to refer specifically to the tabernacle tent.</span></p>
+    <p class="body reveal"><span class="lang-pt">No Novo Testamento grego, João pressupõe essa conexão e usa o verbo “habitou em uma tenda” em seu sentido hebraico. Ele não quer dizer que Jesus realmente viveu em uma tenda, mas que ele era a glória divina assumindo forma física, assim como a tenda do tabernáculo era uma exibição física da presença divina.</span><span class="lang-en">In the Greek New Testament, John assumes this connection and uses the verb “lived in a tent” in its Hebrew sense. He doesn’t mean that Jesus actually lived in a tent but that he was the divine glory taking on physical form, just as the tabernacle tent was a physical display of the divine presence.</span></p>
+    <p class="body reveal"><span class="lang-pt">Jesus e os apóstolos frequentemente usam palavras gregas da Septuaginta para ativar a enciclopédia da Bíblia Hebraica. É “hebraico através do grego.”</span><span class="lang-en">Jesus and the apostles often use Greek words from the Septuagint to activate the encyclopedia of the Hebrew Bible. It’s “Hebrew through Greek.”</span></p>
+
+    <h3 class="takeaways-h reveal"><span class="lang-pt">Principal Lição</span><span class="lang-en">Key Takeaway</span></h3>
+    <p class="body reveal"><span class="lang-pt">Os apóstolos frequentemente usam palavras gregas, mas eles ativam seu significado hebraico através do vocabulário da Septuaginta.</span><span class="lang-en">The apostles often use Greek words, but they activate their Hebrew meaning through the vocabulary of the Septuagint.</span></p>
+    <p class="body reveal"><span class="lang-pt">Ao estudar palavras gregas do Novo Testamento, precisamos estar familiarizados com a Septuaginta e procurar lá os correspondentes hebraicos para ver as conexões de significado.</span><span class="lang-en">When studying New Testament Greek words, we need to be familiar with the Septuagint and look there for the Hebrew correspondents to see the connections in meaning.</span></p>
+
+    <h2 class="section reveal"><span class="lang-pt">Exemplo 2: “Selvagem e Vazio” em Gênesis 1:2 e Hebreus 11:3</span><span class="lang-en">Example 2: “Wild and Waste” in Genesis 1:2 and Hebrews 11:3</span></h2>
+    <h3 class="sub reveal"><span class="lang-pt">Bíblia Hebraica / Antigo Testamento</span><span class="lang-en">Hebrew Bible/ Old Testament</span></h3>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Gênesis 1:2</span><span class="lang-en">Genesis 1:2</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor’s Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">... selvagem e vazio ...<br>Heb. tohu va-vohu / תהו ובהו, significando desordenado e desabitado</span><span class="lang-en">... wild and waste ...<br>Heb. tohu va-vohu / תהו ובהו, meaning unordered and uninhabited</span></div>
+    </div>
+
+    <h3 class="sub reveal"><span class="lang-pt">O Antigo Testamento Grego / Septuaginta</span><span class="lang-en">The Greek Old Testament/Septuagint</span></h3>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Gênesis 1:2</span><span class="lang-en">Genesis 1:2</span></span><span class="scripture-type">LXX/Septuagint*</span></div>
+      <div class="scripture-text"><span class="lang-pt">... invisível e informe ...<br>Gr. aoratos kai akataskeuastos / αόρατος και ακατασκεύαστος</span><span class="lang-en">... invisible and unformed ...<br>Grk. aoratos kai akataskeuastos / αόρατος και ακατασκεύαστος</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+
+    <h3 class="sub reveal"><span class="lang-pt">Novo Testamento Grego</span><span class="lang-en">Greek New Testament</span></h3>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Hebreus 11:3</span><span class="lang-en">Hebrews 11:3</span></span><span class="scripture-type">NASB</span></div>
+      <div class="scripture-text"><span class="lang-pt">Pela fé entendemos que os mundos foram preparados pela palavra de Deus, de modo que o que se vê não foi feito de coisas que são visíveis.</span><span class="lang-en">By faith we understand that the worlds were prepared by the word of God, so that what is seen was not made out of things which are visible.</span></div>
+    </div>
+
+    <h2 class="section reveal"><span class="lang-pt">Explore Ferramentas de Estudo Opcionais</span><span class="lang-en">Explore Optional Study Tools</span></h2>
+    <p class="body reveal"><span class="lang-pt">Concordâncias, interlineares, dicionários e comentários são algumas das muitas excelentes ferramentas que podem ajudar até o estudante mais casual a mergulhar mais fundo nos estudos bíblicos.</span><span class="lang-en">Concordances, interlinears, dictionaries, and commentaries are some of the many excellent tools that can help even the most casual student dive deeper into biblical studies.</span></p>
+    <p class="body reveal"><span class="lang-pt">À medida que começamos a explorar essas ferramentas, esta aula demonstrará o uso do software bíblico Logos com mais frequência. Fizemos uma parceria com a equipe do Logos para elaborar um pacote inicial de recursos para os alunos do Classroom a um preço reduzido. Você pode conferir o pacote no site do Logos ou explorar outras ferramentas gratuitas como blueletterbible.org, biblestudytools.com, ou netbible.org.</span><span class="lang-en">As we begin to explore these tools, this class will demonstrate the use of Logos Bible software most frequently. We’ve partnered with the Logos team to craft a starter bundle of resources for Classroom students at a reduced price. You can check out the bundle on the Logos website or explore other free tools like blueletterbible.org, biblestudytools.com, or netbible.org.</span></p>
+    <p class="body reveal"><span class="lang-pt">Esta aula foi projetada para ser útil com ou sem o pacote inicial do Logos.</span><span class="lang-en">This class was designed to be useful with or without the Logos starter bundle.</span></p>
+
+    <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+    <p class="body reveal"><span class="lang-pt">O que significa dizer que os autores do Novo Testamento tinham uma "enciclopédia" moldada pela Bíblia Hebraica?</span><span class="lang-en">What does it mean to say that the New Testament authors had an "encyclopedia" shaped by the Hebrew Bible?</span></p>
+  </div>
+  <script>
+    function setLang(l){ localStorage.setItem('art-of-biblical-words-s3-lang',l); document.documentElement.lang=l; var pt=document.getElementById('lang-pt-btn'), en=document.getElementById('lang-en-btn'); if(l==='pt'){pt.className='nav-btn bg-sky-600 text-white';en.className='nav-btn';} else {en.className='nav-btn bg-sky-600 text-white';pt.className='nav-btn';} }
+    (function(){ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1}); document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);}); })();
+    setLang(localStorage.getItem('art-of-biblical-words-s3-lang')||'pt');
+  </script>
+</body>
+</html>

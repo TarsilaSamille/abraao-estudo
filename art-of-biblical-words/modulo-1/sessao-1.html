@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 1: O Maravilhoso Mundo das Palavras</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="../js/verse-modal.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
+  .ref:hover { color: #2563eb; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  ol.numbered { padding-left: 1.5rem; }
+  ol.numbered > li { margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+  .scripture:hover { border-left-color: #9aa7b8; }
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+  .vs { font-weight: 700; color: #5b7285; font-size: .78em; margin-right: .15em; }
+  .quote { border-left: 4px solid #aeb6bf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a3f47; font-style: italic; }
+  .poem { font-family: 'Newsreader', Georgia, serif; font-size: 1.05rem; line-height: 1.85; color: #24262a; margin: 1.1rem 0; }
+  .book-link { color: #1a5fb4; text-decoration: underline; font-style: normal; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
+  .table-img img { width: 100%; display: block; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
+  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
+  .nav-btn:hover { background: #f1f5f9; }
+  .nav-back { left: 1rem; }
+  .nav-lang { right: 1rem; }
+</style>
+</head>
+<body class="bg-white">
+  <a href="../index.html" class="nav-btn nav-back"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
+  <div class="nav-lang" style="right:1rem; position:fixed; top:1rem; z-index:50; display:inline-flex; gap:.25rem;">
+    <button onclick="setLang('pt')" class="nav-btn" style="position:static" id="lang-pt-btn">PT</button>
+    <button onclick="setLang('en')" class="nav-btn" style="position:static" id="lang-en-btn">EN</button>
+  </div>
+  <div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
+    <h1 class="title reveal"><span class="lang-pt">Sessão 1: O Maravilhoso Mundo das Palavras</span><span class="lang-en">Session 1: The Wonderful World of Words</span></h1>
+    <hr class="rule">
+    <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt">Mesmo palavras desconhecidas podem ajudar a transmitir significado, mas palavras excessivamente familiares podem potencialmente obscurecer o significado.</span><span class="lang-en">Even unfamiliar words can help convey meaning, but overly familiar words can potentially obscure meaning.</span></li>
+      <li><span class="lang-pt">O significado tem uma relação importante com as palavras, mas há mais fatores para comunicar significado do que apenas palavras.</span><span class="lang-en">Meaning has an important relationship to words, but there are more factors for communicating meaning that just words.</span></li>
+      <li><span class="lang-pt">Nossas definições modernas de palavras podem não corresponder à amplitude de significado das palavras bíblicas escritas há milhares de anos. Aprender a estudar as palavras bíblicas é crucial para aprofundar o estudo da Bíblia.</span><span class="lang-en">Our modern definitions for words may not match the range of meaning for biblical words written thousands of years ago. Learning to study biblical words is crucial to deepening Bible study.</span></li>
+    </ul>
+
+    <h2 class="section reveal"><span class="lang-pt">Encontrando Significado em Palavras Desconhecidas</span><span class="lang-en">Finding Meaning in Unfamiliar Words</span></h2>
+    <h3 class="sub reveal"><span class="lang-pt">Jabberwocky</span><span class="lang-en">Jabberwocky</span></h3>
+    <p class="poem reveal"><span class="lang-pt">Era briluz. As lesmolisas touvas<br>Roldavam e relviam nos gramilvos.<br>Estavam mimsicais as pintalouvas,<br>E os momirratos davam grilvos.<br><br>“Foge do Jabberwock, meu filho!<br>As mandíbulas que mordem, as garras que agarram!<br>Foge do pássaro Jubjub, e evita<br>O frumioso Bandersnatch!”<br><br>Ele tomou sua espada vorpal na mão;<br>Por muito tempo o inimigo manxomo ele buscou—<br>Então descansou junto à árvore Tumtum<br>E ficou algum tempo em pensamento.<br><br>E, enquanto em pensamento ufoso ele estava,<br>O Jabberwock, com olhos de chama,<br>Veio soprando pela mata tulgia,<br>E borbulhava ao vir!<br><br>Um, dois! Um, dois! E através e através<br>A lâmina vorpal fez snicker-snack!<br>Deixou-o morto, e com sua cabeça<br>Voltou galumfando.</span><span class="lang-en">’Twas brillig, and the slithy toves<br>Did gyre and gimble in the wabe:<br>All mimsy were the borogoves,<br>And the mome raths outgrabe.<br><br>“Beware the Jabberwock, my son!<br>The jaws that bite, the claws that catch!<br>Beware the Jubjub bird, and shun<br>The frumious Bandersnatch!”<br><br>He took his vorpal sword in hand;<br>Long time the manxome foe he sought—<br>So rested he by the Tumtum tree<br>And stood awhile in thought.<br><br>And, as in uffish thought he stood,<br>The Jabberwock, with eyes of flame,<br>Came whiffling through the tulgey wood,<br>And burbled as it came!<br><br>One, two! One, two! And through and through<br>The vorpal blade went snicker-snack!<br>He left it dead, and with its head<br>He went galumphing back.</span></p>
+    <p class="poem reveal"><span class="lang-pt">“E mataste tu o Jabberwock?<br>Vem aos meus braços, meu menino radiante!<br>Ó dia frabjoso! Callooh! Callay!”<br>Ele riu de alegria.<br><br>Era briluz. As lesmolisas touvas<br>Roldavam e relviam nos gramilvos.<br>Estavam mimsicais as pintalouvas,<br>E os momirratos davam grilvos.</span><span class="lang-en">“And hast thou slain the Jabberwock?<br>Come to my arms, my beamish boy!<br>O frabjous day! Callooh! Callay!”<br>He chortled in his joy.<br><br>’Twas brillig, and the slithy toves<br>Did gyre and gimble in the wabe:<br>All mimsy were the borogoves,<br>And the mome raths outgrabe.</span></p>
+    <p class="caption reveal"><span class="lang-pt">Carroll, Lewis (1871). “Jabberwocky.” <span class="book-link">Through the Looking Glass and What Alice Found There</span>. Evertype.</span><span class="lang-en">Carroll, Lewis (1871). “Jabberwocky.” <span class="book-link">Through the Looking Glass and What Alice Found There</span>. Evertype.</span></p>
+
+    <p class="body reveal"><span class="lang-pt">Você entendeu o que era significado por algumas das palavras desconhecidas nesse poema? Por que ou como isso é possível?</span><span class="lang-en">Did you understand what was meant by some of the unfamiliar words in that poem? Why or how is this possible?</span></p>
+    <p class="body reveal"><span class="lang-pt">A comunicação humana é uma das atividades mais incríveis e complexas das quais participamos todos os dias, embora raramente pensemos muito sobre isso. Neste famoso poema, Carroll ilustra o papel complexo que as palavras desempenham em nossa comunicação. Embora as palavras individuais sejam importantes para comunicar nossos pensamentos, há muitos outros fatores em jogo. O contexto situacional, o assunto em questão, nosso tom de voz, ritmo e volume, a “sensação” do parágrafo—tudo isso funciona em conjunto para determinar o significado.</span><span class="lang-en">Human communication is one of the most amazing and complex activities we participate in every day, even though we rarely think much about it. In this famous poem, Carroll illustrates the complex role that words play in our communication. Although individual words are important for communicating our thoughts, there are many more factors at play. The situational context, the topic at hand, our tone of voice, pace and volume, the “feel” of the paragraph—these all work together to determine meaning.</span></p>
+    <p class="body reveal"><span class="lang-pt">“Jabberwocky” é um exemplo brilhante de quanto pode ser comunicado na ausência de palavras precisas. Mas isso funciona nos dois sentidos. <span class="verse-link" style="color:inherit;cursor:pointer">Gênesis 1</span> é um exemplo de quão pouco pode ser comunicado mesmo usando palavras muito comuns.</span><span class="lang-en">“Jabberwocky” is a brilliant example of how much can be communicated in the absence of precise words. But it works both ways. <span class="verse-link" style="color:inherit;cursor:pointer">Genesis 1</span> is an example of how little can be communicated even when using very common words.</span></p>
+
+    <h2 class="section reveal"><span class="lang-pt">Perdendo Significado em Palavras Excessivamente Familiares</span><span class="lang-en">Losing Meaning in Overfamiliar Words</span></h2>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Gênesis 1:1-8</span><span class="lang-en">Genesis 1:1-8</span></span><span class="scripture-type">NASB</span></div>
+      <div class="scripture-text"><span class="lang-pt"><sup class="vs">1</sup> No princípio Deus criou os céus e a terra. <sup class="vs">2</sup> A terra era sem forma e vazia, e havia trevas sobre a face do abismo, e o Espírito de Deus se movia sobre a face das águas. <sup class="vs">3</sup> Então Deus disse: “Haja luz”; e houve luz.<br><br><sup class="vs">4</sup> Deus viu que a luz era boa; e Deus separou a luz das trevas. <sup class="vs">5</sup> Deus chamou à luz dia, e às trevas chamou noite. E houve tarde e houve manhã, um dia.<br><br><sup class="vs">6</sup> Então Deus disse: “Haja uma expansão no meio das águas, e que ela separe as águas das águas.” <sup class="vs">7</sup> Deus fez a expansão, e separou as águas que estavam abaixo da expansão das águas que estavam acima da expansão; e assim foi. <sup class="vs">8</sup> Deus chamou à expansão “céus.” E houve tarde e houve manhã, um segundo dia.</span><span class="lang-en"><sup class="vs">1</sup> In the beginning God created the heavens and the earth. <sup class="vs">2</sup> The earth was formless and void, and darkness was over the surface of the deep, and the Spirit of God was moving over the surface of the waters. <sup class="vs">3</sup> Then God said, “Let there be light”; and there was light.<br><br><sup class="vs">4</sup> God saw that the light was good; and God separated the light from the darkness. <sup class="vs">5</sup> God called the light day, and the darkness he called night. And there was evening and there was morning, one day.<br><br><sup class="vs">6</sup> Then God said, “Let there be an expanse in the midst of the waters, and let it separate the waters from the waters.” <sup class="vs">7</sup> God made the expanse, and separated the waters which were below the expanse from the waters which were above the expanse; and it was so. <sup class="vs">8</sup> God called the expanse “heavens." And there was evening and there was morning, a second day.</span></div>
+    </div>
+    <p class="body reveal"><span class="lang-pt">Embora essas palavras em inglês sejam bastante comuns, algumas não são, e outras estão sendo usadas de maneiras diferentes de como as usamos no inglês padrão.</span><span class="lang-en">Even though these English words are fairly common, some are not, and others are being used in ways that are different from how we use them in standard English.</span></p>
+
+    <h3 class="sub reveal"><span class="lang-pt">Céus</span><span class="lang-en">Heavens</span></h3>
+    <p class="body reveal"><span class="lang-pt">A definição de dicionário da palavra inglesa “heaven” (céu) ilustra as diferentes maneiras como usamos essa palavra (dictionary.com).</span><span class="lang-en">The dictionary definition of the English word “heaven” illustrates the different ways we use this word (dictionary.com).</span></p>
+    <ol class="numbered reveal">
+      <li><span class="lang-pt">A morada de Deus, dos anjos e dos espíritos dos justos após a morte; o lugar ou estado de existência dos bem-aventurados após a vida mortal.</span><span class="lang-en">The abode of God, the angels, and the spirits of the righteous after death; the place or state of existence of the blessed after the mortal life.</span></li>
+      <li><span class="lang-pt">(Letra inicial maiúscula) Frequentemente Heavens. Os poderes celestiais; Deus.</span><span class="lang-en">(Initial capital letter) Often Heavens. The celestial powers; God.</span></li>
+      <li><span class="lang-pt">Um metônimo para Deus: Que o céu nos ajude!</span><span class="lang-en">A metonym for God: May heaven help us!</span></li>
+      <li><span class="lang-pt">Heavens, (usado com um verbo no singular) um teto ou dossel de madeira sobre o palco externo de um teatro elisabetano.</span><span class="lang-en">Heavens, (used with a singular verb) a wooden roof or canopy over the outer stage of an Elizabethan theater.</span></li>
+      <li><span class="lang-pt">Normalmente heavens. O céu, o firmamento ou a expansão do espaço que circunda a terra.</span><span class="lang-en">Usually heavens. The sky, firmament, or expanse of space surrounding the earth.</span></li>
+      <li><span class="lang-pt">Um lugar ou estado de suprema felicidade: Ela fez da vida dele um céu na terra.</span><span class="lang-en">A place or state of supreme happiness: She made his life a heaven on earth.</span></li>
+    </ol>
+    <p class="body reveal"><span class="lang-pt">O significado da palavra “heaven” (céu) nas traduções inglesas de <span class="verse-link" style="color:inherit;cursor:pointer">Gênesis 1:1</span> não corresponde ao significado mais comum da palavra inglesa (a primeira definição do dictionary.com). Em vez disso, a quinta definição é a mais próxima do significado da palavra nesta passagem bíblica!</span><span class="lang-en">The meaning of the word “heaven” in English translations of <span class="verse-link" style="color:inherit;cursor:pointer">Genesis 1:1</span> does not correspond to the most common meaning of the English word (the first definition from dictionary.com). Rather, the fifth definition is the closest to the word’s meaning in this Bible passage!</span></p>
+    <p class="body reveal"><span class="lang-pt">Para evitar confusão, temos “skies” (céus/firmamento), uma palavra inglesa alternativa perfeitamente normal para “heaven.”</span><span class="lang-en">To avoid confusion, we have “skies,” a perfectly normal alternative English word for “heaven.”</span></p>
+
+    <h3 class="sub reveal"><span class="lang-pt">Terra = O Globo</span><span class="lang-en">Earth = The Globe</span></h3>
+    <p class="body reveal"><span class="lang-pt">Para leitores modernos de inglês, a palavra "earth" (terra) mais comumente significa o planeta em que vivemos, mas o hebraico é uma antiga língua semítica, e este texto foi escrito há milhares de anos. A palavra inglesa “land” (terra/território) corresponde melhor à palavra hebraica traduzida como “earth.”</span><span class="lang-en">For modern English readers, the word "earth" most commonly means the planet on which we live, but Hebrew is an ancient Semitic language, and this text was written thousands of years ago. The English word “land” better corresponds to the Hebrew word translated as “earth.”</span></p>
+
+    <h3 class="sub reveal"><span class="lang-pt">Sem Forma e Vazia</span><span class="lang-en">Formless and Void</span></h3>
+    <p class="body reveal"><span class="lang-pt">O que significa dizer que a “terra” é sem forma? A palavra inglesa “earth” não significa “o planeta,” que existe na “forma” de uma esfera, por definição? Esta frase não faz sentido no inglês moderno! Mas quando dedicamos tempo para entender a visão de mundo dos autores antigos, descobriremos um significado rico nesta frase que trará maior contexto a todo o <span class="verse-link" style="color:inherit;cursor:pointer">Gênesis 1</span>.</span><span class="lang-en">What does it mean to say that the “earth” is formless? Doesn’t the English word “earth” mean “the planet,” which exists in the “form” of a sphere, by definition? This sentence makes no sense in modern English! But when we take the time to understand the worldview of the ancient authors, we’ll discover rich meaning in this phrase that will bring greater context to all of <span class="verse-link" style="color:inherit;cursor:pointer">Genesis 1</span>.</span></p>
+
+    <h3 class="sub reveal"><span class="lang-pt">Expansão</span><span class="lang-en">Expanse</span></h3>
+    <p class="body reveal"><span class="lang-pt">Em inglês, “expanse” (expansão) refere-se a um grande espaço que existe entre duas coisas, geralmente horizontalmente. O que significa dizer que uma “expansão” divide águas das águas? Precisamos de mais do que nossa palavra inglesa para entender o que estava na mente do autor bíblico e da audiência original quando pensaram nessa "expansão."</span><span class="lang-en">In English, “expanse” refers to a large space that exists between two things, usually horizontally. What does it mean to say that an “expanse” divides waters from waters? We need more than our English word to understand what was in the minds of the biblical author and original audience when they thought of this "expanse."</span></p>
+
+    <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+    <p class="body reveal"><span class="lang-pt">Que ideias ou imagens vêm à mente quando você ouve as palavras “céus” ou “terra”?</span><span class="lang-en">What ideas or images come to mind when you hear the words “heavens” or “earth”?</span></p>
+  </div>
+  <script>
+    function setLang(l){ localStorage.setItem('art-of-biblical-words-s1-lang',l); document.documentElement.lang=l; var pt=document.getElementById('lang-pt-btn'), en=document.getElementById('lang-en-btn'); if(l==='pt'){pt.className='nav-btn bg-sky-600 text-white';en.className='nav-btn';} else {en.className='nav-btn bg-sky-600 text-white';pt.className='nav-btn';} }
+    (function(){ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1}); document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);}); })();
+    setLang(localStorage.getItem('art-of-biblical-words-s1-lang')||'pt');
+  </script>
+</body>
+</html>

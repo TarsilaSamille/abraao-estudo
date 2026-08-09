@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 2: A Abordagem de Enciclopédia às Palavras</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="../js/verse-modal.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
+  .ref:hover { color: #2563eb; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  ol.numbered { padding-left: 1.5rem; }
+  ol.numbered > li { margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+  .scripture:hover { border-left-color: #9aa7b8; }
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+  .vs { font-weight: 700; color: #5b7285; font-size: .78em; margin-right: .15em; }
+  .quote { border-left: 4px solid #aeb6bf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a3f47; font-style: italic; }
+  .poem { font-family: 'Newsreader', Georgia, serif; font-size: 1.05rem; line-height: 1.85; color: #24262a; margin: 1.1rem 0; }
+  .book-link { color: #1a5fb4; text-decoration: underline; font-style: normal; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
+  .table-img img { width: 100%; display: block; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
+  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
+  .nav-btn:hover { background: #f1f5f9; }
+  .nav-back { left: 1rem; }
+  .nav-lang { right: 1rem; }
+</style>
+</head>
+<body class="bg-white">
+  <a href="../index.html" class="nav-btn nav-back"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
+  <div class="nav-lang" style="right:1rem; position:fixed; top:1rem; z-index:50; display:inline-flex; gap:.25rem;">
+    <button onclick="setLang('pt')" class="nav-btn" style="position:static" id="lang-pt-btn">PT</button>
+    <button onclick="setLang('en')" class="nav-btn" style="position:static" id="lang-en-btn">EN</button>
+  </div>
+  <div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
+    <h1 class="title reveal"><span class="lang-pt">Sessão 2: A Abordagem de Enciclopédia às Palavras</span><span class="lang-en">Session 2: The Encyclopedia Approach to Words</span></h1>
+    <hr class="rule">
+    <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt">Ler a Bíblia é uma experiência transcultural.</span><span class="lang-en">Reading the Bible is a cross-cultural experience.</span></li>
+      <li><span class="lang-pt">Quando um autor se senta para escrever, ele não usa um dicionário mental, ele usa uma enciclopédia mental.</span><span class="lang-en">When an author sits down to write, they don’t use a mental dictionary, they use a mental encyclopedia.</span></li>
+      <li><span class="lang-pt">Devemos nos esforçar para estar cientes de nossa própria enciclopédia, e nos guardar contra impor nossas próprias suposições e significado ao texto.</span><span class="lang-en">We must strive to be aware of our own encyclopedia, and guard against imposing our own assumptions and meaning onto the text.</span></li>
+      <li><span class="lang-pt">Ler bem exige que trabalhemos para descobrir a enciclopédia dos autores bíblicos investigando o pano de fundo histórico, cultural e textual da Bíblia.</span><span class="lang-en">Reading well requires that we work to discover the encyclopedia of the biblical authors by investigating the historical, cultural, and textual background of the Bible.</span></li>
+    </ul>
+
+    <h2 class="section reveal"><span class="lang-pt">A Abordagem de Dicionário às Palavras vs. a Abordagem de Enciclopédia às Palavras</span><span class="lang-en">The Dictionary Approach to Words vs. the Encyclopedia Approach to Words</span></h2>
+    <p class="body reveal"><span class="lang-pt">Ao lermos a Bíblia, devemos constantemente nos lembrar de que estamos lendo uma tradução de um texto escrito em uma língua e cultura vastamente diferentes das nossas. O significado dessas palavras em inglês não nos ajuda a entender o que elas significavam para os autores bíblicos.</span><span class="lang-en">As we read the Bible, we must constantly remind ourselves that we are reading a translation of a text written in a language and culture vastly different from our own. The meaning of these words in English does not help us understand what they mean to the biblical authors.</span></p>
+    <blockquote class="quote reveal"><span class="lang-pt">“A comunicação eficaz requer um conjunto de palavras, termos e ideias acordados, um terreno comum de entendimento. Para o falante, isso frequentemente exige acomodação à audiência usando palavras e ideias que eles compreenderão. Para a audiência, se ela não é nativa da língua e da matriz cultural do falante, isso significa que alcançar terreno comum pode exigir buscar informações ou explicações adicionais. Em outras palavras, a audiência tem que se adaptar a uma cultura nova e desconhecida.”</span><span class="lang-en">“Effective communication requires a body of agreed-upon words, terms, and ideas, a common ground of understanding. For the speaker this often requires accommodation to the audience by using words and ideas they will understand. For the audience, if they are not native to the language and cultural matrix of the speaker, this means reaching common ground may require seeking out additional information or explanation. In other words, the audience has to adapt to a new and unfamiliar culture.”</span></blockquote>
+    <p class="caption reveal"><span class="lang-pt">Walton, John (2006). <span class="book-link">Ancient Near Eastern Thought and the Old Testament</span>. Baker Books. 19-20.</span><span class="lang-en">Walton, John (2006). <span class="book-link">Ancient Near Eastern Thought and the Old Testament</span>. Baker Books. 19-20.</span></p>
+    <p class="body reveal"><span class="lang-pt">Entender a língua de outra cultura exige muito mais do que usar um dicionário que lista os significados das palavras. Precisamos entender as ideias culturais mais amplas que dão sentido às palavras em primeiro lugar.</span><span class="lang-en">Understanding the language of another culture requires much more than using a dictionary that lists the meanings of words. We need to understand the larger cultural ideas that make sense of the words in the first place.</span></p>
+
+    <div class="table-img reveal">
+      <img src="img/sessao-2/p7-vector.png" alt="Textual Communication">
+      <p class="caption"><span class="lang-pt">Comunicação Textual. Criado por Tim Mackie para BibleProject Classroom: Introdução à Bíblia Hebraica (2019).</span><span class="lang-en">Textual Communication. Created by Tim Mackie for BibleProject Classroom: Introduction to the Hebrew Bible (2019).</span></p>
+    </div>
+
+    <p class="body reveal"><span class="lang-pt">Onde está localizado o significado? Primeiro, ele está na mente de um autor. Mas no caso de autores antigos, não temos mais acesso às suas mentes senão pelo texto. O texto é a encarnação literária da comunicação intencional de um autor.</span><span class="lang-en">Where is meaning located? At first, it’s in the mind of an author. But in the case of ancient authors, we no longer have access to their minds apart from the text. The text is the literary embodiment of an author’s purposed communication.</span></p>
+
+    <h2 class="section reveal"><span class="lang-pt">Enciclopédia de Produção e Enciclopédia de Recepção</span><span class="lang-en">Encyclopedia of Production and Encyclopedia of Reception</span></h2>
+    <p class="body reveal"><span class="lang-pt">Nossa enciclopédia é o depósito mental de palavras, ideias, imagens e histórias que reunimos e armazenamos em nossas memórias desde nossos primeiros momentos de consciência. Todo texto que lemos será interpretado e compreendido à luz de nossa enciclopédia operante atual. Os autores têm suas enciclopédias a partir das quais produzem textos, e os leitores têm enciclopédias que usam para processar e entender textos (ver Stefan Alkier, <span class="book-link">Reading the Bible Intertextually</span>, 3-21).</span><span class="lang-en">Our encyclopedia is the mental storehouse of words, ideas, images, and stories that we gather and store in our memories from our first waking moments. Every text we read will be interpreted and understood in light of our current operating encyclopedia. Authors have their encyclopedias from which they produce texts, and readers have encyclopedias they use to process and understand texts (see Stefan Alkier, <span class="book-link">Reading the Bible Intertextually</span>, 3-21).</span></p>
+    <p class="body reveal"><span class="lang-pt">O leitor que quer entender um autor nos termos dele adaptará sua enciclopédia de recepção aprendendo sobre a enciclopédia de produção do autor.</span><span class="lang-en">The reader who wants to understand an author on their own terms will adapt their encyclopedia of reception by learning about the author’s encyclopedia of production.</span></p>
+
+    <h2 class="section reveal"><span class="lang-pt">Um Desafio em Dois Passos na Leitura da Bíblia</span><span class="lang-en">A Two-Step Challenge in Reading the Bible</span></h2>
+    <h3 class="sub reveal"><span class="lang-pt">Passo 1: Consciência do Nosso Contexto Moderno</span><span class="lang-en">Step 1: Awareness of our Modern Context</span></h3>
+    <p class="body reveal"><span class="lang-pt">Precisamos nos esforçar para nos tornarmos conscientes de nossas próprias enciclopédias modernas de recepção que (sem saber) impomos ao autor bíblico. Por exemplo, frequentemente impomos a cosmologia moderna à cosmologia antiga de <span class="verse-link" style="color:inherit;cursor:pointer">Gênesis 1</span> ou atribuímos ideias/debates doutrinários posteriores aos autores bíblicos (debates sobre calvinismo vs. arminianismo, soberania divina e livre-arbítrio humano, etc.).</span><span class="lang-en">We need to put in the work to become aware of our own modern encyclopedias of reception that we (unknowingly) impose upon the biblical author. For example, we often impose modern cosmology onto the ancient cosmology of <span class="verse-link" style="color:inherit;cursor:pointer">Genesis 1</span> or attribute later doctrinal ideas/debates to the biblical authors (debates about Calvinism vs. Arminianism, divine sovereignty and human free will, etc.).</span></p>
+    <h3 class="sub reveal"><span class="lang-pt">Passo 2: Descoberta do Contexto do Autor</span><span class="lang-en">Step 2: Discovery of the Author’s Context</span></h3>
+    <p class="body reveal"><span class="lang-pt">Para estudar bem a Escritura, também precisamos descobrir a enciclopédia de produção assumida pelos autores enquanto se comunicam. Podemos canalizar nossos aprendizados em duas categorias.</span><span class="lang-en">To study Scripture well, we also need to discover the encyclopedia of production assumed by the authors as they communicate. We can channel our learnings into two categories.</span></p>
+    <ol class="numbered reveal">
+      <li><span class="lang-pt"><strong>Histórica e cultural:</strong> Aprender algo sobre a língua hebraica, as visões de mundo do antigo Oriente Próximo, ou a história e cultura do antigo Israel.</span><span class="lang-en"><strong>Historical and cultural:</strong> Learn something about the Hebrew language, ancient Near Eastern worldviews, or ancient Israelite history and culture.</span></li>
+      <li><span class="lang-pt"><strong>Textual:</strong> Os autores bíblicos assumem um alto grau de familiaridade com o TaNaK porque ele foi primeiramente produzido e lido dentro de uma pequena comunidade imersa em seu mundo textual. É um conjunto de textos altamente hiperligado, e seus enigmas e ambiguidades tornam-se mais claros após releitura contínua ao longo de uma vida.</span><span class="lang-en"><strong>Textual:</strong> The biblical authors assume a high degree of familiarity with the TaNaK because it was first produced and read within a small community immersed in its textual world. It is a highly hyperlinked set of texts, and its puzzles and ambiguities become more clear after continuous re-reading over a lifetime.</span></li>
+    </ol>
+
+    <h2 class="section reveal"><span class="lang-pt">Exemplo: “Coração” na Bíblia</span><span class="lang-en">Example: “Heart” in the Bible</span></h2>
+    <p class="body reveal"><span class="lang-pt">Poderíamos supor que as associações e significados da nossa própria palavra “coração” sejam os mesmos na Bíblia (Heb. lev/levav - לב/לבב). E há alguns lugares onde isso é verdade.</span><span class="lang-en">We might assume that the associations and meanings of our own word “heart” are the same in the Bible (Heb. lev/levav - לב/לבב). And there are some places where that’s true.</span></p>
+
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Êxodo 4:14</span><span class="lang-en">Exodus 4:14</span></span><span class="scripture-type">NASB*</span></div>
+      <div class="scripture-text"><span class="lang-pt">… e [Yahweh] disse: “Não está aí teu irmão Arão, o levita? Eu sei que ele fala fluentemente. E além disso, eis que ele está vindo ao teu encontro; quando ele te vir, ficará <strong>alegre em seu coração</strong>.”</span><span class="lang-en">… and [Yahweh] said, “Is there not your brother Aaron the Levite? I know that he speaks fluently. And moreover, behold, he is coming out to meet you; when he sees you, he will be <strong>glad in his heart</strong>.”</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">1 Samuel 1:8</span><span class="lang-en">1 Samuel 1:8</span></span><span class="scripture-type">NASB</span></div>
+      <div class="scripture-text"><span class="lang-pt">Então Elcana, seu marido, lhe disse: “Ana, por que choras e por que não comes e por que está <strong>teu coração triste</strong>? Não sou eu melhor para ti do que dez filhos?”</span><span class="lang-en">Then Elkanah her husband said to her, “Hannah, why do you weep and why do you not eat and why is <strong>your heart sad</strong>? Am I not better to you than ten sons?”</span></div>
+    </div>
+
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Isaías 61:1</span><span class="lang-en">Isaiah 61:1</span></span><span class="scripture-type">NASB</span></div>
+      <div class="scripture-text"><span class="lang-pt">O Espírito do Senhor Deus está sobre mim, porque o SENHOR me ungiu para levar boas novas aos aflitos; ele me enviou para curar os <strong>quebrantados de coração</strong>, para proclamar liberdade aos cativos e libertação aos prisioneiros;</span><span class="lang-en">The Spirit of the Lord God is upon me, because the LORD has anointed me to bring good news to the afflicted; he has sent me to bind up the <strong>brokenhearted</strong>, to proclaim liberty to captives and freedom to prisoners;</span></div>
+    </div>
+
+    <p class="body reveal"><span class="lang-pt">Mas há muitas outras passagens na Bíblia onde a palavra “coração” é usada de maneiras totalmente diferentes da nossa concepção da palavra.</span><span class="lang-en">But there are many other passages in the Bible where the word “heart” is used in totally different ways from our conception of the word.</span></p>
+
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Gênesis 17:17</span><span class="lang-en">Genesis 17:17</span></span><span class="scripture-type">NASB</span></div>
+      <div class="scripture-text"><span class="lang-pt">Então Abraão caiu sobre o seu rosto e riu, e <strong>disse em seu coração</strong>: “Nascerá um filho a um homem de cem anos? E dará à luz Sara, que tem noventa anos?”</span><span class="lang-en">Then Abraham fell on his face and laughed, and <strong>said in his heart</strong>, “Will a child be born to a man one hundred years old? And will Sarah, who is ninety years old, bear a child?”</span></div>
+    </div>
+
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Êxodo 31:6</span><span class="lang-en">Exodus 31:6</span></span><span class="scripture-type">NASB*</span></div>
+      <div class="scripture-text"><span class="lang-pt">E eis que eu mesmo designei com ele Aoliabe, filho de Aisamaque, da tribo de Dã; e coloquei <strong>habilidade nos corações</strong> de todos os que são <strong>hábeis de coração</strong>, para que possam fazer tudo o que te ordenei:</span><span class="lang-en">And behold, I myself have appointed with him Oholiab, the son of Ahisamach, of the tribe of Dan; and I have placed <strong>skill in the hearts</strong> of all who are <strong>skillful of heart</strong>, so they can make all that I have commanded you:</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">1 Reis 4:29</span><span class="lang-en">1 Kings 4:29</span></span><span class="scripture-type">NASB*</span></div>
+      <div class="scripture-text"><span class="lang-pt">Ora, Deus deu a Salomão sabedoria e discernimento muito grande e <strong>amplitude de coração</strong>, como a areia que está à beira-mar.</span><span class="lang-en">Now God gave Solomon wisdom and very great discernment and <strong>breadth of heart</strong>, like the sand that is on the seashore.</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">1 Samuel 9:20</span><span class="lang-en">1 Samuel 9:20</span></span><span class="scripture-type">NASB*</span></div>
+      <div class="scripture-text"><span class="lang-pt">Quanto às tuas jumentas que se perderam há três dias, não <strong>ponhas teu coração</strong> nelas, pois foram encontradas. E para quem é tudo o que é desejável em Israel? Não é para ti e para toda a casa de teu pai?</span><span class="lang-en">As for your donkeys which were lost three days ago, do not <strong>set your heart</strong> on them, for they have been found. And for whom is all that is desirable in Israel? Is it not for you and for all your father’s household?</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+
+    <p class="body reveal"><span class="lang-pt">Note como “pôr o coração em” é uma frase comum em inglês, mas com um significado diferente.</span><span class="lang-en">Notice how “set your heart on” is a common English phrase but with a different meaning.</span></p>
+
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Daniel 1:8</span><span class="lang-en">Daniel 1:8</span></span><span class="scripture-type">NASB*</span></div>
+      <div class="scripture-text"><span class="lang-pt">Mas Daniel <strong>pôs sobre o seu coração</strong> que não se contaminaria com a comida escolhida do rei nem com o vinho que ele bebia; por isso pediu permissão ao comandante dos oficiais para não se contaminar.</span><span class="lang-en">But Daniel <strong>set it upon his heart</strong> that he would not defile himself with the king’s choice food or with the wine which he drank; so he sought permission from the commander of the officials that he might not defile himself.</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+
+    <p class="body reveal"><span class="lang-pt">Todos esses exemplos mostram que “coração” em hebraico está associado tanto a “mente/pensamentos/propósito” quanto às emoções. Isso ocorre porque não há palavra hebraica para “cérebro” e nenhum conceito do seu papel dentro do corpo!</span><span class="lang-en">These examples all show that “heart” in Hebrew is associated as much with “mind/thoughts/purpose” as it is with emotions. That’s because there is no Hebrew word for “brain” and no concept of its role within the body!</span></p>
+    <p class="body reveal"><span class="lang-pt">O coração faz dupla função em hebraico, não por causa de um dicionário, mas por causa da concepção diferente que eles tinham da fisiologia humana. Essa é uma diferença de enciclopédia cultural.</span><span class="lang-en">The heart does double duty in Hebrew, not because of a dictionary but because of their different conception of human physiology. This is a difference in cultural encyclopedia.</span></p>
+
+    <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+    <p class="body reveal"><span class="lang-pt">Você já experimentou tentar se comunicar através de diferenças culturais? Reserve um minuto para refletir sobre como sua experiência e contexto moldaram sua prontidão para se envolver com um texto como a Bíblia, que vem de um tempo, cultura e língua diferentes dos nossos.</span><span class="lang-en">Have you experienced trying to communicate across cultural differences? Take a minute to reflect on the way your experience and context have shaped your readiness for engaging a text like the Bible, which comes from a time, culture, and language different from our own.</span></p>
+  </div>
+  <script>
+    function setLang(l){ localStorage.setItem('art-of-biblical-words-s2-lang',l); document.documentElement.lang=l; var pt=document.getElementById('lang-pt-btn'), en=document.getElementById('lang-en-btn'); if(l==='pt'){pt.className='nav-btn bg-sky-600 text-white';en.className='nav-btn';} else {en.className='nav-btn bg-sky-600 text-white';pt.className='nav-btn';} }
+    (function(){ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1}); document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);}); })();
+    setLang(localStorage.getItem('art-of-biblical-words-s2-lang')||'pt');
+  </script>
+</body>
+</html>
