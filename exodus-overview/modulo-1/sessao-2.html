@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 2: Proliferação e Opressão</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="../js/verse-modal.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  .verse-link { color: inherit; cursor: pointer; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+  .scripture:hover { border-left-color: #9aa7b8; }
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+  .scripture-text sup.vs { font-size: .72em; color: #333; vertical-align: super; margin-right: 2px; }
+  .quote { border-left: 4px solid #aeb6bf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a3f47; font-style: italic; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
+  .table-img img { width: 100%; display: block; }
+  .outline { border: 1px solid #d7dde5; border-radius: 12px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; font-size: 1.02rem; line-height: 1.9; }
+  .outline .lv1 { font-weight: 800; margin-top: .6rem; }
+  .outline .lv2 { padding-left: 1.5rem; }
+  .outline .lv3 { padding-left: 3rem; color: #3a3f47; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
+  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
+  .nav-btn:hover { background: #f1f5f9; }
+  .nav-back { left: 1rem; }
+  .nav-lang { right: 1rem; }
+</style>
+</head>
+<body class="bg-white">
+  <a href="index.html" class="nav-btn nav-back"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
+  <div class="nav-lang" style="right:1rem; position:fixed; top:1rem; z-index:50; display:inline-flex; gap:.25rem;">
+    <button onclick="setLang('pt')" class="nav-btn" style="position:static" id="lang-pt-btn">PT</button>
+    <button onclick="setLang('en')" class="nav-btn" style="position:static" id="lang-en-btn">EN</button>
+  </div>
+  <div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
+    <h1 class="title reveal"><span class="lang-pt">Sessão 2: Proliferação e Opressão</span><span class="lang-en">Session 2: Proliferation and Oppression</span></h1>
+    <hr class="rule">
+    <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+            <ul class="bullets reveal">
+      <li><span class="lang-pt">Éxodo 1 está repleto de vocabulário que recorda temas de Gênesis.</span><span class="lang-en">Exodus 1 is littered with vocabulary recalling themes from Genesis.</span></li>
+      <li><span class="lang-pt">Faraó, que se considera um deus, inverte a vocação humana de ser um portador da imagem que governa com justiça e sabedoria.</span><span class="lang-en">Pharaoh, who considers himself a god, inverts the human vocation of being an image bearer who rules with justice and wisdom.</span></li>
+      <li><span class="lang-pt">No primeiro capítulo, Êxodo destaca o papel das mulheres na resistência à injustiça.</span><span class="lang-en">From the first chapter, Exodus highlights the role of women in resisting injustice.</span></li>
+    </ul>
+
+    <h2 class="section reveal"><span class="lang-pt">Quando o Êxodo Aconteceu?</span><span class="lang-en">When Did the Exodus Happen?</span></h2>
+    <blockquote class="quote reveal"><span class="lang-pt">“Como evento constitutivo, o êxodo é reconhecido como um evento de tal importância que a comunidade não seria o que é sem que ele tivesse ocorrido.”</span><span class="lang-en">"As a constitutive event, the exodus is recognized as an event of such import that the community would not be what it is without its having occurred."</span></blockquote>
+    <p class="body reveal"><span class="lang-pt">Fretheim, Terence (2010). <em>Exodus (Interpretation: A Bible Commentary for Teaching and Preaching)</em>. Westminster John Knox Press.</span><span class="lang-en">Fretheim, Terence (2010). <em>Exodus (Interpretation: A Bible Commentary for Teaching and Preaching)</em>. Westminster John Knox Press.</span></p>
+    <p class="body reveal"><span class="lang-pt">Veja: <span class="verse-link" style="color:inherit;cursor:pointer" data-reference="Deuteronômio 26:1-9">Deuteronômio 26:1-9</span>; <span class="verse-link" style="color:inherit;cursor:pointer" data-reference="Josué 24:1-28">Josué 24:1-28</span>; <span class="verse-link" style="color:inherit;cursor:pointer" data-reference="Isaías 43:14-21">Isaías 43:14-21</span>; <span class="verse-link" style="color:inherit;cursor:pointer" data-reference="Salmo 105">Salmo 105</span></span><span class="lang-en">See: Deuteronomy 26:1-9; Joshua 24:1-28; Isaiah 43:14-21; Psalm 105</span></p>
+
+    <h2 class="section reveal"><span class="lang-pt">Echoes da Criação</span><span class="lang-en">Echoes of Creation</    <p class="body reveal"><span class="lang-pt">Gênesis 1:28 Tradução do Instrutor</span><span class="lang-en">Genesis 1:28 Instructor's Translation</span></p>
+    <p class="body reveal"><span class="lang-pt">Seja frutífero [prh] e multiplique [rbh], encha [mlʾ] a terra [ʾrṣ] e subjugue-a.</span><span class="lang-en">Be fruitful [prh] and multiply [rbh], fill [mlʾ] the land [ʾrṣ] and subdue it. Rule over the fish of the sea and over birds of the heavens and over every living creature that roams upon the land.</span></p>
+    <p class="body reveal"><span class="lang-pt">Êxodo 1:7 Tradução do Instrutor</span><span class="lang-en">Exodus 1:7 Instructor's Translation</span></p>
+    <p class="body reveal"><span class="lang-pt">Mas os filhos de Israel foram frutíferos [prh] e enxamearam [šrṣ; cf. Gên. 1:20-21; 9:7] e aumentaram [rbh] e tornaram-se muito, muito [mʾd; Gên. 1:31] numerosos, e a terra [ʾrṣ] foi enchida [mlʾ] com eles.</span><span class="lang-en">But the children of Israel were fruitful [prh] and they swarmed [šrṣ; cf. Gen. 1:20-21; 9:7] and they increased [rbh] and became very, very [mʾd; Gen. 1:31] numerous, and the land [ʾrṣ] was filled [mlʾ] with them.</span></p>
+    <p class="body reveal"><span class="lang-pt">Note que em Gênesis 1:28, os humanos são ordenados a governar sobre os peixes, as aves e outros seres vivos. Os humanos não são ordenados a governar sobre outros humanos.</span><span class="lang-en">Note that in Genesis 1:28, humans are to rule over the fish, birds, and other living creatures. Humans are not commanded to rule over other humans.</span></p><h2 class="section reveal"><span class="lang-pt">O Medo do Faraó</span><span class="lang-en">Pharaoh's Fear</span></h2>
+    <div class="outl    <p class="body reveal"><span class="lang-pt">O Faraó identifica um desafio ao seu controle—os israelitas são mais numerosos que seu povo (Êxodo 1:9). Sua solução é impedir que se multipliquem para que não lutem e deixem (Êxodo 1:10).</span><span class="lang-en">Pharaoh identifies a challenge to his control—the Israelites outnumber his people (Exod. 1:9). His solution is to keep them from multiplying so that they will not fight him and leave (Exod. 1:10).</span></p>
+    <p class="body reveal"><span class="lang-pt">Sua solução para resolver esse problema toma três formas: trabalho duro, parteiras assassinas e afogamento no Nilo.</span><span class="lang-en">His plan to solve this problem takes three forms: harsh labor, murderous midwives, and Nile drowning.</span></p>
+    <p class="body reveal"><span class="lang-pt">Neste capítulo, preste atenção em quem é nomeado e quem não é. As parteiras hebreias são nomeadas (Êxodo 1:15), embora o Faraó não seja.</span><span class="lang-en">In this chapter, pay attention to who is named and who is not. The Hebrew midwives are named (Exod. 1:15), even though Pharaoh is not.</span></p>
+    <p class="body reveal"><span class="lang-pt">O coragem das parteiras em desafiar o Faraó é lembrada para sempre.</span><span class="lang-en">The midwives’ courage in defying Pharaoh is remembered for all time.</span></p><h2 class="section reveal"><span class="lang-pt">Recurso Recomendado</span><span class="lang-en">Recommended Resource</span></h2>
+    <p class="body reveal"><span class="lang-pt"><em>The Liturgy of Creation: Understanding Calendars in Old Testament Context</em>, por Michael LeFebvre</span><span class="lang-en">The Liturgy of Creation: Understanding Calendars in Old Testament Context by Michael LeFebvre</span></p>
+
+    <h2 class="section reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h2>
+    <p class="body reveal"><span class="lang-pt">Em <span class="verse-link" style="color:inherit;cursor:pointer" data-reference="Êxodo 1:1-2:10">Êxodo 1:1-2:10</span>, quem é nomeado, quem não é nomeado, e por quê?</span><span class="lang-en">In Exodus 1:1-2:10, who is named, who is unnamed, and why?</span></p>
+  </div>
+  <script>
+    function setLang(l){ localStorage.setItem('exodus-s2-lang',l); document.documentElement.lang=l; var pt=document.getElementById('lang-pt-btn'), en=document.getElementById('lang-en-btn'); if(l==='pt'){pt.className='nav-btn bg-sky-600 text-white';en.className='nav-btn';} else {en.className='nav-btn bg-sky-600 text-white';pt.className='nav-btn';} }
+    (function(){ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1}); document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);}); })();
+    setLang(localStorage.getItem('exodus-s2-lang')||'pt');
+  </script>
+</body>
+</html>
