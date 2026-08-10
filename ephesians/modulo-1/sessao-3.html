@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="title">Sessão 1: Introdução a Paulo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html[lang="pt-BR"] .lang-en { display: none !important; }
+    html[lang="en"] .lang-pt { display: none !important; }
+    .verse-link { cursor: pointer; }
+    @media print { .nav-btn-fixed { display: none !important; } }
+  </style>
+</head>
+<body class="bg-white font-sans text-slate-800">
+  <div class="nav-btn-fixed fixed left-4 top-4 z-50">
+    <a href="../index.html"
+      class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+      <span>&larr;</span><span data-i18n="back">Voltar</span>
+    </a>
+  </div>
+  <div class="nav-btn-fixed fixed right-4 top-4 z-50">
+    <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white shadow-sm">
+      <button id="lang-pt" onclick="setLang('pt')" class="px-4 py-1.5 text-sm font-semibold transition-colors">PT</button>
+      <button id="lang-en" onclick="setLang('en')" class="px-4 py-1.5 text-sm font-semibold transition-colors">EN</button>
+    </div>
+  </div>
+  <main class="mx-auto max-w-3xl px-6 py-20 md:py-24">
+    <h1 class="text-4xl font-bold text-slate-900 md:text-5xl" data-i18n="h1"><span class="lang-pt">Sessão 3: O Apocalipse de Paulo</span><span class="lang-en">Session 3: Paul’s Apocalypse</span></h1>
+    <hr class="my-8 border-t-2 border-slate-200" />
+    <section class="space-y-6" data-i18n="body">
+    <h2 class="text-2xl font-bold text-slate-900">Principais Lições</h2>
+    <ul class="list-disc space-y-2 pl-6 text-slate-700">
+      <li><span class="lang-pt">Segundo a Bíblia, Céu e Terra são realidades distintas, mas não separadas.</span><span class="lang-en">According to the Bible, Heaven and Earth are distinct but not separate realities.</span></li>
+      <li><span class="lang-pt">Um apocalipse é quando o vínculo entre Céu e Terra se torna visível para nós.</span><span class="lang-en">An apocalypse is when the bond between Heaven and Earth becomes visible to us.</span></li>
+      <li><span class="lang-pt">Paulo experimenta seu próprio apocalipse quando Jesus se revela como o Messias ressuscitado e o chama para compartilhar essa revelação. Esse encontro é fundamental para o livro de Efésios.</span><span class="lang-en">Paul experiences his own apocalypse when Jesus reveals himself as the risen Messiah and calls Paul to share this revelation. This encounter is foundational to the book of Ephesians.</span></li>
+      <li><span class="lang-pt">Efésios é um convite a experimentar o Jesus ressuscitado e permitir que esse apocalipse nos transforme.</span><span class="lang-en">Ephesians is an invitation to experience the risen Jesus and allow that apocalypse to transform us.</span></li>
+    </ul>
+    <h2 class="text-2xl font-bold text-slate-900">Os Céus e a Terra</h2>
+    <p class="text-slate-700"><span class="lang-pt">Na cosmovisão bíblica, os céus e a terra são distintos, mas não separados. Quando Paulo encontra Jesus (Atos 9:1-6, 22:6-7, 26:13-18), Deus revela esse vínculo entre Céu e Terra a Paulo de um modo que transforma suas pressuposições sobre o que Deus está fazendo no mundo.</span><span class="lang-en">In the biblical worldview, the heavens and the earth are distinct but not separate realities. When Paul encounters Jesus (Acts 9:1-6, 22:6-7, 26:13-18), God reveals this bond between Heaven and Earth to Paul in a way that transforms his assumptions about what God is doing in the world.</span></p>
+    <h2 class="text-2xl font-bold text-slate-900">Pergunta de Reflexão</h2>
+    <p class="text-slate-700"><span class="lang-pt">Segundo a cosmovisão bíblica, Céu e Terra são espaços distintos? Por que isso é importante para entender um apocalipse bíblico?</span><span class="lang-en">According to the biblical worldview, are Heaven and Earth distinct spaces? Why is this important for understanding a biblical apocalypse?</span></p>
+    </section>
+  </main>
+  <script src="../js/verse-modal.js"></script>
+  <script>
+    const I18N = {"pt": {"title": "Sessão 3: O Apocalipse de Paulo", "h1": "Sessão 3: O Apocalipse de Paulo", "back": "Voltar"}, "en": {"title": "Session 3: Paul’s Apocalypse", "h1": "Session 3: Paul’s Apocalypse", "back": "Back"}};
+    function setLang(lang){
+      localStorage.setItem('bp_lang',lang);
+      document.documentElement.lang = lang==='pt'?'pt-BR':'en';
+      const t=I18N[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n'); if(t[k]!==undefined) el.innerHTML=t[k];});
+      document.title=t.title;
+      const on='bg-sky-600 text-white', off='bg-white text-slate-600 hover:bg-slate-100';
+      document.getElementById('lang-pt').className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='pt'?on:off);
+      document.getElementById('lang-en').className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='en'?on:off);
+    }
+    setLang(localStorage.getItem('bp_lang')||'pt');
+  </script>
+</body>
+</html>

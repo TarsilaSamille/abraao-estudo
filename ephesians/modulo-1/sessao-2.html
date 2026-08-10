@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="title">Sessão 1: Introdução a Paulo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html[lang="pt-BR"] .lang-en { display: none !important; }
+    html[lang="en"] .lang-pt { display: none !important; }
+    .verse-link { cursor: pointer; }
+    @media print { .nav-btn-fixed { display: none !important; } }
+  </style>
+</head>
+<body class="bg-white font-sans text-slate-800">
+  <div class="nav-btn-fixed fixed left-4 top-4 z-50">
+    <a href="../index.html"
+      class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+      <span>&larr;</span><span data-i18n="back">Voltar</span>
+    </a>
+  </div>
+  <div class="nav-btn-fixed fixed right-4 top-4 z-50">
+    <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white shadow-sm">
+      <button id="lang-pt" onclick="setLang('pt')" class="px-4 py-1.5 text-sm font-semibold transition-colors">PT</button>
+      <button id="lang-en" onclick="setLang('en')" class="px-4 py-1.5 text-sm font-semibold transition-colors">EN</button>
+    </div>
+  </div>
+  <main class="mx-auto max-w-3xl px-6 py-20 md:py-24">
+    <h1 class="text-4xl font-bold text-slate-900 md:text-5xl" data-i18n="h1"><span class="lang-pt">Sessão 2: O Apocalipse de Jesus</span><span class="lang-en">Session 2: The Apocalypse of Jesus</span></h1>
+    <hr class="my-8 border-t-2 border-slate-200" />
+    <section class="space-y-6" data-i18n="body">
+    <h2 class="text-2xl font-bold text-slate-900">Principais Lições</h2>
+    <ul class="list-disc space-y-2 pl-6 text-slate-700">
+      <li><span class="lang-pt">A palavra grega <em>apokalypsis</em> significa descobrir ou revelar — literal e metaforicamente.</span><span class="lang-en">The Greek word <em>apokalypsis</em> means to uncover or reveal — literally and metaphorically.</span></li>
+      <li><span class="lang-pt">Efésios resume o evento apocalíptico mais importante da história: a vida, morte e ressurreição de Jesus, bem como o dom do Espírito.</span><span class="lang-en">Ephesians summarizes the most important apocalyptic event in history: Jesus' life, death, and resurrection as well as the gift of the Spirit.</span></li>
+      <li><span class="lang-pt">Os capítulos 1-3 de Efésios cobrem como entender o apocalipse de Jesus, e os capítulos 4-6 falam como responder a ele.</span><span class="lang-en">Chapters 1-3 of Ephesians cover how to understand the apocalypse of Jesus, and chapters 4-6 talk about how to respond to the apocalypse of Jesus.</span></li>
+    </ul>
+    <p class="text-slate-700"><span class="lang-pt">Esta sessão não tem outras anotações.</span><span class="lang-en">This session has no notes.</span></p>
+    <h2 class="text-2xl font-bold text-slate-900">Pergunta de Reflexão</h2>
+    <p class="text-slate-700"><span class="lang-pt">Com seu entendimento até aqui, resuma o que Paulo quer comunicar em sua carta aos Efésios.</span><span class="lang-en">With your understanding so far, summarize what Paul wants to communicate in his letter to the Ephesians.</span></p>
+    </section>
+  </main>
+  <script src="../js/verse-modal.js"></script>
+  <script>
+    const I18N = {"pt": {"title": "Sessão 2: O Apocalipse de Jesus", "h1": "Sessão 2: O Apocalipse de Jesus", "back": "Voltar"}, "en": {"title": "Session 2: The Apocalypse of Jesus", "h1": "Session 2: The Apocalypse of Jesus", "back": "Back"}};
+    function setLang(lang){
+      localStorage.setItem('bp_lang',lang);
+      document.documentElement.lang = lang==='pt'?'pt-BR':'en';
+      const t=I18N[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n'); if(t[k]!==undefined) el.innerHTML=t[k];});
+      document.title=t.title;
+      const on='bg-sky-600 text-white', off='bg-white text-slate-600 hover:bg-slate-100';
+      document.getElementById('lang-pt').className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='pt'?on:off);
+      document.getElementById('lang-en').className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='en'?on:off);
+    }
+    setLang(localStorage.getItem('bp_lang')||'pt');
+  </script>
+</body>
+</html>
