@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 2: Jesus Anuncia o Reino dos Céus</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="../js/verse-modal.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
+  .ref:hover { color: #2563eb; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  ol.numbered { padding-left: 1.5rem; list-style: decimal; }
+  ol.numbered > li { margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; list-style: decimal; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+  .scripture:hover { border-left-color: #9aa7b8; }
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+  .vs { font-weight: 700; color: #5b7285; font-size: .78em; margin-right: .15em; }
+  .quote { border-left: 4px solid #aeb6bf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a3f47; font-style: italic; }
+  .poem { font-family: 'Newsreader', Georgia, serif; font-size: 1.05rem; line-height: 1.85; color: #24262a; margin: 1.1rem 0; }
+  .book-link { color: #1a5fb4; text-decoration: underline; font-style: normal; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .commentary { background: #f5f7f9; border-radius: 10px; padding: .9rem 1.2rem; margin: .8rem 0 1.1rem; font-size: 1.05rem; line-height: 1.78; color: #24262a; }
+  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
+  .table-img img { width: 100%; display: block; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
+  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
+  .nav-btn:hover { background: #f1f5f9; }
+  .nav-back { left: 1rem; }
+  .nav-lang { right: 1rem; }
+</style>
+</head>
+<body class="bg-white">
+  <a href="../index.html" class="nav-btn nav-back"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
+  <div class="nav-lang" style="right:1rem; position:fixed; top:1rem; z-index:50; display:inline-flex; gap:.25rem;">
+    <button onclick="setLang('pt')" class="nav-btn" style="position:static" id="lang-pt-btn">PT</button>
+    <button onclick="setLang('en')" class="nav-btn" style="position:static" id="lang-en-btn">EN</button>
+  </div>
+  <div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
+    <h1 class="title reveal"><span class="lang-pt">Sessão 2: Jesus Anuncia o Reino dos Céus</span><span class="lang-en">Session 2: Jesus Announces the Kingdom of Heaven</span></h1>
+    <hr class="rule">
+    <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt">Mateus organizou seu evangelho em torno de cinco seções de ensino, começando com o Sermão do Monte.</span><span class="lang-en">Matthew organized his gospel around five teaching sections, beginning with the Sermon on the Mount.</span></li>
+      <li><span class="lang-pt">Mateus entrelaça o anúncio de Jesus de que o reino dos céus chegou com seus ensinamentos e curas, enfatizando a interconexão da experiência vivida diariamente das pessoas, a dinâmica da comunidade e as verdades espirituais transcendentais.</span><span class="lang-en">Matthew weaves Jesus’ announcement that the kingdom of the skies has come together with his teachings and healings, emphasizing the interconnectedness of people's daily lived experience, community dynamics, and transcendent spiritual truths.</span></li>
+      <li><span class="lang-pt">Jesus chama as pessoas a “Mudar de direção!” porque “O reino dos céus está próximo!”—em outras palavras, o governo de Deus está irrompendo na realidade terrena.</span><span class="lang-en">Jesus calls people to "Change direction!” because “The kingdom of the skies is near!"—in other words, God's rule is breaking into earthly reality.</span></li>
+      <li><span class="lang-pt">Mateus foca em como Jesus cumpre as expectativas proféticas para os descendentes de Abraão.</span><span class="lang-en">Matthew focuses on how Jesus fulfills prophetic expectations for Abraham's descendants.</span></li>
+    </ul>
+
+    <h2 class="section reveal"><span class="lang-pt">O Sermão do Monte Dentro do Macro Design de Mateus</span><span class="lang-en">The Sermon on the Mount Within the Macro Design of Matthew</span></h2>
+    <div class="table-img reveal">
+      <img src="img/sessao-2/p1-vector.png" alt="Macro Design de Mateus 1-28">
+      <p class="caption"><span class="lang-pt">Mateus 1-28. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: Ascensão do Messias (2024).</span><span class="lang-en">Matthew 1-28. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Rise of the Messiah (2024).</span></p>
+    </div>
+    <p class="body reveal"><span class="lang-pt">Mateus elaborou cuidadosamente seu relato com uma introdução e conclusão correspondentes.</span><span class="lang-en">Matthew has carefully crafted his account with a matching introduction and conclusion.</span></p>
+    <p class="body reveal"><span class="lang-pt">Mateus 1:1-4:16 apresenta Jesus como o filho de Abraão e Davi e o filho de Deus: Ele nasce como humano, é batizado e provado em uma montanha no deserto, tudo marcado por 7 + 3 citações das Escrituras (sete citações de “cumprimento” + três citações).</span><span class="lang-en">Matthew 1:1-4:16 introduces Jesus as the son of Abraham and David and the son of God: He is born as a human, baptized, and tested on a wilderness mountain, all marked by 7 + 3 quotations from Scripture (seven “fulfillment” quotes + three quotes).</span></p>
+    <p class="body reveal"><span class="lang-pt">Mateus 26:1-28:20 leva a vocação de Jesus como filho de Davi e filho de Deus a uma conclusão climática: Ele é provado em um jardim, executado (seu “batismo”), ressuscitado, e então comissiona seus discípulos em uma montanha, tudo marcado por sete citações das Escrituras.</span><span class="lang-en">Matthew 26:1-28:20 brings Jesus’ vocation as son of David and son of God to a climactic conclusion: He is tested in a garden, executed (his “baptism”), resurrected, and then commissions his disciples on a mountain, all marked by seven quotations from Scripture.</span></p>
+    <p class="body reveal"><span class="lang-pt">Entre os quadros introdutório e conclusivo, Mateus 4:17-25:46 leva a história do movimento de Jesus para a Galileia para anunciar o Reino de Deus (4:12-17) até os dias finais de Jesus em Jerusalém (26:1-28:20). Mateus organizou esta seção em três grandes partes, a primeira e a última das quais têm introduções correspondentes que estabelecem o tema principal para a unidade.</span><span class="lang-en">Between the introductory and concluding frames, Matthew 4:17-25:46 takes the story from Jesus’ movement to Galilee to announce God’s Kingdom (4:12–17) to Jesus’ final days in Jerusalem (26:1-28:20). Matthew has organized this section in three large parts, the first and last of which have matching introductions that set the main theme for the unit.</span></p>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 4:17</span><span class="lang-en">Matthew 4:17</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">Desde então, Iesous começou (ἀπὸ τότε ἤρξατο ὁ Ἰησοῦς)<br>a anunciar e dizer</span><span class="lang-en">From then on, Iesous began (ἀπὸ τότε ἤρξατο ὁ Ἰησοῦς)<br>to announce and say</span></div>
+    </div>
+    <div class="table-img reveal">
+      <img src="img/sessao-2/p2-vector.png" alt="Cinco blocos de ensino de Mateus">
+      <p class="caption"><span class="lang-pt">Mateus 5-26. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: Ascensão do Messias (2024).</span><span class="lang-en">Matthew 5-26. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Rise of the Messiah (2024).</span></p>
+    </div>
+    <p class="body reveal"><span class="lang-pt">“Mudar de direção!<br>Porque o reino dos céus se aproximou!”</span><span class="lang-en">“Change-direction!<br>Because the kingdom of the skies has come near!”</span></p>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 16:21</span><span class="lang-en">Matthew 16:21</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">Desde então, Iesous começou (ἀπὸ τότε ἤρξατο ὁ Ἰησοῦς)<br>a apontar que era necessário para ele ir a Ierosoluma,<br>e sofrer muitas coisas pelas mãos dos anciãos, principais sacerdotes e escribas,<br>e ser morto,<br>e no terceiro dia, ser levantado.</span><span class="lang-en">From then on, Iesous began (ἀπὸ τότε ἤρξατο ὁ Ἰησοῦς)<br>to point out that it was necessary for him to go to Ierosoluma,<br>and to suffer many things by the elders and chief-priests and scribes,<br>and to be killed,<br>and on the third day, to be raised up.</span></div>
+    </div>
+    <p class="body reveal"><span class="lang-pt">Estas introduções são coordenadas com as conclusões das cinco conclusões correspondentes dos discursos.</span><span class="lang-en">These introductions are coordinated with the conclusions to the five matching conclusions to the speeches.</span></p>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 7:28</span><span class="lang-en">Matthew 7:28</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">E aconteceu que, quando Iesous terminou (ἐτέλεσεν) estas palavras …</span><span class="lang-en">And it came about when Iesous finished (ἐτέλεσεν) these words …</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 11:1</span><span class="lang-en">Matthew 11:1</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">E aconteceu que, quando ele terminou (ἐτέλεσεν) de instruir seus doze aprendizes …</span><span class="lang-en">And it came about when he finished (ἐτέλεσεν) instructing his twelve apprentices …</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 13:53</span><span class="lang-en">Matthew 13:53</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">E aconteceu que, quando Iesous terminou (ἐτέλεσεν) estas parábolas …</span><span class="lang-en">And it came about when Iesous finished (ἐτέλεσεν) these parables …</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 19:1</span><span class="lang-en">Matthew 19:1</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">E aconteceu que, quando Iesous terminou (ἐτέλεσεν) estas palavras …</span><span class="lang-en">And it came about when Iesous finished (ἐτέλεσεν) these words …</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 26:1</span><span class="lang-en">Matthew 26:1</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">E aconteceu que, quando Iesous terminou (ἐτέλεσεν) todas estas palavras …</span><span class="lang-en">And it came about when Iesous finished (ἐτέλεσεν) all these words …</span></div>
+    </div>
+    <p class="body reveal"><span class="lang-pt">Os cinco blocos de ensino são todos dispostos de maneira simétrica e com temas correspondentes.</span><span class="lang-en">The five teaching blocks are all arranged in a symmetrical way and with matching themes.</span></p>
+    <div class="table-img reveal">
+      <img src="img/sessao-2/p3-vector.png" alt="Comparação do Sermão de Mateus">
+      <p class="caption"><span class="lang-pt">Comparação do Sermão de Mateus. Criado por Tim Mackie para BibleProject Classroom: Ascensão do Messias (2024).</span><span class="lang-en">Matthew Sermon Comparison. Created by Tim Mackie for BibleProject Classroom: Rise of the Messiah (2024).</span></p>
+    </div>
+    <p class="body reveal"><span class="lang-pt">As três seções que compõem o corpo central de Mateus avançam os temas centrais e as afirmações narrativas que são feitas sobre Jesus.</span><span class="lang-en">The three sections that make up the central body of Matthew advance the core themes and narrative claims that are made about Jesus.</span></p>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt">4:17-11:1—Jesus é o Filho de Deus, trazendo o reino dos céus para baixo à terra em palavra (capítulos 5-7) e ação (capítulos 8-9), e então envia seus discípulos para participar de sua missão (capítulo 10).</span><span class="lang-en">4:17-11:1—Jesus is the Son of God, bringing the kingdom of the skies down to earth in word (chapters 5-7) and action (chapters 8-9), and then sends his disciples out to share in his mission (chapter 10).</span></li>
+      <li><span class="lang-pt">11:2-16:20—A identidade de Jesus é desenvolvida e reage-se a ela de diferentes maneiras:</span><span class="lang-en">11:2-16:20—Jesus’ identity is developed and reacted to in different ways:</span>
+        <ul class="bullets" style="margin-top:.4rem;">
+          <li><span class="lang-pt">Os discípulos discernem que Jesus é o Filho de Deus</span><span class="lang-en">The disciples discern that Jesus is the Son of God</span></li>
+          <li><span class="lang-pt">As multidões passam a ver Jesus como o filho de Davi</span><span class="lang-en">The crowds come to see Jesus as the son of David</span></li>
+          <li><span class="lang-pt">As autoridades veem Jesus como um enganador e uma ameaça a ser destruída</span><span class="lang-en">The authorities view Jesus as a deceiver and threat to be destroyed</span></li>
+        </ul>
+      </li>
+      <li><span class="lang-pt">16:21-25:46—Jesus descreve sua identidade como Filho de Deus para sofrer e morrer em Jerusalém pelos pecados do seu povo (capítulos 16-20), e Jesus vai à cidade (capítulos 20-21) e confronta as autoridades (capítulos 22-25).</span><span class="lang-en">16:21-25:46—Jesus describes his identity as Son of God to suffer and die in Jerusalem for the sins of his people (chapters 16-20), and Jesus goes to the city (chapters 20-21) and engages the authorities (chapters 22-25).</span></li>
+    </ul>
+
+    <h2 class="section reveal"><span class="lang-pt">O Sermão do Monte Dentro de Mateus 4-11</span><span class="lang-en">The Sermon on the Mount Within Matthew 4-11</span></h2>
+    <div class="table-img reveal">
+      <img src="img/sessao-2/p4-vector.png" alt="O Sermão do Monte dentro de Mateus 4-11">
+      <p class="caption"><span class="lang-pt">Mateus 4:17-11:1. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: Torá Messiânica (2024).</span><span class="lang-en">Matthew 4:17-11:1. Translation and Literary Design by Tim Mackie for BibleProject Classroom: The Messianic Torah (2024).</span></p>
+    </div>
+
+    <h2 class="section reveal"><span class="lang-pt">O Sermão do Monte Dentro de Mateus 4-7</span><span class="lang-en">The Sermon on the Mount Within Matthew 4-7</span></h2>
+    <div class="table-img reveal">
+      <img src="img/sessao-2/p5-vector.png" alt="Jesus anuncia o Reino (Mateus 4:17-7:29)">
+      <p class="caption"><span class="lang-pt">Mateus 4:17-7:29. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: Torá Messiânica (2024).</span><span class="lang-en">Matthew 4:17-7:29. Translation and Literary Design by Tim Mackie for BibleProject Classroom: The Messianic Torah (2024).</span></p>
+    </div>
+    <h3 class="sub reveal"><span class="lang-pt">Jesus Anuncia o Reino dos Céus</span><span class="lang-en">Jesus Announces the Kingdom of Heaven</span></h3>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 4:17-5:2</span><span class="lang-en">Matthew 4:17-5:2</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt"><sup class="vs">17</sup> Desde então, Iesous começou a anunciar e dizer,<br>“Mudar de direção!<br>Porque o reino dos céus se aproximou!”</span><span class="lang-en"><sup class="vs">17</sup> From then on, Iesous began to announce and say,<br>“Change-direction!<br>Because the kingdom of the skies has come near!”</span></div>
+    </div>
+    <div class="poem reveal">
+      <span class="lang-pt"><strong>A</strong><br><sup class="vs">18</sup> Ora, enquanto caminhava junto ao mar da Galilaia,<br>ele viu dois irmãos,<br>Simão, que é chamado Petros,<br>e Andreas, seu irmão,<br>lançando uma rede de pesca ao mar,<br>porque eram pescadores,</span><span class="lang-en"><strong>A</strong><br><sup class="vs">18</sup> Now, while walking beside the sea of Galilaia,<br>he saw two brothers,<br>Simon, who is called Petros,<br>and Andreas his brother,<br>throwing a fishing net into the sea,<br>because they were fishers,</span><br>
+      <span class="lang-pt"><strong>B</strong><br><sup class="vs">19</sup> e ele lhes disse,<br>“Vinde após mim,<br>e eu vos farei pescadores de humanos.”</span><span class="lang-en"><strong>B</strong><br><sup class="vs">19</sup> and he said to them,<br>“Come after me,<br>and I will make you fishers of humans.”</span><br>
+      <span class="lang-pt"><strong>C</strong><br><sup class="vs">20</sup> E imediatamente, deixando as redes,<br>eles o seguiram.</span><span class="lang-en"><strong>C</strong><br><sup class="vs">20</sup> And immediately, leaving the nets,<br>they followed him.</span><br>
+      <span class="lang-pt"><strong>A'</strong><br><sup class="vs">21</sup> E tendo partido dali,<br>ele viu dois outros irmãos,<br>Iakobos, o de Zebedaios,<br>e Ioannes, seu irmão,<br>no barco com Zebedaios, seu pai,<br>consertavam suas redes,</span><span class="lang-en"><strong>A'</strong><br><sup class="vs">21</sup> And having moved on from there,<br>he saw two other brothers,<br>Iakobos, the one of Zebedaios,<br>and Ioannes his brother,<br>in the boat with Zebedaios their father,<br>they were repairing their nets,</span><br>
+      <span class="lang-pt"><strong>B'</strong><br>e ele os chamou,</span><span class="lang-en"><strong>B'</strong><br>and he called to them,</span><br>
+      <span class="lang-pt"><strong>C'</strong><br><sup class="vs">22</sup> e imediatamente, depois de deixar o barco e seu pai,<br>eles o seguiram.</span><span class="lang-en"><strong>C'</strong><br><sup class="vs">22</sup> and immediately, after leaving the boat and their father,<br>they followed him.</span><br>
+      <span class="lang-pt"><sup class="vs">23</sup> E ele percorreu toda a Galilaia,<br>ensinando nas sinagogas deles,<br>e anunciando as boas novas do Reino,<br>e curando toda doença e toda enfermidade entre o povo.</span><span class="lang-en"><sup class="vs">23</sup> And he traveled around in all of Galilaia,<br>teaching in their synagogues,<br>and announcing the good news of the Kingdom,<br>and healing every sickness and every disease among the people.</span><br>
+      <span class="lang-pt"><sup class="vs">24</sup> E a notícia sobre ele se espalhou por toda a Síria,<br>e trouxeram a ele<br>todos os que tinham doença com qualquer variedade de enfermidades,<br>e os que sofriam de dores atormentadoras,<br>e os endemoninhados,<br>e os que sofriam de loucura,<br>e os paralíticos,<br>e ele os curou.</span><span class="lang-en"><sup class="vs">24</sup> And the report about him went out into all of Syria,<br>and they brought to him<br>all who had illness with any variety of sicknesses,<br>and those suffering tormenting-pain,<br>and the demonized,<br>and those suffering lunacy,<br>and the paralyzed,<br>and he healed them.</span><br>
+      <span class="lang-pt"><sup class="vs">25</sup> E muitas multidões<br>o seguiram,<br>da Galilaia,<br>e da Dekapolis,<br>e de Ierosoluma,<br>e de Ioudaia,<br>e de além do Iordanes,<br><sup class="vs">5:1</sup> e, vendo as multidões, subiu ao monte,<br>e, sentando-se, seus discípulos vieram a ele,<br><sup class="vs">2</sup> e abrindo sua boca, ele os ensinou, dizendo,</span><span class="lang-en"><sup class="vs">25</sup> And many crowds<br>followed him,<br>from Galilaia,<br>and the Dekapolis,<br>and Ierosoluma,<br>and Ioudaia,<br>and beyond the Iordanes,<br><sup class="vs">5:1</sup> and, seeing the crowds, he went up onto the mountain,<br>and sitting down, his disciples came to him,<br><sup class="vs">2</sup> and opening his mouth, he taught them, saying,</span>
+    </div>
+    <h2 class="section reveal"><span class="lang-pt">O Fundo Bíblico do Reino de Deus</span><span class="lang-en">Scriptural Background to the Kingdom of God</span></h2>
+    <p class="body reveal"><span class="lang-pt">O “Reino de Deus” era o tema principal no ensino de Jesus. Ele afirmou que em suas ações, o Reino de Deus estava realmente se tornando realidade aqui na terra.</span><span class="lang-en">The “Kingdom of God” was the main theme in Jesus’ teaching. He claimed that in his actions, God’s Kingdom was actually becoming reality here on earth.</span></p>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt">Marcos 1:15—“O Reino de Deus chegou.”</span><span class="lang-en">Mark 1:15—“The Kingdom of God has arrived.”</span></li>
+      <li><span class="lang-pt">Mateus 12:28—“Ei, todo mundo, Deus agora está começando a comandar o show!”</span><span class="lang-en">Matthew 12:28—“Hey everyone, God is now starting to run the show!”</span></li>
+    </ul>
+    <p class="body reveal"><span class="lang-pt">Na Bíblia Hebraica, o “Reino” de Deus se refere ao domínio e autoridade de Deus. Em um sentido, toda a criação é o Reino de Deus.</span><span class="lang-en">In the Hebrew Bible, the “Kingdom” of God refers to God’s realm of dominion and authority. In one sense, all of creation is God’s Kingdom.</span></p>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Salmo 103:19</span><span class="lang-en">Psalm 103:19</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">O Senhor estabeleceu o seu trono nos céus,<br>e o seu reino domina sobre tudo.</span><span class="lang-en">The Lord has established his throne in the skies,<br>and his kingdom rules over all.</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Salmo 145:10-13</span><span class="lang-en">Psalm 145:10–13</span></span><span class="scripture-type">NASB</span></div>
+      <div class="scripture-text"><span class="lang-pt">Todas as tuas obras te darão graças, ó SENHOR, e os teus fiéis te bendirão.<br>Falarão da glória do teu reino e contarão do teu poder;<br>para fazer conhecidos aos filhos dos homens os teus atos poderosos e a glória da majestade do teu reino.<br>O teu reino é um reino eterno, e o teu domínio dura por todas as gerações.</span><span class="lang-en">All your works shall give thanks to you, O LORD, and your godly ones shall bless you.<br>They shall speak of the glory of your kingdom and talk of your power;<br>to make known to the sons of men your mighty acts and the glory of the majesty of your kingdom.<br>Your kingdom is an everlasting kingdom, and your dominion endures throughout all generations.</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Daniel 4:2-3</span><span class="lang-en">Daniel 4:2–3</span></span><span class="scripture-type">NASB</span></div>
+      <div class="scripture-text"><span class="lang-pt">Pareceu-me bem declarar os sinais e maravilhas que o Deus Altíssimo fez por mim.<br>Quão grandes são os seus sinais e quão poderosas as suas maravilhas! O seu reino é um reino eterno, e o seu domínio é de geração em geração.</span><span class="lang-en">It has seemed good to me to declare the signs and wonders which the Most High God has done for me.<br>How great are his signs and how mighty are his wonders! His kingdom is an everlasting kingdom and his dominion is from generation to generation.</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Daniel 4:34</span><span class="lang-en">Daniel 4:34</span></span><span class="scripture-type">NASB</span></div>
+      <div class="scripture-text"><span class="lang-pt">Mas, no fim daquele período, eu, Nabucodonosor, levantei os olhos para o céu e o meu entendimento voltou a mim, e abençoei o Altíssimo e louvei e honrei aquele que vive para sempre; pois o seu domínio é um domínio eterno, e o seu reino dura de geração em geração.</span><span class="lang-en">But at the end of that period, I, Nebuchadnezzar, raised my eyes toward heaven and my reason returned to me, and I blessed the Most High and praised and honored him who lives forever; for his dominion is an everlasting dominion, and his kingdom endures from generation to generation.</span></div>
+    </div>
+    <p class="body reveal"><span class="lang-pt">Nota: “Reino de Deus/Céus” não significa “ir para o céu.” É exatamente o oposto, um anúncio de que o espaço de Deus está entrando em contato com o nosso espaço.</span><span class="lang-en">Note: “Kingdom of God/Heaven” does not mean “going to heaven.” It is just the opposite, an announcement that God’s space is coming into contact with our space.</span></p>
+    <p class="body reveal"><span class="lang-pt">Referências ao “Reino” e à “vontade” de Deus sugerem a ideia, “Como seria se Deus estivesse comandando este show?” Essas ideias evocam o mundo como o criador pretendia que fosse, e quer que seja novamente: um lugar de shalom, justiça, abundância, comunidade, etc.</span><span class="lang-en">References to God’s “Kingdom” and “will” suggest the idea, “What would it look like if God was running this show?” These ideas evoke the world as the creator intended it to be, and wants it to be again: a place of shalom, justice, abundance, community, etc.</span></p>
+    <p class="body reveal"><span class="lang-pt">Os autores bíblicos usam o termo “nova/criada de novo criação” para falar desta esperança futura (Rom. 8:18-23; 21-22), e de como esta esperança futura começou a infiltrar o presente (2 Cor. 5:17).</span><span class="lang-en">The biblical authors use the term “new/renewed creation” to speak of this future hope (Rom. 8:18-23; 21-22), and of how this future hope has begun to infiltrate the present (2 Cor. 5:17).</span></p>
+    <p class="body reveal"><span class="lang-pt">A ideia do reinado celestial de Deus se tornando realidade na terra é sobre o que trata Daniel 7.</span><span class="lang-en">The idea of God’s heavenly reign becoming realized on earth is what Daniel 7 is all about.</span></p>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Daniel 7:13-14</span><span class="lang-en">Daniel 7:13–14</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">Eu continuei olhando nas visões noturnas,<br>e eis que, com as nuvens do céu<br>vinha alguém como um Filho de Homem,<br>e ele chegou ao Ancião de Dias<br>e foi apresentado diante dele.<br>E a ele foi dado o domínio (שָׁלְטָן),<br>glória e um reino (מַלְכוּ),<br>para que todos os povos, nações e homens de toda língua<br>o servissem.<br>O seu domínio é um domínio eterno<br>que não passará;<br>e o seu Reino é um<br>que não será destruído.</span><span class="lang-en">I kept looking in the night visions,<br>and behold, with the clouds of heaven<br>one like a Son of Man was coming,<br>and he came up to the Ancient of Days<br>and was presented before him.<br>And to him was given dominion (שָׁלְטָן),<br>glory and a kingdom (מַלְכוּ),<br>that all the peoples, nations, and men of every language<br>might serve him.<br>His dominion is an everlasting dominion<br>which will not pass away;<br>and his Kingdom is one<br>which will not be destroyed.</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Daniel 7:18</span><span class="lang-en">Daniel 7:18</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">Mas os santos do Altíssimo receberão o Reino<br>e possuirão o Reino para sempre,<br>por todas as eras vindouras.</span><span class="lang-en">But the saints of the Highest One will receive the Kingdom<br>and possess the Kingdom forever,<br>for all ages to come.</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Daniel 7:27</span><span class="lang-en">Daniel 7:27</span></span><span class="scripture-type">NASB*</span></div>
+      <div class="scripture-text"><span class="lang-pt">Então a soberania, o domínio e a grandeza de todos os reinos debaixo de todo o céu serão dados ao povo dos santos do Altíssimo; o seu reino será um reino eterno, e todos os domínios o servirão e obedecerão a Ele.</span><span class="lang-en">Then the sovereignty, the dominion and the greatness of all the kingdoms under the whole heaven will be given to the people of the saints of the Highest One; his kingdom will be an everlasting kingdom, and all the dominions will serve and obey Him.</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+    <p class="body reveal"><span class="lang-pt">No Evangelho de Mateus, a história começa com um conflito de reinos, como os três primeiros usos da palavra deixam claro.</span><span class="lang-en">In the Gospel of Matthew, the story begins with a conflict of kingdoms, as the first three uses of the word make clear.</span></p>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 3:1-2</span><span class="lang-en">Matthew 3:1–2</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">Naqueles dias veio João Batista, pregando no deserto da Judeia, dizendo,<br>“Arrependei-vos, pois o reino dos céus se aproximou.”</span><span class="lang-en">Now in those days John the Baptist came, preaching in the wilderness of Judea, saying,<br>“Repent, for the kingdom of the skies has come near.”</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 4:8-9</span><span class="lang-en">Matthew 4:8–9</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">Novamente, o difamador o levou a um monte muito alto e mostrou-lhe todos os reinos do mundo e a sua glória; e disse-lhe: “Todas estas coisas eu te darei, se te prostrares e me adorares.”</span><span class="lang-en">Again, the slanderer took him to a very high mountain and showed him all the kingdoms of the world and their glory; and he said to him, “All these things I will give you, if you fall down and worship me.”</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 4:17</span><span class="lang-en">Matthew 4:17</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">Desde aquele tempo Jesus começou a pregar e dizer: “Arrependei-vos, pois o reino dos céus está próximo.”</span><span class="lang-en">From that time Jesus began to preach and say, “Repent, for the kingdom of the skies is at hand.”</span></div>
+    </div>
+    <p class="body reveal"><span class="lang-pt">A palavra “reino” (grego: basilea) ocorre 55 vezes no relato de Mateus sobre o ensino de Jesus e é usada de várias maneiras. Jesus apresenta o Reino de Deus como presente em e através de si mesmo, mas também como uma realidade futura.</span><span class="lang-en">The word “kingdom” (Greek: basilea) occurs 55 times in Matthew’s account of Jesus’ teaching and is used in a variety of ways. Jesus presents the Kingdom of God as both present in and through himself, but also as a future reality.</span></p>
+    <h3 class="sub reveal"><span class="lang-pt">Ditos em que Jesus apresenta o Reino dos Céus como realidade presente para si e para seus ouvintes</span><span class="lang-en">Sayings in which Jesus presents the Kingdom of Heaven as present reality for himself and his listeners</span></h3>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 4:17</span><span class="lang-en">Matthew 4:17</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">Desde aquele tempo Jesus começou a pregar e dizer: “Arrependei-vos, pois o reino dos céus se aproximou.”</span><span class="lang-en">From that time Jesus began to preach and say, “Repent, for the kingdom of the skies has come near.”</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 10:6-7</span><span class="lang-en">Matthew 10:6–7</span></span><span class="scripture-type">NASB*</span></div>
+      <div class="scripture-text"><span class="lang-pt">mas antes ide às ovelhas perdidas da casa de Israel.<br>E, indo, pregai, dizendo: “O reino dos céus se aproximou.”</span><span class="lang-en">but rather go to the lost sheep of the house of Israel.<br>And as you go, preach, saying, “The kingdom of the skies has come near.”</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 12:28</span><span class="lang-en">Matthew 12:28</span></span><span class="scripture-type">NASB</span></div>
+      <div class="scripture-text"><span class="lang-pt">Mas, se eu expulso demônios pelo Espírito de Deus, então o reino de Deus chegou sobre vós.</span><span class="lang-en">But if I cast out demons by the Spirit of God, then the kingdom of God has come upon you.</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 18:3-4</span><span class="lang-en">Matthew 18:3–4</span></span><span class="scripture-type">NASB*</span></div>
+      <div class="scripture-text"><span class="lang-pt">Em verdade vos digo que, a menos que vos convertais e vos torneis como crianças, não entrareis no reino dos céus. Quem, pois, se humilhar como esta criança, esse é o maior no reino dos céus.</span><span class="lang-en">Truly I say to you, unless you are converted and become like children, you will not enter the kingdom of the skies. Whoever then humbles himself as this child, he is the greatest in the kingdom of the skies.</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 19:23-24</span><span class="lang-en">Matthew 19:23–24</span></span><span class="scripture-type">NASB*</span></div>
+      <div class="scripture-text"><span class="lang-pt">E Jesus disse aos seus discípulos: “Em verdade vos digo que é difícil para um rico entrar no reino dos céus. De novo vos digo: é mais fácil passar um camelo pelo fundo de uma agulha do que um rico entrar no reino de Deus.”</span><span class="lang-en">And Jesus said to his disciples, “Truly I say to you, it is hard for a rich man to enter the kingdom of the skies. Again I say to you, it is easier for a camel to go through the eye of a needle, than for a rich man to enter the kingdom of God.”</span></div>
+      <p class="caption"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 21:31</span><span class="lang-en">Matthew 21:31</span></span><span class="scripture-type">NIV</span></div>
+      <div class="scripture-text"><span class="lang-pt">“Qual dos dois fez o que seu pai queria?” “O primeiro,” responderam. Jesus lhes disse: “Em verdade vos digo que os publicanos e as prostitutas entram no reino de Deus antes de vós.”</span><span class="lang-en">“Which of the two did what his father wanted?” “The first,” they answered. Jesus said to them, “Truly I tell you, the tax collectors and the prostitutes are entering the kingdom of God ahead of you.”</span></div>
+    </div>
+    <h3 class="sub reveal"><span class="lang-pt">Ditos em que Jesus apresenta o Reino como uma realidade futura</span><span class="lang-en">Sayings in which Jesus presents the Kingdom as a future reality</span></h3>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 8:11</span><span class="lang-en">Matthew 8:11</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">Eu vos digo que muitos virão do leste e do oeste, e se reclinarão à mesa com Abraão, Isaque e Jacó no reino dos céus;</span><span class="lang-en">I say to you that many will come from east and west, and will recline at the table with Abraham, Isaac and Jacob in the kingdom of the skies;</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 13:43</span><span class="lang-en">Matthew 13:43</span></span><span class="scripture-type">NASB</span></div>
+      <div class="scripture-text"><span class="lang-pt">Então os justos resplandecerão como o sol no reino de seu Pai. Quem tem ouvidos, ouça.</span><span class="lang-en">Then the righteous will shine forth as the sun in the kingdom of their Father. He who has ears, let him hear.</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 16:28</span><span class="lang-en">Matthew 16:28</span></span><span class="scripture-type">NASB</span></div>
+      <div class="scripture-text"><span class="lang-pt">Em verdade vos digo que há alguns dos que estão aqui que não provarão a morte até verem o Filho do Homem vindo no seu reino.</span><span class="lang-en">Truly I say to you, there are some of those who are standing here who will not taste death until they see the Son of Man coming in his kingdom.</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 26:27-29</span><span class="lang-en">Matthew 26:27–29</span></span><span class="scripture-type">NASB</span></div>
+      <div class="scripture-text"><span class="lang-pt">E, tendo tomado um cálice e dado graças, deu-lho, dizendo: “Bebei dele, todos vós;<br>pois isto é o meu sangue da aliança, que é derramado por muitos para remissão de pecados.<br>Mas eu vos digo que não beberei deste fruto da videira de agora em diante até aquele dia em que o beber novo convosco no reino de meu Pai.”</span><span class="lang-en">And when he had taken a cup and given thanks, he gave it to them, saying, “Drink from it, all of you;<br>for this is my blood of the covenant, which is poured out for many for forgiveness of sins.<br>But I say to you, I will not drink of this fruit of the vine from now on until that day when I drink it new with you in my Father’s kingdom.”</span></div>
+    </div>
+
+    <h2 class="section reveal"><span class="lang-pt">Boas Novas para Israel</span><span class="lang-en">Good News for Israel</span></h2>
+    <p class="body reveal"><span class="lang-pt">Mateus moldou cuidadosamente as descrições de quem veio ouvir Jesus e de onde essas pessoas vieram. Se compararmos a versão de Mateus com sua fonte em Marcos, uma série de pistas importantes emerge quanto à identidade das pessoas que vinham ouvir Jesus.</span><span class="lang-en">Matthew has carefully shaped the descriptions of who came to hear Jesus and where those people came from. If we compare Matthew’s version with his source in Mark, a number of important clues emerge as to the identity of the people coming to hear Jesus.</span></p>
+    <div class="table-img reveal">
+      <img src="img/sessao-2/p10-vector.png" alt="Boas Novas para Israel em Mateus e Marcos">
+      <p class="caption"><span class="lang-pt">Boas Novas para Israel em Mateus e Marcos. Criado por Tim Mackie para BibleProject Classroom: Torá Messiânica (2024).</span><span class="lang-en">Good News for Israel in Matthew and Mark. Created by Tim Mackie for BibleProject Classroom: The Messianic Torah (2024).</span></p>
+    </div>
+    <p class="body reveal"><span class="lang-pt">Mateus omitiu a menção de Idumeia e Tiro e Sidom, e acrescentou a Decápolis. Com essas mudanças, Mateus focou o palco da atividade de Jesus precisamente na área de assentamento das 12 tribos (ver Josué 13-19), isto é, “de Dã a Berseba” (ver, por exemplo, Juízes 20:1 ou 1 Samuel 3:20).</span><span class="lang-en">Matthew omitted the mention of Idumea and Tyre and Sidon, and he has added the Dekapolis. By these changes, Matthew has focused the stage of Jesus’ activity on precisely the settlement area of the 12 tribes (see Joshua 13-19), that is “from Dan to Beersheba” (see, for example, Judges 20:1 or 1 Samuel 3:20).</span></p>
+    <blockquote class="quote reveal"><span class="lang-pt">“A região da Decápolis acrescentada por Mateus cobre a área norte das tribos do leste do Jordão (Rúben, Gade e a meia tribo de Manassés; ver Números 32 e Deuteronômio 3:12-20). Tiro e Sidom, bem como Idumeia (isto é, Edom), são apagadas como territórios gentios. [Mateus retrata] as grandes multidões de todo o Israel respondendo à aparição de Jesus. No versículo 24, é a notícia sobre Jesus, não o próprio Jesus, que vai para toda a Síria. … Essas mudanças de Mateus quanto à origem geográfica das multidões … podem ser vistas como seu esboço da ‘terra de Israel’ (Mt. 2:20-21).”</span><span class="lang-en">“The region of Decapolis added by Matthew covers the northern area of the east Jordan tribes (Reuben, Gad, and the half tribe of Manasseh; see Numbers 32 and Deuteronomy 3:12-20). Tyre and Sidon, as well as Idumea (i.e., Edom) are deleted as Gentile territories. [Matthew portrays] the large crowds from all Israel responding to the appearance of Jesus. In verse 24, it is the report about Jesus, not Jesus himself, that goes into all of Syria. … These changes by Matthew about the crowds’ geographical origin … can be seen as his sketch of the ‘land of Israel’ (Matt. 2:20-21).”</span></blockquote>
+    <p class="caption reveal"><span class="lang-pt">Konradt, Matthias (2020). <a class="book-link" href="#">The Gospel according to Matthew: A Commentary</a>. Baylor University Press. 62.</span><span class="lang-en">Konradt, Matthias (2020). <a class="book-link" href="#">The Gospel according to Matthew: A Commentary</a>. Baylor University Press. 62.</span></p>
+
+    <h2 class="section reveal"><span class="lang-pt">Chamando Todos os Aprendizes</span><span class="lang-en">Calling All Apprentices</span></h2>
+    <div class="table-img reveal">
+      <img src="img/sessao-2/p11-img0.png" alt="Mapa do Oriente Médio">
+      <p class="caption"><span class="lang-pt">Colaboradores do Logos (2025). Mapa do Oriente Médio.</span><span class="lang-en">Logos contributors (2025). Map of the Middle East.</span></p>
+    </div>
+    <p class="body reveal"><span class="lang-pt">Mateus destaca como Jesus convocou quatro de seus primeiros discípulos (grego: mathetes / μαθητής) em duas narrativas curtas e estilizadas que são claramente modeladas uma sobre a outra.</span><span class="lang-en">Matthew highlights how Jesus summoned four of his first disciples (Greek: mathetes / μαθητής) in two short and stylized narratives that are clearly modeled after one another.</span></p>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt">Ambas envolvem chamar conjuntos de irmãos: Simão Pedro & André e Tiago & João.</span><span class="lang-en">Both involve calling sibling sets: Simon Peter & Andrew and James & John.</span></li>
+      <li><span class="lang-pt">Todos os quatro eram pescadores, o que fornece a principal metáfora de Jesus para chamá-los a participar desta missão. Eles vão “pescar pessoas,” uma imagem criativa para o empreendimento missionário que ele tem em mente para eles. Este tema será desenvolvido mais tarde em 9:36-11:1 e 28:16-20.</span><span class="lang-en">All four were fishermen, which provides Jesus’ main metaphor for calling them to participate in this mission. They are going to “fish for people,” a creative image for the missionary endeavor he has in mind for them. This theme will be developed later in 9:36-11:1 and 28:16-20.</span></li>
+      <li><span class="lang-pt">Este padrão gêmeo de chamar e seguir cria um modelo de discipulado que será repetido nas mesmas palavras mais tarde no chamado de Mateus em 9:9.</span><span class="lang-en">This twin pattern of calling and following creates a model of discipleship that will be repeated in the same words later in the calling of Matthew in 9:9.</span></li>
+    </ul>
+    <div class="table-img reveal">
+      <img src="img/sessao-2/p11-vector.png" alt="Chamando Todos os Aprendizes">
+      <p class="caption"><span class="lang-pt">Chamando Todos os Aprendizes. Criado por Tim Mackie para BibleProject Classroom: Torá Messiânica (2024).</span><span class="lang-en">Calling All Apprentices. Created by Tim Mackie for BibleProject Classroom: The Messianic Torah (2024).</span></p>
+    </div>
+    <p class="body reveal"><span class="lang-pt">Mateus moldou claramente estas três cenas para se espelharem umas nas outras. É provável que Mateus queira que vejamos algo normativo para sua audiência também: Se alguém é um aprendiz de Jesus, quando ele chama, devemos seguir.</span><span class="lang-en">Matthew has clearly shaped these three scenes to mirror one another. It is likely that Matthew wants us to see something normative for his audience as well: If one is an apprentice of Jesus, when he calls, we are to follow.</span></p>
+    <p class="body reveal"><span class="lang-pt">O motivo é repetido no próprio relato do chamado de Mateus em 9:9.</span><span class="lang-en">The motif is repeated in Matthew’s own call narrative in 9:9.</span></p>
+
+    <h2 class="section reveal"><span class="lang-pt">A Estratégia Composicional de Mateus em Mateus 4:23-25</span><span class="lang-en">Matthew’s Compositional Strategy in Matthew 4:23-25</span></h2>
+    <p class="body reveal"><span class="lang-pt">Mateus reuniu o resumo do ministério diário de Jesus a partir de múltiplos textos em sua fonte principal, o Evangelho segundo Marcos. Abaixo está uma tabela que ilustra o método composicional de Mateus em ação.</span><span class="lang-en">Matthew has drawn together the summary of Jesus’ daily ministry from multiple texts in his main source, the Gospel according to Mark. Below is a table that illustrates Matthew’s compositional method at work.</span></p>
+    <div class="table-img reveal">
+      <img src="img/sessao-2/p12-vector.png" alt="Estratégia Composicional de Mateus em 4:23-25">
+      <p class="caption"><span class="lang-pt">A Estratégia Composicional de Mateus em 4:23-25. Criado por Tim Mackie para BibleProject Classroom: Torá Messiânica (2024).</span><span class="lang-en">Matthew’s Compositional Strategy in 4:23-25. Created by Tim Mackie for BibleProject Classroom: The Messianic Torah (2024).</span></p>
+    </div>
+
+    <h2 class="section reveal"><span class="lang-pt">Declarações de Yahweh como Rei de Israel</span><span class="lang-en">Statements of Yahweh as Israel’s king</span></h2>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt"><strong>Êxodo 15:18</strong> A conclusão do Cântico do Mar: Isto é significativo porque a primeira declaração de “Yahweh como rei” é sobre seu povo recém-redimido. A realeza de Deus é demonstrada quando escravos são libertados e o mal é confrontado.</span><span class="lang-en"><strong>Exodus 15:18</strong> The conclusion to the Song of the Sea: This is significant because the first statement of "Yahweh as king" is over his newly redeemed people. God’s kingship is demonstrated when slaves are freed and evil is confronted.</span></li>
+      <li><span class="lang-pt"><strong>Números 23:21</strong> Este é o oráculo de Balaão.</span><span class="lang-en"><strong>Numbers 23:21</strong> This is Balaam's oracle.</span></li>
+      <li><span class="lang-pt"><strong>Deuteronômio 33:5</strong> Uma recordação poética do Rei Yahweh vindo ao seu povo desde o Sinai.</span><span class="lang-en"><strong>Deuteronomy 33:5</strong> A poetic recollection of King Yahweh coming to his people from Sinai.</span></li>
+      <li><span class="lang-pt"><strong>Juízes 8:23</strong> A recusa de Gideão em governar porque Yahweh governa sobre Israel.</span><span class="lang-en"><strong>Judges 8:23</strong> Gideon’s refusal to rule because Yahweh rules over Israel.</span></li>
+      <li><span class="lang-pt"><strong>1 Samuel 12:12</strong> Yahweh é rei de Israel, portanto sua exigência por um rei está cheia de motivos mistos.</span><span class="lang-en"><strong>1 Samuel 12:12</strong> Yahweh is king of Israel, therefore their demand for a king is full of mixed motives.</span></li>
+    </ul>
+    <h3 class="sub reveal"><span class="lang-pt">Desenvolvimentos proféticos</span><span class="lang-en">Prophetic developments</span></h3>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt"><strong>Isaías:</strong><ul class="bullets" style="margin-top:.4rem;"><li>Ele vê o rei Yahweh no templo (Isa. 6:5).</li><li>Ele retrata Yahweh como rei e governante de Israel (33:22).</li><li>Em Isaías 40-55, Yahweh é rei e redentor (41:21; 44:6).</li><li>O anúncio de boas novas está diretamente conectado a Yahweh como rei (52:7).</li><li>O apocalipse de Isaías em 24:21-23 tem uma cena onde Yahweh derrota reis rebeldes na terra e os exércitos do céu lançando-os todos em um poço, e Yahweh se torna rei em Jerusalém.</li><li>Isto é chave: Em Isaías, as boas novas são que Deus está presente (40:9) e que Deus é rei (52:7).</li></ul></span><span class="lang-en"><strong>Isaiah:</strong><ul class="bullets" style="margin-top:.4rem;"><li>He sees king Yahweh in the temple (Isa. 6:5).</li><li>He depicts Yahweh as king and ruler of Israel (33:22).</li><li>In Isaiah 40-55, Yahweh is king and redeemer (41:21; 44:6).</li><li>The announcement of good news is directly connected to Yahweh as king (52:7).</li><li>The apocalypse of Isaiah in 24:21-23 has a scene where Yahweh defeats rebellious kings on earth and the hosts of heaven by throwing them all in a pit, and Yahweh becomes king in Jerusalem.</li><li>This is key: In Isaiah, the good news is that God is present (40:9) and that God is king (52:7).</li></ul></span></li>
+      <li><span class="lang-pt"><strong>Jeremias</strong> retrata Yahweh como o único e exclusivo rei (Jer. 10:6-7, 10) em contraste com os ídolos.</span><span class="lang-en"><strong>Jeremiah</strong> depicts Yahweh as the one and only king (Jer. 10:6-7, 10) in contrast to idols.</span></li>
+      <li><span class="lang-pt"><strong>Zacarias</strong> descreve uma visão de Yahweh como rei universal (Zac. 14:9, 16).</span><span class="lang-en"><strong>Zechariah</strong> describes a vision of Yahweh as universal king (Zech. 14:9, 16).</span></li>
+    </ul>
+    <h3 class="sub reveal"><span class="lang-pt">A realeza de Yahweh nos Salmos</span><span class="lang-en">Yahweh’s kingship in the Psalms</span></h3>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt">Representação totalmente completa de Yahweh como rei: Ele se assenta em um trono (29:10, 47:8); usa vestes e mantos reais (93:1); seu trono está sobre a arca no templo (99:1); como rei ele traz justiça aos pobres (74:12, 96:10); Sião é sua cidade capital com seu templo (48:2).</span><span class="lang-en">Fully complete depiction of Yahweh as king: He sits on a throne (29:10, 47:8); he wears royal garb and robes (93:1); his throne is over the ark in the temple (99:1); as king he brings justice to the poor (74:12, 96:10); Zion is his capital city with its temple (48:2).</span></li>
+    </ul>
+    <h3 class="sub reveal"><span class="lang-pt">O governo de Yahweh está conectado com “boas novas”</span><span class="lang-en">Yahweh’s rule is connected with “good news”</span></h3>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt">Isaías 40:3 e depois 52:7 são chave aqui. Yahweh vem para resgatar, salvar e tornar-se rei. Isto são boas novas.</span><span class="lang-en">Isaiah 40:3 and then 52:7 are key here. Yahweh is coming to rescue, save, and become king. This is good news.</span></li>
+      <li><span class="lang-pt">A representação do Reino de Deus em Daniel o eleva a um nível cósmico:<ul class="bullets" style="margin-top:.4rem;"><li>A luta do Reino de Deus contra o mal está ligada à luta do reino de Israel contra seus opressores (Isa. 10:13-14).</li><li>Isto está ligado à tradição que começa em Deuteronômio 32:8-9 onde Yahweh governa Israel, mas outras nações têm outros deuses os governando; Daniel 10:13-14 liga o príncipe da Pérsia com forças espirituais malignas.</li><li>Isto é chave: Em Daniel e Isaías 24, temos os únicos dois lugares onde o conflito do Reino de Deus é com forças do mal por trás dos reinos humanos. Esses temas são significativamente desenvolvidos em outra literatura do Segundo Templo: Jubileus, 1 Enoque e Os Testamentos dos Doze Patriarcas.</li></ul></span><span class="lang-en">Daniel’s depiction of God’s Kingdom elevates it to a cosmic level:<ul class="bullets" style="margin-top:.4rem;"><li>The struggle of God’s Kingdom against evil is linked to the struggle of Israel’s kingdom against its oppressors (Isa. 10:13-14).</li><li>This is linked to the tradition that begins in Deuteronomy 32:8-9 where Yahweh rules Israel, but other nations have other gods ruling them; Daniel 10:13-14 links the prince of Persia with evil spiritual forces.</li><li>This is key: In Daniel and Isaiah 24, we have the only two places where the conflict of God’s Kingdom is with forces of evil behind human kingdoms. These themes are significantly developed in other Second Temple literature: Jubilees, 1 Enoch, and The Testaments of the Twelve Patriarchs.</li></ul></span></li>
+    </ul>
+    <blockquote class="quote reveal"><span class="lang-pt">“Na Escritura, Deus é entendido como rei, como governando sobre um reino, que é entendido tanto como o lugar quanto o evento de sua presença, sua esfera de glória e poder. O governo de Deus é considerado o conteúdo das ‘boas novas’, e é um governo que se espera em breve, como o grande final de todos os reinos humanos. É também um governo que tem e encontrará oposição mortal de Satanás. Para o governo de Deus triunfar, o governo de Satanás terá que ser despedaçado.”</span><span class="lang-en">“In Scripture God is understood as king, as ruling over a kingdom, which is understood as both the place and the event of his presence, his sphere of glory and power. The rule of God is regarded as the content of ‘good news’, and it is a rule that is anticipated soon, as the grand finale of all human kingdoms. It is also a rule that has and will encounter deadly opposition from Satan. For God’s rule to triumph, Satan’s rule will have to be shattered.”</span></blockquote>
+    <p class="caption reveal"><span class="lang-pt">Evans, Craig (2005). “Inaugurating the Kingdom of God” in <a class="book-link" href="#">Bulletin for Biblical Research</a> vol. 15.1. 49-75.</span><span class="lang-en">Evans, Craig (2005). “Inaugurating the Kingdom of God” in <a class="book-link" href="#">Bulletin for Biblical Research</a> vol. 15.1. 49-75.</span></p>
+    <h3 class="sub reveal"><span class="lang-pt">O anúncio do Reino por Jesus</span><span class="lang-en">Jesus’ announcement of the Kingdom</span></h3>
+    <p class="body reveal"><span class="lang-pt">Marcos 1:14-15 (ver também Mt. 4:17): O Reino se aproximou. A linguagem é tirada de Daniel 7:22 depois que o Altíssimo decide a favor dos santos: “Chegou o tempo e os santos possuíram o Reino.” (Dan. LXX Teodocião usa ο καιρος εφθασεν και την βασιλειαν κατεσχον οι αγιοι).</span><span class="lang-en">Mark 1:14-15 (see also Matt. 4:17): The Kingdom has come near. The language is drawn from Daniel 7:22 after the Most High decides in favor of the holy ones: “The time came and the holy ones possessed the Kingdom.” (Dan. LXX Theodotian uses ο καιρος εφθασεν και την βασιλειαν κατεσχον οι αγιοι).</span></p>
+    <p class="body reveal"><span class="lang-pt">A inauguração do Reino por Jesus tem um foco em combater o mal espiritual.</span><span class="lang-en">Jesus’ inauguration of the Kingdom has a focus on combatting spiritual evil.</span></p>
+    <div class="table-img reveal">
+      <img src="img/sessao-2/p14-vector.png" alt="Ensinos e Curas de Jesus">
+      <p class="caption"><span class="lang-pt">Ensinos e Curas de Jesus. Criado por Tim Mackie para BibleProject Classroom: Torá Messiânica (2024).</span><span class="lang-en">Jesus’ Teachings and Healings. Created by Tim Mackie for BibleProject Classroom: The Messianic Torah (2024).</span></p>
+    </div>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt">A tentação de Jesus</span><span class="lang-en">The temptation of Jesus</span></li>
+      <li><span class="lang-pt">Os exorcismos de Jesus</span><span class="lang-en">Jesus’ exorcisms</span></li>
+      <li><span class="lang-pt">Enviando os 12</span><span class="lang-en">Sending the 12</span></li>
+      <li><span class="lang-pt">As curas de Jesus</span><span class="lang-en">Jesus’ healings</span></li>
+    </ul>
+
+    <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+    <p class="body reveal"><span class="lang-pt">Como a estrutura organizacional de Mateus contribui para a mensagem geral de seu evangelho?</span><span class="lang-en">How does Matthew's organizational structure contribute to the overall message of his gospel?</span></p>
+  </div>
+  <script>
+    function setLang(l){ localStorage.setItem('messianic-torah-s2-lang',l); document.documentElement.lang=l; var pt=document.getElementById('lang-pt-btn'), en=document.getElementById('lang-en-btn'); if(l==='pt'){pt.className='nav-btn bg-sky-600 text-white';en.className='nav-btn';} else {en.className='nav-btn bg-sky-600 text-white';pt.className='nav-btn';} }
+    (function(){ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1}); document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);}); })();
+    setLang(localStorage.getItem('messianic-torah-s2-lang')||'pt');
+  </script>
+</body>
+</html>

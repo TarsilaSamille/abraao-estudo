@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><span class="lang-pt">Sessão 7: Ezequiel, o Sentinela</span><span class="lang-en">Session 7: Ezekiel the Watchman</span></title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  .heb { font-family: 'SBL Hebrew','Times New Roman',serif; font-size: 1.05em; direction: rtl; unicode-bidi: embed; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
+  .ref:hover { color: #2563eb; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+
+  /* ---------- Literary design chips (Ezekiel 3:16-27) ---------- */
+  .ld { margin: 1.6rem 0; }
+  .ld-box { border: 1px solid #d7dde5; border-radius: 12px; padding: 1.2rem 1.4rem; background: #fff; }
+  .ld-v { font-size: 1.04rem; line-height: 2.05; color: #1f2937; }
+  .ld-v .vs { font-size: .72em; color: #4b5563; vertical-align: super; margin-right: 7px; font-weight: 700; }
+  .chip { display: inline; padding: 2px 7px; border-radius: 5px; font-weight: 700; line-height: 1.95; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  .chip-word  { background: #efe8db; color: #645537; }
+  .chip-watch { background: #be4967; color: #ffffff; }
+  .chip-death { background: #fae4c4; color: #91362e; }
+  .chip-life  { background: #ccf1fa; color: #245791; }
+  .chip-person{ background: #e4e8ed; color: #4f5669; }
+  .ld-em { font-weight: 800; color: #181d36; }
+  .ld-ltr { color: #4f5669; font-weight: 700; font-size: .9em; margin-right: 4px; }
+  .ld-l1 { margin-left: 1.1rem; } .ld-l2 { margin-left: 2.1rem; } .ld-l3 { margin-left: 3.1rem; }
+  @media (max-width: 640px) { .ld-l1 { margin-left: .4rem; } .ld-l2 { margin-left: 1.1rem; } .ld-l3 { margin-left: 1.8rem; } }
+
+  /* ---------- Scripture blocks ---------- */
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+  .scripture:hover { border-left-color: #9aa7b8; }
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+  .scripture-type { color: #586574; font-weight: 700; font-size: .72em; vertical-align: super; margin-left: .4rem; }
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+  .scripture-text sup.vs { font-size: .72em; color: #333; vertical-align: super; margin-right: 2px; }
+  .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem; }
+  .quote { border-left: 4px solid #aeb6bf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a3f47; font-style: italic; }
+  .book-link { color: #1a5fb4; text-decoration: underline; font-style: normal; }
+
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
+  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
+  .nav-btn:hover { background: #f1f5f9; }
+  .nav-back { left: 1rem; }
+  .nav-lang { right: 1rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #2563eb; transform-origin: 0 0; transform: scaleX(0); z-index: 100; }
+  .page-footer { margin-top: 3.5rem; padding-top: 1rem; border-top: 1px solid #e5e9f0; display: flex; justify-content: space-between; font-size: .82rem; color: #8a93a3; font-weight: 600; }
+  .page-footer .lang-pt, .page-footer .lang-en { display: inline; }
+</style>
+</head>
+<body class="bg-white">
+
+<div id="reading-progress" aria-hidden="true"></div>
+
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+<h1 class="title reveal"><span class="lang-pt">Sessão 7: Ezequiel, o Sentinela</span><span class="lang-en">Session 7: Ezekiel the Watchman</span></h1>
+<hr class="rule">
+
+<h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+<ul class="bullets reveal" style="margin-bottom:2.5rem;">
+  <li><span class="lang-pt">Deus nomeia Ezequiel como sentinela, mas o impede de ser um mediador enquanto ele enfrenta a destruição iminente de Jerusalém.</span><span class="lang-en">God appoints Ezekiel as a watchman but prevents him from being a mediator as he faces the impending destruction of Jerusalem.</span></li>
+  <li><span class="lang-pt">A justiça de Deus exige juízo para a violência e infidelidade de Israel, mas em sua aliança ele promete que a bênção virá através de Israel. Deus deve conduzir seu povo escolhido através da morte para trazê-los à esperança da ressurreição do outro lado.</span><span class="lang-en">God&rsquo;s justice demands judgment for Israel&rsquo;s violence and unfaithfulness, but in his covenant he promises that blessing will come through Israel. God must lead his chosen people through death to bring them to resurrection hope on the other side.</span></li>
+</ul>
+
+<h2 class="section reveal"><span class="lang-pt">Tradução e Design Literário de Ezequiel 3:16-27</span><span class="lang-en">Translation and Literary Design of Ezekiel 3:16-27</span></h2>
+
+<div class="ld reveal">
+  <div class="ld-box">
+    <div class="ld-v">
+      <span class="vs">16</span><span class="lang-pt">E aconteceu que, ao fim dos sete dias, a palavra de Yahweh veio a mim, dizendo:</span><span class="lang-en">And it came about at the end of the seven days, that the spoken-word of Yahweh came to me saying,</span><br>
+      <span class="vs">17</span><span class="lang-pt">&ldquo;Filho do homem, eu fiz de você um <span class="chip chip-watch">sentinela</span> para a casa de Israel, e quando você ouvir uma palavra da minha boca, então você lhes dará um aviso da minha parte.&rdquo;</span><span class="lang-en">&ldquo;Son of Man, I have made you a <span class="chip chip-watch">watchman</span> for the house of Israel, and when you hear a word from my mouth, then you shall give them a warning from me.&rdquo;</span><br>
+      <span class="vs">18</span><span class="ld-l1"><span class="ld-ltr">a</span><span class="lang-pt">Quando eu disser ao <span class="chip chip-person">ímpio</span>: &lsquo;Você vai <span class="chip chip-death">morrer</span>!&rsquo;</span><span class="lang-en">When I say to the <span class="chip chip-person">wicked man</span>, &lsquo;You are going to <span class="chip chip-death">die</span>!&rsquo;</span><br></span>
+      <span class="ld-l2"><span class="ld-ltr">b</span><span class="lang-pt">e você não o <span class="chip chip-watch">advertir</span>,</span><span class="lang-en">and you do not <span class="chip chip-watch">warn</span> him</span><br></span>
+      <span class="ld-l2"><span class="lang-pt">e você não falar para <span class="chip chip-watch">advertir</span> o ímpio do seu caminho perverso, a fim de preservar a sua <span class="chip chip-life">vida</span>,</span><span class="lang-en">and you do not speak to <span class="chip chip-watch">warn</span> the wicked from his wicked way in order to preserve his <span class="chip chip-life">life</span>,</span><br></span>
+      <span class="ld-l3"><span class="ld-ltr">c</span><span class="lang-pt">então o ímpio <span class="chip chip-death">morrerá</span> na sua culpa, <span class="ld-em">mas o seu sangue eu o requererei de você</span>.</span><span class="lang-en">then the wicked man will <span class="chip chip-death">die</span> in his guilt, <span class="ld-em">but his blood I shall require from you</span>.</span><br></span>
+      <span class="vs">19</span><span class="ld-l1"><span class="ld-ltr">b&prime;</span><span class="lang-pt">Mas, quanto a você, quando <span class="chip chip-watch">advertir</span> o <span class="chip chip-person">ímpio</span>,</span><span class="lang-en">But as for you, when you <span class="chip chip-watch">warn</span> the <span class="chip chip-person">wicked man</span>,</span><br></span>
+      <span class="ld-l2"><span class="lang-pt">e ele não se desviar da sua perversidade nem do seu caminho perverso,</span><span class="lang-en">and he does not turn from his wickedness or from his wicked way,</span><br></span>
+      <span class="ld-l3"><span class="ld-ltr">c&prime;</span><span class="lang-pt">ele <span class="chip chip-death">morrerá</span> na sua culpa, <span class="ld-em">e você livrará a sua própria vida</span>.</span><span class="lang-en">he will <span class="chip chip-death">die</span> in his guilt, <span class="ld-em">and you will deliver your own life</span>.</span><br></span>
+      <span class="vs">20</span><span class="ld-l1"><span class="ld-ltr">a</span><span class="lang-pt">E quando o <span class="chip chip-person">justo</span> se desviar da sua justiça e praticar o mal,</span><span class="lang-en">And when the <span class="chip chip-person">righteous man</span> turns from his righteousness and does evil,</span><br></span>
+      <span class="ld-l2"><span class="ld-ltr">b</span><span class="lang-pt">então porei uma pedra de tropeço diante dele; ele <span class="chip chip-death">morrerá</span>, porque você não o advertiu; no seu pecado ele <span class="chip chip-death">morrerá</span>,</span><span class="lang-en">then I will place a stumbling block before him; he will <span class="chip chip-death">die</span>, because you did not warn him, in his sin he will <span class="chip chip-death">die</span>,</span><br></span>
+      <span class="ld-l3"><span class="ld-ltr">c</span><span class="lang-pt">e as suas obras de justiça que ele praticou não serão lembradas, <span class="ld-em">e eu requererei o seu sangue de você</span>.</span><span class="lang-en">and his righteous deeds which he did, they will not be remembered, <span class="ld-em">and I shall require his blood from you</span>.</span><br></span>
+      <span class="vs">21</span><span class="ld-l1"><span class="ld-ltr">b&prime;</span><span class="lang-pt">Mas, quanto a você, quando o advertir, o <span class="chip chip-person">justo</span> para que não peque, e ele não pecar,</span><span class="lang-en">But as for you, when you warn him, the <span class="chip chip-person">righteous man</span> that he should not sin, and he does not sin,</span><br></span>
+      <span class="ld-l3"><span class="ld-ltr">c&prime;</span><span class="lang-pt">certamente <span class="chip chip-life">viverá</span>, pois foi advertido; <span class="ld-em">e você livrará a sua própria vida</span>.</span><span class="lang-en">he shall surely <span class="chip chip-life">live</span>, for he was warned; <span class="ld-em">and you will deliver your own life</span>.</span></span>
+    </div>
+  </div>
+</div>
+
+<div class="ld reveal">
+  <div class="ld-box">
+    <div class="ld-v">
+      <span class="vs">22</span><span class="lang-pt">E a mão de Yahweh esteve sobre mim ali, e ele me disse: &ldquo;Levanta-te, sai para a planície, e ali falarei contigo.&rdquo;</span><span class="lang-en">And the hand of Yahweh was upon me there and he said to me, &ldquo;Get up, go out to the plain, and there I will speak with you.&rdquo;</span><br>
+      <span class="vs">23</span><span class="lang-pt">E me levantei e saí para a planície, e eis que ali estava a glória de Yahweh, de pé, como a glória que vi junto ao rio Quebar, e caí com o rosto em terra.</span><span class="lang-en">And I got up and I went out to the plain, and behold there was the glory of Yahweh, it was standing like the glory that I saw by the river Chebar, and I fell on my face.</span><br>
+      <span class="vs">24a</span><span class="lang-pt">E o espírito entrou em mim e me pôs em pé,</span><span class="lang-en">And the spirit entered me and she stood me on my feet</span><br>
+      <span class="vs">24b</span><span class="lang-pt">e ele me falou e me disse: &ldquo;Vai, encerra-te dentro da tua casa.</span><span class="lang-en">and he spoke to me and he said to me, &ldquo;Go, close yourself up inside your house.</span><br>
+      <span class="vs">25</span><span class="lang-pt">E quanto a ti, filho do homem, eis que colocarão cordas sobre ti, e te amarrarão com elas, e não sairás do meio deles.</span><span class="lang-en">And as for you, son of man, look, they will put cords on you, and they will bind you with them, and you will not go out in their midst.</span><br>
+      <span class="vs">26</span><span class="lang-pt">E farei a tua língua apegar-se ao teu paladar, e ficarás em silêncio, e não serás um <span class="chip chip-watch">mediador</span> para eles, pois são uma casa rebelde.</span><span class="lang-en">And I will make your tongue cleave to your mouth and you will be silent and you will not be a <span class="chip chip-watch">mediator</span> for them, for they are a rebellious house.</span><br>
+      <span class="vs">27</span><span class="lang-pt">E quando eu falar contigo, abrirei a tua boca, e tu lhes dirás: &lsquo;Assim diz [o Senhor] Yahweh.&rsquo; Quem ouvir, ouça; e quem desistir, desista, pois são uma casa rebelde.</span><span class="lang-en">And when I do speak to you, I will open your mouth and you will say to them, &lsquo;Thus says [the Lord] Yahweh.&rsquo; The one who hears, let him hear; and the one who desists, let him desist, for they are a rebellious house.</span>
+    </div>
+  </div>
+</div>
+
+<p class="caption reveal"><span class="lang-pt">Tradução e Design Literário de Ezequiel 3:16-27 por Tim Mackie para BibleProject Classroom: Ezequiel (2021).</span><span class="lang-en">Ezekiel 3:16-27. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Ezekiel (2021).</span></p>
+
+<h2 class="section reveal"><span class="lang-pt">Os Atos-Sinais Proféticos de Ezequiel</span><span class="lang-en">Ezekiel&rsquo;s Prophetic Sign Acts</span></h2>
+<p class="body reveal"><span class="lang-pt">Como um teatro de rua antigo, os atos-sinais são uma expressão multimídia da mensagem profética (ver 1 Rs 11:29-31; 2 Rs 13:14-19; Os 1-3; Is 20; Jr 32; a arte de Banksy). As ações simbólicas não apenas reforçam visualmente a mensagem, mas também prefiguram ou garantem o evento ao qual aludem.</span><span class="lang-en">Like ancient street theater, the sign acts are a multimedia expression of the prophetic message (see 1 Kgs. 11:29-31; 2 Kgs. 13:14-19; Hos. 1-3; Isa. 20; Jer. 32; art of Banksy). The symbolic actions not only visually reinforce the message, but also prefigure or guarantee the event being alluded to.</span></p>
+
+<h3 class="sub reveal"><span class="lang-pt">3:17-21: Ezequiel como Sentinela de Israel (Conexão com Ez 18; 33:7-9)</span><span class="lang-en">3:17-21: Ezekiel as Israel&rsquo;s Watchman (Connection to Ezek. 18, 33:7-9)</span></h3>
+<p class="body reveal"><span class="lang-pt">Ezequiel é como um sentinela do exército postado nos muros da cidade, procurando a aproximação do inimigo. A metáfora é profunda e irônica.</span><span class="lang-en">Ezekiel is like an army sentinel posted on the city walls looking for the approach of the enemy. The metaphor is profound and ironic.</span></p>
+<p class="body reveal"><span class="lang-pt">Israel está em perigo de um inimigo — o próprio Yahweh (&ldquo;um aviso da minha parte&rdquo;, 3:17; a Babilônia é apenas um agente; ver também Jr 27). Israel recebeu um sentinela, comissionado e postado pelo próprio Yahweh (que inimigo posta um sentinela em sua cidade-alvo?). Yahweh é ao mesmo tempo inimigo e guardião de Israel. Ele quer salvar Israel, mas não deixará sua apostasia passar sem controle.</span><span class="lang-en">Israel is in danger from an enemy—Yahweh himself (&ldquo;a warning from/about me&rdquo; 3:17, Babylon is just an agent, see also Jer. 27). Israel has been given a watchman, commissioned and posted by Yahweh himself (what enemy posts a sentinel in his target city?). Yahweh is both enemy and guardian of Israel. He wants to save Israel, but will not let their apostasy go unchecked.</span></p>
+
+<h3 class="sub reveal"><span class="lang-pt">3:16, 22-27: Ezequiel Amarrado em Casa e Mudo</span><span class="lang-en">3:16, 22-27: Ezekiel Bound in His House and Mute</span></h3>
+<p class="body reveal"><span class="lang-pt">O primeiro parágrafo (Ez 3:16-27) retrata o papel profético de Ezequiel entre o povo, e é um pouco paradoxal. Ele é, antes de tudo, um &ldquo;sentinela&rdquo; (<span class="heb">צפה</span>), um guarda de sentinela no muro da cidade que deve avisar o povo de qualquer perigo que se aproxime. Essa metáfora leva ao vocabulário de &ldquo;advertência&rdquo; (<span class="heb">הזהיר</span>) no parágrafo seguinte (Ez 3:18-24). Esta é uma descrição bastante direta da tarefa profética, e a mesma imagem é usada de outros profetas também (Is 21:6; 52:8; Mq 7:7; Hc 2:2).</span><span class="lang-en">The first paragraph (Ezek. 3:16-27) portrays Ezekiel&rsquo;s prophetic role among the people, and it&rsquo;s a bit of paradox. He is, first of all, a &ldquo;watchman&rdquo; (<span class="heb">צפה</span>), a sentinel guard on the city wall who is to warn the people of any approaching danger. This metaphor leads to the vocabulary of &ldquo;warning&rdquo; (<span class="heb">הזהיר</span>) in the following paragraph (Ezek. 3:18-24). This is a fairly straightforward description of the prophetic task, and the same image is used of other prophets as well (Isa. 21:6, 52:8; Mic. 7:7; Hab. 2:2).</span></p>
+<p class="body reveal"><span class="lang-pt">No design literário do parágrafo, o papel de Ezequiel como sentinela é colocado em analogia com a unidade final em Ezequiel 3:24b-27, onde Ezequiel é amarrado e incapaz de falar entre o povo.</span><span class="lang-en">In the literary design of the paragraph, Ezekiel&rsquo;s role as a watchman is set on analogy to the final unit in Ezekiel 3:24b-27, where Ezekiel is bound up and unable to speak among the people.</span></p>
+
+<div class="ld reveal">
+  <div class="ld-box">
+    <div class="ld-v">
+      <span class="vs">16</span><span class="lang-pt">E aconteceu que, ao fim dos sete dias, a palavra de Yahweh veio a mim, dizendo:</span><span class="lang-en">And it came about at the end of the seven days, that the spoken-word of Yahweh came to me saying,</span><br>
+      <span class="vs">17</span><span class="lang-pt">&ldquo;Filho do homem, eu fiz de você um <span class="chip chip-watch">sentinela</span> para a casa de Israel, e quando você ouvir uma palavra da minha boca, então você lhes dará um aviso da minha parte.&rdquo;</span><span class="lang-en">&ldquo;Son of Man, I have made you a <span class="chip chip-watch">watchman</span> for the house of Israel, and when you hear a word from my mouth, then you shall give them a warning from me.&rdquo;</span><br>
+      <span class="vs">3:24b</span><span class="lang-pt">E ele me falou e me disse: &ldquo;Vai, encerra-te dentro da tua casa.</span><span class="lang-en">3:24b And he spoke to me and he said to me, &ldquo;Go, close yourself up inside your house.</span><br>
+      <span class="vs">25</span><span class="lang-pt">E quanto a ti, filho do homem, eis que colocarão cordas sobre ti, e te amarrarão com elas, e não sairás do meio deles.</span><span class="lang-en">And as for you, son of man, look, they will put cords on you, and they will bind you with them, and you will not go out in their midst.</span><br>
+      <span class="vs">26</span><span class="lang-pt">E farei a tua língua apegar-se ao teu paladar, e ficarás em silêncio, e não serás um <span class="chip chip-watch">mediador</span> para eles, pois são uma casa rebelde.</span><span class="lang-en">And I will make your tongue cleave to your mouth and you will be silent and you will not be a <span class="chip chip-watch">mediator</span> for them, for they are a rebellious house.</span><br>
+      <span class="vs">27</span><span class="lang-pt">E quando eu falar contigo, abrirei a tua boca, e tu lhes dirás: &lsquo;Assim diz [o Senhor] Yahweh.&rsquo;</span><span class="lang-en">And when I do speak to you, I will open your mouth and you will say to them, &lsquo;Thus says [the Lord] Yahweh.&rsquo;</span><br>
+      <span class="lang-pt">Quem ouvir, ouça; e quem desistir, desista, pois são uma casa rebelde.</span><span class="lang-en">The one who hears, let him hear; and the one who desists, let him desist, for they are a rebellious house.</span>
+    </div>
+  </div>
+</div>
+
+<p class="body reveal"><span class="lang-pt">Ezequiel é amarrado com cordas (3:25). Isso pode se referir (1) à resistência dos exilados à sua mensagem (cf. a perseguição de Jeremias, Jr 20:1-2; 37-38). Mas isso parece estranho, porque os anciãos dos exilados israelitas são regularmente retratados como vindo visitar Ezequiel (ver 14:1; 20:1). Isso pode (2) estar conectado à declaração de Yahweh de que ele &ldquo;amarrará&rdquo; (Ez 4:8) Ezequiel no ato-sinal sobre o cerco de Jerusalém, onde ele será amarrado em casa para carregar os pecados de Israel. Esta cena começa a se parecer curiosamente com uma combinação de imagens do Sacrifício de Isaque (Gn 22) e do Dia da Expiação (Lv 16).</span><span class="lang-en">Ezekiel is bound with cords (3:25). This could refer (1) to the exiles&rsquo; resistance to his message (cf. the persecution of Jeremiah, Jer. 20:1-2, 37-38). But this seems odd, because the elders of the Israelite exiles are regularly depicted as coming to visit Ezekiel (see 14:1, 20:1). This could (2) be connected to Yahweh&rsquo;s statement that he will &ldquo;bind&rdquo; (Ezek. 4:8) Ezekiel in the sign act about the siege of Jerusalem, where he will be tied up in house to carry the sins of Israel. This scene begins to look curiously like a combination of images from the Aqedah of Isaac (Gen. 22) and the Day of Atonement (Lev. 16).</span></p>
+<p class="body reveal"><span class="lang-pt">Esta prisão domiciliar imposta por Deus é explicada nas linhas seguintes, pois Ezequiel deve tornar-se &ldquo;mudo&rdquo; (Ez 3:26, <span class="heb">נאלם</span>). Esse estado de mudez durará pelos próximos sete anos (até Ez 33:21-24). Ezequiel será incapaz de falar, exceto pelos oráculos proféticos que Yahweh lhe dá para falar.</span><span class="lang-en">This divinely imposed house arrest is explained in the following lines, as Ezekiel is to become &ldquo;mute&rdquo; (Ezek. 3:26, <span class="heb">נאלם</span>). This mute state will last for the next seven years (until Ezek. 33:21-24). Ezekiel will be unable to speak except for the prophetic oracles Yahweh gives him to speak.</span></p>
+<p class="body reveal"><span class="lang-pt">O objetivo de Yahweh ao tornar seu profeta mudo é impedi-lo de desempenhar o papel de &ldquo;mediador&rdquo; ou &ldquo;advogado&rdquo; (3:26, <span class="heb">איש מוכיח</span>). O &ldquo;mediador&rdquo; é uma pessoa que se coloca entre duas partes em conflito e defende os interesses de uma ou de ambas.</span><span class="lang-en">Yahweh&rsquo;s goal in making his prophet mute is to prevent him from playing the role of a &ldquo;mediator&rdquo; or &ldquo;advocate&rdquo; (3:26, <span class="heb">איש מוכיח</span>). The &ldquo;mediator&rdquo; is a person who stands in between two parties in conflict and advocates for the interests of one or both.</span></p>
+
+<h3 class="sub reveal"><span class="lang-pt">Jacó e Labão</span><span class="lang-en">Jacob and Laban</span></h3>
+<div class="scripture reveal">
+  <div><span class="scripture-label">Gênesis 31:36-37</span><span class="scripture-type">NASB*</span></div>
+  <p class="scripture-text"><span class="lang-pt">36 Então Jacó se indignou e contendou com Labão; e disse Jacó a Labão: &ldquo;Qual é a minha transgressão? Qual é o meu pecado, que tão furiosamente me perseguiste? 37 Embora tenhas apalpado todos os meus bens, que achaste de todos os bens da tua casa? Põe-no aqui diante de meus irmãos e de teus irmãos, para que julguem entre nós dois.&rdquo;</span><span class="lang-en">36 Then Jacob became angry and contended with Laban; and Jacob said to Laban, &ldquo;What is my transgression? What is my sin that you have hotly pursued me? 37 Though you have felt through all my goods, what have you found of all your household goods? Set it here before my brothers and your brothers, that they may mediate between us two.&rdquo;</span></p>
+  <p class="adapt"><span class="lang-pt">*Palavras-chave adaptadas pelo professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+</div>
+
+<h3 class="sub reveal"><span class="lang-pt">Davi e os Homens de Benjamim</span><span class="lang-en">David and the Men of Benjamin</span></h3>
+<div class="scripture reveal">
+  <div><span class="scripture-label">1 Crônicas 12:16-17</span><span class="scripture-type">NASB*</span></div>
+  <p class="scripture-text"><span class="lang-pt">16 Então alguns dos filhos de Benjamim e de Judá vieram à fortaleza, a Davi. 17 E Davi saiu ao encontro deles e lhes disse: &ldquo;Se vós viestes em paz a mim, para me ajudar, o meu coração se unirá a vós; mas, se para me entregardes aos meus adversários, pois não há injustiça nas minhas mãos, que o Deus de nossos pais o veja e advogue por mim.&rdquo;</span><span class="lang-en">16 Then some of the sons of Benjamin and Judah came to the stronghold to David. 17 David went out to meet them, and said to them, &ldquo;If you come peacefully to me to help me, my heart shall be united with you; but if to betray me to my adversaries, since there is no wrong in my hands, may the God of our fathers look on it and advocate for me.&rdquo;</span></p>
+  <p class="adapt"><span class="lang-pt">*Palavras-chave adaptadas pelo professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+</div>
+
+<h3 class="sub reveal"><span class="lang-pt">Jó e Elohim</span><span class="lang-en">Job and Elohim</span></h3>
+<div class="scripture reveal">
+  <div><span class="scripture-label">Jó 9:32-33</span><span class="scripture-type">NASB*</span></div>
+  <p class="scripture-text"><span class="lang-pt">32 Pois [Elohim] não é homem, como eu, para que eu lhe responda, para que juntos venhamos a juízo. 33 Não há entre nós árbitro que ponha a mão sobre nós ambos.</span><span class="lang-en">32 For [Elohim] is not a man as I am that I may answer him, that we may go to court together. 33 There is no mediator between us, who may lay his hand upon us both.</span></p>
+  <p class="adapt"><span class="lang-pt">*Palavras-chave adaptadas pelo professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+</div>
+
+<h3 class="sub reveal"><span class="lang-pt">O Mediador na Tradição Profética</span><span class="lang-en">The Mediator in the Prophetic Tradition</span></h3>
+<p class="body reveal"><span class="lang-pt">Em situações de conflito, o mediador atua como uma parte neutra que representa os interesses de ambos os grupos e tenta negociar um acordo. Este é precisamente o &ldquo;modelo de Moisés&rdquo; do profeta, que se insere entre Yahweh e o povo e defende que Yahweh perdoe os pecados do povo.</span><span class="lang-en">In situations of conflict, the mediator acts as a neutral party who represents the interests of both groups and tries to negotiate a settlement. This is precisely the &ldquo;Moses-model&rdquo; of the prophet who inserts themself between Yahweh and the people and advocates that Yahweh forgive the sins of the people.</span></p>
+<ul class="bullets reveal">
+  <li><span class="lang-pt">Noé no Monte Ararate fazendo seu sacrifício após o dilúvio: Gênesis 8:20-23</span><span class="lang-en">Noah on Mount Ararat making his sacrifice after the flood: Genesis 8:20-23</span></li>
+  <li><span class="lang-pt">Moisés no Monte Sinai na narrativa do bezerro de ouro: Êxodo 32-33</span><span class="lang-en">Moses on Mount Sinai in the golden calf narrative: Exodus 32-33</span></li>
+  <li><span class="lang-pt">Arão no deserto na história da rebelião de Corá: Números 16-18</span><span class="lang-en">Aaron in the wilderness in the story of Korah&rsquo;s rebellion: Numbers 16-18</span></li>
+  <li><span class="lang-pt">Samuel na história da idolatria de Israel com a arca: 1 Samuel 6-7</span><span class="lang-en">Samuel in the story of Israel&rsquo;s idolatry with the ark: 1 Samuel 6-7</span></li>
+  <li><span class="lang-pt">Isaías na crise assíria dos dias de Ezequias: 2 Reis 18-20</span><span class="lang-en">Isaiah in the Assyrian crisis of Hezekiah&rsquo;s day: 2 Kings 18-20</span></li>
+  <li><span class="lang-pt">Hulda na história da renovação da aliança de Josias: 2 Reis 22-23</span><span class="lang-en">Huldah in the story of Josiah&rsquo;s covenant renewal: 2 Kings 22-23</span></li>
+  <li><span class="lang-pt">Os três atos de intercessão de Amós: Amós 7-8</span><span class="lang-en">Amos&rsquo; three acts of intercession: Amos 7-8</span></li>
+</ul>
+
+<div class="scripture reveal">
+  <div><span class="scripture-label">Amós 7:1-3</span><span class="scripture-type">NASB</span></div>
+  <p class="scripture-text"><span class="lang-pt">1 Assim me mostrou Yahweh Elohim, e eis que ele formava um enxame de gafanhotos quando a safra da primavera começava a brotar. E eis que a safra da primavera era depois da ceifa do rei. 2 E, quando acabou de comer a vegetação da terra, eu disse: &ldquo;Senhor Yahweh, perdoa, por favor! Como poderá Jacó subsistir, pois é pequeno?&rdquo; 3 Yahweh se arrependeu disso. &ldquo;Não será&rdquo;, disse Yahweh.</span><span class="lang-en">1 Thus Yahweh Elohim showed me, and look, he was forming a locust-swarm when the spring crop began to sprout. And look, the spring crop was after the king&rsquo;s mowing. 2 And when it had finished eating the vegetation of the land, I said, &ldquo;Lord Yahweh, please forgive! How can Jacob endure, for he is small?&rdquo; 3 Yahweh changed his mind about this. &ldquo;It shall not be,&rdquo; said Yahweh.</span></p>
+</div>
+
+<p class="body reveal"><span class="lang-pt">Essas histórias apresentam um momento de crise e conflito entre Deus e seu povo, e o mediador intervém e oferece um sacrifício de rendição, defendendo a parte culpada. E em todas essas histórias, Yahweh perdoa.</span><span class="lang-en">These stories present a moment of crisis and conflict between God and his people, and the mediator steps in and offers a sacrifice of surrender, advocating for the guilty party. And in all of these stories, Yahweh forgives.</span></p>
+
+<h2 class="section reveal"><span class="lang-pt">Yahweh Impede o Mediador</span><span class="lang-en">Yahweh Prevents the Mediator</span></h2>
+<p class="body reveal"><span class="lang-pt">Yahweh impede dois profetas de desempenhar o papel de mediador, e ambos acontecem de viver no mesmo período, durante os anos que antecedem a destruição de Jerusalém. Enquanto está no exílio, Ezequiel é instruído a não interceder pelo Israel culpado, e ao mesmo tempo em Jerusalém, Jeremias recebe a mesma ordem de Yahweh.</span><span class="lang-en">Yahweh prevents two prophets from playing the role of mediator, and they both happen to live in the same period during the years leading up to the destruction of Jersualem. While in exile, Ezekiel is told not to intercede for guilty Israel, and at the same time in Jerusalem, Jeremiah is given the same order from Yahweh.</span></p>
+
+<div class="scripture reveal">
+  <div><span class="scripture-label">Jeremias 7:16</span><span class="scripture-type">NASB*</span></div>
+  <p class="scripture-text"><span class="lang-pt">16 &ldquo;Quanto a ti, não ores por este povo, e não levantes clamor (<span class="heb">רנה</span>) ou oração (<span class="heb">תפלה</span>) por eles, e não intercedas (<span class="heb">פגע</span>) junto a mim; pois não te ouvirei.&rdquo;</span><span class="lang-en">16 &ldquo;As for you, do not pray for this people, and do not lift up cry (<span class="heb">רנה</span>) or prayer (<span class="heb">תפלה</span>) for them, and do not intercede (<span class="heb">פגע</span>) with me; for I do not hear you.&rdquo;</span></p>
+  <p class="adapt"><span class="lang-pt">*Palavras-chave adaptadas pelo professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+</div>
+
+<div class="scripture reveal">
+  <div><span class="scripture-label">Jeremias 11:14</span><span class="scripture-type">NASB</span></div>
+  <p class="scripture-text"><span class="lang-pt">Portanto, não ores por este povo, nem levantes clamor ou oração por eles; pois não os ouvirei quando clamarem a mim por causa da sua calamidade.</span><span class="lang-en">Therefore do not pray for this people, nor lift up a cry or prayer for them; for I will not listen when they call to me because of their disaster.</span></p>
+</div>
+
+<div class="scripture reveal">
+  <div><span class="scripture-label">Jeremias 14:11-12</span><span class="scripture-type">NASB</span></div>
+  <p class="scripture-text"><span class="lang-pt">11 Então o Senhor me disse: &ldquo;Não ores pelo bem-estar deste povo. 12 Quando jejuarem, não ouvirei o seu clamor; e quando oferecerem holocausto e oferta de cereais, não os aceitarei. Antes, eu os consumirei pela espada, pela fome e pela peste.&rdquo;</span><span class="lang-en">11 So the LORD said to me, &ldquo;Do not pray for the welfare of this people. 12 When they fast, I am not going to listen to their cry; and when they offer burnt offering and grain offering, I am not going to accept them. Rather I am going to make an end of them by the sword, famine and pestilence.&rdquo;</span></p>
+</div>
+
+<p class="body reveal"><span class="lang-pt">De modo singular, Jeremias e Ezequiel recebem a ordem de não interceder por Judá e Jerusalém porque a ruína de Israel e a destruição da cidade e do templo são inevitáveis. Mas porque Yahweh tem um padrão de ouvir a petição de seus profetas, ele lhes ordena simplesmente que parem de interceder.</span><span class="lang-en">Uniquely, Jeremiah and Ezekiel are told not to intercede for Judah and Jerusalem because the ruin of Israel and the destruction of the city and temple are inevitable. But because Yahweh has a pattern of listening to the petition of his prophets, he orders them to simply stop interceding.</span></p>
+<p class="body reveal"><span class="lang-pt">Este retrato nuances significativamente o papel de Ezequiel. Ele deve advertir Israel sobre o desastre vindouro, mas não deve interceder em favor de Israel nem transmitir qualquer senso de esperança deste lado do avanço babilônico. Ele deve simplesmente anunciar sua chegada inevitável, e somente então sua boca se &ldquo;abrirá&rdquo; para dizer algo novo. Na linha final de Ezequiel 3:27 há uma pequena semente de esperança que florescerá nos poemas de restauração de Ezequiel 34-48. Mas por enquanto, é apenas má notícia.</span><span class="lang-en">This portrait significantly nuances Ezekiel&rsquo;s role. He is to warn Israel of the coming disaster, but he is not to intercede on behalf of Israel or portray any sense of hope on this side of the Babylonian onslaught. He is simply to announce its inevitable arrival, and only then will his mouth &ldquo;open&rdquo; to say something new. In the final line of Ezekiel 3:27 is a small seed of hope that will blossom into the restoration poems of Ezekiel 34-48. But for now, it&rsquo;s only bad news.</span></p>
+<p class="body reveal"><span class="lang-pt">Toda esta cena prepara o palco para os atos-sinais de Ezequiel em Ezequiel 4:1-5:17: um homem mudo, amarrado e encerrado em sua casa, ardendo de emoção, encenando essas estranhas histórias simbólicas para seus companheiros refugiados.</span><span class="lang-en">This entire scene sets the stage for Ezekiel&rsquo;s sign acts in Ezekiel 4:1-5:17: a mute, bound man shut up in his house, burning with emotion, acting out these strange symbolic stories to his fellow refugees.</span></p>
+
+<h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Questão para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+<p class="body reveal"><span class="lang-pt">Como você entende o papel de Ezequiel? O que Deus o enviou para fazer ou não fazer?</span><span class="lang-en">How do you understand Ezekiel&rsquo;s role? What has God sent him to do or not do?</span></p>
+
+<div class="page-footer">
+  <span>Class Notes: Ezekiel</span>
+  <span><span class="lang-pt">Sessão 7 · Ezequiel, o Sentinela</span><span class="lang-en">Session 7 · Ezekiel the Watchman</span></span>
+</div>
+</div>
+<script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('ezekiel-s7-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('ezekiel-s7-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+<script src="../js/verse-modal.js"></script>
+</body>
+</html>

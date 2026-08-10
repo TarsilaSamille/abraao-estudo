@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 1: Filósofo, Professor, Profeta, Sábio</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="../js/verse-modal.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
+  .ref:hover { color: #2563eb; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  ol.numbered { padding-left: 1.5rem; list-style: decimal; }
+  ol.numbered > li { margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; list-style: decimal; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+  .scripture:hover { border-left-color: #9aa7b8; }
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+  .vs { font-weight: 700; color: #5b7285; font-size: .78em; margin-right: .15em; }
+  .quote { border-left: 4px solid #aeb6bf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a3f47; font-style: italic; }
+  .poem { font-family: 'Newsreader', Georgia, serif; font-size: 1.05rem; line-height: 1.85; color: #24262a; margin: 1.1rem 0; }
+  .book-link { color: #1a5fb4; text-decoration: underline; font-style: normal; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .commentary { background: #f5f7f9; border-radius: 10px; padding: .9rem 1.2rem; margin: .8rem 0 1.1rem; font-size: 1.05rem; line-height: 1.78; color: #24262a; }
+  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
+  .table-img img { width: 100%; display: block; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
+  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
+  .nav-btn:hover { background: #f1f5f9; }
+  .nav-back { left: 1rem; }
+  .nav-lang { right: 1rem; }
+</style>
+</head>
+<body class="bg-white">
+  <a href="../index.html" class="nav-btn nav-back"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
+  <div class="nav-lang" style="right:1rem; position:fixed; top:1rem; z-index:50; display:inline-flex; gap:.25rem;">
+    <button onclick="setLang('pt')" class="nav-btn" style="position:static" id="lang-pt-btn">PT</button>
+    <button onclick="setLang('en')" class="nav-btn" style="position:static" id="lang-en-btn">EN</button>
+  </div>
+  <div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
+    <h1 class="title reveal"><span class="lang-pt">Sessão 1: Filósofo, Professor, Profeta, Sábio</span><span class="lang-en">Session 1: Philosopher, Teacher, Prophet, Sage</span></h1>
+    <hr class="rule">
+    <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt">As primeiras audiências do ensino de Jesus no evangelho de Mateus viam Jesus como participante da tradição dos pensadores filosóficos antigos, que ensinavam e encarnavam a boa vida.</span><span class="lang-en">Early audiences of Jesus’ teaching in Matthew's gospel saw Jesus as participating in the tradition of ancient philosophical thinkers, who taught and embodied the good life.</span></li>
+      <li><span class="lang-pt">Em seus ensinamentos, Jesus depende especialmente das categorias de pensamento da Bíblia Hebraica: Torá, profecia e sabedoria.</span><span class="lang-en">In his teachings, Jesus relies especially on the thought categories of the Hebrew Bible: Torah, prophecy, and wisdom.</span></li>
+      <li><span class="lang-pt">Jesus apresenta a si mesmo e aos seus ensinamentos como um cumprimento e um passo adiante na história de Deus e de Israel.</span><span class="lang-en">Jesus presents himself and his teachings as a fulfillment of and a step forward in the story of God and Israel.</span></li>
+    </ul>
+
+    <h2 class="section reveal"><span class="lang-pt">Jesus Entre os Filósofos</span><span class="lang-en">Jesus Among the Philosophers</span></h2>
+    <p class="body reveal"><span class="lang-pt">No Evangelho de Mateus, Jesus é apresentado como um grande filósofo no sentido antigo, um verdadeiro amante da sabedoria que tanto ensina quanto encarna o caminho para a boa vida (adaptado de Jonathan Pennington, <em>Jesus the Great Philosopher</em> e Robert Kinney, <em>Hellenistic Dimensions of the Gospel of Matthew</em>).</span><span class="lang-en">In the Gospel of Matthew, Jesus is presented as a great philosopher in the ancient sense, a true lover of wisdom who both teaches and embodies the way to the good life (adapted from Jonathan Pennington, <em>Jesus the Great Philosopher</em> and Robert Kinney, <em>Hellenistic Dimensions of the Gospel of Matthew</em>).</span></p>
+    <p class="body reveal"><span class="lang-pt">Na cidade greco-romana de Dura-Europos do século III, havia uma sinagoga judaica e uma igreja doméstica cristã localizadas perto uma da outra. Ambas as estruturas têm pinturas de mosaico lindamente preservadas de histórias da Bíblia Hebraica e do Novo Testamento. Há um paralelo fascinante entre a representação da sinagoga de Moisés e a sarça ardente e o retrato da igreja de Jesus curando o paralítico (abaixo). Ambos são retratados com as vestes de filósofos gregos antigos (toga grega, braço erguido, ensinando).</span><span class="lang-en">In the 3rd century Greco-Roman city of Dura-Europos, there was a Jewish synagogue and a Christian house church located near each other. Both structures have beautifully preserved mosaic paintings of stories from the Hebrew Bible and New Testament. There is a fascinating parallel between the synagogue’s depiction of Moses and the burning bush and the church’s portrait of Jesus healing the paralyzed man (below). Both are portrayed with the dress of ancient Greek philosophers (Greek toga, arm raised, teaching).</span></p>
+    <div class="table-img reveal">
+      <img src="img/sessao-1/p1-img0.png" alt="Moisés e a sarça ardente, Sinagoga de Dura-Europos">
+      <p class="caption"><span class="lang-pt">Crispian, Crispins (2023). Wikimedia Commons.</span><span class="lang-en">Crispian, Crispins (2023). Wikimedia Commons.</span></p>
+    </div>
+    <div class="table-img reveal">
+      <img src="img/sessao-1/p2-img0.png" alt="Jesus curando o paralítico, igreja doméstica de Dura-Europos">
+      <p class="caption"><span class="lang-pt">Yale University Art Gallery (2019). Wikimedia Commons.</span><span class="lang-en">Yale University Art Gallery (2019). Wikimedia Commons.</span></p>
+    </div>
+    <p class="body reveal"><span class="lang-pt">Tanto Moisés quanto Jesus foram imaginados como filósofos no sentido antigo da palavra.</span><span class="lang-en">Both Moses and Jesus were imagined to be philosophers in the ancient sense of the word.</span></p>
+    <blockquote class="quote reveal"><span class="lang-pt">“A filosofia no mundo grego e romano antigo não era principalmente teoria … era um modo de vida, um modo de estar no mundo. Isso estava enraizado em um modo de ver e compreender o que o mundo realmente é. Os filósofos de fato ponderavam ideias grandes e misteriosas (a natureza da matéria e do tempo), mas essa exploração era sempre com o propósito de ajudar as pessoas a viver de certa maneira … com base em conhecer e amar o que é verdadeiramente Bom. Isso é chamado de ‘virtude’ e diz respeito ao desenvolvimento de hábitos e caráter que correspondem à realidade para que se possa entrar na plenitude do potencial humano e do florescimento, para se tornar plenamente humano.”</span><span class="lang-en">“Philosophy in the ancient Greek and Roman world was not primarily theory … it was a way of life, a way of being in the world. This was rooted in a way of seeing and understanding what the world really is. Philosophers did ponder big and mysterious ideas (the nature of matter and time), but this exploration was always for the purpose of helping people live a certain way … based on knowing and loving what is truly Good. This is called ‘virtue’ and is all about the development of habits and character that correspond to reality so that one can enter into the fullness of human potential and flourishing, to become fully human.”</span></blockquote>
+    <p class="caption reveal"><span class="lang-pt">Pennington, Jonathan (2020). <a class="book-link" href="#">Jesus the Great Philosopher</a>. Brazos Press. 21-22, 28.</span><span class="lang-en">Pennington, Jonathan (2020). <a class="book-link" href="#">Jesus the Great Philosopher</a>. Brazos Press. 21-22, 28.</span></p>
+    <p class="body reveal"><span class="lang-pt">No século I, a philosophia (amor à sabedoria) era praticada em pequenos grupos sociais que se reuniam em torno de um professor específico que recrutava uma comunidade de discípulos. Essas comunidades eram fundamentadas no corpo de ensino (philosophia) e em uma prática comunitária, um modo de vida compartilhado. Tudo isso era focado em moldar a vida de alguém em direção ao bem—seus pensamentos, escolhas, hábitos, comunidade e vocação.</span><span class="lang-en">In the 1st century, philosophia (love of wisdom) was done in small social groups that gathered around a specific teacher who recruited a community of disciples. These communities were grounded in the body of teaching (philosophia) and a community practice, a shared way of life. All of it was focused on shaping one’s life toward the good—one’s thoughts, choices, habits, community, and vocation.</span></p>
+    <p class="body reveal"><span class="lang-pt">Essa tradição tem sido chamada de “Ética da Virtude.”</span><span class="lang-en">This tradition has been called “Virtue Ethics.”</span></p>
+    <p class="body reveal"><strong><span class="lang-pt">A Boa Vida e o Florescimento Humano:</span><span class="lang-en">The Good Life and Human Flourishing:</span></strong> <span class="lang-pt">Há uma forma ideal de vida humana (escolhas morais sendo apenas uma parte) que leva ao maior florescimento (grego: eudaimonia).</span><span class="lang-en">There is an ideal form of human life (moral choices being just one part) that leads to the most flourishing (Greek: eudaimonia).</span></p>
+    <p class="body reveal"><strong><span class="lang-pt">Caráter e Virtude:</span><span class="lang-en">Character and Virtue:</span></strong> <span class="lang-pt">O foco da educação está no caráter moral de uma pessoa mais do que ensinar uma filosofia para tomar decisões morais individuais. Trata-se de se tornar uma pessoa virtuosa, cuja vida está alinhada na direção do florescimento, não apenas uma pessoa que faz a coisa certa.</span><span class="lang-en">The focus of education is on a person’s moral character more than teaching a philosophy for making individual moral decisions. It’s about becoming a person who is virtuous, whose life is aligned in the direction of flourishing, not just a person who does the right thing.</span></p>
+    <p class="body reveal"><strong><span class="lang-pt">Comunitário e Formativo:</span><span class="lang-en">Communal and Formative:</span></strong> <span class="lang-pt">Essas formas ideais de vida humana que levam ao florescimento são primariamente comunitárias e não podem ser alcançadas meramente em um nível individual e racional.</span><span class="lang-en">These ideal forms of human life that lead to flourishing are primarily communal and cannot be achieved merely on an individual, rational level.</span></p>
+    <p class="body reveal"><span class="lang-pt">A pergunta que impulsiona a Ética da Virtude é menos “O que devo fazer?” e mais “Que tipo de pessoa devo ser?” e “Com quem devo me tornar esse tipo de pessoa?”</span><span class="lang-en">The question driving Virtue Ethics is less “What should I do?” and more “What kind of person should I be?” and “With whom shall I become that kind of person?”</span></p>
+    <p class="body reveal"><span class="lang-pt">O ensino de Jesus e sua maneira de argumentar seus pontos se encaixam nessa tradição antiga de ensino moral e ético.</span><span class="lang-en">Jesus’ teaching and his way of arguing his points fit into this ancient tradition of moral and ethical teaching.</span></p>
+    <p class="body reveal"><span class="lang-pt">O sermão toca regularmente na vida florescente que resulta de seguir seus ensinamentos.</span><span class="lang-en">The sermon regularly touches on the flourishing life that results from following his teachings.</span></p>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt">“Bênção” e estar entre os felizes ou afortunados (5:3-13)</span><span class="lang-en">“Blessing” and being among the happy or fortunate (5:3-13)</span></li>
+      <li><span class="lang-pt">“Plenitude” que torna alguém como Deus (5:48)</span><span class="lang-en">“Wholeness” that makes one like God (5:48)</span></li>
+      <li><span class="lang-pt">“Recompensa” que vem da integridade (6:1-18)</span><span class="lang-en">“Reward” that comes from integrity (6:1-18)</span></li>
+      <li><span class="lang-pt">Uma vida livre de ansiedade (6:19-34)</span><span class="lang-en">An anxiety-free life (6:19-34)</span></li>
+      <li><span class="lang-pt">Produção de “bom fruto” (7:16-18)</span><span class="lang-en">Production of “good fruit” (7:16-18)</span></li>
+      <li><span class="lang-pt">A vida de alguém é como uma casa construída sobre a rocha (7:24-27)</span><span class="lang-en">One’s life is like a house built on the rock (7:24-27)</span></li>
+    </ul>
+    <p class="body reveal"><span class="lang-pt">O sermão se concentra no caráter das pessoas e em suas motivações centrais, em contraste com o comportamento externo e observável que pode ser enganoso.</span><span class="lang-en">The sermon focuses on people’s character and core motivations, in contrast to external, observable behavior which can be deceiving.</span></p>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 5:8</span><span class="lang-en">Matthew 5:8</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">Bem-aventurados os puros de coração, pois eles verão a Deus.</span><span class="lang-en">Blessed are the pure in heart, for they will see God.</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 5:21-22</span><span class="lang-en">Matthew 5:21-22</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">Vocês ouviram o que foi dito: “Não matarás,” … e eu vos digo que todo aquele que se ira contra outro é culpado …</span><span class="lang-en">You have heard it said, “Do not murder,” … and I say to you, everyone who is angry at another is guilty …</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 5:27-28</span><span class="lang-en">Matthew 5:27-28</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">Vocês ouviram o que foi dito: “Não cometereis adultério;” mas eu vos digo que qualquer um que olha para uma mulher para cobiçá-la já cometeu adultério.</span><span class="lang-en">You have heard it said, “Don’t commit adultery;” but I say to you, anyone who looks at a woman so he can lust for her has already committed adultery.</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 6:1</span><span class="lang-en">Matthew 6:1</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">Cuidado para não praticardes vossos atos de justiça diante das pessoas para serdes notados por elas.</span><span class="lang-en">Beware of doing your acts of righteousness before people so you can be noticed by them.</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 6:21</span><span class="lang-en">Matthew 6:21</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">Onde está a vossa riqueza, aí estará também o vosso coração.</span><span class="lang-en">Where your wealth is, there your heart will be too.</span></div>
+    </div>
+    <p class="body reveal"><span class="lang-pt">É por isso que “hipocrisia” no sermão NÃO significa “fazer o oposto do que você diz.” Em vez disso, significa “fazer a coisa certa pelos motivos errados.” Este sermão vem no contexto da missão de Jesus de formar “comunidades do Reino de Deus” na Galileia. Ele está criando “comunidades de formação de virtude,” não apenas dando palestras sobre ética no abstrato.</span><span class="lang-en">This is why “hypocrisy” in the sermon does NOT mean “doing the opposite of what you say.” Rather, it means “doing the right thing for the wrong motives.” This sermon comes in the context of Jesus’ mission to form “Kingdom of God communities” in Galilee. He is creating “communities of virtue-formation,” not just lecturing on ethics in the abstract.</span></p>
+    <p class="body reveal"><span class="lang-pt">O sermão representa uma ética de virtude do Reino de Deus, na qual Jesus argumenta que o tipo de pessoas que vivem por sua sabedoria ética serão os que verdadeiramente florescem enquanto o mundo é transformado na nova criação.</span><span class="lang-en">The sermon represents a Kingdom of God virtue ethic, in which Jesus argues that the kind of people who live by his ethical wisdom will be the ones who truly flourish as the world is transformed into the new creation.</span></p>
+
+    <h2 class="section reveal"><span class="lang-pt">Uma Abordagem Bíblico-Teológica do Sermão</span><span class="lang-en">A Biblical-Theology Approach to the Sermon</span></h2>
+    <p class="body reveal"><span class="lang-pt">Quando vemos o sermão no contexto da história bíblica unificada, em continuidade com o que veio antes, ganhamos alguma nova perspectiva. Jesus chama o que veio antes de “a Torá e os Profetas,” sua frase para as Escrituras Hebraicas.</span><span class="lang-en">When we view the sermon in the context of the unified biblical story, in continuity with what has come before, we get some new perspective. Jesus calls what has come before “the Torah and the Prophets," his phrase for the Hebrew Scriptures.</span></p>
+
+    <h3 class="sub reveal"><span class="lang-pt">O Sermão como Torá</span><span class="lang-en">The Sermon as Torah</span></h3>
+    <p class="body reveal"><span class="lang-pt">No sermão, Jesus diz que está “cumprindo a Torá e os Profetas,” e ele fala essas palavras reivindicando a autoridade do Deus de Israel.</span><span class="lang-en">In the sermon, Jesus says he is “fulfilling the Torah and Prophets," and he speaks these words claiming the authority of Israel’s God.</span></p>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 5:17</span><span class="lang-en">Matthew 5:17</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">Não suponhais que vim abolir a Torá ou os Profetas. Não vim abolir, mas cumprir plenamente.</span><span class="lang-en">Don’t suppose that I have come to do away with the Torah or the Prophets. I have not come to do away, but to fill them full.</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 5:21-48</span><span class="lang-en">Matthew 5:21-48</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">Vocês ouviram o que foi dito + “Citações da Torá” + e eu vos digo ...</span><span class="lang-en">You have heard it said + “Quotes from the Torah” + and I say to you ...</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 7:12</span><span class="lang-en">Matthew 7:12</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">Portanto, tudo o que desejais que as pessoas vos façam, fazei-o também a elas; pois isto é a Torá e os Profetas.</span><span class="lang-en">So then, everything you desire that people to do to you, so also you do to them; for this is the Torah and the Prophets.</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Mateus 7:28-29</span><span class="lang-en">Matthew 7:28–29</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">Quando Jesus terminou estas palavras, as multidões ficaram maravilhadas com o seu ensino; pois ele as ensinava como quem tem autoridade, e não como os escribas delas.</span><span class="lang-en">When Jesus had finished these words, the crowds were amazed at his teaching; for he was teaching them as one having authority, and not as their scribes.</span></div>
+    </div>
+    <p class="body reveal"><span class="lang-pt">Jesus é apresentado como um novo Moisés, ensinando uma torá renovada para o povo de Deus. As pessoas não ficam chocadas porque Jesus está ensinando algo estrangeiro ou novo. Elas ficam maravilhadas porque ele está assumindo ter a mesma autoridade divina que o Deus de Israel, convocando Israel à lealdade a ele como o caminho para ser fiel ao Deus de Israel.</span><span class="lang-en">Jesus is presented as a new Moses, teaching a renewed torah for the people of God. People are not shocked that Jesus is teaching something foreign or new. They are amazed that he is assuming to have the same divine authority as the God of Israel, summoning Israel to allegiance to him as the way to be faithful to Israel’s God.</span></p>
+    <p class="body reveal"><span class="lang-pt">Jesus apresenta o sermão como uma revelação da vontade de Deus para o seu povo realmente viver, não como um ideal inatingível.</span><span class="lang-en">Jesus presents the sermon as a revelation of God’s will for his people to actually live by, not as an unattainable ideal.</span></p>
+
+    <h3 class="sub reveal"><span class="lang-pt">O Sermão como Profético</span><span class="lang-en">The Sermon as Prophetic</span></h3>
+    <p class="body reveal"><span class="lang-pt">A mensagem principal de Jesus, resumida algumas frases antes de o sermão começar, é “o Reino de Deus se aproximou” (Mt. 4:17).</span><span class="lang-en">Jesus’ main message, summarized a few sentences before the sermon begins, is “the Kingdom of God has come near” (Matt. 4:17).</span></p>
+    <p class="body reveal"><span class="lang-pt">O reinado de Deus estava irrompendo em nosso mundo, o Céu estava invadindo a Terra, e o sermão representa uma visão das relações humanas e da ordem mundial que se alinha com os valores desta nova ordem. O reinado restaurador de Deus, anunciado por Jesus, era o cumprimento da antecipação de Moisés e dos profetas de uma “nova aliança” onde a vontade de Deus, revelada na Torá, seria “escrita nos corações” do seu povo.</span><span class="lang-en">The reign of God was breaking into our world, Heaven was invading Earth, and the sermon represents a view of human relationships and of the world order that aligns itself with the values of this new order. The restorative reign of God, announced by Jesus, was the fulfillment of Moses and the prophets’ anticipation of a “new covenant” where God’s will, revealed in the Torah, would be “written on the hearts” of his people.</span></p>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Deuteronômio 30:1-6 LEB</span><span class="lang-en">Deuteronomy 30:1–6 LEB</span></span></div>
+      <div class="scripture-text"><span class="lang-pt"><sup class="vs">1</sup> E então, quando todas estas coisas vierem sobre ti,<br>a bênção e a maldição que pus diante de ti<br>e as recordares entre as nações onde Yahweh teu Deus te dispersou,<br><sup class="vs">2</sup> e voltares a Yahweh e ouvires a sua voz segundo tudo o que hoje te ordeno,<br>tu e teus filhos, com todo o teu coração e com todo o teu interior,<br><sup class="vs">3</sup> e Yahweh teu Deus restaurar a tua sorte, e tiver compaixão de ti, e de novo te reunir<br>de todos os povos onde Yahweh teu Deus te dispersou. …<br><sup class="vs">6</sup> E Yahweh teu Deus circuncidará o teu coração e o coração da tua descendência<br>para amares Yahweh teu Deus com todo o teu coração e com todo o teu interior, para que vivas.</span><span class="lang-en"><sup class="vs">1</sup> And then when all of these things come upon you,<br>the blessing and the curse that I have set before you<br>and you call them to mind among the nations there where Yahweh your God has scattered you,<br><sup class="vs">2</sup> and you return to Yahweh and you listen to his voice according to all that I am commanding you today,<br>both you and your children, with all your heart and with all your inner self,<br><sup class="vs">3</sup> and Yahweh your God will restore your fortunes, and he will have compassion upon you, and he will again gather you together from all the peoples where Yahweh your God scattered you there. …<br><sup class="vs">6</sup> And Yahweh your God will circumcise your heart and the heart of your offspring<br>to love Yahweh your God with all your heart and with all your inner self so that you may live.</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Jeremias 31:31-34</span><span class="lang-en">Jeremiah 31:31–34</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">“Vêm dias,” declara o Senhor, “em que farei uma nova aliança com o povo de Israel e com o povo de Judá. Não será como a aliança que fiz com seus antepassados quando os tomei pela mão para tirá-los do Egito, porque eles quebraram a minha aliança, embora eu fosse marido para eles,” declara o Senhor.</span><span class="lang-en">“The days are coming,” declares the Lord, “when I will make a new covenant with the people of Israel and with the people of Judah. It will not be like the covenant I made with their ancestors when I took them by the hand to lead them out of Egypt, because they broke my covenant, though I was a husband to them,” declares the Lord.</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Jeremias 31:33-34</span><span class="lang-en">Jeremiah 31:33–34</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">“Esta é a aliança que farei com o povo de Israel depois daquele tempo,” declara o Senhor. “Porei a minha Torá na mente deles e a escreverei no coração deles. Eu serei o seu Deus, e eles serão o meu povo. Não mais ensinarão ao seu próximo, nem dirão uns aos outros: ‘Conhecei o Senhor,’ porque todos me conhecerão, desde o menor deles até o maior,” declara o Senhor. “Pois perdoarei a sua maldade e não me lembrarei mais dos seus pecados.”</span><span class="lang-en">“This is the covenant I will make with the people of Israel after that time,” declares the Lord. “I will put my Torah in their minds and write it on their hearts. I will be their God, and they will be my people. No longer will they teach their neighbor, or say to one another, ‘Know the Lord,’ because they will all know me, from the least of them to the greatest,” declares the Lord. “For I will forgive their wickedness and will remember their sins no more.”</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">Ezequiel 36:26-27</span><span class="lang-en">Ezekiel 36:26–27</span></span><span class="scripture-type">NIV</span></div>
+      <div class="scripture-text"><span class="lang-pt">Eu vos darei um coração novo e porei em vós um espírito novo; tirarei de vós o coração de pedra e vos darei um coração de carne. E porei em vós o meu Espírito e vos farei andar nos meus decretos e ter cuidado de guardar as minhas leis.</span><span class="lang-en">I will give you a new heart and put a new spirit in you; I will remove from you your heart of stone and give you a heart of flesh. And I will put my Spirit in you and move you to follow my decrees and be careful to keep my laws.</span></div>
+    </div>
+    <p class="body reveal"><span class="lang-pt">É isso que Jesus quer dizer quando afirma que sua interpretação da fidelidade à aliança “cumpre a Torá e os Profetas” (Mt. 5:17). Viver pela ética do sermão é viver a vida da nova aliança, capacitada pelo Espírito de Deus. Significa experimentar um pouco da nova criação, agora e aqui, na antecipação do ajuste final de todas as coisas.</span><span class="lang-en">This is what Jesus means when he says his interpretation of covenant faithfulness “fulfills the Torah and the Prophets” (Matt. 5:17). To live by the ethics of the sermon is to live the life of the new covenant, empowered by God’s Spirit. It means experiencing a bit of new creation, now and here, in anticipation of the final setting right of all things.</span></p>
+    <h3 class="sub reveal"><span class="lang-pt">O Sermão como Sabedoria</span><span class="lang-en">The Sermon as Wisdom</span></h3>
+    <p class="body reveal"><span class="lang-pt">Jesus apresenta seus ensinamentos como a verdadeira voz da Senhora Sabedoria do livro de Provérbios, oferecendo o caminho para “a boa vida,” também conhecido como o caminho para a “bênção” (as “bênçãos/beatitudes” em 5:3-11). Jesus assume os papéis de Salomão como a fonte da sabedoria divina para Israel e da Senhora Sabedoria (ambos encontrados em Provérbios 1-9), forçando sua geração a tomar uma decisão.</span><span class="lang-en">Jesus presents his teachings as the true voice of Lady Wisdom from the book of Proverbs, offering the way to “the good life,” also known as the way to “blessing” (the “blessings/beatitudes” in 5:3-11). Jesus takes up the roles of Solomon as the fount of divine wisdom for Israel and of Lady Wisdom (both found in Proverbs 1-9), forcing his generation to make a decision.</span></p>
+    <div class="table-img reveal">
+      <img src="img/sessao-1/p5-vector.png" alt="O Ensino de Jesus como Senhora Sabedoria">
+      <p class="caption"><span class="lang-pt">O Ensino de Jesus como Senhora Sabedoria. Criado por Tim Mackie para BibleProject Classroom: Torá Messiânica (2024).</span><span class="lang-en">Jesus’ Teaching as Lady Wisdom. Created by Tim Mackie for BibleProject Classroom: The Messianic Torah (2024).</span></p>
+    </div>
+    <p class="body reveal"><span class="lang-pt">A literatura de sabedoria é uma visão de mundo baseada em evidências. Ela nos diz que viver no temor do Senhor é a verdadeira sabedoria e levará a uma vida de florescimento. Jesus está afirmando que, por mais contraintuitivo que possa ser, seguir o seu caminho de cumprir a Torá e os Profetas é o caminho real e único para florescer.</span><span class="lang-en">Wisdom literature is an evidence-based worldview. It tells us that living in the fear of the Lord is true wisdom and will lead to a life of flourishing. Jesus is claiming that, counterintuitive as it may be, following his way of fulfilling the Torah and Prophets is the real and only way to flourish.</span></p>
+
+    <h2 class="section reveal"><span class="lang-pt">O Sermão de Jesus É Torá-Sabedoria Messiânica</span><span class="lang-en">Jesus’ Sermon Is Messianic Torah-Wisdom</span></h2>
+    <p class="body reveal"><span class="lang-pt">Jesus revela o ideal divino para viver como parceiros de aliança de Deus (torá/instrução) enquanto inaugura o Reino de Deus aqui na Terra como no Céu (messiânico/profético), ensinando a verdadeira sabedoria que leva à bênção e à vida (sabedoria).</span><span class="lang-en">Jesus reveals the divine ideal for living as God’s covenant partners (torah/instruction) as he inaugurates the Kingdom of God here on Earth as in Heaven (messianic/prophetic), teaching true wisdom that leads to blessing and life (wisdom).</span></p>
+
+    <h2 class="section reveal"><span class="lang-pt">O Design Literário do Sermão do Monte</span><span class="lang-en">The Literary Design of the Sermon on the Mount</span></h2>
+    <div class="table-img reveal">
+      <img src="img/sessao-1/p6-vector.png" alt="Design Literário do Sermão do Monte">
+      <p class="caption"><span class="lang-pt">Mateus 5:3-7:27. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: Torá Messiânica (2024).</span><span class="lang-en">Matthew 5:3-7:27. Translation and Literary Design by Tim Mackie for BibleProject Classroom: The Messianic Torah (2024).</span></p>
+    </div>
+    <div class="table-img reveal">
+      <img src="img/sessao-1/p7-vector.png" alt="Mateus 5:3-7:27 - Estrutura Vertical">
+      <p class="caption"><span class="lang-pt">Mateus 5:3-7:27 - Vertical. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: Torá Messiânica (2024).</span><span class="lang-en">Matthew 5:3-7:27 - Vertical. Translation and Literary Design by Tim Mackie for BibleProject Classroom: The Messianic Torah (2024).</span></p>
+    </div>
+
+    <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+    <p class="body reveal"><span class="lang-pt">Como você encontrou pela primeira vez as palavras de Jesus? De que maneiras suas primeiras experiências e compreensões dos ensinamentos de Jesus foram semelhantes ou diferentes das da audiência antiga de Mateus?</span><span class="lang-en">How did you first encounter the words of Jesus? In what ways were your first experiences with and understandings of Jesus’ teachings similar to or different from those of Matthew’s ancient audience?</span></p>
+  </div>
+  <script>
+    function setLang(l){ localStorage.setItem('messianic-torah-s1-lang',l); document.documentElement.lang=l; var pt=document.getElementById('lang-pt-btn'), en=document.getElementById('lang-en-btn'); if(l==='pt'){pt.className='nav-btn bg-sky-600 text-white';en.className='nav-btn';} else {en.className='nav-btn bg-sky-600 text-white';pt.className='nav-btn';} }
+    (function(){ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1}); document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);}); })();
+    setLang(localStorage.getItem('messianic-torah-s1-lang')||'pt');
+  </script>
+</body>
+</html>
