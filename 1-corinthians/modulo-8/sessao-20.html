@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="title">Sessão 20: A Ressurreição dos Mortos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html[lang="pt-BR"] .lang-en { display: none !important; }
+    html[lang="en"] .lang-pt { display: none !important; }
+    .verse-link { cursor: pointer; }
+    @media print { .nav-btn-fixed { display: none !important; } }
+  </style>
+</head>
+<body class="bg-white font-sans text-slate-800">
+  <div class="nav-btn-fixed fixed left-4 top-4 z-50">
+    <a href="../index.html"
+      class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+      <span>&larr;</span><span data-i18n="back">Voltar</span>
+    </a>
+  </div>
+  <div class="nav-btn-fixed fixed right-4 top-4 z-50">
+    <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white shadow-sm">
+      <button id="lang-pt" onclick="setLang('pt')" class="px-4 py-1.5 text-sm font-semibold transition-colors">PT</button>
+      <button id="lang-en" onclick="setLang('en')" class="px-4 py-1.5 text-sm font-semibold transition-colors">EN</button>
+      <button onclick="window.print()" title="Imprimir" class="px-4 py-1.5 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100">🖨</button>
+    </div>
+  </div>
+  <main class="mx-auto max-w-3xl px-6 py-20 md:py-24">
+    <h1 class="text-4xl font-bold text-slate-900 md:text-5xl" data-i18n="h1"><span class="lang-pt">Sessão 20: A Ressurreição dos Mortos</span><span class="lang-en">Session 20: The Resurrection of the Dead</span></h1>
+    <hr class="my-8 border-t-2 border-slate-200" />
+    <section class="space-y-6" data-i18n="body">
+    <h2 class="text-2xl font-bold text-slate-900">Principais Lições</h2>
+    <ul class="list-disc space-y-2 pl-6 text-slate-700">
+      <li><span class="lang-pt">Parece que os coríntios criam na ressurreição de Jesus, mas alguns não criam na ressurreição de todos.</span><span class="lang-en">The Corinthians believed in Jesus' resurrection, but some didn't believe in the resurrection of everyone.</span></li>
+      <li><span class="lang-pt">Sem a ressurreição, a fé é vã e ainda estão em seus pecados; rejeitá-la é recusar confiar no Evangelho.</span><span class="lang-en">Without the resurrection, faith is futile and they are still in their sins; rejecting it is unwillingness to trust the Gospel.</span></li>
+      <li><span class="lang-pt">O Espírito que ressuscitou Cristo também opera em nós — não contornando nossos corpos, mas tomando-os para Cristo.</span><span class="lang-en">The Spirit who raised Christ also works in us — not bypassing our bodies, but taking them up into Christ.</span></li>
+    </ul>
+    <h2 class="text-2xl font-bold text-slate-900">A Ressurreição dos Mortos</h2>
+    <p class="text-slate-700"><span class="lang-pt">De 1 Coríntios 15:12, parece que os coríntios criam na ressurreição de Jesus, mas “alguns” não na dos mortos (provavelmente os líderes). Fee: criam ter assumido a existência celestial, descontando a existência terrena. Keener: judeus palestinos criam na ressurreição corporal (Dn 12:2); gregos, na imortalidade da alma; saduceus a negavam. O cerne é ser <em>pneumatikos</em>: convencidos de que, pelo Espírito, já entraram na existência “celestial” — só o corpo, a ser deixado na morte, os separava disso. “Em jogo está a doutrina bíblica da criação.”</span><span class="lang-en">From 1 Corinthians 15:12, the Corinthians believed in Jesus' resurrection but "some" not in the dead's (probably the leaders). Fee: they thought they had already assumed the heavenly existence, discounting the earthly. Keener: Palestinian Jews believed in bodily resurrection (Dan 12:2); Greeks in immortality of the soul; Sadducees denied it. The key is being <em>pneumatikos</em>: convinced that by the Spirit they had already entered the "heavenly" existence — only the body, to be sloughed at death, lay between them and ultimate spirituality. "At stake is the biblical doctrine of creation."</span></p>
+    <h2 class="text-2xl font-bold text-slate-900">Pergunta de Reflexão</h2>
+    <p class="text-slate-700"><span class="lang-pt">Por que a ressurreição corporal é central para a doutrina bíblica da criação?</span><span class="lang-en">Why is bodily resurrection central to the biblical doctrine of creation?</span></p>
+    </section>
+  </main>
+  <script src="../js/verse-modal.js"></script>
+  <script>
+    const I18N = {"pt": {"title": "Sessão 20: A Ressurreição dos Mortos", "h1": "Sessão 20: A Ressurreição dos Mortos", "back": "Voltar"}, "en": {"title": "Session 20: The Resurrection of the Dead", "h1": "Session 20: The Resurrection of the Dead", "back": "Back"}};
+    function setLang(lang){
+      localStorage.setItem('bp_lang',lang);
+      document.documentElement.lang = lang==='pt'?'pt-BR':'en';
+      const t=I18N[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n'); if(t[k]!==undefined) el.innerHTML=t[k];});
+      document.title=t.title;
+      const on='bg-sky-600 text-white', off='bg-white text-slate-600 hover:bg-slate-100';
+      document.getElementById('lang-pt').className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='pt'?on:off);
+      document.getElementById('lang-en').className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='en'?on:off);
+    }
+    setLang(localStorage.getItem('bp_lang')||'pt');
+  </script>
+</body>
+</html>

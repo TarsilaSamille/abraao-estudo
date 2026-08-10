@@ -52,4 +52,17 @@ def build(shell_path, out_dir, sessions):
 if __name__ == "__main__":
     shell, out_dir, jsonf = sys.argv[1], sys.argv[2], sys.argv[3]
     data = json.load(open(jsonf))
-    build(shell, out_dir, data["sessions"])
+    sessions = data["sessions"]
+    # optional filter: keep only session numbers listed in argv[4] (comma/range)
+    if len(sys.argv) > 4:
+        import re as _re
+        spec = sys.argv[4]
+        keep = set()
+        for part in spec.split(","):
+            if "-" in part:
+                a, b = part.split("-")
+                keep.update(range(int(a), int(b)+1))
+            else:
+                keep.add(int(part))
+        sessions = [s for s in sessions if s["n"] in keep]
+    build(shell, out_dir, sessions)

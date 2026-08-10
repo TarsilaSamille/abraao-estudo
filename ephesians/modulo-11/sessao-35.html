@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="title">Sessão 35: Refletindo sobre a Armadura de Deus</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html[lang="pt-BR"] .lang-en { display: none !important; }
+    html[lang="en"] .lang-pt { display: none !important; }
+    .verse-link { cursor: pointer; }
+    @media print { .nav-btn-fixed { display: none !important; } }
+  </style>
+</head>
+<body class="bg-white font-sans text-slate-800">
+  <div class="nav-btn-fixed fixed left-4 top-4 z-50">
+    <a href="../index.html"
+      class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+      <span>&larr;</span><span data-i18n="back">Voltar</span>
+    </a>
+  </div>
+  <div class="nav-btn-fixed fixed right-4 top-4 z-50">
+    <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white shadow-sm">
+      <button id="lang-pt" onclick="setLang('pt')" class="px-4 py-1.5 text-sm font-semibold transition-colors">PT</button>
+      <button id="lang-en" onclick="setLang('en')" class="px-4 py-1.5 text-sm font-semibold transition-colors">EN</button>
+      <button onclick="window.print()" title="Imprimir" class="px-4 py-1.5 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100">🖨</button>
+    </div>
+  </div>
+  <main class="mx-auto max-w-3xl px-6 py-20 md:py-24">
+    <h1 class="text-4xl font-bold text-slate-900 md:text-5xl" data-i18n="h1"><span class="lang-pt">Sessão 35: Refletindo sobre a Armadura de Deus</span><span class="lang-en">Session 35: Reflecting on the Armor of God</span></h1>
+    <hr class="my-8 border-t-2 border-slate-200" />
+    <section class="space-y-6" data-i18n="body">
+    <h2 class="text-2xl font-bold text-slate-900">Principais Lições</h2>
+    <ul class="list-disc space-y-2 pl-6 text-slate-700">
+      <li><span class="lang-pt">A serpente está sempre presente quando escolhemos entre a velha e a nova humanidade.</span><span class="lang-en">The snake is always present when we choose between the old humanity and the new humanity.</span></li>
+      <li><span class="lang-pt">Os poderes querem persuadir que nossa identidade e destino se baseiam em algo além da morte e ressurreição de Jesus, do dom do Espírito e de nossa unidade como nova humanidade.</span><span class="lang-en">The powers want to persuade us that our identity and destiny rest on something other than Jesus' death and resurrection, the gift of his Spirit, and our unity as the new humanity.</span></li>
+      <li><span class="lang-pt">A verdade não é uma ideia a ser aprendida; é uma pessoa a ser encontrada.</span><span class="lang-en">Truth is not an idea to learn; it is a person to encounter.</span></li>
+    </ul>
+    <h2 class="text-2xl font-bold text-slate-900">Conclusão: Efésios 6:21-24</h2>
+    <p class="text-slate-700"><span class="lang-pt">Paulo encerra: “Para que também saibais o meu estado… Tíquico vos dará a conhecer tudo” (6:21-22). “Paz aos irmãos, e amor com fé, da parte de Deus Pai e do Senhor Jesus Cristo. A graça seja com todos os que amam nosso Senhor Jesus Cristo com amor incorruptível” (6:23-24). Esta sessão final convida à reflexão: a armadura de Deus é a própria vida de Jesus habitando sua comunidade; resistimos aos poderes permanecendo na verdade que é Cristo, não em ideias abstratas.</span><span class="lang-en">Paul concludes: "So that you also may know my situation… Tychicus will make everything known" (6:21-22). "Peace to the brothers and sisters, and love with faith, from God the Father and the Lord Jesus Messiah. Grace be with all who love our Lord Jesus Messiah with incorruptible love" (6:23-24). This final session invites reflection: God's armor is Jesus' own life dwelling in his community; we resist the powers by remaining in the truth who is Christ, not in abstract ideas.</span></p>
+    <h2 class="text-2xl font-bold text-slate-900">Pergunta de Reflexão</h2>
+    <p class="text-slate-700"><span class="lang-pt">Como você resiste aos poderes permanecendo na verdade que é Cristo?</span><span class="lang-en">How do you resist the powers by remaining in the truth who is Christ?</span></p>
+    </section>
+  </main>
+  <script src="../js/verse-modal.js"></script>
+  <script>
+    const I18N = {"pt": {"title": "Sessão 35: Refletindo sobre a Armadura de Deus", "h1": "Sessão 35: Refletindo sobre a Armadura de Deus", "back": "Voltar"}, "en": {"title": "Session 35: Reflecting on the Armor of God", "h1": "Session 35: Reflecting on the Armor of God", "back": "Back"}};
+    function setLang(lang){
+      localStorage.setItem('bp_lang',lang);
+      document.documentElement.lang = lang==='pt'?'pt-BR':'en';
+      const t=I18N[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n'); if(t[k]!==undefined) el.innerHTML=t[k];});
+      document.title=t.title;
+      const on='bg-sky-600 text-white', off='bg-white text-slate-600 hover:bg-slate-100';
+      document.getElementById('lang-pt').className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='pt'?on:off);
+      document.getElementById('lang-en').className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='en'?on:off);
+    }
+    setLang(localStorage.getItem('bp_lang')||'pt');
+  </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="title">Sessão 23: A Oração de Paulo por Amor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html[lang="pt-BR"] .lang-en { display: none !important; }
+    html[lang="en"] .lang-pt { display: none !important; }
+    .verse-link { cursor: pointer; }
+    @media print { .nav-btn-fixed { display: none !important; } }
+  </style>
+</head>
+<body class="bg-white font-sans text-slate-800">
+  <div class="nav-btn-fixed fixed left-4 top-4 z-50">
+    <a href="../index.html"
+      class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+      <span>&larr;</span><span data-i18n="back">Voltar</span>
+    </a>
+  </div>
+  <div class="nav-btn-fixed fixed right-4 top-4 z-50">
+    <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white shadow-sm">
+      <button id="lang-pt" onclick="setLang('pt')" class="px-4 py-1.5 text-sm font-semibold transition-colors">PT</button>
+      <button id="lang-en" onclick="setLang('en')" class="px-4 py-1.5 text-sm font-semibold transition-colors">EN</button>
+      <button onclick="window.print()" title="Imprimir" class="px-4 py-1.5 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100">🖨</button>
+    </div>
+  </div>
+  <main class="mx-auto max-w-3xl px-6 py-20 md:py-24">
+    <h1 class="text-4xl font-bold text-slate-900 md:text-5xl" data-i18n="h1"><span class="lang-pt">Sessão 23: A Oração de Paulo por Amor</span><span class="lang-en">Session 23: Paul’s Prayer for Love</span></h1>
+    <hr class="my-8 border-t-2 border-slate-200" />
+    <section class="space-y-6" data-i18n="body">
+    <h2 class="text-2xl font-bold text-slate-900">Principais Lições</h2>
+    <ul class="list-disc space-y-2 pl-6 text-slate-700">
+      <li><span class="lang-pt">Paulo conclui o capítulo 3 com uma oração que funciona como resumo climático dos temas centrais de Efésios 1-3.</span><span class="lang-en">Paul concludes chapter 3 with a prayer that is a climactic summary of Ephesians 1-3's core themes.</span></li>
+      <li><span class="lang-pt">Para compreender as dimensões do amor de Deus, precisamos conviver com outros seguidores de Jesus de origens diversas, para que aspectos do amor não fiquem fora do nosso alcance.</span><span class="lang-en">To grasp the dimensions of God's love, we must spend time with diverse followers of Jesus so aspects of his love don't remain beyond our reach.</span></li>
+      <li><span class="lang-pt">Efésios 3:17 trata de aprofundar nosso compromisso uns com os outros e descobrir o amor de Deus.</span><span class="lang-en">Ephesians 3:17 is about deepening our commitment to each other and discovering God's love.</span></li>
+    </ul>
+    <h2 class="text-2xl font-bold text-slate-900">Uma Oração por Amor entre a Família de Deus: Efésios 3:14-21</h2>
+    <p class="text-slate-700"><span class="lang-pt">“Por esta causa, dobro os joelhos ante o Pai… a fim de que ele vos conceda, segundo a riqueza da sua glória, ser fortalecidos com poder, pelo seu Espírito, no homem interior; para que Cristo habite, pela fé, no vosso coração; a fim de, estando arraigados e alicerçados em amor, poderdes compreender, com todos os santos, qual é a largura, o comprimento, a altura e a profundidade” (3:14-18). O amor de Deus é demasiado grande para ser entendido sozinho — só na comunidade diversa a largura, comprimento, altura e profundidade do amor são apreendidas. A oração termina em doxologia: “Àquele que é poderoso para fazer infinitamente mais do que pedimos ou pensamos” (3:20).</span><span class="lang-en">"For this reason I bow my knees to the Father… that he would grant you, according to the riches of his glory, to be strengthened with power through his Spirit in the inner human, that the Messiah would dwell in your hearts through faith, being rooted and established in love, so that you may comprehend with all the holy ones the width and length and height and depth" (3:14-18). God's love is too great to grasp alone — only in diverse community are its dimensions apprehended. The prayer ends in doxology: "Now to him who is able to do immeasurably more than we ask or imagine" (3:20).</span></p>
+    <h2 class="text-2xl font-bold text-slate-900">Pergunta de Reflexão</h2>
+    <p class="text-slate-700"><span class="lang-pt">Por que a diversidade da comunidade é essencial para compreender o amor de Deus?</span><span class="lang-en">Why is community diversity essential to grasping God's love?</span></p>
+    </section>
+  </main>
+  <script src="../js/verse-modal.js"></script>
+  <script>
+    const I18N = {"pt": {"title": "Sessão 23: A Oração de Paulo por Amor", "h1": "Sessão 23: A Oração de Paulo por Amor", "back": "Voltar"}, "en": {"title": "Session 23: Paul’s Prayer for Love", "h1": "Session 23: Paul’s Prayer for Love", "back": "Back"}};
+    function setLang(lang){
+      localStorage.setItem('bp_lang',lang);
+      document.documentElement.lang = lang==='pt'?'pt-BR':'en';
+      const t=I18N[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n'); if(t[k]!==undefined) el.innerHTML=t[k];});
+      document.title=t.title;
+      const on='bg-sky-600 text-white', off='bg-white text-slate-600 hover:bg-slate-100';
+      document.getElementById('lang-pt').className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='pt'?on:off);
+      document.getElementById('lang-en').className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='en'?on:off);
+    }
+    setLang(localStorage.getItem('bp_lang')||'pt');
+  </script>
+</body>
+</html>

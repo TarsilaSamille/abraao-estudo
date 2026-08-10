@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="title">Sessão 10: A Ceia do Senhor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html[lang="pt-BR"] .lang-en { display: none !important; }
+    html[lang="en"] .lang-pt { display: none !important; }
+    .verse-link { cursor: pointer; }
+    @media print { .nav-btn-fixed { display: none !important; } }
+  </style>
+</head>
+<body class="bg-white font-sans text-slate-800">
+  <div class="nav-btn-fixed fixed left-4 top-4 z-50">
+    <a href="../index.html"
+      class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+      <span>&larr;</span><span data-i18n="back">Voltar</span>
+    </a>
+  </div>
+  <div class="nav-btn-fixed fixed right-4 top-4 z-50">
+    <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white shadow-sm">
+      <button id="lang-pt" onclick="setLang('pt')" class="px-4 py-1.5 text-sm font-semibold transition-colors">PT</button>
+      <button id="lang-en" onclick="setLang('en')" class="px-4 py-1.5 text-sm font-semibold transition-colors">EN</button>
+      <button onclick="window.print()" title="Imprimir" class="px-4 py-1.5 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100">🖨</button>
+    </div>
+  </div>
+  <main class="mx-auto max-w-3xl px-6 py-20 md:py-24">
+    <h1 class="text-4xl font-bold text-slate-900 md:text-5xl" data-i18n="h1"><span class="lang-pt">Sessão 10: A Ceia do Senhor</span><span class="lang-en">Session 10: The Lord’s Supper</span></h1>
+    <hr class="my-8 border-t-2 border-slate-200" />
+    <section class="space-y-6" data-i18n="body">
+    <h2 class="text-2xl font-bold text-slate-900">Principais Lições</h2>
+    <ul class="list-disc space-y-2 pl-6 text-slate-700">
+      <li><span class="lang-pt">As práticas de comunhão dos coríntios cristãos enraizaram-se na cultura média, não no amor de Cristo, criando injustiça e tratamento abusivo aos pobres.</span><span class="lang-en">The communion practices of the Corinthian Christians became rooted in the average culture, not Christ's love, creating injustice and abusive treatment toward the poor.</span></li>
+      <li><span class="lang-pt">“Fazei isto em memória de mim” é um convite à remembrança por participação — poderíamos parafrasear como “Fazei isto, lembrando que estais em mim”.</span><span class="lang-en">"Do this in remembrance of me" is an invitation to remembrance by participation — paraphrase: "Do this, remembering that you are in me."</span></li>
+      <li><span class="lang-pt">A comunidade cheia do Espírito e centrada em Jesus participa da presença de Deus, e a marca dessa participação é o amor e o cuidado pelo outro.</span><span class="lang-en">The Spirit-filled, Jesus-centered community participates in God's presence, and the mark of this participation is love and care for the other.</span></li>
+    </ul>
+    <h2 class="text-2xl font-bold text-slate-900">Por que Estudar a Eucaristia Primitiva?</h2>
+    <p class="text-slate-700"><span class="lang-pt">As refeições greco-romanas eram altamente estratificadas, lugar para um homem rico demonstrar sua generosidade — a mesa se torna onde todas as fronteiras sociais podem ser quebradas, símbolo de acolhida e honra para quem normalmente não é honrado. A mesa da comunhão também é lugar de reconciliação. Mary Patton Baker une os capítulos 10 e 11 pela tema da comunhão participativa (grego: κοινωνία): (1) uma participação “no Espírito”, comunhão com o Deus trino; (2) uma participação na história pessoal de Jesus por autonegação e identificação com os sofrimentos de outros cristãos; (3) demonstrada ao compartilhar bens materiais com os necessitados. 1 Coríntios 1:9: “Fiel é Deus, pelo qual fostes chamados à comunhão (grego: κοινωνία) de seu Filho Jesus Cristo nosso Senhor.”</span><span class="lang-en">Greco-Roman meals were highly stratified, a place for a rich man to display largesse — the table becomes where all social boundaries can be broken, a symbol of welcome for the otherwise unhonored. The communion table is also a place of reconciliation. Mary Patton Baker unites chapters 10 and 11 through participatory fellowship (Greek: κοινωνία): (1) sharing "in the Spirit," communion with the triune God; (2) sharing in Jesus' personal history through self-denial; (3) demonstrated by sharing material goods with the needy. 1 Corinthians 1:9: "God is faithful, who has called you into fellowship (Greek: κοινωνία) with his Son, Jesus Christ our Lord."</span></p>
+    <h2 class="text-2xl font-bold text-slate-900">Pergunta de Reflexão</h2>
+    <p class="text-slate-700"><span class="lang-pt">Como a comunhão em Corinto havia se tornado um lugar de injustiça em vez de participação no amor de Cristo?</span><span class="lang-en">How had the Lord's Supper in Corinth become a place of injustice rather than participation in Christ's love?</span></p>
+    </section>
+  </main>
+  <script src="../js/verse-modal.js"></script>
+  <script>
+    const I18N = {"pt": {"title": "Sessão 10: A Ceia do Senhor", "h1": "Sessão 10: A Ceia do Senhor", "back": "Voltar"}, "en": {"title": "Session 10: The Lord’s Supper", "h1": "Session 10: The Lord’s Supper", "back": "Back"}};
+    function setLang(lang){
+      localStorage.setItem('bp_lang',lang);
+      document.documentElement.lang = lang==='pt'?'pt-BR':'en';
+      const t=I18N[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n'); if(t[k]!==undefined) el.innerHTML=t[k];});
+      document.title=t.title;
+      const on='bg-sky-600 text-white', off='bg-white text-slate-600 hover:bg-slate-100';
+      document.getElementById('lang-pt').className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='pt'?on:off);
+      document.getElementById('lang-en').className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='en'?on:off);
+    }
+    setLang(localStorage.getItem('bp_lang')||'pt');
+  </script>
+</body>
+</html>
