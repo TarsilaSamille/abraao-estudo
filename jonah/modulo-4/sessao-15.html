@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 15: Notando Palavras Repetidas</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="../js/verse-modal.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  .verse-link { color: inherit; cursor: pointer; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+  .scripture:hover { border-left-color: #9aa7b8; }
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+  .scripture-text sup.vs { font-size: .72em; color: #333; vertical-align: super; margin-right: 2px; }
+  .quote { border-left: 4px solid #aeb6bf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a3f47; font-style: italic; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
+  .table-img img { width: 100%; display: block; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
+  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
+  .nav-btn:hover { background: #f1f5f9; }
+  .nav-back { left: 1rem; }
+  .nav-lang { right: 1rem; }
+</style>
+</head>
+<body class="bg-white">
+  <a href="../index.html" class="nav-btn nav-back"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
+  <div class="nav-lang" style="right:1rem; position:fixed; top:1rem; z-index:50; display:inline-flex; gap:.25rem;">
+    <button onclick="setLang('pt')" class="nav-btn" style="position:static" id="lang-pt-btn">PT</button>
+    <button onclick="setLang('en')" class="nav-btn" style="position:static" id="lang-en-btn">EN</button>
+  </div>
+  <div class="max-w-4xl mx-auto px-5 py-12 md:py-16"><div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
+    <h1 class="title reveal"><span class="lang-pt">Sessão 15: Notando Palavras Repetidas</span><span class="lang-en">Session 15: Noticing Repeated Words</span></h1>
+    <hr class="rule">
+    <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt">Embora as histórias da Bíblia Hebraica tenham sido escritas ao longo de um longo período, elas estão intrincamente conectadas umas às outras.</span><span class="lang-en">Although the stories in the Hebrew Bible were written over a long period of time, they are intricately connected to one another.</span></li>
+      <li><span class="lang-pt">A Bíblia Hebraica é como uma colcha de retalhos, onde os pedaços representam várias histórias e o fio que os une representa palavras e padrões repetidos.</span><span class="lang-en">The Hebrew Bible is like a quilt where the pieces represent various stories and the thread stitching them together represents repeated words and patterns.</span></li>
+      <li><span class="lang-pt">O objetivo dessa colcha de histórias que reencenam e desenvolvem a mesma história é para vermos nossas próprias vidas nesses padrões. As histórias da Bíblia não são apenas algo que olhamos — elas se tornam o que olhamos através de para entender nossas experiências.</span><span class="lang-en">The point of this quilt of stories replaying and developing the same storyline is for us to see our own lives in these patterns. The stories in the Bible aren't just something we look at—they become what we look through to understand our experiences.</span></li>
+    </ul>
+
+    <h2 class="section reveal"><span class="lang-pt">Como Ler as Escrituras Hebraicas</span><span class="lang-en">How To Read the Hebrew Scriptures</span></h2>
+    <p class="body reveal"><span class="lang-pt">A Bíblia Hebraica é um texto antigo, e um texto é um ato de comunicação literária. Nossa "enciclopédia" é o depósito mental de palavras, ideias, imagens e histórias que reunimos e armazenamos em nossas memórias desde os primeiros momentos de consciência. Todo texto que lemos será interpretado à luz de nossa enciclopédia atual de recepção. O leitor modelo que quer entender um autor em seus próprios termos adapta sua enciclopédia de recepção aprendendo sobre a enciclopédia de produção do autor.</span><span class="lang-en">The Hebrew Bible is an ancient text, and a text is an act of literary communication. Our “encyclopedia” is the mental storehouse of words, ideas, images, and stories that we gather and store in our memories from our first waking moments. Every text we read will be interpreted and understood in light of our current operating encyclopedia. The model reader who wants to understand an author on their terms will adapt their encyclopedia of reception by learning about the author's encyclopedia of production.</span></p>
+    <h3 class="sub reveal"><span class="lang-pt">Texto vs. Evento</span><span class="lang-en">Text vs. Event</span></h3>
+    <p class="body reveal"><span class="lang-pt">Um texto fornece uma representação literária de um objeto que ajuda o leitor a captar seu significado e importância a partir de uma perspectiva particular. (Como observou Magritte sobre sua famosa pintura do cachimbro: “Isto não é um cachimbro” — a imagem não é o objeto em si.) Tanto uma foto do Hubble quanto “A Noite Estrelada” de van Gogh são representações do universo estrelado para propósitos diferentes, com efeitos diferentes sobre o espectador.</span><span class="lang-en">A text provides a literary representation of an object that helps the reader grasp its meaning and significance from a particular perspective. (As Magritte noted of his famous pipe painting: “This is not a pipe” — the image is not the object itself.) Both the Hubble photo and van Gogh's “The Starry Night” are representations of the starry universe for different purposes, with different effects on the viewer.</span></p>
+    <p class="body reveal"><span class="lang-pt">Resumo: (1) A Bíblia Hebraica oferece uma representação literária da história de Israel que afirma ser uma interpretação profética divinamente inspirada dessa história dentro do contexto maior dos propósitos cósmicos de Deus. (2) A Bíblia Hebraica não é uma crônica histórica, mas uma interpretação teológica da história de Israel (e de Jonas) projetada para eliciar uma resposta do leitor. (3) É uma coleção de coleções, formada por materiais textuais de todos os períodos da história, religião e literatura de Israel.</span><span class="lang-en">Summary: (1) The Hebrew Bible offers a literary representation of Israel's history that claims to be a divinely inspired, prophetic interpretation of Israel's history within the larger context of God's cosmic purposes. (2) The Hebrew Bible is not a chronicle of Israel but a theological interpretation of Israel's (and Jonah's) story designed to elicit a response from the reader. (3) The Hebrew Bible is a collection of collections, made up of textual materials from all periods of Israel's history, religion, and literature.</span></p>
+    <h3 class="sub reveal"><span class="lang-pt">A Metáfora da Colcha de Família</span><span class="lang-en">The Family Quilt Metaphor</span></h3>
+    <p class="body reveal"><span class="lang-pt">Uma colcha feita de muitos materiais pré-existentes pode reter a integridade dos materiais anteriores enquanto dá novos significados às novas camadas quando inseridas em um contexto e quadro de referência maiores. Então podemos perguntar: qual é a matriz de temas e motivos que o autor de Jonas pressupõe que já conhecemos? A história por trás da história de Jonas remonta a Gênesis 3-4 (Adão, Eva, Caim e a cidade de sangue de Caim), Gênesis 6-11 (o dilúvio e o escolhido Noé resgatado através das águas), Gênesis 12 e 18-19 (Abraão intercedendo por Sodoma), Êxodo 2-3 e 14-15 (Moisés resgatado através das águas, confrontando o rei do Egito), Êxodo 32-34 (Moisés intercedendo pelo povo), 1 Reis 17-19 (Elias, o anti-Moisés), e Jeremias 18 e 26 (o intercessor profético rejeitado).</span><span class="lang-en">A quilt made of many preexisting materials can retain the integrity of the earlier materials while giving the new layers meaning when set within a larger context. So we can ask: What is the matrix of themes and motifs that the author of Jonah assumes we already know? The story behind Jonah's story goes back to Genesis 3-4 (Adam, Eve, Cain), Genesis 6-11 (the flood and Noah rescued through the-waters), Genesis 12 and 18-19 (Abraham interceding for Sodom), Exodus 2-3 and 14-15 (Moses rescued through the waters), Exodus 32-34 (Moses interceding), 1 Kings 17-19 (Elijah, the anti-Moses), and Jeremiah 18 and 26 (the rejected prophetic intercessor).</span></p>
+    <h3 class="sub reveal"><span class="lang-pt">Temas Centrais do TaNaK Encontrados em Jonas</span><span class="lang-en">Core Themes of the TaNaK Found in Jonah</span></h3>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt">Os humanos são violentos e destrutivos e trazem sobre si mesmos a culpa de sangue dos inocentes, compelindo Deus a trazer julgamento.</span><span class="lang-en">Humans are violent and destructive and bring the blood guilt of the innocent upon themselves, compelling God to bring judgment.</span></li>
+      <li><span class="lang-pt">Deus quer abençoar a humanidade em vez de destruí-la, então ele faz e cumpre sua promessa de resgatar a humanidade levantando um libertador/intercessor (Noé, Abraão, Moisés, Elias, Jeremias) que apelará à sua misericórdia.</span><span class="lang-en">God wants to bless humanity instead of destroying them, so he makes and fulfills his promise to rescue humanity by raising up a deliverer/intercessor (Noah, Abraham, Moses, Elijah, Jeremiah) who will appeal to his mercy.</span></li>
+      <li><span class="lang-pt">Intercessores humanos são problemáticos — às vezes fazendo seu trabalho (Noé, Abraão, Moisés), mas outras vezes falhando em persuadir seu público (Jeremias) ou falhando pessoalmente (Elias).</span><span class="lang-en">Human intercessors are problematic, sometimes doing their job (Noah, Abraham, Moses) but other times failing to persuade their audience (Jeremiah) or failing personally (Elijah).</span></li>
+      <li><span class="lang-pt">Os retratos de intercessores humanos apontam para o intercessor profético supremo semelhante a Moisés. O livro de Jonas também aponta para essa esperança (como Jesus entendeu em Mateus 12:40), mas o faz criando um retrato paródico invertido de Jonas como o profeta anti-Moisés.</span><span class="lang-en">The portraits of human intercessors point forward to the ultimate prophetic intercessor like Moses. The book of Jonah also points forward to this hope (as Jesus understood in Matthew 12:40), but it does so by creating an inverted parody portrait of Jonah as the anti-Moses prophet.</span></li>
+    </ul>
+
+    <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+    <p class="body reveal"><span class="lang-pt">Embora as histórias da Bíblia Hebraica tenham sido escritas ao longo de um longo período, elas estão intrincamente conectadas umas às outras. Como isso é semelhante ou diferente de como você e as pessoas no seu contexto costumam ver a Bíblia?</span><span class="lang-en">Although the stories in the Hebrew Bible were written over a long period of time, they are intricately connected to one another. How is this similar or different from how you and those in your context typically view the Bible?</span></p>
+  
+  <script>
+    function setLang(l){ localStorage.setItem('jonah-s15-lang',l); document.documentElement.lang=l; var pt=document.getElementById('lang-pt-btn'), en=document.getElementById('lang-en-btn'); if(l==='pt'){pt.className='nav-btn bg-sky-600 text-white';en.className='nav-btn';} else {en.className='nav-btn bg-sky-600 text-white';pt.className='nav-btn';} }
+    (function(){ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1}); document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);}); })();
+    setLang(localStorage.getItem('jonah-s15-lang')||'pt');
+  </script>
+</body>
+</html>
