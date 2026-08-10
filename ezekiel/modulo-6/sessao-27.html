@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 27: O Tour pelo Templo de Ezequiel</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="../js/verse-modal.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  .verse-link { color: inherit; cursor: pointer; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+  .scripture:hover { border-left-color: #9aa7b8; }
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
+  .table-img img { width: 100%; display: block; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
+  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
+  .nav-btn:hover { background: #f1f5f9; }
+  .nav-back { left: 1rem; }
+</style>
+</head>
+<body class="bg-white">
+<div id="reading-progress" aria-hidden="true"></div>
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+
+  <div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
+    <h1 class="title reveal"><span class="lang-pt">Sessão 27: O Tour pelo Templo de Ezequiel</span><span class="lang-en">Session 27: Ezekiel's Temple Tour</span></h1>
+    <hr class="rule">
+    <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt">A glória de Yahweh que deixou o templo no capítulo 10 retorna a este novo templo no capítulo 43.</span><span class="lang-en">The glory of Yahweh that left the temple in chapter 10 returns to this new temple in chapter 43.</span></li>
+      <li><span class="lang-pt">A cidade é descentralizada e o sacerdócio é renovado. Todos os detalhes da organização do templo, do sacerdócio e da terra revertem os abusos de Israel e purificam o povo e a terra.</span><span class="lang-en">The city is decentralized and the priesthood is renewed. All of the details of the organization of the temple, the priesthood, and the land reverse Israel’s abuses and purify the people and the land.</span></li>
+      <li><span class="lang-pt">O número 25, destacado nas dimensões do templo, evoca o ponto médio do ciclo de Jubileu de 50 anos.</span><span class="lang-en">The number 25, featured prominently in the temple dimensions, evokes a mid-point in the 50-year Jubilee cycle.</span></li>
+    </ul>
+
+    <h3 class="sub reveal"><span class="lang-pt">A Visão do Templo de Ezequiel</span><span class="lang-en">Ezekiel's Temple Vision</span></h3>
+    <p class="body reveal"><span class="lang-pt">Ezequiel retrata o futuro do povo da aliança através da imagética e do vocabulário de uma imaginação sacerdotal, esboçando os contornos do templo e da terra restaurados, com Yahweh retornando ao templo (43:1-7) após o seu abandono no capítulo 11. Os três principais blocos da visão correspondem a três grandes temas: (1) 40:1-43:27 — Yahweh retorna a um templo purificado para habitar entre o seu povo; (2) 44:1-46:24 — um sacerdócio purificado e sua liturgia são restaurados para adorar a Yahweh com fidelidade à aliança; (3) 47:1-48:35 — Israel é restaurado a um território reorganizado e santo, que então se torna o eixo de uma nova criação.</span><span class="lang-en">Ezekiel portrays the future of the covenant people through the imagery and vocabulary of a priestly imagination, sketching the contours of the restored temple and land, with Yahweh returning to the temple (43:1-7) after his abandonment of it in chapter 11. The three main sections of the vision correspond to three broad themes: (1) 40:1-43:27 — Yahweh returns to a purified temple to dwell among his people; (2) 44:1-46:24 — A purified priesthood and its liturgy are restored to worship Yahweh with covenant fidelity; (3) 47:1-48:35 — Israel is restored to a reorganized and holy territory, which then becomes the hub of a renewed creation.</span></p>
+
+    <div class="table-img reveal">
+      <img src="img/sessao-27/p1-vector.png" alt="Macro Design of Ezekiel 40-48">
+      <p class="caption"><span class="lang-pt">Design Macro de Ezequiel 40-48. Criado por Tim Mackie para BibleProject Classroom: Ezequiel (2021).</span><span class="lang-en">Macro Design of Ezekiel 40-48. Created by Tim Mackie for BibleProject Classroom: Ezekiel (2021).</span></p>
+    </div>
+
+    <h3 class="sub reveal"><span class="lang-pt">O Novo Templo e o Retorno de Yahweh</span><span class="lang-en">The New Temple and Yahweh’s Return</span></h3>
+    <p class="body reveal"><span class="lang-pt">O propósito do tour visionário de Ezequiel é fácil de perder. Por que Ezequiel é levado ao templo do Céu-na-Terra, o santuário ideal? Os parágrafos de abertura e de conclusão do tour (em Ezeq. 40:1-4 e Ezeq. 43:10-12) criam uma moldura em torno desta primeira parte de Ezequiel 40-48, e deixam muito claro por que Deus levou Ezequiel a este tour dos sonhos. Ele deve declarar a Israel o que viu (Ezeq. 40:4, 43:10) como forma de repreensão profética (Ezeq. 43:11) misturada com esperança, para que Israel veja quão mal distorceu o propósito do templo (Ezeq. 43:7-9) em comparação com o seu ideal divino celestial (Ezeq. 43:10-11).</span><span class="lang-en">The purpose of Ezekiel’s visionary tour is easy to miss. Why is Ezekiel shown the Heaven-on-Earth temple, the ideal sanctuary? The opening and closing paragraphs of the tour (in Ezek. 40:1-4 and Ezek. 43:10-12) create a frame around this first part of Ezekiel 40-48, and they make very clear why God has taken Ezekiel on this dream tour. He is to declare to Israel what he has seen (Ezek. 40:4, 43:10) as a form of prophetic rebuke (Ezek. 43:11) mixed with hope so that Israel will see just how badly they distorted the purpose of the temple (Ezek. 43:7-9) in comparison to its heavenly divine ideal (Ezek. 43:10-11).</span></p>
+
+    <h3 class="sub reveal"><span class="lang-pt">O Vigésimo Quinto Ano do Exílio</span><span class="lang-en">The 25th Year of Exile</span></h3>
+    <div class="scripture reveal">
+      <div class="scripture-label"><span class="lang-pt">Ezequiel 40:1-4 — Tradução do Instrutor</span><span class="lang-en">Ezekiel 40:1-4 Instructor's Translation</span></div>
+      <p class="scripture-text"><span class="lang-pt">1 No vigésimo quinto ano do nosso exílio, no princípio do ano, no décimo dia do mês, no décimo quarto ano depois de a cidade ter sido ferida, nesse mesmo dia a mão de Yahweh estava sobre mim, e ele me trouxe para lá. 2 Em visões de Elohim, ele me trouxe à terra de Israel, e me pôs sobre um monte muito alto, e sobre ele, ao sul, havia uma estrutura como uma cidade. 3 E ele me trouxe para lá, e eis um homem cuja aparência era como a aparência de bronze, com um cordel de linho na mão e uma vara de medir; e ele estava em pé no portão. 4 E o homem me disse: "Filho do humano, vê com os teus olhos, ouve com os teus ouvidos, e põe o teu coração em tudo o que te farei ver, pois foste trazido para aqui a fim de veres; declara à casa de Israel tudo o que vires."</span><span class="lang-en">1 In the twenty-fifth year of our exile, at the beginning of the year, on the tenth of the month, in the fourteenth year after the city was struck, on that very day, the hand of Yahweh was upon me, and he brought me there. 2 In visions of Elohim he brought me into the land of Israel, and he set me on a very high mountain, and on it to the south there was a structure like a city. 3 And he brought me there, and look, a man whose appearance was like the appearance of bronze, with a linen cord in his hand, and a measuring rod; and he was standing in the gate. 4 And the man said to me, “Son of a human, see with your eyes, hear with your ears, and set your heart to all that I am going to make you see, for you have been brought here in order for you to see it, declare to the house of Israel all that you see.”</span></p>
+    </div>
+    <p class="body reveal"><span class="lang-pt">Ezequiel data esta visão 20 anos após a visão junto ao rio Quebar e 14 anos após a destruição de Jerusalém em 586 a.C., colocando a visão no ano 573 a.C. A referência ao "princípio do ano" poderia ser o primeiro mês (Nisã, primavera) ou o sétimo mês (Tishri, outono, Dia da Expiação). A conexão com o ano do Jubileu de 50 é inegável: "no vigésimo quinto ano" marca exatamente metade de um ciclo de Jubileu — a mesma lógica numérica de "um tempo, dois tempos e metade de um tempo" (Dan. 7:25; 12:7). O número 25 é um número quadrado central (3² + 4²), e aparece repetidamente nas dimensões do templo, criando um padrão concêntrico de zonas aninhadas em torno de um centro santo, o altar.</span><span class="lang-en">Ezekiel dates this vision 20 years after the vision by the river Khebar and 14 years after the destruction of Jerusalem in 586 B.C.E., so this places the vision in the year 573 B.C.E. The reference to the "beginning of the year" could refer to either the first month (Nisan, spring) or the seventh month (Tishri, fall, Day of Atonement). The connection to the 50th Jubilee year seems undeniable: "in the 25th year" marks exactly half of a Jubilee cycle — the same numerical logic in Daniel’s "a time, two times, and half a time" (Dan. 7:25; 12:7). The number 25 is a centered square number (3² + 4²), and appears repeatedly in the temple dimensions, creating a concentric pattern of nested zones arranged around a holy center, the altar.</span></p>
+
+    <div class="table-img reveal">
+      <img src="img/sessao-27/p6-vector.png" alt="Centered Square Number">
+      <p class="caption"><span class="lang-pt">Número Quadrado Central. Criado por Tim Mackie para BibleProject Classroom: Ezequiel (2021).</span><span class="lang-en">Centered Square Number. Created by Tim Mackie for BibleProject Classroom: Ezekiel (2021).</span></p>
+    </div>
+
+    <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+    <p class="body reveal"><span class="lang-pt">Como o número 25 se relaciona com o ciclo de Jubileu de Levítico? O que poderia significar para os exilados do tempo de Ezequiel?</span><span class="lang-en">How is the number 25 related to the Jubilee cycle of Leviticus? What might it signify to the exiles of Ezekiel’s time?</span></p>
+  </div>
+  <script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s27-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s27-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+</body>
+</html>

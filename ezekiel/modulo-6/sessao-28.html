@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 28: O Propósito da Visão do Templo de Ezequiel</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="../js/verse-modal.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  .verse-link { color: inherit; cursor: pointer; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+  .scripture:hover { border-left-color: #9aa7b8; }
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
+  .table-img img { width: 100%; display: block; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
+  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
+  .nav-btn:hover { background: #f1f5f9; }
+  .nav-back { left: 1rem; }
+</style>
+</head>
+<body class="bg-white">
+<div id="reading-progress" aria-hidden="true"></div>
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+
+  <div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
+    <h1 class="title reveal"><span class="lang-pt">Sessão 28: O Propósito da Visão do Templo de Ezequiel</span><span class="lang-en">Session 28: The Purpose of Ezekiel’s Temple Vision</span></h1>
+    <hr class="rule">
+    <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt">Israel e seus reis contaminaram o templo e corromperam toda a terra com injustiça, idolatria e violência.</span><span class="lang-en">Israel and its kings defiled the temple and corrupted the entire land with injustice, idolatry, and violence.</span></li>
+      <li><span class="lang-pt">Reis presumidosos de Judá tentaram elevar seu próprio status fazendo seus locais de sepultamento ao lado do templo.</span><span class="lang-en">Presumptuous kings of Judah tried to elevate their own status by making their burial sites next to the temple.</span></li>
+      <li><span class="lang-pt">A simetria, a ordem e a função adequada da visão do templo comunicam uma mensagem que induz convicção e culpa por esses abusos passados.</span><span class="lang-en">The symmetry, order, and proper function of the temple vision communicate a message that induces conviction and guilt over these past abuses.</span></li>
+    </ul>
+
+    <h3 class="sub reveal"><span class="lang-pt">As Três Zonas Sagradas de Ezequiel 40-48</span><span class="lang-en">The Three Sacred Zones of Ezekiel 40-48</span></h3>
+    <p class="body reveal"><span class="lang-pt">Os nove capítulos de Ezequiel 40-48 avançam em uma sequência que lida com três espaços sagrados, ampliando-se a cada seção: (1) o templo e seu lugar na cidade; (2) a porção ao lado do templo e da cidade; (3) a terra ao redor do templo e da porção. A seção do templo (40:1-44:31) define os espaços dedicados ao templo e controla o acesso para prevenir abusos passados. A porção (45:1-46:24) separa o templo e o reino dos sacerdotes dos levitas e do rei, comunicando que o espaço de Yahweh não está sob o controle do sacerdócio, mas vice-versa. A terra (47:1-48:35) redistribui a terra prometida à organização das doze tribos, ignorando a topografia em favor do idealismo teológico.</span><span class="lang-en">The nine chapters that make up Ezekiel 40-48 work forward in a sequence that deals with three sacred spaces, scaling larger with each section: (1) The temple and its place within the city; (2) The portion alongside the temple and city; (3) The land surrounding the temple and the portion. The Temple (Ezek. 40:1-44:31) defines the spaces dedicated to the temple and controls access to prevent past abuses. The Portion (Ezek. 45:1-46:24) separates the temple and the realm of the priests away from both the Levites and the king, communicating that Yahweh’s space is not under the control of the priesthood, but vice-versa. The Land (Ezek. 47:1-48:35) redistributes the promised land to the classic twelve tribe organization, disregarding geographic realism in favor of theological idealism.</span></p>
+
+    <div class="table-img reveal">
+      <img src="img/sessao-28/p1-vector.png" alt="Ezekiel's Temple Zones">
+      <p class="caption"><span class="lang-pt">Zonas do Templo de Ezequiel. Adaptado de Block, Daniel (1998). Eerdmans.</span><span class="lang-en">Ezekiel's Temple Zones. Adapted from Block, Daniel (1998). Eerdmans.</span></p>
+    </div>
+
+    <h3 class="sub reveal"><span class="lang-pt">O Retorno da Glória (Ezeq. 43:1-11)</span><span class="lang-en">The Return of the Glory (Ezek. 43:1-11)</span></h3>
+    <div class="scripture reveal">
+      <div class="scripture-label"><span class="lang-pt">Ezequiel 43:1-11 — Tradução do Instrutor</span><span class="lang-en">Ezekiel 43:1-11 Instructor's Translation</span></div>
+      <p class="scripture-text"><span class="lang-pt">1 E ele me levou à porta, à porta que dá para o oriente. 2 E eis que a glória do Elohim de Israel vinha do caminho do oriente, e a sua voz era como o som de muitas águas, e a terra foi iluminada pela sua glória. 3 E era como a aparência da visão que vi, como a visão que vi quando ele veio destruir a cidade, e as visões eram como a visão que vi junto ao rio Quebar, e caí sobre o meu rosto. 4 E a glória de Yahweh entrou na casa pelo caminho da porta que dá para o oriente. 5 E o Espírito me levantou e me trouxe ao átrio interior, e eis que a glória de Yahweh encheu a casa. 6 E ouvi um que falava comigo desde a casa, e um homem estava em pé junto a mim. 7 Ele me disse: "Filho do humano, este é o lugar do meu trono e o lugar das plantas dos meus pés, onde habitarei no meio dos filhos de Israel para sempre; e a casa de Israel não tornará a contaminar o meu santo nome, nem eles nem os seus reis, com a sua prostituição e com os cadáveres dos seus reis quando morrerem, 8 pondo o seu limiar junto ao meu limiar, e o seu umbral junto ao meu umbral, com apenas a parede entre mim e eles; e contaminaram o meu santo nome com as suas abominações que cometeram, e eu os consumi na minha ira. 9 Agora, removam para longe de mim a sua prostituição e os cadáveres dos seus reis, e habitarei no meio deles para sempre. 10 Quanto a ti, filho do humano, declara à casa de Israel, para que se envergonhem das suas iniquidades, e para que meçam a proporção/perfeição; 11 e, quando se envergonharem de tudo o que fizeram, faze-lhes conhecer a forma da casa, e o seu desenho, e as suas saídas, e as suas entradas, e todas as suas formas, e todos os seus estatutos."</span><span class="lang-en">1 And he led me to the gate, the gate facing toward the east. 2 And look, the glory of the Elohim of Israel was coming from the way of the east, and his voice was like the sound of many waters, and the land was lit up by his glory. 3 And it was like the appearance of the vision which I saw, like the vision which I saw when he came to destroy the city, and the visions were like the vision which I saw by the river Chebar, and I fell on my face. 4 And the glory of Yahweh entered into the house by the way of the gate facing east. 5 And the Spirit lifted me up and she brought me into the inner court, and look, the glory of Yahweh filled the house. 6 And I heard one speaking to me from the house, and a man was standing beside me. 7 He said to me, “Son of a human, this is the place of my throne, and the place of the soles of my feet, where I will dwell among the sons of Israel forever; and the house of Israel will not again make my holy name impure, neither they nor their kings, by their harlotry and by the corpses of their kings when they die, 8 by setting their threshold alongside my threshold, and their door post beside my door post, with only the wall between me and them; and they have made my holy name impure by their abominations which they have committed, and I brought them to an end in my anger. 9 Now, let them remove their harlotry and the corpses of their kings far from me, and I will dwell among them forever. 10 As for you, Son of a human, declare to the house of Israel, so that they may be ashamed of their iniquities, and so they can measure the proportion/perfection; 11 And when they are ashamed of all that they have done, make known to them the form of the house, and its design, and its exits, and its entrances, and all its forms and all its statutes.”</span></p>
+    </div>
+
+    <h3 class="sub reveal"><span class="lang-pt">O Propósito da Visão do Templo</span><span class="lang-en">The Purpose of Ezekiel's Temple Vision</span></h3>
+    <p class="body reveal"><span class="lang-pt">Em Ezequiel 43:10-11, Ezequiel é mandado "declarar" a visão aos exilados, "para que possam medir a proporção". A palavra "proporção" é a chave: o raro substantivo hebraico toknit (תכנית) aparece apenas mais uma vez na Bíblia hebraica, em Ezequiel 28:12 ("selo de perfeita proporção"). Não significa "plano/planta" (tavnit), mas "medida perfeita, proporção ideal". As dimensões em sua maior parte horizontais mostram que o foco está na organização do espaço, não em uma estrutura a ser construída. O objetivo não é fornecer um projeto de construção, mas confrontar os exilados visualmente, expondo quão corrupto se tornou o templo de Jerusalém. Como disse Wright: "Ezequiel foi mandado a transmitir aos exilados tudo o que vira, especialmente as medidas simétricas, mas o propósito expresso daquela informação era induzir vergonha (43:10-11)... a visão de Ezequiel não era para fornecer orientação de como o templo deveria ser reconstruído, mas para dar a garantia da esperança de que seria reconstruído."</span><span class="lang-en">In Ezekiel 43:10-11, Ezekiel is told to “declare” the vision to the exiles, “so that they can measure the proportion.” The word "proportion" is key: the rare Hebrew noun toknit (תכנית) appears only one other time in the Hebrew Bible, in Ezekiel 28:12 ("seal of perfect proportion"). It does not mean "plan/pattern" (tavnit), but "perfect measure, ideal proportion". The largely horizontal dimensions show the focus is on the arrangement of space, not a structure to be built. The purpose is not to provide a building plan, but to confront the exiles visually, exposing how corrupt the Jerusalem temple had become. As Wright puts it: “Ezekiel was told to convey to the exiles all that he had seen, especially the symmetrical measurements, but the express purpose of that information was to induce shame (43:10-11)... the purpose of Ezekiel’s vision was not to provide guidance as to how the temple was to be rebuilt, but to provide reassurance of the hope that it would be rebuilt.”</span></p>
+
+    <div class="table-img reveal">
+      <img src="img/sessao-28/p9-vector.png" alt="The Perfect Proportions of the Temple">
+      <p class="caption"><span class="lang-pt">As Proporções Perfeitas do Templo. Criado por Tim Mackie para BibleProject Classroom: Ezequiel (2021).</span><span class="lang-en">The Perfect Proportions of the Temple. Created by Tim Mackie for BibleProject Classroom: Ezekiel (2021).</span></p>
+    </div>
+
+    <h3 class="sub reveal"><span class="lang-pt">Vergonha e Autoconhecimento</span><span class="lang-en">Shame and Self-Knowledge</span></h3>
+    <p class="body reveal"><span class="lang-pt">Em contraste, Ezequiel não é mostrado ao templo ideal para lançar um novo programa de construção. Antes, a mensagem comunicada pela "proporção, desenho e forma" é uma continuação da crítica profética de Ezequiel à história de Israel. O desenho perfeito visa trazer seu auditório exilado à consciência de sua culpa, para que vejam como sua corrupção do templo levou à sua destruição e ao exílio. Para Ezequiel, há uma conexão crucial entre o autoconhecimento genuíno diante de Deus e a vergonha — a capacidade de experimentar vergonha constitui um ato salvífico de Yahweh, preparando o caminho para uma nova identidade moldada por um novo autoconhecimento.</span><span class="lang-en">In stark contrast, Ezekiel is not shown the ideal temple in order to launch a new building program. Rather, the message communicated by the “proportion, design, and form” is a continuation of Ezekiel’s prophetic critique of Israel’s history. The perfect design is aimed at bringing his exilic audience to awareness of their guilt so they can see how their corruption of the temple led to its destruction and their isolation in exile. For Ezekiel, there is a crucial connection between genuine self-knowledge before God and shame — the capacity to experience shame constitutes a salvific act by Yahweh, paving the way for a new identity shaped by a new self-knowledge.</span></p>
+
+    <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+    <p class="body reveal"><span class="lang-pt">Como você faz sentido de todas as diferentes imagens de rios, cidades, árvores, templos e montanhas sobrepostas em visões como Ezequiel 40-48?</span><span class="lang-en">How do you make sense of all the different images of rivers, cities, trees, temples, and mountains layered in visions like Ezekiel 40-48?</span></p>
+  </div>
+  <script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s28-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s28-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+</body>
+</html>

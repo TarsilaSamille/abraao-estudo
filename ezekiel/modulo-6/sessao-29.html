@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 29: O Rio que Sai do Templo</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="../js/verse-modal.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  .verse-link { color: inherit; cursor: pointer; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+  .scripture:hover { border-left-color: #9aa7b8; }
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
+  .table-img img { width: 100%; display: block; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
+  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
+  .nav-btn:hover { background: #f1f5f9; }
+  .nav-back { left: 1rem; }
+</style>
+</head>
+<body class="bg-white">
+<div id="reading-progress" aria-hidden="true"></div>
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+
+  <div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
+    <h1 class="title reveal"><span class="lang-pt">Sessão 29: O Rio que Sai do Templo</span><span class="lang-en">Session 29: The River From the Temple</span></h1>
+    <hr class="rule">
+    <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt">A imagem de um rio fluindo do monte de Deus nos leva direto de volta ao Éden.</span><span class="lang-en">The image of a river flowing out from the mountain of God takes us right back to Eden.</span></li>
+      <li><span class="lang-pt">O rio que flui do templo refresca as partes mais áridas da terra, mas não para aí. O rio sempre fluente pode ser imaginado como trazendo a vida de Deus para todo o mundo.</span><span class="lang-en">The river that flows out from the temple refreshes the most barren parts of the land, but it doesn’t stop there. The ever-flowing river can be imagined as bringing God’s life to the whole world.</span></li>
+      <li><span class="lang-pt">O nome da cidade é "Yahweh está ali", isto é, Yahweh está no seu templo, separado da cidade.</span><span class="lang-en">The name of the city is “Yahweh is over there,” that is, Yahweh is in his temple, set apart from the city.</span></li>
+    </ul>
+
+    <h3 class="sub reveal"><span class="lang-pt">Design Macro de Ezequiel 47:1-48:35</span><span class="lang-en">Macro Design of Ezekiel 47:1-48:35</span></h3>
+    <p class="body reveal"><span class="lang-pt">Ezequiel 47:1-48:35 apresenta a herança da terra restaurada como um novo Éden em três movimentos: (A) o rio da vida que sai do templo (47:1-12); (B) as fronteiras da herança da terra restaurada (47:13-23); e a cidade com suas doze portas e o seu nome (48:30-35). A nova alocação da terra enfatiza igualdade (47:13-14), segurança (45:8-9, a terra não será mais tomada pela monarquia) e a inclusão das nações (47:21-23, imigrantes recebem posse da terra ancestral). A cidade é um quadrado perfeito, como o templo em seu centro, e no centro está a presença gloriosa de Yahweh que Ezequiel viu na Babilônia no início do livro (Ezeq. 1:3). O livro dá a volta completa, retratando a reunificação do Céu e da Terra na nova criação, com Jerusalém como centro simbólico da obra redentora de Yahweh.</span><span class="lang-en">Ezekiel 47:1-48:35 presents the restored land inheritance as a New Eden in three movements: (A) the River of Life from the Temple (47:1-12); (B) the Borders of the Restored Land Inheritance (47:13-23); and the city with its twelve gates and its name (48:30-35). The new allocation of the land emphasizes equality (47:13-14), security (45:8-9, the land will never again be seized by the monarchy), and the inclusion of the nations (47:21-23, immigrants receive possession of ancestral land). The city is a perfect square, as is the temple at its center, and in that center is the glorious presence of Yahweh that Ezekiel saw in Babylon at the beginning of the book (Ezek. 1:3). The book comes full circle, depicting the reunion of Heaven and Earth in the new creation with Jerusalem as the symbolic center of Yahweh’s redemptive work.</span></p>
+
+    <div class="table-img reveal">
+      <img src="img/sessao-29/p1-vector.png" alt="The River of Life from the Temple">
+      <p class="caption"><span class="lang-pt">O Rio da Vida do Templo. Criado por Tim Mackie para BibleProject Classroom: Ezequiel (2021).</span><span class="lang-en">The River of Life from the Temple. Created by Tim Mackie for BibleProject Classroom: Ezekiel (2021).</span></p>
+    </div>
+
+    <h3 class="sub reveal"><span class="lang-pt">O Rio da Vida do Templo (Ezeq. 47:1-12)</span><span class="lang-en">The Temple’s River of Life (Ezek. 47:1-12)</span></h3>
+    <div class="scripture reveal">
+      <div class="scripture-label"><span class="lang-pt">Ezequiel 47:1-12 — Tradução do Instrutor</span><span class="lang-en">Ezekiel 47:1-12 Instructor's Translation</span></div>
+      <p class="scripture-text"><span class="lang-pt">1 E ele me fez voltar à porta da casa; e eis que águas saíam de debaixo do limiar da casa para o oriente, porque a casa dava para o oriente, e as águas desciam de baixo, do lado sul da casa, do sul do altar. 2 E ele me levou pela porta do norte, e me fez rodear por fora até a porta de fora, pela porta que dá para o oriente; e eis que as águas borbulhavam do lado sul. 3 Quando o homem saiu para o oriente, com um cordel na mão, então mediu mil côvados, e me fez passar pelas águas, águas que chegavam aos tornozelos. 4 E mediu mil, e me fez passar pelas águas, águas que chegavam aos joelhos; e mediu mil, e me fez passar pelas águas, águas que chegavam às coxas. 5 E mediu mil, e era um rio que eu não podia atravessar, pois as águas tinham subido, águas para nadar, um rio que não se podia atravessar. 6 E disse-me: "Filho do humano, vês isto?" E tornou a trazer-me à margem do rio. 7 Quando me tornou a trazer, eis à margem do rio árvores, mui muitas, de uma e de outra banda. 8 E disse-me: "Estas águas saem para a região do oriente, e descem para o deserto do sul, e vão para o mar, sendo levadas para o mar, e as águas do mar são saradas. 9 E será que todo ser vivente que pulula, em todo lugar por onde o rio vai, terá vida; e haverá peixes, mui muitos, porque para onde estas águas vão, são saradas, e por onde o rio vai, terão vida. 10 E acontecerá que estarão ali pescadores; desde a fonte de Gedi até a fonte de Eglaim haverá lugar para estender as redes; os seus peixes serão conforme as suas espécies, como os peixes do Grande Mar, mui muitos. 11 Mas os seus charcos e pântanos não serão sarados; serão deixados para sal. 12 E junto ao rio, na sua margem, de uma e de outra banda, subirá toda sorte de árvore para comida; as suas folhas não murcharão, e o seu fruto não acabará; cada mês trarão primícias, porque as suas águas saem do santuário, e o seu fruto será para comida, e as suas folhas para cura."</span><span class="lang-en">1 And he brought me back to the door of the house; and look, waters were coming out from under the threshold of the house toward the east, for the house was facing east, and the waters were going down from underneath, from the south side of the house, from south of the altar. 2 And he brought me out by way of the north gate, and he led me around a way on the outside, to the outside gate, by way of the gate that faces east, and look, waters were trickling from the south side. 3 When the man went out toward the east, with a line in his hand, then he measured a thousand cubits, and he led me through the waters, waters reaching the ankles. 4 And he measured a thousand, and led me through the waters, waters reaching the knees; and he measured a thousand, and led me through the waters, waters reaching the thighs. 5 And he measured a thousand, and it was a river that I was not able to cross, for the waters had risen, waters for swimming in, a river that could not be crossed. 6 And he said to me, “Son of a human, do you see this?” And he brought and returned me back to the edge of the river. 7 When he returned me, look, at the edge of the river, trees, very many, on the one side and on the other. 8 And he said to me, “These waters are going out toward region of the east, and going down into the southern-desert, then they go toward the sea, being made to flow into the sea, and the waters of the sea are healed. 9 And it will come about, every living creature that swarms, in every place where the river goes, they will have life. And there will be fish, very many, for where these waters go, then they are healed, and everywhere the river goes, they will have life. 10 And it will come about that fishermen will stand beside it; from the Spring of Gedi to the Spring of Eglayim, there will be a place for the spreading of nets. Their fish will be according to their kinds, like the fish of the Great Sea, very many. 11 But its swamps and marshes, they will not be healed, they will be left for salt. 12 By the river on its edge, on one side and on the other, there will come up every kind of tree for food; their leaves will not wither, and their fruit will not finish, and each month they will bring first-fruit, because their waters flow from the sanctuary, and their fruit will be for food, and their leaves for healing.”</span></p>
+    </div>
+
+    <div class="table-img reveal">
+      <img src="img/sessao-29/p8-vector.png" alt="The River from the Garden of Eden">
+      <p class="caption"><span class="lang-pt">O Rio do Jardim do Éden. Ilustração criada por Tim Mackie para BibleProject Classroom: Ezequiel (2021).</span><span class="lang-en">The River from the Garden of Eden. Illustration created by Tim Mackie for BibleProject Classroom: Ezekiel (2021).</span></p>
+    </div>
+
+    <h3 class="sub reveal"><span class="lang-pt">O Rio do Jardim do Éden</span><span class="lang-en">The River from the Garden of Eden</span></h3>
+    <p class="body reveal"><span class="lang-pt">A imagem do rio que sai do monte de Deus remonta ao Éden. O rio transforma o deserto da região do Mar Morto em uma terra frutífera cheia de flores e peixes. Esse motivo é uma imagem poética comum nos profetas da nova criação, enraizada na narrativa da criação de Gênesis 1-2, onde o deserto caótico é transformado em um jardinho luxurioso que contém a cabeça de um grande rio que enriquece o mundo conhecido (Gên. 2:10-14). A visão de Ezequiel é sobre o templo celestial como fonte da vida divina que fluirá da presença de Yahweh e transformará toda a criação. João, o vidente, adota essa imagem de Ezequiel em sua descrição da nova Jerusalém em Apocalipse 21-22. O nome da cidade em Ezequiel 48:35 não é "Yahweh está lá" (exigiria Yahweh sham), mas "Yahweh está ali/acolá" (Yahweh shammah, com o he direcional), apontando para o templo no centro da terra — Yahweh não está na cidade, mas "acolá" no templo. Isso é um afastamento radical das tradições davídico-zionistas, onde a presença e a autoridade de Yahweh sozinhas estão no centro da terra.</span><span class="lang-en">The image of a river flowing out from the mountain of God takes us right back to Eden. The river turns from a trickle in the temple into a river a mile wide, turning the desert of the Dead Sea region into a fruitful land full of flowers and fish. This motif is a common poetic image in the prophets of the new creation, rooted in the creation narrative of Genesis 1-2, where the chaotic wilderness is transformed into a lush garden containing the head of a huge river that enriches the known world (Gen. 2:10-14). Ezekiel’s vision is about the heavenly temple as the source of divine life that will flow out of Yahweh’s presence and transform all creation. John the visionary adopts this image from Ezekiel in his depiction of the new Jerusalem in Revelation 21-22. The name of the city in Ezekiel 48:35 is not “Yahweh is there” (that would require Yahweh sham), but “Yahweh is over there” (Yahweh shammah, with the directional heh), pointing to the temple at the center of the land — Yahweh is not in the city, but “over there” in the temple. This is a huge departure from the David-Zion traditions, where Yahweh’s presence and authority alone stand at the center of the land.</span></p>
+
+    <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+    <p class="body reveal"><span class="lang-pt">Reserve um tempo para refletir sobre os insights que você aprendeu nesta aula.</span><span class="lang-en">Take some time to reflect on the insights you learned in this class.</span></p>
+  </div>
+  <script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s29-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s29-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+</body>
+</html>
