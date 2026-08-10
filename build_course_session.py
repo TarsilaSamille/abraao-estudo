@@ -15,9 +15,12 @@ def build(shell_path, out_dir, sessions):
     # HEAD = do inicio ate a abertura da tag <main ...> (inclui nav/style verbatim)
     mi = shell.index("<main")
     main_open = shell[mi:shell.index(">", mi)+1]
-    head = shell[:mi] + main_open + "\n"
+    shell_head = shell[:mi] + main_open + "\n"
     for s in sessions:
         n = s["n"]; tp = s["title_pt"]; te = s["title_en"]; body = s["body"]
+        head = re.sub(r'<title[^>]*>.*?</title>',
+                      f'<title data-i18n="title">{esc(f"Sessão {n}: {tp}")}</title>',
+                      shell_head, count=1)
         h1 = (f'    <h1 class="text-4xl font-bold text-slate-900 md:text-5xl" data-i18n="h1">'
               f'<span class="lang-pt">{esc(f"Sessão {n}: {tp}")}</span>'
               f'<span class="lang-en">{esc(f"Session {n}: {te}")}</span></h1>\n')

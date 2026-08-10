@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="title">Sessão 1: Contexto e Resumo da Carta</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html[lang="pt-BR"] .lang-en { display: none !important; }
+    html[lang="en"] .lang-pt { display: none !important; }
+    .verse-link { cursor: pointer; }
+    @media print { .nav-btn-fixed { display: none !important; } }
+  </style>
+</head>
+<body class="bg-white font-sans text-slate-800">
+  <div class="nav-btn-fixed fixed left-4 top-4 z-50">
+    <a href="../index.html"
+      class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+      <span>&larr;</span><span data-i18n="back">Voltar</span>
+    </a>
+  </div>
+  <div class="nav-btn-fixed fixed right-4 top-4 z-50">
+    <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white shadow-sm">
+      <button id="lang-pt" onclick="setLang('pt')" class="px-4 py-1.5 text-sm font-semibold transition-colors">PT</button>
+      <button id="lang-en" onclick="setLang('en')" class="px-4 py-1.5 text-sm font-semibold transition-colors">EN</button>
+    </div>
+  </div>
+  <main class="mx-auto max-w-3xl px-6 py-20 md:py-24">
+    <h1 class="text-4xl font-bold text-slate-900 md:text-5xl" data-i18n="h1"><span class="lang-pt">Sessão 1: Contexto e Resumo da Carta</span><span class="lang-en">Session 1: Background and Summary of the Letter</span></h1>
+    <hr class="my-8 border-t-2 border-slate-200" />
+    <section class="space-y-6" data-i18n="body">
+      <h2 class="text-2xl font-bold text-slate-900">Principais Lições</h2>
+      <ul class="list-disc space-y-2 pl-6 text-slate-700">
+        <li><span class="lang-pt">Os escritores de epístolas do Novo Testamento se dirigem a igrejas em cidades ou regiões geográficas específicas, cada uma com seu próprio caráter, problemas, questões culturais, forças e fraquezas.</span><span class="lang-en">The New Testament epistle writers address churches in specific cities or geographical regions, all of which have their own characters, problems, cultural issues, strengths, and weaknesses.</span></li>
+        <li><span class="lang-pt">O objetivo de Paulo na carta é levar a igreja coríntia à maturidade em seu pensar e em suas práticas.</span><span class="lang-en">Paul's aim in the letter is to bring the Corinthian church to maturity in its thinking and practices.</span></li>
+        <li><span class="lang-pt">Culturas de honra-vergonha, como a da igreja coríntia, enfatizam tradição, relacionamentos e hierarquia.</span><span class="lang-en">Honor-shame cultures, like that of the Corinthian church, place particular stress on tradition, relationships, and hierarchy.</span></li>
+        <li><span class="lang-pt">A igreja em Corinto reverteu a normas culturais de tradição, relacionamento e hierarquia, o que também significa segregação e divisão.</span><span class="lang-en">The church at Corinth has reverted to cultural norms of tradition, relationship, and hierarchy, which also means segregation and division.</span></li>
+      </ul>
+      <h2 class="text-2xl font-bold text-slate-900">Contexto e Resumo da Carta</h2>
+      <p class="text-slate-700"><span class="lang-pt">Toda a Escritura foi escrita em um lugar e tempo particulares, por pessoas particulares, e é reveladora para entendermos a natureza de Deus e seus propósitos. Assim, o que lemos na Bíblia é tanto particular ao seu tempo quanto de importância universal. A revelação de Deus vem até nós através do particular, apresentada por uma lente cultural existente — isso é verdade em 1 Coríntios, talvez mais do que em outros textos.</span><span class="lang-en">All Scripture was written in a particular place at a particular time by particular people, and all of it is revelatory for understanding the nature of God and his purposes. So what we read in the Bible is both particular to its time and has universal import. God's revelation comes to us in and through the particular, presented through an existing cultural lens — true of 1 Corinthians, perhaps even more so.</span></p>
+      <h3 class="text-xl font-bold text-slate-800">Abordando o Texto: Lendo uma Carta</h3>
+      <p class="text-slate-700"><span class="lang-pt">Para entender o que essa carta muito específica, escrita a um grupo de pessoas há 2.000 anos, pode dizer a nós, precisamos situá-la em seu próprio contexto. As epístolas são ainda mais especificamente localizadas que outra literatura bíblica de audiência mais universal (como Provérbios, Salmos ou os livros históricos). Além disso, temos apenas metade da correspondência — não sabemos o que foi escrito em resposta ou mesmo primeiro.</span><span class="lang-en">To understand what this very specific letter written 2,000 years ago might say to us, we need to locate it in its own context. The letters are even more specifically located than other literature assuming a more universal audience, such as Proverbs, Psalms, or history books. Also, we only have half the correspondence — we don't know what was written in response or even first.</span></p>
+      <h2 class="text-2xl font-bold text-slate-900">Pergunta de Reflexão</h2>
+      <p class="text-slate-700"><span class="lang-pt">Por que ler 1 Coríntios em seu contexto original muda o que a carta comunica hoje?</span><span class="lang-en">Why does reading 1 Corinthians in its original context change what the letter communicates today?</span></p>
+    </section>
+  </main>
+  <script src="../js/verse-modal.js"></script>
+  <script>
+    const I18N = {"pt": {"title": "Sessão 1: Contexto e Resumo da Carta", "h1": "Sessão 1: Contexto e Resumo da Carta", "back": "Voltar"}, "en": {"title": "Session 1: Background and Summary of the Letter", "h1": "Session 1: Background and Summary of the Letter", "back": "Back"}};
+    function setLang(lang){
+      localStorage.setItem('bp_lang',lang);
+      document.documentElement.lang = lang==='pt'?'pt-BR':'en';
+      const t=I18N[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n'); if(t[k]!==undefined) el.innerHTML=t[k];});
+      document.title=t.title;
+      const on='bg-sky-600 text-white', off='bg-white text-slate-600 hover:bg-slate-100';
+      document.getElementById('lang-pt').className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='pt'?on:off);
+      document.getElementById('lang-en').className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='en'?on:off);
+    }
+    setLang(localStorage.getItem('bp_lang')||'pt');
+  </script>
+</body>
+</html>
