@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><span class="lang-pt">Sessão 24: Os Oráculos de Gogue</span><span class="lang-en">Session 24: The Gog Oracles</span></title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  .heb { font-family: 'SBL Hebrew','Times New Roman',serif; font-size: 1.05em; direction: rtl; unicode-bidi: embed; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
+  .ref:hover { color: #2563eb; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+
+  /* ---------- Literary design chips (Ezekiel 3:16-27) ---------- */
+  .ld { margin: 1.6rem 0; }
+  .ld-box { border: 1px solid #c4ccd6; border-radius: 10px; padding: .9rem 1.1rem; background: #fff; }
+  .design-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+  .design-col { border: 1px solid #c4ccd6; border-radius: 10px; padding: .8rem 1rem; background: #f8fafc; }
+  .design-h { font-size: .95rem; font-weight: 700; color: #27364a; margin-bottom: .5rem; }
+  .design-row { display: flex; gap: .6rem; padding: .4rem 0; border-bottom: 1px solid #e1e6ee; }
+  .design-row:last-child { border-bottom: none; }
+  .design-row .vs { flex: 0 0 auto; font-weight: 700; color: #5869cd; font-size: .85rem; min-width: 62px; }
+  .ld-row { display: flex; align-items: center; gap: .8rem; padding: .35rem 0; border-bottom: 1px solid #eef1f4; }
+  .ld-row:last-child { border-bottom: none; }
+  .ld-tag { display: inline-flex; align-items: center; justify-content: center; min-width: 1.6rem; height: 1.6rem; border-radius: 6px; background: #5869cd; color: #fff; font-weight: 800; font-size: .95rem; flex-shrink: 0; }
+  .period-wrap { display: flex; flex-wrap: wrap; gap: .9rem; margin: 1rem 0; }
+  .period { flex: 1 1 0; min-width: 200px; border: 1px solid #c4ccd6; border-radius: 10px; overflow: hidden; }
+  .period-h { background: #5869cd; color: #fff; font-weight: 800; text-align: center; padding: .5rem; font-size: 1.05rem; }
+  .period-row { padding: .45rem .6rem; border-bottom: 1px solid #eef1f4; display: flex; justify-content: space-between; gap: .5rem; }
+  .period-row:last-child { border-bottom: none; }
+  .period-row .rng { font-weight: 700; color: #4f5669; }
+  .ld-v { font-size: 1.04rem; line-height: 2.05; color: #1f2937; }
+  .ld-v .vs { font-size: .72em; color: #4b5563; vertical-align: super; margin-right: 7px; font-weight: 700; }
+  .chip { display: inline; padding: 2px 7px; border-radius: 5px; font-weight: 700; line-height: 1.95; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  .chip-word  { background: #efe8db; color: #645537; }
+  .chip-watch { background: #be4967; color: #ffffff; }
+  .chip-death { background: #fae4c4; color: #91362e; }
+  .chip-life  { background: #ccf1fa; color: #245791; }
+  .chip-person{ background: #e4e8ed; color: #4f5669; }
+  .chip-purple{ background: #7e62bc; color: #ffffff; }
+  .chip-beige { background: #fae4c4; color: #91362e; }
+  .chip-olive2 { background: #816f4d; color: #ffffff; }
+  .chip-green { background: #d3f2cd; color: #2b6146; }
+  .chip-rose { background: #f9e3de; color: #972a4e; }
+  .chip-lilac { background: #e6e6fa; color: #5d4897; }
+  .chip-terra { background: #b5543a; color: #ffffff; }
+  .chip-cov { background: #d3f2cd; color: #2b6146; }
+  .chip-naked { background: #ccf1fa; color: #245791; }
+  .chip-birth { background: #fae4c4; color: #816f4d; }
+  .chip-mound { background: #b9eff7; color: #00626f; }
+  .chip-gray  { background: #e4e8ed; color: #4f5669; }
+  .chip-teal  { background: #cceff5; color: #097d8d; }
+  .chip-blue-d { background: #5869cd; color: #ffffff; }
+  .chip-blue-l { background: #ccf1fa; color: #245791; }
+  .chip-live { background: #d9ecfd; color: #404ca6; }
+  .chip-terra { background: #b5543a; color: #ffffff; }
+  .chip-lav { background: #e6e6fa; color: #5d4897; }
+  .chip-green-d { background: #3a8060; color: #ffffff; }
+  .chip-maroon { background: #742626; color: #ffffff; }
+  .chip-teal-d { background: #004d58; color: #ffffff; }
+  .chip-peri { background: #b9eff7; color: #404ca6; }
+  .t-terra { color: #b5543a; font-weight: 700; }
+  .t-purple { color: #9855af; font-weight: 700; }
+  .t-green { color: #3a8060; font-weight: 700; }
+  .t-dark { color: #181d36; font-weight: 800; }
+  .t-gray { color: #4f5669; font-weight: 700; }
+  .chip-wine-d { background: #751f40; color: #ffffff; }
+  .chip-purple-d { background: #9855af; color: #ffffff; }
+  .chip-slate { background: #3e4054; color: #ffffff; }
+  .t-blue { color: #3678b4; font-weight: 700; }
+  .t-red { color: #be4967; font-weight: 700; }
+  .t-olive { color: #645537; font-weight: 700; }
+  .speech-label { display: inline-block; background: #efe8db; color: #645537; font-weight: 700; font-size: 0.8rem; padding: 0.15rem 0.7rem; border-radius: 9999px; margin: 0.5rem 0 0.3rem; }
+  .chip-red   { background: transparent; color: #91362e; font-weight: 700; }
+  .chip-green { background: #d3f2cd; color: #2b6146; }
+  .chip-rose { background: #f9e3de; color: #972a4e; }
+  .chip-lilac { background: #e6e6fa; color: #5d4897; }
+  .chip-terra { background: #b5543a; color: #ffffff; }
+  .chip-cov { background: #d3f2cd; color: #2b6146; }
+  .chip-naked { background: #ccf1fa; color: #245791; }
+  .chip-birth { background: #fae4c4; color: #816f4d; }
+  .chip-mound { background: #b9eff7; color: #00626f; }
+  .ld-em { font-weight: 800; color: #181d36; }
+  .ld-ltr { color: #4f5669; font-weight: 700; font-size: .9em; margin-right: 4px; }
+  .ld-l1 { margin-left: 1.1rem; } .ld-l2 { margin-left: 2.1rem; } .ld-l3 { margin-left: 3.1rem; } .ld-l4 { margin-left: 4.1rem; } .ld-l5 { margin-left: 5.1rem; }
+  .gen-label { margin: 1.4rem 0 .4rem; padding: .45rem 1rem; background: #f3f4f6; border-left: 4px solid #6b7384; border-radius: 0 8px 8px 0; font-size: .95rem; color: #3e4054; }
+  @media (max-width: 640px) { .ld-l1 { margin-left: .4rem; } .ld-l2 { margin-left: 1.1rem; } .ld-l3 { margin-left: 1.8rem; } .ld-l4 { margin-left: 2.5rem; } .ld-l5 { margin-left: 3.2rem; } }
+  .reflection { background: #f3f5f9; border: 1px solid #e1e6ee; border-left: 4px solid #5869cd; border-radius: 12px; padding: 1.4rem 1.6rem; margin: 2.2rem 0 .5rem; }
+  .reflection-h { font-weight: 800; color: #3b4a9e; margin-bottom: .6rem; font-size: 1.05rem; }
+  .reflection p { color: #333; line-height: 1.7; }
+  .figure { margin: 1.8rem 0; }
+  .figure img { display: block; }
+
+  /* ---------- Scripture blocks ---------- */
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+  .scripture:hover { border-left-color: #9aa7b8; }
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+  .mini { font-size: 1rem; font-weight: 700; color: #17181a; margin: 1.3rem 0 .35rem; }
+  .trans-label { font-weight: 800; color: #17181a; font-size: 1rem; margin: 1.2rem 0 .4rem; }
+  .trans-sub { color: #4f5669; font-size: .9rem; margin-bottom: .6rem; }
+  .scripture-type { color: #586574; font-weight: 700; font-size: .72em; vertical-align: super; margin-left: .4rem; }
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+  .scripture-text sup.vs { font-size: .72em; color: #333; vertical-align: super; margin-right: 2px; }
+  .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem; }
+  .quote { border-left: 4px solid #aeb6bf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a3f47; font-style: italic; }
+  .quote cite { display: block; font-style: normal; font-size: .86rem; color: #6a7280; margin-top: .5rem; }
+  .points { margin: 1rem 0 1.2rem 1.4rem; padding: 0; }
+  .points li { margin-bottom: .65rem; line-height: 1.7; }
+  .book-link { color: #1a5fb4; text-decoration: underline; font-style: normal; }
+
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
+  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
+  .nav-btn:hover { background: #f1f5f9; }
+  .nav-back { left: 1rem; }
+  .nav-lang { right: 1rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #2563eb; transform-origin: 0 0; transform: scaleX(0); z-index: 100; }
+  .page-footer { margin-top: 3.5rem; padding-top: 1rem; border-top: 1px solid #e5e9f0; display: flex; justify-content: space-between; font-size: .82rem; color: #8a93a3; font-weight: 600; }
+  .page-footer .lang-pt, .page-footer .lang-en { display: inline; }
+</style>
+</head>
+<body class="bg-white">
+
+<div id="reading-progress" aria-hidden="true"></div>
+
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+
+
+
+
+
+<body class="bg-white text-gray-900">
+<div class="max-w-4xl mx-auto px-4 py-6">
+<h1 class="title reveal"><span class="lang-pt">Sessão 24: Os Oráculos de Gogue</span><span class="lang-en">Session 24: The Gog Oracles</span></h1>
+<hr class="rule">
+
+<h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+<ul class="takeaways reveal">
+  <li><span class="lang-pt">Gogue representa aqueles entre as nações que são hostis aos propósitos de Deus.</span><span class="lang-en">Gog represents those among the nations who are hostile to God&rsquo;s purposes.</span></li>
+  <li><span class="lang-pt">O oráculo de Ezequiel imagina o que Deus deve fazer para lidar com o mal no resto do mundo a fim de trazer o seu Reino.</span><span class="lang-en">Ezekiel&rsquo;s oracle imagines what God must do to deal with evil in the rest of the world to bring about his Kingdom.</span></li>
+</ul>
+
+<h3 class="scripture-label reveal"><span class="lang-pt">Ezequiel 38:1-39:29. Tradução e Design Literário de Ezequiel 38-39 por Tim Mackie para BibleProject Classroom: Ezequiel (2021).</span><span class="lang-en">Translation and Literary Design of Ezekiel 38-39 by Tim Mackie for BibleProject Classroom: Ezekiel (2021).</span></h3>
+
+<h3 class="scripture-label reveal"><span class="lang-pt">Ezequiel 38:1-23. Tradução do Instrutor</span><span class="lang-en">Ezekiel 38:1-23. Instructor&rsquo;s Translation</span></h3>
+<div class="ld reveal">
+  <div class="ld-box">
+    <div class="ld-v">
+      <span class="vs">1</span><span class="lang-pt">E a palavra de Yahweh veio a mim, dizendo:</span><span class="lang-en">And the word of Yahweh came to me saying,</span>
+    </div>
+    <div class="ld-v">
+      <span class="vs">2</span><span class="lang-pt">&ldquo;Filho do humano,</span><span class="lang-en">&ldquo;Son of a human,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">volta o teu rosto contra Gogue, da terra de Magogue,</span><span class="lang-en">set your face toward Gog of the land of Magog,</span></div>
+    <div class="ld-l1"><span class="lang-pt">o príncipe supremo, Meseque e Tubal,</span><span class="lang-en">the chief head, Meshech and Tubal,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e profetiza contra ele</span><span class="lang-en">and prophesy against him</span></div>
+    <div class="ld-v">
+      <span class="vs">3</span><span class="lang-pt">e dize:</span><span class="lang-en">and say,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">&lsquo;Assim diz Yahweh Elohim,</span><span class="lang-en">&lsquo;Thus says Yahweh Elohim,</span></div>
+    <div class="ld-l1"><span class="lang-pt">&ldquo;Eis que eu estou contra ti, ó Gogue,</span><span class="lang-en">&ldquo;Behold, I am against you, O Gog,</span></div>
+    <div class="ld-l1"><span class="lang-pt">príncipe supremo de Meseque e Tubal,</span><span class="lang-en">chief head of Meshech and Tubal,</span></div>
+    <div class="ld-v">
+      <span class="vs">4</span><span class="lang-pt">e te farei virar,</span><span class="lang-en">and I will turn you around,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">e porei ganchos nas tuas mandíbulas,</span><span class="lang-en">and I will put hooks into your jaws,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e te trarei para fora,</span><span class="lang-en">and I will bring you out,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e todo o teu exército,</span><span class="lang-en">and all your army,</span></div>
+    <div class="ld-l1"><span class="lang-pt">cavalos e cavaleiros,</span><span class="lang-en">horses and horsemen,</span></div>
+    <div class="ld-l1"><span class="lang-pt">vestidos de perfeição, todos eles;</span><span class="lang-en">clothed in perfection, all of them;</span></div>
+    <div class="ld-l1"><span class="lang-pt">uma grande assembléia,</span><span class="lang-en">a great assembly,</span></div>
+    <div class="ld-l1"><span class="lang-pt">escudos grandes e escudos pequenos,</span><span class="lang-en">large shields and small shields,</span></div>
+    <div class="ld-l1"><span class="lang-pt">armados com espadas, todos eles;</span><span class="lang-en">armed with swords, all of them,</span></div>
+    <div class="ld-v">
+      <span class="vs">5</span><span class="lang-pt">Pérsia, Etiópia e Pute com eles,</span><span class="lang-en">Persia, Ethiopia and Put with them,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">todos eles com escudo e elmo;</span><span class="lang-en">all of them with shield and helmet;</span></div>
+    <div class="ld-v">
+      <span class="vs">6</span><span class="lang-pt">Gômer com todas as suas tropas;</span><span class="lang-en">Gomer with all its troops;</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">Bete-Togarma, das regiões remotas do norte, com todas as suas tropas,</span><span class="lang-en">Beth-togarmah, of the remote regions of the north, with all its troops,</span></div>
+    <div class="ld-l1"><span class="lang-pt">muitos povos contigo.</span><span class="lang-en">many peoples with you.</span></div>
+    <div class="ld-v">
+      <span class="vs">7</span><span class="lang-pt">Prepara-te, e prepara a ti mesmo,</span><span class="lang-en">Be prepared, and prepare yourself,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">tu e toda a tua assembléia que se ajuntou ao teu redor,</span><span class="lang-en">you and all your assembly that is assembled about you,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e sê a guarda deles.</span><span class="lang-en">and be on guard for them.</span></div>
+    <div class="ld-v">
+      <span class="vs">8</span><span class="lang-pt">Depois de muitos dias serás convocado;</span><span class="lang-en">After many days you will be summoned;</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">nos últimos anos entrarás na terra,</span><span class="lang-en">in the latter years you will come into the land,</span></div>
+    <div class="ld-l1"><span class="lang-pt">quando for restaurada da espada,</span><span class="lang-en">when it is restored from the sword,</span></div>
+    <div class="ld-l1"><span class="lang-pt">cujos habitantes foram reunidos de muitas nações,</span><span class="lang-en">whose inhabitants have been gathered from many nations,</span></div>
+    <div class="ld-l1"><span class="lang-pt">para os montes de Israel que tinham sido uma desolação contínua;</span><span class="lang-en">to the mountains of Israel which had been a continual waste;</span></div>
+    <div class="ld-l1"><span class="lang-pt">e o seu povo foi tirado das nações,</span><span class="lang-en">and its people were brought out from the nations,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e eles estão vivendo em segurança, todos eles.</span><span class="lang-en">and they are living in security, all of them.</span></div>
+    <div class="ld-v">
+      <span class="vs">9</span><span class="lang-pt">Subirás, virás como uma tempestade;</span><span class="lang-en">You will go up, you will come like a storm;</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">serás como uma nuvem cobrindo a terra,</span><span class="lang-en">you will be like a cloud covering the land,</span></div>
+    <div class="ld-l1"><span class="lang-pt">tu e todas as tuas tropas,</span><span class="lang-en">and all your troops,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e muitos povos contigo.&rdquo;</span><span class="lang-en">and many peoples with you.&rdquo;</span></div>
+    <div class="ld-v">
+      <span class="vs">10</span><span class="lang-pt">Assim diz Yahweh Elohim:</span><span class="lang-en">Thus says Yahweh Elohim,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">&ldquo;Haverá um dia em que palavras subirão ao teu coração,</span><span class="lang-en">&ldquo;It will come about on that day,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e tu maquinarás um mau plano,</span><span class="lang-en">that words will come up into your heart,</span></div>
+    <div class="ld-v">
+      <span class="vs">11</span><span class="lang-pt">e dirás:</span><span class="lang-en">and you will scheme an evil scheme,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">&lsquo;Subirei contra a terra de aldeias sem muros.</span><span class="lang-en">and you will say,</span></div>
+    <div class="ld-l1"><span class="lang-pt">Irei contra aqueles que estão em descanso, que vivem seguros,</span><span class="lang-en">&lsquo;I will go up against the land of unwalled villages.</span></div>
+    <div class="ld-l1"><span class="lang-pt">todos eles vivendo sem muros,</span><span class="lang-en">I will go against those who are at rest, that live securely,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e não tendo trancas ou portas,</span><span class="lang-en">all of them living without walls,</span></div>
+    <div class="ld-l1"><span class="lang-pt">12 para capturar despojo e tomar presa,</span><span class="lang-en">and having no bars or gates,</span></div>
+    <div class="ld-l1"><span class="lang-pt">para voltar a tua mão contra os lugares desolados que agora estão habitados,</span><span class="lang-en">to capture spoil and to seize plunder,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e contra o povo que foi reunido das nações,</span><span class="lang-en">to turn your hand against the waste places which are now inhabited,</span></div>
+    <div class="ld-l1"><span class="lang-pt">que adquiriu gado e bens,</span><span class="lang-en">and against the people who are gathered from the nations,</span></div>
+    <div class="ld-l1"><span class="lang-pt">que vive no centro da terra.&rsquo;</span><span class="lang-en">who have acquired cattle and goods,</span></div>
+    <div class="ld-v">
+      <span class="vs">13</span><span class="lang-pt">Seba e Dedã</span><span class="lang-en">who live at the center of the land.&rsquo;</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">e os mercadores de Társis com todas as suas aldeias,</span><span class="lang-en">Sheba and Dedan</span></div>
+    <div class="ld-l1"><span class="lang-pt">eles te dirão:</span><span class="lang-en">and the merchants of Tarshish with all its villages,</span></div>
+    <div class="ld-l1"><span class="lang-pt">&lsquo;Vieste capturar despojo?</span><span class="lang-en">they will say to you,</span></div>
+    <div class="ld-l1"><span class="lang-pt">Ajuntaste a tua assembléia para tomar presa,</span><span class="lang-en">&lsquo;Have you come to capture spoil?</span></div>
+    <div class="ld-l1"><span class="lang-pt">para levar prata e ouro,</span><span class="lang-en">Have you assembled your assembly to seize plunder,</span></div>
+    <div class="ld-l1"><span class="lang-pt">para tomar gado e bens,</span><span class="lang-en">to carry away silver and gold,</span></div>
+    <div class="ld-l1"><span class="lang-pt">para capturar grande despojo?&rdquo;&rsquo;</span><span class="lang-en">to take away cattle and goods,</span></div>
+    <div class="ld-v">
+      <span class="vs">14</span><span class="lang-pt">Portanto profetiza, filho do humano,</span><span class="lang-en">to capture great spoil?&rsquo;&rdquo;&rsquo;</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">e dize a Gogue:</span><span class="lang-en">Therefore prophesy, son of a human,</span></div>
+    <div class="ld-l1"><span class="lang-pt">&lsquo;Assim diz Yahweh Elohim:</span><span class="lang-en">and say to Gog,</span></div>
+    <div class="ld-l1"><span class="lang-pt">Naquele dia, quando o meu povo Israel estiver vivendo em segurança,</span><span class="lang-en">&lsquo;Thus says Yahweh Elohim,</span></div>
+    <div class="ld-l1"><span class="lang-pt">não saberás tu?</span><span class="lang-en">&ldquo;On that day when my people Israel are living securely,</span></div>
+    <div class="ld-v">
+      <span class="vs">15</span><span class="lang-pt">Virás do teu lugar, das regiões remotas do norte,</span><span class="lang-en">won&rsquo;t you know it?</span></div>
+    <div class="ld-l1"><span class="lang-pt">tu e muitos povos contigo,</span><span class="lang-en">You will come from your place out of the remote regions of the north,</span></div>
+    <div class="ld-l1"><span class="lang-pt">montados em cavalos, todos eles,</span><span class="lang-en">you and many peoples with you,</span></div>
+    <div class="ld-l1"><span class="lang-pt">uma grande assembléia e um exército poderoso;</span><span class="lang-en">riding on horses, all of them,</span></div>
+    <div class="ld-v">
+      <span class="vs">16</span><span class="lang-pt">e subirás contra o meu povo Israel como uma nuvem para cobrir a terra;</span><span class="lang-en">a great assembly, and a mighty army;</span></div>
+    <div class="ld-l1"><span class="lang-pt">acontecerá nos últimos dias,</span><span class="lang-en">and you will come up against my people Israel like a cloud to cover the land;</span></div>
+    <div class="ld-l1"><span class="lang-pt">e eu te trarei contra a minha terra,</span><span class="lang-en">it will come about in the last days,</span></div>
+    <div class="ld-l1"><span class="lang-pt">para que as nações me conheçam,</span><span class="lang-en">and I will bring you against my land,</span></div>
+    <div class="ld-l1"><span class="lang-pt">quando eu manifestar a minha santidade por ti perante os seus olhos, ó Gogue.&rdquo;</span><span class="lang-en">so that the nations may know me,</span></div>
+    <div class="ld-v">
+      <span class="vs">17</span><span class="lang-pt">Assim diz Yahweh Elohim:</span><span class="lang-en">when I display my holiness through you before their eyes, O Gog.&rdquo;</span></div>
+    <div class="ld-l1"><span class="lang-pt">&ldquo;És tu aquele de quem falei nos dias passados,</span><span class="lang-en">Thus says Yahweh Elohim,</span></div>
+    <div class="ld-l1"><span class="lang-pt">por meio dos meus servos os profetas de Israel,</span><span class="lang-en">&ldquo;Are you the one of whom I spoke in former days,</span></div>
+    <div class="ld-l1"><span class="lang-pt">que profetizaram naqueles dias, por anos,</span><span class="lang-en">through my servants the prophets of Israel,</span></div>
+    <div class="ld-l1"><span class="lang-pt">que eu te traria contra eles?</span><span class="lang-en">who prophesied in those days, for years,</span></div>
+    <div class="ld-v">
+      <span class="vs">18</span><span class="lang-pt">Acontecerá naquele dia, quando Gogue vier contra a terra de Israel,&rdquo;</span><span class="lang-en">that I would bring you against them?</span></div>
+    <div class="ld-l1"><span class="lang-pt">declara Yahweh Elohim,</span><span class="lang-en">It will come about on that day,</span></div>
+    <div class="ld-l1"><span class="lang-pt">que a minha ira ardente subirá com a minha cólera,</span><span class="lang-en">when Gog comes against the land of Israel,&rdquo;</span></div>
+    <div class="ld-v">
+      <span class="vs">19</span><span class="lang-pt">e no meu zelo, no fogo da minha ira eu declaro,</span><span class="lang-en">declares Yahweh Elohim,</span></div>
+    <div class="ld-l1"><span class="lang-pt">que naquele dia certamente haverá um grande terremoto na terra de Israel,</span><span class="lang-en">&quot;that my hot-anger will go up with my anger,</span></div>
+    <div class="ld-v">
+      <span class="vs">20</span><span class="lang-pt">e tremerão diante de mim,</span><span class="lang-en">and in my zeal, in the fire of my anger I declare,</span></div>
+    <div class="ld-l1"><span class="lang-pt">os peixes do mar e as aves dos céus,</span><span class="lang-en">that on that day there will surely be a great earthquake in the land of Israel,</span></div>
+    <div class="ld-l1"><span class="lang-pt">os animais do campo e todos os répteis que rastejam sobre a terra,</span><span class="lang-en">and they will shake before me,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e todos os humanos que estão sobre a face da terra,</span><span class="lang-en">the fish of the sea, and the birds of the skies,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e os montes serão derrubados,</span><span class="lang-en">the beasts of the field, and all the creepers that creep on the land,</span></div>
+    <div class="ld-l1"><span class="lang-pt">as veredas íngremes cairão,</span><span class="lang-en">and all the humans who are on the face of the ground,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e todo muro cairá por terra,</span><span class="lang-en">and the mountains will be thrown down,</span></div>
+    <div class="ld-v">
+      <span class="vs">21</span><span class="lang-pt">e chamarei a espada contra ele em todos os meus montes,&rdquo;</span><span class="lang-en">the steep pathways will fall,</span></div>
+    <div class="ld-l1"><span class="lang-pt">declara Yahweh Elohim,</span><span class="lang-en">and every wall will fall to the land,</span></div>
+    <div class="ld-l1"><span class="lang-pt">&ldquo;a espada de cada um será contra o seu irmão.</span><span class="lang-en">and I will call for a sword against him on all my mountains,&rdquo;</span></div>
+    <div class="ld-v">
+      <span class="vs">22</span><span class="lang-pt">E entrarei em juízo com ele,</span><span class="lang-en">declares Yahweh Elohim,</span></div>
+    <div class="ld-l1"><span class="lang-pt">com praga e com sangue;</span><span class="lang-en">&quot;every man&rsquo;s sword will be against his brother.</span></div>
+    <div class="ld-l1"><span class="lang-pt">e chuva diluviana, e pedras de granizo,</span><span class="lang-en">and I will enter into judgment with him,</span></div>
+    <div class="ld-l1"><span class="lang-pt">fogo e enxofre,</span><span class="lang-en">with plague and with blood;</span></div>
+    <div class="ld-l1"><span class="lang-pt">fazerei chover sobre ele,</span><span class="lang-en">and flooding rain, and hailstones,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e sobre as suas tropas,</span><span class="lang-en">fire and brimstone,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e sobre os muitos povos que estão com ele,</span><span class="lang-en">I will rain down upon him,</span></div>
+    <div class="ld-v">
+      <span class="vs">23</span><span class="lang-pt">e mostrar-me-ei grande,</span><span class="lang-en">and upon his troops,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e mostrar-me-ei santo,</span><span class="lang-en">and upon the many peoples who are with him,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e darei a conhecer a mim mesmo aos olhos de muitas nações;</span><span class="lang-en">and I will show myself to be great,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e saberão que eu sou Yahweh.&rdquo;&rsquo;</span><span class="lang-en">and I will show myself to be holy,</span></div>
+  </div>
+</div>
+
+<h3 class="scripture-label reveal"><span class="lang-pt">Ezequiel 39:1-29. Tradução do Instrutor</span><span class="lang-en">Ezekiel 39:1-29. Instructor&rsquo;s Translation</span></h3>
+<div class="ld reveal">
+  <div class="ld-box">
+    <div class="ld-v">
+      <span class="vs">1</span><span class="lang-pt">E tu, filho do homem,</span><span class="lang-en">And you, son of man,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">profetiza contra Gogue e dize:</span><span class="lang-en">prophesy against Gog and say,</span></div>
+    <div class="ld-l1"><span class="lang-pt">&lsquo;Assim diz Yahweh Elohim,</span><span class="lang-en">&lsquo;Thus says Yahweh Elohim,</span></div>
+    <div class="ld-l1"><span class="lang-pt">&ldquo;Eis que eu estou contra ti, ó Gogue,</span><span class="lang-en">&ldquo;Behold, I am against you, O Gog,</span></div>
+    <div class="ld-l1"><span class="lang-pt">príncipe de Rosh, Meseque e Tubal;</span><span class="lang-en">prince of Rosh, Meshech and Tubal;</span></div>
+    <div class="ld-v">
+      <span class="vs">2</span><span class="lang-pt">e te farei virar,</span><span class="lang-en">and I will turn you around,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">e te impelirei,</span><span class="lang-en">and I will drive you on,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e te farei subir das partes mais remotas do norte,</span><span class="lang-en">and I will make you go up from the remotest parts of the north,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e te trarei contra os montes de Israel,</span><span class="lang-en">and I will bring you against the mountains of Israel,</span></div>
+    <div class="ld-v">
+      <span class="vs">3</span><span class="lang-pt">e ferirei o teu arco da tua mão esquerda,</span><span class="lang-en">and I will strike your bow from your left hand,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">e farei as tuas flechas da tua mão direita caírem;</span><span class="lang-en">and I will make your arrows from your right hand fall down;</span></div>
+    <div class="ld-v">
+      <span class="vs">4</span><span class="lang-pt">sobre os montes de Israel cairás,</span><span class="lang-en">upon the mountains of Israel you will fall,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">tu e todo o teu exército,</span><span class="lang-en">you and all your troops,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e os povos que estão contigo;</span><span class="lang-en">and the peoples who are with you;</span></div>
+    <div class="ld-l1"><span class="lang-pt">darei-te como comida a aves de rapina</span><span class="lang-en">I will give you as food to birds of prey,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e aos animais selvagens do campo,</span><span class="lang-en">and to the wild beasts of the field,</span></div>
+    <div class="ld-v">
+      <span class="vs">5</span><span class="lang-pt">sobre o campo aberto cairás;</span><span class="lang-en">you will fall on the open field;</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">pois eu o disse,</span><span class="lang-en">for it is I who have spoken,&rdquo;</span></div>
+    <div class="ld-l1"><span class="lang-pt">declara Yahweh Elohim.</span><span class="lang-en">declares Yahweh Elohim.</span></div>
+    <div class="ld-v">
+      <span class="vs">6</span><span class="lang-pt">&ldquo;E enviarei fogo sobre Magogue,</span><span class="lang-en">&quot;And I will send fire upon Magog,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">e sobre os que habitam as terras costeiras em segurança,</span><span class="lang-en">and on those who inhabit the coastlands in security,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e saberão que eu sou Yahweh,</span><span class="lang-en">and they will know that I am Yahweh,</span></div>
+    <div class="ld-v">
+      <span class="vs">7</span><span class="lang-pt">e farei conhecido o meu santo nome no meio do meu povo Israel;</span><span class="lang-en">and I will make known my holy name in the midst of my people Israel;</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">e não deixarei mais profanar o meu santo nome,</span><span class="lang-en">and I will not let my holy name be profaned anymore,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e as nações saberão que eu sou Yahweh, o Santo em Israel.</span><span class="lang-en">and the nations will know that I am Yahweh, the Holy One in Israel.</span></div>
+    <div class="ld-v">
+      <span class="vs">8</span><span class="lang-pt">Eis que vem e se cumprirá,&rdquo;</span><span class="lang-en">Behold, it is coming and it shall be done,&rdquo;</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">declara Yahweh Elohim,</span><span class="lang-en">declares Yahweh Elohim,</span></div>
+    <div class="ld-l1"><span class="lang-pt">&ldquo;o dia de que tenho falado.&rdquo;</span><span class="lang-en">&quot;the day of which I have spoken.&rdquo;</span></div>
+    <div class="ld-v">
+      <span class="vs">9</span><span class="lang-pt">&ldquo;E os habitantes das cidades de Israel sairão,</span><span class="lang-en">&quot;And the inhabitants of the cities of Israel will go out,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">e farão fogueiras com as armas e queimarão,</span><span class="lang-en">and they will make fires with the weapons and burn them,</span></div>
+    <div class="ld-l1"><span class="lang-pt">mesmo escudos pequenos e escudos grandes,</span><span class="lang-en">even small shields and large shields,</span></div>
+    <div class="ld-l1"><span class="lang-pt">arcos e flechas,</span><span class="lang-en">bows and arrows,</span></div>
+    <div class="ld-l1"><span class="lang-pt">porretes e lanças,</span><span class="lang-en">war clubs and spears,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e farão fogueiras deles por sete anos.</span><span class="lang-en">and they will make fires of them for seven years.</span></div>
+    <div class="ld-v">
+      <span class="vs">10</span><span class="lang-pt">Não apanharão lenha do campo,</span><span class="lang-en">They will not pick up wood from the field,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">nem cortarão lenha das florestas,</span><span class="lang-en">or chop wood from the forests,</span></div>
+    <div class="ld-l1"><span class="lang-pt">pois farão fogueiras com as armas;</span><span class="lang-en">for they will make fires with the weapons;</span></div>
+    <div class="ld-l1"><span class="lang-pt">e tomarão o despojo dos que os despojaram,</span><span class="lang-en">and they will take the spoil of those who despoiled them,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e se apoderarão da presa dos que os saquearam,&rdquo;</span><span class="lang-en">and they will seize the plunder of those who plundered them,&rdquo;</span></div>
+    <div class="ld-l1"><span class="lang-pt">declara Yahweh Elohim.</span><span class="lang-en">declares Yahweh Elohim.</span></div>
+    <div class="ld-v">
+      <span class="vs">11</span><span class="lang-pt">&ldquo;Naquele dia darei a Gogue um lugar de sepultura ali em Israel,</span><span class="lang-en">&quot;On that day I will give Gog a burial ground there in Israel,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">o vale dos que passam, a leste do mar,</span><span class="lang-en">the valley of the passers-on east of the sea,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e ele bloqueará os que passam,</span><span class="lang-en">and it will block off those who would pass-on,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e ali enterrarão Gogue e toda a sua horda,</span><span class="lang-en">and they will bury Gog there and all his horde,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e chamar-lhe-ão &lsquo;Vale da horda de Gogue.&rsquo;</span><span class="lang-en">and they will call it, &lsquo;Valley of the horde of Gog.&rsquo;</span></div>
+    <div class="ld-v">
+      <span class="vs">12</span><span class="lang-pt">E a casa de Israel os enterrará,</span><span class="lang-en">And the house of Israel will be burying them,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">para purificar a terra,</span><span class="lang-en">in order to cleanse the land,</span></div>
+    <div class="ld-l1"><span class="lang-pt">por sete meses.</span><span class="lang-en">for seven months.</span></div>
+    <div class="ld-v">
+      <span class="vs">13</span><span class="lang-pt">E todo o povo da terra os enterrará,</span><span class="lang-en">And all the people of the land will bury them,</span>
+    </div>
+    <div class="ld-v">
+      <span class="vs">14</span><span class="lang-pt">e será para o seu nome no dia em que eu manifestar a minha honra,&rdquo;</span><span class="lang-en">and it will be for their name on the day that I display my honor,&rdquo;</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">declara Yahweh Elohim.</span><span class="lang-en">declares Yahweh Elohim.</span></div>
+    <div class="ld-l1"><span class="lang-pt">&ldquo;E designarão homens que passarão constantemente pela terra,</span><span class="lang-en">&ldquo;And they will set apart men who will constantly pass-on in the land,</span></div>
+    <div class="ld-l1"><span class="lang-pt">enterrando os que foram passando,</span><span class="lang-en">burying those who were passing-on,</span></div>
+    <div class="ld-l1"><span class="lang-pt">os que restarem sobre a face da terra,</span><span class="lang-en">those who remain on the face of the land,</span></div>
+    <div class="ld-l1"><span class="lang-pt">para a purificar.</span><span class="lang-en">in order to cleanse it.</span></div>
+    <div class="ld-l1"><span class="lang-pt">No fim de sete meses farão uma busca,</span><span class="lang-en">At the end of seven months they will make a search,</span></div>
+    <div class="ld-v">
+      <span class="vs">15</span><span class="lang-pt">e os que passam pela terra passarão,</span><span class="lang-en">and those who pass-on in the land will pass-on,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">e se alguém vir um osso de homem,</span><span class="lang-en">and if anyone sees a man&rsquo;s bone,</span></div>
+    <div class="ld-l1"><span class="lang-pt">então erigirá um marco junto dele até que os enterradores o tenham sepultado</span><span class="lang-en">then he will set up a marker by it until the buriers have buried it</span></div>
+    <div class="ld-l1"><span class="lang-pt">no vale da horda de Gogue,</span><span class="lang-en">in the valley of Gog&rsquo;s horde,</span></div>
+    <div class="ld-v">
+      <span class="vs">16</span><span class="lang-pt">e até o nome da cidade será &lsquo;Horda,&rsquo;</span><span class="lang-en">and even the name of the city will be &lsquo;Horde,&rsquo;</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">e purificarão a terra.&rdquo;&rsquo;</span><span class="lang-en">and they will cleanse the land.&rdquo;&rsquo;</span></div>
+    <div class="ld-v">
+      <span class="vs">17</span><span class="lang-pt">Quanto a ti, filho do homem,</span><span class="lang-en">As for you, son of a human,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">assim diz Yahweh Elohim:</span><span class="lang-en">thus says Yahweh Elohim,</span></div>
+    <div class="ld-l1"><span class="lang-pt">&lsquo;Fala a toda espécie de ave e a todo animal do campo:</span><span class="lang-en">&lsquo;Speak to every kind of bird and to every beast of the field,</span></div>
+    <div class="ld-l1"><span class="lang-pt">&ldquo;Ajuntai-vos e vinde,</span><span class="lang-en">&ldquo;Assemble and come,</span></div>
+    <div class="ld-l1"><span class="lang-pt">recolhei de todo lado,</span><span class="lang-en">gather from every side,</span></div>
+    <div class="ld-l1"><span class="lang-pt">para o meu sacrifício que vou sacrificar por vós todos,</span><span class="lang-en">to my sacrifice which I am going to sacrifice for you all,</span></div>
+    <div class="ld-l1"><span class="lang-pt">como um grande sacrifício sobre os montes de Israel,</span><span class="lang-en">as a great sacrifice on the mountains of Israel,</span></div>
+    <div class="ld-l1"><span class="lang-pt">para que comais carne e bebais sangue.</span><span class="lang-en">that you may eat flesh and drink blood.</span></div>
+    <div class="ld-v">
+      <span class="vs">18</span><span class="lang-pt">Comereis a carne de guerreiros poderosos,</span><span class="lang-en">You will eat the flesh of mighty warriors,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">e bebereis o sangue dos chefes da terra,</span><span class="lang-en">and you&rsquo;ll drink the blood of the chiefs of the land,</span></div>
+    <div class="ld-l1"><span class="lang-pt">carneiros, cordeiros e bodes, touros,</span><span class="lang-en">rams, lambs, and goats, bulls,</span></div>
+    <div class="ld-l1"><span class="lang-pt">gordos de Basã, todos eles.</span><span class="lang-en">fat ones of Bashan, all of them.</span></div>
+    <div class="ld-v">
+      <span class="vs">19</span><span class="lang-pt">E comereis a gordura até fartar-vos,</span><span class="lang-en">And you will eat the fat unto fulness,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">e bebereis sangue até embebedar-vos,</span><span class="lang-en">and you will drink blood until you are drunk,</span></div>
+    <div class="ld-l1"><span class="lang-pt">do meu sacrifício que tenho sacrificado por vós.</span><span class="lang-en">from my sacrifice which I have sacrificed for you.</span></div>
+    <div class="ld-v">
+      <span class="vs">20</span><span class="lang-pt">E saciar-vos-eis à minha mesa,</span><span class="lang-en">and you will be filled full at my table,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">com cavalos e carros,</span><span class="lang-en">with horses and charioteers</span></div>
+    <div class="ld-l1"><span class="lang-pt">com guerreiros poderosos e todos os homens de guerra,&rdquo;</span><span class="lang-en">with mighty warriors and all the men of war,&rdquo;</span></div>
+    <div class="ld-l1"><span class="lang-pt">declara Yahweh Elohim.</span><span class="lang-en">declares Yahweh Elohim.</span></div>
+    <div class="ld-v">
+      <span class="vs">21</span><span class="lang-pt">&ldquo;E porei a minha honra entre as nações;</span><span class="lang-en">&quot;And I will set my honor among the nations;</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">e todas as nações verão a minha justiça que executei,</span><span class="lang-en">and all the nations will see my justice which I enact,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e a minha mão que pus sobre elas.</span><span class="lang-en">and my hand which I have set on them.</span></div>
+    <div class="ld-v">
+      <span class="vs">22</span><span class="lang-pt">E a casa de Israel saberá que eu sou Yahweh seu Elohim,</span><span class="lang-en">And the house of Israel will know that I am Yahweh their Elohim,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">desse dia em diante e para sempre.</span><span class="lang-en">from that day and also onward.</span></div>
+    <div class="ld-v">
+      <span class="vs">23</span><span class="lang-pt">As nações saberão que a casa de Israel foi para o exílio</span><span class="lang-en">The nations will know that the house of Israel went into exile</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">por causa de ter agido traiçoeiramente contra mim,</span><span class="lang-en">on account of the fact that they acted treacherously against me,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e escondi a minha face deles;</span><span class="lang-en">and I hid my face from them;</span></div>
+    <div class="ld-l1"><span class="lang-pt">e os entreguei na mão de seus adversários,</span><span class="lang-en">and I gave them into the hand of their adversaries,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e todos caíram pela espada.</span><span class="lang-en">and all of them fell by the sword.</span></div>
+    <div class="ld-v">
+      <span class="vs">24</span><span class="lang-pt">Conforme a sua impureza e conforme as suas transgressões lidei com eles,</span><span class="lang-en">According to their impurity and according to their transgressions I dealt with them,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">e escondi a minha face deles.&rdquo;</span><span class="lang-en">and I hid my face from them.&rdquo;</span></div>
+    <div class="ld-v">
+      <span class="vs">25</span><span class="lang-pt">Portanto assim diz Yahweh Elohim:</span><span class="lang-en">Therefore thus says Yahweh Elohim,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">&ldquo;Agora restaurarei a sorte de Jacó,</span><span class="lang-en">&ldquo;Now I will restore the fortunes of Jacob,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e terei misericórdia de toda a casa de Israel;</span><span class="lang-en">and I will have mercy on the whole house of Israel;</span></div>
+    <div class="ld-l1"><span class="lang-pt">e mostrarei zelo pelo meu santo nome.</span><span class="lang-en">and I will show zeal for my holy name.</span></div>
+    <div class="ld-v">
+      <span class="vs">26</span><span class="lang-pt">E esquecerão a sua vergonha,</span><span class="lang-en">And they will forget their disgrace,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">e toda a sua traição que cometeram contra mim,</span><span class="lang-en">and all their treachery which they perpetrated against me,</span></div>
+    <div class="ld-l1"><span class="lang-pt">quando viverem em segurança na sua própria terra,</span><span class="lang-en">when they live securely on their own land,</span></div>
+    <div class="ld-l1"><span class="lang-pt">sem ninguém que os faça temer.</span><span class="lang-en">with no one to make them afraid.</span></div>
+    <div class="ld-v">
+      <span class="vs">27</span><span class="lang-pt">Quando os trouxer de volta dos povos,</span><span class="lang-en">When I bring them back from the peoples,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">e os ajuntar das terras de seus inimigos,</span><span class="lang-en">and when I gather them from the lands of their enemies,</span></div>
+    <div class="ld-l1"><span class="lang-pt">então manifestarei a minha santidade por meio deles aos olhos das muitas nações,</span><span class="lang-en">then I will display my holiness through them in the eyes of the many nations,</span></div>
+    <div class="ld-v">
+      <span class="vs">28</span><span class="lang-pt">e saberão que eu sou Yahweh seu Elohim,</span><span class="lang-en">and they will know that I am Yahweh their Elohim,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">porque os fiz ir para o exílio entre as nações,</span><span class="lang-en">because I made them go into exile among the nations,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e os ajuntei de novo para a sua própria terra;</span><span class="lang-en">and I gathered them again to their own land;</span></div>
+    <div class="ld-l1"><span class="lang-pt">e não deixarei ali restar nenhum deles por mais tempo,</span><span class="lang-en">and I will leave remaining none of them there any longer,</span></div>
+    <div class="ld-v">
+      <span class="vs">29</span><span class="lang-pt">e não esconderei mais a minha face deles,</span><span class="lang-en">and I will not hide my face from them any longer,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">pois derramarei o meu Espírito sobre a casa de Israel,&rdquo;</span><span class="lang-en">for I will have poured out my Spirit on the house of Israel,&rdquo;</span></div>
+    <div class="ld-l1"><span class="lang-pt">declara Yahweh Elohim.&rsquo;&rdquo;</span><span class="lang-en">declares Yahweh Elohim.&rsquo;&rdquo;</span></div>
+  </div>
+</div>
+
+<h3 class="sub reveal"><span class="lang-pt">A Identidade de Gogue</span><span class="lang-en">The Identity of Gog</span></h3>
+<p class="body reveal"><span class="lang-pt">Em Ezequiel 38:2 encontramos &ldquo;Gogue, de Magogue, príncipe supremo de Meseque e Tubal.&rdquo; Mas quem é Gogue? O nome Gogue é derivado primeiro da tabela das nações em Gênesis 10:2 (os filhos de Jafé, todos localizados no norte e no Mediterrâneo ocidental). O título Gogue pode estar enraizado em uma figura histórica (= Giges/Gugu, rei da Lídia na Ásia Menor ocidental durante o final do século VII a.C. e início do século VI a.C.).</span><span class="lang-en">In Ezekiel 38:2 we meet &ldquo;Gog of Magog, chief prince of Meshech and Tubal.&rdquo; But who is Gog? The name Gog is derived first of all from the table of nations in Genesis 10:2 (the sons of Japeth, all located in the north and western Mediterranean). The title Gog could rooted in a historical figure (= Gyges/Gugu, king of Lydia in west Asia Minor during the late 7th-early 6th century B.C.E.).</span></p>
+<p class="body reveal"><span class="lang-pt">&ldquo;O nome parece relacionar-se com alguém conhecido pelos gregos como Giges e pelos assírios como Gugu, que foi um poderoso rei da Lídia na Ásia Menor ocidental na primeira metade do século VII. Meseque e Tubal, caracterizados em 32:26 como um poder do passado no mundo, são considerados ressurgentes, e a velha ameaça volta para assombrar seus vizinhos do sul ... Provavelmente essa memória, corrente na Babilônia, havia chegado aos exilados judeus. Aqui eles estão sob a autoridade de &lsquo;Gogue.&rsquo; Como com os nomes das nações no cap. 38, aqui uma grande figura do passado é evidentemente usada para definir uma ameaça futura, assim como poderíamos falar de um novo Hitler.&rdquo;</span><span class="lang-en">&ldquo;The name seems to relate to one known to the Greeks as Gyges and to the Assyrians as Gugu, who was a powerful king of Lydia in west Asia Minor in the first half of the 7th century. Meshech and Tubal, characterized in 32:26 as a bygone power in the world, are regarded as resurgent, and the old menace come back to haunt their southern neighbors … Probably this memory, current in Babylonia, had reached the Jewish exiles. Here they are under the authority of &lsquo;Gog.&rsquo; As with the names of nations in ch. 38, so here a great figure of the past is evidently used to define a future threat, just as we might speak of a new Hitler.&rdquo;</span></p>
+<p class="body reveal"><span class="lang-pt">Gyges e a Lídia nunca foram uma ameaça a Israel de forma alguma, mas eram conhecidos como uma antiga superpotência, o que os tornava ideais como imagem profética para as nações rebeldes. Gogue em Ezequiel 38-39 é uma figura arquetípica e simbólica que incorpora todas as características dos inimigos históricos de Israel. Ele representa todas as nações em rebelião contra Deus que devem ser derrotadas antes da restauração de todas as coisas.</span><span class="lang-en">Gyges and Lydia were never a threat to Israel in any way, but were known as an ancient superpower, which made them ideal as a prophetic image for the rebellious nations. Gog in Ezekiel 38-39 is an archetypal and symbolic figure who embodies all the features of Israel&rsquo;s historical enemies. He represents all the nations in rebellion against God who must be defeated before the restoration of all things.</span></p>
+
+<h2 class="section reveal"><span class="lang-pt">Os Aliados de Gogue</span><span class="lang-en">Gog&rsquo;s Allies</span></h2>
+<p class="body reveal"><span class="lang-pt">Há sete nações nomeadas como aliadas de Gogue, representando as fronteiras da consciência geográfica de Israel e as quatro direções da bússola:</span><span class="lang-en">There seven nations named as the allies of Gog, representing the fringes of Israel&rsquo;s geographical awareness and the four directions of their compass.</span></p>
+<ul class="bullets reveal">
+  <li><span class="lang-pt"><strong>Norte:</strong> Meseque, Tubal (Ez 38:3, interior da Anatólia = Turquia moderna)</span><span class="lang-en"><strong>North:</strong> Meshek, Tubal (Ezek. 38:3, interior of Anatolia = Modern Turkey)</span></li>
+  <li><span class="lang-pt"><strong>Leste:</strong> Pérsia (Ez 38:5)</span><span class="lang-en"><strong>East:</strong> Persia (Ezek. 38:5)</span></li>
+  <li><span class="lang-pt"><strong>Sul:</strong> Cuxe, Pute (Ez 38:5, Etiópia, Líbia)</span><span class="lang-en"><strong>South:</strong> Cush, Put (Ezek. 38:5, Ethiopia, Libya)</span></li>
+  <li><span class="lang-pt"><strong>Oeste:</strong> Gômer, Bete-Togarma (Ez 38:7, noroeste distante na Anatólia ocidental e norte na Ucrânia)</span><span class="lang-en"><strong>West:</strong> Gomer, Beth-Togarmah (Ezek. 38:7, far NW into Western Anatolia and north into Ukraine)</span></li>
+</ul>
+<p class="body reveal"><span class="lang-pt">Gogue como Arquétipo da Rebelião. Gogue e as suas hordas são uma amálgama literária de todo o retrato da tradição profética das nações rebeldes. Gogue e os seus exércitos são descritos com uma pastiche de linguagem e imagética das descrições de Ezequiel do Egito e de Tiro, bem como das descrições da Assíria e da Babilônia de muitos outros textos proféticos.</span><span class="lang-en">Gog as an Archetype of Rebellion. Gog and his hordes are a literary amalgam of the entire prophetic tradition&rsquo;s portrait of the rebellious nations. Gog and his armies are described with a pastiche of language and imagery from Ezekiel&rsquo;s descriptions of Egypt and Tyre, as well as descriptions of Assyria and Babylon from many other prophetic texts.</span></p>
+
+<h3 class="sub reveal"><span class="lang-pt">Gogue como o Faraó Supremo</span><span class="lang-en">Gog as the Ultimate Pharaoh</span></h3>
+<p class="body reveal"><span class="lang-pt">Gogue e as suas hordas são retratados como o Faraó supremo. Yahweh usa os seus corações duros e egoístas para levá-los em direção à própria derrota. A iniciativa divina e o pecado humano se entrelaçam aqui de forma semelhante a Êxodo 1-14 e Isaías 7-14 e 36-39. Yahweh inicia o chamado e a convocação de Gogue (38:4, 7, 16), mas Gogue vem contra Israel com os seus próprios motivos egoístas (38:10-13). Gogue é o inimigo de Yahweh (38:3), mas também um instrumento no seu plano divino (38:17).</span><span class="lang-en">Gog and his hoards are depicted as the ultimate Pharaoh. Yahweh uses their hard and selfish hearts to lead them toward their own defeat. Divine initiative and human sin interplay here in a similar way to Exodus 1-14 and Isaiah 7-14 and 36-39. Yahweh initiates calling and summoning Gog (38:4, 7, 16), yet Gog comes against Israel with his own selfish motives (38:10-13). Gog is Yahweh&rsquo;s enemy (38:3), yet also an instrument in his divine plan (38:17).</span></p>
+<p class="body reveal"><span class="lang-pt">Em contraste com os instrumentos de Yahweh, Assíria e Babilônia, a Gogue não é permitido fazer nenhum dano. Israel não desempenha nenhum papel ativo na defesa ou no ataque, mas Gogue é convocado e derrotado por Yahweh sozinho, como uma demonstração do seu poder e santidade (ver Êx 14:13, 17-18).</span><span class="lang-en">In contrast to Yahweh&rsquo;s instruments Assyria and Babylon, Gog is allowed to do no harm. Israel plays no active role in defense or attack, but Gog is summoned and defeated by Yahweh alone, as a demonstration of his power and holiness (see Exod. 14:13, 17-18).</span></p>
+
+<h3 class="sub reveal"><span class="lang-pt">Yahweh, Deus Sobre Todas as Nações</span><span class="lang-en">Yahweh, God Over All Nations</span></h3>
+<p class="body reveal"><span class="lang-pt">O objetivo final de Yahweh é ser conhecido entre as nações (&ldquo;saberão que eu sou Yahweh&rdquo; repetido 7x, extraído de Ez 37:28). Mas Yahweh quer ser conhecido como o Deus sobre toda a criação, não apenas como a divindade nacional de Israel. Os oráculos concluem com o duplo objetivo de Yahweh em Ezequiel 39:21-23. Yahweh terá mostrado a sua justiça (versículo 21) de duas maneiras.</span><span class="lang-en">Yahweh&rsquo;s ultimate goal is to be known among the nations (&ldquo;they will know that I am Yahweh&rdquo; repeated 7x, cued from Ezek. 37:28). But Yahweh wants to be known as the God over all creation, not only as the national deity of Israel. The oracles conclude with Yahweh&rsquo;s double goal in Ezekiel 39:21-23. Yahweh will have shown his justice (verse 21) in two ways.</span></p>
+
+<h3 class="sub reveal"><span class="lang-pt">Esperança</span><span class="lang-en">Hope</span></h3>
+<p class="body reveal"><span class="lang-pt">O quadro conclusivo (39:21-29) retoma temas de todos os oráculos anteriores de esperança em Ezequiel 34-37 com novas ênfases: Restaurar as fortunas (39:25 recorda 16:53-58); Compaixão (39:25, primeira ocorrência no livro até agora); Lembrar do pecado passado (39:26 recorda 16:61-63 e 36:31); Retorno à terra do exílio (39:27 recorda 28:25, 34:13, 36:24, 37:21); Derramar o Espírito (39:29, ver também &ldquo;porei o meu Espírito sobre vós&rdquo; em 36:27; &ldquo;derramar o Espírito&rdquo; ocorre em outro lugar apenas em Is 32:15 e 44:3; Jl 2:28; Zc 12:10).</span><span class="lang-en">The concluding frame (39:21-29) picks up themes from all the previous oracles of hope in Ezekiel 34-37 with some new emphases. Restore the fortunes (39:25 recalls 16:53-58); Compassion (39:25, first occurrence in the book so far); Remembering past sin (39:26 recalls 16:61-63 and 36:31); Return to the land from exile (39:27 recalls 28:25, 34:13, 36:24, 37:21); Pouring out the Spirit (39:29, see also &ldquo;put my Spirit on you&rdquo; in 36:27; &ldquo;pour the Spirit&rdquo; occurs elsewhere only in Isa. 32:15 and 44:3; Joel 2:28; Zech. 12:10).</span></p>
+
+<h2 class="section reveal"><span class="lang-pt">Módulo 6: A Visão do Templo de Ezequiel</span><span class="lang-en">Module 6: Ezekiel&rsquo;s Temple Vision</span></h2>
+<p class="body reveal"><span class="lang-pt">SESSÕES 25-29. À medida que o livro conclui, faça um tour pela visão do novo templo de Ezequiel e visualize mais um pedaço do mosaico de um novo Céu e nova Terra.</span><span class="lang-en">SESSIONS 25-29. As the book concludes, tour Ezekiel&rsquo;s vision of God&rsquo;s new temple and glimpse yet another piece of the mosaic of a renewed Heaven and Earth.</span></p>
+
+<h3 class="reflection-h reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+<div class="reflection reveal">
+  <p><span class="lang-pt">Que questões ou conflitos não resolvidos os oráculos de Gogue abordam?</span><span class="lang-en">What questions or unresolved conflicts do the Gog oracles address?</span></p>
+</div>
+
+</div>
+
+<script>
+  function setLang(lang){document.documentElement.setAttribute('lang',lang);try{localStorage.setItem('ezekiel-s24-lang',lang);}catch(e){}var pt=document.getElementById('lang-pt'),en=document.getElementById('lang-en');if(lang==='pt'){pt.className="px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";en.className="px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";}else{en.className="px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";pt.className="px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";}}
+  document.addEventListener('DOMContentLoaded',function(){var l;try{l=localStorage.getItem('ezekiel-s24-lang');}catch(e){}if(l=='en'){setLang('en');}});
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:0.08});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>

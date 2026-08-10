@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><span class="lang-pt">Sessão 23: Gogue e a Serpente</span><span class="lang-en">Session 23: Gog and the Snake</span></title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
+  .heb { font-family: 'SBL Hebrew','Times New Roman',serif; font-size: 1.05em; direction: rtl; unicode-bidi: embed; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
+  .ref:hover { color: #2563eb; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+
+  /* ---------- Literary design chips (Ezekiel 3:16-27) ---------- */
+  .ld { margin: 1.6rem 0; }
+  .ld-box { border: 1px solid #c4ccd6; border-radius: 10px; padding: .9rem 1.1rem; background: #fff; }
+  .design-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+  .design-col { border: 1px solid #c4ccd6; border-radius: 10px; padding: .8rem 1rem; background: #f8fafc; }
+  .design-h { font-size: .95rem; font-weight: 700; color: #27364a; margin-bottom: .5rem; }
+  .design-row { display: flex; gap: .6rem; padding: .4rem 0; border-bottom: 1px solid #e1e6ee; }
+  .design-row:last-child { border-bottom: none; }
+  .design-row .vs { flex: 0 0 auto; font-weight: 700; color: #5869cd; font-size: .85rem; min-width: 62px; }
+  .ld-row { display: flex; align-items: center; gap: .8rem; padding: .35rem 0; border-bottom: 1px solid #eef1f4; }
+  .ld-row:last-child { border-bottom: none; }
+  .ld-tag { display: inline-flex; align-items: center; justify-content: center; min-width: 1.6rem; height: 1.6rem; border-radius: 6px; background: #5869cd; color: #fff; font-weight: 800; font-size: .95rem; flex-shrink: 0; }
+  .period-wrap { display: flex; flex-wrap: wrap; gap: .9rem; margin: 1rem 0; }
+  .period { flex: 1 1 0; min-width: 200px; border: 1px solid #c4ccd6; border-radius: 10px; overflow: hidden; }
+  .period-h { background: #5869cd; color: #fff; font-weight: 800; text-align: center; padding: .5rem; font-size: 1.05rem; }
+  .period-row { padding: .45rem .6rem; border-bottom: 1px solid #eef1f4; display: flex; justify-content: space-between; gap: .5rem; }
+  .period-row:last-child { border-bottom: none; }
+  .period-row .rng { font-weight: 700; color: #4f5669; }
+  .ld-v { font-size: 1.04rem; line-height: 2.05; color: #1f2937; }
+  .ld-v .vs { font-size: .72em; color: #4b5563; vertical-align: super; margin-right: 7px; font-weight: 700; }
+  .chip { display: inline; padding: 2px 7px; border-radius: 5px; font-weight: 700; line-height: 1.95; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  .chip-word  { background: #efe8db; color: #645537; }
+  .chip-watch { background: #be4967; color: #ffffff; }
+  .chip-death { background: #fae4c4; color: #91362e; }
+  .chip-life  { background: #ccf1fa; color: #245791; }
+  .chip-person{ background: #e4e8ed; color: #4f5669; }
+  .chip-purple{ background: #7e62bc; color: #ffffff; }
+  .chip-beige { background: #fae4c4; color: #91362e; }
+  .chip-olive2 { background: #816f4d; color: #ffffff; }
+  .chip-green { background: #d3f2cd; color: #2b6146; }
+  .chip-rose { background: #f9e3de; color: #972a4e; }
+  .chip-lilac { background: #e6e6fa; color: #5d4897; }
+  .chip-terra { background: #b5543a; color: #ffffff; }
+  .chip-cov { background: #d3f2cd; color: #2b6146; }
+  .chip-naked { background: #ccf1fa; color: #245791; }
+  .chip-birth { background: #fae4c4; color: #816f4d; }
+  .chip-mound { background: #b9eff7; color: #00626f; }
+  .chip-gray  { background: #e4e8ed; color: #4f5669; }
+  .chip-teal  { background: #cceff5; color: #097d8d; }
+  .chip-blue-d { background: #5869cd; color: #ffffff; }
+  .chip-blue-l { background: #ccf1fa; color: #245791; }
+  .chip-live { background: #d9ecfd; color: #404ca6; }
+  .chip-terra { background: #b5543a; color: #ffffff; }
+  .chip-lav { background: #e6e6fa; color: #5d4897; }
+  .chip-green-d { background: #3a8060; color: #ffffff; }
+  .chip-maroon { background: #742626; color: #ffffff; }
+  .chip-teal-d { background: #004d58; color: #ffffff; }
+  .chip-peri { background: #b9eff7; color: #404ca6; }
+  .t-terra { color: #b5543a; font-weight: 700; }
+  .t-purple { color: #9855af; font-weight: 700; }
+  .t-green { color: #3a8060; font-weight: 700; }
+  .t-dark { color: #181d36; font-weight: 800; }
+  .t-gray { color: #4f5669; font-weight: 700; }
+  .chip-wine-d { background: #751f40; color: #ffffff; }
+  .chip-purple-d { background: #9855af; color: #ffffff; }
+  .chip-slate { background: #3e4054; color: #ffffff; }
+  .t-blue { color: #3678b4; font-weight: 700; }
+  .t-red { color: #be4967; font-weight: 700; }
+  .t-olive { color: #645537; font-weight: 700; }
+  .speech-label { display: inline-block; background: #efe8db; color: #645537; font-weight: 700; font-size: 0.8rem; padding: 0.15rem 0.7rem; border-radius: 9999px; margin: 0.5rem 0 0.3rem; }
+  .chip-red   { background: transparent; color: #91362e; font-weight: 700; }
+  .chip-green { background: #d3f2cd; color: #2b6146; }
+  .chip-rose { background: #f9e3de; color: #972a4e; }
+  .chip-lilac { background: #e6e6fa; color: #5d4897; }
+  .chip-terra { background: #b5543a; color: #ffffff; }
+  .chip-cov { background: #d3f2cd; color: #2b6146; }
+  .chip-naked { background: #ccf1fa; color: #245791; }
+  .chip-birth { background: #fae4c4; color: #816f4d; }
+  .chip-mound { background: #b9eff7; color: #00626f; }
+  .ld-em { font-weight: 800; color: #181d36; }
+  .ld-ltr { color: #4f5669; font-weight: 700; font-size: .9em; margin-right: 4px; }
+  .ld-l1 { margin-left: 1.1rem; } .ld-l2 { margin-left: 2.1rem; } .ld-l3 { margin-left: 3.1rem; } .ld-l4 { margin-left: 4.1rem; } .ld-l5 { margin-left: 5.1rem; }
+  .gen-label { margin: 1.4rem 0 .4rem; padding: .45rem 1rem; background: #f3f4f6; border-left: 4px solid #6b7384; border-radius: 0 8px 8px 0; font-size: .95rem; color: #3e4054; }
+  @media (max-width: 640px) { .ld-l1 { margin-left: .4rem; } .ld-l2 { margin-left: 1.1rem; } .ld-l3 { margin-left: 1.8rem; } .ld-l4 { margin-left: 2.5rem; } .ld-l5 { margin-left: 3.2rem; } }
+  .reflection { background: #f3f5f9; border: 1px solid #e1e6ee; border-left: 4px solid #5869cd; border-radius: 12px; padding: 1.4rem 1.6rem; margin: 2.2rem 0 .5rem; }
+  .reflection-h { font-weight: 800; color: #3b4a9e; margin-bottom: .6rem; font-size: 1.05rem; }
+  .reflection p { color: #333; line-height: 1.7; }
+  .figure { margin: 1.8rem 0; }
+  .figure img { display: block; }
+
+  /* ---------- Scripture blocks ---------- */
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+  .scripture:hover { border-left-color: #9aa7b8; }
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+  .mini { font-size: 1rem; font-weight: 700; color: #17181a; margin: 1.3rem 0 .35rem; }
+  .trans-label { font-weight: 800; color: #17181a; font-size: 1rem; margin: 1.2rem 0 .4rem; }
+  .trans-sub { color: #4f5669; font-size: .9rem; margin-bottom: .6rem; }
+  .scripture-type { color: #586574; font-weight: 700; font-size: .72em; vertical-align: super; margin-left: .4rem; }
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+  .scripture-text sup.vs { font-size: .72em; color: #333; vertical-align: super; margin-right: 2px; }
+  .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem; }
+  .quote { border-left: 4px solid #aeb6bf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a3f47; font-style: italic; }
+  .quote cite { display: block; font-style: normal; font-size: .86rem; color: #6a7280; margin-top: .5rem; }
+  .points { margin: 1rem 0 1.2rem 1.4rem; padding: 0; }
+  .points li { margin-bottom: .65rem; line-height: 1.7; }
+  .book-link { color: #1a5fb4; text-decoration: underline; font-style: normal; }
+
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
+  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
+  .nav-btn:hover { background: #f1f5f9; }
+  .nav-back { left: 1rem; }
+  .nav-lang { right: 1rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #2563eb; transform-origin: 0 0; transform: scaleX(0); z-index: 100; }
+  .page-footer { margin-top: 3.5rem; padding-top: 1rem; border-top: 1px solid #e5e9f0; display: flex; justify-content: space-between; font-size: .82rem; color: #8a93a3; font-weight: 600; }
+  .page-footer .lang-pt, .page-footer .lang-en { display: inline; }
+</style>
+</head>
+<body class="bg-white">
+
+<div id="reading-progress" aria-hidden="true"></div>
+
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
+  </div>
+</div>
+
+
+
+
+
+<body class="bg-white text-gray-900">
+<div class="max-w-4xl mx-auto px-4 py-6">
+<h1 class="title reveal"><span class="lang-pt">Sessão 23: Gogue e a Serpente</span><span class="lang-en">Session 23: Gog and the Snake</span></h1>
+<hr class="rule">
+
+<h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+<ul class="takeaways reveal">
+  <li><span class="lang-pt">Gogue representa a oposição aos propósitos de Deus por parte de todas as outras nações que não entraram na história de Israel.</span><span class="lang-en">Gog represents opposition to God&rsquo;s purposes from all the other nations that have not entered Israel&rsquo;s story.</span></li>
+  <li><span class="lang-pt">Para Deus trazer bênção a todo o mundo, ele deve confrontar a influência da serpente em todas as nações.</span><span class="lang-en">For God to bring blessing to the whole world, he must confront the influence of the snake in all the nations.</span></li>
+  <li><span class="lang-pt">Ascendência não determina quem somos diante de Deus. Como respondemos a Deus determina o nosso relacionamento com ele.</span><span class="lang-en">Ancestry doesn&rsquo;t determine who we are before God. How we respond to God determines our relationship with God.</span></li>
+</ul>
+
+<h3 class="sub reveal"><span class="lang-pt">A Vitória de Yahweh sobre o Mal entre as Nações</span><span class="lang-en">Yahweh&rsquo;s Victory Over Evil Among the Nations</span></h3>
+<p class="body reveal"><span class="lang-pt">Em Ezequiel 38-39 dois grandes temas do início do livro são retomados:</span><span class="lang-en">In Ezekiel 38-39 two great themes from earlier in the book are taken up.</span></p>
+<ul class="bullets reveal">
+  <li><span class="lang-pt">A restauração de Israel como o povo da aliança de Yahweh, para que a sua presença gloriosa que deixou o templo possa ser restaurada.</span><span class="lang-en">The restoration of Israel as Yahweh&rsquo;s covenant people so that his glorious presence that left the temple can be restored.</span></li>
+  <li><span class="lang-pt">A restauração da reputação manchada de Yahweh entre as nações devido à desobediência e ao exílio de Israel.</span><span class="lang-en">The restoration of Yahweh&rsquo;s tarnished reputation among the nations due to Israel&rsquo;s disobedience and exile.</span></li>
+</ul>
+<p class="body reveal"><span class="lang-pt">Ezequiel 38-48 aborda esses temas em ordem reversa.</span><span class="lang-en">Ezekiel 38-48 addresses these themes in reverse order.</span></p>
+
+<h3 class="sub reveal"><span class="lang-pt">Os Oráculos de Gogue</span><span class="lang-en">The Gog Oracles</span></h3>
+<p class="body reveal"><span class="lang-pt">Estes capítulos são um hiato entre a promessa de um futuro templo em Ezequiel 37:26-28 e a sua realização nos capítulos 40-48. O assunto é como Yahweh lidará com a ainda existente ameaça do mal e da rebelião entre as nações como parte do seu plano de restaurar o seu mundo. Depois que Yahweh lidou com o mal entre o seu próprio povo da aliança, ele volta a sua atenção para as nações para fazer o mesmo.</span><span class="lang-en">These chapters are a hiatus between the promise of a future temple in Ezekiel 37:26-28 and its realization in chapters 40-48. The subject is how Yahweh will deal with the still existing threat of evil and rebellion among the nations as part of his plan to restore his world. After Yahweh has dealt with evil among his own covenant people, he turns his attention to the nations to do the same.</span></p>
+<p class="body reveal"><span class="lang-pt">O texto-chave para o qual estes capítulos olham para trás é o oráculo central dos oráculos contra as nações, Ezequiel 28:25-26, que não tratava das nações, mas da vindicação de Israel por Yahweh aos olhos das nações que os desprezaram. Especificamente, dizia que Israel seria restaurado à sua terra, vivendo em segurança &ldquo;quando eu executar juízo sobre todos os que ao redor deles os desprezam&rdquo; (28:26). Parece que os capítulos 38-39 retomam essa ideia única anterior de uma derrota divina adicional das nações rebeldes após a restauração de Israel, e a desenvolvem e expandem ainda mais.</span><span class="lang-en">The key text that these chapters look back to is the central oracle of the oracles against the nations, Ezekiel 28:25-26, which was not about the nations, but about Yahweh&rsquo;s vindication of Israel in the eyes of the nations who had scorned them. Specifically, it said that Israel would be restored back to its land, living securely &ldquo;when I execute judgment upon all those round about them who scorn them&rdquo; (28:26). It seems that chapters 38-39 take up this earlier unique idea of a further divine defeat of rebellious nations after Israel&rsquo;s restoration, and develop and expand upon it further.</span></p>
+<p class="body reveal"><span class="lang-pt">Os oráculos são estruturados em dois grandes painéis, cada um consistindo de quatro seções distintas com introduções paralelas (em Ez 38:1-4 e 39:1-2) e conclusões (Ez 38:23 e 39:21-29). O fluxo dos oráculos não segue uma lógica linear, e os capítulos estão cheios de linguagem e imagética alusiva de oráculos proféticos anteriores, juntamente com imagens grotescas e extremas.</span><span class="lang-en">The oracles are structured as two large panels, each consisting of four distinct sections with parallel introductions (in Ezek. 38:1-4 and 39:1-2) and conclusions (Ezek. 38:23 and 39:21-29). The flow of the oracles does not follow a linear logic, and the chapters are full of allusive language and imagery from earlier prophetic oracles along with grotesque, extreme images.</span></p>
+
+<h3 class="sub reveal"><span class="lang-pt">O Design Simétrico de Ezequiel 38&ndash;39</span><span class="lang-en">The Symmetrical Design of Ezekiel 38&ndash;39</span></h3>
+<div class="design-grid reveal">
+  <div class="design-col">
+    <h4 class="design-h"><span class="lang-pt">A Derrota de Gogue: Tomada 1</span><span class="lang-en">The Defeat of Gog: Take 1</span></h4>
+    <div class="design-row"><span class="vs">38:1-9</span><span class="lang-pt">Gogue e o seu exército são convocados por Yahweh aos montes de Israel</span><span class="lang-en">Gog and his army are summoned by Yahweh to the mountains of Israel</span></div>
+    <div class="design-row"><span class="vs">38:10-13</span><span class="lang-pt">Os motivos de Gogue: obter despojo</span><span class="lang-en">Gog&rsquo;s motives: to get plunder</span></div>
+    <div class="design-row"><span class="vs">38:14-16</span><span class="lang-pt">Gogue e o seu exército são convocados por Yahweh para que as nações reconheçam Yahweh</span><span class="lang-en">Gog and his army are summoned by Yahweh so that the nations acknowledge Yahweh</span></div>
+    <div class="design-row"><span class="vs">38:17-23</span><span class="lang-pt">A quádrupla derrota de Gogue: terremoto, espada, praga e inundação & fogo</span><span class="lang-en">The four-fold defeat of Gog: earthquake, sword, plague, and flood &amp; fire</span></div>
+  </div>
+  <div class="design-col">
+    <h4 class="design-h"><span class="lang-pt">A Derrota e Eliminação de Gogue: Tomada 2</span><span class="lang-en">The Defeat and Disposal of Gog: Take 2</span></h4>
+    <div class="design-row"><span class="vs">39:1-8</span><span class="lang-pt">Gogue e o seu exército são convocados e derrotados por Yahweh nos montes de Israel</span><span class="lang-en">Gog and his army are summoned and defeated by Yahweh on the mountains of Israel</span></div>
+    <div class="design-row"><span class="vs">39:9-16</span><span class="lang-pt">Os restos de Gogue são queimados, saqueados e então sepultados</span><span class="lang-en">Gog&rsquo;s remains are burned, plundered, and then buried</span></div>
+    <div class="design-row"><span class="vs">39:17-24</span><span class="lang-pt">Os restos de Gogue são consumidos num banquete sacrificial</span><span class="lang-en">Gog&rsquo;s remains are consumed in a sacrificial feast</span></div>
+    <div class="design-row"><span class="vs">39:25-29</span><span class="lang-pt">Yahweh é reconhecido entre Israel e as nações quando derrota Gogue e restaura Israel</span><span class="lang-en">Yahweh is acknowledged among Israel and the nations when he defeats Gog and restores Israel</span></div>
+  </div>
+</div>
+<div class="scripture reveal">
+  <div><span class="scripture-label"><span class="lang-pt">A Derrota de Gogue. Criado por Tim Mackie para BibleProject Classroom: Ezequiel (2021).</span><span class="lang-en">The Defeat of Gog. Created by Tim Mackie for BibleProject Classroom: Ezekiel (2021).</span></span></div>
+</div>
+
+<h3 class="sub reveal"><span class="lang-pt">As Raízes Escriturísticas dos Oráculos de Gogue</span><span class="lang-en">The Scriptural Roots of the Gog Oracles</span></h3>
+<p class="body reveal"><span class="lang-pt">Estes dois capítulos são o resultado final de um tema de longa data que começou em Gênesis 3, com a serpente enganadora e a promessa de hostilidade perpétua entre a descendência da serpente e a descendência da mulher.</span><span class="lang-en">These two chapters are the end result of a long-developing theme that began in Genesis 3, with the deceptive snake and the promise of perpetual hostility between the seed of the snake and the seed of the woman.</span></p>
+
+<h3 class="scripture-label reveal"><span class="lang-pt">Gênesis 3:14-15 NASB*</span><span class="lang-en">Genesis 3:14-15 NASB*</span></h3>
+<div class="ld reveal">
+  <div class="ld-box">
+    <div class="ld-v">
+      <span class="vs">14</span><span class="lang-pt">E Yahweh Elohim disse à serpente:</span><span class="lang-en">And Yahweh Elohim said to the snake,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">&ldquo;Porque tu fizeste isto,</span><span class="lang-en">&ldquo;Because you have done this,</span></div>
+    <div class="ld-l1"><span class="lang-pt">estás amaldiçoada mais do que todo o gado,</span><span class="lang-en">you are cursed more than all cattle,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e mais do que todo o animal do campo;</span><span class="lang-en">and more than every beast of the field;</span></div>
+    <div class="ld-l1"><span class="lang-pt">sobre o teu ventre irás,</span><span class="lang-en">on your belly you will go,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e pó comerás todos os dias da tua vida;</span><span class="lang-en">and dust you will eat all the days of your life;</span></div>
+    <div class="ld-v">
+      <span class="vs">15</span><span class="lang-pt">E porei hostilidade entre ti e a mulher,</span><span class="lang-en">And I will put hostility between you and the woman,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">e entre a tua descendência e a sua descendência;</span><span class="lang-en">and between your seed and her seed;</span></div>
+    <div class="ld-l1"><span class="lang-pt">ele ferirá a tua cabeça,</span><span class="lang-en">he shall strike your head,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e tu ferirás o seu calcanhar.&rdquo;</span><span class="lang-en">and you shall strike his heel.&rdquo;</span></div>
+  </div>
+</div>
+<p class="body reveal"><span class="lang-pt">*Palavras-Chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+<p class="body reveal"><span class="lang-pt">Esta promessa de hostilidade perpétua entre a linhagem da promessa de Deus e a linhagem dos poderes espirituais enganadores em ação na criação é desenvolvida na narrativa seguinte dos três filhos de Adão e Eva: os irmãos Caim, Abel e Sete. Caim é consumido por um animal chamado &ldquo;pecado&rdquo; que o impele a murchar a descendência da mulher. A linhagem de Caim leva à fundação da cidade de sangue em Gênesis 4:17-24 e à linhagem de Tubal-Caim. A linhagem de Adão e Eva recomeça com Sete, o que leva à adoração de Yahweh (Gn 4:26).</span><span class="lang-en">This promise of perpetual hostility between the lineage of God&rsquo;s promise and the lineage of the deceptive spiritual powers at work in creation is developed in the following narrative of Adam and Eve&rsquo;s three sons: the brothers Cain, Abel, and Seth. Cain is consumed by an animal called &ldquo;sin&rdquo; that compels him to murder the seed of the woman. Cain&rsquo;s lineage leads to the founding of the city of blood in Genesis 4:17-24 and the lineage of Tubal-Qayin. Adam and Eve&rsquo;s lineage restarts with Seth which leads to the worship of Yahweh (Gen. 4:26).</span></p>
+<p class="body reveal"><span class="lang-pt">Esta &ldquo;hostilidade fraternal&rdquo; entre a descendência da mulher e a descendência da serpente continua na história de Noé, uma nova figura de Adão, que também tem três filhos que acabam em conflito uns com os outros após as bênçãos e maldições proferidas por seu pai.</span><span class="lang-en">This &ldquo;sibling hostility&rdquo; between the seed of the woman and the seed of the snake continues in the story of Noah, a new Adam figure, who also has three sons who end up at odds with each other after the blessings and curses issued by their father.</span></p>
+
+<h3 class="scripture-label reveal"><span class="lang-pt">Gênesis 9:25-27 Tradução do Instrutor</span><span class="lang-en">Genesis 9:25-27 Instructor&rsquo;s Translation</span></h3>
+<div class="ld reveal">
+  <div class="ld-box">
+    <div class="ld-v">
+      <span class="vs">25</span><span class="lang-pt">E ele disse:</span><span class="lang-en">And he said:</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">&ldquo;Maldito seja Canaã,</span><span class="lang-en">&ldquo;Cursed be Canaan,</span></div>
+    <div class="ld-l1"><span class="lang-pt">um servo de servos ele será para seus irmãos.&rdquo;</span><span class="lang-en">a servant of servants he will be to his brothers.&rdquo;</span></div>
+    <div class="ld-v">
+      <span class="vs">26</span><span class="lang-pt">E ele disse:</span><span class="lang-en">And he said:</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">&ldquo;Bendito seja Yahweh,</span><span class="lang-en">&ldquo;Blessed be Yahweh,</span></div>
+    <div class="ld-l1"><span class="lang-pt">Deus de Sem,</span><span class="lang-en">God of Shem,</span></div>
+    <div class="ld-l1"><span class="lang-pt">e que Canaã seja servo dele/deles.&rdquo;</span><span class="lang-en">and may Canaan be a servant to him/them.&rdquo;</span></div>
+    <div class="ld-v">
+      <span class="vs">27</span><span class="lang-pt">Que Deus engrandeça Jafé,</span><span class="lang-en">May God enlarge Japheth,</span>
+    </div>
+    <div class="ld-l1"><span class="lang-pt">e que ele habite nas tendas de Sem,</span><span class="lang-en">and may he dwell in the tents of Shem</span></div>
+    <div class="ld-l1"><span class="lang-pt">e que Canaã seja servo dele/deles.&rdquo;</span><span class="lang-en">and may Canaan be a servant to him/them.&rdquo;</span></div>
+  </div>
+</div>
+
+<h3 class="sub reveal"><span class="lang-pt">Um Futuro para Jafé ... e Sem ... e Canaã</span><span class="lang-en">A Future for Japheth ... and Shem ... and Canaan</span></h3>
+<p class="body reveal"><span class="lang-pt">A palavra de Noé de que Deus &ldquo;engrandeceria&rdquo; (יפת, Yephet) Jafé joga com o seu nome em hebraico. O nome vem da raiz patah = &ldquo;tornar grande.&rdquo; Noé antecipa que o território de Jafé será expandido no futuro.</span><span class="lang-en">Noah&rsquo;s word that God would &ldquo;enlarge&rdquo; (יפת, Yephet) Japheth plays on his name in Hebrew. The name comes from the root patah = &ldquo;to make large.&rdquo; Noah anticipates that Japheth&rsquo;s territory will be expanded in the future.</span></p>
+<p class="body reveal"><span class="lang-pt">O engrandecimento de Jafé convida o leitor a estudar a lista dos descendentes de Jafé em Gênesis 10:2-5.</span><span class="lang-en">The enlarging of Japheth invites the reader to study the list of Japheth&rsquo;s descendants in Genesis 10:2-5.</span></p>
+
+<h3 class="scripture-label reveal"><span class="lang-pt">Gênesis 10:2-5 NASB*</span><span class="lang-en">Genesis 10:2-5 NASB*</span></h3>
+<div class="ld reveal">
+  <div class="ld-box">
+    <div class="ld-v">
+      <span class="vs">2</span><span class="lang-pt">Os filhos de Jafé: Gômer, Magogue, Madai, Javã, Tubal, Meseque e Tirás.</span><span class="lang-en">The sons of Japheth: Gomer and Magog and Madai and Javan and Tubal and Meshech and Tiras.</span>
+    </div>
+    <div class="ld-v">
+      <span class="vs">3</span><span class="lang-pt">Os filhos de Gômer: Asquenaz, Rifate e Togarma.</span><span class="lang-en">The sons of Gomer were Ashkenaz and Riphath and Togarmah.</span>
+    </div>
+    <div class="ld-v">
+      <span class="vs">4</span><span class="lang-pt">Os filhos de Javã: Elisá, Társis, Quitim e Dodanim.</span><span class="lang-en">The sons of Javan were Elishah and Tarshish, Kittim and Dodanim.</span>
+    </div>
+    <div class="ld-v">
+      <span class="vs">5</span><span class="lang-pt">Destes foram separadas as ilhas das nações nas suas terras ...</span><span class="lang-en">From these the islands of the nations were separated into their lands ...</span>
+    </div>
+  </div>
+</div>
+<p class="body reveal"><span class="lang-pt">*Palavras-Chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+<p class="body reveal"><span class="lang-pt">Aqui encontramos tribos e nações que formam em sua maioria a Anatólia antiga (Ásia Menor romana, Turquia moderna) e a Grécia. Noé antecipa que essas tribos e nações engrandecerão o seu território e farão o seu caminho até o território de Sem.</span><span class="lang-en">Here we find tribes and nations that mostly make up ancient Anatolia (Roman Asia Minor, modern Turkey) and Greece. Noah anticipates that these tribes and nations will enlarge their territory and make their way into the territory of Shem.</span></p>
+<p class="body reveal"><span class="lang-pt">&ldquo;Que ele habite nas tendas de Sem&rdquo; pode ser interpretado de duas maneiras diferentes.</span><span class="lang-en">&ldquo;To dwell in the tent of Shem&rdquo; could be interpreted in two different ways.</span></p>
+
+<h4 class="sub reveal"><span class="lang-pt">&ldquo;Para desapossar, para deserdar&rdquo;</span><span class="lang-en">&ldquo;To displace, to disinherit&rdquo;</span></h4>
+<p class="body reveal"><span class="lang-pt">Há alguns contextos nos quais um grupo &ldquo;habitando na tenda&rdquo; de outro é o resultado de conflito e desapossamento.</span><span class="lang-en">There are some contexts where one group &ldquo;dwelling in the tent&rdquo; of another is the result of conflict and dispossession.</span></p>
+
+<h4 class="sub reveal"><span class="lang-pt">&ldquo;Para viver juntos com&rdquo;</span><span class="lang-en">&ldquo;To live together with&rdquo;</span></h4>
+<p class="body reveal"><span class="lang-pt">Viver na mesma tenda é uma imagem de unidade em alguns textos.</span><span class="lang-en">Living in the same tent is an image of unity in some texts.</span></p>
+<p class="body reveal"><span class="lang-pt">O estado ideal do povo da aliança de Deus é &ldquo;habitar na sua tenda&rdquo;, isto é, viver com ele em paz e harmonia. Quando as nações se tornam uma &ldquo;tenda de Yahweh&rdquo;, então a humanidade verá que são irmãos que podem viver juntos em paz (Sl 133; Is 2:1-4).</span><span class="lang-en">The ideal state of God&rsquo;s covenant people is to &ldquo;dwell in his tent,&rdquo; that is, to live with him in peace and harmony. When the nations become a &ldquo;tent of Yahweh,&rdquo; then humanity will see that they are brothers who can live together in peace (Ps. 133; Isa. 2:1-4).</span></p>
+
+<h2 class="section reveal"><span class="lang-pt">Mulher Versus Serpente</span><span class="lang-en">Woman Versus Snake</span></h2>
+<div class="figure reveal">
+  <img src="img/sessao-23/p7-ill.jpeg" alt="Mulher Versus Serpente" loading="lazy">
+</div>
+
+<h3 class="reflection-h reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+<div class="reflection reveal">
+  <p><span class="lang-pt">Como a maldição de Deus sobre a serpente (Gn 3:15) e as maldições e bênçãos de Noé sobre seus filhos (Gn 9:25-27) formam o pano de fundo escriturístico para os oráculos de Gogue (Ez 38-39)?</span><span class="lang-en">How do God&rsquo;s curse on the snake (Gen. 3:15) and Noah&rsquo;s curse and blessings on his sons (Gen. 9:25-27) form the scriptural background for the Gog oracles (Ezek. 38-39)?</span></p>
+</div>
+
+</div>
+
+<script>
+  function setLang(lang){document.documentElement.setAttribute('lang',lang);try{localStorage.setItem('ezekiel-s23-lang',lang);}catch(e){}var pt=document.getElementById('lang-pt'),en=document.getElementById('lang-en');if(lang==='pt'){pt.className="px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-l-full";en.className="px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";}else{en.className="px-3.5 py-1.5 text-sm font-semibold transition-colors bg-slate-800 text-white rounded-r-full";pt.className="px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";}}
+  document.addEventListener('DOMContentLoaded',function(){var l;try{l=localStorage.getItem('ezekiel-s23-lang');}catch(e){}if(l=='en'){setLang('en');}});
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:0.08});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
