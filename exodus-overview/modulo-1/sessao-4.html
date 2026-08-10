@@ -48,20 +48,64 @@
 </style>
 </head>
 <body class="bg-white">
-  <a href="index.html" class="nav-btn nav-back"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
-  <div class="nav-lang" style="right:1rem; position:fixed; top:1rem; z-index:50; display:inline-flex; gap:.25rem;">
-    <button onclick="setLang('pt')" class="nav-btn" style="position:static" id="lang-pt-btn">PT</button>
-    <button onclick="setLang('en')" class="nav-btn" style="position:static" id="lang-en-btn">EN</button>
+<div id="reading-progress" aria-hidden="true"></div>
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
   </div>
-  <div class="max-w-4xl mx-auto px-5 py-12 md:py-16">    <h1 class="title reveal"><span class="lang-pt">Sessão 4: Um Conto de Duas Sementes</span><span class="lang-en">Session 4: A Tale of Two Seeds</span></h1>
+</div>
+<div class="max-w-4xl mx-auto px-5 py-12 md:py-16">    <h1 class="title reveal"><span class="lang-pt">Sessão 4: Um Conto de Duas Sementes</span><span class="lang-en">Session 4: A Tale of Two Seeds</span></h1>
     <hr class="rule">
     <div class="page reveal">Class Notes: Exodus Overview<br>12 of 80<br>Session 4: Becoming Moses<br>Key Takeaways<br>Moses’ naming foreshadows his role as deliverer, but it also embraces the ambiguity of his identity.<br>When God identifies himself, he also solidifies Moses’ identity.<br>Naming Moses<br>Moses’ name presents readers with several interpretive possibilities. In Hebrew, Moses means “one who draws<br>out.” This speaks of both his deliverance by the hand of Pharaoh’s daughter and his role as God’s chosen<br>deliverer. However, in Egyptian, Moses means “son of ...” potentially drawing attention to ambiguity<br>surrounding Moses’ identity.<br>Who Is Moses?<br>The beginning chapters of Exodus wrestle with questions about Moses’ identity. How is he identified in the<br>first two chapters? How does Moses’ commissioning clarify his identity? Ultimately, God speaks the words<br>that settle the questions about Moses’ identity. “I am the God of your father, God of Abraham, God of Isaac,<br>and God of Jacob” (Exod. 3:6).<br>Moses and the Betrothal Scene Pattern<br>“M. expands on the five-element betrothal type-scene identified by Robert Alter in the OT. He identifies<br>seven additional typical elements that help constitute a larger betrothal journey narrative in which the<br>betrothal type-scene is situated. The full pattern comprises the following elements: (1) a groom-to-be<br>travels to a foreign land; (2) he meets (a) young woman/women at a well; (3) someone draws water; (4) the<br>suitor gives a gift or performs an ingratiating service; (5) the suitor reveals his identity; (6) someone rushes<br>with news of his arrival to the woman's family; (7) the family responds with a greeting/invitation; (8) a<br>betrothal is arranged; (9) the suitor resides with the woman's family; (10) the suitor returns home; (11) he is<br>received by his kin at journey's end; and (12) the suitor resides with his kin. Next, M. shows how the pattern<br>is creatively adapted in various stories in OT, Intertestamental, and NT literature, including narratives about<br>Isaac, Jacob, Moses, Ruth, Saul, David, the entire story of Tobit, and the encounter of Jesus and the<br>Samaritan woman in the Fourth Gospel. Interpretation of these narratives is informed by recognition not<br>only of their conformity to the pattern but also their innovative use of it.”<br>Abstracted by: William J. Urbrock for Old Testament Abstracts<br></div>
     <div class="page reveal">Class Notes: Exodus Overview<br>13 of 80<br>For further discussion of this topic, see Martin, Michael W. (2008). “Betrothal Journey Narratives.” Catholic<br>Biblical Quarterly 70. 505-23.<br>Moses’ Hybrid Identity<br>For further discussion of Moses’ hybrid identity, see Mbuvi, Amanda. “Multicultural Moses: Reexamining and<br>Icon.” Biblical Archaeology Review Volume 45, (no. 4-5). 16-18.<br>Reflection Question<br>How does Moses’ commissioning clarify his identity?<br></div>
 </div>
   <script>
-    function setLang(l){ localStorage.setItem('exodus-s4-lang',l); document.documentElement.lang=l; var pt=document.getElementById('lang-pt-btn'), en=document.getElementById('lang-en-btn'); if(l==='pt'){pt.className='nav-btn bg-sky-600 text-white';en.className='nav-btn';} else {en.className='nav-btn bg-sky-600 text-white';pt.className='nav-btn';} }
-    (function(){ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1}); document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);}); })();
-    setLang(localStorage.getItem('exodus-s4-lang')||'pt');
-  </script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s4-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s4-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
 </body>
 </html>
