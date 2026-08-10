@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="title">Sessão 14: Uma Passagem Desafiadora sobre Línguas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html[lang="pt-BR"] .lang-en { display: none !important; }
+    html[lang="en"] .lang-pt { display: none !important; }
+    .verse-link { cursor: pointer; }
+    @media print { .nav-btn-fixed { display: none !important; } }
+  </style>
+</head>
+<body class="bg-white font-sans text-slate-800">
+  <div class="nav-btn-fixed fixed left-4 top-4 z-50">
+    <a href="../index.html"
+      class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+      <span>&larr;</span><span data-i18n="back">Voltar</span>
+    </a>
+  </div>
+  <div class="nav-btn-fixed fixed right-4 top-4 z-50">
+    <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white shadow-sm">
+      <button id="lang-pt" onclick="setLang('pt')" class="px-4 py-1.5 text-sm font-semibold transition-colors">PT</button>
+      <button id="lang-en" onclick="setLang('en')" class="px-4 py-1.5 text-sm font-semibold transition-colors">EN</button>
+      <button onclick="window.print()" title="Imprimir" class="px-4 py-1.5 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100">🖨</button>
+    </div>
+  </div>
+  <main class="mx-auto max-w-3xl px-6 py-20 md:py-24">
+    <h1 class="text-4xl font-bold text-slate-900 md:text-5xl" data-i18n="h1"><span class="lang-pt">Sessão 14: Uma Passagem Desafiadora sobre Línguas</span><span class="lang-en">Session 14: A Challenging Passage on Tongues</span></h1>
+    <hr class="my-8 border-t-2 border-slate-200" />
+    <section class="space-y-6" data-i18n="body">
+    <h2 class="text-2xl font-bold text-slate-900">Principais Lições</h2>
+    <ul class="list-disc space-y-2 pl-6 text-slate-700">
+      <li><span class="lang-pt">1 Coríntios 14:20-26 apresenta desafios interpretativos únicos.</span><span class="lang-en">1 Corinthians 14:20-26 presents unique interpretive challenges.</span></li>
+      <li><span class="lang-pt">Paulo cita Isaías 28:11-12, mas a frase não corresponde a nenhum manuscrito conhecido.</span><span class="lang-en">Paul quotes Isaiah 28:11-12, but the phrasing matches no known manuscript.</span></li>
+      <li><span class="lang-pt">É possível que 1 Coríntios 14:21-22 seja outro lugar onde Paulo cita os próprios coríntios.</span><span class="lang-en">It's possible 1 Corinthians 14:21-22 is another place where Paul quotes the Corinthians.</span></li>
+    </ul>
+    <h2 class="text-2xl font-bold text-slate-900">O Dom de Línguas</h2>
+    <p class="text-slate-700"><span class="lang-pt">Em 1 Coríntios 14:20, Paulo retoma crianças e maturidade: “Não sejais meninos nos entendimentos; mas, quanto à malícia, sede criançais; e, quanto ao entendimento, sede perfeitos (grego: τέλειοι).” Então cita a Lei. Esta é uma seção notoriamente difícil — J.B. Phillips reescreveu 14:22 mudando as palavras de Paulo ao oposto, achando que era “um deslize da pena”. Há enorme desacordo: o texto hebraico (MT) difere do grego (LXX), e a citação em 1 Coríntios difere de ambos. O debate centra-se no uso de Isaías por Paulo e no significado de σημεῖον (sinal).</span><span class="lang-en">In 1 Corinthians 14:20, Paul revisits children and maturity: "Do not be children in your minds (grow up), only be infants in evil; in thinking be fully grown (Greek: τέλειοι)." Then he cites the Law. This is notoriously difficult — J.B. Phillips rewrote 14:22 to the opposite, thinking it was "a slip of the pen." There is huge disagreement: the Hebrew (MT) differs from the Greek (LXX), and the quote in 1 Corinthians differs from both. Debate centers on Paul's use of Isaiah and the meaning of σημεῖον (sign).</span></p>
+    <h2 class="text-2xl font-bold text-slate-900">Pergunta de Reflexão</h2>
+    <p class="text-slate-700"><span class="lang-pt">Como lidar com passagens biblicas tão contestadas quanto 1 Coríntios 14:22?</span><span class="lang-en">How do we handle highly contested passages like 1 Corinthians 14:22?</span></p>
+    </section>
+  </main>
+  <script src="../js/verse-modal.js"></script>
+  <script>
+    const I18N = {"pt": {"title": "Sessão 14: Uma Passagem Desafiadora sobre Línguas", "h1": "Sessão 14: Uma Passagem Desafiadora sobre Línguas", "back": "Voltar"}, "en": {"title": "Session 14: A Challenging Passage on Tongues", "h1": "Session 14: A Challenging Passage on Tongues", "back": "Back"}};
+    function setLang(lang){
+      localStorage.setItem('bp_lang',lang);
+      document.documentElement.lang = lang==='pt'?'pt-BR':'en';
+      const t=I18N[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n'); if(t[k]!==undefined) el.innerHTML=t[k];});
+      document.title=t.title;
+      const on='bg-sky-600 text-white', off='bg-white text-slate-600 hover:bg-slate-100';
+      document.getElementById('lang-pt').className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='pt'?on:off);
+      document.getElementById('lang-en').className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='en'?on:off);
+    }
+    setLang(localStorage.getItem('bp_lang')||'pt');
+  </script>
+</body>
+</html>

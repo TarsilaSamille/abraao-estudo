@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="title">Sessão 19: Como Jesus Destruiu a Inimizade</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html[lang="pt-BR"] .lang-en { display: none !important; }
+    html[lang="en"] .lang-pt { display: none !important; }
+    .verse-link { cursor: pointer; }
+    @media print { .nav-btn-fixed { display: none !important; } }
+  </style>
+</head>
+<body class="bg-white font-sans text-slate-800">
+  <div class="nav-btn-fixed fixed left-4 top-4 z-50">
+    <a href="../index.html"
+      class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+      <span>&larr;</span><span data-i18n="back">Voltar</span>
+    </a>
+  </div>
+  <div class="nav-btn-fixed fixed right-4 top-4 z-50">
+    <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white shadow-sm">
+      <button id="lang-pt" onclick="setLang('pt')" class="px-4 py-1.5 text-sm font-semibold transition-colors">PT</button>
+      <button id="lang-en" onclick="setLang('en')" class="px-4 py-1.5 text-sm font-semibold transition-colors">EN</button>
+      <button onclick="window.print()" title="Imprimir" class="px-4 py-1.5 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100">🖨</button>
+    </div>
+  </div>
+  <main class="mx-auto max-w-3xl px-6 py-20 md:py-24">
+    <h1 class="text-4xl font-bold text-slate-900 md:text-5xl" data-i18n="h1"><span class="lang-pt">Sessão 19: Como Jesus Destruiu a Inimizade</span><span class="lang-en">Session 19: How Jesus Destroyed Enmity</span></h1>
+    <hr class="my-8 border-t-2 border-slate-200" />
+    <section class="space-y-6" data-i18n="body">
+    <h2 class="text-2xl font-bold text-slate-900">Principais Lições</h2>
+    <ul class="list-disc space-y-2 pl-6 text-slate-700">
+      <li><span class="lang-pt">Para Deus criar a verdadeira família de Abraão, precisou destruir a hostilidade entre Israel e as nações e destronar os poderes.</span><span class="lang-en">To create the true family of Abraham, God needed to destroy the hostility between Israel and the nations and dethrone the powers.</span></li>
+      <li><span class="lang-pt">O ponto da narrativa da Torá é expor a incapacidade humana de ser parceiro fiel da aliança de Deus (incluindo os que ele primeiro escolheu).</span><span class="lang-en">The Torah's narrative point is to expose humanity's inability to be God's faithful covenant partners.</span></li>
+      <li><span class="lang-pt">Para Paulo, os mandamentos da Torá são bons e justos, mas também criaram morte e hostilidade.</span><span class="lang-en">According to Paul, the Torah's commands are good and righteous, but they also created death and hostility.</span></li>
+    </ul>
+    <h2 class="text-2xl font-bold text-slate-900">O Papel da Aliança: Efésios 2:11-22</h2>
+    <p class="text-slate-700"><span class="lang-pt">Paulo mostra que, em Cristo, os gentios “que antes estáveis longe, agora fostes aproximados pelo sangue de Cristo. Pois ele é a nossa paz, que de ambos fez um, e destruiu a barreira, o muro de inimizade… para criar em si mesmo os dois numa nova humanidade, fazendo a paz” (2:13-15). A Torá de mandamentos em decretos foi posta de lado para que, pela cruz, Deus reconciliasse os dois num corpo, matando a inimizade. A cruz desmantela tanto a hostilidade entre grupos quanto a escravidão aos poderes.</span><span class="lang-en">Paul shows that in Christ the gentiles "who once were far off have been brought near by the blood of Christ. For he is our peace, who made the two into one and destroyed the barrier, the dividing wall of hostility… to create in himself the two into one new humanity, making peace" (2:13-15). The Torah of commandments was set aside so that, through the cross, God might reconcile the two in one body, killing the enmity. The cross dismantles both group hostility and slavery to the powers.</span></p>
+    <h2 class="text-2xl font-bold text-slate-900">Pergunta de Reflexão</h2>
+    <p class="text-slate-700"><span class="lang-pt">Como a cruz de Cristo destrói tanto a inimizade entre grupos quanto a escravidão aos poderes?</span><span class="lang-en">How does Christ's cross destroy both group enmity and slavery to the powers?</span></p>
+    </section>
+  </main>
+  <script src="../js/verse-modal.js"></script>
+  <script>
+    const I18N = {"pt": {"title": "Sessão 19: Como Jesus Destruiu a Inimizade", "h1": "Sessão 19: Como Jesus Destruiu a Inimizade", "back": "Voltar"}, "en": {"title": "Session 19: How Jesus Destroyed Enmity", "h1": "Session 19: How Jesus Destroyed Enmity", "back": "Back"}};
+    function setLang(lang){
+      localStorage.setItem('bp_lang',lang);
+      document.documentElement.lang = lang==='pt'?'pt-BR':'en';
+      const t=I18N[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n'); if(t[k]!==undefined) el.innerHTML=t[k];});
+      document.title=t.title;
+      const on='bg-sky-600 text-white', off='bg-white text-slate-600 hover:bg-slate-100';
+      document.getElementById('lang-pt').className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='pt'?on:off);
+      document.getElementById('lang-en').className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='en'?on:off);
+    }
+    setLang(localStorage.getItem('bp_lang')||'pt');
+  </script>
+</body>
+</html>

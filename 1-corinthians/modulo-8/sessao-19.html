@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="title">Sessão 19: As Coisas de Primeira Importância</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html[lang="pt-BR"] .lang-en { display: none !important; }
+    html[lang="en"] .lang-pt { display: none !important; }
+    .verse-link { cursor: pointer; }
+    @media print { .nav-btn-fixed { display: none !important; } }
+  </style>
+</head>
+<body class="bg-white font-sans text-slate-800">
+  <div class="nav-btn-fixed fixed left-4 top-4 z-50">
+    <a href="../index.html"
+      class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+      <span>&larr;</span><span data-i18n="back">Voltar</span>
+    </a>
+  </div>
+  <div class="nav-btn-fixed fixed right-4 top-4 z-50">
+    <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white shadow-sm">
+      <button id="lang-pt" onclick="setLang('pt')" class="px-4 py-1.5 text-sm font-semibold transition-colors">PT</button>
+      <button id="lang-en" onclick="setLang('en')" class="px-4 py-1.5 text-sm font-semibold transition-colors">EN</button>
+      <button onclick="window.print()" title="Imprimir" class="px-4 py-1.5 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100">🖨</button>
+    </div>
+  </div>
+  <main class="mx-auto max-w-3xl px-6 py-20 md:py-24">
+    <h1 class="text-4xl font-bold text-slate-900 md:text-5xl" data-i18n="h1"><span class="lang-pt">Sessão 19: As Coisas de Primeira Importância</span><span class="lang-en">Session 19: The Things of First Importance</span></h1>
+    <hr class="my-8 border-t-2 border-slate-200" />
+    <section class="space-y-6" data-i18n="body">
+    <h2 class="text-2xl font-bold text-slate-900">Principais Lições</h2>
+    <ul class="list-disc space-y-2 pl-6 text-slate-700">
+      <li><span class="lang-pt">Paulo estrutura 1 Coríntios de modo que o capítulo 15 seja o pináculo de seu argumento.</span><span class="lang-en">Paul structures 1 Corinthians so that chapter 15 is the pinnacle of his argument.</span></li>
+      <li><span class="lang-pt">Paulo usa linguagem Deus/Cristo, não Pai/Filho.</span><span class="lang-en">Paul uses God/Christ language, not Father/Son.</span></li>
+      <li><span class="lang-pt">Paulo resume o Evangelho em 15:3-4: “Cristo morreu por nossos pecados segundo as Escrituras, foi sepultado, ressuscitou ao terceiro dia segundo as Escrituras.”</span><span class="lang-en">Paul sums up the Gospel in 15:3-4: "Christ died for our sins according to the Scriptures, was buried, and raised on the third day according to the Scriptures."</span></li>
+    </ul>
+    <h2 class="text-2xl font-bold text-slate-900">1 Coríntios 15</h2>
+    <p class="text-slate-700"><span class="lang-pt">O capítulo 15 marca um crescendo e une todos os temas. Barth (1933): “fecha e coroa toda a epístola, e fornece a chave para seu significado”. A estrutura retórica: 1-11 a ressurreição de Cristo; 12-19 a negação da ressurreição; 20-28 as consequências; 29-34 argumentos da experiência; 35-49 o corpo ressurreto; 50-57 vitória sobre a morte; 58 conclusão. O elo da argução é o versículo 34: “Voltai a vosso juízo como convém, e não pequeis; porque alguns não têm o conhecimento de Deus — isso digo para vergonha vossa.” Paulo usa linguagem Deus/Cristo (não Pai/Filho), enfatizando a natureza abrangente de Deus — possivelmente atacando uma “mística de Cristo” que afrouxava a soberania do Pai.</span><span class="lang-en">Chapter 15 marks a crescendo uniting all themes. Barth (1933): "forms not only the close and crown of the whole epistle, but also provides the key to its meaning." Rhetorical structure: 1-11 resurrection of Christ; 12-19 denial; 20-28 consequences; 29-34 experience; 35-49 resurrection body; 50-57 victory; 58 conclusion. The linchpin is verse 34: "Come back to your senses as you ought, and stop sinning." Paul uses God/Christ language (not Father/Son), emphasizing God's all-encompassing nature — possibly attacking a "Christ-mysticism" that loosened the Father's sovereignty.</span></p>
+    <h2 class="text-2xl font-bold text-slate-900">Pergunta de Reflexão</h2>
+    <p class="text-slate-700"><span class="lang-pt">Por que Paulo coloca a ressurreição como o ponto culminante de toda a carta?</span><span class="lang-en">Why does Paul place the resurrection as the pinnacle of the whole letter?</span></p>
+    </section>
+  </main>
+  <script src="../js/verse-modal.js"></script>
+  <script>
+    const I18N = {"pt": {"title": "Sessão 19: As Coisas de Primeira Importância", "h1": "Sessão 19: As Coisas de Primeira Importância", "back": "Voltar"}, "en": {"title": "Session 19: The Things of First Importance", "h1": "Session 19: The Things of First Importance", "back": "Back"}};
+    function setLang(lang){
+      localStorage.setItem('bp_lang',lang);
+      document.documentElement.lang = lang==='pt'?'pt-BR':'en';
+      const t=I18N[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n'); if(t[k]!==undefined) el.innerHTML=t[k];});
+      document.title=t.title;
+      const on='bg-sky-600 text-white', off='bg-white text-slate-600 hover:bg-slate-100';
+      document.getElementById('lang-pt').className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='pt'?on:off);
+      document.getElementById('lang-en').className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='en'?on:off);
+    }
+    setLang(localStorage.getItem('bp_lang')||'pt');
+  </script>
+</body>
+</html>

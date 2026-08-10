@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="title">Sessão 34: A Armadura de Deus</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html[lang="pt-BR"] .lang-en { display: none !important; }
+    html[lang="en"] .lang-pt { display: none !important; }
+    .verse-link { cursor: pointer; }
+    @media print { .nav-btn-fixed { display: none !important; } }
+  </style>
+</head>
+<body class="bg-white font-sans text-slate-800">
+  <div class="nav-btn-fixed fixed left-4 top-4 z-50">
+    <a href="../index.html"
+      class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+      <span>&larr;</span><span data-i18n="back">Voltar</span>
+    </a>
+  </div>
+  <div class="nav-btn-fixed fixed right-4 top-4 z-50">
+    <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white shadow-sm">
+      <button id="lang-pt" onclick="setLang('pt')" class="px-4 py-1.5 text-sm font-semibold transition-colors">PT</button>
+      <button id="lang-en" onclick="setLang('en')" class="px-4 py-1.5 text-sm font-semibold transition-colors">EN</button>
+      <button onclick="window.print()" title="Imprimir" class="px-4 py-1.5 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100">🖨</button>
+    </div>
+  </div>
+  <main class="mx-auto max-w-3xl px-6 py-20 md:py-24">
+    <h1 class="text-4xl font-bold text-slate-900 md:text-5xl" data-i18n="h1"><span class="lang-pt">Sessão 34: A Armadura de Deus</span><span class="lang-en">Session 34: The Armor of God</span></h1>
+    <hr class="my-8 border-t-2 border-slate-200" />
+    <section class="space-y-6" data-i18n="body">
+    <h2 class="text-2xl font-bold text-slate-900">Principais Lições</h2>
+    <ul class="list-disc space-y-2 pl-6 text-slate-700">
+      <li><span class="lang-pt">O inimigo real da comunidade não são outros humanos, mas as forças sociais, econômicas, políticas e religiosas animadas pelos poderes.</span><span class="lang-en">The real enemy is not other humans, but the social, economic, political, and religious forces animated by the powers.</span></li>
+      <li><span class="lang-pt">A nova humanidade é uma entidade corporativa moldada pelo Espírito para um novo tipo de relacionamento.</span><span class="lang-en">The new humanity is a corporate entity shaped by the Spirit for a new kind of relationship.</span></li>
+      <li><span class="lang-pt">Paulo diz para vestir a própria armadura de Deus — os atributos divinos que ele usou para enfrentar os poderes do mal. Ele se inspira em Isaías 11, 52, 53 e 59.</span><span class="lang-en">Paul tells us to put on God's own armor — the divine attributes he used to confront the powers. He borrows from Isaiah 11, 52, 53, and 59.</span></li>
+    </ul>
+    <h2 class="text-2xl font-bold text-slate-900">A Luta para Viver como Família de Deus: Efésios 6:10-20</h2>
+    <p class="text-slate-700"><span class="lang-pt">“Fortalecei-vos no Senhor… vesti a armadura completa de Deus, para poderdes ficar firmes contra as astutas do acusador; porque a nossa luta não é contra carne e sangue, mas contra os governantes, autoridades e os poderes cósmicos destas trevas” (6:10-12). A armadura: cinto da verdade, couraça da justiça, sandálias do evangelho da paz, escudo da fé, capacete da salvação, espada do Espírito (6:13-17). Paulo aplica a linguagem de Isaías sobre o guerreiro de justiça de Deus à própria comunidade — a igreja é o corpo de Jesus que enfrenta os poderes com as armas de Deus.</span><span class="lang-en">"Find strength in the Lord… put on the full armor of God, so you have power to stand against the schemes of the slanderer; for our battle is not against flesh and blood, but against the rulers, authorities, and cosmic powers of this darkness" (6:10-12). The armor: belt of truth, breastplate of righteousness, gospel of peace, shield of faith, helmet of salvation, sword of the Spirit (6:13-17). Paul applies Isaiah's language of God's righteous warrior to the community — the church is Jesus' body confronting the powers with God's weapons.</span></p>
+    <h2 class="text-2xl font-bold text-slate-900">Pergunta de Reflexão</h2>
+    <p class="text-slate-700"><span class="lang-pt">Por que a batalha da igreja é contra “poderes”, e não contra pessoas?</span><span class="lang-en">Why is the church's battle against "powers" and not against people?</span></p>
+    </section>
+  </main>
+  <script src="../js/verse-modal.js"></script>
+  <script>
+    const I18N = {"pt": {"title": "Sessão 34: A Armadura de Deus", "h1": "Sessão 34: A Armadura de Deus", "back": "Voltar"}, "en": {"title": "Session 34: The Armor of God", "h1": "Session 34: The Armor of God", "back": "Back"}};
+    function setLang(lang){
+      localStorage.setItem('bp_lang',lang);
+      document.documentElement.lang = lang==='pt'?'pt-BR':'en';
+      const t=I18N[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n'); if(t[k]!==undefined) el.innerHTML=t[k];});
+      document.title=t.title;
+      const on='bg-sky-600 text-white', off='bg-white text-slate-600 hover:bg-slate-100';
+      document.getElementById('lang-pt').className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='pt'?on:off);
+      document.getElementById('lang-en').className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='en'?on:off);
+    }
+    setLang(localStorage.getItem('bp_lang')||'pt');
+  </script>
+</body>
+</html>
