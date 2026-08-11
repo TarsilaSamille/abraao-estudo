@@ -30,10 +30,14 @@
         margin-top: 0.5rem; text-align: center;
         font-size: 0.8rem; font-style: italic; color: #64748b;
       }
-      /* Consistent paragraph rhythm — explicit so separation does not depend on Tailwind */
-      section > p { margin: 2rem 0; line-height: 1.75; }
-      section > p:first-child { margin-top: 0; }
-      section > h2 + p { margin-top: 1rem; }
+      /* Uniform block rhythm — defined here, NOT via Tailwind, so spacing never depends on the CDN.
+         !important guarantees these definitions win over Tailwind's preflight/utility resets. */
+      section > p { margin: 2.5rem 0 !important; line-height: 1.75 !important; }
+      section > blockquote,
+      section > figure,
+      section > ul,
+      section > ol { margin: 1.75rem 0 !important; line-height: 1.75 !important; }
+      section > h2 { margin: 2.5rem 0 1rem !important; }
     </style>
 </head>
 <body class="bg-white font-sans text-slate-800">
@@ -53,7 +57,7 @@
   <main class="mx-auto max-w-3xl px-6 py-20 md:py-24">
     <h1 class="text-4xl font-bold text-slate-900 md:text-5xl" data-i18n="h1"><span class="lang-pt">Sessão 1: Contexto e Resumo da Carta</span><span class="lang-en">Session 1: Background and Summary of the Letter</span></h1>
     <hr class="my-8 border-t-2 border-slate-200" />
-    <section class="space-y-10" data-i18n="body">
+    <section data-i18n="body">
       <h2 class="text-2xl font-bold text-slate-900">Key Takeaways</h2>
       <ul class="list-disc space-y-2 pl-6 text-slate-700">
         <li><span class="lang-pt">Os escritores de epístolas do Novo Testamento se dirigem a igrejas em cidades ou regiões geográficas específicas, cada uma com seu próprio caráter, problemas, questões culturais, forças e fraquezas.</span><span class="lang-en">The New Testament epistle writers address churches in specific cities or geographical regions, all of which have their own characters, problems, cultural issues, strengths, and weaknesses.</span></li>
