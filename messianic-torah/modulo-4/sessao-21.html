@@ -3,885 +3,283 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title><span class="lang-pt">Sessão 21: A Casa sobre a Rocha</span><span class="lang-en">Session 21: TE21</span></title>
+<title>Sessão 21: A Casa sobre a Rocha</title>
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-<script src="../js/verse-modal.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=21ewsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <style>
   * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
   html[lang="pt"] .lang-en { display: none !important; }
   html[lang="en"] .lang-pt { display: none !important; }
-  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
-  .table-img img { width: 100%; display: block; }
+  .heb { font-family: 'SBL Hebrew','Times New Roman',serif; font-size: 1.05em; direction: rtl; unicode-bidi: embed; }
+
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
+  .ref:hover { color: #2563eb; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
   .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-  .page { margin: 1.5rem 0; line-height: 1.7; font-size: 1.0rem; }
+
+  /* ---------- Isaiah 51 illustration ---------- */
+  .isa51 { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
+  .isa-row { display: flex; align-items: stretch; border-bottom: 1px solid #d7dde5; }
+  .isa-row:last-child { border-bottom: 0; }
+  .isa-gen { width: 6.4rem; min-width: 6.4rem; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.02rem; letter-spacing: .01em; color: #17181a; background: #f6f8fa; border-right: 1px solid #d7dde5; }
+  .isa-fig { flex: 1; display: flex; align-items: center; gap: 1rem; padding: 1rem 1.1rem; }
+  .isa-fig .names { font-weight: 600; font-size: .88rem; color: #24262a; }
+  .isa-fig .tag { display: inline-block; font-weight: 800; font-size: .78rem; letter-spacing: .06em; color: #c0392b; border: 1.5px solid #c0392b; border-radius: 999px; padding: 1px 10px; }
+  .isa-arrow { font-size: 1.5rem; color: #17181a; font-weight: 700; align-self: center; margin: 0 .4rem; }
+  .isa-pair { display: flex; align-items: stretch; border-left: 1px solid #d7dde5; min-width: 15rem; }
+  .isa-pair > div { width: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .15rem; padding: 1rem .8rem; text-align: center; }
+  .isa-pair .main { font-weight: 800; font-size: .95rem; color: #17181a; text-transform: uppercase; letter-spacing: .03em; }
+  .isa-pair .sub { font-weight: 700; font-size: .92rem; color: #24262a; }
+  .isa-pair > div + div { border-left: 1px solid #d7dde5; }
+  .isa-pair .sec { font-weight: 800; font-size: .95rem; color: #17181a; text-transform: uppercase; letter-spacing: .03em; }
+  @media (max-width: 640px) {
+    .isa-row { flex-wrap: wrap; }
+    .isa-gen { width: 100%; min-width: 0; padding: .45rem 0; border-right: 0; border-bottom: 1px solid #d7dde5; }
+    .isa-pair { width: 100%; border-left: 0; border-top: 1px solid #d7dde5; min-width: 0; }
+  }
+
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+  .scripture:hover { border-left-color: #9aa7b8; }
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+  .scripture .innerbox { background: #f6f8fa; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1rem; }
+  .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem; }
+
+  /* ---------- Macro design (3 columns) ---------- */
+  .macro { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; align-items: start; margin: 2rem 0 .75rem; }
+  .mcol { border: 3px solid #2e7d4e; border-radius: 12px; padding: .9rem .9rem 1rem; background: #fff; }
+  .mcol.dark { border-color: #3d4453; margin-top: 1.3rem; }
+  .mtag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 3px 10px; border-radius: 5px; }
+  .mtag-green { background: #2e7d4e; } .mtag-dark { background: #3d4453; }
+  .mcol-title { font-size: 1rem; font-weight: 800; color: #17181a; margin: .55rem 0 .8rem; line-height: 1.3; }
+  .mboxes { display: flex; gap: .55rem; }
+  .mbox { flex: 1; border: 3px solid #b9c2cf; border-radius: 9px; background: #fff; min-height: 15.5rem; position: relative; transition: box-shadow .25s, transform .25s; }
+  .mbox:hover { box-shadow: 0 8px 20px -10px rgba(30,41,59,.4); transform: translateY(-3px); }
+  .mbox .mhdr { position: absolute; top: .55rem; left: .55rem; right: .55rem; background: #7d8697; color: #fff; font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 5px; }
+  .mbox.s1 { margin-top: 0; } .mbox.s2 { margin-top: 2.4rem; min-height: 13rem; } .mbox.s3 { margin-top: 2.4rem; min-height: 13rem; }
+  @media (max-width: 860px) { .macro { grid-template-columns: 1fr; } .mcol.dark { margin-top: 0; } .mbox, .mbox.s2, .mbox.s3 { min-height: 7.5rem; margin-top: 0; } }
+
+  /* ---------- Chiasm staircase boxes ---------- */
+  .cx { border: 3px solid; border-radius: 12px; padding: 1.35rem 1.5rem 1.2rem; margin: 1.15rem 0; transition: box-shadow .25s, transform .25s; }
+  .cx:hover { box-shadow: 0 12px 26px -16px rgba(23,24,26,.45); transform: translateY(-2px); }
+  .cx-tag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 1px 13px; border-radius: 6px; margin-bottom: .7rem; }
+  .cx h4 { font-weight: 800; font-size: 1.06rem; color: #17181a; margin-bottom: .7rem; }
+  .cx ul.bullets > li { font-size: .99rem; margin-bottom: .45rem; }
+  .cx-slate  { border-color: #6b7280; background: #e9ebee; } .cx-slate  .cx-tag { background: #6b7280; }
+  .cx-rust   { border-color: #c0562f; background: #f7e6dd; } .cx-rust   .cx-tag { background: #c0562f; }
+  .cx-rose   { border-color: #c04a63; background: #f7e0e5; } .cx-rose   .cx-tag { background: #c04a63; }
+  .cx-blue   { border-color: #5468d4; background: #e4e8f9; } .cx-blue   .cx-tag { background: #5468d4; }
+  .cx-green  { border-color: #2e7d4e; background: #dfeee2; } .cx-green  .cx-tag { background: #2e7d4e; }
+  .cx-purple { border-color: #8b5cf6; background: #efe2f8; } .cx-purple .cx-tag { background: #8b5cf6; }
+  .cx-tan    { border-color: #8a6d3b; background: #ece7dc; } .cx-tan    .cx-tag { background: #8a6d3b; }
+
+  /* ---------- verse chips (Gen 18 translation) ---------- */
+  .k { display: inline; padding: 3px 9px; border-radius: 6px; font-weight: 700; color: #fff; line-height: 1.85; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  .k-blue   { background: #3b82c4; } .k-green  { background: #2e7d4e; } .k-rose { background: #c04a63; }
+  .k-gray   { background: #6b7280; } .k-rust   { background: #bf5a2b; } .k-teal { background: #0d7d8c; }
+  .k-purple { background: #7c5ad0; } .k-brown  { background: #8a6d3b; }
+  .t-teal { color: #0d8aa0; font-weight: 700; }
+
+  .v-outer { border: 3px solid #e3e7ee; border-radius: 20px; padding: 1.4rem 1.5rem; margin: 1.4rem 0; }
+  .v-black { border: 3px solid #17181a; border-radius: 16px; padding: 1.3rem 1.5rem; margin: 1.1rem 0; }
+  .v-light { border: 3px solid #e3e7ee; border-radius: 16px; padding: 1.2rem 1.4rem; margin: 1.1rem 0; }
+  .v-line { font-size: 1.06rem; line-height: 2.1; color: #1f2937; }
+  .v-div { border: 0; border-top: 1px solid #e6eaf0; margin: 1.1rem 0; }
+  .vbar-b { border-left: 5px solid #5468d4; padding-left: .8rem; }
+  .lbl { color: #6b7280; font-weight: 600; font-size: .85rem; margin-right: .2rem; }
+  sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px; }
+  .i1 { padding-left: 1.6rem; } .i2 { padding-left: 3.2rem; } .i3 { padding-left: 4.8rem; }
+
+  /* ---------- tables ---------- */
+  .doc-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 3px solid #d9dee6; border-radius: 14px; overflow: hidden; background: #fff; }
+  .doc-table th { background: #e2e6eb; text-align: left; padding: 1rem 1.3rem; font-weight: 800; font-size: 1.02rem; color: #17181a; }
+  .doc-table td { padding: 1.1rem 1.3rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.78; font-size: .97rem; color: #24262a; transition: background .2s; }
+  .doc-table td + td { border-left: 1px solid #e5e7eb; }
+  .doc-table tbody tr:hover td { background: #f8fafc; }
+  .doc-table tfoot td { border-top: 1px solid #d1d5db; background: #fbfcfd; color: #5b6472; font-size: .92rem; }
+  .kblue-soft { background: #cddcf5; color: #2b5fb0; padding: 2px 8px; border-radius: 6px; font-weight: 700; }
+
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media print {
+    @page { margin: 14mm 12mm; }
+    #reading-progress, .print\:hidden { display: none !important; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .max-w-4xl { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
+    h1.title, h2.section, h3.sub { break-after: avoid-page; }
+    .cx, .v-outer, .v-black, .v-light, .doc-table tr, .scripture, .mcol { break-inside: avoid; }
+  }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .cx, .mbox { transition: none; } }
 </style>
 </head>
-<body class="bg-white">
+
+<div id="reading-progress" aria-hidden="true"></div>
+
 <div class="fixed left-4 top-4 z-50 print:hidden">
-  <a href="../index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
     <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
   </a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
   <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
     <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
   </button>
   <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
     <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
-    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">E21</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
   </div>
 </div>
-<div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
-<div class="page reveal"><span class="lang-pt">   Session 21: The House on the Rock<br>
-<br>
-<br>
-   Key Takeaways<br>
-<br>
-            The rain and flood are strongly established biblical themes representing the moment in the cyclical<br>
-            pattern when God’s judgment de-creates the status quo in order to bring about new creation.<br>
-            The house on the rock is a stock biblical image for the temple in Jerusalem. Jesus links the people of<br>
-            God’s Kingdom to a house God is building on a rock, which can withstand the coming flood.<br>
-            Biblical apocalyptic literature teaches us to view the world through the lens of a recurring cycle of<br>
-            themes, ultimately pointing to the final purpose toward which God is steering all creation.<br>
-<br>
-<br>
-<br>
-<br>
-   Two Houses<br>
-<br>
-<br>
-<br>
-<br>
-             24 So then, everyone who hears these words of mine ,<br>
-<br>
-             and does them,<br>
-       A<br>
-             they will be like a wise man,<br>
-             who built his house on the rock ,<br>
-<br>
-<br>
-<br>
-<br>
-                 25 and the rain came down,<br>
-<br>
-                 and the rivers came,<br>
-             B<br>
-                 and the winds blew,<br>
-                 and they fell upon that house,<br>
-<br>
-<br>
-<br>
-<br>
-                     but it did not fall,<br>
-                 C<br>
-                     because its foundation was on the rock.<br>
-<br>
-<br>
-<br>
-<br>
-             26 And everyone who hears these words of mine ,<br>
-<br>
-             and does not do them,<br>
-       A&#x27;<br>
-             they will be like a foolish man,<br>
-             who built his house on the sand ,<br>
-<br>
-<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                                        236 of 245<br>
-</span><span class="lang-en">   Session 21: The House on the Rock<br>
-<br>
-<br>
-   Key Takeaways<br>
-<br>
-            The rain and flood are strongly established biblical themes representing the moment in the cyclical<br>
-            pattern when God’s judgment de-creates the status quo in order to bring about new creation.<br>
-            The house on the rock is a stock biblical image for the temple in Jerusalem. Jesus links the people of<br>
-            God’s Kingdom to a house God is building on a rock, which can withstand the coming flood.<br>
-            Biblical apocalyptic literature teaches us to view the world through the lens of a recurring cycle of<br>
-            themes, ultimately pointing to the final purpose toward which God is steering all creation.<br>
-<br>
-<br>
-<br>
-<br>
-   Two Houses<br>
-<br>
-<br>
-<br>
-<br>
-             24 So then, everyone who hears these words of mine ,<br>
-<br>
-             and does them,<br>
-       A<br>
-             they will be like a wise man,<br>
-             who built his house on the rock ,<br>
-<br>
-<br>
-<br>
-<br>
-                 25 and the rain came down,<br>
-<br>
-                 and the rivers came,<br>
-             B<br>
-                 and the winds blew,<br>
-                 and they fell upon that house,<br>
-<br>
-<br>
-<br>
-<br>
-                     but it did not fall,<br>
-                 C<br>
-                     because its foundation was on the rock.<br>
-<br>
-<br>
-<br>
-<br>
-             26 And everyone who hears these words of mine ,<br>
-<br>
-             and does not do them,<br>
-       A&#x27;<br>
-             they will be like a foolish man,<br>
-             who built his house on the sand ,<br>
-<br>
-<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                                        236 of 245<br>
-</span></div>
-<div class="table-img reveal">
-          <img src="img/sessao-21/p1-vector.png" alt="Página 1">
-          <p class="caption"><span class="lang-pt">Página 1. Ilustração criada por Tim Mackie para BibleProject Classroom: Messianic Torah (2021).</span><span class="lang-en">Page 1. Illustration by Tim Mackie for BibleProject Classroom: Messianic Torah (2021).</span></p>
-        </div>
-<div class="page reveal"><span class="lang-pt">                 27 and the rain came down,<br>
-<br>
-                 and the rivers came,<br>
-           B&#x27;<br>
-                 and the winds blew,<br>
-                 and they fell upon that house,<br>
-<br>
-<br>
-<br>
-<br>
-                     and it fell,<br>
-                C&#x27;<br>
-                     and its falling was huge.<br>
-<br>
-<br>
-<br>
-   Matthew 7:24-27. Translation and Literary Design by Tim Mackie for BibleProject Classroom: The Messianic<br>
-   Torah (2024).<br>
-<br>
-<br>
-   The rhetorical design of this final warning is easy to discern. The two builders are compared and contrasted in<br>
-   obvious ways:<br>
-<br>
-<br>
-          Doing the words vs. not doing the words<br>
-          Wise vs. foolish<br>
-          House on the rock vs. house on the sand<br>
-          House doesn’t fall vs. house does fall<br>
-<br>
-<br>
-   Moses, Lady Wisdom, and Jesus<br>
-<br>
-   Notice that this final unit is all about how one responds to the words of Jesus. This feels similar to the<br>
-   conclusion of the Torah, which focuses on the final words of Moses and makes Israel’s response to them<br>
-   determinative for their future destiny.<br>
-<br>
-<br>
-      Deuteronomy 32:1–2 NASB<br>
-<br>
-      Give ear, O heavens, and let me speak;<br>
-      and let the earth hear the words of my mouth.<br>
-      Let my teaching drop as the rain,<br>
-      my speech distill as the dew,<br>
-      as the droplets on the fresh grass<br>
-      and as the showers on the herb.<br>
-<br>
-<br>
-      Deuteronomy 32:5–6 NASB<br>
-<br>
-      They have acted corruptly toward him,<br>
-      they are not his children, because of their defect;<br>
-      but are a perverse and crooked generation.<br>
-      Do you thus repay the LORD, O foolish and unwise people?<br>
-      Is not he your Father who has bought you?<br>
-      He has made you and established you.<br>
-<br>
-<br>
-      Deuteronomy 32:28–30 NASB<br>
-<br>
-      For they are a nation lacking in counsel,<br>
-      and there is no understanding in them.<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                                    237 of 245<br>
-</span><span class="lang-en">                 27 and the rain came down,<br>
-<br>
-                 and the rivers came,<br>
-           B&#x27;<br>
-                 and the winds blew,<br>
-                 and they fell upon that house,<br>
-<br>
-<br>
-<br>
-<br>
-                     and it fell,<br>
-                C&#x27;<br>
-                     and its falling was huge.<br>
-<br>
-<br>
-<br>
-   Matthew 7:24-27. Translation and Literary Design by Tim Mackie for BibleProject Classroom: The Messianic<br>
-   Torah (2024).<br>
-<br>
-<br>
-   The rhetorical design of this final warning is easy to discern. The two builders are compared and contrasted in<br>
-   obvious ways:<br>
-<br>
-<br>
-          Doing the words vs. not doing the words<br>
-          Wise vs. foolish<br>
-          House on the rock vs. house on the sand<br>
-          House doesn’t fall vs. house does fall<br>
-<br>
-<br>
-   Moses, Lady Wisdom, and Jesus<br>
-<br>
-   Notice that this final unit is all about how one responds to the words of Jesus. This feels similar to the<br>
-   conclusion of the Torah, which focuses on the final words of Moses and makes Israel’s response to them<br>
-   determinative for their future destiny.<br>
-<br>
-<br>
-      Deuteronomy 32:1–2 NASB<br>
-<br>
-      Give ear, O heavens, and let me speak;<br>
-      and let the earth hear the words of my mouth.<br>
-      Let my teaching drop as the rain,<br>
-      my speech distill as the dew,<br>
-      as the droplets on the fresh grass<br>
-      and as the showers on the herb.<br>
-<br>
-<br>
-      Deuteronomy 32:5–6 NASB<br>
-<br>
-      They have acted corruptly toward him,<br>
-      they are not his children, because of their defect;<br>
-      but are a perverse and crooked generation.<br>
-      Do you thus repay the LORD, O foolish and unwise people?<br>
-      Is not he your Father who has bought you?<br>
-      He has made you and established you.<br>
-<br>
-<br>
-      Deuteronomy 32:28–30 NASB<br>
-<br>
-      For they are a nation lacking in counsel,<br>
-      and there is no understanding in them.<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                                    237 of 245<br>
-</span></div>
-<div class="table-img reveal">
-          <img src="img/sessao-21/p2-vector.png" alt="Página 2">
-          <p class="caption"><span class="lang-pt">Página 2. Ilustração criada por Tim Mackie para BibleProject Classroom: Messianic Torah (2021).</span><span class="lang-en">Page 2. Illustration by Tim Mackie for BibleProject Classroom: Messianic Torah (2021).</span></p>
-        </div>
-<div class="page reveal"><span class="lang-pt">      Would that they were wise, that they understood this,<br>
-      that they would discern their future!<br>
-      How could one chase a thousand,<br>
-      and two put ten thousand to flight,<br>
-      unless their Rock had sold them,<br>
-      and the LORD had given them up?<br>
-<br>
-<br>
-   Wise or Foolish<br>
-<br>
-   “Foolish” here is the Greek moros / μωρός, from which we get the English word “moron.”<br>
-<br>
-<br>
-   Jesus first used this word in a subtle wordplay on the “salt of the land” metaphor at the opening of the<br>
-   sermon. In this way, Matthew ensures that the motif of “wisdom/folly” appears at the bookends of the sermon.<br>
-<br>
-<br>
-      Matthew 5:13 Instructor&#x27;s Translation<br>
-<br>
-      But if the salt becomes foolish (moranthe), it is good for nothing.<br>
-<br>
-<br>
-   By using “wisdom/folly” vocabulary, Jesus also activates the scriptural wisdom traditions, placing himself in<br>
-   the role of Lady Wisdom from Proverbs 1-9.<br>
-<br>
-<br>
-      Proverbs 1:20-22, 24–27 NASB<br>
-<br>
-      20<br>
-           Wisdom shouts in the street,<br>
-      she lifts her voice in the square;<br>
-      21<br>
-           at the head of the noisy streets she cries out;<br>
-      at the entrance of the gates in the city she utters her sayings:<br>
-      22<br>
-           “How long, O naive ones, will you love being simple-minded?<br>
-      And scoffers delight themselves in scoffing and fools hate knowledge?<br>
-<br>
-      24<br>
-           Because I called and you refused, I stretched out my hand and no one paid attention;<br>
-      25<br>
-           and you neglected all my counsel and did not want my reproof;<br>
-      26<br>
-           I will also laugh at your calamity; I will mock when your dread comes,<br>
-      27<br>
-           when your dread comes like a storm<br>
-      and your calamity comes like a whirlwind,<br>
-      when distress and anguish come upon you.”<br>
-<br>
-<br>
-   Also important is the echo of the “city on the mountain” and the “light of the world” images from the sermon’s<br>
-   introduction. These come from Isaiah and other prophetic traditions about the pilgrimage of the nations.<br>
-<br>
-<br>
-      Isaiah 2:1–2 NASB<br>
-<br>
-      The word which Isaiah the son of Amoz saw concerning Judah and Jerusalem.<br>
-      Now it will come about that in the last days<br>
-      the mountain of the house of the LORD<br>
-      will be established as the chief of the mountains,<br>
-      and will be raised above the hills;<br>
-      and all the nations will stream to it.<br>
-<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                                  238 of 245<br>
-</span><span class="lang-en">      Would that they were wise, that they understood this,<br>
-      that they would discern their future!<br>
-      How could one chase a thousand,<br>
-      and two put ten thousand to flight,<br>
-      unless their Rock had sold them,<br>
-      and the LORD had given them up?<br>
-<br>
-<br>
-   Wise or Foolish<br>
-<br>
-   “Foolish” here is the Greek moros / μωρός, from which we get the English word “moron.”<br>
-<br>
-<br>
-   Jesus first used this word in a subtle wordplay on the “salt of the land” metaphor at the opening of the<br>
-   sermon. In this way, Matthew ensures that the motif of “wisdom/folly” appears at the bookends of the sermon.<br>
-<br>
-<br>
-      Matthew 5:13 Instructor&#x27;s Translation<br>
-<br>
-      But if the salt becomes foolish (moranthe), it is good for nothing.<br>
-<br>
-<br>
-   By using “wisdom/folly” vocabulary, Jesus also activates the scriptural wisdom traditions, placing himself in<br>
-   the role of Lady Wisdom from Proverbs 1-9.<br>
-<br>
-<br>
-      Proverbs 1:20-22, 24–27 NASB<br>
-<br>
-      20<br>
-           Wisdom shouts in the street,<br>
-      she lifts her voice in the square;<br>
-      21<br>
-           at the head of the noisy streets she cries out;<br>
-      at the entrance of the gates in the city she utters her sayings:<br>
-      22<br>
-           “How long, O naive ones, will you love being simple-minded?<br>
-      And scoffers delight themselves in scoffing and fools hate knowledge?<br>
-<br>
-      24<br>
-           Because I called and you refused, I stretched out my hand and no one paid attention;<br>
-      25<br>
-           and you neglected all my counsel and did not want my reproof;<br>
-      26<br>
-           I will also laugh at your calamity; I will mock when your dread comes,<br>
-      27<br>
-           when your dread comes like a storm<br>
-      and your calamity comes like a whirlwind,<br>
-      when distress and anguish come upon you.”<br>
-<br>
-<br>
-   Also important is the echo of the “city on the mountain” and the “light of the world” images from the sermon’s<br>
-   introduction. These come from Isaiah and other prophetic traditions about the pilgrimage of the nations.<br>
-<br>
-<br>
-      Isaiah 2:1–2 NASB<br>
-<br>
-      The word which Isaiah the son of Amoz saw concerning Judah and Jerusalem.<br>
-      Now it will come about that in the last days<br>
-      the mountain of the house of the LORD<br>
-      will be established as the chief of the mountains,<br>
-      and will be raised above the hills;<br>
-      and all the nations will stream to it.<br>
-<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                                  238 of 245<br>
-</span></div>
-<div class="table-img reveal">
-          <img src="img/sessao-21/p3-vector.png" alt="Página 3">
-          <p class="caption"><span class="lang-pt">Página 3. Ilustração criada por Tim Mackie para BibleProject Classroom: Messianic Torah (2021).</span><span class="lang-en">Page 3. Illustration by Tim Mackie for BibleProject Classroom: Messianic Torah (2021).</span></p>
-        </div>
-<div class="page reveal"><span class="lang-pt">   So here, at the matching bookend of the sermon, we find the language of the “house” on the “rock,” which are<br>
-   core scriptural images for Mount Zion and the temple. The “flood/storm” images are stock images in the<br>
-   prophets for attacking foreign nations.<br>
-<br>
-<br>
-      Isaiah 8:7–8 NASB<br>
-<br>
-      Now therefore, behold, the Lord is about to bring on them the strong and abundant waters of the<br>
-      Euphrates,<br>
-      even the king of Assyria and all his glory;<br>
-      and it will rise up over all its channels and go over all its banks.<br>
-      Then it will sweep on into Judah, it will overflow and pass through,it will reach even to the neck;<br>
-      and the spread of its wings will fill the breadth of your land, O Immanuel.<br>
-<br>
-<br>
-      Isaiah 28:16–17 NASB<br>
-<br>
-      Therefore thus says the Lord God,<br>
-      “Behold, I am laying in Zion a stone, a tested stone,<br>
-      a costly cornerstone for the foundation, firmly placed.<br>
-      He who believes in it will not be disturbed.<br>
-      I will make justice the measuring line<br>
-      and righteousness the level;<br>
-      then hail will sweep away the refuge of lies<br>
-      and the waters will overflow the secret place.”<br>
-<br>
-<br>
-      Jeremiah 6:22–23 NASB<br>
-<br>
-      Thus says the LORD,<br>
-      “Behold, a people is coming from the north land,<br>
-      and a great nation will be aroused from the remote parts of the earth.<br>
-      They seize bow and spear;<br>
-      they are cruel and have no mercy;<br>
-      their voice roars like the sea,<br>
-      and they ride on horses, arrayed as a man for the battle<br>
-      against you, O daughter of Zion!”<br>
-<br>
-<br>
-      Ezekiel 13:10–14 NASB<br>
-<br>
-      10<br>
-           It is definitely because [the false prophets] have misled my people by saying, “Peace!” when there is no<br>
-      peace. And when anyone builds a wall, behold, they plaster it over with whitewash;<br>
-      11<br>
-           so tell those who plaster it over with whitewash, that it will fall. A flooding rain will come, and you, O<br>
-      hailstones, will fall; and a violent wind will break out.<br>
-      12<br>
-           Behold, when the wall has fallen, will you not be asked, “Where is the plaster with which you plastered<br>
-      it?”<br>
-      13<br>
-           Therefore, thus says the Lord God, “I will make a violent wind break out in my anger. There will also be in<br>
-      my anger a flooding rain and hailstones to consume it in anger.<br>
-      14<br>
-           So I will tear down the wall which you plastered over with whitewash and bring it down to the ground, so<br>
-      that its foundation is laid bare; and when it falls, you will be consumed in its midst. And you will know that I<br>
-      am the LORD.<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                                            239 of 245<br>
-</span><span class="lang-en">   So here, at the matching bookend of the sermon, we find the language of the “house” on the “rock,” which are<br>
-   core scriptural images for Mount Zion and the temple. The “flood/storm” images are stock images in the<br>
-   prophets for attacking foreign nations.<br>
-<br>
-<br>
-      Isaiah 8:7–8 NASB<br>
-<br>
-      Now therefore, behold, the Lord is about to bring on them the strong and abundant waters of the<br>
-      Euphrates,<br>
-      even the king of Assyria and all his glory;<br>
-      and it will rise up over all its channels and go over all its banks.<br>
-      Then it will sweep on into Judah, it will overflow and pass through,it will reach even to the neck;<br>
-      and the spread of its wings will fill the breadth of your land, O Immanuel.<br>
-<br>
-<br>
-      Isaiah 28:16–17 NASB<br>
-<br>
-      Therefore thus says the Lord God,<br>
-      “Behold, I am laying in Zion a stone, a tested stone,<br>
-      a costly cornerstone for the foundation, firmly placed.<br>
-      He who believes in it will not be disturbed.<br>
-      I will make justice the measuring line<br>
-      and righteousness the level;<br>
-      then hail will sweep away the refuge of lies<br>
-      and the waters will overflow the secret place.”<br>
-<br>
-<br>
-      Jeremiah 6:22–23 NASB<br>
-<br>
-      Thus says the LORD,<br>
-      “Behold, a people is coming from the north land,<br>
-      and a great nation will be aroused from the remote parts of the earth.<br>
-      They seize bow and spear;<br>
-      they are cruel and have no mercy;<br>
-      their voice roars like the sea,<br>
-      and they ride on horses, arrayed as a man for the battle<br>
-      against you, O daughter of Zion!”<br>
-<br>
-<br>
-      Ezekiel 13:10–14 NASB<br>
-<br>
-      10<br>
-           It is definitely because [the false prophets] have misled my people by saying, “Peace!” when there is no<br>
-      peace. And when anyone builds a wall, behold, they plaster it over with whitewash;<br>
-      11<br>
-           so tell those who plaster it over with whitewash, that it will fall. A flooding rain will come, and you, O<br>
-      hailstones, will fall; and a violent wind will break out.<br>
-      12<br>
-           Behold, when the wall has fallen, will you not be asked, “Where is the plaster with which you plastered<br>
-      it?”<br>
-      13<br>
-           Therefore, thus says the Lord God, “I will make a violent wind break out in my anger. There will also be in<br>
-      my anger a flooding rain and hailstones to consume it in anger.<br>
-      14<br>
-           So I will tear down the wall which you plastered over with whitewash and bring it down to the ground, so<br>
-      that its foundation is laid bare; and when it falls, you will be consumed in its midst. And you will know that I<br>
-      am the LORD.<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                                            239 of 245<br>
-</span></div>
-<div class="table-img reveal">
-          <img src="img/sessao-21/p4-vector.png" alt="Página 4">
-          <p class="caption"><span class="lang-pt">Página 4. Ilustração criada por Tim Mackie para BibleProject Classroom: Messianic Torah (2021).</span><span class="lang-en">Page 4. Illustration by Tim Mackie for BibleProject Classroom: Messianic Torah (2021).</span></p>
-        </div>
-<div class="page reveal"><span class="lang-pt">      Psalm 48:1–8 NASB<br>
-<br>
-      1<br>
-          Great is the LORD, and greatly to be praised,<br>
-      in the city of our God, his holy mountain.<br>
-      2<br>
-          Beautiful in elevation, the joy of the whole earth,<br>
-      is Mount Zion in the far north,<br>
-      the city of the great King.<br>
-      3<br>
-          God, in her palaces,<br>
-      has made himself known as a stronghold.<br>
-      4<br>
-          For, lo, the kings assembled themselves,<br>
-      they passed by together.<br>
-      5<br>
-          They saw it, then they were shocked;<br>
-      they were terrified, they fled in alarm.<br>
-      6<br>
-          Panic seized them there,<br>
-      anguish, as of a woman in childbirth.<br>
-      7<br>
-          With the east wind<br>
-      you break the ships of Tarshish.<br>
-      8<br>
-          As we have heard, so have we seen<br>
-      in the city of the LORD of hosts, in the city of our God;<br>
-      God will establish her forever. Selah.<br>
-<br>
-<br>
-      Joel 2:1–2 NASB<br>
-<br>
-      Blow a trumpet in Zion,<br>
-      and sound an alarm on my holy mountain!<br>
-      Let all the inhabitants of the land tremble,<br>
-      for the day of the LORD is coming;<br>
-      surely it is near,<br>
-      a day of darkness and gloom,<br>
-      a day of clouds and thick darkness.<br>
-      As the dawn is spread over the mountains,<br>
-      so there is a great and mighty people;<br>
-      there has never been anything like it,<br>
-      nor will there be again after it<br>
-      to the years of many generations.<br>
-<br>
-<br>
-      Joel 2:32 NASB<br>
-<br>
-      And it will come about that whoever calls on the name of the LORD<br>
-      will be delivered;<br>
-      for on Mount Zion and in Jerusalem<br>
-      there will be those who escape,<br>
-      as the LORD has said,<br>
-      even among the survivors whom the LORD calls.<br>
-<br>
-<br>
-   Jesus will later compare the downfall of the Jerusalem temple to a coming storm like the flood.<br>
-<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                         240 of 245<br>
-</span><span class="lang-en">      Psalm 48:1–8 NASB<br>
-<br>
-      1<br>
-          Great is the LORD, and greatly to be praised,<br>
-      in the city of our God, his holy mountain.<br>
-      2<br>
-          Beautiful in elevation, the joy of the whole earth,<br>
-      is Mount Zion in the far north,<br>
-      the city of the great King.<br>
-      3<br>
-          God, in her palaces,<br>
-      has made himself known as a stronghold.<br>
-      4<br>
-          For, lo, the kings assembled themselves,<br>
-      they passed by together.<br>
-      5<br>
-          They saw it, then they were shocked;<br>
-      they were terrified, they fled in alarm.<br>
-      6<br>
-          Panic seized them there,<br>
-      anguish, as of a woman in childbirth.<br>
-      7<br>
-          With the east wind<br>
-      you break the ships of Tarshish.<br>
-      8<br>
-          As we have heard, so have we seen<br>
-      in the city of the LORD of hosts, in the city of our God;<br>
-      God will establish her forever. Selah.<br>
-<br>
-<br>
-      Joel 2:1–2 NASB<br>
-<br>
-      Blow a trumpet in Zion,<br>
-      and sound an alarm on my holy mountain!<br>
-      Let all the inhabitants of the land tremble,<br>
-      for the day of the LORD is coming;<br>
-      surely it is near,<br>
-      a day of darkness and gloom,<br>
-      a day of clouds and thick darkness.<br>
-      As the dawn is spread over the mountains,<br>
-      so there is a great and mighty people;<br>
-      there has never been anything like it,<br>
-      nor will there be again after it<br>
-      to the years of many generations.<br>
-<br>
-<br>
-      Joel 2:32 NASB<br>
-<br>
-      And it will come about that whoever calls on the name of the LORD<br>
-      will be delivered;<br>
-      for on Mount Zion and in Jerusalem<br>
-      there will be those who escape,<br>
-      as the LORD has said,<br>
-      even among the survivors whom the LORD calls.<br>
-<br>
-<br>
-   Jesus will later compare the downfall of the Jerusalem temple to a coming storm like the flood.<br>
-<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                         240 of 245<br>
-</span></div>
-<div class="table-img reveal">
-          <img src="img/sessao-21/p5-vector.png" alt="Página 5">
-          <p class="caption"><span class="lang-pt">Página 5. Ilustração criada por Tim Mackie para BibleProject Classroom: Messianic Torah (2021).</span><span class="lang-en">Page 5. Illustration by Tim Mackie for BibleProject Classroom: Messianic Torah (2021).</span></p>
-        </div>
-<div class="page reveal"><span class="lang-pt">      Matthew 24:1–2 NASB<br>
-<br>
-      Jesus came out from the temple and was going away when his disciples came up to point out the temple<br>
-      buildings to him. And he said to them, “Do you not see all these things? Truly I say to you, not one stone<br>
-      here will be left upon another, which will not be torn down.”<br>
-<br>
-<br>
-      Matthew 24:37–39 NASB<br>
-<br>
-      For the coming of the Son of Man will be just like the days of Noah. For as in those days before the flood<br>
-      they were eating and drinking, marrying and giving in marriage, until the day that Noah entered the ark,<br>
-      and they did not understand until the flood came and took them all away; so will the coming of the Son of<br>
-      Man be.<br>
-<br>
-<br>
-   In Luke’s version of this same speech, Jesus explicitly brings up the cosmic storm imagery to describe the<br>
-   downfall of Jerusalem.<br>
-<br>
-<br>
-      Luke 21:20–26 NASB<br>
-<br>
-      20                                                                                                            21<br>
-           But when you see Jerusalem surrounded by armies, then recognize that her desolation is near.                  Then<br>
-      those who are in Judea must flee to the mountains, and those who are in the midst of the city must leave,<br>
-                                                                        22<br>
-      and those who are in the country must not enter the city;              because these are days of vengeance, so that<br>
-                                                        23<br>
-      all things which are written will be fulfilled.        Woe to those who are pregnant and to those who are nursing<br>
-                                                                                                           24<br>
-      babies in those days; for there will be great distress upon the land and wrath to this people;            and they will<br>
-      fall by the edge of the sword, and will be led captive into all the nations; and Jerusalem will be trampled<br>
-      under foot by the Gentiles until the times of the Gentiles are fulfilled.<br>
-      25<br>
-           There will be signs in sun and moon and stars, and on the earth dismay among nations, in perplexity at<br>
-                                                26<br>
-      the roaring of the sea and the waves,          men fainting from fear and the expectation of the things which are<br>
-      coming upon the world; for the powers of the heavens will be shaken.<br>
-<br>
-<br>
-      “Consider [the parable of the house of the rock], for example, remembering that, within his culture, the<br>
-      word ‘house’ could easily evoke the idea of ‘Temple’, and that the ‘rock’ or ‘stone’ would readily be identified<br>
-      as the foundation-stone of that Temple. … Jesus, like some other Jewish sectarians, was inviting his hearers<br>
-      to join him in the establishment of the true Temple. The Jerusalem Temple was under judgment, a judgment<br>
-      that would fall before too long. The demons, as we saw, would return, and the last state of the ‘house’<br>
-      would be worse than the first. Falling masonry, as when the tower of Siloam fell, will be the fate of the<br>
-      unrepentant. The ‘house’ is left, abandoned, desolate, unprotected against enemy attack. It is in this<br>
-      context that Jesus’ dramatic action in the Temple makes perfect sense: it was an acted parable of<br>
-      judgment, of destruction.”<br>
-<br>
-<br>
-      Wright, N. T. (1997). Jesus and the Victory of God. Fortress Press. 334.<br>
-<br>
-<br>
-   In his Jewish context, this reflected the high estimation Jesus has of his words and authority. By contrast,<br>
-   similar parables were often told about how Israel responds to the words of the Torah.<br>
-<br>
-<br>
-      ʾAvot de Rabbi Nathan ch. 24 (appendix to the Babylonian Talmud):<br>
-      Elisha b. Abbuyah (ca. 120 AD) said, “A person who has many good works and has studied much Torah, to<br>
-      what can he be compared? To a person who builds with stones at the foundation and then with bricks<br>
-      (unbaked, only dried in the sun); even if many waters come and remain on their sides, they do not dissolve<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                                             241 of 245<br>
-</span><span class="lang-en">      Matthew 24:1–2 NASB<br>
-<br>
-      Jesus came out from the temple and was going away when his disciples came up to point out the temple<br>
-      buildings to him. And he said to them, “Do you not see all these things? Truly I say to you, not one stone<br>
-      here will be left upon another, which will not be torn down.”<br>
-<br>
-<br>
-      Matthew 24:37–39 NASB<br>
-<br>
-      For the coming of the Son of Man will be just like the days of Noah. For as in those days before the flood<br>
-      they were eating and drinking, marrying and giving in marriage, until the day that Noah entered the ark,<br>
-      and they did not understand until the flood came and took them all away; so will the coming of the Son of<br>
-      Man be.<br>
-<br>
-<br>
-   In Luke’s version of this same speech, Jesus explicitly brings up the cosmic storm imagery to describe the<br>
-   downfall of Jerusalem.<br>
-<br>
-<br>
-      Luke 21:20–26 NASB<br>
-<br>
-      20                                                                                                            21<br>
-           But when you see Jerusalem surrounded by armies, then recognize that her desolation is near.                  Then<br>
-      those who are in Judea must flee to the mountains, and those who are in the midst of the city must leave,<br>
-                                                                        22<br>
-      and those who are in the country must not enter the city;              because these are days of vengeance, so that<br>
-                                                        23<br>
-      all things which are written will be fulfilled.        Woe to those who are pregnant and to those who are nursing<br>
-                                                                                                           24<br>
-      babies in those days; for there will be great distress upon the land and wrath to this people;            and they will<br>
-      fall by the edge of the sword, and will be led captive into all the nations; and Jerusalem will be trampled<br>
-      under foot by the Gentiles until the times of the Gentiles are fulfilled.<br>
-      25<br>
-           There will be signs in sun and moon and stars, and on the earth dismay among nations, in perplexity at<br>
-                                                26<br>
-      the roaring of the sea and the waves,          men fainting from fear and the expectation of the things which are<br>
-      coming upon the world; for the powers of the heavens will be shaken.<br>
-<br>
-<br>
-      “Consider [the parable of the house of the rock], for example, remembering that, within his culture, the<br>
-      word ‘house’ could easily evoke the idea of ‘Temple’, and that the ‘rock’ or ‘stone’ would readily be identified<br>
-      as the foundation-stone of that Temple. … Jesus, like some other Jewish sectarians, was inviting his hearers<br>
-      to join him in the establishment of the true Temple. The Jerusalem Temple was under judgment, a judgment<br>
-      that would fall before too long. The demons, as we saw, would return, and the last state of the ‘house’<br>
-      would be worse than the first. Falling masonry, as when the tower of Siloam fell, will be the fate of the<br>
-      unrepentant. The ‘house’ is left, abandoned, desolate, unprotected against enemy attack. It is in this<br>
-      context that Jesus’ dramatic action in the Temple makes perfect sense: it was an acted parable of<br>
-      judgment, of destruction.”<br>
-<br>
-<br>
-      Wright, N. T. (1997). Jesus and the Victory of God. Fortress Press. 334.<br>
-<br>
-<br>
-   In his Jewish context, this reflected the high estimation Jesus has of his words and authority. By contrast,<br>
-   similar parables were often told about how Israel responds to the words of the Torah.<br>
-<br>
-<br>
-      ʾAvot de Rabbi Nathan ch. 24 (appendix to the Babylonian Talmud):<br>
-      Elisha b. Abbuyah (ca. 120 AD) said, “A person who has many good works and has studied much Torah, to<br>
-      what can he be compared? To a person who builds with stones at the foundation and then with bricks<br>
-      (unbaked, only dried in the sun); even if many waters come and remain on their sides, they do not dissolve<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                                             241 of 245<br>
-</span></div>
-<div class="table-img reveal">
-          <img src="img/sessao-21/p6-vector.png" alt="Página 6">
-          <p class="caption"><span class="lang-pt">Página 6. Ilustração criada por Tim Mackie para BibleProject Classroom: Messianic Torah (2021).</span><span class="lang-en">Page 6. Illustration by Tim Mackie for BibleProject Classroom: Messianic Torah (2021).</span></p>
-        </div>
-<div class="page reveal"><span class="lang-pt">      the solid stones from their place. But a person who has no good works and studies Torah, to what can he be<br>
-      compared? To a person who builds first with bricks and then with stones; even if only small amounts of<br>
-      water come, they topple them immediately.”<br>
-      Strack, Hermann L. &amp; Billerbeck, Paul (2022). A Commentary on the New Testament from the Talmud &amp;<br>
-      Midrash. Lexham Press. 525.<br>
-<br>
-<br>
-<br>
-<br>
-   The Servant and the Coming Flood<br>
-<br>
-<br>
-<br>
-<br>
-        The Servant and the Coming Flood. Illustration created by Tim Mackie for BibleProject Classroom: The<br>
-                                              Messianic Torah (2024).<br>
-<br>
-<br>
-<br>
-<br>
-   Reflection Question<br>
-<br>
-   How is Jesus’ parable of the house in the rain connected to themes from the Hebrew Bible?<br>
-<br>
-<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                               242 of 245<br>
-</span><span class="lang-en">      the solid stones from their place. But a person who has no good works and studies Torah, to what can he be<br>
-      compared? To a person who builds first with bricks and then with stones; even if only small amounts of<br>
-      water come, they topple them immediately.”<br>
-      Strack, Hermann L. &amp; Billerbeck, Paul (2022). A Commentary on the New Testament from the Talmud &amp;<br>
-      Midrash. Lexham Press. 525.<br>
-<br>
-<br>
-<br>
-<br>
-   The Servant and the Coming Flood<br>
-<br>
-<br>
-<br>
-<br>
-        The Servant and the Coming Flood. Illustration created by Tim Mackie for BibleProject Classroom: The<br>
-                                              Messianic Torah (2024).<br>
-<br>
-<br>
-<br>
-<br>
-   Reflection Question<br>
-<br>
-   How is Jesus’ parable of the house in the rain connected to themes from the Hebrew Bible?<br>
-<br>
-<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                               242 of 245<br>
-</span></div>
-<div class="table-img reveal">
-          <img src="img/sessao-21/p7-vector.png" alt="Página 7">
-          <p class="caption"><span class="lang-pt">Página 7. Ilustração criada por Tim Mackie para BibleProject Classroom: Messianic Torah (2021).</span><span class="lang-en">Page 7. Illustration by Tim Mackie for BibleProject Classroom: Messianic Torah (2021).</span></p>
-        </div></div>
+
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+    <h1 class="title reveal"><span class="lang-pt">Sessão 21: A Casa sobre a Rocha</span><span class="lang-en">Session 21: The House on the Rock</span></h1>
+  <hr class="rule">
+  <p class="body reveal"><span class="lang-pt">Key Takeaways The rain and flood are strongly established biblical themes representing the moment in the cyclical pattern when God’s judgment de-creates the status quo in order to bring about new creation. The house on the rock is a stock biblical image for the temple in Jerusalem. Jesus links the people of God’s Kingdom to a house God is building on a rock, which can withstand the coming flood. Biblical apocalyptic literature teaches us to view the world through the lens of a recurring cycle of themes, ultimately pointing to the final purpose toward which God is steering all creation.</span><span class="lang-en">Key Takeaways The rain and flood are strongly established biblical themes representing the moment in the cyclical pattern when God’s judgment de-creates the status quo in order to bring about new creation. The house on the rock is a stock biblical image for the temple in Jerusalem. Jesus links the people of God’s Kingdom to a house God is building on a rock, which can withstand the coming flood. Biblical apocalyptic literature teaches us to view the world through the lens of a recurring cycle of themes, ultimately pointing to the final purpose toward which God is steering all creation.</span></p>
+  <p class="body reveal"><span class="lang-pt">Two Houses</span><span class="lang-en">Two Houses</span></p>
+  <p class="body reveal"><span class="lang-pt">24 So then, everyone who hears these words of mine ,</span><span class="lang-en">24 So then, everyone who hears these words of mine ,</span></p>
+  <p class="body reveal"><span class="lang-pt">A</span><span class="lang-en">A</span></p>
+  <p class="body reveal"><span class="lang-pt">and does them, they will be like a wise man, who built his house on the rock ,</span><span class="lang-en">and does them, they will be like a wise man, who built his house on the rock ,</span></p>
+  <p class="body reveal"><span class="lang-pt">25 and the rain came down,</span><span class="lang-en">25 and the rain came down,</span></p>
+  <p class="body reveal"><span class="lang-pt">B</span><span class="lang-en">B</span></p>
+  <p class="body reveal"><span class="lang-pt">and the rivers came, and the winds blew, and they fell upon that house,</span><span class="lang-en">and the rivers came, and the winds blew, and they fell upon that house,</span></p>
+  <p class="body reveal"><span class="lang-pt">C</span><span class="lang-en">C</span></p>
+  <p class="body reveal"><span class="lang-pt">but it did not fall, because its foundation was on the rock.</span><span class="lang-en">but it did not fall, because its foundation was on the rock.</span></p>
+  <p class="body reveal"><span class="lang-pt">26 And everyone who hears these words of mine ,</span><span class="lang-en">26 And everyone who hears these words of mine ,</span></p>
+  <p class="body reveal"><span class="lang-pt">A&#x27;</span><span class="lang-en">A&#x27;</span></p>
+  <p class="body reveal"><span class="lang-pt">and does not do them, they will be like a foolish man, who built his house on the sand ,</span><span class="lang-en">and does not do them, they will be like a foolish man, who built his house on the sand ,</span></p>
+  <p class="body reveal"><span class="lang-pt">27 and the rain came down,</span><span class="lang-en">27 and the rain came down,</span></p>
+  <p class="body reveal"><span class="lang-pt">B&#x27;</span><span class="lang-en">B&#x27;</span></p>
+  <p class="body reveal"><span class="lang-pt">and the rivers came, and the winds blew, and they fell upon that house,</span><span class="lang-en">and the rivers came, and the winds blew, and they fell upon that house,</span></p>
+  <p class="body reveal"><span class="lang-pt">C&#x27;</span><span class="lang-en">C&#x27;</span></p>
+  <p class="body reveal"><span class="lang-pt">and it fell, and its falling was huge.</span><span class="lang-en">and it fell, and its falling was huge.</span></p>
+  <p class="body reveal"><span class="lang-pt">Matthew 7:24-27. Translation and Literary Design by Tim Mackie for BibleProject Classroom: The Messianic Torah (2024). The rhetorical design of this final warning is easy to discern. The two builders are compared and contrasted in obvious ways: Doing the words vs. not doing the words Wise vs. foolish House on the rock vs. house on the sand House doesn’t fall vs. house does fall</span><span class="lang-en">Matthew 7:24-27. Translation and Literary Design by Tim Mackie for BibleProject Classroom: The Messianic Torah (2024). The rhetorical design of this final warning is easy to discern. The two builders are compared and contrasted in obvious ways: Doing the words vs. not doing the words Wise vs. foolish House on the rock vs. house on the sand House doesn’t fall vs. house does fall</span></p>
+  <p class="body reveal"><span class="lang-pt">Moses, Lady Wisdom, and Jesus Notice that this final unit is all about how one responds to the words of Jesus. This feels similar to the conclusion of the Torah, which focuses on the final words of Moses and makes Israel’s response to them determinative for their future destiny. Deuteronomy 32:1–2 NASB Give ear, O heavens, and let me speak; and let the earth hear the words of my mouth. Let my teaching drop as the rain, my speech distill as the dew, as the droplets on the fresh grass and as the showers on the herb. Deuteronomy 32:5–6 NASB They have acted corruptly toward him, they are not his children, because of their defect; but are a perverse and crooked generation. Do you thus repay the LORD, O foolish and unwise people? Is not he your Father who has bought you? He has made you and established you. Deuteronomy 32:28–30 NASB For they are a nation lacking in counsel, and there is no understanding in them.</span><span class="lang-en">Moses, Lady Wisdom, and Jesus Notice that this final unit is all about how one responds to the words of Jesus. This feels similar to the conclusion of the Torah, which focuses on the final words of Moses and makes Israel’s response to them determinative for their future destiny. Deuteronomy 32:1–2 NASB Give ear, O heavens, and let me speak; and let the earth hear the words of my mouth. Let my teaching drop as the rain, my speech distill as the dew, as the droplets on the fresh grass and as the showers on the herb. Deuteronomy 32:5–6 NASB They have acted corruptly toward him, they are not his children, because of their defect; but are a perverse and crooked generation. Do you thus repay the LORD, O foolish and unwise people? Is not he your Father who has bought you? He has made you and established you. Deuteronomy 32:28–30 NASB For they are a nation lacking in counsel, and there is no understanding in them.</span></p>
+  <p class="body reveal"><span class="lang-pt">Would that they were wise, that they understood this, that they would discern their future! How could one chase a thousand, and two put ten thousand to flight, unless their Rock had sold them, and the LORD had given them up?</span><span class="lang-en">Would that they were wise, that they understood this, that they would discern their future! How could one chase a thousand, and two put ten thousand to flight, unless their Rock had sold them, and the LORD had given them up?</span></p>
+  <p class="body reveal"><span class="lang-pt">Wise or Foolish “Foolish” here is the Greek moros / μωρός, from which we get the English word “moron.” Jesus first used this word in a subtle wordplay on the “salt of the land” metaphor at the opening of the sermon. In this way, Matthew ensures that the motif of “wisdom/folly” appears at the bookends of the sermon. Matthew 5:13 Instructor&#x27;s Translation But if the salt becomes foolish (moranthe), it is good for nothing. By using “wisdom/folly” vocabulary, Jesus also activates the scriptural wisdom traditions, placing himself in the role of Lady Wisdom from Proverbs 1-9. Proverbs 1:20-22, 24–27 NASB 20</span><span class="lang-en">Wise or Foolish “Foolish” here is the Greek moros / μωρός, from which we get the English word “moron.” Jesus first used this word in a subtle wordplay on the “salt of the land” metaphor at the opening of the sermon. In this way, Matthew ensures that the motif of “wisdom/folly” appears at the bookends of the sermon. Matthew 5:13 Instructor&#x27;s Translation But if the salt becomes foolish (moranthe), it is good for nothing. By using “wisdom/folly” vocabulary, Jesus also activates the scriptural wisdom traditions, placing himself in the role of Lady Wisdom from Proverbs 1-9. Proverbs 1:20-22, 24–27 NASB 20</span></p>
+  <p class="body reveal"><span class="lang-pt">Wisdom shouts in the street,</span><span class="lang-en">Wisdom shouts in the street,</span></p>
+  <p class="body reveal"><span class="lang-pt">she lifts her voice in the square; 21</span><span class="lang-en">she lifts her voice in the square; 21</span></p>
+  <p class="body reveal"><span class="lang-pt">at the head of the noisy streets she cries out;</span><span class="lang-en">at the head of the noisy streets she cries out;</span></p>
+  <p class="body reveal"><span class="lang-pt">at the entrance of the gates in the city she utters her sayings: 22</span><span class="lang-en">at the entrance of the gates in the city she utters her sayings: 22</span></p>
+  <p class="body reveal"><span class="lang-pt">“How long, O naive ones, will you love being simple-minded?</span><span class="lang-en">“How long, O naive ones, will you love being simple-minded?</span></p>
+  <p class="body reveal"><span class="lang-pt">And scoffers delight themselves in scoffing and fools hate knowledge? 24</span><span class="lang-en">And scoffers delight themselves in scoffing and fools hate knowledge? 24</span></p>
+  <p class="body reveal"><span class="lang-pt">Because I called and you refused, I stretched out my hand and no one paid attention;</span><span class="lang-en">Because I called and you refused, I stretched out my hand and no one paid attention;</span></p>
+  <p class="body reveal"><span class="lang-pt">25</span><span class="lang-en">25</span></p>
+  <p class="body reveal"><span class="lang-pt">and you neglected all my counsel and did not want my reproof;</span><span class="lang-en">and you neglected all my counsel and did not want my reproof;</span></p>
+  <p class="body reveal"><span class="lang-pt">26</span><span class="lang-en">26</span></p>
+  <p class="body reveal"><span class="lang-pt">I will also laugh at your calamity; I will mock when your dread comes,</span><span class="lang-en">I will also laugh at your calamity; I will mock when your dread comes,</span></p>
+  <p class="body reveal"><span class="lang-pt">27</span><span class="lang-en">27</span></p>
+  <p class="body reveal"><span class="lang-pt">when your dread comes like a storm</span><span class="lang-en">when your dread comes like a storm</span></p>
+  <p class="body reveal"><span class="lang-pt">and your calamity comes like a whirlwind, when distress and anguish come upon you.” Also important is the echo of the “city on the mountain” and the “light of the world” images from the sermon’s introduction. These come from Isaiah and other prophetic traditions about the pilgrimage of the nations. Isaiah 2:1–2 NASB The word which Isaiah the son of Amoz saw concerning Judah and Jerusalem. Now it will come about that in the last days the mountain of the house of the LORD will be established as the chief of the mountains, and will be raised above the hills; and all the nations will stream to it.</span><span class="lang-en">and your calamity comes like a whirlwind, when distress and anguish come upon you.” Also important is the echo of the “city on the mountain” and the “light of the world” images from the sermon’s introduction. These come from Isaiah and other prophetic traditions about the pilgrimage of the nations. Isaiah 2:1–2 NASB The word which Isaiah the son of Amoz saw concerning Judah and Jerusalem. Now it will come about that in the last days the mountain of the house of the LORD will be established as the chief of the mountains, and will be raised above the hills; and all the nations will stream to it.</span></p>
+  <p class="body reveal"><span class="lang-pt">So here, at the matching bookend of the sermon, we find the language of the “house” on the “rock,” which are core scriptural images for Mount Zion and the temple. The “flood/storm” images are stock images in the prophets for attacking foreign nations. Isaiah 8:7–8 NASB Now therefore, behold, the Lord is about to bring on them the strong and abundant waters of the Euphrates, even the king of Assyria and all his glory; and it will rise up over all its channels and go over all its banks. Then it will sweep on into Judah, it will overflow and pass through,it will reach even to the neck; and the spread of its wings will fill the breadth of your land, O Immanuel. Isaiah 28:16–17 NASB Therefore thus says the Lord God, “Behold, I am laying in Zion a stone, a tested stone, a costly cornerstone for the foundation, firmly placed. He who believes in it will not be disturbed. I will make justice the measuring line and righteousness the level; then hail will sweep away the refuge of lies and the waters will overflow the secret place.” Jeremiah 6:22–23 NASB Thus says the LORD, “Behold, a people is coming from the north land, and a great nation will be aroused from the remote parts of the earth. They seize bow and spear; they are cruel and have no mercy; their voice roars like the sea, and they ride on horses, arrayed as a man for the battle against you, O daughter of Zion!” Ezekiel 13:10–14 NASB 10</span><span class="lang-en">So here, at the matching bookend of the sermon, we find the language of the “house” on the “rock,” which are core scriptural images for Mount Zion and the temple. The “flood/storm” images are stock images in the prophets for attacking foreign nations. Isaiah 8:7–8 NASB Now therefore, behold, the Lord is about to bring on them the strong and abundant waters of the Euphrates, even the king of Assyria and all his glory; and it will rise up over all its channels and go over all its banks. Then it will sweep on into Judah, it will overflow and pass through,it will reach even to the neck; and the spread of its wings will fill the breadth of your land, O Immanuel. Isaiah 28:16–17 NASB Therefore thus says the Lord God, “Behold, I am laying in Zion a stone, a tested stone, a costly cornerstone for the foundation, firmly placed. He who believes in it will not be disturbed. I will make justice the measuring line and righteousness the level; then hail will sweep away the refuge of lies and the waters will overflow the secret place.” Jeremiah 6:22–23 NASB Thus says the LORD, “Behold, a people is coming from the north land, and a great nation will be aroused from the remote parts of the earth. They seize bow and spear; they are cruel and have no mercy; their voice roars like the sea, and they ride on horses, arrayed as a man for the battle against you, O daughter of Zion!” Ezekiel 13:10–14 NASB 10</span></p>
+  <p class="body reveal"><span class="lang-pt">It is definitely because [the false prophets] have misled my people by saying, “Peace!” when there is no</span><span class="lang-en">It is definitely because [the false prophets] have misled my people by saying, “Peace!” when there is no</span></p>
+  <p class="body reveal"><span class="lang-pt">peace. And when anyone builds a wall, behold, they plaster it over with whitewash; 11</span><span class="lang-en">peace. And when anyone builds a wall, behold, they plaster it over with whitewash; 11</span></p>
+  <p class="body reveal"><span class="lang-pt">so tell those who plaster it over with whitewash, that it will fall. A flooding rain will come, and you, O</span><span class="lang-en">so tell those who plaster it over with whitewash, that it will fall. A flooding rain will come, and you, O</span></p>
+  <p class="body reveal"><span class="lang-pt">hailstones, will fall; and a violent wind will break out. 12</span><span class="lang-en">hailstones, will fall; and a violent wind will break out. 12</span></p>
+  <p class="body reveal"><span class="lang-pt">Behold, when the wall has fallen, will you not be asked, “Where is the plaster with which you plastered</span><span class="lang-en">Behold, when the wall has fallen, will you not be asked, “Where is the plaster with which you plastered</span></p>
+  <p class="body reveal"><span class="lang-pt">it?” 13</span><span class="lang-en">it?” 13</span></p>
+  <p class="body reveal"><span class="lang-pt">Therefore, thus says the Lord God, “I will make a violent wind break out in my anger. There will also be in</span><span class="lang-en">Therefore, thus says the Lord God, “I will make a violent wind break out in my anger. There will also be in</span></p>
+  <p class="body reveal"><span class="lang-pt">my anger a flooding rain and hailstones to consume it in anger. 14</span><span class="lang-en">my anger a flooding rain and hailstones to consume it in anger. 14</span></p>
+  <p class="body reveal"><span class="lang-pt">So I will tear down the wall which you plastered over with whitewash and bring it down to the ground, so</span><span class="lang-en">So I will tear down the wall which you plastered over with whitewash and bring it down to the ground, so</span></p>
+  <p class="body reveal"><span class="lang-pt">that its foundation is laid bare; and when it falls, you will be consumed in its midst. And you will know that I am the LORD.</span><span class="lang-en">that its foundation is laid bare; and when it falls, you will be consumed in its midst. And you will know that I am the LORD.</span></p>
+  <p class="body reveal"><span class="lang-pt">Psalm 48:1–8 NASB 1</span><span class="lang-en">Psalm 48:1–8 NASB 1</span></p>
+  <p class="body reveal"><span class="lang-pt">Great is the LORD, and greatly to be praised,</span><span class="lang-en">Great is the LORD, and greatly to be praised,</span></p>
+  <p class="body reveal"><span class="lang-pt">in the city of our God, his holy mountain. 2</span><span class="lang-en">in the city of our God, his holy mountain. 2</span></p>
+  <p class="body reveal"><span class="lang-pt">Beautiful in elevation, the joy of the whole earth,</span><span class="lang-en">Beautiful in elevation, the joy of the whole earth,</span></p>
+  <p class="body reveal"><span class="lang-pt">is Mount Zion in the far north, the city of the great King. 3</span><span class="lang-en">is Mount Zion in the far north, the city of the great King. 3</span></p>
+  <p class="body reveal"><span class="lang-pt">God, in her palaces,</span><span class="lang-en">God, in her palaces,</span></p>
+  <p class="body reveal"><span class="lang-pt">has made himself known as a stronghold. 4</span><span class="lang-en">has made himself known as a stronghold. 4</span></p>
+  <p class="body reveal"><span class="lang-pt">For, lo, the kings assembled themselves,</span><span class="lang-en">For, lo, the kings assembled themselves,</span></p>
+  <p class="body reveal"><span class="lang-pt">they passed by together. 5</span><span class="lang-en">they passed by together. 5</span></p>
+  <p class="body reveal"><span class="lang-pt">They saw it, then they were shocked;</span><span class="lang-en">They saw it, then they were shocked;</span></p>
+  <p class="body reveal"><span class="lang-pt">they were terrified, they fled in alarm. 6</span><span class="lang-en">they were terrified, they fled in alarm. 6</span></p>
+  <p class="body reveal"><span class="lang-pt">Panic seized them there,</span><span class="lang-en">Panic seized them there,</span></p>
+  <p class="body reveal"><span class="lang-pt">anguish, as of a woman in childbirth. 7</span><span class="lang-en">anguish, as of a woman in childbirth. 7</span></p>
+  <p class="body reveal"><span class="lang-pt">With the east wind</span><span class="lang-en">With the east wind</span></p>
+  <p class="body reveal"><span class="lang-pt">you break the ships of Tarshish. 8</span><span class="lang-en">you break the ships of Tarshish. 8</span></p>
+  <p class="body reveal"><span class="lang-pt">As we have heard, so have we seen</span><span class="lang-en">As we have heard, so have we seen</span></p>
+  <p class="body reveal"><span class="lang-pt">in the city of the LORD of hosts, in the city of our God; God will establish her forever. Selah. Joel 2:1–2 NASB Blow a trumpet in Zion, and sound an alarm on my holy mountain! Let all the inhabitants of the land tremble, for the day of the LORD is coming; surely it is near, a day of darkness and gloom, a day of clouds and thick darkness. As the dawn is spread over the mountains, so there is a great and mighty people; there has never been anything like it, nor will there be again after it to the years of many generations. Joel 2:32 NASB And it will come about that whoever calls on the name of the LORD will be delivered; for on Mount Zion and in Jerusalem there will be those who escape, as the LORD has said, even among the survivors whom the LORD calls. Jesus will later compare the downfall of the Jerusalem temple to a coming storm like the flood.</span><span class="lang-en">in the city of the LORD of hosts, in the city of our God; God will establish her forever. Selah. Joel 2:1–2 NASB Blow a trumpet in Zion, and sound an alarm on my holy mountain! Let all the inhabitants of the land tremble, for the day of the LORD is coming; surely it is near, a day of darkness and gloom, a day of clouds and thick darkness. As the dawn is spread over the mountains, so there is a great and mighty people; there has never been anything like it, nor will there be again after it to the years of many generations. Joel 2:32 NASB And it will come about that whoever calls on the name of the LORD will be delivered; for on Mount Zion and in Jerusalem there will be those who escape, as the LORD has said, even among the survivors whom the LORD calls. Jesus will later compare the downfall of the Jerusalem temple to a coming storm like the flood.</span></p>
+  <p class="body reveal"><span class="lang-pt">Matthew 24:1–2 NASB Jesus came out from the temple and was going away when his disciples came up to point out the temple buildings to him. And he said to them, “Do you not see all these things? Truly I say to you, not one stone here will be left upon another, which will not be torn down.” Matthew 24:37–39 NASB For the coming of the Son of Man will be just like the days of Noah. For as in those days before the flood they were eating and drinking, marrying and giving in marriage, until the day that Noah entered the ark, and they did not understand until the flood came and took them all away; so will the coming of the Son of Man be. In Luke’s version of this same speech, Jesus explicitly brings up the cosmic storm imagery to describe the downfall of Jerusalem. Luke 21:20–26 NASB 20</span><span class="lang-en">Matthew 24:1–2 NASB Jesus came out from the temple and was going away when his disciples came up to point out the temple buildings to him. And he said to them, “Do you not see all these things? Truly I say to you, not one stone here will be left upon another, which will not be torn down.” Matthew 24:37–39 NASB For the coming of the Son of Man will be just like the days of Noah. For as in those days before the flood they were eating and drinking, marrying and giving in marriage, until the day that Noah entered the ark, and they did not understand until the flood came and took them all away; so will the coming of the Son of Man be. In Luke’s version of this same speech, Jesus explicitly brings up the cosmic storm imagery to describe the downfall of Jerusalem. Luke 21:20–26 NASB 20</span></p>
+  <p class="body reveal"><span class="lang-pt">But when you see Jerusalem surrounded by armies, then recognize that her desolation is near.</span><span class="lang-en">But when you see Jerusalem surrounded by armies, then recognize that her desolation is near.</span></p>
+  <p class="body reveal"><span class="lang-pt">21</span><span class="lang-en">21</span></p>
+  <p class="body reveal"><span class="lang-pt">Then</span><span class="lang-en">Then</span></p>
+  <p class="body reveal"><span class="lang-pt">those who are in Judea must flee to the mountains, and those who are in the midst of the city must leave, and those who are in the country must not enter the city; all things which are written will be fulfilled.</span><span class="lang-en">those who are in Judea must flee to the mountains, and those who are in the midst of the city must leave, and those who are in the country must not enter the city; all things which are written will be fulfilled.</span></p>
+  <p class="body reveal"><span class="lang-pt">23</span><span class="lang-en">23</span></p>
+  <p class="body reveal"><span class="lang-pt">22</span><span class="lang-en">22</span></p>
+  <p class="body reveal"><span class="lang-pt">because these are days of vengeance, so that</span><span class="lang-en">because these are days of vengeance, so that</span></p>
+  <p class="body reveal"><span class="lang-pt">Woe to those who are pregnant and to those who are nursing</span><span class="lang-en">Woe to those who are pregnant and to those who are nursing</span></p>
+  <p class="body reveal"><span class="lang-pt">babies in those days; for there will be great distress upon the land and wrath to this people;</span><span class="lang-en">babies in those days; for there will be great distress upon the land and wrath to this people;</span></p>
+  <p class="body reveal"><span class="lang-pt">24</span><span class="lang-en">24</span></p>
+  <p class="body reveal"><span class="lang-pt">and they will</span><span class="lang-en">and they will</span></p>
+  <p class="body reveal"><span class="lang-pt">fall by the edge of the sword, and will be led captive into all the nations; and Jerusalem will be trampled under foot by the Gentiles until the times of the Gentiles are fulfilled. 25</span><span class="lang-en">fall by the edge of the sword, and will be led captive into all the nations; and Jerusalem will be trampled under foot by the Gentiles until the times of the Gentiles are fulfilled. 25</span></p>
+  <p class="body reveal"><span class="lang-pt">There will be signs in sun and moon and stars, and on the earth dismay among nations, in perplexity at</span><span class="lang-en">There will be signs in sun and moon and stars, and on the earth dismay among nations, in perplexity at</span></p>
+  <p class="body reveal"><span class="lang-pt">the roaring of the sea and the waves,</span><span class="lang-en">the roaring of the sea and the waves,</span></p>
+  <p class="body reveal"><span class="lang-pt">26</span><span class="lang-en">26</span></p>
+  <p class="body reveal"><span class="lang-pt">men fainting from fear and the expectation of the things which are</span><span class="lang-en">men fainting from fear and the expectation of the things which are</span></p>
+  <p class="body reveal"><span class="lang-pt">coming upon the world; for the powers of the heavens will be shaken. “Consider [the parable of the house of the rock], for example, remembering that, within his culture, the word ‘house’ could easily evoke the idea of ‘Temple’, and that the ‘rock’ or ‘stone’ would readily be identified as the foundation-stone of that Temple. … Jesus, like some other Jewish sectarians, was inviting his hearers to join him in the establishment of the true Temple. The Jerusalem Temple was under judgment, a judgment that would fall before too long. The demons, as we saw, would return, and the last state of the ‘house’ would be worse than the first. Falling masonry, as when the tower of Siloam fell, will be the fate of the unrepentant. The ‘house’ is left, abandoned, desolate, unprotected against enemy attack. It is in this context that Jesus’ dramatic action in the Temple makes perfect sense: it was an acted parable of judgment, of destruction.” Wright, N. T. (1997). Jesus and the Victory of God. Fortress Press. 334. In his Jewish context, this reflected the high estimation Jesus has of his words and authority. By contrast, similar parables were often told about how Israel responds to the words of the Torah.</span><span class="lang-en">coming upon the world; for the powers of the heavens will be shaken. “Consider [the parable of the house of the rock], for example, remembering that, within his culture, the word ‘house’ could easily evoke the idea of ‘Temple’, and that the ‘rock’ or ‘stone’ would readily be identified as the foundation-stone of that Temple. … Jesus, like some other Jewish sectarians, was inviting his hearers to join him in the establishment of the true Temple. The Jerusalem Temple was under judgment, a judgment that would fall before too long. The demons, as we saw, would return, and the last state of the ‘house’ would be worse than the first. Falling masonry, as when the tower of Siloam fell, will be the fate of the unrepentant. The ‘house’ is left, abandoned, desolate, unprotected against enemy attack. It is in this context that Jesus’ dramatic action in the Temple makes perfect sense: it was an acted parable of judgment, of destruction.” Wright, N. T. (1997). Jesus and the Victory of God. Fortress Press. 334. In his Jewish context, this reflected the high estimation Jesus has of his words and authority. By contrast, similar parables were often told about how Israel responds to the words of the Torah.</span></p>
+  <p class="body reveal"><span class="lang-pt">ʾAvot de Rabbi Nathan ch. 24 (appendix to the Babylonian Talmud): Elisha b. Abbuyah (ca. 120 AD) said, “A person who has many good works and has studied much Torah, to what can he be compared? To a person who builds with stones at the foundation and then with bricks (unbaked, only dried in the sun); even if many waters come and remain on their sides, they do not dissolve</span><span class="lang-en">ʾAvot de Rabbi Nathan ch. 24 (appendix to the Babylonian Talmud): Elisha b. Abbuyah (ca. 120 AD) said, “A person who has many good works and has studied much Torah, to what can he be compared? To a person who builds with stones at the foundation and then with bricks (unbaked, only dried in the sun); even if many waters come and remain on their sides, they do not dissolve</span></p>
+  <p class="body reveal"><span class="lang-pt">the solid stones from their place. But a person who has no good works and studies Torah, to what can he be compared? To a person who builds first with bricks and then with stones; even if only small amounts of water come, they topple them immediately.” Strack, Hermann L. &amp; Billerbeck, Paul (2022). A Commentary on the New Testament from the Talmud &amp; Midrash. Lexham Press. 525.</span><span class="lang-en">the solid stones from their place. But a person who has no good works and studies Torah, to what can he be compared? To a person who builds first with bricks and then with stones; even if only small amounts of water come, they topple them immediately.” Strack, Hermann L. &amp; Billerbeck, Paul (2022). A Commentary on the New Testament from the Talmud &amp; Midrash. Lexham Press. 525.</span></p>
+  <p class="body reveal"><span class="lang-pt">The Servant and the Coming Flood</span><span class="lang-en">The Servant and the Coming Flood</span></p>
+  <p class="body reveal"><span class="lang-pt">The Servant and the Coming Flood. Illustration created by Tim Mackie for BibleProject Classroom: The Messianic Torah (2024).</span><span class="lang-en">The Servant and the Coming Flood. Illustration created by Tim Mackie for BibleProject Classroom: The Messianic Torah (2024).</span></p>
+  <p class="body reveal"><span class="lang-pt">Reflection Question How is Jesus’ parable of the house in the rain connected to themes from the Hebrew Bible?</span><span class="lang-en">Reflection Question How is Jesus’ parable of the house in the rain connected to themes from the Hebrew Bible?</span></p>
+  <div class="page-footer">
+    <span>Class Notes: A Torá Messiânica</span>
+    <span><span class="lang-pt">Sessão 21 · A Casa sobre a Rocha</span><span class="lang-en">Session 21 · The House on the Rock</span></span>
+  </div>
+</div>
 <script>
-function setLang(lang){
-  document.documentElement.setAttribute('lang', lang);
-  try { localStorage.setItem('s21-lang', lang); } catch(e){}
-  var pt=document.getElementById('lang-pt'), en=document.getElementById('lang-en');
-  if(lang==='pt'){ pt.class21ame="px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-l-full"; en.class21ame="px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full"; }
-  else { en.class21ame="px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-r-full"; pt.class21ame="px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full"; }
-}
-var saved='pt'; try { saved=localStorage.getItem('s21-lang')||'pt'; } catch(e){}
-setLang(saved);
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s21-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s21-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
 </script>
-</body></html>
+
+  <script src="../js/verse-modal.js"></script>
+</body>
+</html>

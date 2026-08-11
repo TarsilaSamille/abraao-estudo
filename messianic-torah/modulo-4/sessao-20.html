@@ -3,1159 +3,293 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title><span class="lang-pt">Sessão 20: Lobos, Ovelhas e Árvores</span><span class="lang-en">Session 20: TE20</span></title>
+<title>Sessão 20: Lobos, Ovelhas e Árvores</title>
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-<script src="../js/verse-modal.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=20ewsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <style>
   * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
   html[lang="pt"] .lang-en { display: none !important; }
   html[lang="en"] .lang-pt { display: none !important; }
-  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
-  .table-img img { width: 100%; display: block; }
+  .heb { font-family: 'SBL Hebrew','Times New Roman',serif; font-size: 1.05em; direction: rtl; unicode-bidi: embed; }
+
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
+  .ref:hover { color: #2563eb; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
   .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-  .page { margin: 1.5rem 0; line-height: 1.7; font-size: 1.0rem; }
+
+  /* ---------- Isaiah 51 illustration ---------- */
+  .isa51 { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
+  .isa-row { display: flex; align-items: stretch; border-bottom: 1px solid #d7dde5; }
+  .isa-row:last-child { border-bottom: 0; }
+  .isa-gen { width: 6.4rem; min-width: 6.4rem; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.02rem; letter-spacing: .01em; color: #17181a; background: #f6f8fa; border-right: 1px solid #d7dde5; }
+  .isa-fig { flex: 1; display: flex; align-items: center; gap: 1rem; padding: 1rem 1.1rem; }
+  .isa-fig .names { font-weight: 600; font-size: .88rem; color: #24262a; }
+  .isa-fig .tag { display: inline-block; font-weight: 800; font-size: .78rem; letter-spacing: .06em; color: #c0392b; border: 1.5px solid #c0392b; border-radius: 999px; padding: 1px 10px; }
+  .isa-arrow { font-size: 1.5rem; color: #17181a; font-weight: 700; align-self: center; margin: 0 .4rem; }
+  .isa-pair { display: flex; align-items: stretch; border-left: 1px solid #d7dde5; min-width: 15rem; }
+  .isa-pair > div { width: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .15rem; padding: 1rem .8rem; text-align: center; }
+  .isa-pair .main { font-weight: 800; font-size: .95rem; color: #17181a; text-transform: uppercase; letter-spacing: .03em; }
+  .isa-pair .sub { font-weight: 700; font-size: .92rem; color: #24262a; }
+  .isa-pair > div + div { border-left: 1px solid #d7dde5; }
+  .isa-pair .sec { font-weight: 800; font-size: .95rem; color: #17181a; text-transform: uppercase; letter-spacing: .03em; }
+  @media (max-width: 640px) {
+    .isa-row { flex-wrap: wrap; }
+    .isa-gen { width: 100%; min-width: 0; padding: .45rem 0; border-right: 0; border-bottom: 1px solid #d7dde5; }
+    .isa-pair { width: 100%; border-left: 0; border-top: 1px solid #d7dde5; min-width: 0; }
+  }
+
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+  .scripture:hover { border-left-color: #9aa7b8; }
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+  .scripture .innerbox { background: #f6f8fa; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1rem; }
+  .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem; }
+
+  /* ---------- Macro design (3 columns) ---------- */
+  .macro { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; align-items: start; margin: 2rem 0 .75rem; }
+  .mcol { border: 3px solid #2e7d4e; border-radius: 12px; padding: .9rem .9rem 1rem; background: #fff; }
+  .mcol.dark { border-color: #3d4453; margin-top: 1.3rem; }
+  .mtag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 3px 10px; border-radius: 5px; }
+  .mtag-green { background: #2e7d4e; } .mtag-dark { background: #3d4453; }
+  .mcol-title { font-size: 1rem; font-weight: 800; color: #17181a; margin: .55rem 0 .8rem; line-height: 1.3; }
+  .mboxes { display: flex; gap: .55rem; }
+  .mbox { flex: 1; border: 3px solid #b9c2cf; border-radius: 9px; background: #fff; min-height: 15.5rem; position: relative; transition: box-shadow .25s, transform .25s; }
+  .mbox:hover { box-shadow: 0 8px 20px -10px rgba(30,41,59,.4); transform: translateY(-3px); }
+  .mbox .mhdr { position: absolute; top: .55rem; left: .55rem; right: .55rem; background: #7d8697; color: #fff; font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 5px; }
+  .mbox.s1 { margin-top: 0; } .mbox.s2 { margin-top: 2.4rem; min-height: 13rem; } .mbox.s3 { margin-top: 2.4rem; min-height: 13rem; }
+  @media (max-width: 860px) { .macro { grid-template-columns: 1fr; } .mcol.dark { margin-top: 0; } .mbox, .mbox.s2, .mbox.s3 { min-height: 7.5rem; margin-top: 0; } }
+
+  /* ---------- Chiasm staircase boxes ---------- */
+  .cx { border: 3px solid; border-radius: 12px; padding: 1.35rem 1.5rem 1.2rem; margin: 1.15rem 0; transition: box-shadow .25s, transform .25s; }
+  .cx:hover { box-shadow: 0 12px 26px -16px rgba(23,24,26,.45); transform: translateY(-2px); }
+  .cx-tag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 1px 13px; border-radius: 6px; margin-bottom: .7rem; }
+  .cx h4 { font-weight: 800; font-size: 1.06rem; color: #17181a; margin-bottom: .7rem; }
+  .cx ul.bullets > li { font-size: .99rem; margin-bottom: .45rem; }
+  .cx-slate  { border-color: #6b7280; background: #e9ebee; } .cx-slate  .cx-tag { background: #6b7280; }
+  .cx-rust   { border-color: #c0562f; background: #f7e6dd; } .cx-rust   .cx-tag { background: #c0562f; }
+  .cx-rose   { border-color: #c04a63; background: #f7e0e5; } .cx-rose   .cx-tag { background: #c04a63; }
+  .cx-blue   { border-color: #5468d4; background: #e4e8f9; } .cx-blue   .cx-tag { background: #5468d4; }
+  .cx-green  { border-color: #2e7d4e; background: #dfeee2; } .cx-green  .cx-tag { background: #2e7d4e; }
+  .cx-purple { border-color: #8b5cf6; background: #efe2f8; } .cx-purple .cx-tag { background: #8b5cf6; }
+  .cx-tan    { border-color: #8a6d3b; background: #ece7dc; } .cx-tan    .cx-tag { background: #8a6d3b; }
+
+  /* ---------- verse chips (Gen 18 translation) ---------- */
+  .k { display: inline; padding: 3px 9px; border-radius: 6px; font-weight: 700; color: #fff; line-height: 1.85; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  .k-blue   { background: #3b82c4; } .k-green  { background: #2e7d4e; } .k-rose { background: #c04a63; }
+  .k-gray   { background: #6b7280; } .k-rust   { background: #bf5a2b; } .k-teal { background: #0d7d8c; }
+  .k-purple { background: #7c5ad0; } .k-brown  { background: #8a6d3b; }
+  .t-teal { color: #0d8aa0; font-weight: 700; }
+
+  .v-outer { border: 3px solid #e3e7ee; border-radius: 20px; padding: 1.4rem 1.5rem; margin: 1.4rem 0; }
+  .v-black { border: 3px solid #17181a; border-radius: 16px; padding: 1.3rem 1.5rem; margin: 1.1rem 0; }
+  .v-light { border: 3px solid #e3e7ee; border-radius: 16px; padding: 1.2rem 1.4rem; margin: 1.1rem 0; }
+  .v-line { font-size: 1.06rem; line-height: 2.1; color: #1f2937; }
+  .v-div { border: 0; border-top: 1px solid #e6eaf0; margin: 1.1rem 0; }
+  .vbar-b { border-left: 5px solid #5468d4; padding-left: .8rem; }
+  .lbl { color: #6b7280; font-weight: 600; font-size: .85rem; margin-right: .2rem; }
+  sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px; }
+  .i1 { padding-left: 1.6rem; } .i2 { padding-left: 3.2rem; } .i3 { padding-left: 4.8rem; }
+
+  /* ---------- tables ---------- */
+  .doc-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 3px solid #d9dee6; border-radius: 14px; overflow: hidden; background: #fff; }
+  .doc-table th { background: #e2e6eb; text-align: left; padding: 1rem 1.3rem; font-weight: 800; font-size: 1.02rem; color: #17181a; }
+  .doc-table td { padding: 1.1rem 1.3rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.78; font-size: .97rem; color: #24262a; transition: background .2s; }
+  .doc-table td + td { border-left: 1px solid #e5e7eb; }
+  .doc-table tbody tr:hover td { background: #f8fafc; }
+  .doc-table tfoot td { border-top: 1px solid #d1d5db; background: #fbfcfd; color: #5b6472; font-size: .92rem; }
+  .kblue-soft { background: #cddcf5; color: #2b5fb0; padding: 2px 8px; border-radius: 6px; font-weight: 700; }
+
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media print {
+    @page { margin: 14mm 12mm; }
+    #reading-progress, .print\:hidden { display: none !important; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .max-w-4xl { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
+    h1.title, h2.section, h3.sub { break-after: avoid-page; }
+    .cx, .v-outer, .v-black, .v-light, .doc-table tr, .scripture, .mcol { break-inside: avoid; }
+  }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .cx, .mbox { transition: none; } }
 </style>
 </head>
-<body class="bg-white">
+
+<div id="reading-progress" aria-hidden="true"></div>
+
 <div class="fixed left-4 top-4 z-50 print:hidden">
-  <a href="../index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
     <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
   </a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
   <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
     <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
   </button>
   <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
     <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
-    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">E20</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
   </div>
 </div>
-<div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
-<div class="page reveal"><span class="lang-pt">   Session 20: Wolves, Sheep, and Trees<br>
-<br>
-<br>
-   Key Takeaways<br>
-<br>
-          Jesus takes up common Hebrew Bible criteria for judging the legitimacy of prophets, recasting them in<br>
-          Eden imagery.<br>
-          The trajectory and results of a person&#x27;s life will tell a certain kind of truth that is often more reliable than<br>
-          their words.<br>
-          Being a vehicle for divine power in the world isn&#x27;t the most defining thing about our identity. There are<br>
-          some who do mighty works for God but whose hearts are far from him.<br>
-<br>
-<br>
-<br>
-<br>
-   Two Prophets and Two Trees<br>
-<br>
-<br>
-      15 Watch out for illegitimate prophets ,<br>
-<br>
-      who come to you in the clothing of sheep ,<br>
-      but inside they are wolves who snatch.<br>
-<br>
-<br>
-<br>
-<br>
-           A        a 16 By their fruits you will recognize them .<br>
-<br>
-<br>
-<br>
-<br>
-                       b Do people gather grapes from thorn-bushes ,<br>
-<br>
-                          or figs from thistles ?<br>
-                           c 17 Similarly, every good tree produces good fruit ,<br>
-<br>
-                               d but the diseased tree produces bad fruit .<br>
-                B<br>
-                           c&#x27; 18 A good tree is not able to produce bad fruit ,<br>
-<br>
-                               d&#x27; and diseased can’t produce good fruit .<br>
-<br>
-                       b&#x27; 19 Every tree that doesn’t produce good fruit ,<br>
-<br>
-                              it is cut down and thrown into the fire .<br>
-<br>
-<br>
-<br>
-<br>
-           A&#x27;       a&#x27; 20 So then, by their fruit you will recognize them .<br>
-<br>
-<br>
-<br>
-<br>
-            21 Not everyone who says to me ,<br>
-<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                                        227 of 245<br>
-</span><span class="lang-en">   Session 20: Wolves, Sheep, and Trees<br>
-<br>
-<br>
-   Key Takeaways<br>
-<br>
-          Jesus takes up common Hebrew Bible criteria for judging the legitimacy of prophets, recasting them in<br>
-          Eden imagery.<br>
-          The trajectory and results of a person&#x27;s life will tell a certain kind of truth that is often more reliable than<br>
-          their words.<br>
-          Being a vehicle for divine power in the world isn&#x27;t the most defining thing about our identity. There are<br>
-          some who do mighty works for God but whose hearts are far from him.<br>
-<br>
-<br>
-<br>
-<br>
-   Two Prophets and Two Trees<br>
-<br>
-<br>
-      15 Watch out for illegitimate prophets ,<br>
-<br>
-      who come to you in the clothing of sheep ,<br>
-      but inside they are wolves who snatch.<br>
-<br>
-<br>
-<br>
-<br>
-           A        a 16 By their fruits you will recognize them .<br>
-<br>
-<br>
-<br>
-<br>
-                       b Do people gather grapes from thorn-bushes ,<br>
-<br>
-                          or figs from thistles ?<br>
-                           c 17 Similarly, every good tree produces good fruit ,<br>
-<br>
-                               d but the diseased tree produces bad fruit .<br>
-                B<br>
-                           c&#x27; 18 A good tree is not able to produce bad fruit ,<br>
-<br>
-                               d&#x27; and diseased can’t produce good fruit .<br>
-<br>
-                       b&#x27; 19 Every tree that doesn’t produce good fruit ,<br>
-<br>
-                              it is cut down and thrown into the fire .<br>
-<br>
-<br>
-<br>
-<br>
-           A&#x27;       a&#x27; 20 So then, by their fruit you will recognize them .<br>
-<br>
-<br>
-<br>
-<br>
-            21 Not everyone who says to me ,<br>
-<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                                        227 of 245<br>
-</span></div>
-<div class="table-img reveal">
-          <img src="img/sessao-20/p1-vector.png" alt="Página 1">
-          <p class="caption"><span class="lang-pt">Página 1. Ilustração criada por Tim Mackie para BibleProject Classroom: Messianic Torah (2021).</span><span class="lang-en">Page 1. Illustration by Tim Mackie for BibleProject Classroom: Messianic Torah (2021).</span></p>
-        </div>
-<div class="page reveal"><span class="lang-pt">          A          “ Master, master! ”<br>
-                 will enter into the kingdom of the skies ,<br>
-                 but rather the one who does the desire of my Father in the skies .<br>
-<br>
-<br>
-<br>
-<br>
-                 22 Many will say to me on that day,<br>
-<br>
-                     “ Master, master ,<br>
-          A&#x27;             didn’t we prophesy in your name,<br>
-                         and cast out demons in your name,<br>
-                         and do many mighty acts in your name?”<br>
-<br>
-<br>
-<br>
-<br>
-                     23 And then I will confess to them,<br>
-<br>
-                         “I have never known you;<br>
-                 B<br>
-                         go away from me,<br>
-                         you who act as if there is no law.”<br>
-<br>
-<br>
-<br>
-   Matthew 7:15-23. Translation and Literary Design by Tim Mackie for BibleProject Classroom: The Messianic<br>
-   Torah (2024).<br>
-<br>
-<br>
-   Illegitimate Prophets in the Hebrew Bible<br>
-<br>
-   The theme of illegitimate prophets was an old one, rooted in the prophetic traditions of the Hebrew Bible.<br>
-<br>
-<br>
-      Jeremiah 23:16–22 NASB<br>
-<br>
-      16<br>
-           Thus says the LORD of hosts, “Do not listen to the words of the prophets who are prophesying to you.<br>
-      They are leading you into futility; they speak a vision of their own imagination, not from the mouth of the<br>
-      LORD.<br>
-      17<br>
-           They keep saying to those who despise me, ‘The LORD has said, “You will have peace”’; and as for<br>
-      everyone who walks in the stubbornness of his own heart, they say, ‘Calamity will not come upon you.’<br>
-      18<br>
-           But who has stood in the council of the LORD, that he should see and hear his word? Who has given heed<br>
-      to his word and listened?<br>
-      19<br>
-           Behold, the storm of the LORD has gone forth in wrath, even a whirling tempest; it will swirl down on the<br>
-      head of the wicked.<br>
-      20<br>
-               The anger of the LORD will not turn back until he has performed and carried out the purposes of his<br>
-      heart; in the last days you will clearly understand it.<br>
-      21<br>
-           I did not send these prophets, but they ran. I did not speak to them, but they prophesied.<br>
-      22<br>
-               But if they had stood in my council, then they would have announced my words to my people, and would<br>
-      have turned them back from their evil way and from the evil of their deeds.”<br>
-<br>
-<br>
-      Ezekiel 13:1–8 NASB<br>
-<br>
-      1<br>
-          Then the word of the LORD came to me saying,<br>
-      2<br>
-          “Son of man, prophesy against the prophets of Israel who prophesy, and say to those who prophesy from<br>
-<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                                     228 of 245<br>
-</span><span class="lang-en">          A          “ Master, master! ”<br>
-                 will enter into the kingdom of the skies ,<br>
-                 but rather the one who does the desire of my Father in the skies .<br>
-<br>
-<br>
-<br>
-<br>
-                 22 Many will say to me on that day,<br>
-<br>
-                     “ Master, master ,<br>
-          A&#x27;             didn’t we prophesy in your name,<br>
-                         and cast out demons in your name,<br>
-                         and do many mighty acts in your name?”<br>
-<br>
-<br>
-<br>
-<br>
-                     23 And then I will confess to them,<br>
-<br>
-                         “I have never known you;<br>
-                 B<br>
-                         go away from me,<br>
-                         you who act as if there is no law.”<br>
-<br>
-<br>
-<br>
-   Matthew 7:15-23. Translation and Literary Design by Tim Mackie for BibleProject Classroom: The Messianic<br>
-   Torah (2024).<br>
-<br>
-<br>
-   Illegitimate Prophets in the Hebrew Bible<br>
-<br>
-   The theme of illegitimate prophets was an old one, rooted in the prophetic traditions of the Hebrew Bible.<br>
-<br>
-<br>
-      Jeremiah 23:16–22 NASB<br>
-<br>
-      16<br>
-           Thus says the LORD of hosts, “Do not listen to the words of the prophets who are prophesying to you.<br>
-      They are leading you into futility; they speak a vision of their own imagination, not from the mouth of the<br>
-      LORD.<br>
-      17<br>
-           They keep saying to those who despise me, ‘The LORD has said, “You will have peace”’; and as for<br>
-      everyone who walks in the stubbornness of his own heart, they say, ‘Calamity will not come upon you.’<br>
-      18<br>
-           But who has stood in the council of the LORD, that he should see and hear his word? Who has given heed<br>
-      to his word and listened?<br>
-      19<br>
-           Behold, the storm of the LORD has gone forth in wrath, even a whirling tempest; it will swirl down on the<br>
-      head of the wicked.<br>
-      20<br>
-               The anger of the LORD will not turn back until he has performed and carried out the purposes of his<br>
-      heart; in the last days you will clearly understand it.<br>
-      21<br>
-           I did not send these prophets, but they ran. I did not speak to them, but they prophesied.<br>
-      22<br>
-               But if they had stood in my council, then they would have announced my words to my people, and would<br>
-      have turned them back from their evil way and from the evil of their deeds.”<br>
-<br>
-<br>
-      Ezekiel 13:1–8 NASB<br>
-<br>
-      1<br>
-          Then the word of the LORD came to me saying,<br>
-      2<br>
-          “Son of man, prophesy against the prophets of Israel who prophesy, and say to those who prophesy from<br>
-<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                                     228 of 245<br>
-</span></div>
-<div class="table-img reveal">
-          <img src="img/sessao-20/p2-vector.png" alt="Página 2">
-          <p class="caption"><span class="lang-pt">Página 2. Ilustração criada por Tim Mackie para BibleProject Classroom: Messianic Torah (2021).</span><span class="lang-en">Page 2. Illustration by Tim Mackie for BibleProject Classroom: Messianic Torah (2021).</span></p>
-        </div>
-<div class="page reveal"><span class="lang-pt">      their own heart, ‘Listen to the word of the LORD!<br>
-      3<br>
-          Thus says the Lord God, “Woe to the foolish prophets who are following their own spirit and have seen<br>
-      nothing.<br>
-      4<br>
-          O Israel, your prophets have been like foxes among ruins.<br>
-      5<br>
-          You have not gone up into the breaches, nor did you build the wall around the house of Israel to stand in<br>
-      the battle on the day of the LORD.<br>
-      6<br>
-          They see falsehood and lying divination who are saying, ‘The LORD declares,’ when the LORD has not<br>
-      sent them; yet they hope for the fulfillment of their word.<br>
-      7<br>
-          Did you not see a false vision and speak a lying divination when you said, ‘The LORD declares,’ but it is not<br>
-      I who have spoken?”’”<br>
-      8<br>
-          Therefore, thus says the Lord God, “Because you have spoken falsehood and seen a lie, therefore behold, I<br>
-      am against you,” declares the Lord God.<br>
-<br>
-<br>
-      Ezekiel 22:26–28 NASB<br>
-<br>
-      Her priests have done violence to my Torah and have profaned my holy things; they have made no<br>
-      distinction between the holy and the profane, and they have not taught the difference between the unclean<br>
-      and the clean; and they hide their eyes from my sabbaths, and I am profaned among them. Her princes<br>
-      within her are like wolves tearing the prey, by shedding blood and destroying lives in order to get<br>
-      dishonest gain. Her prophets have smeared whitewash for them, seeing false visions and divining lies for<br>
-      them, saying, “Thus says the Lord God,” when the LORD has not spoken.<br>
-<br>
-<br>
-   In the historical context of Jeremiah and Ezekiel (they lived at the same time during the Babylonian threat to<br>
-   Jerusalem; Jeremiah in Jerusalem and Ezekiel in Babylonian exile), these prophets claimed that Yahweh was<br>
-   giving his people over into the hands of the Babylonians. However, other prophets denied this claim and<br>
-   appealed to the fact that Yahweh had rescued the city from Assyria in the days of Hezekiah.<br>
-<br>
-<br>
-   There were different views on what would happen to the city, and different prophets lined up on either side,<br>
-   all claiming to speak for Yahweh.<br>
-<br>
-<br>
-   Jeremiah and Ezekiel, both prophets who suffered for their unpopular message, announced that Jerusalem<br>
-   would fall and that a remnant would emerge out on the other side to become the seed of a new humanity.<br>
-<br>
-<br>
-   This was a problem in ancient Israel, as it is still today in Jewish and Christian traditions: Who speaks for God?<br>
-<br>
-<br>
-      Jeremiah 23:16–18 NASB<br>
-<br>
-      Thus says the LORD of hosts,<br>
-      “Do not listen to the words of the prophets who are prophesying to you.<br>
-      They are leading you into futility;<br>
-      they speak a vision of their own imagination,<br>
-      not from the mouth of the LORD.<br>
-      They keep saying to those who despise me,<br>
-      ‘The LORD has said, “You will have peace”’;<br>
-      and as for everyone who walks in the stubbornness of his own heart,<br>
-      they say, ‘Calamity will not come upon you.’<br>
-      But who has stood in the council of the LORD,<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                                     229 of 245<br>
-</span><span class="lang-en">      their own heart, ‘Listen to the word of the LORD!<br>
-      3<br>
-          Thus says the Lord God, “Woe to the foolish prophets who are following their own spirit and have seen<br>
-      nothing.<br>
-      4<br>
-          O Israel, your prophets have been like foxes among ruins.<br>
-      5<br>
-          You have not gone up into the breaches, nor did you build the wall around the house of Israel to stand in<br>
-      the battle on the day of the LORD.<br>
-      6<br>
-          They see falsehood and lying divination who are saying, ‘The LORD declares,’ when the LORD has not<br>
-      sent them; yet they hope for the fulfillment of their word.<br>
-      7<br>
-          Did you not see a false vision and speak a lying divination when you said, ‘The LORD declares,’ but it is not<br>
-      I who have spoken?”’”<br>
-      8<br>
-          Therefore, thus says the Lord God, “Because you have spoken falsehood and seen a lie, therefore behold, I<br>
-      am against you,” declares the Lord God.<br>
-<br>
-<br>
-      Ezekiel 22:26–28 NASB<br>
-<br>
-      Her priests have done violence to my Torah and have profaned my holy things; they have made no<br>
-      distinction between the holy and the profane, and they have not taught the difference between the unclean<br>
-      and the clean; and they hide their eyes from my sabbaths, and I am profaned among them. Her princes<br>
-      within her are like wolves tearing the prey, by shedding blood and destroying lives in order to get<br>
-      dishonest gain. Her prophets have smeared whitewash for them, seeing false visions and divining lies for<br>
-      them, saying, “Thus says the Lord God,” when the LORD has not spoken.<br>
-<br>
-<br>
-   In the historical context of Jeremiah and Ezekiel (they lived at the same time during the Babylonian threat to<br>
-   Jerusalem; Jeremiah in Jerusalem and Ezekiel in Babylonian exile), these prophets claimed that Yahweh was<br>
-   giving his people over into the hands of the Babylonians. However, other prophets denied this claim and<br>
-   appealed to the fact that Yahweh had rescued the city from Assyria in the days of Hezekiah.<br>
-<br>
-<br>
-   There were different views on what would happen to the city, and different prophets lined up on either side,<br>
-   all claiming to speak for Yahweh.<br>
-<br>
-<br>
-   Jeremiah and Ezekiel, both prophets who suffered for their unpopular message, announced that Jerusalem<br>
-   would fall and that a remnant would emerge out on the other side to become the seed of a new humanity.<br>
-<br>
-<br>
-   This was a problem in ancient Israel, as it is still today in Jewish and Christian traditions: Who speaks for God?<br>
-<br>
-<br>
-      Jeremiah 23:16–18 NASB<br>
-<br>
-      Thus says the LORD of hosts,<br>
-      “Do not listen to the words of the prophets who are prophesying to you.<br>
-      They are leading you into futility;<br>
-      they speak a vision of their own imagination,<br>
-      not from the mouth of the LORD.<br>
-      They keep saying to those who despise me,<br>
-      ‘The LORD has said, “You will have peace”’;<br>
-      and as for everyone who walks in the stubbornness of his own heart,<br>
-      they say, ‘Calamity will not come upon you.’<br>
-      But who has stood in the council of the LORD,<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                                     229 of 245<br>
-</span></div>
-<div class="table-img reveal">
-          <img src="img/sessao-20/p3-vector.png" alt="Página 3">
-          <p class="caption"><span class="lang-pt">Página 3. Ilustração criada por Tim Mackie para BibleProject Classroom: Messianic Torah (2021).</span><span class="lang-en">Page 3. Illustration by Tim Mackie for BibleProject Classroom: Messianic Torah (2021).</span></p>
-        </div>
-<div class="page reveal"><span class="lang-pt">      That he should see and hear his word?<br>
-      Who has given heed to his word and listened?”<br>
-<br>
-<br>
-      Amos 3:6–8 NASB<br>
-<br>
-      If a trumpet is blown in a city will not the people tremble? If a calamity occurs in a city has not the LORD<br>
-      done it?<br>
-      Surely the Lord God does nothing unless he reveals his counsel to his servants the prophets.<br>
-      A lion has roared! Who will not fear? The Lord God has spoken! Who can but prophesy?<br>
-<br>
-<br>
-   Jesus’ actions and words show that he viewed the events of his day in Jerusalem as an analogy to the time of<br>
-   Jeremiah and Ezekiel, which is why he quoted from them.<br>
-<br>
-<br>
-      Matthew 21:12–13 NASB<br>
-<br>
-      And Jesus entered the temple and drove out all those who were buying and selling in the temple, and<br>
-      overturned the tables of the money changers and the seats of those who were selling doves. And he said<br>
-      to them, “It is written, ‘My house shall be called a house of prayer’; but you are making it a den of rebels.”<br>
-<br>
-<br>
-       Quoting from Jeremiah 7<br>
-<br>
-<br>
-<br>
-      Luke 19:41–44 NASB<br>
-<br>
-      When he approached Jerusalem, he saw the city and wept over it, saying, “If you had known in this day,<br>
-      even you, the things which make for peace! But now they have been hidden from your eyes. For the days<br>
-      will come upon you when your enemies will throw up a barricade against you, and surround you and hem<br>
-      you in on every side, and they will level you to the ground and your children within you, and they will not<br>
-      leave in you one stone upon another, because you did not recognize the time of your visitation.”<br>
-<br>
-<br>
-       Hyperlink to Ezekiel 4:2, 21:27, 26:8<br>
-<br>
-<br>
-<br>
-   Who are the false prophets Jesus refers to? It seems there are two levels of meaning to this teaching:<br>
-<br>
-<br>
-       1. Level 1: Within the narrative world, Jesus speaks of rival representatives of the God of Israel in his own<br>
-          day of the early 1st century (Scribes and Pharisees, Herodians, Sadducees, etc.), when he was sending<br>
-          out representatives for his Kingdom of God movement.<br>
-<br>
-<br>
-      Matthew 10:40–41 NASB<br>
-<br>
-      He who receives you receives me, and he who receives me receives him who sent me. He who receives a<br>
-      prophet in the name of a prophet shall receive a prophet’s reward; and he who receives a righteous man in<br>
-      the name of a righteous man shall receive a righteous man’s reward.<br>
-<br>
-<br>
-      Matthew 23:34–36 NASB<br>
-<br>
-      Therefore, behold, I am sending you prophets and wise men and scribes; some of them you will kill and<br>
-      crucify, and some of them you will scourge in your synagogues, and persecute from city to city, so that<br>
-      upon you may fall the guilt of all the righteous blood shed on earth, from the blood of righteous Abel to the<br>
-      blood of Zechariah, the son of Berechiah, whom you murdered between the temple and the altar. Truly I<br>
-      say to you, all these things will come upon this generation.<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                                    230 of 245<br>
-</span><span class="lang-en">      That he should see and hear his word?<br>
-      Who has given heed to his word and listened?”<br>
-<br>
-<br>
-      Amos 3:6–8 NASB<br>
-<br>
-      If a trumpet is blown in a city will not the people tremble? If a calamity occurs in a city has not the LORD<br>
-      done it?<br>
-      Surely the Lord God does nothing unless he reveals his counsel to his servants the prophets.<br>
-      A lion has roared! Who will not fear? The Lord God has spoken! Who can but prophesy?<br>
-<br>
-<br>
-   Jesus’ actions and words show that he viewed the events of his day in Jerusalem as an analogy to the time of<br>
-   Jeremiah and Ezekiel, which is why he quoted from them.<br>
-<br>
-<br>
-      Matthew 21:12–13 NASB<br>
-<br>
-      And Jesus entered the temple and drove out all those who were buying and selling in the temple, and<br>
-      overturned the tables of the money changers and the seats of those who were selling doves. And he said<br>
-      to them, “It is written, ‘My house shall be called a house of prayer’; but you are making it a den of rebels.”<br>
-<br>
-<br>
-       Quoting from Jeremiah 7<br>
-<br>
-<br>
-<br>
-      Luke 19:41–44 NASB<br>
-<br>
-      When he approached Jerusalem, he saw the city and wept over it, saying, “If you had known in this day,<br>
-      even you, the things which make for peace! But now they have been hidden from your eyes. For the days<br>
-      will come upon you when your enemies will throw up a barricade against you, and surround you and hem<br>
-      you in on every side, and they will level you to the ground and your children within you, and they will not<br>
-      leave in you one stone upon another, because you did not recognize the time of your visitation.”<br>
-<br>
-<br>
-       Hyperlink to Ezekiel 4:2, 21:27, 26:8<br>
-<br>
-<br>
-<br>
-   Who are the false prophets Jesus refers to? It seems there are two levels of meaning to this teaching:<br>
-<br>
-<br>
-       1. Level 1: Within the narrative world, Jesus speaks of rival representatives of the God of Israel in his own<br>
-          day of the early 1st century (Scribes and Pharisees, Herodians, Sadducees, etc.), when he was sending<br>
-          out representatives for his Kingdom of God movement.<br>
-<br>
-<br>
-      Matthew 10:40–41 NASB<br>
-<br>
-      He who receives you receives me, and he who receives me receives him who sent me. He who receives a<br>
-      prophet in the name of a prophet shall receive a prophet’s reward; and he who receives a righteous man in<br>
-      the name of a righteous man shall receive a righteous man’s reward.<br>
-<br>
-<br>
-      Matthew 23:34–36 NASB<br>
-<br>
-      Therefore, behold, I am sending you prophets and wise men and scribes; some of them you will kill and<br>
-      crucify, and some of them you will scourge in your synagogues, and persecute from city to city, so that<br>
-      upon you may fall the guilt of all the righteous blood shed on earth, from the blood of righteous Abel to the<br>
-      blood of Zechariah, the son of Berechiah, whom you murdered between the temple and the altar. Truly I<br>
-      say to you, all these things will come upon this generation.<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                                    230 of 245<br>
-</span></div>
-<div class="table-img reveal">
-          <img src="img/sessao-20/p4-vector.png" alt="Página 4">
-          <p class="caption"><span class="lang-pt">Página 4. Ilustração criada por Tim Mackie para BibleProject Classroom: Messianic Torah (2021).</span><span class="lang-en">Page 4. Illustration by Tim Mackie for BibleProject Classroom: Messianic Torah (2021).</span></p>
-        </div>
-<div class="page reveal"><span class="lang-pt">       2. Level 2: In Matthew’s world, Jesus speaks of both (a) Israelite leaders who are hostile to the messianic<br>
-            Jesus movement, and (b) rival leaders within the messianic Jesus movement of the later 1st century and<br>
-            beyond (the rival leaders in Acts, who are for or against Torah observance for non-Israelite followers of<br>
-            Jesus.)<br>
-<br>
-<br>
-   In other words, Matthew has taken up these words of Jesus, which were spoken before the messianic Jesus<br>
-   communities spread outside of Israel, and applied them by analogy to the social dynamics of the Jesus<br>
-   movement in his own day of the later 1st century.<br>
-<br>
-<br>
-   Within Level 1, Jesus will explore later in his parables that the community of his followers will be mixed (as<br>
-   Israel was in the Torah and Prophets) until the great reckoning, when a great sorting will take place (see the<br>
-   true and false wheat in Matthew 13:24-30, 36-43). Notice in Matthew 13:41-42, there are key hyperlinks back to<br>
-   this teaching in the sermon.<br>
-<br>
-<br>
-      Matthew 7:19, 21–23 NASB<br>
-<br>
-      19<br>
-           Every tree that does not bear good fruit is cut down and thrown into the fire. …<br>
-      21<br>
-           Not everyone who says to me, “Lord, Lord,” will enter the kingdom of heaven, but he who does the will of<br>
-      my Father who is in heaven will enter.<br>
-      22<br>
-           Many will say to me on that day, ‘Lord, Lord, did we not prophesy in your name, and in your name cast<br>
-      out demons, and in your name perform many miracles?’<br>
-      23<br>
-           And then I will declare to them, ‘I never knew you; depart from me, you who act as if there is no Torah.’<br>
-<br>
-<br>
-      Matthew 13:40–43 NASB<br>
-<br>
-      So just as the tares are gathered up and burned with fire, so shall it be at the end of the age. The Son of<br>
-      Man will send forth his angels, and they will gather out of his kingdom all stumbling blocks, and those who<br>
-      commit lawlessness, and will throw them into the furnace of fire; in that place there will be weeping and<br>
-      gnashing of teeth. Then the righteous will shine forth as the sun in the kingdom of their Father. He who has<br>
-      ears, let him hear.<br>
-<br>
-<br>
-   It is also possible that Matthew, in his narrative, identifies the Pharisees and scribes with one aspect of these<br>
-   wolves, as Matthew 23:13 hyperlinks back to Jesus’ teaching about the gate and the path.<br>
-<br>
-<br>
-      Matthew 7:13–14 NASB<br>
-<br>
-      Enter through the narrow gate; for the gate is wide and the way is broad that leads to destruction, and there<br>
-      are many who enter through it. For the gate is small and the way is narrow that leads to life, and there are<br>
-      few who find it.<br>
-<br>
-<br>
-      Matthew 23:13 NASB<br>
-<br>
-      But woe to you, scribes and Pharisees, hypocrites, because you shut off the kingdom of heaven from<br>
-      people; for you do not enter in yourselves, nor do you allow those who are entering to go in.<br>
-<br>
-<br>
-   Doing Signs and Wonders in Jesus’ Name<br>
-<br>
-   Within Level 1, we know that Jesus was not the only messianic figure trying to get Israel’s attention in his day,<br>
-   and there were others who tried to ride off the momentum of his popularity.<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                                     231 of 245<br>
-</span><span class="lang-en">       2. Level 2: In Matthew’s world, Jesus speaks of both (a) Israelite leaders who are hostile to the messianic<br>
-            Jesus movement, and (b) rival leaders within the messianic Jesus movement of the later 1st century and<br>
-            beyond (the rival leaders in Acts, who are for or against Torah observance for non-Israelite followers of<br>
-            Jesus.)<br>
-<br>
-<br>
-   In other words, Matthew has taken up these words of Jesus, which were spoken before the messianic Jesus<br>
-   communities spread outside of Israel, and applied them by analogy to the social dynamics of the Jesus<br>
-   movement in his own day of the later 1st century.<br>
-<br>
-<br>
-   Within Level 1, Jesus will explore later in his parables that the community of his followers will be mixed (as<br>
-   Israel was in the Torah and Prophets) until the great reckoning, when a great sorting will take place (see the<br>
-   true and false wheat in Matthew 13:24-30, 36-43). Notice in Matthew 13:41-42, there are key hyperlinks back to<br>
-   this teaching in the sermon.<br>
-<br>
-<br>
-      Matthew 7:19, 21–23 NASB<br>
-<br>
-      19<br>
-           Every tree that does not bear good fruit is cut down and thrown into the fire. …<br>
-      21<br>
-           Not everyone who says to me, “Lord, Lord,” will enter the kingdom of heaven, but he who does the will of<br>
-      my Father who is in heaven will enter.<br>
-      22<br>
-           Many will say to me on that day, ‘Lord, Lord, did we not prophesy in your name, and in your name cast<br>
-      out demons, and in your name perform many miracles?’<br>
-      23<br>
-           And then I will declare to them, ‘I never knew you; depart from me, you who act as if there is no Torah.’<br>
-<br>
-<br>
-      Matthew 13:40–43 NASB<br>
-<br>
-      So just as the tares are gathered up and burned with fire, so shall it be at the end of the age. The Son of<br>
-      Man will send forth his angels, and they will gather out of his kingdom all stumbling blocks, and those who<br>
-      commit lawlessness, and will throw them into the furnace of fire; in that place there will be weeping and<br>
-      gnashing of teeth. Then the righteous will shine forth as the sun in the kingdom of their Father. He who has<br>
-      ears, let him hear.<br>
-<br>
-<br>
-   It is also possible that Matthew, in his narrative, identifies the Pharisees and scribes with one aspect of these<br>
-   wolves, as Matthew 23:13 hyperlinks back to Jesus’ teaching about the gate and the path.<br>
-<br>
-<br>
-      Matthew 7:13–14 NASB<br>
-<br>
-      Enter through the narrow gate; for the gate is wide and the way is broad that leads to destruction, and there<br>
-      are many who enter through it. For the gate is small and the way is narrow that leads to life, and there are<br>
-      few who find it.<br>
-<br>
-<br>
-      Matthew 23:13 NASB<br>
-<br>
-      But woe to you, scribes and Pharisees, hypocrites, because you shut off the kingdom of heaven from<br>
-      people; for you do not enter in yourselves, nor do you allow those who are entering to go in.<br>
-<br>
-<br>
-   Doing Signs and Wonders in Jesus’ Name<br>
-<br>
-   Within Level 1, we know that Jesus was not the only messianic figure trying to get Israel’s attention in his day,<br>
-   and there were others who tried to ride off the momentum of his popularity.<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                                     231 of 245<br>
-</span></div>
-<div class="table-img reveal">
-          <img src="img/sessao-20/p5-vector.png" alt="Página 5">
-          <p class="caption"><span class="lang-pt">Página 5. Ilustração criada por Tim Mackie para BibleProject Classroom: Messianic Torah (2021).</span><span class="lang-en">Page 5. Illustration by Tim Mackie for BibleProject Classroom: Messianic Torah (2021).</span></p>
-        </div>
-<div class="page reveal"><span class="lang-pt">      Mark 9:38–40 NASB<br>
-<br>
-      John said to him, “Teacher, we saw someone casting out demons in your name, and we tried to prevent<br>
-      him because he was not following us.” But Jesus said, “Do not hinder him, for there is no one who will<br>
-      perform a miracle in my name, and be able soon afterward to speak evil of me. For he who is not against<br>
-      us is for us.”<br>
-<br>
-<br>
-      Matthew 24:4–5 NASB<br>
-<br>
-      And Jesus answered and said to them, “See to it that no one misleads you. For many will come in my name,<br>
-      saying, ‘I am the Christ,’ and will mislead many.”<br>
-<br>
-<br>
-      Acts 19:13–16 NASB<br>
-<br>
-      But also some of the Jewish exorcists, who went from place to place, attempted to name over those who<br>
-      had the evil spirits the name of the Lord Jesus, saying, “I adjure you by Jesus whom Paul preaches.” Seven<br>
-      sons of one Sceva, a Jewish chief priest, were doing this. And the evil spirit answered and said to them, “I<br>
-      recognize Jesus, and I know about Paul, but who are you?” And the man, in whom was the evil spirit,<br>
-      leaped on them and subdued all of them and overpowered them, so that they fled out of that house naked<br>
-      and wounded.<br>
-<br>
-<br>
-   On Level 2, Matthew is also referring to the dispersed activity of the leaders in the messianic Jesus movement<br>
-   of the later 1st century.<br>
-<br>
-<br>
-      “The recognition that miracles and other seemingly supernatural phenomena are not infallible signs of<br>
-      saving faith is common to several NT authors, and it is what makes possible the expectation that the last<br>
-      days will see even evil figures doing great wonders (Mt. 24:23–28; 2 Th. 2:9–10; Rev. 13:13–15; etc.). In Lk.<br>
-      10:20, for instance, Jesus declares, ‘Do not rejoice in this, that the spirits are subject to you; but rejoice in<br>
-      that your names are written in heaven’. And in 1 Cor. 12–14, the apostle Paul puts tongues and other<br>
-      spectacular manifestations in their place by calling for decency and order in worship and by exalting love<br>
-      above everything else as the more excellent way. … What Jesus has called for is obedience to his Torah<br>
-      (5:17–48), sincere practice of the Christian cult (6:1–18), and a right attitude towards the things of this world<br>
-      (6:19–7:12). He has beckoned his followers to travel down a very difficult road (7:13–14), a road without the<br>
-      promise of fame and glory, a road which instead holds forth the prospect of persecution (5:10–12), with<br>
-      reward coming only in the future (6:4, 6, 18, 19–21).”<br>
-<br>
-<br>
-      Davies, W. D. &amp; Allison Jr., Dale C. (2004). Matthew, vol. 1 (International Critical Commentary). T&amp;T Clark<br>
-      International. 716.<br>
-<br>
-<br>
-   “Depart From Me … ”<br>
-<br>
-   Jesus’ words in Matthew 7:21-23 express an exalted view of his own identity:<br>
-<br>
-<br>
-          Jesus is the one who allows (or doesn’t allow) entry into the Kingdom of Heaven. (Not post-mortem, but<br>
-          present and future.)<br>
-          It is in Jesus’ name that signs and wonders are performed. (This is the role of Yahweh’s name in the<br>
-          Hebrew Bible.)<br>
-          Jesus is the one who “confesses” (homologeo) people’s “known” identity before God. This is a public,<br>
-          legal confession.<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                                       232 of 245<br>
-</span><span class="lang-en">      Mark 9:38–40 NASB<br>
-<br>
-      John said to him, “Teacher, we saw someone casting out demons in your name, and we tried to prevent<br>
-      him because he was not following us.” But Jesus said, “Do not hinder him, for there is no one who will<br>
-      perform a miracle in my name, and be able soon afterward to speak evil of me. For he who is not against<br>
-      us is for us.”<br>
-<br>
-<br>
-      Matthew 24:4–5 NASB<br>
-<br>
-      And Jesus answered and said to them, “See to it that no one misleads you. For many will come in my name,<br>
-      saying, ‘I am the Christ,’ and will mislead many.”<br>
-<br>
-<br>
-      Acts 19:13–16 NASB<br>
-<br>
-      But also some of the Jewish exorcists, who went from place to place, attempted to name over those who<br>
-      had the evil spirits the name of the Lord Jesus, saying, “I adjure you by Jesus whom Paul preaches.” Seven<br>
-      sons of one Sceva, a Jewish chief priest, were doing this. And the evil spirit answered and said to them, “I<br>
-      recognize Jesus, and I know about Paul, but who are you?” And the man, in whom was the evil spirit,<br>
-      leaped on them and subdued all of them and overpowered them, so that they fled out of that house naked<br>
-      and wounded.<br>
-<br>
-<br>
-   On Level 2, Matthew is also referring to the dispersed activity of the leaders in the messianic Jesus movement<br>
-   of the later 1st century.<br>
-<br>
-<br>
-      “The recognition that miracles and other seemingly supernatural phenomena are not infallible signs of<br>
-      saving faith is common to several NT authors, and it is what makes possible the expectation that the last<br>
-      days will see even evil figures doing great wonders (Mt. 24:23–28; 2 Th. 2:9–10; Rev. 13:13–15; etc.). In Lk.<br>
-      10:20, for instance, Jesus declares, ‘Do not rejoice in this, that the spirits are subject to you; but rejoice in<br>
-      that your names are written in heaven’. And in 1 Cor. 12–14, the apostle Paul puts tongues and other<br>
-      spectacular manifestations in their place by calling for decency and order in worship and by exalting love<br>
-      above everything else as the more excellent way. … What Jesus has called for is obedience to his Torah<br>
-      (5:17–48), sincere practice of the Christian cult (6:1–18), and a right attitude towards the things of this world<br>
-      (6:19–7:12). He has beckoned his followers to travel down a very difficult road (7:13–14), a road without the<br>
-      promise of fame and glory, a road which instead holds forth the prospect of persecution (5:10–12), with<br>
-      reward coming only in the future (6:4, 6, 18, 19–21).”<br>
-<br>
-<br>
-      Davies, W. D. &amp; Allison Jr., Dale C. (2004). Matthew, vol. 1 (International Critical Commentary). T&amp;T Clark<br>
-      International. 716.<br>
-<br>
-<br>
-   “Depart From Me … ”<br>
-<br>
-   Jesus’ words in Matthew 7:21-23 express an exalted view of his own identity:<br>
-<br>
-<br>
-          Jesus is the one who allows (or doesn’t allow) entry into the Kingdom of Heaven. (Not post-mortem, but<br>
-          present and future.)<br>
-          It is in Jesus’ name that signs and wonders are performed. (This is the role of Yahweh’s name in the<br>
-          Hebrew Bible.)<br>
-          Jesus is the one who “confesses” (homologeo) people’s “known” identity before God. This is a public,<br>
-          legal confession.<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                                       232 of 245<br>
-</span></div>
-<div class="table-img reveal">
-          <img src="img/sessao-20/p6-vector.png" alt="Página 6">
-          <p class="caption"><span class="lang-pt">Página 6. Ilustração criada por Tim Mackie para BibleProject Classroom: Messianic Torah (2021).</span><span class="lang-en">Page 6. Illustration by Tim Mackie for BibleProject Classroom: Messianic Torah (2021).</span></p>
-        </div>
-<div class="page reveal"><span class="lang-pt">   Jesus is drawing here on the “Son of Adam” traditions found in Daniel, 1 Enoch, and 4 Ezra, which depict a<br>
-   divine-human figure who sits beside the ancient of days and is invested with divine authority to bring justice<br>
-   to the cosmos.<br>
-<br>
-<br>
-      Daniel 7:9–11 NASB<br>
-<br>
-      I kept looking until thrones were set up, and the Ancient of Days took his seat; his vesture was like white<br>
-      snow and the hair of his head like pure wool. His throne was ablaze with flames, its wheels were a burning<br>
-      fire.<br>
-      A river of fire was flowing and coming out from before him; thousands upon thousands were attending him,<br>
-      and myriads upon myriads were standing before him; the court sat, and the books were opened.<br>
-      Then I kept looking because of the sound of the boastful words which the horn was speaking; I kept looking<br>
-      until the beast was slain, and its body was destroyed and given to the burning fire.<br>
-<br>
-<br>
-      Daniel 7:13–14 NASB<br>
-<br>
-      I kept looking in the night visions, and behold, with the clouds of heaven one like a Son of Man was coming,<br>
-      And he came up to the Ancient of Days and was presented before him.<br>
-      And to him was given dominion, glory and a kingdom, that all the peoples, nations and men of every<br>
-      language might serve him. His dominion is an everlasting dominion which will not pass away; and his<br>
-      kingdom is one which will not be destroyed.<br>
-<br>
-<br>
-      1 Enoch 46:1-5 NRSVCE<br>
-<br>
-      1<br>
-          At that place, I saw the One to whom belongs the time before time. And his head was white like wool,<br>
-      and there was with him another individual, whose face was like that of a human being. His countenance<br>
-                                                                    2<br>
-      was full of grace like that of one among the holy angels.         And I asked the one—from among the angels—<br>
-      who was going with me, and who had revealed to me all the secrets regarding the One who was born of<br>
-                                                                                                                    3<br>
-      human beings, “Who is this, and from whence is he who is going as the prototype of the Before-Time?”<br>
-      And he answered me and said to me, “This is the Son of Man, to whom belongs righteousness, and with<br>
-      whom righteousness dwells. And he will open all the hidden storerooms; for the Lord of the Spirits has<br>
-                                                                                                               4<br>
-      chosen him, and he is destined to be victorious before the Lord of the Spirits in eternal uprightness.       This<br>
-      Son of Man whom you have seen is the One who would remove the kings and the mighty ones from their<br>
-      comfortable seats and the strong ones from their thrones. He shall loosen the reins of the strong and crush<br>
-                                  5<br>
-      the teeth of the sinners.       He shall depose the kings from their thrones and kingdoms.<br>
-<br>
-<br>
-<br>
-<br>
-   People and Trees<br>
-<br>
-<br>
-<br>
-<br>
-              A   a 16 By their fruits you will recognize them .<br>
-<br>
-<br>
-<br>
-<br>
-                      b Do people gather grapes from thorn-bushes ,<br>
-<br>
-                        or figs from thistles ?<br>
-                              17 Similarly, every good tree produces good fruit ,<br>
-                          c<br>
-Class Notes: Messianic Torah                                                                                       233 of 245<br>
-</span><span class="lang-en">   Jesus is drawing here on the “Son of Adam” traditions found in Daniel, 1 Enoch, and 4 Ezra, which depict a<br>
-   divine-human figure who sits beside the ancient of days and is invested with divine authority to bring justice<br>
-   to the cosmos.<br>
-<br>
-<br>
-      Daniel 7:9–11 NASB<br>
-<br>
-      I kept looking until thrones were set up, and the Ancient of Days took his seat; his vesture was like white<br>
-      snow and the hair of his head like pure wool. His throne was ablaze with flames, its wheels were a burning<br>
-      fire.<br>
-      A river of fire was flowing and coming out from before him; thousands upon thousands were attending him,<br>
-      and myriads upon myriads were standing before him; the court sat, and the books were opened.<br>
-      Then I kept looking because of the sound of the boastful words which the horn was speaking; I kept looking<br>
-      until the beast was slain, and its body was destroyed and given to the burning fire.<br>
-<br>
-<br>
-      Daniel 7:13–14 NASB<br>
-<br>
-      I kept looking in the night visions, and behold, with the clouds of heaven one like a Son of Man was coming,<br>
-      And he came up to the Ancient of Days and was presented before him.<br>
-      And to him was given dominion, glory and a kingdom, that all the peoples, nations and men of every<br>
-      language might serve him. His dominion is an everlasting dominion which will not pass away; and his<br>
-      kingdom is one which will not be destroyed.<br>
-<br>
-<br>
-      1 Enoch 46:1-5 NRSVCE<br>
-<br>
-      1<br>
-          At that place, I saw the One to whom belongs the time before time. And his head was white like wool,<br>
-      and there was with him another individual, whose face was like that of a human being. His countenance<br>
-                                                                    2<br>
-      was full of grace like that of one among the holy angels.         And I asked the one—from among the angels—<br>
-      who was going with me, and who had revealed to me all the secrets regarding the One who was born of<br>
-                                                                                                                    3<br>
-      human beings, “Who is this, and from whence is he who is going as the prototype of the Before-Time?”<br>
-      And he answered me and said to me, “This is the Son of Man, to whom belongs righteousness, and with<br>
-      whom righteousness dwells. And he will open all the hidden storerooms; for the Lord of the Spirits has<br>
-                                                                                                               4<br>
-      chosen him, and he is destined to be victorious before the Lord of the Spirits in eternal uprightness.       This<br>
-      Son of Man whom you have seen is the One who would remove the kings and the mighty ones from their<br>
-      comfortable seats and the strong ones from their thrones. He shall loosen the reins of the strong and crush<br>
-                                  5<br>
-      the teeth of the sinners.       He shall depose the kings from their thrones and kingdoms.<br>
-<br>
-<br>
-<br>
-<br>
-   People and Trees<br>
-<br>
-<br>
-<br>
-<br>
-              A   a 16 By their fruits you will recognize them .<br>
-<br>
-<br>
-<br>
-<br>
-                      b Do people gather grapes from thorn-bushes ,<br>
-<br>
-                        or figs from thistles ?<br>
-                              17 Similarly, every good tree produces good fruit ,<br>
-                          c<br>
-Class Notes: Messianic Torah                                                                                       233 of 245<br>
-</span></div>
-<div class="table-img reveal">
-          <img src="img/sessao-20/p7-vector.png" alt="Página 7">
-          <p class="caption"><span class="lang-pt">Página 7. Ilustração criada por Tim Mackie para BibleProject Classroom: Messianic Torah (2021).</span><span class="lang-en">Page 7. Illustration by Tim Mackie for BibleProject Classroom: Messianic Torah (2021).</span></p>
-        </div>
-<div class="page reveal"><span class="lang-pt">                           c<br>
-                                d but the diseased tree produces bad fruit .<br>
-                B<br>
-                           c&#x27; 18 A good tree is not able to produce bad fruit ,<br>
-<br>
-                               d&#x27; and diseased can’t produce good fruit .<br>
-<br>
-                       b&#x27; 19 Every tree that doesn’t produce good fruit ,<br>
-<br>
-                               it is cut down and thrown into the fire .<br>
-<br>
-<br>
-<br>
-<br>
-           A&#x27;       a&#x27; 20 So then, by their fruit you will recognize them .<br>
-<br>
-<br>
-<br>
-   Matthew 7:15-23. Translation and Literary Design by Tim Mackie for BibleProject Classroom: The Messianic<br>
-   Torah (2024).<br>
-<br>
-<br>
-   There are a few main points made here by Jesus, drawing on an analogy between people and trees, and<br>
-   people’s choices and fruit.<br>
-<br>
-<br>
-   In 7:16 and 7:20, people’s choices reveal their nature (trees are known by their fruit).<br>
-<br>
-<br>
-          Trees that are “bad” or inedible (thorn bushes or thistles) don’t produce “good” edible fruit.<br>
-          Good trees don’t produce bad, nor do bad trees produce good.<br>
-<br>
-<br>
-   Trees that are bad will eventually be exposed for what they are and thrown into the burn pile.<br>
-<br>
-<br>
-   Notice the Eden language here:<br>
-<br>
-<br>
-          Trees of good and bad fruit (the tree of knowing good and bad and its fruit)<br>
-          Fig tree (Adam and Eve covered themselves with fig leaves)<br>
-          The tree of knowing good and bad presents humanity with a choice. Outside of Eden, people present<br>
-          choices of good and bad to each other. People become trees of decision.<br>
-<br>
-<br>
-   Jesus is taking up a common Hebrew Bible set of criteria for judging the legitimacy of prophets, but has<br>
-   recast them in Eden imagery.<br>
-<br>
-<br>
-          Deuteronomy 13:1-6: A true prophet is known by whether his words are true, predictions come true, and<br>
-          if he claims to represent Yahweh; a false prophet is known by whether his predictions don’t come true<br>
-          or if he represents other deities.<br>
-          Jeremiah 23:9-15: The ethical character of a prophet will show who they really are.<br>
-<br>
-<br>
-      Jeremiah 23:14–16 NASB<br>
-<br>
-      Also among the prophets of Jerusalem I have seen a horrible thing:<br>
-      The committing of adultery and walking in falsehood;<br>
-      and they strengthen the hands of evildoers,<br>
-      so that no one has turned back from his wickedness.<br>
-      All of them have become to me like Sodom,<br>
-      and her inhabitants like Gomorrah.<br>
-      Therefore thus says the LORD of hosts concerning the prophets,<br>
-      “Behold, I am going to feed them wormwood<br>
-      and make them drink poisonous water,<br>
-<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                                  234 of 245<br>
-</span><span class="lang-en">                           c<br>
-                                d but the diseased tree produces bad fruit .<br>
-                B<br>
-                           c&#x27; 18 A good tree is not able to produce bad fruit ,<br>
-<br>
-                               d&#x27; and diseased can’t produce good fruit .<br>
-<br>
-                       b&#x27; 19 Every tree that doesn’t produce good fruit ,<br>
-<br>
-                               it is cut down and thrown into the fire .<br>
-<br>
-<br>
-<br>
-<br>
-           A&#x27;       a&#x27; 20 So then, by their fruit you will recognize them .<br>
-<br>
-<br>
-<br>
-   Matthew 7:15-23. Translation and Literary Design by Tim Mackie for BibleProject Classroom: The Messianic<br>
-   Torah (2024).<br>
-<br>
-<br>
-   There are a few main points made here by Jesus, drawing on an analogy between people and trees, and<br>
-   people’s choices and fruit.<br>
-<br>
-<br>
-   In 7:16 and 7:20, people’s choices reveal their nature (trees are known by their fruit).<br>
-<br>
-<br>
-          Trees that are “bad” or inedible (thorn bushes or thistles) don’t produce “good” edible fruit.<br>
-          Good trees don’t produce bad, nor do bad trees produce good.<br>
-<br>
-<br>
-   Trees that are bad will eventually be exposed for what they are and thrown into the burn pile.<br>
-<br>
-<br>
-   Notice the Eden language here:<br>
-<br>
-<br>
-          Trees of good and bad fruit (the tree of knowing good and bad and its fruit)<br>
-          Fig tree (Adam and Eve covered themselves with fig leaves)<br>
-          The tree of knowing good and bad presents humanity with a choice. Outside of Eden, people present<br>
-          choices of good and bad to each other. People become trees of decision.<br>
-<br>
-<br>
-   Jesus is taking up a common Hebrew Bible set of criteria for judging the legitimacy of prophets, but has<br>
-   recast them in Eden imagery.<br>
-<br>
-<br>
-          Deuteronomy 13:1-6: A true prophet is known by whether his words are true, predictions come true, and<br>
-          if he claims to represent Yahweh; a false prophet is known by whether his predictions don’t come true<br>
-          or if he represents other deities.<br>
-          Jeremiah 23:9-15: The ethical character of a prophet will show who they really are.<br>
-<br>
-<br>
-      Jeremiah 23:14–16 NASB<br>
-<br>
-      Also among the prophets of Jerusalem I have seen a horrible thing:<br>
-      The committing of adultery and walking in falsehood;<br>
-      and they strengthen the hands of evildoers,<br>
-      so that no one has turned back from his wickedness.<br>
-      All of them have become to me like Sodom,<br>
-      and her inhabitants like Gomorrah.<br>
-      Therefore thus says the LORD of hosts concerning the prophets,<br>
-      “Behold, I am going to feed them wormwood<br>
-      and make them drink poisonous water,<br>
-<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                                  234 of 245<br>
-</span></div>
-<div class="table-img reveal">
-          <img src="img/sessao-20/p8-vector.png" alt="Página 8">
-          <p class="caption"><span class="lang-pt">Página 8. Ilustração criada por Tim Mackie para BibleProject Classroom: Messianic Torah (2021).</span><span class="lang-en">Page 8. Illustration by Tim Mackie for BibleProject Classroom: Messianic Torah (2021).</span></p>
-        </div>
-<div class="page reveal"><span class="lang-pt">      for from the prophets of Jerusalem<br>
-      pollution has gone forth into all the land.”<br>
-      Thus says the LORD of hosts,<br>
-      “Do not listen to the words of the prophets who are prophesying to you.<br>
-      They are leading you into futility;<br>
-      they speak a vision of their own imagination,<br>
-      not from the mouth of the LORD.”<br>
-<br>
-<br>
-<br>
-<br>
-   Reflection Question<br>
-<br>
-   How do you reconcile the seeming contradiction of Jesus’ words in Matthew 7:18, “a diseased tree can’t<br>
-   produce good fruit,” and 7:22, “Many will say to me on that day, ‘ … didn’t we … do many mighty acts in your<br>
-   name?’”<br>
-<br>
-<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                                235 of 245<br>
-</span><span class="lang-en">      for from the prophets of Jerusalem<br>
-      pollution has gone forth into all the land.”<br>
-      Thus says the LORD of hosts,<br>
-      “Do not listen to the words of the prophets who are prophesying to you.<br>
-      They are leading you into futility;<br>
-      they speak a vision of their own imagination,<br>
-      not from the mouth of the LORD.”<br>
-<br>
-<br>
-<br>
-<br>
-   Reflection Question<br>
-<br>
-   How do you reconcile the seeming contradiction of Jesus’ words in Matthew 7:18, “a diseased tree can’t<br>
-   produce good fruit,” and 7:22, “Many will say to me on that day, ‘ … didn’t we … do many mighty acts in your<br>
-   name?’”<br>
-<br>
-<br>
-<br>
-<br>
-Class Notes: Messianic Torah                                                                                235 of 245<br>
-</span></div>
-<div class="table-img reveal">
-          <img src="img/sessao-20/p9-vector.png" alt="Página 9">
-          <p class="caption"><span class="lang-pt">Página 9. Ilustração criada por Tim Mackie para BibleProject Classroom: Messianic Torah (2021).</span><span class="lang-en">Page 9. Illustration by Tim Mackie for BibleProject Classroom: Messianic Torah (2021).</span></p>
-        </div></div>
+
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+    <h1 class="title reveal"><span class="lang-pt">Sessão 20: Lobos, Ovelhas e Árvores</span><span class="lang-en">Session 20: Wolves, Sheep, and Trees</span></h1>
+  <hr class="rule">
+  <p class="body reveal"><span class="lang-pt">Key Takeaways Jesus takes up common Hebrew Bible criteria for judging the legitimacy of prophets, recasting them in Eden imagery. The trajectory and results of a person&#x27;s life will tell a certain kind of truth that is often more reliable than their words. Being a vehicle for divine power in the world isn&#x27;t the most defining thing about our identity. There are some who do mighty works for God but whose hearts are far from him.</span><span class="lang-en">Key Takeaways Jesus takes up common Hebrew Bible criteria for judging the legitimacy of prophets, recasting them in Eden imagery. The trajectory and results of a person&#x27;s life will tell a certain kind of truth that is often more reliable than their words. Being a vehicle for divine power in the world isn&#x27;t the most defining thing about our identity. There are some who do mighty works for God but whose hearts are far from him.</span></p>
+  <p class="body reveal"><span class="lang-pt">Two Prophets and Two Trees</span><span class="lang-en">Two Prophets and Two Trees</span></p>
+  <p class="body reveal"><span class="lang-pt">15 Watch out for illegitimate prophets ,</span><span class="lang-en">15 Watch out for illegitimate prophets ,</span></p>
+  <p class="body reveal"><span class="lang-pt">who come to you in the clothing of sheep , but inside they are wolves who snatch.</span><span class="lang-en">who come to you in the clothing of sheep , but inside they are wolves who snatch.</span></p>
+  <p class="body reveal"><span class="lang-pt">a 16 By their fruits you will recognize them .</span><span class="lang-en">a 16 By their fruits you will recognize them .</span></p>
+  <p class="body reveal"><span class="lang-pt">A</span><span class="lang-en">A</span></p>
+  <p class="body reveal"><span class="lang-pt">b Do people gather grapes from thorn-bushes ,</span><span class="lang-en">b Do people gather grapes from thorn-bushes ,</span></p>
+  <p class="body reveal"><span class="lang-pt">or figs from thistles ? c 17 Similarly, every good tree produces good fruit , B</span><span class="lang-en">or figs from thistles ? c 17 Similarly, every good tree produces good fruit , B</span></p>
+  <p class="body reveal"><span class="lang-pt">d but the diseased tree produces bad fruit . c&#x27; 18 A good tree is not able to produce bad fruit , d&#x27; and diseased can’t produce good fruit . b&#x27; 19 Every tree that doesn’t produce good fruit ,</span><span class="lang-en">d but the diseased tree produces bad fruit . c&#x27; 18 A good tree is not able to produce bad fruit , d&#x27; and diseased can’t produce good fruit . b&#x27; 19 Every tree that doesn’t produce good fruit ,</span></p>
+  <p class="body reveal"><span class="lang-pt">it is cut down and thrown into the fire .</span><span class="lang-en">it is cut down and thrown into the fire .</span></p>
+  <p class="body reveal"><span class="lang-pt">A&#x27;</span><span class="lang-en">A&#x27;</span></p>
+  <p class="body reveal"><span class="lang-pt">a&#x27; 20 So then, by their fruit you will recognize them .</span><span class="lang-en">a&#x27; 20 So then, by their fruit you will recognize them .</span></p>
+  <p class="body reveal"><span class="lang-pt">21 Not everyone who says to me ,</span><span class="lang-en">21 Not everyone who says to me ,</span></p>
+  <p class="body reveal"><span class="lang-pt">“ Master, master! ”</span><span class="lang-en">“ Master, master! ”</span></p>
+  <p class="body reveal"><span class="lang-pt">A</span><span class="lang-en">A</span></p>
+  <p class="body reveal"><span class="lang-pt">will enter into the kingdom of the skies , but rather the one who does the desire of my Father in the skies .</span><span class="lang-en">will enter into the kingdom of the skies , but rather the one who does the desire of my Father in the skies .</span></p>
+  <p class="body reveal"><span class="lang-pt">22 Many will say to me on that day,</span><span class="lang-en">22 Many will say to me on that day,</span></p>
+  <p class="body reveal"><span class="lang-pt">“ Master, master , A&#x27;</span><span class="lang-en">“ Master, master , A&#x27;</span></p>
+  <p class="body reveal"><span class="lang-pt">didn’t we prophesy in your name, and cast out demons in your name, and do many mighty acts in your name?”</span><span class="lang-en">didn’t we prophesy in your name, and cast out demons in your name, and do many mighty acts in your name?”</span></p>
+  <p class="body reveal"><span class="lang-pt">23 And then I will confess to them,</span><span class="lang-en">23 And then I will confess to them,</span></p>
+  <p class="body reveal"><span class="lang-pt">B</span><span class="lang-en">B</span></p>
+  <p class="body reveal"><span class="lang-pt">“I have never known you; go away from me, you who act as if there is no law.”</span><span class="lang-en">“I have never known you; go away from me, you who act as if there is no law.”</span></p>
+  <p class="body reveal"><span class="lang-pt">Matthew 7:15-23. Translation and Literary Design by Tim Mackie for BibleProject Classroom: The Messianic Torah (2024).</span><span class="lang-en">Matthew 7:15-23. Translation and Literary Design by Tim Mackie for BibleProject Classroom: The Messianic Torah (2024).</span></p>
+  <p class="body reveal"><span class="lang-pt">Illegitimate Prophets in the Hebrew Bible The theme of illegitimate prophets was an old one, rooted in the prophetic traditions of the Hebrew Bible. Jeremiah 23:16–22 NASB 16</span><span class="lang-en">Illegitimate Prophets in the Hebrew Bible The theme of illegitimate prophets was an old one, rooted in the prophetic traditions of the Hebrew Bible. Jeremiah 23:16–22 NASB 16</span></p>
+  <p class="body reveal"><span class="lang-pt">Thus says the LORD of hosts, “Do not listen to the words of the prophets who are prophesying to you.</span><span class="lang-en">Thus says the LORD of hosts, “Do not listen to the words of the prophets who are prophesying to you.</span></p>
+  <p class="body reveal"><span class="lang-pt">They are leading you into futility; they speak a vision of their own imagination, not from the mouth of the LORD. 17</span><span class="lang-en">They are leading you into futility; they speak a vision of their own imagination, not from the mouth of the LORD. 17</span></p>
+  <p class="body reveal"><span class="lang-pt">They keep saying to those who despise me, ‘The LORD has said, “You will have peace”’; and as for</span><span class="lang-en">They keep saying to those who despise me, ‘The LORD has said, “You will have peace”’; and as for</span></p>
+  <p class="body reveal"><span class="lang-pt">everyone who walks in the stubbornness of his own heart, they say, ‘Calamity will not come upon you.’ 18</span><span class="lang-en">everyone who walks in the stubbornness of his own heart, they say, ‘Calamity will not come upon you.’ 18</span></p>
+  <p class="body reveal"><span class="lang-pt">But who has stood in the council of the LORD, that he should see and hear his word? Who has given heed</span><span class="lang-en">But who has stood in the council of the LORD, that he should see and hear his word? Who has given heed</span></p>
+  <p class="body reveal"><span class="lang-pt">to his word and listened? 19</span><span class="lang-en">to his word and listened? 19</span></p>
+  <p class="body reveal"><span class="lang-pt">Behold, the storm of the LORD has gone forth in wrath, even a whirling tempest; it will swirl down on the</span><span class="lang-en">Behold, the storm of the LORD has gone forth in wrath, even a whirling tempest; it will swirl down on the</span></p>
+  <p class="body reveal"><span class="lang-pt">head of the wicked. 20</span><span class="lang-en">head of the wicked. 20</span></p>
+  <p class="body reveal"><span class="lang-pt">The anger of the LORD will not turn back until he has performed and carried out the purposes of his</span><span class="lang-en">The anger of the LORD will not turn back until he has performed and carried out the purposes of his</span></p>
+  <p class="body reveal"><span class="lang-pt">heart; in the last days you will clearly understand it. 21</span><span class="lang-en">heart; in the last days you will clearly understand it. 21</span></p>
+  <p class="body reveal"><span class="lang-pt">I did not send these prophets, but they ran. I did not speak to them, but they prophesied.</span><span class="lang-en">I did not send these prophets, but they ran. I did not speak to them, but they prophesied.</span></p>
+  <p class="body reveal"><span class="lang-pt">22</span><span class="lang-en">22</span></p>
+  <p class="body reveal"><span class="lang-pt">But if they had stood in my council, then they would have announced my words to my people, and would</span><span class="lang-en">But if they had stood in my council, then they would have announced my words to my people, and would</span></p>
+  <p class="body reveal"><span class="lang-pt">have turned them back from their evil way and from the evil of their deeds.” Ezekiel 13:1–8 NASB 1</span><span class="lang-en">have turned them back from their evil way and from the evil of their deeds.” Ezekiel 13:1–8 NASB 1</span></p>
+  <p class="body reveal"><span class="lang-pt">Then the word of the LORD came to me saying,</span><span class="lang-en">Then the word of the LORD came to me saying,</span></p>
+  <p class="body reveal"><span class="lang-pt">2</span><span class="lang-en">2</span></p>
+  <p class="body reveal"><span class="lang-pt">“Son of man, prophesy against the prophets of Israel who prophesy, and say to those who prophesy from</span><span class="lang-en">“Son of man, prophesy against the prophets of Israel who prophesy, and say to those who prophesy from</span></p>
+  <p class="body reveal"><span class="lang-pt">their own heart, ‘Listen to the word of the LORD! 3</span><span class="lang-en">their own heart, ‘Listen to the word of the LORD! 3</span></p>
+  <p class="body reveal"><span class="lang-pt">Thus says the Lord God, “Woe to the foolish prophets who are following their own spirit and have seen</span><span class="lang-en">Thus says the Lord God, “Woe to the foolish prophets who are following their own spirit and have seen</span></p>
+  <p class="body reveal"><span class="lang-pt">nothing. 4</span><span class="lang-en">nothing. 4</span></p>
+  <p class="body reveal"><span class="lang-pt">O Israel, your prophets have been like foxes among ruins.</span><span class="lang-en">O Israel, your prophets have been like foxes among ruins.</span></p>
+  <p class="body reveal"><span class="lang-pt">5</span><span class="lang-en">5</span></p>
+  <p class="body reveal"><span class="lang-pt">You have not gone up into the breaches, nor did you build the wall around the house of Israel to stand in</span><span class="lang-en">You have not gone up into the breaches, nor did you build the wall around the house of Israel to stand in</span></p>
+  <p class="body reveal"><span class="lang-pt">the battle on the day of the LORD. 6</span><span class="lang-en">the battle on the day of the LORD. 6</span></p>
+  <p class="body reveal"><span class="lang-pt">They see falsehood and lying divination who are saying, ‘The LORD declares,’ when the LORD has not</span><span class="lang-en">They see falsehood and lying divination who are saying, ‘The LORD declares,’ when the LORD has not</span></p>
+  <p class="body reveal"><span class="lang-pt">sent them; yet they hope for the fulfillment of their word. 7</span><span class="lang-en">sent them; yet they hope for the fulfillment of their word. 7</span></p>
+  <p class="body reveal"><span class="lang-pt">Did you not see a false vision and speak a lying divination when you said, ‘The LORD declares,’ but it is not</span><span class="lang-en">Did you not see a false vision and speak a lying divination when you said, ‘The LORD declares,’ but it is not</span></p>
+  <p class="body reveal"><span class="lang-pt">I who have spoken?”’” 8</span><span class="lang-en">I who have spoken?”’” 8</span></p>
+  <p class="body reveal"><span class="lang-pt">Therefore, thus says the Lord God, “Because you have spoken falsehood and seen a lie, therefore behold, I</span><span class="lang-en">Therefore, thus says the Lord God, “Because you have spoken falsehood and seen a lie, therefore behold, I</span></p>
+  <p class="body reveal"><span class="lang-pt">am against you,” declares the Lord God. Ezekiel 22:26–28 NASB Her priests have done violence to my Torah and have profaned my holy things; they have made no distinction between the holy and the profane, and they have not taught the difference between the unclean and the clean; and they hide their eyes from my sabbaths, and I am profaned among them. Her princes within her are like wolves tearing the prey, by shedding blood and destroying lives in order to get dishonest gain. Her prophets have smeared whitewash for them, seeing false visions and divining lies for them, saying, “Thus says the Lord God,” when the LORD has not spoken. In the historical context of Jeremiah and Ezekiel (they lived at the same time during the Babylonian threat to Jerusalem; Jeremiah in Jerusalem and Ezekiel in Babylonian exile), these prophets claimed that Yahweh was giving his people over into the hands of the Babylonians. However, other prophets denied this claim and appealed to the fact that Yahweh had rescued the city from Assyria in the days of Hezekiah. There were different views on what would happen to the city, and different prophets lined up on either side, all claiming to speak for Yahweh. Jeremiah and Ezekiel, both prophets who suffered for their unpopular message, announced that Jerusalem would fall and that a remnant would emerge out on the other side to become the seed of a new humanity. This was a problem in ancient Israel, as it is still today in Jewish and Christian traditions: Who speaks for God? Jeremiah 23:16–18 NASB Thus says the LORD of hosts, “Do not listen to the words of the prophets who are prophesying to you. They are leading you into futility; they speak a vision of their own imagination, not from the mouth of the LORD. They keep saying to those who despise me, ‘The LORD has said, “You will have peace”’; and as for everyone who walks in the stubbornness of his own heart, they say, ‘Calamity will not come upon you.’ But who has stood in the council of the LORD,</span><span class="lang-en">am against you,” declares the Lord God. Ezekiel 22:26–28 NASB Her priests have done violence to my Torah and have profaned my holy things; they have made no distinction between the holy and the profane, and they have not taught the difference between the unclean and the clean; and they hide their eyes from my sabbaths, and I am profaned among them. Her princes within her are like wolves tearing the prey, by shedding blood and destroying lives in order to get dishonest gain. Her prophets have smeared whitewash for them, seeing false visions and divining lies for them, saying, “Thus says the Lord God,” when the LORD has not spoken. In the historical context of Jeremiah and Ezekiel (they lived at the same time during the Babylonian threat to Jerusalem; Jeremiah in Jerusalem and Ezekiel in Babylonian exile), these prophets claimed that Yahweh was giving his people over into the hands of the Babylonians. However, other prophets denied this claim and appealed to the fact that Yahweh had rescued the city from Assyria in the days of Hezekiah. There were different views on what would happen to the city, and different prophets lined up on either side, all claiming to speak for Yahweh. Jeremiah and Ezekiel, both prophets who suffered for their unpopular message, announced that Jerusalem would fall and that a remnant would emerge out on the other side to become the seed of a new humanity. This was a problem in ancient Israel, as it is still today in Jewish and Christian traditions: Who speaks for God? Jeremiah 23:16–18 NASB Thus says the LORD of hosts, “Do not listen to the words of the prophets who are prophesying to you. They are leading you into futility; they speak a vision of their own imagination, not from the mouth of the LORD. They keep saying to those who despise me, ‘The LORD has said, “You will have peace”’; and as for everyone who walks in the stubbornness of his own heart, they say, ‘Calamity will not come upon you.’ But who has stood in the council of the LORD,</span></p>
+  <p class="body reveal"><span class="lang-pt">That he should see and hear his word? Who has given heed to his word and listened?” Amos 3:6–8 NASB If a trumpet is blown in a city will not the people tremble? If a calamity occurs in a city has not the LORD done it? Surely the Lord God does nothing unless he reveals his counsel to his servants the prophets. A lion has roared! Who will not fear? The Lord God has spoken! Who can but prophesy? Jesus’ actions and words show that he viewed the events of his day in Jerusalem as an analogy to the time of Jeremiah and Ezekiel, which is why he quoted from them. Matthew 21:12–13 NASB And Jesus entered the temple and drove out all those who were buying and selling in the temple, and overturned the tables of the money changers and the seats of those who were selling doves. And he said to them, “It is written, ‘My house shall be called a house of prayer’; but you are making it a den of rebels.” Quoting from Jeremiah 7</span><span class="lang-en">That he should see and hear his word? Who has given heed to his word and listened?” Amos 3:6–8 NASB If a trumpet is blown in a city will not the people tremble? If a calamity occurs in a city has not the LORD done it? Surely the Lord God does nothing unless he reveals his counsel to his servants the prophets. A lion has roared! Who will not fear? The Lord God has spoken! Who can but prophesy? Jesus’ actions and words show that he viewed the events of his day in Jerusalem as an analogy to the time of Jeremiah and Ezekiel, which is why he quoted from them. Matthew 21:12–13 NASB And Jesus entered the temple and drove out all those who were buying and selling in the temple, and overturned the tables of the money changers and the seats of those who were selling doves. And he said to them, “It is written, ‘My house shall be called a house of prayer’; but you are making it a den of rebels.” Quoting from Jeremiah 7</span></p>
+  <p class="body reveal"><span class="lang-pt">Luke 19:41–44 NASB When he approached Jerusalem, he saw the city and wept over it, saying, “If you had known in this day, even you, the things which make for peace! But now they have been hidden from your eyes. For the days will come upon you when your enemies will throw up a barricade against you, and surround you and hem you in on every side, and they will level you to the ground and your children within you, and they will not leave in you one stone upon another, because you did not recognize the time of your visitation.” Hyperlink to Ezekiel 4:2, 21:27, 26:8</span><span class="lang-en">Luke 19:41–44 NASB When he approached Jerusalem, he saw the city and wept over it, saying, “If you had known in this day, even you, the things which make for peace! But now they have been hidden from your eyes. For the days will come upon you when your enemies will throw up a barricade against you, and surround you and hem you in on every side, and they will level you to the ground and your children within you, and they will not leave in you one stone upon another, because you did not recognize the time of your visitation.” Hyperlink to Ezekiel 4:2, 21:27, 26:8</span></p>
+  <p class="body reveal"><span class="lang-pt">Who are the false prophets Jesus refers to? It seems there are two levels of meaning to this teaching: 1. Level 1: Within the narrative world, Jesus speaks of rival representatives of the God of Israel in his own day of the early 1st century (Scribes and Pharisees, Herodians, Sadducees, etc.), when he was sending out representatives for his Kingdom of God movement. Matthew 10:40–41 NASB He who receives you receives me, and he who receives me receives him who sent me. He who receives a prophet in the name of a prophet shall receive a prophet’s reward; and he who receives a righteous man in the name of a righteous man shall receive a righteous man’s reward. Matthew 23:34–36 NASB Therefore, behold, I am sending you prophets and wise men and scribes; some of them you will kill and crucify, and some of them you will scourge in your synagogues, and persecute from city to city, so that upon you may fall the guilt of all the righteous blood shed on earth, from the blood of righteous Abel to the blood of Zechariah, the son of Berechiah, whom you murdered between the temple and the altar. Truly I say to you, all these things will come upon this generation.</span><span class="lang-en">Who are the false prophets Jesus refers to? It seems there are two levels of meaning to this teaching: 1. Level 1: Within the narrative world, Jesus speaks of rival representatives of the God of Israel in his own day of the early 1st century (Scribes and Pharisees, Herodians, Sadducees, etc.), when he was sending out representatives for his Kingdom of God movement. Matthew 10:40–41 NASB He who receives you receives me, and he who receives me receives him who sent me. He who receives a prophet in the name of a prophet shall receive a prophet’s reward; and he who receives a righteous man in the name of a righteous man shall receive a righteous man’s reward. Matthew 23:34–36 NASB Therefore, behold, I am sending you prophets and wise men and scribes; some of them you will kill and crucify, and some of them you will scourge in your synagogues, and persecute from city to city, so that upon you may fall the guilt of all the righteous blood shed on earth, from the blood of righteous Abel to the blood of Zechariah, the son of Berechiah, whom you murdered between the temple and the altar. Truly I say to you, all these things will come upon this generation.</span></p>
+  <p class="body reveal"><span class="lang-pt">2. Level 2: In Matthew’s world, Jesus speaks of both (a) Israelite leaders who are hostile to the messianic Jesus movement, and (b) rival leaders within the messianic Jesus movement of the later 1st century and beyond (the rival leaders in Acts, who are for or against Torah observance for non-Israelite followers of Jesus.) In other words, Matthew has taken up these words of Jesus, which were spoken before the messianic Jesus communities spread outside of Israel, and applied them by analogy to the social dynamics of the Jesus movement in his own day of the later 1st century. Within Level 1, Jesus will explore later in his parables that the community of his followers will be mixed (as Israel was in the Torah and Prophets) until the great reckoning, when a great sorting will take place (see the true and false wheat in Matthew 13:24-30, 36-43). Notice in Matthew 13:41-42, there are key hyperlinks back to this teaching in the sermon. Matthew 7:19, 21–23 NASB 19</span><span class="lang-en">2. Level 2: In Matthew’s world, Jesus speaks of both (a) Israelite leaders who are hostile to the messianic Jesus movement, and (b) rival leaders within the messianic Jesus movement of the later 1st century and beyond (the rival leaders in Acts, who are for or against Torah observance for non-Israelite followers of Jesus.) In other words, Matthew has taken up these words of Jesus, which were spoken before the messianic Jesus communities spread outside of Israel, and applied them by analogy to the social dynamics of the Jesus movement in his own day of the later 1st century. Within Level 1, Jesus will explore later in his parables that the community of his followers will be mixed (as Israel was in the Torah and Prophets) until the great reckoning, when a great sorting will take place (see the true and false wheat in Matthew 13:24-30, 36-43). Notice in Matthew 13:41-42, there are key hyperlinks back to this teaching in the sermon. Matthew 7:19, 21–23 NASB 19</span></p>
+  <p class="body reveal"><span class="lang-pt">Every tree that does not bear good fruit is cut down and thrown into the fire. …</span><span class="lang-en">Every tree that does not bear good fruit is cut down and thrown into the fire. …</span></p>
+  <p class="body reveal"><span class="lang-pt">21</span><span class="lang-en">21</span></p>
+  <p class="body reveal"><span class="lang-pt">Not everyone who says to me, “Lord, Lord,” will enter the kingdom of heaven, but he who does the will of</span><span class="lang-en">Not everyone who says to me, “Lord, Lord,” will enter the kingdom of heaven, but he who does the will of</span></p>
+  <p class="body reveal"><span class="lang-pt">my Father who is in heaven will enter. 22</span><span class="lang-en">my Father who is in heaven will enter. 22</span></p>
+  <p class="body reveal"><span class="lang-pt">Many will say to me on that day, ‘Lord, Lord, did we not prophesy in your name, and in your name cast</span><span class="lang-en">Many will say to me on that day, ‘Lord, Lord, did we not prophesy in your name, and in your name cast</span></p>
+  <p class="body reveal"><span class="lang-pt">out demons, and in your name perform many miracles?’ 23</span><span class="lang-en">out demons, and in your name perform many miracles?’ 23</span></p>
+  <p class="body reveal"><span class="lang-pt">And then I will declare to them, ‘I never knew you; depart from me, you who act as if there is no Torah.’</span><span class="lang-en">And then I will declare to them, ‘I never knew you; depart from me, you who act as if there is no Torah.’</span></p>
+  <p class="body reveal"><span class="lang-pt">Matthew 13:40–43 NASB So just as the tares are gathered up and burned with fire, so shall it be at the end of the age. The Son of Man will send forth his angels, and they will gather out of his kingdom all stumbling blocks, and those who commit lawlessness, and will throw them into the furnace of fire; in that place there will be weeping and gnashing of teeth. Then the righteous will shine forth as the sun in the kingdom of their Father. He who has ears, let him hear. It is also possible that Matthew, in his narrative, identifies the Pharisees and scribes with one aspect of these wolves, as Matthew 23:13 hyperlinks back to Jesus’ teaching about the gate and the path. Matthew 7:13–14 NASB Enter through the narrow gate; for the gate is wide and the way is broad that leads to destruction, and there are many who enter through it. For the gate is small and the way is narrow that leads to life, and there are few who find it. Matthew 23:13 NASB But woe to you, scribes and Pharisees, hypocrites, because you shut off the kingdom of heaven from people; for you do not enter in yourselves, nor do you allow those who are entering to go in.</span><span class="lang-en">Matthew 13:40–43 NASB So just as the tares are gathered up and burned with fire, so shall it be at the end of the age. The Son of Man will send forth his angels, and they will gather out of his kingdom all stumbling blocks, and those who commit lawlessness, and will throw them into the furnace of fire; in that place there will be weeping and gnashing of teeth. Then the righteous will shine forth as the sun in the kingdom of their Father. He who has ears, let him hear. It is also possible that Matthew, in his narrative, identifies the Pharisees and scribes with one aspect of these wolves, as Matthew 23:13 hyperlinks back to Jesus’ teaching about the gate and the path. Matthew 7:13–14 NASB Enter through the narrow gate; for the gate is wide and the way is broad that leads to destruction, and there are many who enter through it. For the gate is small and the way is narrow that leads to life, and there are few who find it. Matthew 23:13 NASB But woe to you, scribes and Pharisees, hypocrites, because you shut off the kingdom of heaven from people; for you do not enter in yourselves, nor do you allow those who are entering to go in.</span></p>
+  <p class="body reveal"><span class="lang-pt">Doing Signs and Wonders in Jesus’ Name Within Level 1, we know that Jesus was not the only messianic figure trying to get Israel’s attention in his day, and there were others who tried to ride off the momentum of his popularity.</span><span class="lang-en">Doing Signs and Wonders in Jesus’ Name Within Level 1, we know that Jesus was not the only messianic figure trying to get Israel’s attention in his day, and there were others who tried to ride off the momentum of his popularity.</span></p>
+  <p class="body reveal"><span class="lang-pt">Mark 9:38–40 NASB John said to him, “Teacher, we saw someone casting out demons in your name, and we tried to prevent him because he was not following us.” But Jesus said, “Do not hinder him, for there is no one who will perform a miracle in my name, and be able soon afterward to speak evil of me. For he who is not against us is for us.” Matthew 24:4–5 NASB And Jesus answered and said to them, “See to it that no one misleads you. For many will come in my name, saying, ‘I am the Christ,’ and will mislead many.” Acts 19:13–16 NASB But also some of the Jewish exorcists, who went from place to place, attempted to name over those who had the evil spirits the name of the Lord Jesus, saying, “I adjure you by Jesus whom Paul preaches.” Seven sons of one Sceva, a Jewish chief priest, were doing this. And the evil spirit answered and said to them, “I recognize Jesus, and I know about Paul, but who are you?” And the man, in whom was the evil spirit, leaped on them and subdued all of them and overpowered them, so that they fled out of that house naked and wounded. On Level 2, Matthew is also referring to the dispersed activity of the leaders in the messianic Jesus movement of the later 1st century. “The recognition that miracles and other seemingly supernatural phenomena are not infallible signs of saving faith is common to several NT authors, and it is what makes possible the expectation that the last days will see even evil figures doing great wonders (Mt. 24:23–28; 2 Th. 2:9–10; Rev. 13:13–15; etc.). In Lk. 10:20, for instance, Jesus declares, ‘Do not rejoice in this, that the spirits are subject to you; but rejoice in that your names are written in heaven’. And in 1 Cor. 12–14, the apostle Paul puts tongues and other spectacular manifestations in their place by calling for decency and order in worship and by exalting love above everything else as the more excellent way. … What Jesus has called for is obedience to his Torah (5:17–48), sincere practice of the Christian cult (6:1–18), and a right attitude towards the things of this world (6:19–7:12). He has beckoned his followers to travel down a very difficult road (7:13–14), a road without the promise of fame and glory, a road which instead holds forth the prospect of persecution (5:10–12), with reward coming only in the future (6:4, 6, 18, 19–21).” Davies, W. D. &amp; Allison Jr., Dale C. (2004). Matthew, vol. 1 (International Critical Commentary). T&amp;T Clark International. 716.</span><span class="lang-en">Mark 9:38–40 NASB John said to him, “Teacher, we saw someone casting out demons in your name, and we tried to prevent him because he was not following us.” But Jesus said, “Do not hinder him, for there is no one who will perform a miracle in my name, and be able soon afterward to speak evil of me. For he who is not against us is for us.” Matthew 24:4–5 NASB And Jesus answered and said to them, “See to it that no one misleads you. For many will come in my name, saying, ‘I am the Christ,’ and will mislead many.” Acts 19:13–16 NASB But also some of the Jewish exorcists, who went from place to place, attempted to name over those who had the evil spirits the name of the Lord Jesus, saying, “I adjure you by Jesus whom Paul preaches.” Seven sons of one Sceva, a Jewish chief priest, were doing this. And the evil spirit answered and said to them, “I recognize Jesus, and I know about Paul, but who are you?” And the man, in whom was the evil spirit, leaped on them and subdued all of them and overpowered them, so that they fled out of that house naked and wounded. On Level 2, Matthew is also referring to the dispersed activity of the leaders in the messianic Jesus movement of the later 1st century. “The recognition that miracles and other seemingly supernatural phenomena are not infallible signs of saving faith is common to several NT authors, and it is what makes possible the expectation that the last days will see even evil figures doing great wonders (Mt. 24:23–28; 2 Th. 2:9–10; Rev. 13:13–15; etc.). In Lk. 10:20, for instance, Jesus declares, ‘Do not rejoice in this, that the spirits are subject to you; but rejoice in that your names are written in heaven’. And in 1 Cor. 12–14, the apostle Paul puts tongues and other spectacular manifestations in their place by calling for decency and order in worship and by exalting love above everything else as the more excellent way. … What Jesus has called for is obedience to his Torah (5:17–48), sincere practice of the Christian cult (6:1–18), and a right attitude towards the things of this world (6:19–7:12). He has beckoned his followers to travel down a very difficult road (7:13–14), a road without the promise of fame and glory, a road which instead holds forth the prospect of persecution (5:10–12), with reward coming only in the future (6:4, 6, 18, 19–21).” Davies, W. D. &amp; Allison Jr., Dale C. (2004). Matthew, vol. 1 (International Critical Commentary). T&amp;T Clark International. 716.</span></p>
+  <p class="body reveal"><span class="lang-pt">“Depart From Me … ” Jesus’ words in Matthew 7:21-23 express an exalted view of his own identity: Jesus is the one who allows (or doesn’t allow) entry into the Kingdom of Heaven. (Not post-mortem, but present and future.) It is in Jesus’ name that signs and wonders are performed. (This is the role of Yahweh’s name in the Hebrew Bible.) Jesus is the one who “confesses” (homologeo) people’s “known” identity before God. This is a public, legal confession.</span><span class="lang-en">“Depart From Me … ” Jesus’ words in Matthew 7:21-23 express an exalted view of his own identity: Jesus is the one who allows (or doesn’t allow) entry into the Kingdom of Heaven. (Not post-mortem, but present and future.) It is in Jesus’ name that signs and wonders are performed. (This is the role of Yahweh’s name in the Hebrew Bible.) Jesus is the one who “confesses” (homologeo) people’s “known” identity before God. This is a public, legal confession.</span></p>
+  <p class="body reveal"><span class="lang-pt">Jesus is drawing here on the “Son of Adam” traditions found in Daniel, 1 Enoch, and 4 Ezra, which depict a divine-human figure who sits beside the ancient of days and is invested with divine authority to bring justice to the cosmos. Daniel 7:9–11 NASB I kept looking until thrones were set up, and the Ancient of Days took his seat; his vesture was like white snow and the hair of his head like pure wool. His throne was ablaze with flames, its wheels were a burning fire. A river of fire was flowing and coming out from before him; thousands upon thousands were attending him, and myriads upon myriads were standing before him; the court sat, and the books were opened. Then I kept looking because of the sound of the boastful words which the horn was speaking; I kept looking until the beast was slain, and its body was destroyed and given to the burning fire. Daniel 7:13–14 NASB I kept looking in the night visions, and behold, with the clouds of heaven one like a Son of Man was coming, And he came up to the Ancient of Days and was presented before him. And to him was given dominion, glory and a kingdom, that all the peoples, nations and men of every language might serve him. His dominion is an everlasting dominion which will not pass away; and his kingdom is one which will not be destroyed. 1 Enoch 46:1-5 NRSVCE 1</span><span class="lang-en">Jesus is drawing here on the “Son of Adam” traditions found in Daniel, 1 Enoch, and 4 Ezra, which depict a divine-human figure who sits beside the ancient of days and is invested with divine authority to bring justice to the cosmos. Daniel 7:9–11 NASB I kept looking until thrones were set up, and the Ancient of Days took his seat; his vesture was like white snow and the hair of his head like pure wool. His throne was ablaze with flames, its wheels were a burning fire. A river of fire was flowing and coming out from before him; thousands upon thousands were attending him, and myriads upon myriads were standing before him; the court sat, and the books were opened. Then I kept looking because of the sound of the boastful words which the horn was speaking; I kept looking until the beast was slain, and its body was destroyed and given to the burning fire. Daniel 7:13–14 NASB I kept looking in the night visions, and behold, with the clouds of heaven one like a Son of Man was coming, And he came up to the Ancient of Days and was presented before him. And to him was given dominion, glory and a kingdom, that all the peoples, nations and men of every language might serve him. His dominion is an everlasting dominion which will not pass away; and his kingdom is one which will not be destroyed. 1 Enoch 46:1-5 NRSVCE 1</span></p>
+  <p class="body reveal"><span class="lang-pt">At that place, I saw the One to whom belongs the time before time. And his head was white like wool,</span><span class="lang-en">At that place, I saw the One to whom belongs the time before time. And his head was white like wool,</span></p>
+  <p class="body reveal"><span class="lang-pt">and there was with him another individual, whose face was like that of a human being. His countenance was full of grace like that of one among the holy angels.</span><span class="lang-en">and there was with him another individual, whose face was like that of a human being. His countenance was full of grace like that of one among the holy angels.</span></p>
+  <p class="body reveal"><span class="lang-pt">2</span><span class="lang-en">2</span></p>
+  <p class="body reveal"><span class="lang-pt">And I asked the one—from among the angels—</span><span class="lang-en">And I asked the one—from among the angels—</span></p>
+  <p class="body reveal"><span class="lang-pt">who was going with me, and who had revealed to me all the secrets regarding the One who was born of human beings, “Who is this, and from whence is he who is going as the prototype of the Before-Time?”</span><span class="lang-en">who was going with me, and who had revealed to me all the secrets regarding the One who was born of human beings, “Who is this, and from whence is he who is going as the prototype of the Before-Time?”</span></p>
+  <p class="body reveal"><span class="lang-pt">3</span><span class="lang-en">3</span></p>
+  <p class="body reveal"><span class="lang-pt">And he answered me and said to me, “This is the Son of Man, to whom belongs righteousness, and with whom righteousness dwells. And he will open all the hidden storerooms; for the Lord of the Spirits has chosen him, and he is destined to be victorious before the Lord of the Spirits in eternal uprightness.</span><span class="lang-en">And he answered me and said to me, “This is the Son of Man, to whom belongs righteousness, and with whom righteousness dwells. And he will open all the hidden storerooms; for the Lord of the Spirits has chosen him, and he is destined to be victorious before the Lord of the Spirits in eternal uprightness.</span></p>
+  <p class="body reveal"><span class="lang-pt">4</span><span class="lang-en">4</span></p>
+  <p class="body reveal"><span class="lang-pt">This</span><span class="lang-en">This</span></p>
+  <p class="body reveal"><span class="lang-pt">Son of Man whom you have seen is the One who would remove the kings and the mighty ones from their comfortable seats and the strong ones from their thrones. He shall loosen the reins of the strong and crush the teeth of the sinners.</span><span class="lang-en">Son of Man whom you have seen is the One who would remove the kings and the mighty ones from their comfortable seats and the strong ones from their thrones. He shall loosen the reins of the strong and crush the teeth of the sinners.</span></p>
+  <p class="body reveal"><span class="lang-pt">5</span><span class="lang-en">5</span></p>
+  <p class="body reveal"><span class="lang-pt">He shall depose the kings from their thrones and kingdoms.</span><span class="lang-en">He shall depose the kings from their thrones and kingdoms.</span></p>
+  <p class="body reveal"><span class="lang-pt">People and Trees</span><span class="lang-en">People and Trees</span></p>
+  <p class="body reveal"><span class="lang-pt">A</span><span class="lang-en">A</span></p>
+  <p class="body reveal"><span class="lang-pt">a 16 By their fruits you will recognize them .</span><span class="lang-en">a 16 By their fruits you will recognize them .</span></p>
+  <p class="body reveal"><span class="lang-pt">b Do people gather grapes from thorn-bushes ,</span><span class="lang-en">b Do people gather grapes from thorn-bushes ,</span></p>
+  <p class="body reveal"><span class="lang-pt">or figs from thistles ? c</span><span class="lang-en">or figs from thistles ? c</span></p>
+  <p class="body reveal"><span class="lang-pt">17 Similarly, every good tree produces good fruit ,</span><span class="lang-en">17 Similarly, every good tree produces good fruit ,</span></p>
+  <p class="body reveal"><span class="lang-pt">c B</span><span class="lang-en">c B</span></p>
+  <p class="body reveal"><span class="lang-pt">d but the diseased tree produces bad fruit .</span><span class="lang-en">d but the diseased tree produces bad fruit .</span></p>
+  <p class="body reveal"><span class="lang-pt">c&#x27; 18 A good tree is not able to produce bad fruit , d&#x27; and diseased can’t produce good fruit . b&#x27; 19 Every tree that doesn’t produce good fruit ,</span><span class="lang-en">c&#x27; 18 A good tree is not able to produce bad fruit , d&#x27; and diseased can’t produce good fruit . b&#x27; 19 Every tree that doesn’t produce good fruit ,</span></p>
+  <p class="body reveal"><span class="lang-pt">it is cut down and thrown into the fire .</span><span class="lang-en">it is cut down and thrown into the fire .</span></p>
+  <p class="body reveal"><span class="lang-pt">A&#x27;</span><span class="lang-en">A&#x27;</span></p>
+  <p class="body reveal"><span class="lang-pt">a&#x27; 20 So then, by their fruit you will recognize them .</span><span class="lang-en">a&#x27; 20 So then, by their fruit you will recognize them .</span></p>
+  <p class="body reveal"><span class="lang-pt">Matthew 7:15-23. Translation and Literary Design by Tim Mackie for BibleProject Classroom: The Messianic Torah (2024). There are a few main points made here by Jesus, drawing on an analogy between people and trees, and people’s choices and fruit. In 7:16 and 7:20, people’s choices reveal their nature (trees are known by their fruit). Trees that are “bad” or inedible (thorn bushes or thistles) don’t produce “good” edible fruit. Good trees don’t produce bad, nor do bad trees produce good. Trees that are bad will eventually be exposed for what they are and thrown into the burn pile. Notice the Eden language here: Trees of good and bad fruit (the tree of knowing good and bad and its fruit) Fig tree (Adam and Eve covered themselves with fig leaves) The tree of knowing good and bad presents humanity with a choice. Outside of Eden, people present choices of good and bad to each other. People become trees of decision. Jesus is taking up a common Hebrew Bible set of criteria for judging the legitimacy of prophets, but has recast them in Eden imagery. Deuteronomy 13:1-6: A true prophet is known by whether his words are true, predictions come true, and if he claims to represent Yahweh; a false prophet is known by whether his predictions don’t come true or if he represents other deities. Jeremiah 23:9-15: The ethical character of a prophet will show who they really are. Jeremiah 23:14–16 NASB Also among the prophets of Jerusalem I have seen a horrible thing: The committing of adultery and walking in falsehood; and they strengthen the hands of evildoers, so that no one has turned back from his wickedness. All of them have become to me like Sodom, and her inhabitants like Gomorrah. Therefore thus says the LORD of hosts concerning the prophets, “Behold, I am going to feed them wormwood and make them drink poisonous water,</span><span class="lang-en">Matthew 7:15-23. Translation and Literary Design by Tim Mackie for BibleProject Classroom: The Messianic Torah (2024). There are a few main points made here by Jesus, drawing on an analogy between people and trees, and people’s choices and fruit. In 7:16 and 7:20, people’s choices reveal their nature (trees are known by their fruit). Trees that are “bad” or inedible (thorn bushes or thistles) don’t produce “good” edible fruit. Good trees don’t produce bad, nor do bad trees produce good. Trees that are bad will eventually be exposed for what they are and thrown into the burn pile. Notice the Eden language here: Trees of good and bad fruit (the tree of knowing good and bad and its fruit) Fig tree (Adam and Eve covered themselves with fig leaves) The tree of knowing good and bad presents humanity with a choice. Outside of Eden, people present choices of good and bad to each other. People become trees of decision. Jesus is taking up a common Hebrew Bible set of criteria for judging the legitimacy of prophets, but has recast them in Eden imagery. Deuteronomy 13:1-6: A true prophet is known by whether his words are true, predictions come true, and if he claims to represent Yahweh; a false prophet is known by whether his predictions don’t come true or if he represents other deities. Jeremiah 23:9-15: The ethical character of a prophet will show who they really are. Jeremiah 23:14–16 NASB Also among the prophets of Jerusalem I have seen a horrible thing: The committing of adultery and walking in falsehood; and they strengthen the hands of evildoers, so that no one has turned back from his wickedness. All of them have become to me like Sodom, and her inhabitants like Gomorrah. Therefore thus says the LORD of hosts concerning the prophets, “Behold, I am going to feed them wormwood and make them drink poisonous water,</span></p>
+  <p class="body reveal"><span class="lang-pt">for from the prophets of Jerusalem pollution has gone forth into all the land.” Thus says the LORD of hosts, “Do not listen to the words of the prophets who are prophesying to you. They are leading you into futility; they speak a vision of their own imagination, not from the mouth of the LORD.”</span><span class="lang-en">for from the prophets of Jerusalem pollution has gone forth into all the land.” Thus says the LORD of hosts, “Do not listen to the words of the prophets who are prophesying to you. They are leading you into futility; they speak a vision of their own imagination, not from the mouth of the LORD.”</span></p>
+  <p class="body reveal"><span class="lang-pt">Reflection Question How do you reconcile the seeming contradiction of Jesus’ words in Matthew 7:18, “a diseased tree can’t produce good fruit,” and 7:22, “Many will say to me on that day, ‘ … didn’t we … do many mighty acts in your name?’”</span><span class="lang-en">Reflection Question How do you reconcile the seeming contradiction of Jesus’ words in Matthew 7:18, “a diseased tree can’t produce good fruit,” and 7:22, “Many will say to me on that day, ‘ … didn’t we … do many mighty acts in your name?’”</span></p>
+  <div class="page-footer">
+    <span>Class Notes: A Torá Messiânica</span>
+    <span><span class="lang-pt">Sessão 20 · Lobos, Ovelhas e Árvores</span><span class="lang-en">Session 20 · Wolves, Sheep, and Trees</span></span>
+  </div>
+</div>
 <script>
-function setLang(lang){
-  document.documentElement.setAttribute('lang', lang);
-  try { localStorage.setItem('s20-lang', lang); } catch(e){}
-  var pt=document.getElementById('lang-pt'), en=document.getElementById('lang-en');
-  if(lang==='pt'){ pt.class20ame="px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-l-full"; en.class20ame="px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full"; }
-  else { en.class20ame="px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-r-full"; pt.class20ame="px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full"; }
-}
-var saved='pt'; try { saved=localStorage.getItem('s20-lang')||'pt'; } catch(e){}
-setLang(saved);
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s20-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s20-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
 </script>
-</body></html>
+
+  <script src="../js/verse-modal.js"></script>
+</body>
+</html>

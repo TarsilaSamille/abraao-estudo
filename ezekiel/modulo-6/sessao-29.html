@@ -3,26 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title><span class="lang-pt">Sessão 29: Refletindo sobre Ezequiel</span><span class="lang-en">Session 29: TE29</span></title>
+<title>Sessão 29: Refletindo sobre Ezequiel</title>
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <script src="../js/verse-modal.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=29ewsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <style>
   * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
   html[lang="pt"] .lang-en { display: none !important; }
   html[lang="en"] .lang-pt { display: none !important; }
-  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
-  .table-img img { width: 100%; display: block; }
+  .heb { font-family: 'SBL Hebrew','Times New Roman',serif; font-size: 1.05em; direction: rtl; unicode-bidi: embed; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
+  .ref:hover { color: #2563eb; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
   .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-  .page { margin: 1.5rem 0; line-height: 1.7; font-size: 1.0rem; }
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+  .scripture:hover { border-left-color: #9aa7b8; }
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 </style>
 </head>
-<body class="bg-white">
+<body>
+<div id="reading-progress" aria-hidden="true"></div>
 <div class="fixed left-4 top-4 z-50 print:hidden">
-  <a href="../index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
     <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
   </a>
 </div>
@@ -32,82 +51,57 @@
   </button>
   <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
     <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
-    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">E29</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
   </div>
 </div>
-<div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
-<div class="page reveal"><span class="lang-pt">   Session 29: Reflecting on Ezekiel<br>
-<br>
-<br>
-   Key Takeaways<br>
-<br>
-          Prophetic literature is some of the most challenging to interpret and requires wisdom to engage it well.<br>
-          But it provides a lifetime’s worth of meditation and reflection.<br>
-          Ezekiel demonstrates a faithful response to God’s calling. He lives out a parable of God’s message to his<br>
-          people, trusting that God would bring about everything he said he would.<br>
-          The book of Ezekiel invites us to walk about the story of Israel with God and to consider the height,<br>
-          width, and breadth of God’s love and faithfulness in bringing his people through exile into new life in his<br>
-          presence.<br>
-<br>
-<br>
-<br>
-<br>
-                                               This session has no notes<br>
-<br>
-<br>
-<br>
-<br>
-   Reflection Question<br>
-<br>
-   Take some time to reflect on the insights you learned in this class.<br>
-<br>
-<br>
-<br>
-<br>
-Class Notes: Ezekiel                                                                                           249 of 249<br>
-</span><span class="lang-en">   Session 29: Reflecting on Ezekiel<br>
-<br>
-<br>
-   Key Takeaways<br>
-<br>
-          Prophetic literature is some of the most challenging to interpret and requires wisdom to engage it well.<br>
-          But it provides a lifetime’s worth of meditation and reflection.<br>
-          Ezekiel demonstrates a faithful response to God’s calling. He lives out a parable of God’s message to his<br>
-          people, trusting that God would bring about everything he said he would.<br>
-          The book of Ezekiel invites us to walk about the story of Israel with God and to consider the height,<br>
-          width, and breadth of God’s love and faithfulness in bringing his people through exile into new life in his<br>
-          presence.<br>
-<br>
-<br>
-<br>
-<br>
-                                               This session has no notes<br>
-<br>
-<br>
-<br>
-<br>
-   Reflection Question<br>
-<br>
-   Take some time to reflect on the insights you learned in this class.<br>
-<br>
-<br>
-<br>
-<br>
-Class Notes: Ezekiel                                                                                           249 of 249<br>
-</span></div>
-<div class="table-img reveal">
-          <img src="img/sessao-29/p1-vector.png" alt="Página 1">
-          <p class="caption"><span class="lang-pt">Página 1. Ilustração criada por Tim Mackie para BibleProject Classroom: Ezequiel (2021).</span><span class="lang-en">Page 1. Illustration by Tim Mackie for BibleProject Classroom: Ezekiel (2021).</span></p>
-        </div></div>
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+  <h1 class="title reveal"><span class="lang-pt">Sessão 29: Refletindo sobre Ezequiel</span><span class="lang-en">Session 29: Reflecting on Ezekiel</span></h1>
+  <hr class="rule">
+
+  <h3 class="sub reveal" style="margin-top:0;"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal" style="margin-bottom:2.5rem;">
+    <li><span class="lang-pt">A literatura profética é alguma da mais desafiadora de interpretar e exige sabedoria para engajá-la bem.</span><span class="lang-en">Prophetic literature is some of the most challenging to interpret and requires wisdom to engage it well.</span></li>
+    <li><span class="lang-pt">Mas ela oferece uma vida inteira de meditação e reflexão.</span><span class="lang-en">But it provides a lifetime’s worth of meditation and reflection.</span></li>
+    <li><span class="lang-pt">Ezequiel demonstra uma resposta fiel ao chamado de Deus. Ele vive uma parábola da mensagem de Deus para o seu povo, confiando que Deus traria à realidade tudo o que disse que faria.</span><span class="lang-en">Ezekiel demonstrates a faithful response to God’s calling. He lives out a parable of God’s message to his people, trusting that God would bring about everything he said he would.</span></li>
+    <li><span class="lang-pt">O livro de Ezequiel nos convida a caminhar pela história de Israel com Deus e a considerar a altura, a largura e a profundidade do amor e da fidelidade de Deus em conduzir o seu povo através do exílio para a nova vida na sua presença.</span><span class="lang-en">The book of Ezekiel invites us to walk about the story of Israel with God and to consider the height, width, and breadth of God’s love and faithfulness in bringing his people through exile into new life in his presence.</span></li>
+  </ul>
+
+  <h3 class="sub reveal"><span class="lang-pt">Questão para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">Reserve um tempo para refletir sobre os insights que você aprendeu nesta aula.</span><span class="lang-en">Take some time to reflect on the insights you learned in this class.</span></p>
+
+  <div class="page-footer">
+    <span>Class Notes: Ezekiel</span>
+    <span><span class="lang-pt">Sessão 29 · Refletindo sobre Ezequiel</span><span class="lang-en">Session 29 · Reflecting on Ezekiel</span></span>
+  </div>
+</div>
 <script>
-function setLang(lang){
-  document.documentElement.setAttribute('lang', lang);
-  try { localStorage.setItem('s29-lang', lang); } catch(e){}
-  var pt=document.getElementById('lang-pt'), en=document.getElementById('lang-en');
-  if(lang==='pt'){ pt.class29ame="px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-l-full"; en.class29ame="px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full"; }
-  else { en.class29ame="px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-r-full"; pt.class29ame="px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full"; }
-}
-var saved='pt'; try { saved=localStorage.getItem('s29-lang')||'pt'; } catch(e){}
-setLang(saved);
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('s29-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('s29-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    function update() { var h = document.documentElement; var max = h.scrollHeight - h.clientHeight; bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; }
+    window.addEventListener('scroll', update, { passive: true }); window.addEventListener('resize', update); update();
+  })();
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) { entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } }); }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
 </script>
-</body></html>
+<script src="../js/verse-modal.js"></script>
+</body>
+</html>
