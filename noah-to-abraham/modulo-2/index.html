@@ -24,7 +24,7 @@
       <main class="flex flex-1 flex-col items-center justify-center text-center">
         <img src="../image/img-2.jpeg" alt="Rebelião Cósmica no Tempo de Noé" class="mb-8 h-48 w-48 rounded-2xl object-cover shadow-lg" />
         <h1 class="text-5xl font-bold text-slate-900" data-i18n="h1">Módulo 2: Rebelião Cósmica no Tempo de Noé</h1>
-        <h2 class="mt-4 text-lg font-semibold uppercase tracking-wider text-slate-500" data-i18n="sessions">Sessões 7-10</h2>
+        <h2 class="mt-4 text-lg font-semibold uppercase tracking-wider text-slate-500" data-i18n="sessions">Sessões 9-14</h2>
         <div class="mt-12 w-full max-w-3xl">
           <h2 class="mb-6 text-2xl font-bold text-slate-900" data-i18n="toc">Índice de Sessões</h2>
           <div id="sessgrid" class="grid gap-4 md:grid-cols-2"></div>
@@ -33,15 +33,10 @@
     </div>
   </div>
   <script>
-    const SESSIONS = [{"n": 7, "title_pt": "O Design de Gênesis 6:1-12", "title_en": "Design of Genesis 6:1-12"}, {"n": 8, "title_pt": "A Rebelião dos Filhos de Elohim", "title_en": "The Rebellion of the Sons of Elohim"}, {"n": 9, "title_pt": "A Identidade dos Nephilim", "title_en": "The Identity of the Nephilim"}, {"n": 10, "title_pt": "Gigantes no Contexto do Antigo Oriente Próximo", "title_en": "Giants in Ancient Near Eastern Context"}];
-    const I18N = {"pt": {"title": "Módulo 2: Rebelião Cósmica no Tempo de Noé", "h1": "Módulo 2: Rebelião Cósmica no Tempo de Noé", "sessions": "Sessões 7-10", "toc": "Índice de Sessões", "back": "Voltar", "session": "Sessão"}, "en": {"title": "Module 2: Cosmic Rebellion in the Time of Noah", "h1": "Module 2: Cosmic Rebellion in the Time of Noah", "sessions": "Sessions 7-10", "toc": "Table of Sessions", "back": "Back", "session": "Session"}};
+    const SESSIONS = [{"n": 9, "title_pt": "O Dilúvio e a Promessa", "title_en": "O Dilúvio e a Promessa"}, {"n": 10, "title_pt": "A Aliança e a Terra Renovada", "title_en": "A Aliança e a Terra Renovada"}, {"n": 11, "title_pt": "Os Filhos de Elohim e as Filhas dos Humanos", "title_en": "Os Filhos de Elohim e as Filhas dos Humanos"}, {"n": 12, "title_pt": "Os Nephilim e a Espiritualidade do Mal", "title_en": "Os Nephilim e a Espiritualidade do Mal"}, {"n": 13, "title_pt": "A Rebelião dos Filhos de Adão", "title_en": "A Rebelião dos Filhos de Adão"}, {"n": 14, "title_pt": "Noé, o Remanescente Justo", "title_en": "Noé, o Remanescente Justo"}];
+    const I18N = {"pt": {"title": "Módulo 2: Rebelião Cósmica no Tempo de Noé", "h1": "Módulo 2: Rebelião Cósmica no Tempo de Noé", "sessions": "Sessões 9-14", "toc": "Índice de Sessões", "back": "Voltar", "session": "Sessão"}, "en": {"title": "Module 2: Cosmic Rebellion in the Time of Noah", "h1": "Module 2: Cosmic Rebellion in the Time of Noah", "sessions": "Sessions 9-14", "toc": "Table of Sessions", "back": "Back", "session": "Session"}};
     function render(lang){
-      document.getElementById('sessgrid').innerHTML = SESSIONS.map(s=>`
-        <a href="sessao-${s.n}.html"
-          class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg">
-          <h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">${I18N[lang].session} ${s.n}</h3>
-          <p class="mt-2 text-slate-600">${lang==='pt'?s.title_pt:s.title_en}</p>
-        </a>`).join('');
+      document.getElementById('sessgrid').innerHTML = SESSIONS.map(s=>`<a href="sessao-${s.n}.html" class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg"><h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">${I18N[lang].session} ${s.n}</h3><p class="mt-2 text-slate-600">${lang==='pt'?s.title_pt:s.title_en}</p></a>`).join('');
     }
     function setLang(lang){
       localStorage.setItem('bp_lang',lang);

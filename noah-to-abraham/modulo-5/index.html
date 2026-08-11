@@ -24,7 +24,7 @@
       <main class="flex flex-1 flex-col items-center justify-center text-center">
         <img src="../image/img-5.jpeg" alt="Depois do Dilúvio" class="mb-8 h-48 w-48 rounded-2xl object-cover shadow-lg" />
         <h1 class="text-5xl font-bold text-slate-900" data-i18n="h1">Módulo 5: Depois do Dilúvio</h1>
-        <h2 class="mt-4 text-lg font-semibold uppercase tracking-wider text-slate-500" data-i18n="sessions">Sessões 19-22</h2>
+        <h2 class="mt-4 text-lg font-semibold uppercase tracking-wider text-slate-500" data-i18n="sessions">Sessões 23-27</h2>
         <div class="mt-12 w-full max-w-3xl">
           <h2 class="mb-6 text-2xl font-bold text-slate-900" data-i18n="toc">Índice de Sessões</h2>
           <div id="sessgrid" class="grid gap-4 md:grid-cols-2"></div>
@@ -33,15 +33,10 @@
     </div>
   </div>
   <script>
-    const SESSIONS = [{"n": 19, "title_pt": "O Padrão do Sacrifício no Lugar Alto", "title_en": "The Pattern of the High Place Sacrifice"}, {"n": 20, "title_pt": "A Aliança de Deus com Noé", "title_en": "God's Covenant With Noah"}, {"n": 21, "title_pt": "Refletindo sobre a Aliança de Deus", "title_en": "Reflecting on God's Covenant"}, {"n": 22, "title_pt": "A Arca de Noé e o Debate sobre o Dilúvio", "title_en": "Noah's Ark and the Flood Debate"}];
-    const I18N = {"pt": {"title": "Módulo 5: Depois do Dilúvio", "h1": "Módulo 5: Depois do Dilúvio", "sessions": "Sessões 19-22", "toc": "Índice de Sessões", "back": "Voltar", "session": "Sessão"}, "en": {"title": "Module 5: After the Flood", "h1": "Module 5: After the Flood", "sessions": "Sessions 19-22", "toc": "Table of Sessions", "back": "Back", "session": "Session"}};
+    const SESSIONS = [{"n": 23, "title_pt": "O Sacrifício de Noé e a Bênção de Deus", "title_en": "O Sacrifício de Noé e a Bênção de Deus"}, {"n": 24, "title_pt": "A Aliança de Deus com Noé e Toda a Criação", "title_en": "A Aliança de Deus com Noé e Toda a Criação"}, {"n": 25, "title_pt": "Reflexão sobre a Aliança de Deus e o Debate do Dilúvio", "title_en": "Reflexão sobre a Aliança de Deus e o Debate do Dilúvio"}, {"n": 26, "title_pt": "Hiperbolismo Cósmico e o Padrão do Dilúvio na Bíblia", "title_en": "Hiperbolismo Cósmico e o Padrão do Dilúvio na Bíblia"}, {"n": 27, "title_pt": "O Jardim de Noé e a Falha da Família", "title_en": "O Jardim de Noé e a Falha da Família"}];
+    const I18N = {"pt": {"title": "Módulo 5: Depois do Dilúvio", "h1": "Módulo 5: Depois do Dilúvio", "sessions": "Sessões 23-27", "toc": "Índice de Sessões", "back": "Voltar", "session": "Sessão"}, "en": {"title": "Module 5: After the Flood", "h1": "Module 5: After the Flood", "sessions": "Sessions 23-27", "toc": "Table of Sessions", "back": "Back", "session": "Session"}};
     function render(lang){
-      document.getElementById('sessgrid').innerHTML = SESSIONS.map(s=>`
-        <a href="sessao-${s.n}.html"
-          class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg">
-          <h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">${I18N[lang].session} ${s.n}</h3>
-          <p class="mt-2 text-slate-600">${lang==='pt'?s.title_pt:s.title_en}</p>
-        </a>`).join('');
+      document.getElementById('sessgrid').innerHTML = SESSIONS.map(s=>`<a href="sessao-${s.n}.html" class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg"><h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">${I18N[lang].session} ${s.n}</h3><p class="mt-2 text-slate-600">${lang==='pt'?s.title_pt:s.title_en}</p></a>`).join('');
     }
     function setLang(lang){
       localStorage.setItem('bp_lang',lang);

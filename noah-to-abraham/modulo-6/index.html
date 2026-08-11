@@ -24,7 +24,7 @@
       <main class="flex flex-1 flex-col items-center justify-center text-center">
         <img src="../image/img-6.jpeg" alt="O Ciclo Começa de Novo" class="mb-8 h-48 w-48 rounded-2xl object-cover shadow-lg" />
         <h1 class="text-5xl font-bold text-slate-900" data-i18n="h1">Módulo 6: O Ciclo Começa de Novo</h1>
-        <h2 class="mt-4 text-lg font-semibold uppercase tracking-wider text-slate-500" data-i18n="sessions">Sessões 23-28</h2>
+        <h2 class="mt-4 text-lg font-semibold uppercase tracking-wider text-slate-500" data-i18n="sessions">Sessões 28-28</h2>
         <div class="mt-12 w-full max-w-3xl">
           <h2 class="mb-6 text-2xl font-bold text-slate-900" data-i18n="toc">Índice de Sessões</h2>
           <div id="sessgrid" class="grid gap-4 md:grid-cols-2"></div>
@@ -33,15 +33,10 @@
     </div>
   </div>
   <script>
-    const SESSIONS = [{"n": 23, "title_pt": "A Aliança de Deus com Noé", "title_en": "God's Covenant with Noah"}, {"n": 24, "title_pt": "Refletindo sobre o Pecado de Cam", "title_en": "Reflecting on the Sin of Ham"}, {"n": 25, "title_pt": "Abençoando e Amaldiçoando os Filhos de Noé", "title_en": "Blessing and Cursing Noah's Sons"}, {"n": 26, "title_pt": "Os Irmãos se Reúnem em Paz", "title_en": "The Brothers Come Together in Peace"}, {"n": 27, "title_pt": "A Fundação de Babel", "title_en": "The Founding of Babylon"}, {"n": 28, "title_pt": "De Sem a Abraão", "title_en": "From Shem to Abraham"}];
-    const I18N = {"pt": {"title": "Módulo 6: O Ciclo Começa de Novo", "h1": "Módulo 6: O Ciclo Começa de Novo", "sessions": "Sessões 23-28", "toc": "Índice de Sessões", "back": "Voltar", "session": "Sessão"}, "en": {"title": "Module 6: The Cycle Begins Again", "h1": "Module 6: The Cycle Begins Again", "sessions": "Sessions 23-28", "toc": "Table of Sessions", "back": "Back", "session": "Session"}};
+    const SESSIONS = [{"n": 28, "title_pt": "De Sem a Abraão", "title_en": "De Sem a Abraão"}];
+    const I18N = {"pt": {"title": "Módulo 6: O Ciclo Começa de Novo", "h1": "Módulo 6: O Ciclo Começa de Novo", "sessions": "Sessões 28-28", "toc": "Índice de Sessões", "back": "Voltar", "session": "Sessão"}, "en": {"title": "Module 6: The Cycle Begins Again", "h1": "Module 6: The Cycle Begins Again", "sessions": "Sessions 28-28", "toc": "Table of Sessions", "back": "Back", "session": "Session"}};
     function render(lang){
-      document.getElementById('sessgrid').innerHTML = SESSIONS.map(s=>`
-        <a href="sessao-${s.n}.html"
-          class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg">
-          <h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">${I18N[lang].session} ${s.n}</h3>
-          <p class="mt-2 text-slate-600">${lang==='pt'?s.title_pt:s.title_en}</p>
-        </a>`).join('');
+      document.getElementById('sessgrid').innerHTML = SESSIONS.map(s=>`<a href="sessao-${s.n}.html" class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg"><h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">${I18N[lang].session} ${s.n}</h3><p class="mt-2 text-slate-600">${lang==='pt'?s.title_pt:s.title_en}</p></a>`).join('');
     }
     function setLang(lang){
       localStorage.setItem('bp_lang',lang);

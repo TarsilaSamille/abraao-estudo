@@ -24,7 +24,7 @@
       <main class="flex flex-1 flex-col items-center justify-center text-center">
         <img src="../image/img-4.jpeg" alt="O Dilúvio" class="mb-8 h-48 w-48 rounded-2xl object-cover shadow-lg" />
         <h1 class="text-5xl font-bold text-slate-900" data-i18n="h1">Módulo 4: O Dilúvio</h1>
-        <h2 class="mt-4 text-lg font-semibold uppercase tracking-wider text-slate-500" data-i18n="sessions">Sessões 15-18</h2>
+        <h2 class="mt-4 text-lg font-semibold uppercase tracking-wider text-slate-500" data-i18n="sessions">Sessões 17-22</h2>
         <div class="mt-12 w-full max-w-3xl">
           <h2 class="mb-6 text-2xl font-bold text-slate-900" data-i18n="toc">Índice de Sessões</h2>
           <div id="sessgrid" class="grid gap-4 md:grid-cols-2"></div>
@@ -33,15 +33,10 @@
     </div>
   </div>
   <script>
-    const SESSIONS = [{"n": 15, "title_pt": "O Dilúvio como Colapso Cósmico", "title_en": "The Flood as Cosmic Collapse"}, {"n": 16, "title_pt": "As Águas do Dilúvio Inundam a Terra", "title_en": "The Flood Overwhelms the Land"}, {"n": 17, "title_pt": "As Águas do Dilúvio Recedem", "title_en": "The Flood Waters Recede"}, {"n": 18, "title_pt": "O Sacrifício de Noé e a Bênção de Deus", "title_en": "Noah's Sacrifice and God's Blessing"}];
-    const I18N = {"pt": {"title": "Módulo 4: O Dilúvio", "h1": "Módulo 4: O Dilúvio", "sessions": "Sessões 15-18", "toc": "Índice de Sessões", "back": "Voltar", "session": "Sessão"}, "en": {"title": "Module 4: The Flood", "h1": "Module 4: The Flood", "sessions": "Sessions 15-18", "toc": "Table of Sessions", "back": "Back", "session": "Session"}};
+    const SESSIONS = [{"n": 17, "title_pt": "O Dilúvio como Colapso Cósmico", "title_en": "O Dilúvio como Colapso Cósmico"}, {"n": 18, "title_pt": "O Dilúvio Avassalador da Terra", "title_en": "O Dilúvio Avassalador da Terra"}, {"n": 19, "title_pt": "As Águas Avassaladoras da Terra", "title_en": "As Águas Avassaladoras da Terra"}, {"n": 20, "title_pt": "As Águas Recuam da Terra", "title_en": "As Águas Recuam da Terra"}, {"n": 21, "title_pt": "As Águas Baixam e a Terra Se Abre", "title_en": "As Águas Baixam e a Terra Se Abre"}, {"n": 22, "title_pt": "Famílias dos Animais e a Saída da Arca", "title_en": "Famílias dos Animais e a Saída da Arca"}];
+    const I18N = {"pt": {"title": "Módulo 4: O Dilúvio", "h1": "Módulo 4: O Dilúvio", "sessions": "Sessões 17-22", "toc": "Índice de Sessões", "back": "Voltar", "session": "Sessão"}, "en": {"title": "Module 4: The Flood", "h1": "Module 4: The Flood", "sessions": "Sessions 17-22", "toc": "Table of Sessions", "back": "Back", "session": "Session"}};
     function render(lang){
-      document.getElementById('sessgrid').innerHTML = SESSIONS.map(s=>`
-        <a href="sessao-${s.n}.html"
-          class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg">
-          <h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">${I18N[lang].session} ${s.n}</h3>
-          <p class="mt-2 text-slate-600">${lang==='pt'?s.title_pt:s.title_en}</p>
-        </a>`).join('');
+      document.getElementById('sessgrid').innerHTML = SESSIONS.map(s=>`<a href="sessao-${s.n}.html" class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg"><h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">${I18N[lang].session} ${s.n}</h3><p class="mt-2 text-slate-600">${lang==='pt'?s.title_pt:s.title_en}</p></a>`).join('');
     }
     function setLang(lang){
       localStorage.setItem('bp_lang',lang);

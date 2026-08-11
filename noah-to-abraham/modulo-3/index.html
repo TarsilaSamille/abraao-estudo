@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-i18n="title">Módulo 3: Os Avisos de Deus Sobre o Dilúvio</title>
+  <title data-i18n="title">Módulo 3: O Dilúvio e a Aliança</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-white font-sans text-slate-800">
@@ -22,9 +22,9 @@
   <div class="min-h-screen p-8">
     <div class="flex min-h-screen flex-col p-8 md:p-12">
       <main class="flex flex-1 flex-col items-center justify-center text-center">
-        <img src="../image/img-3.jpeg" alt="Os Avisos de Deus Sobre o Dilúvio" class="mb-8 h-48 w-48 rounded-2xl object-cover shadow-lg" />
-        <h1 class="text-5xl font-bold text-slate-900" data-i18n="h1">Módulo 3: Os Avisos de Deus Sobre o Dilúvio</h1>
-        <h2 class="mt-4 text-lg font-semibold uppercase tracking-wider text-slate-500" data-i18n="sessions">Sessões 11-14</h2>
+        <img src="../image/img-3.jpeg" alt="O Dilúvio e a Aliança" class="mb-8 h-48 w-48 rounded-2xl object-cover shadow-lg" />
+        <h1 class="text-5xl font-bold text-slate-900" data-i18n="h1">Módulo 3: O Dilúvio e a Aliança</h1>
+        <h2 class="mt-4 text-lg font-semibold uppercase tracking-wider text-slate-500" data-i18n="sessions">Sessões 15-16</h2>
         <div class="mt-12 w-full max-w-3xl">
           <h2 class="mb-6 text-2xl font-bold text-slate-900" data-i18n="toc">Índice de Sessões</h2>
           <div id="sessgrid" class="grid gap-4 md:grid-cols-2"></div>
@@ -33,15 +33,10 @@
     </div>
   </div>
   <script>
-    const SESSIONS = [{"n": 11, "title_pt": "A Rebelião dos Filhos de Adão", "title_en": "The Rebellion of the Sons of Adam"}, {"n": 12, "title_pt": "Noé, o Remanescente Justo", "title_en": "Noah the Righteous Remnant"}, {"n": 13, "title_pt": "A Arca como Éden e Tabernáculo Simbólicos", "title_en": "The Ark as a Symbolic Eden and Tabernacle"}, {"n": 14, "title_pt": "Refletindo sobre a Arca como Éden Simbólico", "title_en": "Reflecting on the Ark as a Symbolic Eden"}];
-    const I18N = {"pt": {"title": "Módulo 3: Os Avisos de Deus Sobre o Dilúvio", "h1": "Módulo 3: Os Avisos de Deus Sobre o Dilúvio", "sessions": "Sessões 11-14", "toc": "Índice de Sessões", "back": "Voltar", "session": "Sessão"}, "en": {"title": "Module 3: God's Warnings About the Flood", "h1": "Module 3: God's Warnings About the Flood", "sessions": "Sessions 11-14", "toc": "Table of Sessions", "back": "Back", "session": "Session"}};
+    const SESSIONS = [{"n": 15, "title_pt": "A Arca como Éden e Tabernáculo Simbólico", "title_en": "A Arca como Éden e Tabernáculo Simbólico"}, {"n": 16, "title_pt": "A Arca como Templo da Presença de Yahweh", "title_en": "A Arca como Templo da Presença de Yahweh"}];
+    const I18N = {"pt": {"title": "Módulo 3: O Dilúvio e a Aliança", "h1": "Módulo 3: O Dilúvio e a Aliança", "sessions": "Sessões 15-16", "toc": "Índice de Sessões", "back": "Voltar", "session": "Sessão"}, "en": {"title": "Module 3: The Flood and the Covenant", "h1": "Module 3: The Flood and the Covenant", "sessions": "Sessions 15-16", "toc": "Table of Sessions", "back": "Back", "session": "Session"}};
     function render(lang){
-      document.getElementById('sessgrid').innerHTML = SESSIONS.map(s=>`
-        <a href="sessao-${s.n}.html"
-          class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg">
-          <h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">${I18N[lang].session} ${s.n}</h3>
-          <p class="mt-2 text-slate-600">${lang==='pt'?s.title_pt:s.title_en}</p>
-        </a>`).join('');
+      document.getElementById('sessgrid').innerHTML = SESSIONS.map(s=>`<a href="sessao-${s.n}.html" class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg"><h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">${I18N[lang].session} ${s.n}</h3><p class="mt-2 text-slate-600">${lang==='pt'?s.title_pt:s.title_en}</p></a>`).join('');
     }
     function setLang(lang){
       localStorage.setItem('bp_lang',lang);
