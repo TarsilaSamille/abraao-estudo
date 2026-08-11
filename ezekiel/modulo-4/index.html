@@ -22,7 +22,7 @@
   <div class="min-h-screen p-8">
     <div class="flex min-h-screen flex-col p-8 md:p-12">
       <main class="flex flex-1 flex-col items-center justify-center text-center">
-        <img src="../image/img-4.jpeg" alt="O Julgamento de Israel Cumprido" class="mb-8 h-48 w-48 rounded-2xl object-cover shadow-lg" />
+        <img src="../image/img-4.jpeg" alt="O Rio que Sai do Templo" class="mb-8 h-48 w-48 rounded-2xl object-cover shadow-lg" />
         <h1 class="text-5xl font-bold text-slate-900" data-i18n="h1">Módulo 4: O Julgamento de Israel Cumprido</h1>
         <h2 class="mt-4 text-lg font-semibold uppercase tracking-wider text-slate-500" data-i18n="sessions">Sessões 15-18</h2>
         <div class="mt-12 w-full max-w-3xl">
@@ -33,15 +33,10 @@
     </div>
   </div>
   <script>
-    const SESSIONS = [{"n": 15, "title_pt": "A Destruição do Templo", "title_en": "The Destruction of the Temple"}, {"n": 16, "title_pt": "Oráculos Contra as Nações", "title_en": "Oracles Against the Nations"}, {"n": 17, "title_pt": "Egito como Árvore do Éden, Monstro Marinho e Nephilim", "title_en": "Egypt as Eden Tree, Sea Monster, and Nephilim"}, {"n": 18, "title_pt": "Do Julgamento à Esperança", "title_en": "From Judgment to Hope"}];
+    const SESSIONS = [{"n": 15, "title_pt": "A Destruição do Templo", "title_en": "The Destruction of the Temple"}, {"n": 16, "title_pt": "Oráculos Contra as Nações", "title_en": "Oracles Against the Nations"}, {"n": 17, "title_pt": "Egito como Árvore do Éden, Monstro do Mar e Nefilim", "title_en": "Egypt as Eden Tree, Sea Monster, and Nephilim"}, {"n": 18, "title_pt": "Do Juízo à Esperança", "title_en": "From Judgment to Hope"}];
     const I18N = {"pt": {"title": "Módulo 4: O Julgamento de Israel Cumprido", "h1": "Módulo 4: O Julgamento de Israel Cumprido", "sessions": "Sessões 15-18", "toc": "Índice de Sessões", "back": "Voltar", "session": "Sessão"}, "en": {"title": "Module 4: Israel’s Judgment Fulfilled", "h1": "Module 4: Israel’s Judgment Fulfilled", "sessions": "Sessions 15-18", "toc": "Table of Sessions", "back": "Back", "session": "Session"}};
     function render(lang){
-      document.getElementById('sessgrid').innerHTML = SESSIONS.map(s=>`
-        <a href="sessao-${s.n}.html"
-          class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg">
-          <h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">${I18N[lang].session} ${s.n}</h3>
-          <p class="mt-2 text-slate-600">${lang==='pt'?s.title_pt:s.title_en}</p>
-        </a>`).join('');
+      document.getElementById('sessgrid').innerHTML = SESSIONS.map(s=>`<a href="sessao-${s.n}.html" class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg"><h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">${I18N[lang].session} ${s.n}</h3><p class="mt-2 text-slate-600">${lang==='pt'?s.title_pt:s.title_en}</p></a>`).join('');
     }
     function setLang(lang){
       localStorage.setItem('bp_lang',lang);

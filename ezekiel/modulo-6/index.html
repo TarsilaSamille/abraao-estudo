@@ -22,9 +22,9 @@
   <div class="min-h-screen p-8">
     <div class="flex min-h-screen flex-col p-8 md:p-12">
       <main class="flex flex-1 flex-col items-center justify-center text-center">
-        <img src="../image/img-6.jpeg" alt="A Visão do Templo de Ezequiel" class="mb-8 h-48 w-48 rounded-2xl object-cover shadow-lg" />
+        <img src="../image/img-6.jpeg" alt="O Rio que Sai do Templo" class="mb-8 h-48 w-48 rounded-2xl object-cover shadow-lg" />
         <h1 class="text-5xl font-bold text-slate-900" data-i18n="h1">Módulo 6: A Visão do Templo de Ezequiel</h1>
-        <h2 class="mt-4 text-lg font-semibold uppercase tracking-wider text-slate-500" data-i18n="sessions">Sessões 25-29</h2>
+        <h2 class="mt-4 text-lg font-semibold uppercase tracking-wider text-slate-500" data-i18n="sessions">Sessões 25-28</h2>
         <div class="mt-12 w-full max-w-3xl">
           <h2 class="mb-6 text-2xl font-bold text-slate-900" data-i18n="toc">Índice de Sessões</h2>
           <div id="sessgrid" class="grid gap-4 md:grid-cols-2"></div>
@@ -33,15 +33,10 @@
     </div>
   </div>
   <script>
-    const SESSIONS = [{"n": 25, "title_pt": "Introdução à Visão do Templo de Ezequiel", "title_en": "Introduction to Ezekiel's Temple Vision"}, {"n": 26, "title_pt": "O Tour pelo Templo de Ezequiel", "title_en": "Ezekiel's Temple Tour"}, {"n": 27, "title_pt": "O Propósito da Visão do Templo de Ezequiel", "title_en": "The Purpose of Ezekiel’s Temple Vision"}, {"n": 28, "title_pt": "O Rio que Sai do Templo", "title_en": "The River From the Temple"}, {"n": 29, "title_pt": "Refletindo sobre Ezequiel", "title_en": "Reflecting on Ezekiel"}];
-    const I18N = {"pt": {"title": "Módulo 6: A Visão do Templo de Ezequiel", "h1": "Módulo 6: A Visão do Templo de Ezequiel", "sessions": "Sessões 25-29", "toc": "Índice de Sessões", "back": "Voltar", "session": "Sessão"}, "en": {"title": "Module 6: Ezekiel’s Temple Vision", "h1": "Module 6: Ezekiel’s Temple Vision", "sessions": "Sessions 25-29", "toc": "Table of Sessions", "back": "Back", "session": "Session"}};
+    const SESSIONS = [{"n": 25, "title_pt": "Introdução à Visão do Templo de Ezequiel", "title_en": "Introduction to Ezekiel's Temple Vision"}, {"n": 26, "title_pt": "O Tour pelo Templo de Ezequiel", "title_en": "O Tour pelo Templo de Ezequiel"}, {"n": 27, "title_pt": "O Propósito da Visão do Templo de Ezequiel", "title_en": "O Propósito da Visão do Templo de Ezequiel"}, {"n": 28, "title_pt": "O Rio que Sai do Templo", "title_en": "O Rio que Sai do Templo"}];
+    const I18N = {"pt": {"title": "Módulo 6: A Visão do Templo de Ezequiel", "h1": "Módulo 6: A Visão do Templo de Ezequiel", "sessions": "Sessões 25-28", "toc": "Índice de Sessões", "back": "Voltar", "session": "Sessão"}, "en": {"title": "Module 6: Ezekiel’s Temple Vision", "h1": "Module 6: Ezekiel’s Temple Vision", "sessions": "Sessions 25-28", "toc": "Table of Sessions", "back": "Back", "session": "Session"}};
     function render(lang){
-      document.getElementById('sessgrid').innerHTML = SESSIONS.map(s=>`
-        <a href="sessao-${s.n}.html"
-          class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg">
-          <h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">${I18N[lang].session} ${s.n}</h3>
-          <p class="mt-2 text-slate-600">${lang==='pt'?s.title_pt:s.title_en}</p>
-        </a>`).join('');
+      document.getElementById('sessgrid').innerHTML = SESSIONS.map(s=>`<a href="sessao-${s.n}.html" class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg"><h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">${I18N[lang].session} ${s.n}</h3><p class="mt-2 text-slate-600">${lang==='pt'?s.title_pt:s.title_en}</p></a>`).join('');
     }
     function setLang(lang){
       localStorage.setItem('bp_lang',lang);

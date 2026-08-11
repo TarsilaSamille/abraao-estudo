@@ -22,7 +22,7 @@
   <div class="min-h-screen p-8">
     <div class="flex min-h-screen flex-col p-8 md:p-12">
       <main class="flex flex-1 flex-col items-center justify-center text-center">
-        <img src="../image/img-5.jpeg" alt="A Renovação e Restauração de Israel" class="mb-8 h-48 w-48 rounded-2xl object-cover shadow-lg" />
+        <img src="../image/img-5.jpeg" alt="O Rio que Sai do Templo" class="mb-8 h-48 w-48 rounded-2xl object-cover shadow-lg" />
         <h1 class="text-5xl font-bold text-slate-900" data-i18n="h1">Módulo 5: A Renovação e Restauração de Israel</h1>
         <h2 class="mt-4 text-lg font-semibold uppercase tracking-wider text-slate-500" data-i18n="sessions">Sessões 19-24</h2>
         <div class="mt-12 w-full max-w-3xl">
@@ -33,15 +33,10 @@
     </div>
   </div>
   <script>
-    const SESSIONS = [{"n": 19, "title_pt": "O Pastor de Israel", "title_en": "Israel’s Shepherd"}, {"n": 20, "title_pt": "Novo Coração, Novo Espírito", "title_en": "New Heart, New Spirit"}, {"n": 21, "title_pt": "O Vale de Ossos Secos", "title_en": "The Valley of Dry Bones"}, {"n": 22, "title_pt": "A Reunificação de Israel", "title_en": "The Reunification of Israel"}, {"n": 23, "title_pt": "Gogue e a Serpente", "title_en": "Gog and the Snake"}, {"n": 24, "title_pt": "Os Oráculos de Gogue", "title_en": "The Gog Oracles"}];
+    const SESSIONS = [{"n": 19, "title_pt": "O Pastor de Israel", "title_en": "Israel's Shepherd"}, {"n": 20, "title_pt": "Novo Coração, Novo Espírito", "title_en": "New Heart, New Spirit"}, {"n": 21, "title_pt": "O Vale de Ossos Secos", "title_en": "The Valley of Dry Bones"}, {"n": 22, "title_pt": "A Reunificação de Israel", "title_en": "The Reunification of Israel"}, {"n": 23, "title_pt": "Gogue e a Serpente", "title_en": "Gog and the Snake"}, {"n": 24, "title_pt": "Os Oráculos de Gogue", "title_en": "The Gog Oracles"}];
     const I18N = {"pt": {"title": "Módulo 5: A Renovação e Restauração de Israel", "h1": "Módulo 5: A Renovação e Restauração de Israel", "sessions": "Sessões 19-24", "toc": "Índice de Sessões", "back": "Voltar", "session": "Sessão"}, "en": {"title": "Module 5: Israel’s Renewal and Restoration", "h1": "Module 5: Israel’s Renewal and Restoration", "sessions": "Sessions 19-24", "toc": "Table of Sessions", "back": "Back", "session": "Session"}};
     function render(lang){
-      document.getElementById('sessgrid').innerHTML = SESSIONS.map(s=>`
-        <a href="sessao-${s.n}.html"
-          class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg">
-          <h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">${I18N[lang].session} ${s.n}</h3>
-          <p class="mt-2 text-slate-600">${lang==='pt'?s.title_pt:s.title_en}</p>
-        </a>`).join('');
+      document.getElementById('sessgrid').innerHTML = SESSIONS.map(s=>`<a href="sessao-${s.n}.html" class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg"><h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">${I18N[lang].session} ${s.n}</h3><p class="mt-2 text-slate-600">${lang==='pt'?s.title_pt:s.title_en}</p></a>`).join('');
     }
     function setLang(lang){
       localStorage.setItem('bp_lang',lang);

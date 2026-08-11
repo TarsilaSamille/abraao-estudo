@@ -22,7 +22,7 @@
   <div class="min-h-screen p-8">
     <div class="flex min-h-screen flex-col p-8 md:p-12">
       <main class="flex flex-1 flex-col items-center justify-center text-center">
-        <img src="../image/img-1.jpeg" alt="Introdução a Ezequiel" class="mb-8 h-48 w-48 rounded-2xl object-cover shadow-lg" />
+        <img src="../image/img-1.jpeg" alt="O Rio que Sai do Templo" class="mb-8 h-48 w-48 rounded-2xl object-cover shadow-lg" />
         <h1 class="text-5xl font-bold text-slate-900" data-i18n="h1">Módulo 1: Introdução a Ezequiel</h1>
         <h2 class="mt-4 text-lg font-semibold uppercase tracking-wider text-slate-500" data-i18n="sessions">Sessões 1-4</h2>
         <div class="mt-12 w-full max-w-3xl">
@@ -33,15 +33,10 @@
     </div>
   </div>
   <script>
-    const SESSIONS = [{"n": 1, "title_pt": "Compreendendo Ezequiel", "title_en": "Understanding Ezekiel"}, {"n": 2, "title_pt": "Os Temas Principais da Torá", "title_en": "The Main Themes of the Torah"}, {"n": 3, "title_pt": "A Importância do Templo", "title_en": "The Importance of the Temple"}, {"n": 4, "title_pt": "Ezequiel no Contexto Histórico e Literário", "title_en": "Ezekiel in Historical and Literary Context"}];
+    const SESSIONS = [{"n": 1, "title_pt": "Compreendendo Ezequiel", "title_en": "Compreendendo Ezequiel"}, {"n": 2, "title_pt": "Os Temas Principais da Torá", "title_en": "Os Temas Principais da Torá"}, {"n": 3, "title_pt": "A Importância do Templo", "title_en": "The Importance of the Temple"}, {"n": 4, "title_pt": "Ezequiel no Contexto Histórico e Literário", "title_en": "Ezekiel in Historical and Literary Context"}];
     const I18N = {"pt": {"title": "Módulo 1: Introdução a Ezequiel", "h1": "Módulo 1: Introdução a Ezequiel", "sessions": "Sessões 1-4", "toc": "Índice de Sessões", "back": "Voltar", "session": "Sessão"}, "en": {"title": "Module 1: Introduction to Ezekiel", "h1": "Module 1: Introduction to Ezekiel", "sessions": "Sessions 1-4", "toc": "Table of Sessions", "back": "Back", "session": "Session"}};
     function render(lang){
-      document.getElementById('sessgrid').innerHTML = SESSIONS.map(s=>`
-        <a href="sessao-${s.n}.html"
-          class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg">
-          <h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">${I18N[lang].session} ${s.n}</h3>
-          <p class="mt-2 text-slate-600">${lang==='pt'?s.title_pt:s.title_en}</p>
-        </a>`).join('');
+      document.getElementById('sessgrid').innerHTML = SESSIONS.map(s=>`<a href="sessao-${s.n}.html" class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg"><h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">${I18N[lang].session} ${s.n}</h3><p class="mt-2 text-slate-600">${lang==='pt'?s.title_pt:s.title_en}</p></a>`).join('');
     }
     function setLang(lang){
       localStorage.setItem('bp_lang',lang);

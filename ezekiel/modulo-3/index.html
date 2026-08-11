@@ -22,7 +22,7 @@
   <div class="min-h-screen p-8">
     <div class="flex min-h-screen flex-col p-8 md:p-12">
       <main class="flex flex-1 flex-col items-center justify-center text-center">
-        <img src="../image/img-3.jpeg" alt="Oráculos Contra Israel" class="mb-8 h-48 w-48 rounded-2xl object-cover shadow-lg" />
+        <img src="../image/img-3.jpeg" alt="O Rio que Sai do Templo" class="mb-8 h-48 w-48 rounded-2xl object-cover shadow-lg" />
         <h1 class="text-5xl font-bold text-slate-900" data-i18n="h1">Módulo 3: Oráculos Contra Israel</h1>
         <h2 class="mt-4 text-lg font-semibold uppercase tracking-wider text-slate-500" data-i18n="sessions">Sessões 10-14</h2>
         <div class="mt-12 w-full max-w-3xl">
@@ -33,15 +33,10 @@
     </div>
   </div>
   <script>
-    const SESSIONS = [{"n": 10, "title_pt": "Falsos Profetas e a Tempestade Vindoura", "title_en": "False Prophets and the Coming Storm"}, {"n": 11, "title_pt": "O Anti-Remanescente", "title_en": "The Anti-Remnant"}, {"n": 12, "title_pt": "Israel, a Esposa Infiel", "title_en": "Israel the Unfaithful Wife"}, {"n": 13, "title_pt": "Comendo Uvas Azedas", "title_en": "Eating Sour Grapes"}, {"n": 14, "title_pt": "A História de Israel Remixada", "title_en": "Israel’s History Remixed"}];
+    const SESSIONS = [{"n": 10, "title_pt": "Falsos Profetas e a Tempestade Vindoura", "title_en": "False Prophets and the Coming Storm"}, {"n": 11, "title_pt": "O Anti-Remescente", "title_en": "The Anti-Remnant"}, {"n": 12, "title_pt": "Israel, a Esposa Infiel", "title_en": "Israel the Unfaithful Wife"}, {"n": 13, "title_pt": "Comendo Uvas Azedas", "title_en": "Eating Sour Grapes"}, {"n": 14, "title_pt": "A História de Israel Remixada", "title_en": "Israel&rsquo;s History Remixed"}];
     const I18N = {"pt": {"title": "Módulo 3: Oráculos Contra Israel", "h1": "Módulo 3: Oráculos Contra Israel", "sessions": "Sessões 10-14", "toc": "Índice de Sessões", "back": "Voltar", "session": "Sessão"}, "en": {"title": "Module 3: Oracles Against Israel", "h1": "Module 3: Oracles Against Israel", "sessions": "Sessions 10-14", "toc": "Table of Sessions", "back": "Back", "session": "Session"}};
     function render(lang){
-      document.getElementById('sessgrid').innerHTML = SESSIONS.map(s=>`
-        <a href="sessao-${s.n}.html"
-          class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg">
-          <h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">${I18N[lang].session} ${s.n}</h3>
-          <p class="mt-2 text-slate-600">${lang==='pt'?s.title_pt:s.title_en}</p>
-        </a>`).join('');
+      document.getElementById('sessgrid').innerHTML = SESSIONS.map(s=>`<a href="sessao-${s.n}.html" class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg"><h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">${I18N[lang].session} ${s.n}</h3><p class="mt-2 text-slate-600">${lang==='pt'?s.title_pt:s.title_en}</p></a>`).join('');
     }
     function setLang(lang){
       localStorage.setItem('bp_lang',lang);
