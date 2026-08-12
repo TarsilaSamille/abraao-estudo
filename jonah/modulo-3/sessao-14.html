@@ -44,12 +44,24 @@
 </style>
 </head>
 <body class="bg-white">
-  <a href="../index.html" class="nav-btn nav-back"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
-  <div class="nav-lang" style="right:1rem; position:fixed; top:1rem; z-index:50; display:inline-flex; gap:.25rem;">
-    <button onclick="setLang('pt')" class="nav-btn" style="position:static" id="lang-pt-btn">PT</button>
-    <button onclick="setLang('en')" class="nav-btn" style="position:static" id="lang-en-btn">EN</button>
+<div id="reading-progress" aria-hidden="true"></div>
+<div class="fixed left-4 top-4 z-50 print:hidden">
+  <a href="../index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
+</div>
+<div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
+  </button>
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
+    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
   </div>
-  <div class="max-w-4xl mx-auto px-5 py-12 md:py-16"><div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
+</div>
+
+  <div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
     <h1 class="title reveal"><span class="lang-pt">Sessão 14: Refletindo sobre o Caráter de Deus</span><span class="lang-en">Session 14: Reflecting on God’s Character</span></h1>
     <hr class="rule">
     <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
@@ -61,12 +73,44 @@
     </ul>
 
     <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
-    <p class="body reveal"><span class="lang-pt">Que perguntas você tem sobre os aspectos do caráter de Deus encontrados em Êxodo 34:6-7? Você luta com a tensão entre a justiça e a misericórdia de Deus? Por quê ou por que não?</span><span class="lang-en">What questions do you have about the aspects of God's character found in Exodus 34:6-7? Do you struggle with the tension between God's justice and mercy? Why or why not?</span></p>
-  
-  <script>
-    function setLang(l){ localStorage.setItem('jonah-s14-lang',l); document.documentElement.lang=l; var pt=document.getElementById('lang-pt-btn'), en=document.getElementById('lang-en-btn'); if(l==='pt'){pt.className='nav-btn bg-sky-600 text-white';en.className='nav-btn';} else {en.className='nav-btn bg-sky-600 text-white';pt.className='nav-btn';} }
-    (function(){ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1}); document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);}); })();
-    setLang(localStorage.getItem('jonah-s14-lang')||'pt');
-  </script>
+    <p class="body reveal"><span class="lang-pt">Que perguntas você tem sobre os aspectos do caráter de Deus encontrados em Êxodo 34:6-7? Você luta com a tensão entre a justiça e a misericórdia de Deus? Por quê ou por que não?</span><span class="lang-en">What questions do you have about the aspects of God's character found in Exodus 34:6-7? Do you struggle with the tension between God's justice and mercy? Why or why not?</span></p>  <script>
+  function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('jonah-s14-lang', lang); } catch(e) {}
+    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
+    if (lang === 'pt') {
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-l-full";
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
+    } else {
+      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-r-full";
+      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
+    }
+  }
+  var saved = 'pt'; try { saved = localStorage.getItem('jonah-s14-lang') || 'pt'; } catch(e) {}
+  setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    if (!bar) return;
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var targets = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
+    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+</script>
 </body>
 </html>
