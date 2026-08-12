@@ -12,15 +12,21 @@ Flags two deviation classes:
 Emits a markdown report to the repo root (parent folder of the courses).
 """
 import os, re, glob, json
-from PIL import Image
-import numpy as np
+try:                                    # ponytail: PIL optional; table-detection degrades to None
+    from PIL import Image
+    import numpy as np
+    _HAVE_PIL = True
+except Exception:
+    _HAVE_PIL = False
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
 def find_sessions():
     out = []
     for dirpath, dirs, files in os.walk(ROOT):
-        if 'node_modules' in dirpath:
+        rel = os.path.relpath(dirpath, ROOT)
+        parts = rel.split(os.sep)
+        if any(p in ('node_modules', 'pdf-images', 'quarantine', 'others', '.git', '.agent', '__pycache__') for p in parts):
             continue
         for f in files:
             if re.match(r'sessao-\d+\.html$', f):
@@ -40,12 +46,21 @@ def classify_src(src):
         return 'VECTOR'        # diagram OR possible table
     return 'OTHER'
 
-def img_is_table(img_path):
-    """DESIGN column-separator test: >=3 vertical dark runs spanning >=40% height.
+def max_run_1d(arr):
+    if not _HAVE_PIL:
+        return 0
+    if not np.any(arr):
+        return 0
+    bounded = np.pad(arr, (1, 1), 'constant', constant_values=False)
+    d = np.diff(bounded.astype(np.int8))
+    starts = np.where(d == 1)[0]
+    ends = np.where(d == -1)[0]
+    return np.max(ends - starts)
 
-    A separator is a TALL thin line, so per-column we look at the LONGEST
-    consecutive run of dark pixels, not the column's average darkness.
-    """
+def img_is_table(img_path):
+    """DESIGN column-separator test: >=3 vertical dark runs spanning >=40% height."""
+    if not _HAVE_PIL:
+        return None
     try:
         im = Image.open(img_path).convert('L')
         a = np.asarray(im)
@@ -55,32 +70,14 @@ def img_is_table(img_path):
     if h < 40 or w < 40:
         return False
     dark = (a < 150)
-    # longest vertical dark run per column
-    sep_cols = 0
-    for c in range(w):
-        col = dark[:, c]
-        best = cur = 0
-        for v in col:
-            if v:
-                cur += 1
-                best = max(best, cur)
-            else:
-                cur = 0
-        if best >= 0.4 * h:
-            sep_cols += 1
-    # also require a few horizontal rules (>=3 dark rows spanning >=40% width)
-    sep_rows = 0
-    for r in range(h):
-        row = dark[r, :]
-        best = cur = 0
-        for v in row:
-            if v:
-                cur += 1
-                best = max(best, cur)
-            else:
-                cur = 0
-        if best >= 0.4 * w:
-            sep_rows += 1
+    col_sums = dark.sum(axis=0)
+    row_sums = dark.sum(axis=1)
+    cand_cols = np.where(col_sums >= 0.4 * h)[0]
+    cand_rows = np.where(row_sums >= 0.4 * w)[0]
+    if len(cand_cols) < 4 or len(cand_rows) < 4:
+        return False
+    sep_cols = sum(1 for c in cand_cols if max_run_1d(dark[:, c]) >= 0.4 * h)
+    sep_rows = sum(1 for r in cand_rows if max_run_1d(dark[r, :]) >= 0.4 * w)
     return sep_cols >= 4 and sep_rows >= 4
 
 def main():

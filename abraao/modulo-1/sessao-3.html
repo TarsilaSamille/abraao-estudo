@@ -5,10 +5,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sessão 3: O Design Literário de Gênesis 1-11</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #0284c7; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+      .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+    </style>
 </head>
 
 <body class="bg-white font-sans text-slate-800">
+<div id="reading-progress" aria-hidden="true"></div>
 <div class="fixed left-4 top-4 z-50 print:hidden">
   <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
     <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
@@ -692,6 +697,10 @@
             <p class="text-lg text-slate-700">Como os autores bíblicos ligam a história de Avraham ao ciclo de temas em
                 Gênesis 1-11?</p>
         </div>
+        <div class="page-footer mt-12 pt-4 pb-8 flex justify-between text-sm text-slate-500 border-t border-slate-200">
+          <span>Class Notes: Abraham</span>
+          <span><span class="lang-pt">Sessão 3 · O Design Literário de Gênesis 1-11</span><span class="lang-en">Session 3 · The Literary Design of Genesis 1-11</span></span>
+        </div>
     </div>
     </div>
 
@@ -707,6 +716,19 @@
   }
   var saved = "pt"; try { saved = localStorage.getItem("s3-lang") || "pt"; } catch(e) {}
   setLang(saved);
+
+  (function () {
+    var bar = document.getElementById('reading-progress');
+    if (!bar) return;
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
 </script>
 <script src="../js/verse-modal.js"></script>
 
