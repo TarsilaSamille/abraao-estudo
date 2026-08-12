@@ -4,12 +4,12 @@ Gerado por `scan_design_deviations.py`. 447 arquivos `sessao-*.html` escaneados.
 
 ## A. Conteúdo como imagem (DEVE ser HTML semântico)
 
-- Arquivos com `<img>`: **221** de 447
-- Imagens quebradas (src não existe): **101**
+- Arquivos com `<img>`: **219** de 447
+- Imagens quebradas (src não existe): **95**
 - Páginas completas como imagem (provavelmente redundantes): **0**
 - SVGs (diagrama vetorial, OK): **32**
-- Vetoriais PNG (diagrama ou tabela): **326**
-- Outros PNG: **237**
+- Vetoriais PNG (diagrama ou tabela): **322**
+- Outros PNG: **233**
 - **Candidatos a tabela real** (detector de colunas >=3): **58**
 
 ### A.1 Candidatos a tabela (imagem deveria ser `<table class="md">`)
@@ -106,10 +106,6 @@ Gerado por `scan_design_deviations.py`. 447 arquivos `sessao-*.html` escaneados.
 | ezekiel/modulo-6/sessao-25.html | img/sessao-25/p5-ill.jpeg |
 | ezekiel/modulo-6/sessao-28.html | img/sessao-29/p1-vector.png |
 | ezekiel/modulo-6/sessao-28.html | img/sessao-29/p8-vector.png |
-| intro-hebrew-bible/modulo-5/sessao-24.html | img/sessao-24/garment.png |
-| intro-hebrew-bible/modulo-5/sessao-25.html | img/sessao-25/leadwords.png |
-| intro-hebrew-bible/modulo-5/sessao-25.html | img/sessao-25/summary-good.png |
-| intro-hebrew-bible/modulo-5/sessao-27.html | img/sessao-27/dynamic-analogy.png |
 | joseph/modulo-2/sessao-7.html | img/sessao-2/thematic-melody-flow.png |
 | joseph/modulo-2/sessao-8.html | img/sessao-2/thematic-melody-flow.png |
 | joseph/modulo-2/sessao-9.html | img/sessao-2/genesis-literary-design.png |
@@ -157,8 +153,6 @@ Gerado por `scan_design_deviations.py`. 447 arquivos `sessao-*.html` escaneados.
 | messianic-torah/modulo-3/sessao-17.html | img/sessao-17/p0-structure.png |
 | messianic-torah/modulo-3/sessao-17.html | img/sessao-17/p1-712.png |
 | messianic-torah/modulo-3/sessao-17.html | img/sessao-17/p8-speck.png |
-| noah-to-abraham/modulo-2/sessao-12.html | img/sessao-12/p63-page.png |
-| noah-to-abraham/modulo-2/sessao-12.html | img/sessao-12/p66-page.png |
 | others/ezekiel-quarantine/sessao-14.html | img/sessao-14/p1-vector.svg |
 | others/ezekiel-quarantine/sessao-14.html | img/sessao-14/p2-vector.svg |
 | others/ezekiel-quarantine/sessao-14.html | img/sessao-14/p3-vector.svg |
@@ -188,7 +182,7 @@ Gerado por `scan_design_deviations.py`. 447 arquivos `sessao-*.html` escaneados.
 
 ## B. Componentes obrigatórios ausentes (DESIGN.md)
 
-Arquivos com componente faltando: **297**
+Arquivos com componente faltando: **295**
 
 | Arquivo | faltando |
 |---|---|
@@ -220,8 +214,6 @@ Arquivos com componente faltando: **297**
 | abraao/modulo-2/sessao-10.html | page-footer |
 | abraao/modulo-2/sessao-4.html | reading-progress, page-footer |
 | abraao/modulo-2/sessao-5.html | reading-progress, page-footer |
-| abraao/modulo-2/sessao-8.html | verse-modal.js |
-| abraao/modulo-2/sessao-9.html | verse-modal.js |
 | abraao/modulo-5/sessao-23.html | page-footer |
 | abraao/modulo-5/sessao-24.html | page-footer |
 | abraao/modulo-6/sessao-25.html | page-footer |
@@ -492,8 +484,8 @@ Arquivos com componente faltando: **297**
 
 ## C. Resumo
 
-- Arquivos 100% sem `<img>` (compatíveis com padrão abraao): **226**
-- Arquivos com algum `<img>`: **221**
+- Arquivos 100% sem `<img>` (compatíveis com padrão abraao): **228**
+- Arquivos com algum `<img>`: **219**
 
 > Nota: SVG/diagramas vetoriais são legítimos no design. Tabelas em imagem e
 > páginas completas como imagem são os desvios reais a corrigir.
