@@ -67,10 +67,12 @@
   <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
   <p class="body reveal"><span class="lang-pt">Qual é a ferramenta primária de comunicação usada na poesia bíblica? Como você acha que ela nos ajuda a entender o significado do texto?</span><span class="lang-en">What is the primary communication tool used in biblical poetry? How do you think it helps us understand the meaning of the text?</span></p>
 
-  <div class="page-footer">
+  
+
+<footer class="page-footer">
     <span>Class Notes: Introduction to the Hebrew Bible</span>
-    <span><span class="lang-pt">Sessão 15 · Convenções Poéticas Comuns no Hebraico Bíblico</span><span class="lang-en">Session 15 · Common Poetic Conventions in Biblical Hebrew</span></span>
-  </div>
+    <span>Session 15</span>
+  </footer>
 </div>
 
 <script>
@@ -88,20 +90,17 @@
   }
   var saved = 'pt'; try { saved = localStorage.getItem('s15-lang') || 'pt'; } catch(e) {}
   setLang(saved);
-
-  (function () {
+(function () {
     var bar = document.getElementById('reading-progress');
     function update() {
       var h = document.documentElement;
       var max = h.scrollHeight - h.clientHeight;
-      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
-    }
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; }
     window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
     update();
   })();
-
-  (function () {
+(function () {
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var targets = document.querySelectorAll('.reveal');
     if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
@@ -113,5 +112,6 @@
 </script>
 
   <script src="../js/verse-modal.js"></script>
+
 </body>
 </html>

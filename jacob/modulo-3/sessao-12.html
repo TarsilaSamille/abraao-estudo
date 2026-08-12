@@ -51,6 +51,10 @@
   .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
   .nav-btn:hover { background: #f1f5f9; }
   .nav-back { left: 1rem; }
+  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
+  .page-footer .lang-pt, .page-footer .lang-en { display: inline; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  @media print { #reading-progress { display: none !important; } }
 </style>
 </head>
 <body class="bg-white">
@@ -165,7 +169,12 @@
     <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
     <p class="body reveal"><span class="lang-pt">Como o voto de Yaaqov de construir uma casa para Deus é uma paródia da visão que Deus lhe deu?</span><span class="lang-en">How is Yaaqov's vow to build God a house a parody of the vision God gave him?</span></p>
 <!--REST-->
-  </div>
+  
+<footer class="page-footer">
+    <span>Class Notes: Jacob</span>
+    <span>Session 12</span>
+  </footer>
+</div>
   <script>
   function setLang(lang) {
     document.documentElement.setAttribute('lang', lang);
@@ -181,20 +190,17 @@
   }
   var saved = 'pt'; try { saved = localStorage.getItem('s12-lang') || 'pt'; } catch(e) {}
   setLang(saved);
-
-  (function () {
+(function () {
     var bar = document.getElementById('reading-progress');
     function update() {
       var h = document.documentElement;
       var max = h.scrollHeight - h.clientHeight;
-      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
-    }
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; }
     window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
     update();
   })();
-
-  (function () {
+(function () {
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var targets = document.querySelectorAll('.reveal');
     if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
@@ -204,5 +210,7 @@
     targets.forEach(function (el) { io.observe(el); });
   })();
 </script>
+
+
 </body>
 </html>

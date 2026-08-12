@@ -95,6 +95,8 @@
     .stanza-box, .stanza-box-black, .doc-table tr, .macro-outer-gray { break-inside: avoid; }
   }
   @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
+  .page-footer .lang-pt, .page-footer .lang-en { display: inline; }
 </style>
 </head>
 <body>
@@ -409,10 +411,12 @@
   <h3 class="sub reveal" style="margin-top:3.5rem;"><span class="lang-pt">Questão para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
   <p class="body reveal"><span class="lang-pt">Como a história de Avraham é relevante para o povo de Deus que está tão removido de seu tempo e situação?</span><span class="lang-en">How is Avraham’s story relevant for people of God who are so far removed from his time and situation?</span></p>
 
-  <div class="page-footer">
+  
+
+<footer class="page-footer">
     <span>Class Notes: Abraham</span>
-    <span><span class="lang-pt">Sessão 28 · Não Escolhido, Mas Abençoado</span><span class="lang-en">Session 28 · Not Chosen But Blessed</span></span>
-  </div>
+    <span>Session 28</span>
+  </footer>
 </div>
 
 <script>
@@ -430,20 +434,17 @@
   }
   var saved = 'pt'; try { saved = localStorage.getItem('s28-lang') || 'pt'; } catch(e) {}
   setLang(saved);
-
-  (function () {
+(function () {
     var bar = document.getElementById('reading-progress');
     function update() {
       var h = document.documentElement;
       var max = h.scrollHeight - h.clientHeight;
-      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
-    }
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; }
     window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
     update();
   })();
-
-  (function () {
+(function () {
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var targets = document.querySelectorAll('.reveal');
     if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
@@ -455,5 +456,6 @@
 </script>
 
   <script src="../js/verse-modal.js"></script>
+
 </body>
 </html>

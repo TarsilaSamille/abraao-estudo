@@ -45,6 +45,10 @@
   .nav-btn:hover { background: #f1f5f9; }
   .nav-back { left: 1rem; }
   .nav-lang { right: 1rem; }
+  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
+  .page-footer .lang-pt, .page-footer .lang-en { display: inline; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  @media print { #reading-progress { display: none !important; } }
 </style>
 </head>
 <body class="bg-white">
@@ -66,8 +70,8 @@
 </div>
 <div class="max-w-4xl mx-auto px-5 py-12 md:py-16"><h1 class="title reveal"><span class="lang-pt">   Session 3: Delivering the Deliverer</span><span class="lang-en">   Session 3: Delivering the Deliverer</span></h1>
 <hr class="rule">
-    <img src="img/sessao-3/diagram-page1.svg" alt="Diagram"
-    <img src="img/sessao-3/diagram-page2.svg" alt="Diagram"
+    <img src="img/sessao-3/diagram-page1.svg" alt="Diagram">
+    <img src="img/sessao-3/diagram-page2.svg" alt="Diagram">
 <p class="body reveal"><span class="lang-pt">Moses’ deliverance in the reeds anticipates Israel’s deliverance through the Sea of Reeds.<br>         Moses’ deliverance through the waters of the Nile echoes Noah’s deliverance through the waters of the<br>         flood.<br>         Seeing things the way God sees them, as the key women in this narrative do, is a first step toward<br>         trusting God and acting the way he does.</span><span class="lang-en">Moses’ deliverance in the reeds anticipates Israel’s deliverance through the Sea of Reeds.<br>         Moses’ deliverance through the waters of the Nile echoes Noah’s deliverance through the waters of the<br>         flood.<br>         Seeing things the way God sees them, as the key women in this narrative do, is a first step toward<br>         trusting God and acting the way he does.</span></p>
 <p class="body reveal"><span class="lang-pt">A Tale of Three Daughters</span><span class="lang-en">A Tale of Three Daughters</span></p>
 <p class="body reveal"><span class="lang-pt">In chapter 2, three daughters introduce a theme of “seeing” that connects back to Genesis and carries on<br>   throughout Exodus.</span><span class="lang-en">In chapter 2, three daughters introduce a theme of “seeing” that connects back to Genesis and carries on<br>   throughout Exodus.</span></p>
@@ -83,7 +87,12 @@
 <p class="body reveal"><span class="lang-pt">Pharaoh had “let the girls live” (Heb. hayah; Exod. 1:16, 22) but women became his greatest threat. Their<br>   “liveliness” (Heb. hayeh) was the reason they kept bearing sons (Exod. 1:19).</span><span class="lang-en">Pharaoh had “let the girls live” (Heb. hayah; Exod. 1:16, 22) but women became his greatest threat. Their<br>   “liveliness” (Heb. hayeh) was the reason they kept bearing sons (Exod. 1:19).</span></p>
 <p class="body reveal"><span class="lang-pt">Reflection Question</span><span class="lang-en">Reflection Question</span></p>
 <p class="body reveal"><span class="lang-pt">Reflect on the compassion of Pharaoh's daughter in Exodus 2:5-6 and compare it to the description of<br>   Yahweh's compassion in Exodus 2:25. How does this illustrate the possibility of human participation in God’s<br>   work?</span><span class="lang-en">Reflect on the compassion of Pharaoh's daughter in Exodus 2:5-6 and compare it to the description of<br>   Yahweh's compassion in Exodus 2:25. How does this illustrate the possibility of human participation in God’s<br>   work?</span></p>
-<p class="body reveal"><span class="lang-pt">Class Notes: Exodus Overview                                                                                   11 of 80</span><span class="lang-en">Class Notes: Exodus Overview                                                                                   11 of 80</span></p></div>
+<p class="body reveal"><span class="lang-pt">Class Notes: Exodus Overview                                                                                   11 of 80</span><span class="lang-en">Class Notes: Exodus Overview                                                                                   11 of 80</span></p>
+<footer class="page-footer">
+    <span>Class Notes: Exodus Overview</span>
+    <span>Session 3</span>
+  </footer>
+</div>
   <script>
   function setLang(lang) {
     document.documentElement.setAttribute('lang', lang);
@@ -99,20 +108,17 @@
   }
   var saved = 'pt'; try { saved = localStorage.getItem('s3-lang') || 'pt'; } catch(e) {}
   setLang(saved);
-
-  (function () {
+(function () {
     var bar = document.getElementById('reading-progress');
     function update() {
       var h = document.documentElement;
       var max = h.scrollHeight - h.clientHeight;
-      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
-    }
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; }
     window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
     update();
   })();
-
-  (function () {
+(function () {
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var targets = document.querySelectorAll('.reveal');
     if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
@@ -122,5 +128,7 @@
     targets.forEach(function (el) { io.observe(el); });
   })();
 </script>
+
+
 </body>
 </html>

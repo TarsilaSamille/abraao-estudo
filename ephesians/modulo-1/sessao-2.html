@@ -33,9 +33,15 @@
       /* Consistent paragraph rhythm */
       section > p { margin: 2.5rem 0 !important; line-height: 1.75 !important; }
       section > p:first-child { margin-top: 0; }
-    </style>
+      #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  @media print { #reading-progress { display: none !important; } }
+  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
+  .page-footer .lang-pt, .page-footer .lang-en { display: inline; }
+</style>
 </head>
 <body class="bg-white font-sans text-slate-800">
+<div id="reading-progress" aria-hidden="true"></div>
+
   <div class="nav-btn-fixed fixed left-4 top-4 z-50">
     <a href="../index.html"
       class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
@@ -63,7 +69,12 @@
     <h2 class="text-2xl font-bold text-slate-900">Pergunta de Reflexão</h2>
     <p class="text-slate-700"><span class="lang-pt">Com seu entendimento até aqui, resuma o que Paulo quer comunicar em sua carta aos Efésios.</span><span class="lang-en">With your understanding so far, summarize what Paul wants to communicate in his letter to the Ephesians.</span></p>
     </section>
-  </main>
+  
+<footer class="page-footer">
+    <span>Class Notes: Ephesians</span>
+    <span>Session 2</span>
+  </footer>
+</main>
   <script src="../js/verse-modal.js"></script>
   <script>
     const I18N = {"pt": {"title": "Sessão 2: O Apocalipse de Jesus", "h1": "Sessão 2: O Apocalipse de Jesus", "back": "Voltar"}, "en": {"title": "Session 2: The Apocalypse of Jesus", "h1": "Session 2: The Apocalypse of Jesus", "back": "Back"}};
@@ -79,5 +90,20 @@
     }
     setLang(localStorage.getItem('bp_lang')||'pt');
   </script>
+
+  <script>
+(function () {
+    var bar = document.getElementById('reading-progress');
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+</script>
+
+
 </body>
 </html>

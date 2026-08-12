@@ -51,6 +51,10 @@
   .nav-btn:hover { background: #f1f5f9; }
   .nav-back { left: 1rem; }
   .nav-lang { right: 1rem; }
+  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
+  .page-footer .lang-pt, .page-footer .lang-en { display: inline; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  @media print { #reading-progress { display: none !important; } }
 </style>
 </head>
 <body class="bg-white">
@@ -155,7 +159,12 @@
 <div class="page reveal"><span class="lang-pt">Class Notes: Ezekiel<br>72 of 249<br>Module 3: Oracles Against Israel<br>SESSIONS 10-14<br>God brings his case against his unfaithful covenant partners. Explore the movement<br>at the center of the Ezekiel scroll.<br></span><span class="lang-en">Class Notes: Ezekiel<br>72 of 249<br>Module 3: Oracles Against Israel<br>SESSIONS 10-14<br>God brings his case against his unfaithful covenant partners. Explore the movement<br>at the center of the Ezekiel scroll.<br></span></div>
       <div class="scripture-text"><span class="lang-pt"><sup class="vs">1</sup> Ora, aconteceu no trigésimo ano,<br>no quinto dia do quarto mês,<br>enquanto eu estava entre os exilados,<br>junto ao rio Quebar entre os exilados,<br>que os céus se abriram<br>e eu vi visões de Elohim.<br><sup class="vs">2</sup> &ldquo;No quinto dia do mês&rdquo;&mdash;Este é o quinto ano do exílio do rei Joaquim.<br><sup class="vs">3</sup> Veio a palavra de Yahweh a Ezequiel, filho de Buzi, o sacerdote,<br>na terra dos caldeus,<br>junto ao rio Quebar,<br>e ali a mão de Yahweh veio sobre ele.<br><sup class="vs">4</sup> &hellip; e vi, e eis: um vento de tempestade vinha do norte &hellip;</span><span class="lang-en"><sup class="vs">1</sup> Now it came about in the thirtieth year,<br>on the fifth day of the fourth month,<br>while I was among the exiles,<br>by the river Chebar among the exiles,<br>the skies were opened<br>and I saw visions of Elohim.<br><sup class="vs">2</sup> &ldquo;On the fifth of the month&rdquo;&mdash;This is the fifth year of the exile of King Jehoiachin.<br><sup class="vs">3</sup> The word of Yahweh came to Ezekiel, son of Buzi, the priest,<br>in the land of the Chaldeans,<br>by the river Chebar,<br>and there the hand of Yahweh came upon him.<br><sup class="vs">4</sup> &hellip; and I saw, and look: a storm wind was coming from the north &hellip;</span></div>
       <p class="caption"><span class="lang-pt">Palavras-chave adaptadas pelo Instrutor</span><span class="lang-en">Key Words Adapted by Teacher</span></p>
-    </div>
+    
+<footer class="page-footer">
+    <span>Class Notes: Ezekiel</span>
+    <span>Session 9</span>
+  </footer>
+</div>
 
     <p class="body reveal"><span class="lang-pt">Quem é este homem? Onde ele está exatamente? Por que e como ele chegou lá? As notas explicativas em 1:2-3 servem como hiperlinks para a história dos reis de Judá e de Joaquim em particular, que se encontra no rolo de <span class="verse-link" style="color:inherit;cursor:pointer" data-reference="2 Reis 24-25">2 Reis 24-25</span>.</span><span class="lang-en">Who is this man? Where is he exactly? Why and how did he get there? The explanatory notes in 1:2-3 serve as hyperlinks to the story of Judah&rsquo;s kings and Jehoiachin in particular, which is found in the scroll of <span class="verse-link" style="color:inherit;cursor:pointer" data-reference="2 Kings 24-25">2 Kings 24-25</span>.</span></p>
     <p class="body reveal"><span class="lang-pt">O rei da Babilônia atacou pela primeira vez a cidade de Jerusalém no ano 597 (ver <span class="verse-link" style="color:inherit;cursor:pointer" data-reference="2 Reis 24:10-16">2 Rs. 24:10-16</span>), quando levou o rei então reinante da linhagem de Davi para o cativeiro, juntamente com os líderes da cidade (incluindo Ezequiel, Daniel e muitos outros).</span><span class="lang-en">The king of Babylon first attacked the city of Jerusalem in the year 597 (see <span class="verse-link" style="color:inherit;cursor:pointer" data-reference="2 Kings 24:10-16">2 Kgs. 24:10-16</span>), when he took the current king from the line of David away into captivity along with the leaders of the city (including Ezekiel, Daniel, and lots of others).</span></p>
@@ -170,7 +179,7 @@
 
     <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
     <p class="body reveal"><span class="lang-pt">De que maneira o conhecimento da experiência pessoal de Ezequiel como refugiado de guerra, cativo e sacerdote exilado molda a forma como lemos o seu rolo?</span><span class="lang-en">How does knowing Ezekiel&rsquo;s personal experience as a war refugee, captive, and exiled priest shape the way we read his scroll?</span></p>
-  </div>
+  
   <script>
   function setLang(lang) {
     document.documentElement.setAttribute('lang', lang);
@@ -186,21 +195,18 @@
   }
   var saved = 'pt'; try { saved = localStorage.getItem('s9-lang') || 'pt'; } catch(e) {}
   setLang(saved);
-
-  (function () {
+(function () {
     var bar = document.getElementById('reading-progress');
     if (!bar) return;
     function update() {
       var h = document.documentElement;
       var max = h.scrollHeight - h.clientHeight;
-      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
-    }
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; }
     window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
     update();
   })();
-
-  (function () {
+(function () {
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var targets = document.querySelectorAll('.reveal');
     if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
@@ -210,5 +216,7 @@
     targets.forEach(function (el) { io.observe(el); });
   })();
 </script>
+
+
 </body>
 </html>

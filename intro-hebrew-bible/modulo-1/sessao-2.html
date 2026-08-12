@@ -129,10 +129,12 @@
   <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
   <p class="body reveal"><span class="lang-pt">Resuma como você expressaria o que Jesus e os apóstolos pensavam que a Bíblia Hebraica era, afinal. E o que você acha dessa ideia? Ela é semelhante ou diferente de como você normalmente vê a Bíblia Hebraica?</span><span class="lang-en">Summarize how you would express what Jesus and the apostles thought the Hebrew Bible was all about. And what do you make of this idea? Is it similar or different from how you typically view the Hebrew Bible?</span></p>
 
-  <div class="page-footer">
+  
+
+<footer class="page-footer">
     <span>Class Notes: Introduction to the Hebrew Bible</span>
-    <span><span class="lang-pt">Sessão 2 · Como Jesus e os Apóstolos Liram Suas Bíblias</span><span class="lang-en">Session 2 · How Jesus and the Apostles Read Their Bibles</span></span>
-  </div>
+    <span>Session 2</span>
+  </footer>
 </div>
 
 <script>
@@ -150,20 +152,17 @@
   }
   var saved = 'pt'; try { saved = localStorage.getItem('s2-lang') || 'pt'; } catch(e) {}
   setLang(saved);
-
-  (function () {
+(function () {
     var bar = document.getElementById('reading-progress');
     function update() {
       var h = document.documentElement;
       var max = h.scrollHeight - h.clientHeight;
-      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
-    }
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; }
     window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
     update();
   })();
-
-  (function () {
+(function () {
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var targets = document.querySelectorAll('.reveal');
     if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
@@ -175,5 +174,6 @@
 </script>
 
   <script src="../js/verse-modal.js"></script>
+
 </body>
 </html>

@@ -45,6 +45,10 @@
   .nav-btn:hover { background: #f1f5f9; }
   .nav-back { left: 1rem; }
   .nav-lang { right: 1rem; }
+  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
+  .page-footer .lang-pt, .page-footer .lang-en { display: inline; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  @media print { #reading-progress { display: none !important; } }
 </style>
 </head>
 <body class="bg-white">
@@ -78,7 +82,12 @@
   <tr><td>Gen. 50:1-14 Yoseph carries the body of<br>Yaaqov out of Egypt<br>Gen. 50:24-25 Yoseph predicts that “God<br>will surely visit you” )(פקד יפקד, and he made<br>them swear an oath “that you will take up my<br>bones from there”</td><td>Exod. 14:23-24 Pharaoh chases after Israel with his<br>“chariots” )(רכב and horsemen )(פרשים, as “the camp of<br>Egypt” )(מחנה מצרים</td></tr>
   <tr><td></td><td>Exod. 13:19 Moses carries the bones of Yoseph out of<br>Egypt “for he made the sons of Israel swear an oath<br>saying, ‘God will surely visit you ),(פקד יפקד and you will<br>take my bones from there with you.’”</td></tr>
 </table>
-  <p class="caption"><span class="lang-pt">Gênesis X:Y. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2021).</span><span class="lang-en">Genesis X:Y. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2021).</span></p><div class="page reveal">Class Notes: Joseph<br>215 of 215<br>Session 29: Reflecting on the Joseph Story<br>Key Takeaways<br>Every detail of the biblical text is thoughtfully crafted and divinely inspired. Taking time to consider why<br>a certain story or narrative element has been included can reveal deep meaning and connection to the<br>big picture of the whole Bible’s message.<br>The story of Yoseph illustrates how God is at work, often behind the scenes, to work tov (“good”) in the<br>world he created.<br>The Bible is beautiful, artistic literature, but even more so, it points to the ultimate source of beauty.<br>This session has no notes<br>Reflection Question<br>Take some time to reflect on the insights you learned in this class.<br></div></div>
+  <p class="caption"><span class="lang-pt">Gênesis X:Y. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2021).</span><span class="lang-en">Genesis X:Y. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2021).</span></p><div class="page reveal">Class Notes: Joseph<br>215 of 215<br>Session 29: Reflecting on the Joseph Story<br>Key Takeaways<br>Every detail of the biblical text is thoughtfully crafted and divinely inspired. Taking time to consider why<br>a certain story or narrative element has been included can reveal deep meaning and connection to the<br>big picture of the whole Bible’s message.<br>The story of Yoseph illustrates how God is at work, often behind the scenes, to work tov (“good”) in the<br>world he created.<br>The Bible is beautiful, artistic literature, but even more so, it points to the ultimate source of beauty.<br>This session has no notes<br>Reflection Question<br>Take some time to reflect on the insights you learned in this class.<br></div>
+<footer class="page-footer">
+    <span>Class Notes: Joseph</span>
+    <span>Session 28</span>
+  </footer>
+</div>
   <script>
   function setLang(lang) {
     document.documentElement.setAttribute('lang', lang);
@@ -94,20 +103,17 @@
   }
   var saved = 'pt'; try { saved = localStorage.getItem('s28-lang') || 'pt'; } catch(e) {}
   setLang(saved);
-
-  (function () {
+(function () {
     var bar = document.getElementById('reading-progress');
     function update() {
       var h = document.documentElement;
       var max = h.scrollHeight - h.clientHeight;
-      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
-    }
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; }
     window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
     update();
   })();
-
-  (function () {
+(function () {
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var targets = document.querySelectorAll('.reveal');
     if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
@@ -117,5 +123,7 @@
     targets.forEach(function (el) { io.observe(el); });
   })();
 </script>
+
+
 </body>
 </html>

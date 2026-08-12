@@ -82,10 +82,12 @@
   <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
   <p class="body reveal"><span class="lang-pt">A Bíblia Hebraica pode ser comparada tanto a uma colcha quanto a um bosque de choupos. Alguma dessas analogias lhe parece particularmente útil? Por quê ou por que não?</span><span class="lang-en">The Hebrew Bible can be likened to both a quilt and to an aspen grove. Do either of these analogies strike you as particularly helpful? Why or why not?</span></p>
 
-  <div class="page-footer">
+  
+
+<footer class="page-footer">
     <span>Class Notes: Introduction to the Hebrew Bible</span>
-    <span><span class="lang-pt">Sessão 12 · A Bíblia Hebraica é Como um Bosque de Choupos</span><span class="lang-en">Session 12 · The Hebrew Bible Is Like an Aspen Grove</span></span>
-  </div>
+    <span>Session 12</span>
+  </footer>
 </div>
 
 <script>
@@ -103,20 +105,17 @@
   }
   var saved = 'pt'; try { saved = localStorage.getItem('s12-lang') || 'pt'; } catch(e) {}
   setLang(saved);
-
-  (function () {
+(function () {
     var bar = document.getElementById('reading-progress');
     function update() {
       var h = document.documentElement;
       var max = h.scrollHeight - h.clientHeight;
-      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
-    }
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; }
     window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
     update();
   })();
-
-  (function () {
+(function () {
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var targets = document.querySelectorAll('.reveal');
     if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
@@ -128,5 +127,6 @@
 </script>
 
   <script src="../js/verse-modal.js"></script>
+
 </body>
 </html>

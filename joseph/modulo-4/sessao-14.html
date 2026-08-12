@@ -45,6 +45,10 @@
   .nav-btn:hover { background: #f1f5f9; }
   .nav-back { left: 1rem; }
   .nav-lang { right: 1rem; }
+  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
+  .page-footer .lang-pt, .page-footer .lang-en { display: inline; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  @media print { #reading-progress { display: none !important; } }
 </style>
 </head>
 <body class="bg-white">
@@ -95,7 +99,12 @@
   <tr><td></td><td>Plot Elements of Genesis 42-45. Adapted from Godon J. Wenham, Genesis 16-50, 419.</td><td></td></tr>
 </table>
   <p class="caption"><span class="lang-pt">Gênesis X:Y. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2021).</span><span class="lang-en">Genesis X:Y. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2021).</span></p><div class="page reveal">Class Notes: Joseph<br>104 of 215<br>The inner section focuses on the climactic additional test that Yoseph forces the brothers to undergo.<br>With Binyamin now in Egypt, Yoseph can test their integrity even more precisely: he will create a<br>scenario where they are forced to choose between Binyamin and a load of silver, just they did in<br>Genesis 37.<br>This three-part section brings all the themes and conflict between Yoseph and his brothers to a climax,<br>as the brothers’ evil comes full circle upon them.<br>It is also important to notice that Genesis 43-45 replays the main movements of the preceding Genesis 42.<br>However, each step of the narrative in Genesis 42 is developed in greater detail and drama by its parallel in<br>Genesis 43-45. In this way, the story feels like an intensified replay that forces the drama to its finish.<br>Genesis 42<br>Plot Elements<br>Genesis 43-45<br>Gen. 42:1–4<br>Yaaqov sends his sons to Egypt to buy grain )(שבר and get<br>food.<br>Gen. 43:1–14<br>Gen. 42:5<br>Arrival in Egypt<br>Gen. 43:15–25<br>Gen. 42:6–16<br>First audience with Yoseph<br>Gen. 43:26–34<br>Gen. 42:17<br>Brothers in custody<br>Gen. 44:1–13<br>Gen. 42:25<br>Departure from Egypt with money secretly returned in the<br>bags<br>Gen. 44:1<br>Gen. 42:18–24<br>Second audience with Yoseph<br>Gen. 44:14–45:15<br>Gen. 42:25–28<br>Departure from Egypt<br>Gen. 45:16–24<br>Gen. 42:29–38<br>Sons report to Yaaqov<br>Gen. 45:25–28<br>Plot Elements of Genesis 42-45. Adapted from Godon J. Wenham, Genesis 16-50, 419.<br>Reflection Question<br>How are tragic characters in the Bible valuable for modern readers?<br></div>
-  <p class="caption"><span class="lang-pt">Gênesis X:Y. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2021).</span><span class="lang-en">Genesis X:Y. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2021).</span></p></div>
+  <p class="caption"><span class="lang-pt">Gênesis X:Y. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2021).</span><span class="lang-en">Genesis X:Y. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2021).</span></p>
+<footer class="page-footer">
+    <span>Class Notes: Joseph</span>
+    <span>Session 14</span>
+  </footer>
+</div>
   <script>
   function setLang(lang) {
     document.documentElement.setAttribute('lang', lang);
@@ -111,20 +120,17 @@
   }
   var saved = 'pt'; try { saved = localStorage.getItem('s14-lang') || 'pt'; } catch(e) {}
   setLang(saved);
-
-  (function () {
+(function () {
     var bar = document.getElementById('reading-progress');
     function update() {
       var h = document.documentElement;
       var max = h.scrollHeight - h.clientHeight;
-      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
-    }
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; }
     window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
     update();
   })();
-
-  (function () {
+(function () {
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var targets = document.querySelectorAll('.reveal');
     if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
@@ -134,5 +140,7 @@
     targets.forEach(function (el) { io.observe(el); });
   })();
 </script>
+
+
 </body>
 </html>

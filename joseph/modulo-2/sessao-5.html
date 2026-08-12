@@ -44,6 +44,10 @@
   table.md td + td, table.md th + th { border-left: 1px solid #e5e7eb; }
   table.md tfoot td { border-top: 1px solid #d7dde5; background: #fbfcfd; color: #6b7280;
     font-size: .84rem; font-style: italic; }
+  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
+  .page-footer .lang-pt, .page-footer .lang-en { display: inline; }
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  @media print { #reading-progress { display: none !important; } }
 </style>
 </head>
 <body class="bg-white">
@@ -69,7 +73,12 @@
       <thead><tr><th><span class="lang-pt">Dia 4</span><span class="lang-en">Day 4</span></th><th><span class="lang-pt">Dia 6</span><span class="lang-en">Day 6</span></th></tr></thead>
       <tbody><tr><td><span class="lang-pt">Dia 4: As luzes celestiais <b>governam</b> (מָשַׁל) o dia e a noite<br><br>Gen. 1:14-18 “Haja luzes… para separar o dia da noite… Deus fez as duas grandes luzes, a maior para <b>governar</b> (מָשַׁל) o dia, e a menor para <b>governar</b> (מָשַׁל) a noite… para <b>governar</b> (מָשַׁל) o dia e a noite…”</span><span class="lang-en">Dia 4: As luzes celestiais <b>governam</b> (מָשַׁל) o dia e a noite<br><br>Gen. 1:14-18 “Haja luzes… para separar o dia da noite… Deus fez as duas grandes luzes, a maior para <b>governar</b> (מָשַׁל) o dia, e a menor para <b>governar</b> (מָשַׁל) a noite… para <b>governar</b> (מָשַׁל) o dia e a noite…”</span></td><td><span class="lang-pt">Dia 6: Os humanos terrestres <b>governam</b> (רָדָה) sobre os animais da terra<br><br>Gen. 1:26-28 “Façamos humano à nossa imagem… e <b>governem</b> (רָדָה) sobre os peixes do mar… e sobre toda a terra… sede frutíferos… e <b>governai</b> (רָדָה) sobre tudo que se move na terra.”</span><span class="lang-en">Dia 6: Os humanos terrestres <b>governam</b> (רָדָה) sobre os animais da terra<br><br>Gen. 1:26-28 “Façamos humano à nossa imagem… e <b>governem</b> (רָדָה) sobre os peixes do mar… e sobre toda a terra… sede frutíferos… e <b>governai</b> (רָדָה) sobre tudo que se move na terra.”</span></td></tr></tbody>
       <tfoot><tr><td colspan="2"><span class="lang-pt">Comparing Day 4 and Day 6 of Creation. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</span><span class="lang-en">Comparing Day 4 and Day 6 of Creation. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></td></tr></tfoot>
-    </table><div class="page reveal">Class Notes: Joseph<br>28 of 215<br>And so, as we begin the Yoseph story, we wonder if this ancient promise of a royal seed will be fulfilled<br>through this favored son. It turns out that this theme will get a bit more complicated, as both Yoseph and<br>Yehudah will participate in this promise.<br>Reflection Question<br>What literary clues, linked to earlier stories in Genesis, do the biblical authors use to set the stage for the<br>coming conflict in Yoseph’s story?<br></div></div>
+    </table><div class="page reveal">Class Notes: Joseph<br>28 of 215<br>And so, as we begin the Yoseph story, we wonder if this ancient promise of a royal seed will be fulfilled<br>through this favored son. It turns out that this theme will get a bit more complicated, as both Yoseph and<br>Yehudah will participate in this promise.<br>Reflection Question<br>What literary clues, linked to earlier stories in Genesis, do the biblical authors use to set the stage for the<br>coming conflict in Yoseph’s story?<br></div>
+<footer class="page-footer">
+    <span>Class Notes: Joseph</span>
+    <span>Session 5</span>
+  </footer>
+</div>
   <script>
   function setLang(lang) {
     document.documentElement.setAttribute('lang', lang);
@@ -85,20 +94,17 @@
   }
   var saved = 'pt'; try { saved = localStorage.getItem('s5-lang') || 'pt'; } catch(e) {}
   setLang(saved);
-
-  (function () {
+(function () {
     var bar = document.getElementById('reading-progress');
     function update() {
       var h = document.documentElement;
       var max = h.scrollHeight - h.clientHeight;
-      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
-    }
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; }
     window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
     update();
   })();
-
-  (function () {
+(function () {
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var targets = document.querySelectorAll('.reveal');
     if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
@@ -108,5 +114,7 @@
     targets.forEach(function (el) { io.observe(el); });
   })();
 </script>
+
+
 </body>
 </html>

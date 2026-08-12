@@ -121,10 +121,12 @@
   <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
   <p class="body reveal"><span class="lang-pt">Como você normalmente entendeu as palavras “Céu” e “Terra”? Como esse entendimento se compara à visão dos autores bíblicos sobre os céus e a terra?</span><span class="lang-en">How have you typically understood the words “Heaven” and “Earth”? How does this understanding compare to the biblical authors’ view of the heavens and the earth?</span></p>
 
-  <div class="page-footer">
+  
+
+<footer class="page-footer">
     <span>Class Notes: Heaven and Earth</span>
-    <span><span class="lang-pt">Sessão 2 · As Palavras “Céus” e “Terra” na Bíblia Hebraica</span><span class="lang-en">Session 2 · The Words “Heavens” and “Earth” in the Hebrew Bible</span></span>
-  </div>
+    <span>Session 2</span>
+  </footer>
 </div>
 
 <script>
@@ -142,20 +144,17 @@
   }
   var saved = 'pt'; try { saved = localStorage.getItem('s2-lang') || 'pt'; } catch(e) {}
   setLang(saved);
-
-  (function () {
+(function () {
     var bar = document.getElementById('reading-progress');
     function update() {
       var h = document.documentElement;
       var max = h.scrollHeight - h.clientHeight;
-      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
-    }
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; }
     window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
     update();
   })();
-
-  (function () {
+(function () {
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var targets = document.querySelectorAll('.reveal');
     if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
@@ -167,5 +166,6 @@
 </script>
 
   <script src="../js/verse-modal.js"></script>
+
 </body>
 </html>
