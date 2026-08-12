@@ -90,8 +90,7 @@
   var saved = 'pt'; try { saved = localStorage.getItem('s29-lang') || 'pt'; } catch(e) {}
   setLang(saved);
   (function () {
-    var bar = document.getElementById('reading-progress');
-    function update() { var h = document.documentElement; var max = h.scrollHeight - h.clientHeight; bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; }
+    var bar = document.getElementById('reading-progress');if(!bar)return;function update() { var h = document.documentElement; var max = h.scrollHeight - h.clientHeight; bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; }
     window.addEventListener('scroll', update, { passive: true }); window.addEventListener('resize', update); update();
   })();
   (function () {
