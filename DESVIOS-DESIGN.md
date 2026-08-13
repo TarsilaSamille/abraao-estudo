@@ -4,13 +4,13 @@ Gerado por `scan_design_deviations.py`. 441 arquivos `sessao-*.html` escaneados.
 
 ## A. Conteúdo como imagem (DEVE ser HTML semântico)
 
-- Arquivos com `<img>`: **199** de 441
+- Arquivos com `<img>`: **104** de 441
 - Imagens quebradas (src não existe): **0**
 - Páginas completas como imagem (provavelmente redundantes): **0**
-- SVGs (diagrama vetorial, OK): **23**
-- Vetoriais PNG (diagrama ou tabela): **205**
-- Outros PNG: **211**
-- **Candidatos a tabela real** (detector de colunas >=3): **57**
+- SVGs (diagrama vetorial, OK): **2**
+- Vetoriais PNG (diagrama ou tabela): **24**
+- Outros PNG: **170**
+- **Candidatos a tabela real** (detector de colunas >=3): **40**
 
 ### A.1 Candidatos a tabela (imagem deveria ser `<table class="md">`)
 
@@ -56,23 +56,6 @@ Gerado por `scan_design_deviations.py`. 441 arquivos `sessao-*.html` escaneados.
 | intro-hebrew-bible/modulo-4/sessao-18.html | img/sessao-18/p2_290.jpeg | sim | figure reveal |
 | intro-hebrew-bible/modulo-5/sessao-22.html | img/sessao-22/p1_295.jpeg | sim | figure reveal |
 | intro-hebrew-bible/modulo-5/sessao-23.html | img/sessao-23/p2_351.jpeg | sim | figure reveal |
-| jacob/modulo-3/sessao-12.html | img/sessao-12/p3-vector.png | sim | table-img reveal |
-| jacob/modulo-4/sessao-19.html | img/sessao-19/p2-vector.png | sim | table-img reveal |
-| jacob/modulo-6/sessao-27.html | img/sessao-27/p1-vector.png | sim | table-img reveal |
-| jacob/modulo-6/sessao-28.html | img/sessao-28/p1-vector.png | sim | table-img reveal |
-| joseph/modulo-1/sessao-3.html | img/sessao-3/plants.png | sim | table-img reveal |
-| joseph/modulo-4/sessao-14.html | img/sessao-14/p3-vector.png | sim | table-img reveal |
-| joseph/modulo-4/sessao-14.html | img/sessao-14/p4-vector.png | sim | table-img reveal |
-| joseph/modulo-5/sessao-19.html | ../img/sessao-19/p1-vector.png | sim | table-img reveal |
-| joseph/modulo-5/sessao-19.html | ../img/sessao-19/p3-vector.png | sim | table-img reveal |
-| joseph/modulo-6/sessao-21.html | img/sessao-21/p8-vector.png | sim | table-img reveal |
-| joseph/modulo-7/sessao-26.html | img/sessao-26/p1-vector.png | sim | table-img reveal |
-| messianic-torah/modulo-1/sessao-1.html | img/sessao-1/p2-img0.png | sim | table-img reveal |
-| messianic-torah/modulo-1/sessao-1.html | img/sessao-1/p7-vector.png | sim | table-img reveal |
-| messianic-torah/modulo-2/sessao-9.html | img/sessao-9/p1-case3.png | sim | table-img reveal |
-| messianic-torah/modulo-3/sessao-13.html | ../modulo-2/img/sessao-13/p12-fasting.png | sim | table-img reveal |
-| messianic-torah/modulo-3/sessao-15.html | ../modulo-2/img/sessao-15/p14-mammon.png | sim | table-img reveal |
-| messianic-torah/modulo-3/sessao-16.html | ../modulo-2/img/sessao-16/p1-worry.png | sim | table-img reveal |
 
 ### A.2 Imagens quebradas (src ausente no disco)
 
@@ -93,8 +76,8 @@ Arquivos com componente faltando: **0**
 
 ## C. Resumo
 
-- Arquivos 100% sem `<img>` (compatíveis com padrão abraao): **242**
-- Arquivos com algum `<img>`: **199**
+- Arquivos 100% sem `<img>` (compatíveis com padrão abraao): **337**
+- Arquivos com algum `<img>`: **104**
 
 > Nota: SVG/diagramas vetoriais são legítimos no design. Tabelas em imagem e
 > páginas completas como imagem são os desvios reais a corrigir.

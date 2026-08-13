@@ -122,22 +122,38 @@ def convert_file(path):
     data = open(path, encoding='utf-8', errors='replace').read()
     if '<div class="page reveal">' not in data and 'class="table-img' not in data:
         return False
-    new = BLOB_RE.sub(lambda m: '\n' + convert_blob(m.group(1)) + '\n', data)
-    # exodus table-img are page/diagram renders already covered by the blobs
+
+    def process_blob(m):
+        inner = m.group(1)
+        if re.search(r'<table|<h[2-4]|<ul|<li|<p |<div', inner):
+            # real block-level HTML (tables/headings) — just unwrap the wrapper
+            cut = re.search(r'<', inner)
+            if inner.lstrip().startswith('Class Notes:') and cut:
+                inner = inner[cut.start():]
+            return '\n' + inner + '\n'
+        if '<span' in inner:
+            # ponytail: bilingual span+<br> blob — already readable & bilingual;
+            # restructuring PT/EN in lockstep is fragile, leave as-is
+            return m.group(0)
+        return '\n' + convert_blob(inner) + '\n'
+
+    new = BLOB_RE.sub(process_blob, data)
+    # exodus table-img are page/diagram renders already covered by the blobs;
+    # in other courses they duplicate an adjacent <table class="md">
     new = re.sub(r'<div class="table-img reveal">.*?</div>\s*', '', new, flags=re.S)
     open(path, 'w', encoding='utf-8').write(new)
     return True
 
 def main():
-    files = sorted(glob.glob(os.path.join(ROOT, 'exodus-overview/**/sessao-*.html'), recursive=True))
+    files = sorted(glob.glob(os.path.join(ROOT, '**/sessao-*.html'), recursive=True))
     done = 0
     for f in files:
         rel = os.path.relpath(f, ROOT)
-        if 'sessao-12.html' in rel:  # already hand-converted, keep
+        if rel.startswith('exodus-overview/'):  # already converted this session
             continue
         if convert_file(f):
             done += 1
-    print(f"converted {done} exodus files")
+    print(f"converted {done} files")
 
 if __name__ == '__main__':
     main()
