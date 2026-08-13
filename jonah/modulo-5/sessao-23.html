@@ -42,7 +42,7 @@
   .nav-back { left: 1rem; }
   .nav-lang { right: 1rem; }
   .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
-  .page-footer .lang-pt, .page-footer .lang-en { display: inline; }
+  
   #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
   @media print { #reading-progress { display: none !important; } }
 </style>
@@ -79,49 +79,15 @@
     <p class="body reveal"><span class="lang-pt">Em contraste, a oração dos marinheiros em 1:14 ("Por favor, Yahweh, não nos deixe perecer por causa da vida deste homem... pois assim como tu propuseste, tu o fizeste") cita Salmo 115:2-3 e Salmo 135:5-6, retratando-os como quem se volta para Yahweh como israelitas-modelo. Wolff observa que, através da oração, o narrador retrata os marinheiros pagãos como pessoas que se voltam para Yahweh como israelitas exemplares, pelo menos no que diz respeito aos assuntos de Jonas.</span><span class="lang-en">In contrast, the sailors' prayer in 1:14 (“Please Yahweh, don't let us perish on account of this man's life... for just as you have purposed, you have done”) quotes Psalm 115:2-3 and Psalm 135:5-6, depicting them as turning to Yahweh like model Israelites. Wolff notes that through the prayer the narrator depicts the heathen sailors as people who turn to Yahweh like model Israelites, at least where Jonah's affairs are concerned.</span></p>
 
     <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
-    <p class="body reveal"><span class="lang-pt">Lembre-se da página da revista infantil Highlights chamada “O Que Está Errado?”, onde os leitores são desafiados a encontrar tudo o que não está certo na imagem. O que você acha útil nesse exemplo para entender como o autor de Jonas está subvertendo expectativas? Existe um exemplo ou ilustração diferente que ajudaria as pessoas no seu contexto?</span><span class="lang-en">Recall the children's magazine Highlights page called “What's Wrong?” where readers find everything not quite right in the picture. What do you find helpful about this example? Is there a different example or illustration that would help those in your context understand how the author of Jonah is subverting or playing with reader expectations?</span></p>  <script>
-  function setLang(lang) {
-    document.documentElement.setAttribute('lang', lang);
-    try { localStorage.setItem('jonah-s23-lang', lang); } catch(e) {}
-    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
-    if (lang === 'pt') {
-      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-l-full";
-      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
-    } else {
-      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-r-full";
-      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
-    }
-  }
-  var saved = 'pt'; try { saved = localStorage.getItem('jonah-s23-lang') || 'pt'; } catch(e) {}
-  setLang(saved);
-(function () {
-    var bar = document.getElementById('reading-progress');
-    if (!bar) return;
-    function update() {
-      var h = document.documentElement;
-      var max = h.scrollHeight - h.clientHeight;
-      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; }
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
-  })();
-(function () {
-    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var targets = document.querySelectorAll('.reveal');
-    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
-    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
-    targets.forEach(function (el) { io.observe(el); });
-  })();
-</script>
-
-
+    <p class="body reveal"><span class="lang-pt">Lembre-se da página da revista infantil Highlights chamada “O Que Está Errado?”, onde os leitores são desafiados a encontrar tudo o que não está certo na imagem. O que você acha útil nesse exemplo para entender como o autor de Jonas está subvertendo expectativas? Existe um exemplo ou ilustração diferente que ajudaria as pessoas no seu contexto?</span><span class="lang-en">Recall the children's magazine Highlights page called “What's Wrong?” where readers find everything not quite right in the picture. What do you find helpful about this example? Is there a different example or illustration that would help those in your context understand how the author of Jonah is subverting or playing with reader expectations?</span></p>  
 
 <footer class="page-footer">
-    <span>Class Notes: Jonah</span>
-    <span>Session 23</span>
+    <span class="lang-pt">Anotações de Aula: Jonas</span><span class="lang-en">Class Notes: Jonah</span>
+    <span class="lang-pt">Sessão 23</span><span class="lang-en">Session 23</span>
   </footer>
 </div>
+  <script src="../js/reading-progress.js"></script>
+  <script src="../js/lang-toggle.js"></script>
+  <script src="../js/reveal.js"></script>
 </body>
 </html>

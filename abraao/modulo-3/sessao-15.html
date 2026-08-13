@@ -43,8 +43,7 @@
         
         /* Underlined scripture references */
         .ref { cursor: pointer; }
-        
-        
+
   /* ---------- pills & highlights ---------- */
   .pill{display:inline-block;padding:.1rem .6rem;border-radius:.4rem;font-weight:700;line-height:1.5;}
   .pill-gray{background:#e4e8ee;color:#3a4150;}
@@ -277,8 +276,7 @@
             padding-top: 1rem;
             margin-top: 3rem;
         }
-        
-    
+
         sup.vs { font-size: 0.75rem; color: #333; font-weight: 400; margin-right: 2px; }
         
         /* Speech translation blocks */
@@ -467,8 +465,8 @@
         </h1>
     
 <footer class="page-footer">
-    <span>Class Notes: Abraham</span>
-    <span>Session 15</span>
+    <span class="lang-pt">Anotações de Aula: Abraão</span><span class="lang-en">Class Notes: Abraham</span>
+    <span class="lang-pt">Sessão 15</span><span class="lang-en">Session 15</span>
   </footer>
 </div>
 
@@ -1284,7 +1282,6 @@
         <span class="lang-pt"><em><span class="ref" data-reference="Genesis 17:1-22">Gênesis 17:1-22</span></em>. Design Literário por Tim Mackie para o BibleProject Classroom: Abraham (2021).</span>
         <span class="lang-en"><em><span class="ref" data-reference="Genesis 17:1-22">Genesis 17:1-22</span></em>. Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span>
     </p>
-
 
     <!-- Translation Section -->
     <h2 class="section">
@@ -2409,51 +2406,8 @@
     </p>
 
     <!-- Footer -->
-    
 
 </div>
-
-<script>
-    // Language settings
-    function setLang(lang) {
-        document.documentElement.setAttribute('lang', lang);
-        localStorage.setItem('s15-lang', lang);
-        
-        const ptBtn = document.getElementById('lang-pt');
-        const enBtn = document.getElementById('lang-en');
-        if (!ptBtn || !enBtn) return;
-        
-        if (lang === 'pt') {
-            ptBtn.className = "px-4 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-l-full";
-            enBtn.className = "px-4 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
-        } else {
-            enBtn.className = "px-4 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-r-full";
-            ptBtn.className = "px-4 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
-        }
-    }
-    
-    // Initialize language on load
-    (function() {
-        var preferred = localStorage.getItem('s15-lang') || 'pt';
-        setLang(preferred);
-    })();
-
-    // Reading progress bar
-    <script>
-(function () {
-        var bar = document.getElementById('reading-progress');
-        function update() {
-            var h = document.documentElement;
-            var max = h.scrollHeight - h.clientHeight;
-            var p = max > 0 ? h.scrollTop / max : 0;
-            bar.style.transform = 'scaleX(' + p + ')';
-        }
-        window.addEventListener('scroll', update, { passive: true });
-        window.addEventListener('resize', update);
-        update();
-    })();
-</script>
-
 
     // Scroll reveal — observe existing and newly added content blocks
     (function () {
@@ -2482,7 +2436,9 @@
     })();
 </script>
 
-
 <script src="../js/verse-modal.js"></script>
+  <script src="../js/reading-progress.js"></script>
+  <script src="../js/lang-toggle.js"></script>
+  <script src="../js/reveal.js"></script>
 </body>
 </html>

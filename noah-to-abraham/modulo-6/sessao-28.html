@@ -98,62 +98,13 @@
   <p class="body reveal"><span class="lang-pt">Quais são suas maiores lições desta aula?</span><span class="lang-en">What are your biggest takeaways from this class?</span></p>
 
   <footer class="page-footer">
-    <span>Class Notes: Noah to Abraham</span>
-    <span>Session 28</span>
+    <span class="lang-pt">Anotações de Aula: Noé a Abraão</span><span class="lang-en">Class Notes: Noah to Abraham</span>
+    <span class="lang-pt">Sessão 28</span><span class="lang-en">Session 28</span>
   </footer>
 </div>
-<script>
-  (function () {
-    if ('IntersectionObserver' in window) {
-      const io = new IntersectionObserver((entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            io.unobserve(entry.target);
-          }
-        }
-      }, { threshold: 0.08 });
-      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-    } else {
-      document.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible'));
-    }
-  })();
-</script>
-<script>
-  function setLang(lang) {
-    document.documentElement.setAttribute('lang', lang);
-    try { localStorage.setItem('s28-lang', lang); } catch(e) {}
-    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
-    if (lang === 'pt') {
-      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-l-full";
-      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
-    } else {
-      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-r-full";
-      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
-    }
-  }
-  var saved = 'pt'; try { saved = localStorage.getItem('s28-lang') || 'pt'; } catch(e) {}
-  setLang(saved);
-(function () {
-    var bar = document.getElementById('reading-progress');
-    if (!bar) return;
-    function update() {
-      var h = document.documentElement;
-      var max = h.scrollHeight - h.clientHeight;
-      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; }
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
-  })();
-(function () {
-    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var targets = document.querySelectorAll('.reveal');
-    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
-    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
-    targets.forEach(function (el) { io.observe(el); });
-  })();
-</script>
+
+  <script src="../js/reading-progress.js"></script>
+  <script src="../js/lang-toggle.js"></script>
+  <script src="../js/reveal.js"></script>
 </body>
 </html>

@@ -127,7 +127,7 @@
   .nav-lang { right: 1rem; }
   #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #2563eb; transform-origin: 0 0; transform: scaleX(0); z-index: 100; }
   .page-footer { margin-top: 3.5rem; padding-top: 1rem; border-top: 1px solid #e5e9f0; display: flex; justify-content: space-between; font-size: .82rem; color: #8a93a3; font-weight: 600; }
-  .page-footer .lang-pt, .page-footer .lang-en { display: inline; }
+  
 </style>
 </head>
 <body class="bg-white">
@@ -149,10 +149,6 @@
     <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
   </div>
 </div>
-
-
-
-
 
 <body class="bg-white text-gray-900">
 <div class="max-w-4xl mx-auto px-4 py-6">
@@ -325,17 +321,14 @@
 </div>
 
 <footer class="page-footer">
-    <span>Class Notes: Ezekiel</span>
-    <span>Session 20</span>
+    <span class="lang-pt">Anotações de Aula: Ezequiel</span><span class="lang-en">Class Notes: Ezekiel</span>
+    <span class="lang-pt">Sessão 20</span><span class="lang-en">Session 20</span>
   </footer>
 </div>
 
-<script>
-  function setLang(lang){document.documentElement.setAttribute('lang',lang);try{localStorage.setItem('ezekiel-s20-lang',lang);}catch(e){}var pt=document.getElementById('lang-pt'),en=document.getElementById('lang-en');if(lang==='pt'){pt.className="px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-l-full";en.className="px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";}else{en.className="px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-r-full";pt.className="px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";}}
-  document.addEventListener('DOMContentLoaded',function(){var l;try{l=localStorage.getItem('ezekiel-s20-lang');}catch(e){}if(l=='en'){setLang('en');}});
-  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:0.08});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-</script>
 <script src="../js/verse-modal.js"></script>
+  <script src="../js/reading-progress.js"></script>
+  <script src="../js/lang-toggle.js"></script>
+  <script src="../js/reveal.js"></script>
 </body>
 </html>

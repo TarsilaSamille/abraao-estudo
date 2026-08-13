@@ -36,7 +36,7 @@
   .nav-back { left: 1rem; }
   .nav-lang { right: 1rem; }
   .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
-  .page-footer .lang-pt, .page-footer .lang-en { display: inline; }
+  
   #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
   @media print { #reading-progress { display: none !important; } }
 </style>
@@ -67,12 +67,11 @@
     <h2 class="section reveal">Sinai at the Center of the Torah</h2>
     <p class="body reveal">Sinai at the Center of the Torah. Imes, Carmen Joy (2019). Bearing God’s Name: Why Sinai Still Matters. IVP Academic. 14.</p>
     <ul class="bullets reveal">
-      <li><footer class="page-footer"></li>
-      <li><span>Class Notes: Joseph</span></li>
-      <li><span>Session 13</span></li>
-      <li></footer></li>
+      <li><footer class="page-footer">
+    <span class="lang-pt">Anotações de Aula: José</span><span class="lang-en">Class Notes: Joseph</span>
+    <span class="lang-pt">Sessão 13</span><span class="lang-en">Session 13</span>
+  </footer></li>
     </ul>
-
 
     <p class="body reveal">Narrative Frame Around Sinai. Imes, Carmen Joy (2019). Bearing God’s Name: Why Sinai Still Matters. IVP Academic. 14.</p>
     <h2 class="section reveal">Literary Frame Around the Sinai Narratives</h2>
@@ -91,12 +90,10 @@
     </ul>
     <p class="body reveal">Exod. 5-15 YHWH’s showdown with Pharaoh, king of Egypt Exod. 14:19-20 Angel of YHWH protects Israel from Egypt’s army Exod. 15 Song of victory over Pharaoh, king of Egypt Exod. 15:22-25 Springs of water provided Chiasm in the Wilderness Journeys. Created by Carmen Imes for BibleProject Classroom: Exodus Overview (2021).</p>
 
-
     <p class="body reveal">Exod. 16:1-17:6 Food?; Sabbath; opposing Moses; water from rock Exod. 17:8-16 Joshua wins battle with Amalekites Exod. 18:1-6 Moses’ family (conflict) Exod. 18:13-18 Moses’ leadership burden Exod. 18:19-27 Assisted by Midianite kin (Jethro) Exod. 19:1-2 Arrival at Sinai Exod. 19 - Num. 10 Sinai Narratives Num. 10:11-13 Departure from Sinai Exodus Num. 10:29-32 Assisted by Midianite kin (Hobab) Num. 11 Moses’ leadership burden Num. 12 Moses’ family (conflict) Num. 13-14 Joshua and Caleb; battle with Amalekites/Canaanites lost Num. 15:32-21:9 Sabbath; opposing Moses/Aaron; water from rock; food?</p>
     <h2 class="section reveal">Num. 21:16-18a Springs of water provided</h2>
     <p class="body reveal">Num. 21:18b-35 Song of victory over Sihon, king of Ammon Num. 22:21-35 Angel of YHWH protects Israel from Moab’s curses Num. 23-24 YHWH’s showdown with Balak, king of Moab Chiasm in the Wilderness Journeys. Created by Carmen Imes for BibleProject Classroom: Exodus Overview (2021).</p>
     <h2 class="section reveal">Key Themes of the Wilderness Narratives</h2>
-
 
     <p class="body reveal">The people’s ingratitude and rebellion meets God’s gracious provision in cycles of work and rest, which result in a contrast between serving YHWH and serving Pharaoh.</p>
     <h3 class="sub reveal">Reflection Question</h3>
@@ -124,42 +121,9 @@
     <h3 class="sub reveal"><span class="lang-pt">4. Repita</span><span class="lang-en">4. Repeat</span></h3>
     <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
     <p class="body reveal"><span class="lang-pt">De que maneiras você vê a história de Yoseph reencenando eventos dos capítulos iniciais de Gênesis?</span><span class="lang-en">In what ways do you see Yoseph's story replaying events from the early chapters of Genesis?</span></p>
-  
-  <script>
-  function setLang(lang) {
-    document.documentElement.setAttribute('lang', lang);
-    try { localStorage.setItem('s13-lang', lang); } catch(e) {}
-    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
-    if (lang === 'pt') {
-      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-l-full";
-      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
-    } else {
-      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-r-full";
-      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
-    }
-  }
-  var saved = 'pt'; try { saved = localStorage.getItem('s13-lang') || 'pt'; } catch(e) {}
-  setLang(saved);
-(function () {
-    var bar = document.getElementById('reading-progress');
-    function update() {
-      var h = document.documentElement;
-      var max = h.scrollHeight - h.clientHeight;
-      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; }
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
-  })();
-(function () {
-    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var targets = document.querySelectorAll('.reveal');
-    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
-    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
-    targets.forEach(function (el) { io.observe(el); });
-  })();
-</script>
 
+  <script src="../js/reading-progress.js"></script>
+  <script src="../js/lang-toggle.js"></script>
+  <script src="../js/reveal.js"></script>
 </body>
 </html>

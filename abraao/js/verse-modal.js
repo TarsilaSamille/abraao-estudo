@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
             'Gênesis':'Genesis','Êxodo':'Exodus','Levítico':'Leviticus','Números':'Numbers','Deuteronômio':'Deuteronomy',
             'Josué':'Joshua','Juízes':'Judges','Rute':'Ruth','1 Samuel':'1 Samuel','2 Samuel':'2 Samuel','1 Reis':'1 Kings','2 Reis':'2 Kings',
             '1 Crônicas':'1 Chronicles','2 Crônicas':'2 Chronicles','Esdras':'Ezra','Neemias':'Nehemiah','Ester':'Esther','Jó':'Job',
-            'Salmos':'PSA','Psalmos':'PSA','Psalm':'PSA','Psalms':'PSA','Provérbios':'Proverbs','Eclesiastes':'Ecclesiastes','Cantares':'Song of Songs','Isaías':'Isaiah','Jeremias':'Jeremiah',
+            'Salmos':'Psalms','Provérbios':'Proverbs','Eclesiastes':'Ecclesiastes','Cantares':'Song of Songs','Isaías':'Isaiah','Jeremias':'Jeremiah',
             'Lamentações':'Lamentations','Ezequiel':'Ezekiel','Daniel':'Daniel','Oseias':'Hosea','Joel':'Joel','Amós':'Amos','Obadias':'Obadiah',
             'Jonas':'Jonah','Miqueias':'Micah','Naum':'Nahum','Habacuque':'Habakkuk','Sofonias':'Zephaniah','Ageu':'Haggai','Zacarias':'Zechariah',
             'Malaquias':'Malachi','Mateus':'Matthew','Marcos':'Mark','Lucas':'Luke','João':'John','Atos':'Acts','Romanos':'Romans',
@@ -75,34 +75,16 @@ document.addEventListener("DOMContentLoaded", () => {
         // Handle comma-separated verses, e.g., "10:5,32" or "16:1,6"
         const parts = rest.split(',').map(p=>p.trim()).filter(Boolean);
         let lastChapter = null;
-        const refs = [];
-        for (const p of parts){
-            // chapter range e.g. "8-9" -> fetch each chapter separately (API caps at 1 chapter)
-            if (/^\d+-\d+$/.test(p)){
-                const [a,b] = p.split('-').map(Number);
-                for (let ch=a; ch<=b; ch++) refs.push(`${bookEn} ${ch}`);
-                lastChapter = String(b);
-                continue;
-            }
-            // verse range / single verse e.g. "8:1-5" or "8:1"
+        const refs = parts.map((p)=>{
             if (/^\d+:\d+(?:-\d+)?$/.test(p)){
                 lastChapter = p.split(':')[0];
-                refs.push(`${bookEn} ${p}`);
-                continue;
+                return `${bookEn} ${p}`;
             }
-            // bare verse number after a chapter:verse e.g. "6" -> "16:6"
             if (/^\d+$/.test(p) && lastChapter){
-                refs.push(`${bookEn} ${lastChapter}:${p}`);
-                continue;
+                return `${bookEn} ${lastChapter}:${p}`;
             }
-            // bare chapter number e.g. "15" -> whole chapter
-            if (/^\d+$/.test(p)){
-                refs.push(`${bookEn} ${p}`);
-                lastChapter = p;
-                continue;
-            }
-            refs.push(`${bookEn} ${p}`);
-        }
+            return `${bookEn} ${p}`;
+        });
         return refs.length ? refs : [`${bookEn} ${rest}`];
     }
 
@@ -115,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const results = [];
             for (const r of refs){
                 const encoded = encodeURIComponent(r).replace(/%3A/g, ':').replace(/%2C/g, ',');
-                const response = await fetch(`https://bible-api.com/${encoded}`);
+                const response = await fetch(`https://bible-api.com/${encoded}?translation=almeida`);
                 const data = await response.json();
                 results.push({r, data});
             }
@@ -124,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (data.verses) {
                     formattedContent += '<div class="space-y-1">';
                     for (const verse of data.verses) {
-                        formattedContent += `<p><span class="font-bold text-xs align-top mr-1">${verse.verse}</span> <strong>${verse.text.trim()}</strong></p>`;
+                        formattedContent += `<p><span class="font-bold text-xs align-top mr-1">${verse.verse}</span> ${verse.text.trim()}</p>`;
                     }
                     formattedContent += '</div>';
                 } else if (data.text) {

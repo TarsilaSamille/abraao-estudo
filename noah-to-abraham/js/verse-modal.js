@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const refs = parseReferences(reference);
             const results = [];
             for (const r of refs){
-                const encoded = encodeURIComponent(r);
+                const encoded = encodeURIComponent(r).replace(/%3A/g, ':').replace(/%2C/g, ',');
                 const response = await fetch(`https://bible-api.com/${encoded}?translation=almeida`);
                 const data = await response.json();
                 results.push({r, data});
@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Event delegation to catch clicks even on nested elements
     document.addEventListener('click', (event) => {
-        const link = event.target.closest('.verse-link');
+        const link = event.target.closest('.verse-link, .ref');
         if (!link) return;
         event.preventDefault();
         const reference = link.getAttribute('data-reference') || link.textContent.trim();

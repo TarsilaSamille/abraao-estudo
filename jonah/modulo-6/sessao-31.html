@@ -42,7 +42,7 @@
   .nav-back { left: 1rem; }
   .nav-lang { right: 1rem; }
   .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
-  .page-footer .lang-pt, .page-footer .lang-en { display: inline; }
+  
   #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
   @media print { #reading-progress { display: none !important; } }
 </style>
@@ -79,49 +79,15 @@
     <p class="body reveal"><span class="lang-pt">O estudo de referência sobre essa frase foi feito por George Landes (1967). Dentro da Bíblia Hebraica, o período de “três dias e três noites” ou chegar a algum lugar “no terceiro dia” aparece em duas conexões principais: (1) Um tempo de provação, perigo ou quase-morte — 1 Samuel 30:12 (sem comer nem beber por três dias e três noites); 2 Reis 20:5,8 (Ezequias sararia e subiria à casa do Senhor no terceiro dia); Oséias 6:1-2 (ele nos dará vida após dois dias, nos ressuscitará no terceiro dia). Landes observa que, em cada caso, o período é especificado não para implicar a ainda presente possibilidade de livramento, mas para enfatizar a duração comparativa da aflição. (2) Uma jornada ameaçadora — a jornada de três dias dos israelitas do Egito através das águas ao Monte Sinai (Êx. 3:18 etc.); a primeira jornada de três dias na Bíblia é a de Abraão a Jerusalém para sacrificar Isaque (Gên. 22:4). A aparição mais antiga da frase é num texto mitológico sumério (ca. 1800 a.C.) onde a deusa desce ao submundo por três dias e três noites. Landes conclui que em Jonas 2:1 a frase indica o tempo que o peixe levou para trazer Jonas de volta do Profundo, entendido no poema como o submundo (2:2 “do ventre de Sheol”). Note que em Oséias 5-6 e em Jonas 2, Yahweh é quem controla um animal aterrorizante (leão/grande peixe); sendo devorado por esse animal seria morte certa em circunstâncias normais, mas com o Criador da vida, a morte aparente pode se tornar um veículo estranho de humilhação que leva à nova vida. Jesus se apoia nessa rede de passagens de “três dias” quando usa a frase para descrever sua libertação da morte para a vida de ressurreição (Mt. 12:40, 16:21; Lc 24:21,46).</span><span class="lang-en">The landmark study of this phrase was by George Landes (1967). Within the Hebrew Bible, “three days and three nights” or arriving “on the third day” appears in two main connections: (1) A time of testing, danger, or near-death — 1 Samuel 30:12 (no food or water for three days and nights); 2 Kings 20:5,8 (Hezekiah healed, go to the temple on the third day); Hosea 6:1-2 (he will revive us after two days, raise us on the third day). Landes notes the period emphasizes the comparative duration of affliction. (2) An ominous journey — Israel's three-day journey from Egypt through the waters to Sinai (Exod. 3:18); the first three-day journey is Abraham's to sacrifice Isaac (Gen. 22:4). The oldest appearance is a Sumerian (ca. 1800 B.C.E.) text where the goddess descends to the underworld for three days and nights. Landes concludes that in Jonah 2:1 the phrase indicates the time the fish took to bring Jonah back from the Deep, understood in the poem as the netherworld (2:2 “from the belly of Sheol”). Note that in Hosea 5-6 and Jonah 2, Yahweh controls a terrifying animal (lion/great fish); devouring would be certain death normally, but with the Creator, apparent death becomes a strange vehicle for humbling leading to new life. Jesus draws on this network when he uses “three days” for his resurrection (Matt. 12:40, 16:21; Luke 24:21,46).</span></p>
 
     <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
-    <p class="body reveal"><span class="lang-pt">Qual é o significado de Jonas estar no peixe por três dias e três noites? O que deveríamos entender?</span><span class="lang-en">What's the significance of Jonah being in the fish for three days and three nights? What are we supposed to understand?</span></p>  <script>
-  function setLang(lang) {
-    document.documentElement.setAttribute('lang', lang);
-    try { localStorage.setItem('jonah-s31-lang', lang); } catch(e) {}
-    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
-    if (lang === 'pt') {
-      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-l-full";
-      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
-    } else {
-      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-r-full";
-      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
-    }
-  }
-  var saved = 'pt'; try { saved = localStorage.getItem('jonah-s31-lang') || 'pt'; } catch(e) {}
-  setLang(saved);
-(function () {
-    var bar = document.getElementById('reading-progress');
-    if (!bar) return;
-    function update() {
-      var h = document.documentElement;
-      var max = h.scrollHeight - h.clientHeight;
-      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; }
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
-  })();
-(function () {
-    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var targets = document.querySelectorAll('.reveal');
-    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
-    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
-    targets.forEach(function (el) { io.observe(el); });
-  })();
-</script>
-
-
+    <p class="body reveal"><span class="lang-pt">Qual é o significado de Jonas estar no peixe por três dias e três noites? O que deveríamos entender?</span><span class="lang-en">What's the significance of Jonah being in the fish for three days and three nights? What are we supposed to understand?</span></p>  
 
 <footer class="page-footer">
-    <span>Class Notes: Jonah</span>
-    <span>Session 31</span>
+    <span class="lang-pt">Anotações de Aula: Jonas</span><span class="lang-en">Class Notes: Jonah</span>
+    <span class="lang-pt">Sessão 31</span><span class="lang-en">Session 31</span>
   </footer>
 </div>
+  <script src="../js/reading-progress.js"></script>
+  <script src="../js/lang-toggle.js"></script>
+  <script src="../js/reveal.js"></script>
 </body>
 </html>

@@ -42,7 +42,7 @@
   .nav-back { left: 1rem; }
   .nav-lang { right: 1rem; }
   .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
-  .page-footer .lang-pt, .page-footer .lang-en { display: inline; }
+  
   #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
   @media print { #reading-progress { display: none !important; } }
 </style>
@@ -79,49 +79,15 @@
     <p class="body reveal"><span class="lang-pt">A “Cidade de Derramamento de Sangue” (Caim, Sodoma, Egito, Nínive) ativada em Jonas 1:2 conecta Jonas a uma rede de retratos bíblicos da cidade de sangue. Em Deuteronômio 21:1-9, Israel recebe diretrizes para evitar que suas cidades se tornem como essas; em Jeremias 26, Jeremias adverte Jerusalém de que, por ter derramado sangue inocente, sua cidade virá sob julgamento. O paradoxo: Jonas, o profeta “mau”, pede para ser jogado ao mar, e são os marinheiros que tentam impedir — eles, não o profeta, estão cientes do significado de derramar sangue inocente. A ressonância maior é que o mal humano de Jonas se torna o instrumento do propósito salvador de Deus para as nações.</span><span class="lang-en">The “City of Bloodshed” (Cain, Sodom, Egypt, Nineveh) activated in Jonah 1:2 connects Jonah to a network of biblical portraits of the city of blood. In Deuteronomy 21:1-9, Israel is given guidelines to keep its towns from becoming like these; in Jeremiah 26, Jeremiah warns Jerusalem that because it shed innocent blood, its city will come under judgment. The paradox: Jonah, the “bad” prophet, asks to be thrown overboard, and it is the sailors who try to prevent it — they, not the prophet, are aware of the significance of shedding innocent blood. The larger resonance is that Jonah's human evil becomes the instrument of God's saving purpose for the nations.</span></p>
 
     <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
-    <p class="body reveal"><span class="lang-pt">Deus está lidando com o mal humano horrível, mas não o faz desaparecer. Como essa tensão — deixar as pessoas na bagunça que criam, mas não para sempre — aparece em outras partes da Bíblia que você conhece?</span><span class="lang-en">God is dealing with horrific human evil but doesn't wave it away. How does this tension — letting people sit in the mess they create, but not forever — appear elsewhere in the Bible you know?</span></p>  <script>
-  function setLang(lang) {
-    document.documentElement.setAttribute('lang', lang);
-    try { localStorage.setItem('jonah-s28-lang', lang); } catch(e) {}
-    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
-    if (lang === 'pt') {
-      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-l-full";
-      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
-    } else {
-      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-r-full";
-      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
-    }
-  }
-  var saved = 'pt'; try { saved = localStorage.getItem('jonah-s28-lang') || 'pt'; } catch(e) {}
-  setLang(saved);
-(function () {
-    var bar = document.getElementById('reading-progress');
-    if (!bar) return;
-    function update() {
-      var h = document.documentElement;
-      var max = h.scrollHeight - h.clientHeight;
-      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; }
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
-  })();
-(function () {
-    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var targets = document.querySelectorAll('.reveal');
-    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
-    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
-    targets.forEach(function (el) { io.observe(el); });
-  })();
-</script>
-
-
+    <p class="body reveal"><span class="lang-pt">Deus está lidando com o mal humano horrível, mas não o faz desaparecer. Como essa tensão — deixar as pessoas na bagunça que criam, mas não para sempre — aparece em outras partes da Bíblia que você conhece?</span><span class="lang-en">God is dealing with horrific human evil but doesn't wave it away. How does this tension — letting people sit in the mess they create, but not forever — appear elsewhere in the Bible you know?</span></p>  
 
 <footer class="page-footer">
-    <span>Class Notes: Jonah</span>
-    <span>Session 28</span>
+    <span class="lang-pt">Anotações de Aula: Jonas</span><span class="lang-en">Class Notes: Jonah</span>
+    <span class="lang-pt">Sessão 28</span><span class="lang-en">Session 28</span>
   </footer>
 </div>
+  <script src="../js/reading-progress.js"></script>
+  <script src="../js/lang-toggle.js"></script>
+  <script src="../js/reveal.js"></script>
 </body>
 </html>

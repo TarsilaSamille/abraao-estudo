@@ -42,7 +42,7 @@
   .nav-back { left: 1rem; }
   .nav-lang { right: 1rem; }
   .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
-  .page-footer .lang-pt, .page-footer .lang-en { display: inline; }
+  
   #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
   @media print { #reading-progress { display: none !important; } }
 </style>
@@ -75,49 +75,15 @@
     <p class="body reveal"><span class="lang-pt">Cary observa que o perigo não é desejar justiça (é boa notícia quando um opressor cai), mas identificar-se a si mesmo como o oprimido, tendo pena de si mesmo e não dos outros, transformando o Senhor numa arma em nossa campanha de vingança. O tema bíblico do “arrependimento de Deus quanto ao mal” significa que o Deus de Israel está mais inclinado a salvar seus inimigos do que a destruí-los — o que tem consequências para o povo da aliança: ser o veículo da bênção de Deus a todas as nações (Gênesis 12:1-3), de modo que seus inimigos não são necessariamente os inimigos de Deus. O arrependimento de Deus não é sobre Deus mudar de ideia, mas o cumprimento de sua intenção de salvar os ímpios.</span><span class="lang-en">Cary notes the danger is not desiring justice (it's good news when an oppressor falls), but self-righteously identifying oneself as the oppressed, taking pity on oneself and not others, making the Lord a weapon in one's revenge campaign. The biblical theme of God's “repentance concerning evil” means the God of Israel is more inclined to save his enemies than destroy them — with consequences for the covenant people: to be the vehicle of God's blessing to all nations (Genesis 12:1-3), so their enemies are not necessarily God's enemies. God's repentance is not about changing his mind, but fulfilling his intention to save the wicked.</span></p>
 
     <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
-    <p class="body reveal"><span class="lang-pt">Deus pergunta a Jonas: “É certo que te ires?” O que o texto nos diz sobre a razão da ira de Jonas?</span><span class="lang-en">God asks Jonah, “Is it right for you to be angry?” What does the text tell us about the reason for Jonah's anger?</span></p>  <script>
-  function setLang(lang) {
-    document.documentElement.setAttribute('lang', lang);
-    try { localStorage.setItem('jonah-s41-lang', lang); } catch(e) {}
-    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
-    if (lang === 'pt') {
-      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-l-full";
-      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
-    } else {
-      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-r-full";
-      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
-    }
-  }
-  var saved = 'pt'; try { saved = localStorage.getItem('jonah-s41-lang') || 'pt'; } catch(e) {}
-  setLang(saved);
-(function () {
-    var bar = document.getElementById('reading-progress');
-    if (!bar) return;
-    function update() {
-      var h = document.documentElement;
-      var max = h.scrollHeight - h.clientHeight;
-      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; }
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
-  })();
-(function () {
-    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var targets = document.querySelectorAll('.reveal');
-    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
-    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
-    targets.forEach(function (el) { io.observe(el); });
-  })();
-</script>
-
-
+    <p class="body reveal"><span class="lang-pt">Deus pergunta a Jonas: “É certo que te ires?” O que o texto nos diz sobre a razão da ira de Jonas?</span><span class="lang-en">God asks Jonah, “Is it right for you to be angry?” What does the text tell us about the reason for Jonah's anger?</span></p>  
 
 <footer class="page-footer">
-    <span>Class Notes: Jonah</span>
-    <span>Session 41</span>
+    <span class="lang-pt">Anotações de Aula: Jonas</span><span class="lang-en">Class Notes: Jonah</span>
+    <span class="lang-pt">Sessão 41</span><span class="lang-en">Session 41</span>
   </footer>
 </div>
+  <script src="../js/reading-progress.js"></script>
+  <script src="../js/lang-toggle.js"></script>
+  <script src="../js/reveal.js"></script>
 </body>
 </html>

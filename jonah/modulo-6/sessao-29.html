@@ -42,7 +42,7 @@
   .nav-back { left: 1rem; }
   .nav-lang { right: 1rem; }
   .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
-  .page-footer .lang-pt, .page-footer .lang-en { display: inline; }
+  
   #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
   @media print { #reading-progress { display: none !important; } }
 </style>
@@ -81,49 +81,15 @@
     <p class="body reveal"><span class="lang-pt">Há dois outros textos que retratam os inimigos antigos de Israel como o monstro marinho e engolindo alguém vivo: Faraó/Egito (Ezequiel 29:3) e Babilônia (Jeremias 51:34). Isso se encaixa com outras instâncias poéticas de Israel sendo “engolido” — imagem consistente de ser vencido por nações inimigas (Salmo 124:2-5; Lamentações 2:16; Oséias 8:8). A história de Jonas reúne todas essas imagens de Egito e Babilônia como grandes monstros marinhos engolindo o povo de Deus para o exílio e escravidão. Mas o poder de Deus pode proteger seu povo apesar de sua “morte submarina”, para que um povo recriado emergia do outro lado (como em Ez. 37). Cary observa que os leitores originais veriam essas conexões imediatamente: Israel cruzou em segurança pelo mar no êxodo, e mais recentemente foi engolido pela maior besta de todas, Babilônia — e ainda assim, no ventre de Babilônia, o remanescente foi mantido a salvo, como Jonas no ventre do peixe.</span><span class="lang-en">Two other texts depict Israel's ancient enemies as the sea monster swallowing someone alive: Pharaoh/Egypt (Ezekiel 29:3) and Babylon (Jeremiah 51:34). This fits other poetic instances of Israel being “swallowed up” — consistently an image of being overcome by enemy nations (Psalm 124:2-5; Lamentations 2:16; Hosea 8:8). Jonah's story draws together all these images of Egypt and Babylon as great sea monsters swallowing God's people into exile and slavery. But God's power can protect his people despite their “submarine death” so a re-created people can emerge (as in Ezek. 37). Cary notes original readers saw these links at once: Israel passed safely through the sea in the exodus, and more recently was swallowed by the greatest beast of all, Babylon — yet in Babylon's belly the remnant was kept safe, like Jonah in the fish.</span></p>
 
     <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
-    <p class="body reveal"><span class="lang-pt">Que tipo de coisas o autor quer que entendamos quando lemos que Jonas é engolido por um peixe? Quais as ideias bíblicas relacionadas a grandes criaturas marinhas que o autor pressupõe que conhecemos?</span><span class="lang-en">What kinds of things does the author want us to understand when we read that Jonah is swallowed by a fish? What are the biblical ideas related to large sea creatures that the author is assuming we know?</span></p>  <script>
-  function setLang(lang) {
-    document.documentElement.setAttribute('lang', lang);
-    try { localStorage.setItem('jonah-s29-lang', lang); } catch(e) {}
-    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
-    if (lang === 'pt') {
-      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-l-full";
-      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
-    } else {
-      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-r-full";
-      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
-    }
-  }
-  var saved = 'pt'; try { saved = localStorage.getItem('jonah-s29-lang') || 'pt'; } catch(e) {}
-  setLang(saved);
-(function () {
-    var bar = document.getElementById('reading-progress');
-    if (!bar) return;
-    function update() {
-      var h = document.documentElement;
-      var max = h.scrollHeight - h.clientHeight;
-      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; }
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
-  })();
-(function () {
-    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var targets = document.querySelectorAll('.reveal');
-    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
-    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
-    targets.forEach(function (el) { io.observe(el); });
-  })();
-</script>
-
-
+    <p class="body reveal"><span class="lang-pt">Que tipo de coisas o autor quer que entendamos quando lemos que Jonas é engolido por um peixe? Quais as ideias bíblicas relacionadas a grandes criaturas marinhas que o autor pressupõe que conhecemos?</span><span class="lang-en">What kinds of things does the author want us to understand when we read that Jonah is swallowed by a fish? What are the biblical ideas related to large sea creatures that the author is assuming we know?</span></p>  
 
 <footer class="page-footer">
-    <span>Class Notes: Jonah</span>
-    <span>Session 29</span>
+    <span class="lang-pt">Anotações de Aula: Jonas</span><span class="lang-en">Class Notes: Jonah</span>
+    <span class="lang-pt">Sessão 29</span><span class="lang-en">Session 29</span>
   </footer>
 </div>
+  <script src="../js/reading-progress.js"></script>
+  <script src="../js/lang-toggle.js"></script>
+  <script src="../js/reveal.js"></script>
 </body>
 </html>

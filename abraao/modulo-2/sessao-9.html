@@ -100,7 +100,7 @@
             .t-box, .doc-table tr, .cross-table { break-inside: avoid; }
         }
       .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
-  .page-footer .lang-pt, .page-footer .lang-en { display: inline; }
+  
 </style>
 </head>
 <body>
@@ -132,8 +132,7 @@
         </h1>
     
 <footer class="page-footer">
-    <span><span class="lang-pt">Anotações de Aula: Abraão</span>
-    <span>Session 9</span>
+    <span class="lang-pt">Sessão 9</span><span class="lang-en">Session 9</span>
   </footer>
 </div>
 
@@ -842,49 +841,8 @@
     </p>
 
     <!-- FOOTER -->
-    
 
 </div>
-
-<script>
-    function setLang(lang) {
-        document.documentElement.setAttribute('lang', lang);
-        try { localStorage.setItem('s9-lang', lang); } catch (e) {}
-        
-        const ptBtn = document.getElementById('lang-pt');
-        const enBtn = document.getElementById('lang-en');
-        if (!ptBtn || !enBtn) return;
-        
-        if (lang === 'pt') {
-            ptBtn.className = "px-4 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-l-full cursor-pointer";
-            enBtn.className = "px-4 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full cursor-pointer";
-        } else {
-            enBtn.className = "px-4 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-r-full cursor-pointer";
-            ptBtn.className = "px-4 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full cursor-pointer";
-        }
-    }
-    
-    (function() {
-        var preferred = 'pt';
-        try { preferred = localStorage.getItem('s9-lang') || 'pt'; } catch (e) {}
-        setLang(preferred);
-    })();
-
-    <script>
-(function () {
-        var bar = document.getElementById('reading-progress');
-        function update() {
-            var h = document.documentElement;
-            var max = h.scrollHeight - h.clientHeight;
-            var p = max > 0 ? h.scrollTop / max : 0;
-            bar.style.transform = 'scaleX(' + p + ')';
-        }
-        window.addEventListener('scroll', update, { passive: true });
-        window.addEventListener('resize', update);
-        update();
-    })();
-</script>
-
 
     (function () {
         var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -911,5 +869,8 @@
 </script>
 
   <script src="../js/verse-modal.js"></script>
+  <script src="../js/reading-progress.js"></script>
+  <script src="../js/lang-toggle.js"></script>
+  <script src="../js/reveal.js"></script>
 </body>
 </html>

@@ -26,7 +26,6 @@
   ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
   .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
 
-
   /* ---------- TRANSLATION CHIASM STRUCTURE ---------- */
   .chiasm-container { margin: 2rem 0 2.5rem; }
   
@@ -64,7 +63,6 @@
       margin-left: 4.25rem;
 
   }
-
 
   .v-text {
       font-size: 1.05rem;
@@ -274,7 +272,6 @@
       <span class="lang-pt">e eles o despediram, com a sua esposa e tudo o que lhe pertencia.</span><span class="lang-en">and they sent him away, with his wife and all that belonged to him.</span></p>
     </div>
 
- 
   <p class="caption reveal"><span class="lang-pt"><em>Gênesis 12:10-20</em>. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: Introdução à Bíblia Hebraica (2019).</span><span class="lang-en"><em>Genesis 12:10-20</em>. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Introduction to the Hebrew Bible (2019).</span></p>
 
   <!-- ================= MACRO DESIGN ================= -->
@@ -444,53 +441,16 @@
   <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
   <p class="body reveal"><span class="lang-pt">Como Gênesis 12:10-20 espelha Gênesis 3? Como isso nos ajuda a entender o significado desta história?</span><span class="lang-en">How does the Genesis 12:10-20 mirror Genesis 3? How does this help us understand the meaning of this story?</span></p>
 
-  
-
-
-
 <footer class="page-footer">
-    <span>Class Notes: Abraham</span>
-    <span>Session 6</span>
+    <span class="lang-pt">Anotações de Aula: Abraão</span><span class="lang-en">Class Notes: Abraham</span>
+    <span class="lang-pt">Sessão 6</span><span class="lang-en">Session 6</span>
   </footer>
 </div>
 
-<script>
-  function setLang(lang) {
-    document.documentElement.setAttribute('lang', lang);
-    try { localStorage.setItem('s6-lang', lang); } catch(e) {}
-    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
-    if (lang === 'pt') {
-      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-l-full";
-      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
-    } else {
-      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-r-full";
-      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
-    }
-  }
-  var saved = 'pt'; try { saved = localStorage.getItem('s6-lang') || 'pt'; } catch(e) {}
-  setLang(saved);
-(function () {
-    var bar = document.getElementById('reading-progress');
-    function update() {
-      var h = document.documentElement;
-      var max = h.scrollHeight - h.clientHeight;
-      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; }
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
-  })();
-(function () {
-    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var targets = document.querySelectorAll('.reveal');
-    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
-    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
-    targets.forEach(function (el) { io.observe(el); });
-  })();
-</script>
-
   <script src="../js/verse-modal.js"></script>
 
+  <script src="../js/reading-progress.js"></script>
+  <script src="../js/lang-toggle.js"></script>
+  <script src="../js/reveal.js"></script>
 </body>
 </html>

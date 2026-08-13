@@ -46,7 +46,7 @@
   .nav-back { left: 1rem; }
   .nav-lang { right: 1rem; }
   .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
-  .page-footer .lang-pt, .page-footer .lang-en { display: inline; }
+  
   #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
   @media print { #reading-progress { display: none !important; } }
 </style>
@@ -91,7 +91,10 @@
     <h2 class="section reveal">He crossed his hands ,</h2>
     <p class="body reveal">because Manasseh was the firstborn .</p>
     <h2 class="section reveal">15 And he blessed Yoseph and said,</h2>
-    <p class="body reveal">“ The Elohim before whom my fathers walked, Avraham and Yitskhaq, the Elohim who shepherded me from my past until this day, 16 the messenger who redeemed me from everything bad, may he bless the boys, and may my name and the name of my fathers be called over them, Avraham and Yitskhaq, and may they increase into a multitude in the midst of the land.” 17 And Yoseph saw that his father had set his right hand upon the head of Ephrayim, and it was bad in his eyes, and he grabbed the hand of his father, to remove it from upon the head of Ephrayim, <footer class="page-footer"> <span>Class Notes: Joseph</span> <span>Session 22</span> </footer></p>
+    <p class="body reveal">“ The Elohim before whom my fathers walked, Avraham and Yitskhaq, the Elohim who shepherded me from my past until this day, 16 the messenger who redeemed me from everything bad, may he bless the boys, and may my name and the name of my fathers be called over them, Avraham and Yitskhaq, and may they increase into a multitude in the midst of the land.” 17 And Yoseph saw that his father had set his right hand upon the head of Ephrayim, and it was bad in his eyes, and he grabbed the hand of his father, to remove it from upon the head of Ephrayim, <footer class="page-footer">
+    <span class="lang-pt">Anotações de Aula: José</span><span class="lang-en">Class Notes: Joseph</span>
+    <span class="lang-pt">Sessão 22</span><span class="lang-en">Session 22</span>
+  </footer></p>
 <p class="body reveal">Genesis 48:13-20. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022) Genesis 48:21-22. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Jospeh (2022) In this story, Yaaqov inverts the birth order and blessing from the younger son to the older. As he does this, he both repeats and intensifies this pattern that has been at work since the early chapters of Genesis.</p>
     <ul class="bullets reveal">
       <li>1. The land beasts and humans</li>
@@ -151,41 +154,9 @@
     <h3 class="sub reveal">Reflection Question</h3>
     <p class="body reveal">How does Yaaqov’s blessing for Ephrayim foreshadow the division of the tribes, exile, and hope for reconciliation on the other side?</p>
 </div>
-  <script>
-  function setLang(lang) {
-    document.documentElement.setAttribute('lang', lang);
-    try { localStorage.setItem('s22-lang', lang); } catch(e) {}
-    var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
-    if (lang === 'pt') {
-      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-l-full";
-      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full";
-    } else {
-      en.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-r-full";
-      pt.className = "px-3.5 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full";
-    }
-  }
-  var saved = 'pt'; try { saved = localStorage.getItem('s22-lang') || 'pt'; } catch(e) {}
-  setLang(saved);
-(function () {
-    var bar = document.getElementById('reading-progress');
-    function update() {
-      var h = document.documentElement;
-      var max = h.scrollHeight - h.clientHeight;
-      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; }
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
-  })();
-(function () {
-    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var targets = document.querySelectorAll('.reveal');
-    if (reduced || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('visible'); }); return; }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); } });
-    }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
-    targets.forEach(function (el) { io.observe(el); });
-  })();
-</script>
 
+  <script src="../js/reading-progress.js"></script>
+  <script src="../js/lang-toggle.js"></script>
+  <script src="../js/reveal.js"></script>
 </body>
 </html>

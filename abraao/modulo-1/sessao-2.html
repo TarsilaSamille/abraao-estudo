@@ -29,7 +29,6 @@
     <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
   </div>
 </div>
-    
 
     <div id="sessao-2" class="mt-8 px-4 md:mt-16 md:px-6">
         <div class="mx-auto max-w-7xl">
@@ -731,38 +730,15 @@
                 padrões recorrentes na literatura bíblica?</p>
         </div>
         <div class="page-footer mt-12 pt-4 pb-8 flex justify-between text-sm text-slate-500 border-t border-slate-200">
-          <span>Class Notes: Abraham</span>
-          <span><span class="lang-pt">Sessão 2 · A História de Abraão como um Todo</span><span class="lang-en">Session 2 · The Abraham Story as a Whole</span></span>
-        </div>
+    <span class="lang-pt">Anotações de Aula: Abraão</span><span class="lang-en">Class Notes: Abraham</span>
+  </div>
     </div>
-    
-<script>
-  function setLang(lang) {
-    document.documentElement.setAttribute("lang", lang);
-    try { localStorage.setItem("s2-lang", lang); } catch(e) {}
-    var pt = document.getElementById("lang-pt"), en = document.getElementById("lang-en");
-    if (lang === "pt") { pt.className = "px-4 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-l-full"; en.className = "px-4 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-r-full"; }
-    else { en.className = "px-4 py-1.5 text-sm font-semibold transition-colors bg-sky-600 text-white rounded-r-full"; pt.className = "px-4 py-1.5 text-sm font-semibold transition-colors bg-white text-slate-600 hover:bg-slate-50 rounded-l-full"; }
-  }
-  var saved = "pt"; try { saved = localStorage.getItem("s2-lang") || "pt"; } catch(e) {}
-  setLang(saved);
-
-  <script>
-(function () {
-    var bar = document.getElementById('reading-progress');
-    if (!bar) return;
-    function update() {
-      var h = document.documentElement;
-      var max = h.scrollHeight - h.clientHeight;
-      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; }
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
-  })();
-</script>
 
 </script>
 <script src="../js/verse-modal.js"></script>
+  <script src="../js/reading-progress.js"></script>
+  <script src="../js/lang-toggle.js"></script>
+  <script src="../js/reveal.js"></script>
 </body>
 
 </html>
