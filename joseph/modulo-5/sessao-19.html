@@ -11,36 +11,113 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../css/shared-tutorial.css">
   <style>
-  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
-  html[lang="pt"] .lang-en { display: none !important; }
-  html[lang="en"] .lang-pt { display: none !important; }
-  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
-  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
-  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
-  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
-  .verse-link { color: inherit; cursor: pointer; }
-  ul.bullets { list-style: none; padding: 0; }
-  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
-  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
-  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-  .keylabel { font-weight: 700; color: #17181a; }
-  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
-  .table-img img { width: 100%; display: block; }
-  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
-  .reveal.visible { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
-  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
-  .nav-btn:hover { background: #f1f5f9; }
-  .nav-back { left: 1rem; }
-  .nav-lang { right: 1rem; }
-  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
+  .reveal.visible { opacity: 1 !important; transform: none !important; }  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s;}
+  .ref:hover { color: #2563eb;}
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s;}
+  .scripture:hover { border-left-color: #9aa7b8;}
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem;}
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem;}
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a;}
+  .scripture .innerbox { background: #f6f8fa; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1rem;}
+  .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem;}
+  .macro { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; align-items: start; margin: 2rem 0 .75rem;}
+  .mcol { border: 3px solid #2e7d4e; border-radius: 12px; padding: .9rem .9rem 1rem; background: #fff;}
+  .mcol.dark { border-color: #3d4453; margin-top: 1.3rem;}
+  .mtag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 3px 10px; border-radius: 5px;}
+  .mtag-green { background: #2e7d4e;}
+  .mtag-dark { background: #3d4453;}
+  .mcol-title { font-size: 1rem; font-weight: 800; color: #17181a; margin: .55rem 0 .8rem; line-height: 1.3;}
+  .mboxes { display: flex; gap: .55rem;}
+  .mbox { flex: 1; border: 3px solid #b9c2cf; border-radius: 9px; background: #fff; min-height: 15.5rem; position: relative; transition: box-shadow .25s, transform .25s;}
+  .mbox:hover { box-shadow: 0 8px 20px -10px rgba(30,41,59,.4); transform: translateY(-3px);}
+  .mbox .mhdr { position: absolute; top: .55rem; left: .55rem; right: .55rem; background: #7d8697; color: #fff; font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 5px;}
+  .mbox.s1 { margin-top: 0;}
+  .mbox.s2 { margin-top: 2.4rem; min-height: 13rem;}
+  .mbox.s3 { margin-top: 2.4rem; min-height: 13rem;}
+  @media (max-width: 860px) { .macro { grid-template-columns: 1fr;}
+  .mcol.dark { margin-top: 0;}
+  .mbox, .mbox.s2, .mbox.s3 { min-height: 7.5rem; margin-top: 0;}
+  .cx { border: 3px solid; border-radius: 12px; padding: 1.35rem 1.5rem 1.2rem; margin: 1.15rem 0; transition: box-shadow .25s, transform .25s;}
+  .cx:hover { box-shadow: 0 12px 26px -16px rgba(23,24,26,.45); transform: translateY(-2px);}
+  .cx-tag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 1px 13px; border-radius: 6px; margin-bottom: .7rem;}
+  .cx h4 { font-weight: 800; font-size: 1.06rem; color: #17181a; margin-bottom: .7rem;}
+  .cx ul.bullets > li { font-size: .99rem; margin-bottom: .45rem;}
+  .cx-slate  { border-color: #6b7280; background: #e9ebee;}
+  .cx-slate  .cx-tag { background: #6b7280;}
+  .cx-rust   { border-color: #c0562f; background: #f7e6dd;}
+  .cx-rust   .cx-tag { background: #c0562f;}
+  .cx-rose   { border-color: #c04a63; background: #f7e0e5;}
+  .cx-rose   .cx-tag { background: #c04a63;}
+  .cx-blue   { border-color: #5468d4; background: #e4e8f9;}
+  .cx-blue   .cx-tag { background: #5468d4;}
+  .cx-green  { border-color: #2e7d4e; background: #dfeee2;}
+  .cx-green  .cx-tag { background: #2e7d4e;}
+  .cx-purple { border-color: #8b5cf6; background: #efe2f8;}
+  .cx-purple .cx-tag { background: #8b5cf6;}
+  .cx-tan    { border-color: #8a6d3b; background: #ece7dc;}
+  .cx-tan    .cx-tag { background: #8a6d3b;}
+  .k { display: inline; padding: 3px 9px; border-radius: 6px; font-weight: 700; color: #fff; line-height: 1.85; -webkit-box-decoration-break: clone; box-decoration-break: clone;}
+  .k-blue   { background: #3b82c4;}
+  .k-green  { background: #2e7d4e;}
+  .k-rose { background: #c04a63;}
+  .k-gray   { background: #6b7280;}
+  .k-rust   { background: #bf5a2b;}
+  .k-teal { background: #0d7d8c;}
+  .k-purple { background: #7c5ad0;}
+  .k-brown  { background: #8a6d3b;}
+  .t-teal { color: #0d8aa0; font-weight: 700;}
+  .v-outer { border: 3px solid #e3e7ee; border-radius: 20px; padding: 1.4rem 1.5rem; margin: 1.4rem 0;}
+  .v-black { border: 3px solid #17181a; border-radius: 16px; padding: 1.3rem 1.5rem; margin: 1.1rem 0;}
+  .v-light { border: 3px solid #e3e7ee; border-radius: 16px; padding: 1.2rem 1.4rem; margin: 1.1rem 0;}
+  .v-line { font-size: 1.06rem; line-height: 2.1; color: #1f2937;}
+  .v-div { border: 0; border-top: 1px solid #e6eaf0; margin: 1.1rem 0;}
+  .vbar-b { border-left: 5px solid #5468d4; padding-left: .8rem;}
+  .lbl { color: #6b7280; font-weight: 600; font-size: .85rem; margin-right: .2rem;}
+  sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px;}
+  .i1 { padding-left: 1.6rem;}
+  .i2 { padding-left: 3.2rem;}
+  .i3 { padding-left: 4.8rem;}
+  .doc-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 3px solid #d9dee6; border-radius: 14px; overflow: hidden; background: #fff;}
+  .doc-table th { background: #e2e6eb; text-align: left; padding: 1rem 1.3rem; font-weight: 800; font-size: 1.02rem; color: #17181a;}
+  .doc-table td { padding: 1.1rem 1.3rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.78; font-size: .97rem; color: #24262a; transition: background .2s;}
+  .doc-table tbody tr:hover td { background: #f8fafc;}
+  .doc-table tfoot td { border-top: 1px solid #d1d5db; background: #fbfcfd; color: #5b6472; font-size: .92rem;}
+  .kblue-soft { background: #cddcf5; color: #2b5fb0; padding: 2px 8px; border-radius: 6px; font-weight: 700;}
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1);}
+  @media print {
+    @page { margin: 14mm 12mm;}
+  #reading-progress, .print\:hidden { display: none !important;}
+  .reveal { opacity: 1 !important; transform: none !important;}
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important;}
+  .max-w-4xl { max-width: 100% !important; padding: 0 !important; margin: 0 !important;}
+  h1.title, h2.section, h3.sub { break-after: avoid-page;}
+  .cx, .v-outer, .v-black, .v-light, .doc-table tr, .scripture, .mcol { break-inside: avoid;}
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none;}
+  .cx, .mbox { transition: none;}}}}
+
+  /* joseph base typography */
   
-  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  @media print { #reading-progress { display: none !important; } }
-</style>
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  
+  .verse-link { color: inherit; cursor: pointer; }
+  
+  ul.bullets { list-style: none; padding: 0; }
+  
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }</style>
 </head>
 <body class="bg-white">
 <div id="reading-progress" aria-hidden="true"></div>
@@ -63,68 +140,68 @@
     <h1 class="title reveal"><span class="lang-pt">Sessão 19: De Canaã para Gósen</span><span class="lang-en">Session 19: From Canaan to Goshen</span></h1>
     <hr class="rule">
     <ul class="bullets reveal">
-      <li><p>Class Notes: Joseph</li>
+      <li><span class="lang-en"><p>Class Notes: Joseph</span></li>
       <li>143 of 215</li>
-      <li>Session 19: From Canaan to Goshen</li>
+      <li><span class="lang-en">Session 19: From Canaan to Goshen</span></li>
       <li>Key Takeaways</li>
     </ul>
     <p class="body reveal">Yaaqov assigns Yehudah with the role of instructing the family, charting his character transformation into a humble leader. Yehudah is the fourth son, continuing a pattern of three-plus-one surprise bonuses in Genesis. The wilderness is outside the land of promise, but it is also the place where God draws his people close to him.</p>
     <ul class="bullets reveal">
-      <li>Yoseph Delivers His Family and Egypt From Ruin</li>
+      <li><span class="lang-en">Yoseph Delivers His Family and Egypt From Ruin</span></li>
       <li>Genesis 46:31-47:11</li>
-      <li>A – Yoseph Provides for His Family</li>
+      <li><span class="lang-en">A – Yoseph Provides for His Family</span></li>
       <li>46:31-34</li>
-      <li>Yoseph Prepares His Brothers To Meet Pharaoh</li>
+      <li><span class="lang-en">Yoseph Prepares His Brothers To Meet Pharaoh</span></li>
     </ul>
-    <p class="body reveal">• 46:34 “Say you are shepherd of the flock … so that you can dwell in the land of Goshen” 47:1-4 Yoseph Introduces His Brothers to Pharaoh • 47:4 “We are shepherds of the flock … let you servants dwell in the land of Goshen” 47:5-11 Pharaoh Responds to Yoseph’s Brothers • 47:6 “Make your brothers … dwell in the good of the land … in the land of Goshen” • 47:11 “And Yoseph made them dwell … in the land of Egypt, in the good of the land, and he gave them a possession” Genesis 47:12-26 B – Yoseph Provides for Egypt • 47:12-17 Year one: Yoseph exchanges Egypt’s animals for food</p></p>
+    <p class="body reveal"><span class="lang-en">• 46:34 “Say you are shepherd of the flock … so that you can dwell in the land of Goshen” 47:1-4 Yoseph Introduces His Brothers to Pharaoh • 47:4 “We are shepherds of the flock … let you servants dwell in the land of Goshen” 47:5-11 Pharaoh Responds to Yoseph’s Brothers • 47:6 “Make your brothers … dwell in the good of the land … in the land of Goshen” • 47:11 “And Yoseph made them dwell … in the land of Egypt, in the good of the land, and he gave them a possession” Genesis 47:12-26 B – Yoseph Provides for Egypt • 47:12-17 Year one: Yoseph exchanges Egypt’s animals for food</span></p></p>
 
 <ul class="bullets reveal">
-      <li><p>Class Notes: Joseph</li>
+      <li><p><span class="lang-en">Class Notes: Joseph</li>
       <li>144 of 215</li>
     </ul>
-    <p class="body reveal">Genesis 46:31-47:27. Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022). In this unit, Yoseph acts to rescue his family and all of Egypt from the famine. The symmetrical design of this unit highlights the dual role that Yoseph plays for both his family and for Egypt. A - Genesis 46:31-47:11: Yoseph makes a successful plan to settle his family in Egypt. B - Genesis 47:12-26: Yoseph’s plan to save Egypt from famine succeeds. A’ - Genesis 47:27: Yoseph’s family settles in Egypt and experiences the Eden blessing.</p>
-    <h2 class="section reveal">Yoseph’s Wise Plan for His Family</h2>
-    <p class="body reveal">• 47:18-27 Year two: Yoseph exchanges Egypt’s people and land for food Genesis 47:27 A&#x27; – Yoseph Provides for His Family • “And Yisrael dwelt in the land of Egypt, in the land of Goshen, and they took possession of it, and they were fruitful and they multiplied.” a 46:31 And Yoseph said to his brothers and to the house of his father , “I will go up and I will tell Phar’oh, and I will say to him, ‘ My brothers and the house of my father who were in the land of Cana’an have come to me. 32 And the men are shepherds of the flock, because they are men of the herd, and their flocks and their cattle and everything which belongs to them, they have brought.’ b 33 And it will come about when Phar’oh calls for you and says, ‘ What is your work? ’ b&#x27; 34 And you all will say, ‘ Your servants are men of the herd, from our youth until now, both us and our fathers .’ a&#x27; On account of this you will dwell in the land of Goshen , because every shepherd of the flock is taboo for the Egyptians.” a 47:1 And Yoseph went and told Phar’oh and said, “ My father and my brothers and their flocks and their cattle and everything that belongs to them, they have come from the land of Cana’an , and look, they are in the land of Goshen .” 2 And from some of his brothers he took five men, and he stationed them before Phar’oh, b 3 and Phar’oh said to his brothers , “ What is your work? ”</p></p>
+    <p class="body reveal">Genesis 46:31-47:27. Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022). In this unit, Yoseph acts to rescue his family and all of Egypt from the famine. The symmetrical design of this unit highlights the dual role that Yoseph plays for both his family and for Egypt. A - Genesis 46:31-47:11: Yoseph makes a successful plan to settle his family in Egypt. B - Genesis 47:12-26: Yoseph’s plan to save Egypt from famine succeeds. A’ - Genesis 47:27: Yoseph’s family settles in Egypt and experiences the Eden blessing.</span></p>
+    <h2 class="section reveal"><span class="lang-en">Yoseph’s Wise Plan for His Family</span></h2>
+    <p class="body reveal"><span class="lang-en">• 47:18-27 Year two: Yoseph exchanges Egypt’s people and land for food Genesis 47:27 A&#x27; – Yoseph Provides for His Family • “And Yisrael dwelt in the land of Egypt, in the land of Goshen, and they took possession of it, and they were fruitful and they multiplied.” a 46:31 And Yoseph said to his brothers and to the house of his father , “I will go up and I will tell Phar’oh, and I will say to him, ‘ My brothers and the house of my father who were in the land of Cana’an have come to me. 32 And the men are shepherds of the flock, because they are men of the herd, and their flocks and their cattle and everything which belongs to them, they have brought.’ b 33 And it will come about when Phar’oh calls for you and says, ‘ What is your work? ’ b&#x27; 34 And you all will say, ‘ Your servants are men of the herd, from our youth until now, both us and our fathers .’ a&#x27; On account of this you will dwell in the land of Goshen , because every shepherd of the flock is taboo for the Egyptians.” a 47:1 And Yoseph went and told Phar’oh and said, “ My father and my brothers and their flocks and their cattle and everything that belongs to them, they have come from the land of Cana’an , and look, they are in the land of Goshen .” 2 And from some of his brothers he took five men, and he stationed them before Phar’oh, b 3 and Phar’oh said to his brothers , “ What is your work? ”</span></p></p>
 
 <ul class="bullets reveal">
-      <li><p>Class Notes: Joseph</li>
+      <li><p><span class="lang-en">Class Notes: Joseph</li>
       <li>145 of 215</li>
     </ul>
-    <p class="body reveal">Genesis 46:31-47:11. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022) In Genesis 46:31-47:4, Yoseph presents his brothers to Pharaoh, but only after outlining a long and clever plan to make sure that Pharaoh invites his family to settle in Goshen, on the outer edge of Egypt. Yoseph offers wise counsel to his brothers for how to speak in the throne room of Pharaoh, so they both honor the king but also ensure their settlement in Goshen. Yoseph advises them to tell Pharaoh up front that they are shepherds )(רעה צאן and keepers of herds )(אנשי מקנה, two ways of describing the same thing.</p>
-    <h2 class="section reveal">b&#x27; And they said to Phar’oh,</h2>
-    <p class="body reveal">“ Your servants are shepherds of the flock, both us and our fathers .” a&#x27; 4 And they said to Phar’oh, “We have come to migrate in the land, because their is no grazing land for the flocks of your servants, because the famine is heavy in the land of Cana’an .</p>
+    <p class="body reveal">Genesis 46:31-47:11. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022) In Genesis 46:31-47:4, Yoseph presents his brothers to Pharaoh, but only after outlining a long and clever plan to make sure that Pharaoh invites his family to settle in Goshen, on the outer edge of Egypt. Yoseph offers wise counsel to his brothers for how to speak in the throne room of Pharaoh, so they both honor the king but also ensure their settlement in Goshen. Yoseph advises them to tell Pharaoh up front that they are shepherds )(רעה צאן and keepers of herds )(אנשי מקנה, two ways of describing the same thing.</span></p>
+    <h2 class="section reveal"><span class="lang-en">b&#x27; And they said to Phar’oh,</span></h2>
+    <p class="body reveal"><span class="lang-en">“ Your servants are shepherds of the flock, both us and our fathers .” a&#x27; 4 And they said to Phar’oh, “We have come to migrate in the land, because their is no grazing land for the flocks of your servants, because the famine is heavy in the land of Cana’an .</span></p>
     <ul class="bullets reveal">
-      <li>And now, please let your servants dwell</li>
-      <li>in the land of Goshen .”</li>
-      <li>5 And Phar’oh said to Yoseph, saying,</li>
+      <li><span class="lang-en">And now, please let your servants dwell</span></li>
+      <li><span class="lang-en">in the land of Goshen .”</span></li>
+      <li><span class="lang-en">5 And Phar’oh said to Yoseph, saying,</span></li>
     </ul>
-    <p class="body reveal">“ Your father and your brothers have come to you, 6 the land of Egypt is before you .</p>
+    <p class="body reveal"><span class="lang-en">“ Your father and your brothers have come to you, 6 the land of Egypt is before you .</span></p>
     <ul class="bullets reveal">
-      <li>Have your father and your brothers</li>
+      <li><span class="lang-en">Have your father and your brothers</span></li>
       <li>dwell</li>
     </ul>
-    <p class="body reveal">in the good of the land .</p>
+    <p class="body reveal"><span class="lang-en">in the good of the land .</span></p>
     <ul class="bullets reveal">
       <li>Let them</li>
       <li>dwell</li>
-      <li>in the land of Goshen ,</li>
+      <li><span class="lang-en">in the land of Goshen ,</span></li>
     </ul>
-    <p class="body reveal">and if you know that there are among them men of nobility, then set them as captains of the flock that belongs to me.” a 7 And Yoseph brought Ya’akov his father and he stood him before Phar’oh, and Ya’akov blessed Phar’oh , b 8 and Phar’oh said to Ya’akov, “How many are the days of the years of your life ?” b 9 And Ya’akov said to Phar’oh, “ The days of the years of my migration are thirty and one hundred, few and bad have been the days of the years of my life , and they have not reached the days of the years of the lives of my fathers in the days of their migrations.” a&#x27; 10 And Ya’akov blessed Phar’oh , and he went out from before Phar’oh.</p>
+    <p class="body reveal"><span class="lang-en">and if you know that there are among them men of nobility, then set them as captains of the flock that belongs to me.” a 7 And Yoseph brought Ya’akov his father and he stood him before Phar’oh, and Ya’akov blessed Phar’oh , b 8 and Phar’oh said to Ya’akov, “How many are the days of the years of your life ?” b 9 And Ya’akov said to Phar’oh, “ The days of the years of my migration are thirty and one hundred, few and bad have been the days of the years of my life , and they have not reached the days of the years of the lives of my fathers in the days of their migrations.” a&#x27; 10 And Ya’akov blessed Phar’oh , and he went out from before Phar’oh.</span></p>
     <ul class="bullets reveal">
-      <li>11 And Yoseph made his father and his brothers</li>
+      <li><span class="lang-en">11 And Yoseph made his father and his brothers</span></li>
       <li>dwell ,</li>
     </ul>
-    <p class="body reveal">and he gave them a land-possession in the land of Egypt , in the good of the land , in the land of Ra’amses, just as Phar’oh had commanded.</p></p>
+    <p class="body reveal"><span class="lang-en">and he gave them a land-possession in the land of Egypt , in the good of the land , in the land of Ra’amses, just as Phar’oh had commanded.</span></p></p>
 
 <ul class="bullets reveal">
-      <li><p>Class Notes: Joseph</li>
+      <li><p><span class="lang-en">Class Notes: Joseph</li>
       <li>146 of 215</li>
     </ul>
-    <p class="body reveal">“[An] apparent difficulty [is caused] by Joseph’s mention in 46:34 that all shepherds are abhorrent to the Egyptians. The best solution is to regard this clause as the reason to mention the brothers’ occupation, rather than as a reason to avoid mentioning it. Since the Egyptians will be wary of semi-nomadic shepherds, there will be less trouble if they are kept away from the capital, even if it means that they must stay in what was a sensitive border region. Since other Egyptians may have viewed them suspiciously, Pharaoh may be more inclined to keep them separate, and not move them from their current location in Goshen (47:1). … On this reading, Joseph correctly anticipates Pharaoh’s question to the brothers (&#x27;What is your occupation?&#x27; in 46:33 and 47:3), which was essential to the success of his plan. ... Joseph’s carefully prepared plan secures his goal of enabling the brothers to live in Goshen, use its rich land, and keep a degree of separateness from the Egyptians. … The focus in this passage appears to be on yet another of Joseph’s wise plans coming to successful fruition.” Wilson, Lindsay (2004). Joseph, Wise and Otherwise: The Intersection of Wisdom and Covenant in Genesis 37-50. Paternoster. 189. The opposition of the Egyptians to “shepherds of the flock” (רעה צאן, Gen. 46:32; 47:3, 34) also activates the ancient hostility between Abel the “shepherd of the flock” (רעה צאן, Gen. 4:2) and Cain the first city builder. In an analogous way, the sons of Shem (the Israelites) and the sons of Ham (the Egyptians) represent the same divide between vocation and between brothers.</p>
-    <h2 class="section reveal">Yaaqov’s Disappointing Blessing on Pharaoh</h2>
-    <p class="body reveal">In an ironic scene in Genesis 47:7-10, Yaaqov is presented as a sad, unhappy figure reflecting on his pain and loss over the decades while in the presence of the king who just saved his entire family by generously providing for them! Yaaqov blesses Pharaoh before blessing any of his sons in Genesis 48-49. This is the first appearance of the word “bless” since Genesis 39:5 (God “blessed the house of Potiphar on account of Yoseph”). This story is the first explicit appearance of the word “blessing” that the patriarch offers to the nations, anticipated in God’s promise to Abraham in Genesis 12:3. In Genesis 47:1-12, Pharaoh gives the Israelites a possession in the land of Goshen, Egypt. He sets the “good” ( טוב ,מיטב) of the land before them and invites them to work “in the land of Ramses” (Gen. 47:11). As a result, Pharaoh receives a blessing (ברך) from Yaaqov (Gen. 47:7, 10). This is another example of the paradigm, “Those who bless you will be blessed” (Gen. 12:2-3). This is all setup for the Pharaoh of Exodus 1, who enslaves the Israelites, kills them, and forces them to build the store city in Ramses (Exod. 1:11), and that Pharaoh experiences curse instead of blessing.</p>
+    <p class="body reveal">“[An] apparent difficulty [is caused] by Joseph’s mention in 46:34 that all shepherds are abhorrent to the Egyptians. The best solution is to regard this clause as the reason to mention the brothers’ occupation, rather than as a reason to avoid mentioning it. Since the Egyptians will be wary of semi-nomadic shepherds, there will be less trouble if they are kept away from the capital, even if it means that they must stay in what was a sensitive border region. Since other Egyptians may have viewed them suspiciously, Pharaoh may be more inclined to keep them separate, and not move them from their current location in Goshen (47:1). … On this reading, Joseph correctly anticipates Pharaoh’s question to the brothers (&#x27;What is your occupation?&#x27; in 46:33 and 47:3), which was essential to the success of his plan. ... Joseph’s carefully prepared plan secures his goal of enabling the brothers to live in Goshen, use its rich land, and keep a degree of separateness from the Egyptians. … The focus in this passage appears to be on yet another of Joseph’s wise plans coming to successful fruition.” Wilson, Lindsay (2004). Joseph, Wise and Otherwise: The Intersection of Wisdom and Covenant in Genesis 37-50. Paternoster. 189. The opposition of the Egyptians to “shepherds of the flock” (רעה צאן, Gen. 46:32; 47:3, 34) also activates the ancient hostility between Abel the “shepherd of the flock” (רעה צאן, Gen. 4:2) and Cain the first city builder. In an analogous way, the sons of Shem (the Israelites) and the sons of Ham (the Egyptians) represent the same divide between vocation and between brothers.</span></p>
+    <h2 class="section reveal"><span class="lang-en">Yaaqov’s Disappointing Blessing on Pharaoh</span></h2>
+    <p class="body reveal"><span class="lang-en">In an ironic scene in Genesis 47:7-10, Yaaqov is presented as a sad, unhappy figure reflecting on his pain and loss over the decades while in the presence of the king who just saved his entire family by generously providing for them! Yaaqov blesses Pharaoh before blessing any of his sons in Genesis 48-49. This is the first appearance of the word “bless” since Genesis 39:5 (God “blessed the house of Potiphar on account of Yoseph”). This story is the first explicit appearance of the word “blessing” that the patriarch offers to the nations, anticipated in God’s promise to Abraham in Genesis 12:3. In Genesis 47:1-12, Pharaoh gives the Israelites a possession in the land of Goshen, Egypt. He sets the “good” ( טוב ,מיטב) of the land before them and invites them to work “in the land of Ramses” (Gen. 47:11). As a result, Pharaoh receives a blessing (ברך) from Yaaqov (Gen. 47:7, 10). This is another example of the paradigm, “Those who bless you will be blessed” (Gen. 12:2-3). This is all setup for the Pharaoh of Exodus 1, who enslaves the Israelites, kills them, and forces them to build the store city in Ramses (Exod. 1:11), and that Pharaoh experiences curse instead of blessing.</span></p>
     <h3 class="sub reveal">Reflection Question</h3>
-    <p class="body reveal">How does the wilderness present the ideal of intimacy with and faithfulness to God in the biblical story?</p></p>
+    <p class="body reveal"><span class="lang-en">How does the wilderness present the ideal of intimacy with and faithfulness to God in the biblical story?</span></p></p>
 
 <footer class="page-footer">
     <span class="lang-pt">Anotações de Aula: José</span><span class="lang-en">Class Notes: Joseph</span>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sessão 2: A Melodia Temática da Bíblia Hebraica</title>
+<title>Sessão 24: O Leão de Judá</title>
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <script src="../../js/verse-modal.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,36 +11,113 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../css/shared-tutorial.css">
   <style>
-  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
-  html[lang="pt"] .lang-en { display: none !important; }
-  html[lang="en"] .lang-pt { display: none !important; }
-  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
-  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
-  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
-  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
-  .verse-link { color: inherit; cursor: pointer; }
-  ul.bullets { list-style: none; padding: 0; }
-  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
-  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
-  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-  .keylabel { font-weight: 700; color: #17181a; }
-  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
-  .table-img img { width: 100%; display: block; }
-  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
-  .reveal.visible { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
-  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
-  .nav-btn:hover { background: #f1f5f9; }
-  .nav-back { left: 1rem; }
-  .nav-lang { right: 1rem; }
-  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
+  .reveal.visible { opacity: 1 !important; transform: none !important; }  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s;}
+  .ref:hover { color: #2563eb;}
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s;}
+  .scripture:hover { border-left-color: #9aa7b8;}
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem;}
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem;}
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a;}
+  .scripture .innerbox { background: #f6f8fa; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1rem;}
+  .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem;}
+  .macro { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; align-items: start; margin: 2rem 0 .75rem;}
+  .mcol { border: 3px solid #2e7d4e; border-radius: 12px; padding: .9rem .9rem 1rem; background: #fff;}
+  .mcol.dark { border-color: #3d4453; margin-top: 1.3rem;}
+  .mtag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 3px 10px; border-radius: 5px;}
+  .mtag-green { background: #2e7d4e;}
+  .mtag-dark { background: #3d4453;}
+  .mcol-title { font-size: 1rem; font-weight: 800; color: #17181a; margin: .55rem 0 .8rem; line-height: 1.3;}
+  .mboxes { display: flex; gap: .55rem;}
+  .mbox { flex: 1; border: 3px solid #b9c2cf; border-radius: 9px; background: #fff; min-height: 15.5rem; position: relative; transition: box-shadow .25s, transform .25s;}
+  .mbox:hover { box-shadow: 0 8px 20px -10px rgba(30,41,59,.4); transform: translateY(-3px);}
+  .mbox .mhdr { position: absolute; top: .55rem; left: .55rem; right: .55rem; background: #7d8697; color: #fff; font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 5px;}
+  .mbox.s1 { margin-top: 0;}
+  .mbox.s2 { margin-top: 2.4rem; min-height: 13rem;}
+  .mbox.s3 { margin-top: 2.4rem; min-height: 13rem;}
+  @media (max-width: 860px) { .macro { grid-template-columns: 1fr;}
+  .mcol.dark { margin-top: 0;}
+  .mbox, .mbox.s2, .mbox.s3 { min-height: 7.5rem; margin-top: 0;}
+  .cx { border: 3px solid; border-radius: 12px; padding: 1.35rem 1.5rem 1.2rem; margin: 1.15rem 0; transition: box-shadow .25s, transform .25s;}
+  .cx:hover { box-shadow: 0 12px 26px -16px rgba(23,24,26,.45); transform: translateY(-2px);}
+  .cx-tag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 1px 13px; border-radius: 6px; margin-bottom: .7rem;}
+  .cx h4 { font-weight: 800; font-size: 1.06rem; color: #17181a; margin-bottom: .7rem;}
+  .cx ul.bullets > li { font-size: .99rem; margin-bottom: .45rem;}
+  .cx-slate  { border-color: #6b7280; background: #e9ebee;}
+  .cx-slate  .cx-tag { background: #6b7280;}
+  .cx-rust   { border-color: #c0562f; background: #f7e6dd;}
+  .cx-rust   .cx-tag { background: #c0562f;}
+  .cx-rose   { border-color: #c04a63; background: #f7e0e5;}
+  .cx-rose   .cx-tag { background: #c04a63;}
+  .cx-blue   { border-color: #5468d4; background: #e4e8f9;}
+  .cx-blue   .cx-tag { background: #5468d4;}
+  .cx-green  { border-color: #2e7d4e; background: #dfeee2;}
+  .cx-green  .cx-tag { background: #2e7d4e;}
+  .cx-purple { border-color: #8b5cf6; background: #efe2f8;}
+  .cx-purple .cx-tag { background: #8b5cf6;}
+  .cx-tan    { border-color: #8a6d3b; background: #ece7dc;}
+  .cx-tan    .cx-tag { background: #8a6d3b;}
+  .k { display: inline; padding: 3px 9px; border-radius: 6px; font-weight: 700; color: #fff; line-height: 1.85; -webkit-box-decoration-break: clone; box-decoration-break: clone;}
+  .k-blue   { background: #3b82c4;}
+  .k-green  { background: #2e7d4e;}
+  .k-rose { background: #c04a63;}
+  .k-gray   { background: #6b7280;}
+  .k-rust   { background: #bf5a2b;}
+  .k-teal { background: #0d7d8c;}
+  .k-purple { background: #7c5ad0;}
+  .k-brown  { background: #8a6d3b;}
+  .t-teal { color: #0d8aa0; font-weight: 700;}
+  .v-outer { border: 3px solid #e3e7ee; border-radius: 20px; padding: 1.4rem 1.5rem; margin: 1.4rem 0;}
+  .v-black { border: 3px solid #17181a; border-radius: 16px; padding: 1.3rem 1.5rem; margin: 1.1rem 0;}
+  .v-light { border: 3px solid #e3e7ee; border-radius: 16px; padding: 1.2rem 1.4rem; margin: 1.1rem 0;}
+  .v-line { font-size: 1.06rem; line-height: 2.1; color: #1f2937;}
+  .v-div { border: 0; border-top: 1px solid #e6eaf0; margin: 1.1rem 0;}
+  .vbar-b { border-left: 5px solid #5468d4; padding-left: .8rem;}
+  .lbl { color: #6b7280; font-weight: 600; font-size: .85rem; margin-right: .2rem;}
+  sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px;}
+  .i1 { padding-left: 1.6rem;}
+  .i2 { padding-left: 3.2rem;}
+  .i3 { padding-left: 4.8rem;}
+  .doc-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 3px solid #d9dee6; border-radius: 14px; overflow: hidden; background: #fff;}
+  .doc-table th { background: #e2e6eb; text-align: left; padding: 1rem 1.3rem; font-weight: 800; font-size: 1.02rem; color: #17181a;}
+  .doc-table td { padding: 1.1rem 1.3rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.78; font-size: .97rem; color: #24262a; transition: background .2s;}
+  .doc-table tbody tr:hover td { background: #f8fafc;}
+  .doc-table tfoot td { border-top: 1px solid #d1d5db; background: #fbfcfd; color: #5b6472; font-size: .92rem;}
+  .kblue-soft { background: #cddcf5; color: #2b5fb0; padding: 2px 8px; border-radius: 6px; font-weight: 700;}
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1);}
+  @media print {
+    @page { margin: 14mm 12mm;}
+  #reading-progress, .print\:hidden { display: none !important;}
+  .reveal { opacity: 1 !important; transform: none !important;}
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important;}
+  .max-w-4xl { max-width: 100% !important; padding: 0 !important; margin: 0 !important;}
+  h1.title, h2.section, h3.sub { break-after: avoid-page;}
+  .cx, .v-outer, .v-black, .v-light, .doc-table tr, .scripture, .mcol { break-inside: avoid;}
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none;}
+  .cx, .mbox { transition: none;}}}}
+
+  /* joseph base typography */
   
-  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  @media print { #reading-progress { display: none !important; } }
-</style>
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  
+  .verse-link { color: inherit; cursor: pointer; }
+  
+  ul.bullets { list-style: none; padding: 0; }
+  
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }</style>
 </head>
 <body class="bg-white">
 <div id="reading-progress" aria-hidden="true"></div>
@@ -92,7 +169,7 @@ and in their pleasure they hamstrung oxen.
 and their wrath , because it is harsh.
 I will divide them up among Ya’akov,</p>
 <div class="reveal"><object type="image/svg+xml" data="img/sessao-24/sessao-24-page-1.svg" alt="Diagram from page 1" class="block mx-auto my-6"></div>
-<p class="body reveal">Class Notes: Joseph
+<p class="body reveal"><span class="lang-en">Class Notes: Joseph
 175 of 215
 Genesis 49:3-12. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022)
 This blessing on Yehudah is one of the high points of the Genesis scroll, and it develops the theme of the
@@ -136,9 +213,9 @@ and a son of his mare to the offshoot,
 he washes his clothing in wine,
 and his robe in the blood of grapes.
 12 Eyes sparkle from wine,
-and teeth white from milk!</p>
+and teeth white from milk!</span></p>
 <div class="reveal"><object type="image/svg+xml" data="img/sessao-24/sessao-24-page-2.svg" alt="Diagram from page 2" class="block mx-auto my-6"></div>
-<p class="body reveal">Class Notes: Joseph
+<p class="body reveal"><span class="lang-en">Class Notes: Joseph
 176 of 215
 the sons of your father will bow down to you .
 ... 
@@ -179,9 +256,9 @@ returns home from battle and is greeted by the shouts of praise from his brother
 extended by the statement, ‘Your father’s sons will bow down to you.’ It is difficult not to see in this
 statement an intentional allusion to the dream of Joseph (37:10) in which his father’s sons would come to
 bow down before him. In other words, what Joseph’s dreams predicted and then did happen in the course
-of the narrative (e.g., 42:6), these stories are here being transferred to the future of the house of Judah.</p>
+of the narrative (e.g., 42:6), these stories are here being transferred to the future of the house of Judah.</span></p>
 <div class="reveal"><object type="image/svg+xml" data="img/sessao-24/sessao-24-page-3.svg" alt="Diagram from page 3" class="block mx-auto my-6"></div>
-<p class="body reveal">Class Notes: Joseph
+<p class="body reveal"><span class="lang-en">Class Notes: Joseph
 177 of 215
 That which happened to Joseph is portrayed as a picture of that which would happen to Judah ‘in the last
 days’ (49:1).”
@@ -223,9 +300,9 @@ Yoseph concerning his brother Binyamin, saying that Yaaqov “loves” (אהב, 
 life is bound to his life” (נפשו קשורה בנפשו, Gen. 44:30).
 Yoseph’s brothers, including Yehudah, “strip him” )(פשט of his royal garment (Gen. 37:23), // Jonathan of
 Binyamin brother of Yoseph “strips off” )(פשט his royal garment and gives it to David of Yehudah
-(1 Sam. 18:4).</p>
+(1 Sam. 18:4).</span></p>
 <div class="reveal"><object type="image/svg+xml" data="img/sessao-24/sessao-24-page-4.svg" alt="Diagram from page 4" class="block mx-auto my-6"></div>
-<p class="body reveal">Class Notes: Joseph
+<p class="body reveal"><span class="lang-en">Class Notes: Joseph
 178 of 215
 The scene of Jonathan (son of Binyamin) parting with David (son of Yehudah) is modeled after the
 reunion scene of Yoseph and Yehudah and Binyamin, along with all the rest of the brothers.
@@ -266,9 +343,9 @@ Grossfield, Bernard, translator (1988). The Targum Onqelos to Genesis (The Arama
 “Rulers shall not cease from the house of Judah, nor teachers of the law from his posterity, until his
 descendant Messiah come, and the obedience of all peoples be unto him. How glorious is Messiah of the
 House of Judah! His loins girded, he will go out to do battle with his enemies. No king and no ruler will
-prevail against him. The mountains will be dyed red with their blood, and the garments of Messiah will be</p>
+prevail against him. The mountains will be dyed red with their blood, and the garments of Messiah will be</span></p>
 <div class="reveal"><object type="image/svg+xml" data="img/sessao-24/sessao-24-page-5.svg" alt="Diagram from page 5" class="block mx-auto my-6"></div>
-<p class="body reveal">Class Notes: Joseph
+<p class="body reveal"><span class="lang-en">Class Notes: Joseph
 179 of 215
 like the garments of him that presseth wine. The eyes of Messiah will be clearer than pure wine, for they will
 never behold unchastity and bloodshed; and his teeth will be whiter than milk, for never will they bite aught
@@ -302,9 +379,9 @@ Isa. 11:1-11; Ps. 2 or 72, etc.).
 The Hebrew phrase in Genesis 49:10 poses an interpretive challenge, and it’s important to remember that the
 most ancient forms of the Hebrew Bible were written on scrolls without punctuation of any kind. The division
 of words into phrases, sentences, and paragraphs was passed on as an oral reading tradition and was subject
-to change. This means that sometimes the traditional sentence and phrase divisions are debatable, or we can</p>
+to change. This means that sometimes the traditional sentence and phrase divisions are debatable, or we can</span></p>
 <div class="reveal"><object type="image/svg+xml" data="img/sessao-24/sessao-24-page-6.svg" alt="Diagram from page 6" class="block mx-auto my-6"></div>
-<p class="body reveal">Class Notes: Joseph
+<p class="body reveal"><span class="lang-en">Class Notes: Joseph
 180 of 215
 see that even in ancient times there were debates about how exactly to divide a sentence. Genesis 49:10 is
 one of those texts, and it just so happens that the meaning of an important messianic prophecy hangs in the
@@ -348,9 +425,9 @@ Genesis Rabbah, many
 medieval Jewish
 commentators)
 Modern and Jewish Translations of Genesis 49:10. Created by Tim Mackie for BibleProject Classroom:
-Joseph (2022).</p>
+Joseph (2022).</span></p>
 <div class="reveal"><object type="image/svg+xml" data="img/sessao-24/sessao-24-page-7.svg" alt="Diagram from page 7" class="block mx-auto my-6"></div>
-<p class="body reveal">Class Notes: Joseph
+<p class="body reveal"><span class="lang-en">Class Notes: Joseph
 181 of 215
                     לא יסור שבט מיהודה 1a
                     ומחקק מבין רגליו עד 1b
@@ -383,9 +460,9 @@ David on two occasions. The first occasion is in a promise found in 2 Samuel 7.
 I will raise up your seed after you,
 who will come out from you,
 and I will establish his kingdom.
-13 He shall build a house for my name,</p>
+13 He shall build a house for my name,</span></p>
 <div class="reveal"><object type="image/svg+xml" data="img/sessao-24/sessao-24-page-8.svg" alt="Diagram from page 8" class="block mx-auto my-6"></div>
-<p class="body reveal">Class Notes: Joseph
+<p class="body reveal"><span class="lang-en">Class Notes: Joseph
 182 of 215
 and I will establish the throne of his kingdom unto forever )(עד עולם.
 14 I will be a father to him and he will be a son to me;
@@ -421,8 +498,8 @@ Journal of Biblical Literature, vol. 132, p. 33-60, especially p. 46-48.
 “The One to Whom it Belongs” a.k.a. “Shiloh”
 The phrase that appears in Genesis 49:10 is capable of multiple meanings, and it appears that all of them are
 not just possible, but intended by Yaaqov as an evocative and dense statement.
-Literal Meaning</p>
-<p class="body reveal">Class Notes: Joseph
+Literal Meaning</span></p>
+<p class="body reveal"><span class="lang-en">Class Notes: Joseph
 183 of 215
 “unto when there comes sh-loh )(שילה”
 Possible Meaning 1
@@ -456,9 +533,9 @@ Meaning: The status of ruler will belong to Yehudah, up to the time when an indi
 royal status truly belongs, and when that ruler comes, the nations will offer their obedience to him.
 This seems to be the meaning that Ezekiel drew from this poem, as he depicts the royal line of David as
 subject to ruin and divine judgment (see Ezek. 21:21-26), “until he comes, the one to whom justice
-rightfully belongs, and I will give it to that one” (Ezek. 21:27).</p>
+rightfully belongs, and I will give it to that one” (Ezek. 21:27).</span></p>
 <div class="reveal"><object type="image/svg+xml" data="img/sessao-24/sessao-24-page-10.svg" alt="Diagram from page 10" class="block mx-auto my-6"></div>
-<p class="body reveal">Class Notes: Joseph
+<p class="body reveal"><span class="lang-en">Class Notes: Joseph
 184 of 215
 A Ruler Over the Family of Abraham and the Nations
 Notice how Genesis 49:8-12 focuses on the dual nature of this future king’s rule. It will encompass the tribal
@@ -485,7 +562,7 @@ abundant blessings (see Ps. 104:15). Abundant milk and white teeth are also sign
 signaling large cow herds and healthy teeth.
 Reflection Question
 What are the possible meanings of the promise that “the scepter will not depart from Yehudah” in
-Genesis 49:10?</p>
+Genesis 49:10?</span></p>
 <div class="reveal"><object type="image/svg+xml" data="img/sessao-24/sessao-24-page-11.svg" alt="Diagram from page 11" class="block mx-auto my-6"></div>
 <footer class="page-footer">
     <span class="lang-pt">Anotações de Aula: José</span><span class="lang-en">Class Notes: Joseph</span>

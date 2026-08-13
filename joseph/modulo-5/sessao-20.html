@@ -11,46 +11,123 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../css/shared-tutorial.css">
   <style>
-  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
-  html[lang="pt"] .lang-en { display: none !important; }
-  html[lang="en"] .lang-pt { display: none !important; }
-  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
-  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
-  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
-  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
-  .verse-link { color: inherit; cursor: pointer; }
-  ul.bullets { list-style: none; padding: 0; }
-  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
-  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
-  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-  .keylabel { font-weight: 700; color: #17181a; }
-    table.md { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; background: #fff; margin: 1.5rem 0; font-size: .92rem; }
-  table.md th { background: #e3e7ec; text-align: left; padding: .8rem 1rem; font-weight: 700; color: #1b1b1b; }
-  table.md td { padding: .85rem 1rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.65; color: #1b1b1b; }
-  table.md td + td, table.md th + th { border-left: 1px solid #e5e7eb; }
-  table.md tbody tr:hover td { background: #f8fafc; }
-  .hl-tan { background: #fae3c3; color: #90362e; }
-  .hl-sky { background: #d9ecfd; color: #404ba6; }
-  .hl-grn { background: #d3f1cc; color: #2a6145; }
-  .hl-rose { background: #f9e3de; color: #97294e; }
-  .hl-brick { background: #b4533a; color: #fff; }
-  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
-  .table-img img { width: 100%; display: block; }
-  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
-  .reveal.visible { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
-  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
-  .nav-btn:hover { background: #f1f5f9; }
-  .nav-back { left: 1rem; }
-  .nav-lang { right: 1rem; }
-  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
+  .reveal.visible { opacity: 1 !important; transform: none !important; }  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s;}
+  .ref:hover { color: #2563eb;}
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s;}
+  .scripture:hover { border-left-color: #9aa7b8;}
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem;}
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem;}
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a;}
+  .scripture .innerbox { background: #f6f8fa; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1rem;}
+  .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem;}
+  .macro { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; align-items: start; margin: 2rem 0 .75rem;}
+  .mcol { border: 3px solid #2e7d4e; border-radius: 12px; padding: .9rem .9rem 1rem; background: #fff;}
+  .mcol.dark { border-color: #3d4453; margin-top: 1.3rem;}
+  .mtag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 3px 10px; border-radius: 5px;}
+  .mtag-green { background: #2e7d4e;}
+  .mtag-dark { background: #3d4453;}
+  .mcol-title { font-size: 1rem; font-weight: 800; color: #17181a; margin: .55rem 0 .8rem; line-height: 1.3;}
+  .mboxes { display: flex; gap: .55rem;}
+  .mbox { flex: 1; border: 3px solid #b9c2cf; border-radius: 9px; background: #fff; min-height: 15.5rem; position: relative; transition: box-shadow .25s, transform .25s;}
+  .mbox:hover { box-shadow: 0 8px 20px -10px rgba(30,41,59,.4); transform: translateY(-3px);}
+  .mbox .mhdr { position: absolute; top: .55rem; left: .55rem; right: .55rem; background: #7d8697; color: #fff; font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 5px;}
+  .mbox.s1 { margin-top: 0;}
+  .mbox.s2 { margin-top: 2.4rem; min-height: 13rem;}
+  .mbox.s3 { margin-top: 2.4rem; min-height: 13rem;}
+  @media (max-width: 860px) { .macro { grid-template-columns: 1fr;}
+  .mcol.dark { margin-top: 0;}
+  .mbox, .mbox.s2, .mbox.s3 { min-height: 7.5rem; margin-top: 0;}
+  .cx { border: 3px solid; border-radius: 12px; padding: 1.35rem 1.5rem 1.2rem; margin: 1.15rem 0; transition: box-shadow .25s, transform .25s;}
+  .cx:hover { box-shadow: 0 12px 26px -16px rgba(23,24,26,.45); transform: translateY(-2px);}
+  .cx-tag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 1px 13px; border-radius: 6px; margin-bottom: .7rem;}
+  .cx h4 { font-weight: 800; font-size: 1.06rem; color: #17181a; margin-bottom: .7rem;}
+  .cx ul.bullets > li { font-size: .99rem; margin-bottom: .45rem;}
+  .cx-slate  { border-color: #6b7280; background: #e9ebee;}
+  .cx-slate  .cx-tag { background: #6b7280;}
+  .cx-rust   { border-color: #c0562f; background: #f7e6dd;}
+  .cx-rust   .cx-tag { background: #c0562f;}
+  .cx-rose   { border-color: #c04a63; background: #f7e0e5;}
+  .cx-rose   .cx-tag { background: #c04a63;}
+  .cx-blue   { border-color: #5468d4; background: #e4e8f9;}
+  .cx-blue   .cx-tag { background: #5468d4;}
+  .cx-green  { border-color: #2e7d4e; background: #dfeee2;}
+  .cx-green  .cx-tag { background: #2e7d4e;}
+  .cx-purple { border-color: #8b5cf6; background: #efe2f8;}
+  .cx-purple .cx-tag { background: #8b5cf6;}
+  .cx-tan    { border-color: #8a6d3b; background: #ece7dc;}
+  .cx-tan    .cx-tag { background: #8a6d3b;}
+  .k { display: inline; padding: 3px 9px; border-radius: 6px; font-weight: 700; color: #fff; line-height: 1.85; -webkit-box-decoration-break: clone; box-decoration-break: clone;}
+  .k-blue   { background: #3b82c4;}
+  .k-green  { background: #2e7d4e;}
+  .k-rose { background: #c04a63;}
+  .k-gray   { background: #6b7280;}
+  .k-rust   { background: #bf5a2b;}
+  .k-teal { background: #0d7d8c;}
+  .k-purple { background: #7c5ad0;}
+  .k-brown  { background: #8a6d3b;}
+  .t-teal { color: #0d8aa0; font-weight: 700;}
+  .v-outer { border: 3px solid #e3e7ee; border-radius: 20px; padding: 1.4rem 1.5rem; margin: 1.4rem 0;}
+  .v-black { border: 3px solid #17181a; border-radius: 16px; padding: 1.3rem 1.5rem; margin: 1.1rem 0;}
+  .v-light { border: 3px solid #e3e7ee; border-radius: 16px; padding: 1.2rem 1.4rem; margin: 1.1rem 0;}
+  .v-line { font-size: 1.06rem; line-height: 2.1; color: #1f2937;}
+  .v-div { border: 0; border-top: 1px solid #e6eaf0; margin: 1.1rem 0;}
+  .vbar-b { border-left: 5px solid #5468d4; padding-left: .8rem;}
+  .lbl { color: #6b7280; font-weight: 600; font-size: .85rem; margin-right: .2rem;}
+  sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px;}
+  .i1 { padding-left: 1.6rem;}
+  .i2 { padding-left: 3.2rem;}
+  .i3 { padding-left: 4.8rem;}
+  .doc-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 3px solid #d9dee6; border-radius: 14px; overflow: hidden; background: #fff;}
+  .doc-table th { background: #e2e6eb; text-align: left; padding: 1rem 1.3rem; font-weight: 800; font-size: 1.02rem; color: #17181a;}
+  .doc-table td { padding: 1.1rem 1.3rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.78; font-size: .97rem; color: #24262a; transition: background .2s;}
+  .doc-table tbody tr:hover td { background: #f8fafc;}
+  .doc-table tfoot td { border-top: 1px solid #d1d5db; background: #fbfcfd; color: #5b6472; font-size: .92rem;}
+  .kblue-soft { background: #cddcf5; color: #2b5fb0; padding: 2px 8px; border-radius: 6px; font-weight: 700;}
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1);}
+  @media print {
+    @page { margin: 14mm 12mm;}
+  #reading-progress, .print\:hidden { display: none !important;}
+  .reveal { opacity: 1 !important; transform: none !important;}
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important;}
+  .max-w-4xl { max-width: 100% !important; padding: 0 !important; margin: 0 !important;}
+  h1.title, h2.section, h3.sub { break-after: avoid-page;}
+  .cx, .v-outer, .v-black, .v-light, .doc-table tr, .scripture, .mcol { break-inside: avoid;}
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none;}
+  .cx, .mbox { transition: none;}}}}
+
+  /* joseph base typography */
   
-  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  @media print { #reading-progress { display: none !important; } }
-</style>
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  
+  .verse-link { color: inherit; cursor: pointer; }
+  
+  ul.bullets { list-style: none; padding: 0; }
+  
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  
+    table.md { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; background: #fff; margin: 1.5rem 0; font-size: .92rem; }
+  
+  table.md th { background: #e3e7ec; text-align: left; padding: .8rem 1rem; font-weight: 700; color: #1b1b1b; }
+  
+  table.md td { padding: .85rem 1rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.65; color: #1b1b1b; }
+  
+  table.md td + td, table.md th + th { border-left: 1px solid #e5e7eb; }
+  
+  table.md tbody tr:hover td { background: #f8fafc; }
+  
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }</style>
 </head>
 <body class="bg-white">
 <div id="reading-progress" aria-hidden="true"></div>
@@ -74,62 +151,62 @@
     <hr class="rule">
     <h2 class="section reveal">Key Takeaways</h2>
     <ul class="bullets reveal">
-      <li>Yaaqov blesses Pharaoh. This is the first time Abraham’s family explicitly blesses the nations as promised by God in Genesis 12:3.</li>
-      <li>Yoseph rescues the people and animals of the land from the flood-like famine, once again cast as a new Noah.</li>
-      <li>Yoseph’s wise administration of the land foreshadows his descendant Joshua and his leadership of Israel.</li>
-      <li>Yaaqov’s age when entering Egypt helps us calculate the family’s time in Canaan as 215 years, precisely half the 430 years of their future Egyptian exile.</li>
-      <li>Yoseph the Wise Deliverer of Egypt ...</li>
-      <li>12 And Yoseph supported his father and his brothers and all the house of his father with bread for the mouth of the children.</li>
+      <li><span class="lang-en">Yaaqov blesses Pharaoh. This is the first time Abraham’s family explicitly blesses the nations as promised by God in Genesis 12:3.</span></li>
+      <li><span class="lang-en">Yoseph rescues the people and animals of the land from the flood-like famine, once again cast as a new Noah.</span></li>
+      <li><span class="lang-en">Yoseph’s wise administration of the land foreshadows his descendant Joshua and his leadership of Israel.</span></li>
+      <li><span class="lang-en">Yaaqov’s age when entering Egypt helps us calculate the family’s time in Canaan as 215 years, precisely half the 430 years of their future Egyptian exile.</span></li>
+      <li><span class="lang-en">Yoseph the Wise Deliverer of Egypt ...</span></li>
+      <li><span class="lang-en">12 And Yoseph supported his father and his brothers and all the house of his father with bread for the mouth of the children.</span></li>
     </ul>
-    <h2 class="section reveal">13 And there was no bread in all the land,</h2>
+    <h2 class="section reveal"><span class="lang-en">13 And there was no bread in all the land,</span></h2>
     <p class="body reveal">because the famine was heavy, very much. And the land of Egypt became weary, and the land of Cana’an, because of the famine . 14 And Yoseph gathered all the silver that was found in the land of Egypt and in the land of Cana’an, in exchange for the grain that they were buying, and Yoseph brought the silver into the house of Phar’oh. 15 And the silver came to an end from the land of Egypt and from the land of Cana’an, and all Egypt came to Yoseph saying, “Give us bread , so we can live and not die before you, because there is no silver !” 16 And Yoseph said, “Give your herds , and I will give to you in exchange for your herds ,</p>
 <ul class="bullets reveal">
-      <li>if there is no the silver .”</li>
-      <li>17 And they brought their herds to Yoseph,</li>
+      <li><span class="lang-en">if there is no the silver .”</span></li>
+      <li><span class="lang-en">17 And they brought their herds to Yoseph,</span></li>
     </ul>
-    <p class="body reveal">and Yoseph gave them bread in exchange for their horses and flock- herds and cattle- herds and donkeys, and he led them out for bread in exchange for their herds in that year.</p>
+    <p class="body reveal"><span class="lang-en">and Yoseph gave them bread in exchange for their horses and flock- herds and cattle- herds and donkeys, and he led them out for bread in exchange for their herds in that year.</span></p>
     <ul class="bullets reveal">
-      <li>18 And that year</li>
-      <li>came to an end  (תתם) ,</li>
-      <li>and they came to him in the second year ,</li>
-      <li>and they said to him,</li>
-      <li>“We cannot hide it from my master,</li>
-      <li>that the silver</li>
-      <li>has come to an end  (תם) ;</li>
+      <li><span class="lang-en">18 And that year</span></li>
+      <li><span class="lang-en">came to an end  (תתם) ,</span></li>
+      <li><span class="lang-en">and they came to him in the second year ,</span></li>
+      <li><span class="lang-en">and they said to him,</span></li>
+      <li><span class="lang-en">“We cannot hide it from my master,</span></li>
+      <li><span class="lang-en">that the silver</span></li>
+      <li><span class="lang-en">has come to an end  (תם) ;</span></li>
     </ul>
-    <p class="body reveal">and the herds of animals belong to my master. There is nothing remaining before my master except our bodies and our land.</p>
+    <p class="body reveal"><span class="lang-en">and the herds of animals belong to my master. There is nothing remaining before my master except our bodies and our land.</span></p>
     <h2 class="section reveal">19 Why should we</h2>
-    <p class="body reveal">die before your eyes, both us and our land? Purchase us and our land in exchange for bread, and we and our land will become servants for Phar’oh , and give us seed , so we can live and not die , and so the land will not be desolated  (תשם) !” 20 And Yoseph purchased all the land of Egypt for Phar’oh, because Egypt sold, each one his field, because the famine was strong over them. And the land became Phar’oh’s.</p>
-    <h2 class="section reveal">21 And he made the people into servants ,</h2>
-    <p class="body reveal">from one end of the border of Egypt to the other end. 22 Only the land of the priests he did not purchase , because there was from Phar’oh a decree for priests, that they should eat their decreed amount that Phar’oh gave them. For this reason they did not sell their land.</p>
-    <h2 class="section reveal">23 And Yoseph said to the people,</h2>
-    <p class="body reveal">“Look, I have purchased you all today and your land for Phar’oh.</p>
-    <h2 class="section reveal">Behold! There is seed for you all,</h2>
-    <p class="body reveal">so you can sow your land. 24 And it will come about that you all will give to Phar’oh a fifth , and four-parts will be for you all, for seed of the field and for your food, and for whoever is in your houses,</p>
-<p class="body reveal">Genesis 47:12-27. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022) This narrative unit departs from the thematic focus on Yoseph’s reconciliation and reunion with the brothers and Yaaqov. In fact, Yoseph’s family doesn’t even appear in this scene. The focus has shifted entirely to Yoseph’s leadership over Egypt. This story is the proper follow-up to Yoseph’s proposal to Pharaoh in Genesis 41, and much of the chapter's vocabulary links back to that story.</p>
+    <p class="body reveal"><span class="lang-en">die before your eyes, both us and our land? Purchase us and our land in exchange for bread, and we and our land will become servants for Phar’oh , and give us seed , so we can live and not die , and so the land will not be desolated  (תשם) !” 20 And Yoseph purchased all the land of Egypt for Phar’oh, because Egypt sold, each one his field, because the famine was strong over them. And the land became Phar’oh’s.</span></p>
+    <h2 class="section reveal"><span class="lang-en">21 And he made the people into servants ,</span></h2>
+    <p class="body reveal"><span class="lang-en">from one end of the border of Egypt to the other end. 22 Only the land of the priests he did not purchase , because there was from Phar’oh a decree for priests, that they should eat their decreed amount that Phar’oh gave them. For this reason they did not sell their land.</span></p>
+    <h2 class="section reveal"><span class="lang-en">23 And Yoseph said to the people,</span></h2>
+    <p class="body reveal"><span class="lang-en">“Look, I have purchased you all today and your land for Phar’oh.</span></p>
+    <h2 class="section reveal"><span class="lang-en">Behold! There is seed for you all,</span></h2>
+    <p class="body reveal"><span class="lang-en">so you can sow your land. 24 And it will come about that you all will give to Phar’oh a fifth , and four-parts will be for you all, for seed of the field and for your food, and for whoever is in your houses,</span></p>
+<p class="body reveal"><span class="lang-en">Genesis 47:12-27. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022) This narrative unit departs from the thematic focus on Yoseph’s reconciliation and reunion with the brothers and Yaaqov. In fact, Yoseph’s family doesn’t even appear in this scene. The focus has shifted entirely to Yoseph’s leadership over Egypt. This story is the proper follow-up to Yoseph’s proposal to Pharaoh in Genesis 41, and much of the chapter's vocabulary links back to that story.</span></p>
     <ul class="bullets reveal">
       <li>Genesis 41</li>
       <li>Genesis 47:11-27</li>
-      <li>Gen. 41:27, 30, 31, 36 Pharaoh’s dreams are</li>
+      <li><span class="lang-en">Gen. 41:27, 30, 31, 36 Pharaoh’s dreams are</span></li>
     </ul>
-    <p class="body reveal">about seven years of famine.</p>
+    <p class="body reveal"><span class="lang-en">about seven years of famine.</span></p>
     <ul class="bullets reveal">
-      <li>Gen. 41:31 “the famine will be heavy )(כבד”</li>
-      <li>Gen. 41:56 “the famine will be strong )(חזק”</li>
+      <li><span class="lang-en">Gen. 41:31 “the famine will be heavy )(כבד”</span></li>
+      <li><span class="lang-en">Gen. 41:56 “the famine will be strong )(חזק”</span></li>
     </ul>
-    <p class="body reveal">Gen. 47:15 The first year of famine was finished Gen. 47:13 “the famine was heavy )(כבד” Gen. 47:20 “the famine was strong )(חזק” Gen. 41:34 “let Pharaoh appoint appointees over the land, and take one-fifth )(חמש of the land of Egypt” Gen. 47:24 “you give one-fifth )(חמישית to Pharaoh” Gen. 47:26 “to Pharaoh belongs a fifth )(חמש” Gen. 41:35 “and let them gather all the food of the good years and let them heap up grain” Gen. 47:14 “and Yoseph gathered up all the silver that was found in the land of Egypt … for the grain which they were buying” Repeated Language in Genesis 41 and Genesis 47. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</p>
+    <p class="body reveal"><span class="lang-en">Gen. 47:15 The first year of famine was finished Gen. 47:13 “the famine was heavy )(כבד” Gen. 47:20 “the famine was strong )(חזק” Gen. 41:34 “let Pharaoh appoint appointees over the land, and take one-fifth )(חמש of the land of Egypt” Gen. 47:24 “you give one-fifth )(חמישית to Pharaoh” Gen. 47:26 “to Pharaoh belongs a fifth )(חמש” Gen. 41:35 “and let them gather all the food of the good years and let them heap up grain” Gen. 47:14 “and Yoseph gathered up all the silver that was found in the land of Egypt … for the grain which they were buying” Repeated Language in Genesis 41 and Genesis 47. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
     <ul class="bullets reveal">
-      <li>… From the Chaos of the Flood/Famine</li>
-      <li>and for food for your children.”</li>
-      <li>25 And they said,</li>
-      <li>“You have saved our</li>
+      <li><span class="lang-en">… From the Chaos of the Flood/Famine</span></li>
+      <li><span class="lang-en">and for food for your children.”</span></li>
+      <li><span class="lang-en">25 And they said,</span></li>
+      <li><span class="lang-en">“You have saved our</span></li>
     </ul>
     <p class="body reveal">lives !</p>
     <ul class="bullets reveal">
-      <li>Let us find favor in the eyes of my master,</li>
-      <li>and we will be servants for Phar’oh .”</li>
+      <li><span class="lang-en">Let us find favor in the eyes of my master,</span></li>
+      <li><span class="lang-en">and we will be servants for Phar’oh .”</span></li>
     </ul>
-    <p class="body reveal">26 And Yoseph set this up as a decree until this day for the land of Egypt: “ A fifth is for Phar’oh, except only the land of the priests is not for Phar’oh.” 27 And Yisra’el dwelt in the land of Egypt, in the land of Goshen, and they took possession of it, and they were fruit and multiplied, very much.</p>
+    <p class="body reveal"><span class="lang-en">26 And Yoseph set this up as a decree until this day for the land of Egypt: “ A fifth is for Phar’oh, except only the land of the priests is not for Phar’oh.” 27 And Yisra’el dwelt in the land of Egypt, in the land of Goshen, and they took possession of it, and they were fruit and multiplied, very much.</span></p>
 <table class="md reveal">
   <tr><th>Parallels</th><th>Yoseph in Genesis 47</th></tr>
   <tr><td>The flood/famine de-creates the<br>land</td><td>Gen. 7:18 “The waters were mighty<br>)(גבר on the land”<br>Gen. 7:20 “The waters were mighty<br>)(בגר and covered the hills”</td></tr>
@@ -144,96 +221,96 @@
   <tr><td>Noah’s salvation results from his<br>divine favor; the Egyptians seek<br>Yoseph’s favor for salvation, which<br>is really God’s favor on Yoseph</td><td></td></tr>
 </table>
   <p class="caption"><span class="lang-pt">Gênesis X:Y. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2021).</span><span class="lang-en">Genesis X:Y. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2021).</span></p>
-    <p class="body reveal">This story portrays the famine on analogy to the flood, and Yoseph takes on the role of Noah in delivering God’s salvation (“bread” and “life”) to those who come to him. The same strategy was at work in Genesis 40-41, where Yoseph was the Noah-figure sent ahead to prepare food (אכל) in Egypt for his family.</p>
+    <p class="body reveal"><span class="lang-en">This story portrays the famine on analogy to the flood, and Yoseph takes on the role of Noah in delivering God’s salvation (“bread” and “life”) to those who come to him. The same strategy was at work in Genesis 40-41, where Yoseph was the Noah-figure sent ahead to prepare food (אכל) in Egypt for his family.</span></p>
     <ul class="bullets reveal">
       <li>Parallels</li>
-      <li>Yoseph in Genesis 47</li>
-      <li>Noah in Genesis 6-9</li>
-      <li>The flood/famine de-creates the</li>
+      <li><span class="lang-en">Yoseph in Genesis 47</span></li>
+      <li><span class="lang-en">Noah in Genesis 6-9</span></li>
+      <li><span class="lang-en">The flood/famine de-creates the</span></li>
       <li>land</li>
-      <li>Gen. 47:13 “The famine</li>
-      <li>was heavy )(כבד in the</li>
+      <li><span class="lang-en">Gen. 47:13 “The famine</span></li>
+      <li><span class="lang-en">was heavy )(כבד in the</span></li>
       <li>land”</li>
-      <li>Gen. 47:20 “The famine</li>
-      <li>was strong )(חזק over</li>
+      <li><span class="lang-en">Gen. 47:20 “The famine</span></li>
+      <li><span class="lang-en">was strong )(חזק over</span></li>
       <li>Egypt”</li>
-      <li>Gen. 7:18 “The waters were mighty</li>
-      <li>)(גבר on the land”</li>
-      <li>Gen. 7:20 “The waters were mighty</li>
-      <li>)(בגר and covered the hills”</li>
-      <li>Noah and his family are the only</li>
-      <li>remnant; the remnant of Egypt</li>
-      <li>survives only because of Yoseph</li>
-      <li>Gen. 47:18 “There is</li>
+      <li><span class="lang-en">Gen. 7:18 “The waters were mighty</span></li>
+      <li><span class="lang-en">)(גבר on the land”</span></li>
+      <li><span class="lang-en">Gen. 7:20 “The waters were mighty</span></li>
+      <li><span class="lang-en">)(בגר and covered the hills”</span></li>
+      <li><span class="lang-en">Noah and his family are the only</span></li>
+      <li><span class="lang-en">remnant; the remnant of Egypt</span></li>
+      <li><span class="lang-en">survives only because of Yoseph</span></li>
+      <li><span class="lang-en">Gen. 47:18 “There is</span></li>
       <li>nothing remaining</li>
       <li>)(שאר before my lord,</li>
       <li>except our bodies )(גויה</li>
       <li>”</li>
-      <li>Gen. 7:23 “And there remained )(שאר</li>
-      <li>only Noah and who was with him on</li>
+      <li><span class="lang-en">Gen. 7:23 “And there remained )(שאר</span></li>
+      <li><span class="lang-en">only Noah and who was with him on</span></li>
       <li>the ark”</li>
-      <li>Gen. 6:17 “I am about to bring the</li>
-      <li>flood … everything on the land will</li>
+      <li><span class="lang-en">Gen. 6:17 “I am about to bring the</span></li>
+      <li><span class="lang-en">flood … everything on the land will</span></li>
       <li>perish )(גוע”</li>
-      <li>Gen. 7:21 “And all flesh perished )(גוע</li>
-      <li>which crawls upon the land …”</li>
-      <li>The ark is the vehicle for saving</li>
-      <li>life; Yoseph’s plans are the means</li>
-      <li>of saving life</li>
-      <li>Gen. 47:19 “So we can</li>
-      <li>live )(חיה and not die!”</li>
-      <li>Gen. 47:25 “You have</li>
+      <li><span class="lang-en">Gen. 7:21 “And all flesh perished )(גוע</span></li>
+      <li><span class="lang-en">which crawls upon the land …”</span></li>
+      <li><span class="lang-en">The ark is the vehicle for saving</span></li>
+      <li><span class="lang-en">life; Yoseph’s plans are the means</span></li>
+      <li><span class="lang-en">of saving life</span></li>
+      <li><span class="lang-en">Gen. 47:19 “So we can</span></li>
+      <li><span class="lang-en">live )(חיה and not die!”</span></li>
+      <li><span class="lang-en">Gen. 47:25 “You have</span></li>
       <li>given us life )”!(חיה</li>
-      <li>Gen. 6:19-20 “From every living thing</li>
-      <li>)(חי from all flesh, two from all you will</li>
-      <li>bring into the ark to keep alive )(חיה …</li>
-      <li>two from all will come to you, to stay</li>
+      <li><span class="lang-en">Gen. 6:19-20 “From every living thing</span></li>
+      <li><span class="lang-en">)(חי from all flesh, two from all you will</span></li>
+      <li><span class="lang-en">bring into the ark to keep alive )(חיה …</span></li>
+      <li><span class="lang-en">two from all will come to you, to stay</span></li>
       <li>alive )(חיה”</li>
-      <li>God provides life and food for</li>
-      <li>those on the ark; Yoseph provides</li>
-      <li>bread of life for those in Egypt</li>
+      <li><span class="lang-en">God provides life and food for</span></li>
+      <li><span class="lang-en">those on the ark; Yoseph provides</span></li>
+      <li><span class="lang-en">bread of life for those in Egypt</span></li>
       <li>Gen. 47:24 “Four-parts</li>
-      <li>will be for you for seed</li>
-      <li>in the field and for your</li>
+      <li><span class="lang-en">will be for you for seed</span></li>
+      <li><span class="lang-en">in the field and for your</span></li>
       <li>food )(אכל”</li>
-      <li>Gen. 6:21 “Take for yourself from all</li>
-      <li>the food )(מאכל which will be eaten,</li>
-      <li>and gather it to yourself and it will be</li>
-      <li>for you for food )(אכל”</li>
-      <li>Noah’s salvation results from his</li>
-      <li>divine favor; the Egyptians seek</li>
-      <li>Yoseph’s favor for salvation, which</li>
-      <li>is really God’s favor on Yoseph</li>
+      <li><span class="lang-en">Gen. 6:21 “Take for yourself from all</span></li>
+      <li><span class="lang-en">the food )(מאכל which will be eaten,</span></li>
+      <li><span class="lang-en">and gather it to yourself and it will be</span></li>
+      <li><span class="lang-en">for you for food )(אכל”</span></li>
+      <li><span class="lang-en">Noah’s salvation results from his</span></li>
+      <li><span class="lang-en">divine favor; the Egyptians seek</span></li>
+      <li><span class="lang-en">Yoseph’s favor for salvation, which</span></li>
+      <li><span class="lang-en">is really God’s favor on Yoseph</span></li>
       <li>Gen. 47:25 “May we</li>
-      <li>find favor in the eyes of</li>
+      <li><span class="lang-en">find favor in the eyes of</span></li>
       <li>my lord …”</li>
-      <li>Gen. 6:8 “And Noah found favor in the</li>
-      <li>eyes of Yahweh”</li>
+      <li><span class="lang-en">Gen. 6:8 “And Noah found favor in the</span></li>
+      <li><span class="lang-en">eyes of Yahweh”</span></li>
     </ul>
-    <p class="body reveal">Comparing Joseph and Noah. Created by Tim Mackie for BibleProject Classroom: Joseph (2022). This also becomes another fulfillment of Noah’s curse upon Ham in Genesis 9:25-27: “slave of slaves )(עבד עבדים you will be to your brothers” // Genesis 47:19 “we are slaves )(עבדים to Pharaoh” and remember, “As Yoseph, as Pharaoh” (כמוך כפרעה, Gen. 44:18).</p>
+    <p class="body reveal"><span class="lang-en">Comparing Joseph and Noah. Created by Tim Mackie for BibleProject Classroom: Joseph (2022). This also becomes another fulfillment of Noah’s curse upon Ham in Genesis 9:25-27: “slave of slaves )(עבד עבדים you will be to your brothers” // Genesis 47:19 “we are slaves )(עבדים to Pharaoh” and remember, “As Yoseph, as Pharaoh” (כמוך כפרעה, Gen. 44:18).</span></p>
 
   <p class="caption"><span class="lang-pt">Gênesis X:Y. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2021).</span><span class="lang-en">Genesis X:Y. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2021).</span></p>
-    <p class="body reveal">Joshua, the Son of Yoseph, and the Priestly Lands Notice how Yoseph purchases the land on behalf of Pharaoh and then incorporates it into the kingdom’s property so that the entire population become Egypt’s servants. However, the narrator highlights how the land that belongs to the priests is not incorporated but rather set apart. This seemingly random detail is a forward anticipation to the future arrangement of the promised land for the tribes of Israel. In the Joshua scroll, we find Joshua, a son of Ephrayim-Yoseph, providing the land allotments to the tribes of his kinsmen, except for the priests, whose land is never to be sold to anyone.</p>
+    <p class="body reveal"><span class="lang-en">Joshua, the Son of Yoseph, and the Priestly Lands Notice how Yoseph purchases the land on behalf of Pharaoh and then incorporates it into the kingdom’s property so that the entire population become Egypt’s servants. However, the narrator highlights how the land that belongs to the priests is not incorporated but rather set apart. This seemingly random detail is a forward anticipation to the future arrangement of the promised land for the tribes of Israel. In the Joshua scroll, we find Joshua, a son of Ephrayim-Yoseph, providing the land allotments to the tribes of his kinsmen, except for the priests, whose land is never to be sold to anyone.</span></p>
     <h2 class="section reveal">Numbers 35:2-3, 6 Instructor's Translation</h2>
-    <p class="body reveal">2 Command the sons of Israel that they give to the Levites from the inheritance of their possession cities to live in; and you shall give to the Levites pasture lands around the cities. 3 The cities shall be theirs to live in; and their pasture lands shall be for their cattle and for their herds and for all their beasts. … 6 The cities which you shall give to the Levites shall be the six cities of refuge, which you shall give for the manslayer to flee to; and in addition to them you shall give forty-two cities.</p>
+    <p class="body reveal"><span class="lang-en">2 Command the sons of Israel that they give to the Levites from the inheritance of their possession cities to live in; and you shall give to the Levites pasture lands around the cities. 3 The cities shall be theirs to live in; and their pasture lands shall be for their cattle and for their herds and for all their beasts. … 6 The cities which you shall give to the Levites shall be the six cities of refuge, which you shall give for the manslayer to flee to; and in addition to them you shall give forty-two cities.</span></p>
     <h2 class="section reveal">Deuteronomy 18:1-5 Instructor's Translation</h2>
-    <p class="body reveal">1 The Levitical priests, the whole tribe of Levi, shall have no portion or inheritance with Israel; they shall eat the Yahweh’s offerings by fire and his portion. 2 They shall have no inheritance among their brothers; Yahweh is their inheritance, as he promised them. 3 Now this shall be the priests’ due from the people, from those who offer a sacrifice, either an ox or a sheep, of which they shall give to the priest the shoulder and the two cheeks and the stomach. 4 You shall give him the first fruits of your grain, your new wine, and your oil, and the first shearing of your sheep. 5 For Yahweh your Elohim has chosen him and his sons from all your tribes, to stand and serve in the name of the LORD forever.</p>
+    <p class="body reveal"><span class="lang-en">1 The Levitical priests, the whole tribe of Levi, shall have no portion or inheritance with Israel; they shall eat the Yahweh’s offerings by fire and his portion. 2 They shall have no inheritance among their brothers; Yahweh is their inheritance, as he promised them. 3 Now this shall be the priests’ due from the people, from those who offer a sacrifice, either an ox or a sheep, of which they shall give to the priest the shoulder and the two cheeks and the stomach. 4 You shall give him the first fruits of your grain, your new wine, and your oil, and the first shearing of your sheep. 5 For Yahweh your Elohim has chosen him and his sons from all your tribes, to stand and serve in the name of the LORD forever.</span></p>
     <h2 class="section reveal">Joshua 13:1-2, 14 Instructor's Translation</h2>
-    <p class="body reveal">1 Now Joshua was old and advanced in years when the LORD said to him, “You are old and advanced in years, and very much of the land remains to be possessed. 2 This is the land that remains: all the regions of the Philistines and all those of the Geshurites;” 14 Only to the tribe of Levi he did not give an inheritance; the offerings by fire to Yahweh, the God of Israel, are their inheritance, as he spoke to him.</p>
+    <p class="body reveal"><span class="lang-en">1 Now Joshua was old and advanced in years when the LORD said to him, “You are old and advanced in years, and very much of the land remains to be possessed. 2 This is the land that remains: all the regions of the Philistines and all those of the Geshurites;” 14 Only to the tribe of Levi he did not give an inheritance; the offerings by fire to Yahweh, the God of Israel, are their inheritance, as he spoke to him.</span></p>
     <h2 class="section reveal">Joshua 13:32-33 Instructor's Translation</h2>
-    <p class="body reveal">32 These are the territories which Moses apportioned for an inheritance in the plains of Moab, beyond the Jordan at Jericho to the east. 33 But to the tribe of Levi, Moses did not give an inheritance; Yahweh, the God of Israel, is their inheritance, as he had promised to them.</p>
+    <p class="body reveal"><span class="lang-en">32 These are the territories which Moses apportioned for an inheritance in the plains of Moab, beyond the Jordan at Jericho to the east. 33 But to the tribe of Levi, Moses did not give an inheritance; Yahweh, the God of Israel, is their inheritance, as he had promised to them.</span></p>
 
-    <h2 class="section reveal">Yoseph and Joshua, Images of Messianic Rule</h2>
-    <p class="body reveal">This narrative portrait of Yoseph as exalted ruler of Egypt providing bread for the nations has been intentionally crafted to be part of the messianic mosaic of the Hebrew Bible. Later biblical authors draw upon this narrative image as they portray the future seed from the line of Yehudah who will arise the rule the nations. Psalm 72 is packed with echoes of the Yoseph story.</p>
+    <h2 class="section reveal"><span class="lang-en">Yoseph and Joshua, Images of Messianic Rule</span></h2>
+    <p class="body reveal"><span class="lang-en">This narrative portrait of Yoseph as exalted ruler of Egypt providing bread for the nations has been intentionally crafted to be part of the messianic mosaic of the Hebrew Bible. Later biblical authors draw upon this narrative image as they portray the future seed from the line of Yehudah who will arise the rule the nations. Psalm 72 is packed with echoes of the Yoseph story.</span></p>
     <ul class="bullets reveal">
       <li>Psalm 72:1-17 LEB</li>
-      <li>1 O God, give your judgments to the king,</li>
+      <li><span class="lang-en">1 O God, give your judgments to the king,</span></li>
     </ul>
-    <p class="body reveal">and your righteousness to the king’s son.</p>
-    <h2 class="section reveal">2 May he judge your people with righteousness,</h2>
-    <p class="body reveal">and your poor with justice. 3 Let the mountains yield prosperity for the people, and the hills in righteousness. 4 May he provide justice for the poor of the people, save the children of the needy, and crush the oppressor. … 8 And may he rule from sea up to sea, and from the River to the edges of the land. ... 11 and let all kings bow down to him. Let all nations serve him. 12 Indeed he will deliver the needy who is crying for help, and the afflicted who has no helper. 13 He will take pity on the helpless and needy, and the lives of the needy he will save. … 16 May there be an abundance of grain in the land even on the top of the mountains.</p>
-    <h2 class="section reveal">May his crop sway like the trees of Lebanon,</h2>
-    <p class="body reveal">and may those from the city blossom like the grass of the earth. 17 May his name endure forever. May his name increase ⌊as long as the sun shines⌋, and let them be blessed in him. Let all nations call him blessed. See also: Isaiah 11:1-12; Hosea 1-3 (especially 3:1-4); Ezekiel 34 and 37</p>
+    <p class="body reveal"><span class="lang-en">and your righteousness to the king’s son.</span></p>
+    <h2 class="section reveal"><span class="lang-en">2 May he judge your people with righteousness,</span></h2>
+    <p class="body reveal"><span class="lang-en">and your poor with justice. 3 Let the mountains yield prosperity for the people, and the hills in righteousness. 4 May he provide justice for the poor of the people, save the children of the needy, and crush the oppressor. … 8 And may he rule from sea up to sea, and from the River to the edges of the land. ... 11 and let all kings bow down to him. Let all nations serve him. 12 Indeed he will deliver the needy who is crying for help, and the afflicted who has no helper. 13 He will take pity on the helpless and needy, and the lives of the needy he will save. … 16 May there be an abundance of grain in the land even on the top of the mountains.</span></p>
+    <h2 class="section reveal"><span class="lang-en">May his crop sway like the trees of Lebanon,</span></h2>
+    <p class="body reveal"><span class="lang-en">and may those from the city blossom like the grass of the earth. 17 May his name endure forever. May his name increase ⌊as long as the sun shines⌋, and let them be blessed in him. Let all nations call him blessed. See also: Isaiah 11:1-12; Hosea 1-3 (especially 3:1-4); Ezekiel 34 and 37</span></p>
 <table class="md reveal">
   <tr><th>Yoseph and Joshua, Images of Messianic Rule</th></tr>
   <tr><td>Psalm 72 is packed with echoes of the Yoseph story.</td><td>2 May he judge your people with righteousness,<br>and your poor with justice.</td><td>This narrative portrait of Yoseph as exalted ruler of Egypt providing bread for the nations has been<br>intentionally crafted to be part of the messianic mosaic of the Hebrew Bible. Later biblical authors draw upon<br>this narrative image as they portray the future seed from the line of Yehudah who will arise the rule the<br>nations.</td></tr>
@@ -250,14 +327,14 @@
 </table>
   <p class="caption"><span class="lang-pt">Gênesis X:Y. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2021).</span><span class="lang-en">Genesis X:Y. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2021).</span></p>
     <h3 class="sub reveal">Reflection Question</h3>
-    <p class="body reveal">Yoseph shrewdly governs the people of Egypt, but in the process, all the money, livestock, land, and even the people belong to Pharaoh. How can we discern if the narrative presents this as a blessing or an abuse of power?</p>
+    <p class="body reveal"><span class="lang-en">Yoseph shrewdly governs the people of Egypt, but in the process, all the money, livestock, land, and even the people belong to Pharaoh. How can we discern if the narrative presents this as a blessing or an abuse of power?</span></p>
 
     <ul class="bullets reveal">
-      <li>Module 6: Jacob’s Song of</li>
+      <li><span class="lang-en">Module 6: Jacob’s Song of</span></li>
       <li>Blessing</li>
       <li>SESSIONS 21-25</li>
     </ul>
-    <p class="body reveal">Jacob looks forward to a future for his sons full of blessings and challenges. Discover how his words foreshadow the future of his descendants.</p>
+    <p class="body reveal"><span class="lang-en">Jacob looks forward to a future for his sons full of blessings and challenges. Discover how his words foreshadow the future of his descendants.</span></p>
 
 <footer class="page-footer">
     <span class="lang-pt">Anotações de Aula: José</span><span class="lang-en">Class Notes: Joseph</span>

@@ -11,45 +11,127 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../css/shared-tutorial.css">
   <style>
-  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
-  html[lang="pt"] .lang-en { display: none !important; }
-  html[lang="en"] .lang-pt { display: none !important; }
+  .reveal.visible { opacity: 1 !important; transform: none !important; }  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s;}
+  .ref:hover { color: #2563eb;}
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s;}
+  .scripture:hover { border-left-color: #9aa7b8;}
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem;}
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem;}
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a;}
+  .scripture .innerbox { background: #f6f8fa; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1rem;}
+  .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem;}
+  .macro { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; align-items: start; margin: 2rem 0 .75rem;}
+  .mcol { border: 3px solid #2e7d4e; border-radius: 12px; padding: .9rem .9rem 1rem; background: #fff;}
+  .mcol.dark { border-color: #3d4453; margin-top: 1.3rem;}
+  .mtag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 3px 10px; border-radius: 5px;}
+  .mtag-green { background: #2e7d4e;}
+  .mtag-dark { background: #3d4453;}
+  .mcol-title { font-size: 1rem; font-weight: 800; color: #17181a; margin: .55rem 0 .8rem; line-height: 1.3;}
+  .mboxes { display: flex; gap: .55rem;}
+  .mbox { flex: 1; border: 3px solid #b9c2cf; border-radius: 9px; background: #fff; min-height: 15.5rem; position: relative; transition: box-shadow .25s, transform .25s;}
+  .mbox:hover { box-shadow: 0 8px 20px -10px rgba(30,41,59,.4); transform: translateY(-3px);}
+  .mbox .mhdr { position: absolute; top: .55rem; left: .55rem; right: .55rem; background: #7d8697; color: #fff; font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 5px;}
+  .mbox.s1 { margin-top: 0;}
+  .mbox.s2 { margin-top: 2.4rem; min-height: 13rem;}
+  .mbox.s3 { margin-top: 2.4rem; min-height: 13rem;}
+  @media (max-width: 860px) { .macro { grid-template-columns: 1fr;}
+  .mcol.dark { margin-top: 0;}
+  .mbox, .mbox.s2, .mbox.s3 { min-height: 7.5rem; margin-top: 0;}
+  .cx { border: 3px solid; border-radius: 12px; padding: 1.35rem 1.5rem 1.2rem; margin: 1.15rem 0; transition: box-shadow .25s, transform .25s;}
+  .cx:hover { box-shadow: 0 12px 26px -16px rgba(23,24,26,.45); transform: translateY(-2px);}
+  .cx-tag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 1px 13px; border-radius: 6px; margin-bottom: .7rem;}
+  .cx h4 { font-weight: 800; font-size: 1.06rem; color: #17181a; margin-bottom: .7rem;}
+  .cx ul.bullets > li { font-size: .99rem; margin-bottom: .45rem;}
+  .cx-slate  { border-color: #6b7280; background: #e9ebee;}
+  .cx-slate  .cx-tag { background: #6b7280;}
+  .cx-rust   { border-color: #c0562f; background: #f7e6dd;}
+  .cx-rust   .cx-tag { background: #c0562f;}
+  .cx-rose   { border-color: #c04a63; background: #f7e0e5;}
+  .cx-rose   .cx-tag { background: #c04a63;}
+  .cx-blue   { border-color: #5468d4; background: #e4e8f9;}
+  .cx-blue   .cx-tag { background: #5468d4;}
+  .cx-green  { border-color: #2e7d4e; background: #dfeee2;}
+  .cx-green  .cx-tag { background: #2e7d4e;}
+  .cx-purple { border-color: #8b5cf6; background: #efe2f8;}
+  .cx-purple .cx-tag { background: #8b5cf6;}
+  .cx-tan    { border-color: #8a6d3b; background: #ece7dc;}
+  .cx-tan    .cx-tag { background: #8a6d3b;}
+  .k { display: inline; padding: 3px 9px; border-radius: 6px; font-weight: 700; color: #fff; line-height: 1.85; -webkit-box-decoration-break: clone; box-decoration-break: clone;}
+  .k-blue   { background: #3b82c4;}
+  .k-green  { background: #2e7d4e;}
+  .k-rose { background: #c04a63;}
+  .k-gray   { background: #6b7280;}
+  .k-rust   { background: #bf5a2b;}
+  .k-teal { background: #0d7d8c;}
+  .k-purple { background: #7c5ad0;}
+  .k-brown  { background: #8a6d3b;}
+  .t-teal { color: #0d8aa0; font-weight: 700;}
+  .v-outer { border: 3px solid #e3e7ee; border-radius: 20px; padding: 1.4rem 1.5rem; margin: 1.4rem 0;}
+  .v-black { border: 3px solid #17181a; border-radius: 16px; padding: 1.3rem 1.5rem; margin: 1.1rem 0;}
+  .v-light { border: 3px solid #e3e7ee; border-radius: 16px; padding: 1.2rem 1.4rem; margin: 1.1rem 0;}
+  .v-line { font-size: 1.06rem; line-height: 2.1; color: #1f2937;}
+  .v-div { border: 0; border-top: 1px solid #e6eaf0; margin: 1.1rem 0;}
+  .vbar-b { border-left: 5px solid #5468d4; padding-left: .8rem;}
+  .lbl { color: #6b7280; font-weight: 600; font-size: .85rem; margin-right: .2rem;}
+  sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px;}
+  .i1 { padding-left: 1.6rem;}
+  .i2 { padding-left: 3.2rem;}
+  .i3 { padding-left: 4.8rem;}
+  .doc-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 3px solid #d9dee6; border-radius: 14px; overflow: hidden; background: #fff;}
+  .doc-table th { background: #e2e6eb; text-align: left; padding: 1rem 1.3rem; font-weight: 800; font-size: 1.02rem; color: #17181a;}
+  .doc-table td { padding: 1.1rem 1.3rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.78; font-size: .97rem; color: #24262a; transition: background .2s;}
+  .doc-table tbody tr:hover td { background: #f8fafc;}
+  .doc-table tfoot td { border-top: 1px solid #d1d5db; background: #fbfcfd; color: #5b6472; font-size: .92rem;}
+  .kblue-soft { background: #cddcf5; color: #2b5fb0; padding: 2px 8px; border-radius: 6px; font-weight: 700;}
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1);}
+  @media print {
+    @page { margin: 14mm 12mm;}
+  #reading-progress, .print\:hidden { display: none !important;}
+  .reveal { opacity: 1 !important; transform: none !important;}
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important;}
+  .max-w-4xl { max-width: 100% !important; padding: 0 !important; margin: 0 !important;}
+  h1.title, h2.section, h3.sub { break-after: avoid-page;}
+  .cx, .v-outer, .v-black, .v-light, .doc-table tr, .scripture, .mcol { break-inside: avoid;}
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none;}
+  .cx, .mbox { transition: none;}}}}
+
+  /* joseph base typography */
+  
   h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  
   h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  
   h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  
   p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  
   .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  
   .verse-link { color: inherit; cursor: pointer; }
+  
   ul.bullets { list-style: none; padding: 0; }
+  
   ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  
   ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  
   .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-  .keylabel { font-weight: 700; color: #17181a; }
-  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
-  .table-img img { width: 100%; display: block; }
+  
   .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
-  .reveal.visible { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
-  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
-  .nav-btn:hover { background: #f1f5f9; }
-  .nav-back { left: 1rem; }
-  .nav-lang { right: 1rem; }
+  
 
   table.md { width: 100%; border-collapse: separate; border-spacing: 0;
     border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; background: #fff;
     margin: 1.5rem 0; font-size: .9rem; }
-  table.md th { background: #e3e7ec; text-align: left; padding: .8rem 1rem; font-weight: 700; color: #1b1b1b; }
-  table.md td { padding: .85rem 1rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.6; color: #1b1b1b; }
-  table.md td + td, table.md th + th { border-left: 1px solid #e5e7eb; }
-  table.md tfoot td { border-top: 1px solid #d7dde5; background: #fbfcfd; color: #6b7280;
-    font-size: .84rem; font-style: italic; }
-  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
   
-  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  @media print { #reading-progress { display: none !important; } }
-</style>
+  table.md th { background: #e3e7ec; text-align: left; padding: .8rem 1rem; font-weight: 700; color: #1b1b1b; }
+  
+  table.md td { padding: .85rem 1rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.6; color: #1b1b1b; }
+  
+  table.md td + td, table.md th + th { border-left: 1px solid #e5e7eb; }
+  
+  table.md tfoot td { border-top: 1px solid #d7dde5; background: #fbfcfd; color: #6b7280;
+    font-size: .84rem; font-style: italic; }</style>
 </head>
 <body class="bg-white">
 <div id="reading-progress" aria-hidden="true"></div>
@@ -71,129 +153,129 @@
 <div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
     <h1 class="title reveal"><span class="lang-pt">Sessão 5: O Sonho de José</span><span class="lang-en">Session 5: Joseph\'s Dream</span></h1>
     <hr class="rule">
-    <h2 class="section reveal">Key Takeaways</h2>
+    <h2 class="section reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h2>
     <ul class="bullets reveal">
-      <li>Yaaqov’s favoritism toward Rachel over Leah resurfaces in his preference for Yoseph. In both scenarios, this favoritism leads to strife and division.</li>
-      <li>The meaning of the Hebrew word passim, often translated as “many colors,” is unclear.</li>
-      <li>The biblical authors link Yoseph’s story to a pattern of brothers separating in Genesis including Cain and Abel, Abraham and Lot, and Yaaqov and Esau.</li>
-      <li>Eden imagery fills Yoseph’s dreams, echoing and expanding the promise of a royal seed of the woman.</li>
+      <li><span class="lang-en">Yaaqov’s favoritism toward Rachel over Leah resurfaces in his preference for Yoseph. In both scenarios, this favoritism leads to strife and division.</span></li>
+      <li><span class="lang-en">The meaning of the Hebrew word passim, often translated as “many colors,” is unclear.</span></li>
+      <li><span class="lang-en">The biblical authors link Yoseph’s story to a pattern of brothers separating in Genesis including Cain and Abel, Abraham and Lot, and Yaaqov and Esau.</span></li>
+      <li><span class="lang-en">Eden imagery fills Yoseph’s dreams, echoing and expanding the promise of a royal seed of the woman.</span></li>
     </ul>
     <ul class="bullets reveal">
-      <li>Genesis 37: Macro Design</li>
-      <li>A - Genesis 37:2-14</li>
+      <li><span class="lang-en">Genesis 37: Macro Design</span></li>
+      <li><span class="lang-pt">A - Gênesis 37:2-14</span><span class="lang-en">A - Genesis 37:2-14</span></li>
       <li>a - 37:2-4</li>
     </ul>
     <p class="body reveal">Yoseph is a shepherd of the flock with his brothers Yoseph is given the royal garment Yisrael loved Yoseph more than his sons, and they could not speak )(דבר peace )(שלום to him b - 37:5-11 Dialogue between brothers and Yoseph: two dreams about ruling his brothers a' - 37:12-14 Yoseph sent to shepherd the flock with his brothers He is sent to "see the peace )(שלום of your brothers” and return a word )(דבר to Yaaqov B - Genesis 37:15-30 a - 37:15-17 A man finds Yoseph wandering in the field, looking for his brothers "Where are they ...?"</p>
-<p class="body reveal">Genesis 37. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022). This opening chapter has a large-scale, three-part design (Gen. 37:2-14, 37:15-30, 37:31-36), and each part is framed by its own small-scale repetitions that create a network of symmetrical analogies. Genesis 37:2-14: Yaaqov, Yoseph, and the Brothers Yoseph is more beloved than his brothers, and his brothers cannot speak peace to him (v. 2-4). // Yoseph is sent by his father with a spoken word of peace (v. 12-14).</p>
+<p class="body reveal"><span class="lang-en">Genesis 37. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022). This opening chapter has a large-scale, three-part design (Gen. 37:2-14, 37:15-30, 37:31-36), and each part is framed by its own small-scale repetitions that create a network of symmetrical analogies. Genesis 37:2-14: Yaaqov, Yoseph, and the Brothers Yoseph is more beloved than his brothers, and his brothers cannot speak peace to him (v. 2-4). // Yoseph is sent by his father with a spoken word of peace (v. 12-14).</span></p>
     <h2 class="section reveal">b - 37:18-24</h2>
-    <p class="body reveal">Yoseph approaches: Reuven's plan to throw him into the pit "Don't spill his blood ... or send a hand against him. ... Throw him into this pit!" Yoseph is stripped of his royal garment b' - 37: 25-28 Yoseph in the pit: Yehudah’s plan to sell him as a slave "What’s the gain in murdering our brother? Let’s sell him, and don’t our hands touch him.” a' - 37:29-30 Reuven cannot find Yoseph in the pit “The boy is no more, and I, where am I to go?” A' - Genesis 37:31-36 From Jacob to His 12 Sons and 70 Descendants a - 37:31-32a Brothers dip stolen royal garment in blood of a slaughtered )(שחט goat from the flock Yaaqov is shown Yoseph’s robe b - 37:32b-33 Dialogue between brothers and Yaaqov “This is the garment of my son, an animal has eaten him!” a' - 37:34-36 Yaaqov tears his own robes while Yoseph is taken to Egypt, to the captain of the butchers )(טבח</p>
-<p class="body reveal">These outer parts surround a dialogue between Yoseph and his brothers about his dreams which exacerbate the hostility created by Yaaqov’s favoritism.</p>
-    <h2 class="section reveal">Genesis 37:15-30: Yoseph and the Brothers</h2>
-    <p class="body reveal">Yoseph is sent to his brothers, and he cannot find them (“Where are they?” v. 15-17). // Reuven comes to the pit but cannot find Yoseph (“Where am I to go?” v. 29-30). When the brothers plan to kill Yoseph, two brothers enact an alternate plan. Reuven’s plan to rescue Yoseph involves throwing him into a pit (v. 18-24), while Yehudah’s plan involves selling him as a slave (v. 25-28).</p>
-    <h2 class="section reveal">Genesis 37:31-36: The Brothers and Yaaqov</h2>
-    <p class="body reveal">The brothers take the robe of their brother Yoseph and dip it in the blood of a slaughtered )(שחט animal (v. 31-32a). // Yaaqov tears his own robes while Yoseph is taken to Egypt and sold to the captain of the butchers )(טבח. In this analogy, Yoseph is compared to the slaughtered goat!</p>
-    <h2 class="section reveal">Paragraph 1: A Favored Son and a Hated Brother</h2>
-    <p class="body reveal">2 Yoseph was a son of seventeen years. He was shepherding  (רעה) the flock with his brothers.</p>
+    <p class="body reveal"><span class="lang-en">Yoseph approaches: Reuven's plan to throw him into the pit "Don't spill his blood ... or send a hand against him. ... Throw him into this pit!" Yoseph is stripped of his royal garment b' - 37: 25-28 Yoseph in the pit: Yehudah’s plan to sell him as a slave "What’s the gain in murdering our brother? Let’s sell him, and don’t our hands touch him.” a' - 37:29-30 Reuven cannot find Yoseph in the pit “The boy is no more, and I, where am I to go?” A' - Genesis 37:31-36 From Jacob to His 12 Sons and 70 Descendants a - 37:31-32a Brothers dip stolen royal garment in blood of a slaughtered )(שחט goat from the flock Yaaqov is shown Yoseph’s robe b - 37:32b-33 Dialogue between brothers and Yaaqov “This is the garment of my son, an animal has eaten him!” a' - 37:34-36 Yaaqov tears his own robes while Yoseph is taken to Egypt, to the captain of the butchers )(טבח</span></p>
+<p class="body reveal"><span class="lang-en">These outer parts surround a dialogue between Yoseph and his brothers about his dreams which exacerbate the hostility created by Yaaqov’s favoritism.</span></p>
+    <h2 class="section reveal"><span class="lang-en">Genesis 37:15-30: Yoseph and the Brothers</span></h2>
+    <p class="body reveal"><span class="lang-en">Yoseph is sent to his brothers, and he cannot find them (“Where are they?” v. 15-17). // Reuven comes to the pit but cannot find Yoseph (“Where am I to go?” v. 29-30). When the brothers plan to kill Yoseph, two brothers enact an alternate plan. Reuven’s plan to rescue Yoseph involves throwing him into a pit (v. 18-24), while Yehudah’s plan involves selling him as a slave (v. 25-28).</span></p>
+    <h2 class="section reveal"><span class="lang-en">Genesis 37:31-36: The Brothers and Yaaqov</span></h2>
+    <p class="body reveal"><span class="lang-en">The brothers take the robe of their brother Yoseph and dip it in the blood of a slaughtered )(שחט animal (v. 31-32a). // Yaaqov tears his own robes while Yoseph is taken to Egypt and sold to the captain of the butchers )(טבח. In this analogy, Yoseph is compared to the slaughtered goat!</span></p>
+    <h2 class="section reveal"><span class="lang-en">Paragraph 1: A Favored Son and a Hated Brother</span></h2>
+    <p class="body reveal"><span class="lang-en">2 Yoseph was a son of seventeen years. He was shepherding  (רעה) the flock with his brothers.</span></p>
     <ul class="bullets reveal">
-      <li>And he was a young man,</li>
-      <li>with the sons</li>
-      <li>of Bilhah ,</li>
-      <li>and with the sons</li>
-      <li>of Zilphah ,</li>
-      <li>the wives of his father,</li>
+      <li><span class="lang-en">And he was a young man,</span></li>
+      <li><span class="lang-en">with the sons</span></li>
+      <li><span class="lang-pt">de Bilhá ,</span><span class="lang-en">of Bilhah ,</span></li>
+      <li><span class="lang-en">and with the sons</span></li>
+      <li><span class="lang-pt">de Zilpá ,</span><span class="lang-en">of Zilphah ,</span></li>
+      <li><span class="lang-en">the wives of his father,</span></li>
     </ul>
-    <p class="body reveal">and Yoseph brought a bad  (רעה) report  (דבתם) about them to their father. 3 Now, Yisra’el loved Yoseph more than all of his sons , because he was for him a son of old age , and he made for him a robe of many colors.</p>
+    <p class="body reveal"><span class="lang-en">and Yoseph brought a bad  (רעה) report  (דבתם) about them to their father. 3 Now, Yisra’el loved Yoseph more than all of his sons , because he was for him a son of old age , and he made for him a robe of many colors.</span></p>
     <ul class="bullets reveal">
-      <li>4 And his brothers saw</li>
-      <li>that their father loved him ,</li>
-      <li>more than all of his brothers,</li>
-      <li>and they hated him ,</li>
+      <li><span class="lang-en">4 And his brothers saw</span></li>
+      <li><span class="lang-en">that their father loved him ,</span></li>
+      <li><span class="lang-en">more than all of his brothers,</span></li>
+      <li><span class="lang-en">and they hated him ,</span></li>
     </ul>
-    <p class="body reveal">and they were not able to speak to him  (דברו) in peace.</p>
+    <p class="body reveal"><span class="lang-en">and they were not able to speak to him  (דברו) in peace.</span></p>
 <ul class="bullets reveal">
       <li>A</li>
-      <li>5 And Yoseph dreamed a dream ,</li>
-      <li>and he told his brothers,</li>
+      <li><span class="lang-en">5 And Yoseph dreamed a dream ,</span></li>
+      <li><span class="lang-en">and he told his brothers,</span></li>
     </ul>
-    <p class="body reveal">and they continued to hate him even more.</p>
+    <p class="body reveal"><span class="lang-en">and they continued to hate him even more.</span></p>
     <ul class="bullets reveal">
       <li>B</li>
-      <li>6 And he said to them,</li>
+      <li><span class="lang-en">6 And he said to them,</span></li>
     </ul>
-    <p class="body reveal">“Please listen to the dream that I dreamed ! 7 And look, we were gathering sheaves in the midst of the field, and look, my sheaf got up and then it stood, and look, your sheaves came around, and they bowed down to my sheaf.” 8 And his brothers said to him, “Are you actually going to reign as a king over us?!</p>
+    <p class="body reveal"><span class="lang-en">“Please listen to the dream that I dreamed ! 7 And look, we were gathering sheaves in the midst of the field, and look, my sheaf got up and then it stood, and look, your sheaves came around, and they bowed down to my sheaf.” 8 And his brothers said to him, “Are you actually going to reign as a king over us?!</span></p>
     <ul class="bullets reveal">
-      <li>Or, will you actually rule us?!”</li>
+      <li><span class="lang-en">Or, will you actually rule us?!”</span></li>
       <li>A'</li>
-      <li>And they continued to hate him even more,</li>
+      <li><span class="lang-en">And they continued to hate him even more,</span></li>
       <li>A'</li>
-      <li>because of his dreams ,</li>
+      <li><span class="lang-en">because of his dreams ,</span></li>
     </ul>
-    <p class="body reveal">and because of his words  (דבריו).</p>
+    <p class="body reveal"><span class="lang-en">and because of his words  (דבריו).</span></p>
     <ul class="bullets reveal">
       <li>B'</li>
-      <li>9 And Yoseph dreamed again, another dream</li>
-      <li>and he recounted it to his brothers,</li>
-      <li>and he said,</li>
-      <li>“Look, I dreamed a dream again ,</li>
+      <li><span class="lang-en">9 And Yoseph dreamed again, another dream</span></li>
+      <li><span class="lang-en">and he recounted it to his brothers,</span></li>
+      <li><span class="lang-en">and he said,</span></li>
+      <li><span class="lang-en">“Look, I dreamed a dream again ,</span></li>
     </ul>
-    <p class="body reveal">and look, the sun and the moon and eleven stars were bowing down to me. 10 And he recounted to his father and to his brothers, and his father rebuked him, and he said to him, “What is this dream that you have dreamed ? Will we really, I and your mother and your brothers, come to bow down to you on the ground?!” A'' 11 And his brothers were jealous of him , Brothers' Hatred Yoseph's 1st Dream Brothers' Hatred Yoseph's 2nd Dream Brothers’ Jealousy</p>
-<p class="body reveal">Genesis 37:2-14. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</p>
-    <h2 class="section reveal">A Father’s Favoritism and Rival Brothers</h2>
-    <p class="body reveal">The story begins by highlighting Yoseph, son of Rachel, among Yaaqov’s other sons and wives. This recalls the favoritism Yaaqov showed for Yoseph’s mother, which was stated in exactly the same language.</p>
-    <h2 class="section reveal">Genesis 29:16-18 Instructor's Translation</h2>
-    <p class="body reveal">16 Now Laban had two daughters; the name of the older was Leah, and the name of the younger was Rakhel. 17 And Leah’s eyes were weak, but Rakhel was beautiful of form and face. 18 Now Yaaqov loved Rakhel, so he said, “I will serve you seven years for your younger daughter Rakhel.” Genesis 29:30-31 Instructor's Translation 30 So Yaaqov went in to Rakhel also, and indeed he loved Rakhel more than Leah, and he served with Laban for another seven years. 31 Now the Lord saw that Leah was hated, and he opened her womb, but Rakhel was barren. And this favoritism that Yaaqov displayed toward his wives, a favoritism that introduced division and jealousy between the sisters, was itself a replay of how Yaaqov’s parents treated him and his brother.</p>
-    <h2 class="section reveal">Genesis 25:28 Instructor's Translation</h2>
-    <p class="body reveal">Now Isaac loved Esau, because he had a taste for game, but Rebekah loved Yaaqov. but his father kept the word  (הדבר). 12 And his brothers went to shepherd the flock of their father in Sh’khem , 13 and Yisra’el said to Yoseph, “Aren’t your brothers shepherding in Sh’khem ?</p>
+    <p class="body reveal"><span class="lang-en">and look, the sun and the moon and eleven stars were bowing down to me. 10 And he recounted to his father and to his brothers, and his father rebuked him, and he said to him, “What is this dream that you have dreamed ? Will we really, I and your mother and your brothers, come to bow down to you on the ground?!” A'' 11 And his brothers were jealous of him , Brothers' Hatred Yoseph's 1st Dream Brothers' Hatred Yoseph's 2nd Dream Brothers’ Jealousy</span></p>
+<p class="body reveal"><span class="lang-en">Genesis 37:2-14. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
+    <h2 class="section reveal"><span class="lang-en">A Father’s Favoritism and Rival Brothers</span></h2>
+    <p class="body reveal"><span class="lang-en">The story begins by highlighting Yoseph, son of Rachel, among Yaaqov’s other sons and wives. This recalls the favoritism Yaaqov showed for Yoseph’s mother, which was stated in exactly the same language.</span></p>
+    <h2 class="section reveal"><span class="lang-en">Genesis 29:16-18 Instructor's Translation</span></h2>
+    <p class="body reveal"><span class="lang-en">16 Now Laban had two daughters; the name of the older was Leah, and the name of the younger was Rakhel. 17 And Leah’s eyes were weak, but Rakhel was beautiful of form and face. 18 Now Yaaqov loved Rakhel, so he said, “I will serve you seven years for your younger daughter Rakhel.” Genesis 29:30-31 Instructor's Translation 30 So Yaaqov went in to Rakhel also, and indeed he loved Rakhel more than Leah, and he served with Laban for another seven years. 31 Now the Lord saw that Leah was hated, and he opened her womb, but Rakhel was barren. And this favoritism that Yaaqov displayed toward his wives, a favoritism that introduced division and jealousy between the sisters, was itself a replay of how Yaaqov’s parents treated him and his brother.</span></p>
+    <h2 class="section reveal"><span class="lang-en">Genesis 25:28 Instructor's Translation</span></h2>
+    <p class="body reveal"><span class="lang-en">Now Isaac loved Esau, because he had a taste for game, but Rebekah loved Yaaqov. but his father kept the word  (הדבר). 12 And his brothers went to shepherd the flock of their father in Sh’khem , 13 and Yisra’el said to Yoseph, “Aren’t your brothers shepherding in Sh’khem ?</span></p>
     <ul class="bullets reveal">
-      <li>Go, let me send you to them.”</li>
-      <li>And he said to him,</li>
-      <li>“Look, it’s me.”</li>
-      <li>14 And he said to him,</li>
+      <li><span class="lang-en">Go, let me send you to them.”</span></li>
+      <li><span class="lang-en">And he said to him,</span></li>
+      <li><span class="lang-pt">“Olhem, sou eu.”</span><span class="lang-en">“Look, it’s me.”</span></li>
+      <li><span class="lang-en">14 And he said to him,</span></li>
     </ul>
-    <p class="body reveal">“Go, please. Look after the peace of your brothers, and the peace of the flock, and return to me a word  (דבר).” And he sent him from the valley of Hebron, and he came to Sh’khem .</p>
-<p class="body reveal">This favoritism was what divided Yaaqov and Esau and ultimately caused their separation and alienation from one another. And these stories of human favor are themselves a distorted mirror that echoes the many moments of divine favor given to a chosen one that also causes division between siblings. Humanity is chosen to rule over the animals (Gen. 1). Abel’s sacrifice is favored over that of Cain, the firstborn (Gen. 4). Shem is elevated and blessed over his brothers Japheth and Ham (Gen. 9:24-27). Abram is chosen over his brothers Nahor and Haran (Gen. 11:26-32). Sarah and Isaac chosen over Hagar and Ishmael (Gen. 16-17, 21). In each case, the divine/fatherly favor creates a division among siblings, which then generates jealousy and hostility between family members. The author wants us to bring all those stories to bear upon this final story about the favored Yoseph and his brothers.</p>
-    <h2 class="section reveal">A Son’s Dreamy Royal Robe</h2>
-    <p class="body reveal">The terms used to describe Yoseph’s robe combine a common word and a unique word.</p>
+    <p class="body reveal"><span class="lang-en">“Go, please. Look after the peace of your brothers, and the peace of the flock, and return to me a word  (דבר).” And he sent him from the valley of Hebron, and he came to Sh’khem .</span></p>
+<p class="body reveal"><span class="lang-en">This favoritism was what divided Yaaqov and Esau and ultimately caused their separation and alienation from one another. And these stories of human favor are themselves a distorted mirror that echoes the many moments of divine favor given to a chosen one that also causes division between siblings. Humanity is chosen to rule over the animals (Gen. 1). Abel’s sacrifice is favored over that of Cain, the firstborn (Gen. 4). Shem is elevated and blessed over his brothers Japheth and Ham (Gen. 9:24-27). Abram is chosen over his brothers Nahor and Haran (Gen. 11:26-32). Sarah and Isaac chosen over Hagar and Ishmael (Gen. 16-17, 21). In each case, the divine/fatherly favor creates a division among siblings, which then generates jealousy and hostility between family members. The author wants us to bring all those stories to bear upon this final story about the favored Yoseph and his brothers.</span></p>
+    <h2 class="section reveal"><span class="lang-en">A Son’s Dreamy Royal Robe</span></h2>
+    <p class="body reveal"><span class="lang-en">The terms used to describe Yoseph’s robe combine a common word and a unique word.</span></p>
     <ul class="bullets reveal">
-      <li>The English translations say:</li>
-      <li>Varicolored tunic (NASB)</li>
-      <li>Ornate robe (NIV)</li>
-      <li>Robe of many colors (ESV)</li>
-      <li>Robe with long sleeves (NRSV)</li>
-      <li>Coat of many colors (KJV)</li>
+      <li><span class="lang-en">The English translations say:</span></li>
+      <li><span class="lang-pt">Túnica de várias cores (NASB)</span><span class="lang-en">Varicolored tunic (NASB)</span></li>
+      <li><span class="lang-en">Ornate robe (NIV)</span></li>
+      <li><span class="lang-en">Robe of many colors (ESV)</span></li>
+      <li><span class="lang-en">Robe with long sleeves (NRSV)</span></li>
+      <li><span class="lang-en">Coat of many colors (KJV)</span></li>
     </ul>
-    <p class="body reveal">The Hebrew word is ketonet passim, כתנת פסים. The Old Greek (Septuagint) uses khitona poikilon, χιτωνα ποικιλον. This phrase is only used one other time in the Hebrew Bible, to describe the coat of Tamar, the daughter of David who is raped by her brother (2 Sam. 13:18-19). That story is a deliberate hyperlink back to the story of Yoseph, who was abused by his brothers, and neither story focuses on the shape or appearance of the garment. The translation “many colors” in the KJV was derived not from the meaning of the Hebrew word passim, but from the choice made by the Septuagint translators to use poikilos, which means “diverse, multi-part.” Yoseph’s Dreams of Royal Rule Yoseph's royal dreams connect to a major theme that has quietly been running throughout the Genesis scroll about humanity’s calling to rule creation as the image of Elohim. This theme first appears in the image of Elohim poem found in day six of the first creation story (Gen. 1:26-28). Here, humanity’s earthly rule corresponds to that of the heavenly rulers appointed in day four (see Gen. 1:14).</p>
+    <p class="body reveal"><span class="lang-en">The Hebrew word is ketonet passim, כתנת פסים. The Old Greek (Septuagint) uses khitona poikilon, χιτωνα ποικιλον. This phrase is only used one other time in the Hebrew Bible, to describe the coat of Tamar, the daughter of David who is raped by her brother (2 Sam. 13:18-19). That story is a deliberate hyperlink back to the story of Yoseph, who was abused by his brothers, and neither story focuses on the shape or appearance of the garment. The translation “many colors” in the KJV was derived not from the meaning of the Hebrew word passim, but from the choice made by the Septuagint translators to use poikilos, which means “diverse, multi-part.” Yoseph’s Dreams of Royal Rule Yoseph's royal dreams connect to a major theme that has quietly been running throughout the Genesis scroll about humanity’s calling to rule creation as the image of Elohim. This theme first appears in the image of Elohim poem found in day six of the first creation story (Gen. 1:26-28). Here, humanity’s earthly rule corresponds to that of the heavenly rulers appointed in day four (see Gen. 1:14).</span></p>
 <ul class="bullets reveal">
-      <li>Day 4:</li>
-      <li>The heavenly lights</li>
-      <li>rule )(משל the day and</li>
-      <li>night</li>
-      <li>Gen. 1:14–18</li>
+      <li><span class="lang-pt">Dia 4:</span><span class="lang-en">Day 4:</span></li>
+      <li><span class="lang-en">The heavenly lights</span></li>
+      <li><span class="lang-en">rule )(משל the day and</span></li>
+      <li><span class="lang-pt">noite</span><span class="lang-en">night</span></li>
+      <li><span class="lang-pt">Gn. 1:14–18</span><span class="lang-en">Gen. 1:14–18</span></li>
     </ul>
-    <p class="body reveal">Then God said, “Let there be lights in the expanse of the heavens to separate the day from the night, and let them be for signs. … God made the two great lights, the greater light to rule )(משל the day, and the lesser light to rule )(משל the night; he made the stars also. … God placed them in the expanse of the heavens to give light on the earth, and to rule )(משל the day and the night, and to separate the light from the darkness; and God saw that it was good.</p>
+    <p class="body reveal"><span class="lang-en">Then God said, “Let there be lights in the expanse of the heavens to separate the day from the night, and let them be for signs. … God made the two great lights, the greater light to rule )(משל the day, and the lesser light to rule )(משל the night; he made the stars also. … God placed them in the expanse of the heavens to give light on the earth, and to rule )(משל the day and the night, and to separate the light from the darkness; and God saw that it was good.</span></p>
     <ul class="bullets reveal">
-      <li>Day 6</li>
-      <li>The earthly humans to</li>
-      <li>rule )(רדה over the</li>
-      <li>land creatures</li>
-      <li>Gen. 1:26–28</li>
+      <li><span class="lang-pt">Dia 6</span><span class="lang-en">Day 6</span></li>
+      <li><span class="lang-en">The earthly humans to</span></li>
+      <li><span class="lang-en">rule )(רדה over the</span></li>
+      <li><span class="lang-pt">criaturas terrestres</span><span class="lang-en">land creatures</span></li>
+      <li><span class="lang-pt">Gn. 1:26–28</span><span class="lang-en">Gen. 1:26–28</span></li>
     </ul>
-    <p class="body reveal">Then God said, “Let us make human in our image, according to our likeness; and let them rule )(רדה over the fish of the sea and over the birds of the sky and over the cattle and over all the earth, and over every creeping thing that creeps on the earth.” ... God blessed them; and God said to them, “Be fruitful and multiply, and fill the earth, and subdue it; and rule )(רדה over the fish of the sea and over the birds of the sky and over every living thing that moves on the earth.” Comparing Day 4 and Day 6 of Creation. Created by Tim Mackie for BibleProject Classroom: Joseph (2022). Humanity’s calling is to rule over the land creatures, but as Psalm 8 and Daniel 7 make clear, this was part of a larger plan to exalt humanity as a cosmic ruler over Heaven and Earth together. After humanity’s exile from Eden and the promise of a snake-crushing seed of the woman (Gen. 3:15, 3:21-24), the lineage is followed throughout Genesis, with promises of future kings peppering the story.</p>
-    <h2 class="section reveal">Genesis 17:5-6 NASB*</h2>
-    <p class="body reveal">5 No longer shall your name be called Abram, But your name shall be Abraham; for I will make you the father of a multitude of nations. 6 I have made you exceedingly fruitful, and I will make nations of you, and kings will come forth from you.</p>
+    <p class="body reveal"><span class="lang-en">Then God said, “Let us make human in our image, according to our likeness; and let them rule )(רדה over the fish of the sea and over the birds of the sky and over the cattle and over all the earth, and over every creeping thing that creeps on the earth.” ... God blessed them; and God said to them, “Be fruitful and multiply, and fill the earth, and subdue it; and rule )(רדה over the fish of the sea and over the birds of the sky and over every living thing that moves on the earth.” Comparing Day 4 and Day 6 of Creation. Created by Tim Mackie for BibleProject Classroom: Joseph (2022). Humanity’s calling is to rule over the land creatures, but as Psalm 8 and Daniel 7 make clear, this was part of a larger plan to exalt humanity as a cosmic ruler over Heaven and Earth together. After humanity’s exile from Eden and the promise of a snake-crushing seed of the woman (Gen. 3:15, 3:21-24), the lineage is followed throughout Genesis, with promises of future kings peppering the story.</span></p>
+    <h2 class="section reveal"><span class="lang-pt">Gênesis 17:5-6 NASB*</span><span class="lang-en">Genesis 17:5-6 NASB*</span></h2>
+    <p class="body reveal"><span class="lang-en">5 No longer shall your name be called Abram, But your name shall be Abraham; for I will make you the father of a multitude of nations. 6 I have made you exceedingly fruitful, and I will make nations of you, and kings will come forth from you.</span></p>
     <ul class="bullets reveal">
-      <li>*Key Words Adapted by Teacher</li>
-      <li>Genesis 17:15-16 NASB</li>
+      <li><span class="lang-pt">*Palavras-Chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></li>
+      <li><span class="lang-pt">Gênesis 17:15-16 NASB</span><span class="lang-en">Genesis 17:15-16 NASB</span></li>
     </ul>
-    <p class="body reveal">15 Then God said to Abraham, “As for Sarai your wife, you shall not call her name Sarai, but Sarah shall be her name. 16 I will bless her, and indeed I will give you a son by her. Then I will bless her, and she shall be a mother of nations; kings of peoples will come from her.” Genesis 35:10-11 NASB* 10 God said to him, “Your name is Yaaqov; you shall no longer be called Yaaqov, but Yisrael shall be your name.” Thus he called him Yisrael. 11 God also said to him, “I am God Almighty; be fruitful and multiply; a nation and a company of nations shall come from you, and kings shall come forth from you.” *Key Words Adapted by Teacher</p>
+    <p class="body reveal"><span class="lang-en">15 Then God said to Abraham, “As for Sarai your wife, you shall not call her name Sarai, but Sarah shall be her name. 16 I will bless her, and indeed I will give you a son by her. Then I will bless her, and she shall be a mother of nations; kings of peoples will come from her.” Genesis 35:10-11 NASB* 10 God said to him, “Your name is Yaaqov; you shall no longer be called Yaaqov, but Yisrael shall be your name.” Thus he called him Yisrael. 11 God also said to him, “I am God Almighty; be fruitful and multiply; a nation and a company of nations shall come from you, and kings shall come forth from you.” *Key Words Adapted by Teacher</span></p>
     <table class="md reveal">
       <thead><tr><th><span class="lang-pt">Dia 4</span><span class="lang-en">Day 4</span></th><th><span class="lang-pt">Dia 6</span><span class="lang-en">Day 6</span></th></tr></thead>
       <tbody><tr><td><span class="lang-pt">Dia 4: As luzes celestiais <b>governam</b> (מָשַׁל) o dia e a noite<br><br>Gen. 1:14-18 “Haja luzes… para separar o dia da noite… Deus fez as duas grandes luzes, a maior para <b>governar</b> (מָשַׁל) o dia, e a menor para <b>governar</b> (מָשַׁל) a noite… para <b>governar</b> (מָשַׁל) o dia e a noite…”</span><span class="lang-en">Dia 4: As luzes celestiais <b>governam</b> (מָשַׁל) o dia e a noite<br><br>Gen. 1:14-18 “Haja luzes… para separar o dia da noite… Deus fez as duas grandes luzes, a maior para <b>governar</b> (מָשַׁל) o dia, e a menor para <b>governar</b> (מָשַׁל) a noite… para <b>governar</b> (מָשַׁל) o dia e a noite…”</span></td><td><span class="lang-pt">Dia 6: Os humanos terrestres <b>governam</b> (רָדָה) sobre os animais da terra<br><br>Gen. 1:26-28 “Façamos humano à nossa imagem… e <b>governem</b> (רָדָה) sobre os peixes do mar… e sobre toda a terra… sede frutíferos… e <b>governai</b> (רָדָה) sobre tudo que se move na terra.”</span><span class="lang-en">Dia 6: Os humanos terrestres <b>governam</b> (רָדָה) sobre os animais da terra<br><br>Gen. 1:26-28 “Façamos humano à nossa imagem… e <b>governem</b> (רָדָה) sobre os peixes do mar… e sobre toda a terra… sede frutíferos… e <b>governai</b> (רָדָה) sobre tudo que se move na terra.”</span></td></tr></tbody>
       <tfoot><tr><td colspan="2"><span class="lang-pt">Comparing Day 4 and Day 6 of Creation. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</span><span class="lang-en">Comparing Day 4 and Day 6 of Creation. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></td></tr></tfoot>
     </table>
-    <p class="body reveal">And so, as we begin the Yoseph story, we wonder if this ancient promise of a royal seed will be fulfilled through this favored son. It turns out that this theme will get a bit more complicated, as both Yoseph and Yehudah will participate in this promise.</p>
-    <h3 class="sub reveal">Reflection Question</h3>
-    <p class="body reveal">What literary clues, linked to earlier stories in Genesis, do the biblical authors use to set the stage for the coming conflict in Yoseph’s story?</p>
+    <p class="body reveal"><span class="lang-en">And so, as we begin the Yoseph story, we wonder if this ancient promise of a royal seed will be fulfilled through this favored son. It turns out that this theme will get a bit more complicated, as both Yoseph and Yehudah will participate in this promise.</span></p>
+    <h3 class="sub reveal"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+    <p class="body reveal"><span class="lang-en">What literary clues, linked to earlier stories in Genesis, do the biblical authors use to set the stage for the coming conflict in Yoseph’s story?</span></p>
 
 <footer class="page-footer">
     <span class="lang-pt">Anotações de Aula: José</span><span class="lang-en">Class Notes: Joseph</span>

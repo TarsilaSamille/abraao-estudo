@@ -11,46 +11,123 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../css/shared-tutorial.css">
   <style>
-  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
-  html[lang="pt"] .lang-en { display: none !important; }
-  html[lang="en"] .lang-pt { display: none !important; }
-  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
-  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
-  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
-  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
-  .verse-link { color: inherit; cursor: pointer; }
-  ul.bullets { list-style: none; padding: 0; }
-  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
-  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
-  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-  .keylabel { font-weight: 700; color: #17181a; }
-    table.md { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; background: #fff; margin: 1.5rem 0; font-size: .92rem; }
-  table.md th { background: #e3e7ec; text-align: left; padding: .8rem 1rem; font-weight: 700; color: #1b1b1b; }
-  table.md td { padding: .85rem 1rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.65; color: #1b1b1b; }
-  table.md td + td, table.md th + th { border-left: 1px solid #e5e7eb; }
-  table.md tbody tr:hover td { background: #f8fafc; }
-  .hl-tan { background: #fae3c3; color: #90362e; }
-  .hl-sky { background: #d9ecfd; color: #404ba6; }
-  .hl-grn { background: #d3f1cc; color: #2a6145; }
-  .hl-rose { background: #f9e3de; color: #97294e; }
-  .hl-brick { background: #b4533a; color: #fff; }
-  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
-  .table-img img { width: 100%; display: block; }
-  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
-  .reveal.visible { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
-  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
-  .nav-btn:hover { background: #f1f5f9; }
-  .nav-back { left: 1rem; }
-  .nav-lang { right: 1rem; }
-  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
+  .reveal.visible { opacity: 1 !important; transform: none !important; }  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s;}
+  .ref:hover { color: #2563eb;}
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s;}
+  .scripture:hover { border-left-color: #9aa7b8;}
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem;}
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem;}
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a;}
+  .scripture .innerbox { background: #f6f8fa; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1rem;}
+  .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem;}
+  .macro { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; align-items: start; margin: 2rem 0 .75rem;}
+  .mcol { border: 3px solid #2e7d4e; border-radius: 12px; padding: .9rem .9rem 1rem; background: #fff;}
+  .mcol.dark { border-color: #3d4453; margin-top: 1.3rem;}
+  .mtag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 3px 10px; border-radius: 5px;}
+  .mtag-green { background: #2e7d4e;}
+  .mtag-dark { background: #3d4453;}
+  .mcol-title { font-size: 1rem; font-weight: 800; color: #17181a; margin: .55rem 0 .8rem; line-height: 1.3;}
+  .mboxes { display: flex; gap: .55rem;}
+  .mbox { flex: 1; border: 3px solid #b9c2cf; border-radius: 9px; background: #fff; min-height: 15.5rem; position: relative; transition: box-shadow .25s, transform .25s;}
+  .mbox:hover { box-shadow: 0 8px 20px -10px rgba(30,41,59,.4); transform: translateY(-3px);}
+  .mbox .mhdr { position: absolute; top: .55rem; left: .55rem; right: .55rem; background: #7d8697; color: #fff; font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 5px;}
+  .mbox.s1 { margin-top: 0;}
+  .mbox.s2 { margin-top: 2.4rem; min-height: 13rem;}
+  .mbox.s3 { margin-top: 2.4rem; min-height: 13rem;}
+  @media (max-width: 860px) { .macro { grid-template-columns: 1fr;}
+  .mcol.dark { margin-top: 0;}
+  .mbox, .mbox.s2, .mbox.s3 { min-height: 7.5rem; margin-top: 0;}
+  .cx { border: 3px solid; border-radius: 12px; padding: 1.35rem 1.5rem 1.2rem; margin: 1.15rem 0; transition: box-shadow .25s, transform .25s;}
+  .cx:hover { box-shadow: 0 12px 26px -16px rgba(23,24,26,.45); transform: translateY(-2px);}
+  .cx-tag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 1px 13px; border-radius: 6px; margin-bottom: .7rem;}
+  .cx h4 { font-weight: 800; font-size: 1.06rem; color: #17181a; margin-bottom: .7rem;}
+  .cx ul.bullets > li { font-size: .99rem; margin-bottom: .45rem;}
+  .cx-slate  { border-color: #6b7280; background: #e9ebee;}
+  .cx-slate  .cx-tag { background: #6b7280;}
+  .cx-rust   { border-color: #c0562f; background: #f7e6dd;}
+  .cx-rust   .cx-tag { background: #c0562f;}
+  .cx-rose   { border-color: #c04a63; background: #f7e0e5;}
+  .cx-rose   .cx-tag { background: #c04a63;}
+  .cx-blue   { border-color: #5468d4; background: #e4e8f9;}
+  .cx-blue   .cx-tag { background: #5468d4;}
+  .cx-green  { border-color: #2e7d4e; background: #dfeee2;}
+  .cx-green  .cx-tag { background: #2e7d4e;}
+  .cx-purple { border-color: #8b5cf6; background: #efe2f8;}
+  .cx-purple .cx-tag { background: #8b5cf6;}
+  .cx-tan    { border-color: #8a6d3b; background: #ece7dc;}
+  .cx-tan    .cx-tag { background: #8a6d3b;}
+  .k { display: inline; padding: 3px 9px; border-radius: 6px; font-weight: 700; color: #fff; line-height: 1.85; -webkit-box-decoration-break: clone; box-decoration-break: clone;}
+  .k-blue   { background: #3b82c4;}
+  .k-green  { background: #2e7d4e;}
+  .k-rose { background: #c04a63;}
+  .k-gray   { background: #6b7280;}
+  .k-rust   { background: #bf5a2b;}
+  .k-teal { background: #0d7d8c;}
+  .k-purple { background: #7c5ad0;}
+  .k-brown  { background: #8a6d3b;}
+  .t-teal { color: #0d8aa0; font-weight: 700;}
+  .v-outer { border: 3px solid #e3e7ee; border-radius: 20px; padding: 1.4rem 1.5rem; margin: 1.4rem 0;}
+  .v-black { border: 3px solid #17181a; border-radius: 16px; padding: 1.3rem 1.5rem; margin: 1.1rem 0;}
+  .v-light { border: 3px solid #e3e7ee; border-radius: 16px; padding: 1.2rem 1.4rem; margin: 1.1rem 0;}
+  .v-line { font-size: 1.06rem; line-height: 2.1; color: #1f2937;}
+  .v-div { border: 0; border-top: 1px solid #e6eaf0; margin: 1.1rem 0;}
+  .vbar-b { border-left: 5px solid #5468d4; padding-left: .8rem;}
+  .lbl { color: #6b7280; font-weight: 600; font-size: .85rem; margin-right: .2rem;}
+  sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px;}
+  .i1 { padding-left: 1.6rem;}
+  .i2 { padding-left: 3.2rem;}
+  .i3 { padding-left: 4.8rem;}
+  .doc-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 3px solid #d9dee6; border-radius: 14px; overflow: hidden; background: #fff;}
+  .doc-table th { background: #e2e6eb; text-align: left; padding: 1rem 1.3rem; font-weight: 800; font-size: 1.02rem; color: #17181a;}
+  .doc-table td { padding: 1.1rem 1.3rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.78; font-size: .97rem; color: #24262a; transition: background .2s;}
+  .doc-table tbody tr:hover td { background: #f8fafc;}
+  .doc-table tfoot td { border-top: 1px solid #d1d5db; background: #fbfcfd; color: #5b6472; font-size: .92rem;}
+  .kblue-soft { background: #cddcf5; color: #2b5fb0; padding: 2px 8px; border-radius: 6px; font-weight: 700;}
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1);}
+  @media print {
+    @page { margin: 14mm 12mm;}
+  #reading-progress, .print\:hidden { display: none !important;}
+  .reveal { opacity: 1 !important; transform: none !important;}
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important;}
+  .max-w-4xl { max-width: 100% !important; padding: 0 !important; margin: 0 !important;}
+  h1.title, h2.section, h3.sub { break-after: avoid-page;}
+  .cx, .v-outer, .v-black, .v-light, .doc-table tr, .scripture, .mcol { break-inside: avoid;}
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none;}
+  .cx, .mbox { transition: none;}}}}
+
+  /* joseph base typography */
   
-  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  @media print { #reading-progress { display: none !important; } }
-</style>
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  
+  .verse-link { color: inherit; cursor: pointer; }
+  
+  ul.bullets { list-style: none; padding: 0; }
+  
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  
+    table.md { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; background: #fff; margin: 1.5rem 0; font-size: .92rem; }
+  
+  table.md th { background: #e3e7ec; text-align: left; padding: .8rem 1rem; font-weight: 700; color: #1b1b1b; }
+  
+  table.md td { padding: .85rem 1rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.65; color: #1b1b1b; }
+  
+  table.md td + td, table.md th + th { border-left: 1px solid #e5e7eb; }
+  
+  table.md tbody tr:hover td { background: #f8fafc; }
+  
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }</style>
 </head>
 <body class="bg-white">
 <div id="reading-progress" aria-hidden="true"></div>
@@ -72,14 +149,14 @@
 <div class="max-w-4xl mx-auto px-5 py-12 md:py-16">    <h1 class="title reveal"><span class="lang-pt">Um Homem no Campo</span><span class="lang-en">A Man in the Field</span></h1>\n    <hr class="rule">\n    
     <h2 class="section reveal">Key Takeaways</h2>
     <ul class="bullets reveal">
-      <li>The narrative hinges on Yoseph’s encounter with the man in the field. If Yoseph had not met this man, he and his entire family would have died in the famine.</li>
-      <li>For the biblical authors, every moment of human existence is woven into God’s plan for creation.</li>
-      <li>The Midianites and Ishmaelites become entagled in the brothers’ plot to get rid of Yoseph. It’s as if all of Abraham’s non-chosen children conspire to oppose the chosen son.</li>
+      <li><span class="lang-en">The narrative hinges on Yoseph’s encounter with the man in the field. If Yoseph had not met this man, he and his entire family would have died in the famine.</span></li>
+      <li><span class="lang-en">For the biblical authors, every moment of human existence is woven into God’s plan for creation.</span></li>
+      <li><span class="lang-en">The Midianites and Ishmaelites become entagled in the brothers’ plot to get rid of Yoseph. It’s as if all of Abraham’s non-chosen children conspire to oppose the chosen son.</span></li>
     </ul>
-    <h2 class="section reveal">Overview of Genesis 37:15-30</h2>
+    <h2 class="section reveal"><span class="lang-en">Overview of Genesis 37:15-30</span></h2>
     <p class="body reveal">Genesis 37:15-30. Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022). This central paragraph of chapter 37 is designed as a three-part symmetry, with matching outer panels (37:15-17 and 37:29-30) and matching inner panels (37:18-25a and 37:25b-28). The matching parts create A – Genesis 37:15-17 Yoseph goes to seek brothers, cannot find, meets a man in the field Where are the brothers?</p>
     <ul class="bullets reveal">
-      <li>B – Genesis 37:18-25a</li>
+      <li><span class="lang-en">B – Genesis 37:18-25a</span></li>
       <li>Brothers see Yoseph coming</li>
     </ul>
     <p class="body reveal">Reuven intercedes to save Yoseph: “Don’t spill blood … or let our hand be against him.” Yoseph thrown down into pit B' – Genesis 37:25b-28 Brothers see traders coming Yehudah intercedes to spare Yoseph: “What’s the gain of murder? ... Don’t let our hand be against him.” Yoseph taken up from pit, taken down to Egypt A' – 37:29-30 Reuven seeks brother, cannot find " Where will I go?” <footer class="page-footer">

@@ -11,46 +11,123 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../css/shared-tutorial.css">
   <style>
-  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
-  html[lang="pt"] .lang-en { display: none !important; }
-  html[lang="en"] .lang-pt { display: none !important; }
-  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
-  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
-  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
-  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
-  .verse-link { color: inherit; cursor: pointer; }
-  ul.bullets { list-style: none; padding: 0; }
-  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
-  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
-  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-  .keylabel { font-weight: 700; color: #17181a; }
-    table.md { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; background: #fff; margin: 1.5rem 0; font-size: .92rem; }
-  table.md th { background: #e3e7ec; text-align: left; padding: .8rem 1rem; font-weight: 700; color: #1b1b1b; }
-  table.md td { padding: .85rem 1rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.65; color: #1b1b1b; }
-  table.md td + td, table.md th + th { border-left: 1px solid #e5e7eb; }
-  table.md tbody tr:hover td { background: #f8fafc; }
-  .hl-tan { background: #fae3c3; color: #90362e; }
-  .hl-sky { background: #d9ecfd; color: #404ba6; }
-  .hl-grn { background: #d3f1cc; color: #2a6145; }
-  .hl-rose { background: #f9e3de; color: #97294e; }
-  .hl-brick { background: #b4533a; color: #fff; }
-  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
-  .table-img img { width: 100%; display: block; }
-  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
-  .reveal.visible { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
-  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
-  .nav-btn:hover { background: #f1f5f9; }
-  .nav-back { left: 1rem; }
-  .nav-lang { right: 1rem; }
-  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
+  .reveal.visible { opacity: 1 !important; transform: none !important; }  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s;}
+  .ref:hover { color: #2563eb;}
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s;}
+  .scripture:hover { border-left-color: #9aa7b8;}
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem;}
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem;}
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a;}
+  .scripture .innerbox { background: #f6f8fa; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1rem;}
+  .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem;}
+  .macro { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; align-items: start; margin: 2rem 0 .75rem;}
+  .mcol { border: 3px solid #2e7d4e; border-radius: 12px; padding: .9rem .9rem 1rem; background: #fff;}
+  .mcol.dark { border-color: #3d4453; margin-top: 1.3rem;}
+  .mtag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 3px 10px; border-radius: 5px;}
+  .mtag-green { background: #2e7d4e;}
+  .mtag-dark { background: #3d4453;}
+  .mcol-title { font-size: 1rem; font-weight: 800; color: #17181a; margin: .55rem 0 .8rem; line-height: 1.3;}
+  .mboxes { display: flex; gap: .55rem;}
+  .mbox { flex: 1; border: 3px solid #b9c2cf; border-radius: 9px; background: #fff; min-height: 15.5rem; position: relative; transition: box-shadow .25s, transform .25s;}
+  .mbox:hover { box-shadow: 0 8px 20px -10px rgba(30,41,59,.4); transform: translateY(-3px);}
+  .mbox .mhdr { position: absolute; top: .55rem; left: .55rem; right: .55rem; background: #7d8697; color: #fff; font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 5px;}
+  .mbox.s1 { margin-top: 0;}
+  .mbox.s2 { margin-top: 2.4rem; min-height: 13rem;}
+  .mbox.s3 { margin-top: 2.4rem; min-height: 13rem;}
+  @media (max-width: 860px) { .macro { grid-template-columns: 1fr;}
+  .mcol.dark { margin-top: 0;}
+  .mbox, .mbox.s2, .mbox.s3 { min-height: 7.5rem; margin-top: 0;}
+  .cx { border: 3px solid; border-radius: 12px; padding: 1.35rem 1.5rem 1.2rem; margin: 1.15rem 0; transition: box-shadow .25s, transform .25s;}
+  .cx:hover { box-shadow: 0 12px 26px -16px rgba(23,24,26,.45); transform: translateY(-2px);}
+  .cx-tag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 1px 13px; border-radius: 6px; margin-bottom: .7rem;}
+  .cx h4 { font-weight: 800; font-size: 1.06rem; color: #17181a; margin-bottom: .7rem;}
+  .cx ul.bullets > li { font-size: .99rem; margin-bottom: .45rem;}
+  .cx-slate  { border-color: #6b7280; background: #e9ebee;}
+  .cx-slate  .cx-tag { background: #6b7280;}
+  .cx-rust   { border-color: #c0562f; background: #f7e6dd;}
+  .cx-rust   .cx-tag { background: #c0562f;}
+  .cx-rose   { border-color: #c04a63; background: #f7e0e5;}
+  .cx-rose   .cx-tag { background: #c04a63;}
+  .cx-blue   { border-color: #5468d4; background: #e4e8f9;}
+  .cx-blue   .cx-tag { background: #5468d4;}
+  .cx-green  { border-color: #2e7d4e; background: #dfeee2;}
+  .cx-green  .cx-tag { background: #2e7d4e;}
+  .cx-purple { border-color: #8b5cf6; background: #efe2f8;}
+  .cx-purple .cx-tag { background: #8b5cf6;}
+  .cx-tan    { border-color: #8a6d3b; background: #ece7dc;}
+  .cx-tan    .cx-tag { background: #8a6d3b;}
+  .k { display: inline; padding: 3px 9px; border-radius: 6px; font-weight: 700; color: #fff; line-height: 1.85; -webkit-box-decoration-break: clone; box-decoration-break: clone;}
+  .k-blue   { background: #3b82c4;}
+  .k-green  { background: #2e7d4e;}
+  .k-rose { background: #c04a63;}
+  .k-gray   { background: #6b7280;}
+  .k-rust   { background: #bf5a2b;}
+  .k-teal { background: #0d7d8c;}
+  .k-purple { background: #7c5ad0;}
+  .k-brown  { background: #8a6d3b;}
+  .t-teal { color: #0d8aa0; font-weight: 700;}
+  .v-outer { border: 3px solid #e3e7ee; border-radius: 20px; padding: 1.4rem 1.5rem; margin: 1.4rem 0;}
+  .v-black { border: 3px solid #17181a; border-radius: 16px; padding: 1.3rem 1.5rem; margin: 1.1rem 0;}
+  .v-light { border: 3px solid #e3e7ee; border-radius: 16px; padding: 1.2rem 1.4rem; margin: 1.1rem 0;}
+  .v-line { font-size: 1.06rem; line-height: 2.1; color: #1f2937;}
+  .v-div { border: 0; border-top: 1px solid #e6eaf0; margin: 1.1rem 0;}
+  .vbar-b { border-left: 5px solid #5468d4; padding-left: .8rem;}
+  .lbl { color: #6b7280; font-weight: 600; font-size: .85rem; margin-right: .2rem;}
+  sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px;}
+  .i1 { padding-left: 1.6rem;}
+  .i2 { padding-left: 3.2rem;}
+  .i3 { padding-left: 4.8rem;}
+  .doc-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 3px solid #d9dee6; border-radius: 14px; overflow: hidden; background: #fff;}
+  .doc-table th { background: #e2e6eb; text-align: left; padding: 1rem 1.3rem; font-weight: 800; font-size: 1.02rem; color: #17181a;}
+  .doc-table td { padding: 1.1rem 1.3rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.78; font-size: .97rem; color: #24262a; transition: background .2s;}
+  .doc-table tbody tr:hover td { background: #f8fafc;}
+  .doc-table tfoot td { border-top: 1px solid #d1d5db; background: #fbfcfd; color: #5b6472; font-size: .92rem;}
+  .kblue-soft { background: #cddcf5; color: #2b5fb0; padding: 2px 8px; border-radius: 6px; font-weight: 700;}
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1);}
+  @media print {
+    @page { margin: 14mm 12mm;}
+  #reading-progress, .print\:hidden { display: none !important;}
+  .reveal { opacity: 1 !important; transform: none !important;}
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important;}
+  .max-w-4xl { max-width: 100% !important; padding: 0 !important; margin: 0 !important;}
+  h1.title, h2.section, h3.sub { break-after: avoid-page;}
+  .cx, .v-outer, .v-black, .v-light, .doc-table tr, .scripture, .mcol { break-inside: avoid;}
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none;}
+  .cx, .mbox { transition: none;}}}}
+
+  /* joseph base typography */
   
-  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  @media print { #reading-progress { display: none !important; } }
-</style>
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  
+  .verse-link { color: inherit; cursor: pointer; }
+  
+  ul.bullets { list-style: none; padding: 0; }
+  
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  
+    table.md { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; background: #fff; margin: 1.5rem 0; font-size: .92rem; }
+  
+  table.md th { background: #e3e7ec; text-align: left; padding: .8rem 1rem; font-weight: 700; color: #1b1b1b; }
+  
+  table.md td { padding: .85rem 1rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.65; color: #1b1b1b; }
+  
+  table.md td + td, table.md th + th { border-left: 1px solid #e5e7eb; }
+  
+  table.md tbody tr:hover td { background: #f8fafc; }
+  
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }</style>
 </head>
 <body class="bg-white">
 <div id="reading-progress" aria-hidden="true"></div>
@@ -74,8 +151,8 @@
     <hr class="rule">
     <h2 class="section reveal">Key Takeaways</h2>
     <ul class="bullets reveal">
-      <li>The biblical authors highlight Yaaqov’s request to be buried in the cave in the field of Makpelah where his parents and grandparents are buried.</li>
-      <li>The Hebrew words for “cave” (me‘arah) and “Makpelah,” roughly translating to “naked” and “pair,” link this burial site to the garden of Eden.</li>
+      <li><span class="lang-en">The biblical authors highlight Yaaqov’s request to be buried in the cave in the field of Makpelah where his parents and grandparents are buried.</span></li>
+      <li><span class="lang-en">The Hebrew words for “cave” (me‘arah) and “Makpelah,” roughly translating to “naked” and “pair,” link this burial site to the garden of Eden.</span></li>
     </ul>
     <ul class="bullets reveal">
       <li>Section 3: Genesis 49:29-50:26</li>
@@ -83,144 +160,144 @@
       <li>49:29-33</li>
     </ul>
     <p class="body reveal">Ya'akov Commands His Sons To Bury Him in Canaan • 49:29-30 “And he commanded them: ‘Bury me in the cave in the field of Makpelah … in the land of Canaan, that Avraham purchased from Ephron the Hittite.” • 49:33 “And Ya'akov died and was gathered to his people” 50:1-11 a - 50:1-3 70 days of weeping over Ya'akov’s death + 40 days of embalming his body b - 50:4-6 Yoseph requests to go up to Canaan to bury his father in Canaan b' - 50:7-9 Yoseph goes up with Pharaoh’s house to bury his father in Canaan a' - 50:10-11 Seven days of weeping at the threshing floor of the thorn 50:12-14 Ya'akov’s Sons Bury Their Father “And his sons did as they were commanded, they carried him to the land of Canaan and buried him in the cave of the field of Makpelah … which Avraham purchased from Ephron the Hittite.” Genesis 50:15-21 50:15-17 The Brothers Deceive Yoseph To Gain Forgiveness</p>
-<p class="body reveal">Genesis 49:29-50:26. Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022). We have come to the end of the final literary unit in the Genesis scroll. Notice that it has been given a symmetrical three-part design. 1. On the outer ends, we have the parallel deaths of a father and a son, Yaaqov and Yoseph. Yaaqov asks for a burial in Canaan. And after his death, the narrative focuses on the elaborate funeral procession. On the other end comes Yoseph’s request for a burial in Canaan, and the narrative focuses on the future “ascent” out of Egypt into Canaan, followed by his death. This brings the themes of the Eden story in Genesis 2-3 toward their resolution: The exile of Adam and Eve from Eden resulted in death for all their descendants. Here, the deaths of Yaaqov and Yoseph end with a hope for a “going up” of their bones and bodies to reside in the “cave of Makpelah.” 2. In the center is a story of Yoseph’s final act of reconciliation and forgiveness toward his brothers. • 50:15 “He will return to us all the evil we repaid him!” • 50:17 “Yoseph wept as they spoke to him” 50:18 “His brothers fell before him and said, ‘We are your servants!’” 50:19-21 Yoseph Is Honest With His Brothers and Forgives Them • 50:20 “You planned evil against me, but Elohim planned good … to save many lives!” Genesis 50:22-26 50:22-23 Yoseph stays in Egypt and lives for 110 years 50:24-25 Yoseph Anticipates a “Going Up” for His Future Family and for His Bones • 50:24 “He will bring up you all from this land” • 50:25 “You will bring up my bones from this place” 50:26 Yoseph dies at 110 years, and is placed in a box in Egypt</p>
-<p class="body reveal">This brings the themes of Genesis 1-4 to their resolution: The older snake was not chosen for rule, but the humans were. Parallel to this, the older Cain was not chosen for the blessing, but his younger brother Abel was. But in this story, instead of that chosen-status evoking anger and murder, Yoseph uses his special status to become an image of divine forgiveness.</p>
+<p class="body reveal"><span class="lang-en">Genesis 49:29-50:26. Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022). We have come to the end of the final literary unit in the Genesis scroll. Notice that it has been given a symmetrical three-part design. 1. On the outer ends, we have the parallel deaths of a father and a son, Yaaqov and Yoseph. Yaaqov asks for a burial in Canaan. And after his death, the narrative focuses on the elaborate funeral procession. On the other end comes Yoseph’s request for a burial in Canaan, and the narrative focuses on the future “ascent” out of Egypt into Canaan, followed by his death. This brings the themes of the Eden story in Genesis 2-3 toward their resolution: The exile of Adam and Eve from Eden resulted in death for all their descendants. Here, the deaths of Yaaqov and Yoseph end with a hope for a “going up” of their bones and bodies to reside in the “cave of Makpelah.” 2. In the center is a story of Yoseph’s final act of reconciliation and forgiveness toward his brothers. • 50:15 “He will return to us all the evil we repaid him!” • 50:17 “Yoseph wept as they spoke to him” 50:18 “His brothers fell before him and said, ‘We are your servants!’” 50:19-21 Yoseph Is Honest With His Brothers and Forgives Them • 50:20 “You planned evil against me, but Elohim planned good … to save many lives!” Genesis 50:22-26 50:22-23 Yoseph stays in Egypt and lives for 110 years 50:24-25 Yoseph Anticipates a “Going Up” for His Future Family and for His Bones • 50:24 “He will bring up you all from this land” • 50:25 “You will bring up my bones from this place” 50:26 Yoseph dies at 110 years, and is placed in a box in Egypt</span></p>
+<p class="body reveal"><span class="lang-en">This brings the themes of Genesis 1-4 to their resolution: The older snake was not chosen for rule, but the humans were. Parallel to this, the older Cain was not chosen for the blessing, but his younger brother Abel was. But in this story, instead of that chosen-status evoking anger and murder, Yoseph uses his special status to become an image of divine forgiveness.</span></p>
     <ul class="bullets reveal">
-      <li>Yaaqov’s Second Request to be Buried in Canaan</li>
+      <li><span class="lang-en">Yaaqov’s Second Request to be Buried in Canaan</span></li>
       <li>A</li>
-      <li>29 And he commanded them,</li>
-      <li>and said to them,</li>
+      <li><span class="lang-en">29 And he commanded them,</span></li>
+      <li><span class="lang-en">and said to them,</span></li>
     </ul>
-    <p class="body reveal">“I am about to be gathered to my people.</p>
+    <p class="body reveal"><span class="lang-en">“I am about to be gathered to my people.</span></p>
     <ul class="bullets reveal">
       <li>A</li>
-      <li>Bury me with my fathers ,</li>
+      <li><span class="lang-en">Bury me with my fathers ,</span></li>
     </ul>
-    <p class="body reveal">in the cave which is in the field of Ephron the Hittite, B 30 in the cave which is in the field of Makpelah (= “doubling”) which is opposite the face of Mamre in the land of Cana’an, which field Avraham purchased from Ephron the Hittite for a burial-possession.</p>
+    <p class="body reveal"><span class="lang-en">in the cave which is in the field of Ephron the Hittite, B 30 in the cave which is in the field of Makpelah (= “doubling”) which is opposite the face of Mamre in the land of Cana’an, which field Avraham purchased from Ephron the Hittite for a burial-possession.</span></p>
     <h2 class="section reveal">A'</h2>
-    <p class="body reveal">31 There they buried Avraham and Sarah his wife, there they buried Yitzhaq and Rivqah his wife, there I buried Le’ah .</p>
+    <p class="body reveal"><span class="lang-en">31 There they buried Avraham and Sarah his wife, there they buried Yitzhaq and Rivqah his wife, there I buried Le’ah .</span></p>
     <ul class="bullets reveal">
       <li>B'</li>
-      <li>32 The field purchased,</li>
-      <li>along with the cave which is in it,</li>
-      <li>from the sons of Heth.”</li>
-      <li>33 And Ya’akov finished commanding his sons,</li>
-      <li>and he gathered his feet into the bed,</li>
+      <li><span class="lang-en">32 The field purchased,</span></li>
+      <li><span class="lang-en">along with the cave which is in it,</span></li>
+      <li><span class="lang-en">from the sons of Heth.”</span></li>
+      <li><span class="lang-en">33 And Ya’akov finished commanding his sons,</span></li>
+      <li><span class="lang-en">and he gathered his feet into the bed,</span></li>
     </ul>
-    <p class="body reveal">and he expired, and he was gathered to his people. 50:1 And Yoseph fell upon the face of his father, and he wept over him, and he kissed him. 2 And Yoseph commanded his servants the healers  (הרפאים) to embalm his father,</p>
+    <p class="body reveal"><span class="lang-en">and he expired, and he was gathered to his people. 50:1 And Yoseph fell upon the face of his father, and he wept over him, and he kissed him. 2 And Yoseph commanded his servants the healers  (הרפאים) to embalm his father,</span></p>
 <h2 class="section reveal">B</h2>
-    <p class="body reveal">and the healers  (הרפאים) embalmed Yisra’el.</p>
-    <h2 class="section reveal">3 And they fulfilled for him forty days ,</h2>
-    <p class="body reveal">because this is how the days of the embalmers were fulfilled.</p>
+    <p class="body reveal"><span class="lang-en">and the healers  (הרפאים) embalmed Yisra’el.</span></p>
+    <h2 class="section reveal"><span class="lang-en">3 And they fulfilled for him forty days ,</span></h2>
+    <p class="body reveal"><span class="lang-en">because this is how the days of the embalmers were fulfilled.</span></p>
     <h2 class="section reveal">Then Egypt</h2>
-    <p class="body reveal">wept for him for seventy days .</p>
+    <p class="body reveal"><span class="lang-en">wept for him for seventy days .</span></p>
     <ul class="bullets reveal">
       <li>A</li>
-      <li>4 And the days of weeping for him passed on,</li>
+      <li><span class="lang-en">4 And the days of weeping for him passed on,</span></li>
     </ul>
-    <p class="body reveal">and Yoseph said to the house of Phar’oh, saying, B “If, please , I have found favor in your eyes, speak, please , in to ears of Phar’oh, saying, 5 ‘My father made me swear an oath , saying, “Look, I am about to die. In my burial-grave which I dug for myself in the land of Cana’an, bury me there.”‘ And now, may I go up , please , so I can bury my father, and so I can return.” A' 6 And Phar’oh said, “ Go up and bury your father, just as he made you swear an oath .” 7 And Yoseph went up to bury his father, and they went up with him, all the servants of Phar’oh, a the elders of his house, b and all the elders of the land of Egypt, a' 8 and all the house of Yoseph, a and his brothers, b and the house of his father.</p>
+    <p class="body reveal"><span class="lang-en">and Yoseph said to the house of Phar’oh, saying, B “If, please , I have found favor in your eyes, speak, please , in to ears of Phar’oh, saying, 5 ‘My father made me swear an oath , saying, “Look, I am about to die. In my burial-grave which I dug for myself in the land of Cana’an, bury me there.”‘ And now, may I go up , please , so I can bury my father, and so I can return.” A' 6 And Phar’oh said, “ Go up and bury your father, just as he made you swear an oath .” 7 And Yoseph went up to bury his father, and they went up with him, all the servants of Phar’oh, a the elders of his house, b and all the elders of the land of Egypt, a' 8 and all the house of Yoseph, a and his brothers, b and the house of his father.</span></p>
     <h2 class="section reveal">a'</h2>
-    <p class="body reveal">Only their children and their flocks and their herds did they leave in the land of Goshen. 9 And they went up with him, both chariots and horsemen, and the camp was heavy, very much . 10 And they came to the threshing floor of the thorn  (= “Goren-Ha’atad”) , and they wept there a great and heavy weeping , very much , and they performed grieving for their father, for seven days . 11 And the inhabitant of the land, the Cana’anite , saw the grieving at the threshing floor of the thorn , and they said,</p>
-<p class="body reveal">Genesis 49:29-50:14. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022). Gathered With the Ancestors in the Cave of Makpelah In this story, Yaaqov approaches his own death and requests that he be buried in the land of his ancestors in a specific cave in the field of Makpelah. This refers back to the only piece of land that Abraham ever purchased and owned, as recounted in Genesis 23. This story assumes a knowledge of the Eden hyperlinks in that story. Death, Paradise, and the Passing of the Righteous The story of Sarah’s burial is a full-scale replay of the core themes at work in the garden of Eden story. Through wordplays, hyperlinks, and narrative analogies, Abraham’s loss of Sarah is compared to both the loss of eternal life in Eden and to the hope of God’s promise to restore life. The Death of the Beloved by the Sacred Tree in Genesis 23 After Abraham’s great act of faithfulness, we’re told that his beloved wife dies near the sacred tree that Abraham had encamped by all the way back in chapter 14. The design of this story emphasizes the special importance of this location, by repeating the mention of Hebron in the opening and closing of the chapter.</p>
+    <p class="body reveal"><span class="lang-en">Only their children and their flocks and their herds did they leave in the land of Goshen. 9 And they went up with him, both chariots and horsemen, and the camp was heavy, very much . 10 And they came to the threshing floor of the thorn  (= “Goren-Ha’atad”) , and they wept there a great and heavy weeping , very much , and they performed grieving for their father, for seven days . 11 And the inhabitant of the land, the Cana’anite , saw the grieving at the threshing floor of the thorn , and they said,</span></p>
+<p class="body reveal"><span class="lang-en">Genesis 49:29-50:14. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022). Gathered With the Ancestors in the Cave of Makpelah In this story, Yaaqov approaches his own death and requests that he be buried in the land of his ancestors in a specific cave in the field of Makpelah. This refers back to the only piece of land that Abraham ever purchased and owned, as recounted in Genesis 23. This story assumes a knowledge of the Eden hyperlinks in that story. Death, Paradise, and the Passing of the Righteous The story of Sarah’s burial is a full-scale replay of the core themes at work in the garden of Eden story. Through wordplays, hyperlinks, and narrative analogies, Abraham’s loss of Sarah is compared to both the loss of eternal life in Eden and to the hope of God’s promise to restore life. The Death of the Beloved by the Sacred Tree in Genesis 23 After Abraham’s great act of faithfulness, we’re told that his beloved wife dies near the sacred tree that Abraham had encamped by all the way back in chapter 14. The design of this story emphasizes the special importance of this location, by repeating the mention of Hebron in the opening and closing of the chapter.</span></p>
     <ul class="bullets reveal">
-      <li>“This is a heavy</li>
-      <li>grieving for Egypt!”</li>
-      <li>For this reason, its name is called,</li>
-      <li>“ Grief of Egypt ” [= “Evel-Mitsrayim”]</li>
+      <li><span class="lang-en">“This is a heavy</span></li>
+      <li><span class="lang-en">grieving for Egypt!”</span></li>
+      <li><span class="lang-en">For this reason, its name is called,</span></li>
+      <li><span class="lang-en">“ Grief of Egypt ” [= “Evel-Mitsrayim”]</span></li>
     </ul>
-    <p class="body reveal">which is across the Jordan.</p>
+    <p class="body reveal"><span class="lang-en">which is across the Jordan.</span></p>
     <h2 class="section reveal">A'</h2>
-    <p class="body reveal">12 And his sons did for him just as he commanded them, 13 and his sons carried him to the land of Cana’an, and they buried him in the cave of the field of Makpelah (= “doubling”), which field Avraham purchased for a burial-possession, from Ephron the Hittite, opposite the face of Mamre.</p>
+    <p class="body reveal"><span class="lang-en">12 And his sons did for him just as he commanded them, 13 and his sons carried him to the land of Cana’an, and they buried him in the cave of the field of Makpelah (= “doubling”), which field Avraham purchased for a burial-possession, from Ephron the Hittite, opposite the face of Mamre.</span></p>
     <ul class="bullets reveal">
-      <li>14 And Yoseph returned to Egypt,</li>
-      <li>he and his brothers</li>
+      <li><span class="lang-en">14 And Yoseph returned to Egypt,</span></li>
+      <li><span class="lang-en">he and his brothers</span></li>
     </ul>
-    <p class="body reveal">and all those who went up with him to bury his father, after he buried his father.</p>
+    <p class="body reveal"><span class="lang-en">and all those who went up with him to bury his father, after he buried his father.</span></p>
 <ul class="bullets reveal">
       <li>Gen. 23:1-3</li>
-      <li>And Sarah died</li>
-      <li>in Qiryath-‘Arba’ ( this is Hebron ),</li>
+      <li><span class="lang-en">And Sarah died</span></li>
+      <li><span class="lang-en">in Qiryath-‘Arba’ ( this is Hebron ),</span></li>
     </ul>
-    <p class="body reveal">in the land of Canaan .</p>
+    <p class="body reveal"><span class="lang-en">in the land of Canaan .</span></p>
     <ul class="bullets reveal">
       <li>Gen. 13:18</li>
-      <li>Then Abram moved his tent and</li>
-      <li>came and dwelt by the oaks of</li>
-      <li>Mamre, which are in Hebron ,</li>
-      <li>and there he built an altar to the</li>
+      <li><span class="lang-en">Then Abram moved his tent and</span></li>
+      <li><span class="lang-en">came and dwelt by the oaks of</span></li>
+      <li><span class="lang-en">Mamre, which are in Hebron ,</span></li>
+      <li><span class="lang-en">and there he built an altar to the</span></li>
     </ul>
     <p class="body reveal">Lord.</p>
     <ul class="bullets reveal">
       <li>Gen. 14:13</li>
-      <li>Now he was living by the oaks of</li>
-      <li>Mamre the Amorite, brother of</li>
-      <li>Eshcol and brother of Aner, and</li>
+      <li><span class="lang-en">Now he was living by the oaks of</span></li>
+      <li><span class="lang-en">Mamre the Amorite, brother of</span></li>
+      <li><span class="lang-en">Eshcol and brother of Aner, and</span></li>
     </ul>
-    <p class="body reveal">these were allies with Abram.</p>
+    <p class="body reveal"><span class="lang-en">these were allies with Abram.</span></p>
     <ul class="bullets reveal">
       <li>Gen. 18:1</li>
-      <li>Now the Lord appeared to him</li>
-      <li>by the oaks of Mamre, while he</li>
-      <li>was sitting at the tent door in the</li>
+      <li><span class="lang-en">Now the Lord appeared to him</span></li>
+      <li><span class="lang-en">by the oaks of Mamre, while he</span></li>
+      <li><span class="lang-en">was sitting at the tent door in the</span></li>
     </ul>
-    <p class="body reveal">heat of the day.</p>
+    <p class="body reveal"><span class="lang-en">heat of the day.</span></p>
     <h2 class="section reveal">Gen. 23:4-16</h2>
-    <p class="body reveal">Abraham negotiates the purchase of the burial plot Gen. 23:17, 19 which was in Makpelah, which was facing Mamre, the field and the cave which is in it, and all the trees which are in the field, which are in all the surrounding border. ... Now, after this, Abraham buried Sarah his wife, in the cave of the field of Makpelah, which was facing Mamre ( this is Hebron ), in the land of Canaan . Oaks of Mamre in Genesis 13-23. Created by Tim Mackie for BibleProject Classroom: Joseph (2022). The narrative highlights that when Abraham was living near Hebron/Mamre, it is by trees that he lived, worshipped, and met with God. This is a clear Eden motif because Abraham and Sarah are presented as a new Adam and Eve living in the promised garden land and communing with God by the trees of Hebron. Sadly, the wife of the new Adam eventually dies by the sacred trees of Mamre. This is a vivid and potent image that recalls the woman eating from the tree that leads to death. But it is also by the sacred trees of Mamre/Hebron that Sarah is buried.</p>
-    <h2 class="section reveal">Ephron = “Dusty,” and the Hope of Eternal Life</h2>
-    <p class="body reveal">The name of Abraham’s Hittite negotiating partner is Ephron, from the Hebrew word for “dust” (‘aphar / עפר). This creates the ironic image of Abraham bartering with Dusty to ensure a place of rest for his beloved as she returns to the dust. Recall that “death unto the dust” was a key image from the Eden narrative that's associated with death.</p>
+    <p class="body reveal"><span class="lang-en">Abraham negotiates the purchase of the burial plot Gen. 23:17, 19 which was in Makpelah, which was facing Mamre, the field and the cave which is in it, and all the trees which are in the field, which are in all the surrounding border. ... Now, after this, Abraham buried Sarah his wife, in the cave of the field of Makpelah, which was facing Mamre ( this is Hebron ), in the land of Canaan . Oaks of Mamre in Genesis 13-23. Created by Tim Mackie for BibleProject Classroom: Joseph (2022). The narrative highlights that when Abraham was living near Hebron/Mamre, it is by trees that he lived, worshipped, and met with God. This is a clear Eden motif because Abraham and Sarah are presented as a new Adam and Eve living in the promised garden land and communing with God by the trees of Hebron. Sadly, the wife of the new Adam eventually dies by the sacred trees of Mamre. This is a vivid and potent image that recalls the woman eating from the tree that leads to death. But it is also by the sacred trees of Mamre/Hebron that Sarah is buried.</span></p>
+    <h2 class="section reveal"><span class="lang-en">Ephron = “Dusty,” and the Hope of Eternal Life</span></h2>
+    <p class="body reveal"><span class="lang-en">The name of Abraham’s Hittite negotiating partner is Ephron, from the Hebrew word for “dust” (‘aphar / עפר). This creates the ironic image of Abraham bartering with Dusty to ensure a place of rest for his beloved as she returns to the dust. Recall that “death unto the dust” was a key image from the Eden narrative that's associated with death.</span></p>
     <ul class="bullets reveal">
       <li>Genesis 3:19 NASB*</li>
-      <li>By the sweat of your face you will eat bread,</li>
-      <li>until you return to the ground,</li>
-      <li>because from it you were taken;</li>
-      <li>for you are dust (‘aphar)</li>
+      <li><span class="lang-en">By the sweat of your face you will eat bread,</span></li>
+      <li><span class="lang-en">until you return to the ground,</span></li>
+      <li><span class="lang-en">because from it you were taken;</span></li>
+      <li><span class="lang-en">for you are dust (‘aphar)</span></li>
     </ul>
-    <p class="body reveal">and to dust (‘aphar) you shall return.</p>
+    <p class="body reveal"><span class="lang-en">and to dust (‘aphar) you shall return.</span></p>
 <ul class="bullets reveal">
       <li>*Key Words Adapted by Teacher</li>
-      <li>The Cave of Makpelah/“Naked Pair”</li>
+      <li><span class="lang-en">The Cave of Makpelah/“Naked Pair”</span></li>
     </ul>
-    <p class="body reveal">Each of the words “cave” and “Makpelah” have rich wordplay associations with the Eden story. “Cave” (me‘arah / מערה) in Hebrew literally means “place of exposure/nakedness”. This Hebrew noun is related to two root words spelled with similar letters that both mean “to be exposed, naked” 1. ערר: ‘arar, see Isaiah 32:11. 2. עור: ‘ur, see Habakkuk 3:9, where it is spelled with the same letters as “nakedness” from Genesis 2:25.</p>
-    <h2 class="section reveal">Genesis 2:25 Instructor's Translation</h2>
-    <p class="body reveal">And they were naked (‘arum, ערום) and they were not ashamed.</p>
-    <h2 class="section reveal">Genesis 23:9: “Cave”, Heb. me‘arah )(מערה</h2>
-    <p class="body reveal">“Makpelah” is an odd place name that means “doubling” or “pair.” The root is kaphal )(כפל, which means “to be doubled” or “paired” (see examples of the verb in Exod. 26:9; Ezek. 21:19). The meaning of Makpelah as “pair” or “double” is attested early in the history of Jewish interpretation, as the Greek Septuagint translators rendered this word with διπλους, “twin” or “paired.” When these curious words are combined, the name of this place is "The Nakedness of the Pair." This is a clever reference back to the moment when Adam and Eve violate God’s command, eat from the forbidden fruit, and then realize that “the two of them are naked” (Gen. 2:24-25 and 3:6-7).</p>
-    <h2 class="section reveal">The Burial Plot as Abraham’s Mini-Eden</h2>
-    <p class="body reveal">The description of the cave and the burial plot in Genesis 23:17-18 is repetitious and unnecessarily wordy, as it repeats vocabulary from earlier in the chapter. Upon closer inspection, however, these repetitions seem intentional and create a series of hyperlinks back to earlier moments in the Abraham narrative where the promised land was set on analogy to Eden.</p>
+    <p class="body reveal"><span class="lang-en">Each of the words “cave” and “Makpelah” have rich wordplay associations with the Eden story. “Cave” (me‘arah / מערה) in Hebrew literally means “place of exposure/nakedness”. This Hebrew noun is related to two root words spelled with similar letters that both mean “to be exposed, naked” 1. ערר: ‘arar, see Isaiah 32:11. 2. עור: ‘ur, see Habakkuk 3:9, where it is spelled with the same letters as “nakedness” from Genesis 2:25.</span></p>
+    <h2 class="section reveal"><span class="lang-en">Genesis 2:25 Instructor's Translation</span></h2>
+    <p class="body reveal"><span class="lang-en">And they were naked (‘arum, ערום) and they were not ashamed.</span></p>
+    <h2 class="section reveal"><span class="lang-en">Genesis 23:9: “Cave”, Heb. me‘arah )(מערה</span></h2>
+    <p class="body reveal"><span class="lang-en">“Makpelah” is an odd place name that means “doubling” or “pair.” The root is kaphal )(כפל, which means “to be doubled” or “paired” (see examples of the verb in Exod. 26:9; Ezek. 21:19). The meaning of Makpelah as “pair” or “double” is attested early in the history of Jewish interpretation, as the Greek Septuagint translators rendered this word with διπλους, “twin” or “paired.” When these curious words are combined, the name of this place is "The Nakedness of the Pair." This is a clever reference back to the moment when Adam and Eve violate God’s command, eat from the forbidden fruit, and then realize that “the two of them are naked” (Gen. 2:24-25 and 3:6-7).</span></p>
+    <h2 class="section reveal"><span class="lang-en">The Burial Plot as Abraham’s Mini-Eden</span></h2>
+    <p class="body reveal"><span class="lang-en">The description of the cave and the burial plot in Genesis 23:17-18 is repetitious and unnecessarily wordy, as it repeats vocabulary from earlier in the chapter. Upon closer inspection, however, these repetitions seem intentional and create a series of hyperlinks back to earlier moments in the Abraham narrative where the promised land was set on analogy to Eden.</span></p>
     <ul class="bullets reveal">
       <li>Genesis 23:17-18</li>
-      <li>Hyperlinks to Earlier Genesis Narratives</li>
+      <li><span class="lang-en">Hyperlinks to Earlier Genesis Narratives</span></li>
       <li>Gen. 23:17-18</li>
-      <li>And it was transferred,</li>
-      <li>the field of Ephron</li>
+      <li><span class="lang-en">And it was transferred,</span></li>
+      <li><span class="lang-en">the field of Ephron</span></li>
       <li>)(עפרון</li>
-      <li>which is by Makpelah,</li>
-      <li>which is in front of</li>
+      <li><span class="lang-en">which is by Makpelah,</span></li>
+      <li><span class="lang-en">which is in front of</span></li>
       <li>Mamre )(לפני ממרא</li>
       <li>Gen. 13:10-11</li>
     </ul>
-    <p class="body reveal">Lot lifted up his eyes and saw all the valley of the Jordan, all watered … like the garden of God, before Yahweh destroyed Sodom and Gomorrah . And Lot chose for himself all the valley of the Jordan … and they separated )(פרד.</p>
+    <p class="body reveal"><span class="lang-en">Lot lifted up his eyes and saw all the valley of the Jordan, all watered … like the garden of God, before Yahweh destroyed Sodom and Gomorrah . And Lot chose for himself all the valley of the Jordan … and they separated )(פרד.</span></p>
     <h2 class="section reveal">Gen. 13:14-15, 18</h2>
-    <p class="body reveal">Genesis 23’s Hyperlinks to Earlier Narratives. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</p>
+    <p class="body reveal"><span class="lang-en">Genesis 23’s Hyperlinks to Earlier Narratives. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
 <ul class="bullets reveal">
       <li>Genesis 23:17-18</li>
-      <li>Hyperlinks to Earlier Genesis Narratives</li>
+      <li><span class="lang-en">Hyperlinks to Earlier Genesis Narratives</span></li>
     </ul>
-    <p class="body reveal">Yahweh said to Abram after Lot separated )(פרד from him, “Lift up your eyes and see … north, south, east, west … I give it to you and your seed forever, and I will make your seed like the dust )(עפר of the earth.“ And Abram tented and dwelt among the oaks of Mamre . *In Genesis 13, Lot’s choice of Sodom as a false-Eden was set in contrast to Avraham’s choice of the promised land, specifically “the oaks of Mamre” which is God’s gift of Eden to Avraham.</p>
+    <p class="body reveal"><span class="lang-en">Yahweh said to Abram after Lot separated )(פרד from him, “Lift up your eyes and see … north, south, east, west … I give it to you and your seed forever, and I will make your seed like the dust )(עפר of the earth.“ And Abram tented and dwelt among the oaks of Mamre . *In Genesis 13, Lot’s choice of Sodom as a false-Eden was set in contrast to Avraham’s choice of the promised land, specifically “the oaks of Mamre” which is God’s gift of Eden to Avraham.</span></p>
     <ul class="bullets reveal">
-      <li>the field and the cave</li>
-      <li>which is in it,</li>
-      <li>and all the trees</li>
-      <li>which are in</li>
+      <li><span class="lang-en">the field and the cave</span></li>
+      <li><span class="lang-en">which is in it,</span></li>
+      <li><span class="lang-en">and all the trees</span></li>
+      <li><span class="lang-en">which are in</span></li>
       <li>)–(כל העץ אשר ב the</li>
       <li>field</li>
       <li>Gen. 1:29</li>
     </ul>
-    <p class="body reveal">And God said to the human, “Behold I have given to you every plant bearing seed which is on the face of the land, and all the trees which are in it )(כל העץ אשר ב.” Gen. 2:9 And Yahweh caused to sprout from the ground all the trees )(כל עץ that are desirable to look at which is in all its border around )(בכל … סביב to Avraham as a possession )(למקנה in the eyes of the sons of Heth, with all who enter the gate of his city.</p>
+    <p class="body reveal"><span class="lang-en">And God said to the human, “Behold I have given to you every plant bearing seed which is on the face of the land, and all the trees which are in it )(כל העץ אשר ב.” Gen. 2:9 And Yahweh caused to sprout from the ground all the trees )(כל עץ that are desirable to look at which is in all its border around )(בכל … סביב to Avraham as a possession )(למקנה in the eyes of the sons of Heth, with all who enter the gate of his city.</span></p>
     <h2 class="section reveal">Gen. 2:10-14</h2>
-    <p class="body reveal">And a river went out from Eden to water (Hiph. (שקה the garden, and from there it separated )(פרד … the Pishon it went all around )(סבב … the Gihon it went all around )(סבב … Gen. 10:15, 19 And Canaan bore Sidon his firstborn and Heth. … And the border of the Canaanite was from Sidon as you go … to Sodom and Gomorrah . Genesis 23’s Hyperlinks to Earlier Narratives. Created by Tim Mackie for BibleProject Classroom: Joseph (2022). Abraham’s burial plot is described as a tiny refuge for the “naked pair” that is located in the middle of a field filled with trees, namely the sacred trees of Mamre. One couldn’t ask for a more rich and creative set of allusions back to the garden of Eden.</p>
+    <p class="body reveal"><span class="lang-en">And a river went out from Eden to water (Hiph. (שקה the garden, and from there it separated )(פרד … the Pishon it went all around )(סבב … the Gihon it went all around )(סבב … Gen. 10:15, 19 And Canaan bore Sidon his firstborn and Heth. … And the border of the Canaanite was from Sidon as you go … to Sodom and Gomorrah . Genesis 23’s Hyperlinks to Earlier Narratives. Created by Tim Mackie for BibleProject Classroom: Joseph (2022). Abraham’s burial plot is described as a tiny refuge for the “naked pair” that is located in the middle of a field filled with trees, namely the sacred trees of Mamre. One couldn’t ask for a more rich and creative set of allusions back to the garden of Eden.</span></p>
     <h3 class="sub reveal">Reflection Question</h3>
-    <p class="body reveal">How is the burial cave in the field of Makpelah connected to the garden of Eden and to the hope of resurrection?</p>
+    <p class="body reveal"><span class="lang-en">How is the burial cave in the field of Makpelah connected to the garden of Eden and to the hope of resurrection?</span></p>
 <table class="md reveal">
   <tr><th>Genesis 23:17-18</th><th>Hyperlinks to Earlier Genesis Narratives</th></tr>
   <tr><td>the field and the cave<br>which is in it,<br>and all the trees<br>which are in<br>)–(כל העץ אשר ב the<br>field<br>which is in all its<br>border around<br>)(בכל … סביב<br>to Avraham as a<br>possession )(למקנה<br>in the eyes of the sons<br>of Heth, <br>with all who enter the<br>gate of his city.</td><td>Yahweh said to Abram after Lot separated )(פרד from him, “Lift up your eyes<br>and see … north, south, east, west … I give it to you and your seed forever, and<br>I will make your seed like the dust )(עפר of the earth.“ And Abram tented and<br>dwelt among the oaks of Mamre .</td></tr>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sessão 2: A Melodia Temática da Bíblia Hebraica</title>
+<title>Sessão 9: Enganando o Enganador</title>
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <script src="../../js/verse-modal.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,46 +11,123 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../css/shared-tutorial.css">
   <style>
-  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
-  html[lang="pt"] .lang-en { display: none !important; }
-  html[lang="en"] .lang-pt { display: none !important; }
-  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
-  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
-  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
-  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
-  .verse-link { color: inherit; cursor: pointer; }
-  ul.bullets { list-style: none; padding: 0; }
-  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
-  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
-  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-  .keylabel { font-weight: 700; color: #17181a; }
-    table.md { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; background: #fff; margin: 1.5rem 0; font-size: .92rem; }
-  table.md th { background: #e3e7ec; text-align: left; padding: .8rem 1rem; font-weight: 700; color: #1b1b1b; }
-  table.md td { padding: .85rem 1rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.65; color: #1b1b1b; }
-  table.md td + td, table.md th + th { border-left: 1px solid #e5e7eb; }
-  table.md tbody tr:hover td { background: #f8fafc; }
-  .hl-tan { background: #fae3c3; color: #90362e; }
-  .hl-sky { background: #d9ecfd; color: #404ba6; }
-  .hl-grn { background: #d3f1cc; color: #2a6145; }
-  .hl-rose { background: #f9e3de; color: #97294e; }
-  .hl-brick { background: #b4533a; color: #fff; }
-  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
-  .table-img img { width: 100%; display: block; }
-  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
-  .reveal.visible { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
-  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
-  .nav-btn:hover { background: #f1f5f9; }
-  .nav-back { left: 1rem; }
-  .nav-lang { right: 1rem; }
-  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
+  .reveal.visible { opacity: 1 !important; transform: none !important; }  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s;}
+  .ref:hover { color: #2563eb;}
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s;}
+  .scripture:hover { border-left-color: #9aa7b8;}
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem;}
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem;}
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a;}
+  .scripture .innerbox { background: #f6f8fa; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1rem;}
+  .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem;}
+  .macro { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; align-items: start; margin: 2rem 0 .75rem;}
+  .mcol { border: 3px solid #2e7d4e; border-radius: 12px; padding: .9rem .9rem 1rem; background: #fff;}
+  .mcol.dark { border-color: #3d4453; margin-top: 1.3rem;}
+  .mtag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 3px 10px; border-radius: 5px;}
+  .mtag-green { background: #2e7d4e;}
+  .mtag-dark { background: #3d4453;}
+  .mcol-title { font-size: 1rem; font-weight: 800; color: #17181a; margin: .55rem 0 .8rem; line-height: 1.3;}
+  .mboxes { display: flex; gap: .55rem;}
+  .mbox { flex: 1; border: 3px solid #b9c2cf; border-radius: 9px; background: #fff; min-height: 15.5rem; position: relative; transition: box-shadow .25s, transform .25s;}
+  .mbox:hover { box-shadow: 0 8px 20px -10px rgba(30,41,59,.4); transform: translateY(-3px);}
+  .mbox .mhdr { position: absolute; top: .55rem; left: .55rem; right: .55rem; background: #7d8697; color: #fff; font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 5px;}
+  .mbox.s1 { margin-top: 0;}
+  .mbox.s2 { margin-top: 2.4rem; min-height: 13rem;}
+  .mbox.s3 { margin-top: 2.4rem; min-height: 13rem;}
+  @media (max-width: 860px) { .macro { grid-template-columns: 1fr;}
+  .mcol.dark { margin-top: 0;}
+  .mbox, .mbox.s2, .mbox.s3 { min-height: 7.5rem; margin-top: 0;}
+  .cx { border: 3px solid; border-radius: 12px; padding: 1.35rem 1.5rem 1.2rem; margin: 1.15rem 0; transition: box-shadow .25s, transform .25s;}
+  .cx:hover { box-shadow: 0 12px 26px -16px rgba(23,24,26,.45); transform: translateY(-2px);}
+  .cx-tag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 1px 13px; border-radius: 6px; margin-bottom: .7rem;}
+  .cx h4 { font-weight: 800; font-size: 1.06rem; color: #17181a; margin-bottom: .7rem;}
+  .cx ul.bullets > li { font-size: .99rem; margin-bottom: .45rem;}
+  .cx-slate  { border-color: #6b7280; background: #e9ebee;}
+  .cx-slate  .cx-tag { background: #6b7280;}
+  .cx-rust   { border-color: #c0562f; background: #f7e6dd;}
+  .cx-rust   .cx-tag { background: #c0562f;}
+  .cx-rose   { border-color: #c04a63; background: #f7e0e5;}
+  .cx-rose   .cx-tag { background: #c04a63;}
+  .cx-blue   { border-color: #5468d4; background: #e4e8f9;}
+  .cx-blue   .cx-tag { background: #5468d4;}
+  .cx-green  { border-color: #2e7d4e; background: #dfeee2;}
+  .cx-green  .cx-tag { background: #2e7d4e;}
+  .cx-purple { border-color: #8b5cf6; background: #efe2f8;}
+  .cx-purple .cx-tag { background: #8b5cf6;}
+  .cx-tan    { border-color: #8a6d3b; background: #ece7dc;}
+  .cx-tan    .cx-tag { background: #8a6d3b;}
+  .k { display: inline; padding: 3px 9px; border-radius: 6px; font-weight: 700; color: #fff; line-height: 1.85; -webkit-box-decoration-break: clone; box-decoration-break: clone;}
+  .k-blue   { background: #3b82c4;}
+  .k-green  { background: #2e7d4e;}
+  .k-rose { background: #c04a63;}
+  .k-gray   { background: #6b7280;}
+  .k-rust   { background: #bf5a2b;}
+  .k-teal { background: #0d7d8c;}
+  .k-purple { background: #7c5ad0;}
+  .k-brown  { background: #8a6d3b;}
+  .t-teal { color: #0d8aa0; font-weight: 700;}
+  .v-outer { border: 3px solid #e3e7ee; border-radius: 20px; padding: 1.4rem 1.5rem; margin: 1.4rem 0;}
+  .v-black { border: 3px solid #17181a; border-radius: 16px; padding: 1.3rem 1.5rem; margin: 1.1rem 0;}
+  .v-light { border: 3px solid #e3e7ee; border-radius: 16px; padding: 1.2rem 1.4rem; margin: 1.1rem 0;}
+  .v-line { font-size: 1.06rem; line-height: 2.1; color: #1f2937;}
+  .v-div { border: 0; border-top: 1px solid #e6eaf0; margin: 1.1rem 0;}
+  .vbar-b { border-left: 5px solid #5468d4; padding-left: .8rem;}
+  .lbl { color: #6b7280; font-weight: 600; font-size: .85rem; margin-right: .2rem;}
+  sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px;}
+  .i1 { padding-left: 1.6rem;}
+  .i2 { padding-left: 3.2rem;}
+  .i3 { padding-left: 4.8rem;}
+  .doc-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 3px solid #d9dee6; border-radius: 14px; overflow: hidden; background: #fff;}
+  .doc-table th { background: #e2e6eb; text-align: left; padding: 1rem 1.3rem; font-weight: 800; font-size: 1.02rem; color: #17181a;}
+  .doc-table td { padding: 1.1rem 1.3rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.78; font-size: .97rem; color: #24262a; transition: background .2s;}
+  .doc-table tbody tr:hover td { background: #f8fafc;}
+  .doc-table tfoot td { border-top: 1px solid #d1d5db; background: #fbfcfd; color: #5b6472; font-size: .92rem;}
+  .kblue-soft { background: #cddcf5; color: #2b5fb0; padding: 2px 8px; border-radius: 6px; font-weight: 700;}
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1);}
+  @media print {
+    @page { margin: 14mm 12mm;}
+  #reading-progress, .print\:hidden { display: none !important;}
+  .reveal { opacity: 1 !important; transform: none !important;}
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important;}
+  .max-w-4xl { max-width: 100% !important; padding: 0 !important; margin: 0 !important;}
+  h1.title, h2.section, h3.sub { break-after: avoid-page;}
+  .cx, .v-outer, .v-black, .v-light, .doc-table tr, .scripture, .mcol { break-inside: avoid;}
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none;}
+  .cx, .mbox { transition: none;}}}}
+
+  /* joseph base typography */
   
-  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  @media print { #reading-progress { display: none !important; } }
-</style>
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  
+  .verse-link { color: inherit; cursor: pointer; }
+  
+  ul.bullets { list-style: none; padding: 0; }
+  
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  
+    table.md { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; background: #fff; margin: 1.5rem 0; font-size: .92rem; }
+  
+  table.md th { background: #e3e7ec; text-align: left; padding: .8rem 1rem; font-weight: 700; color: #1b1b1b; }
+  
+  table.md td { padding: .85rem 1rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.65; color: #1b1b1b; }
+  
+  table.md td + td, table.md th + th { border-left: 1px solid #e5e7eb; }
+  
+  table.md tbody tr:hover td { background: #f8fafc; }
+  
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }</style>
 </head>
 <body class="bg-white">
 <div id="reading-progress" aria-hidden="true"></div>
@@ -70,87 +147,39 @@
   </div>
 </div>
 <div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
-    <h1 class="title reveal"><span class="lang-pt">Sessão 2: A Melodia Temática da Bíblia Hebraica</span><span class="lang-en">Session 2: The Thematic Melody of the Hebrew Bible</span></h1>
-    <hr class="rule">
-    <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">Como uma sinfonia, a Bíblia Hebraica apresenta aos leitores um padrão de temas-chave em seus capítulos iniciais, estabelecendo um modelo para o restante da coleção.</span><span class="lang-en">Like a symphony, the Hebrew Bible introduces readers to a pattern of key themes in its opening chapters, setting a template for the rest of the collection.</span></li>
-      <li><span class="lang-pt">Os autores bíblicos estruturam a história de Yoseph em torno do padrão de temas de Gênesis 1-11, repetindo a sequência de eventos e repetindo o vocabulário-chave para sinalizar essa conexão.</span><span class="lang-en">The biblical authors structure Yoseph's story around the pattern of themes from Genesis 1-11 by repeating the sequence of events and by repeating key vocabulary to signal this connection.</span></li>
-    </ul>
+    <content>
+<p class="body reveal"><span class="lang-pt">Class Notes: Joseph
+50 of 215
+Session 9: Deceiving the Deceiver
+Key Takeaways
+As a disguised deceiver, Tamar turns the Eden deception on its head as she deceives her deceiver in
+order to preserve life.
+In the social world of the biblical characters, widows and sex workers are some of the most vulnerable
+members of society. Tamar further exposes herself to risk and stigma in order to overcome Yehudah’s
+failure to care for her.
+The stories of Tamar, Lot’s daughters, and Ruth form a three-part birth narrative for David’s lineage.
+The Design and Message of Genesis 38:12-23
+12 And the days were many and the daughter of Shua, the wife of Yehudah, died; and Yehudah was comforted,
+and he went up to his shearers of his flock at Timnah, he and his friend Hirah the Adullamite.
+13 And it was reported to Tamar, “Behold, your father-in-law is going up to Timnah to shear his flock.”
+14 And she removed her widow’s garments and she covered herself with a veil, and she wrapped herself,
+and she sat at the door of “Two eyes,” which is by the road to Timnah; because she saw that Shelah had
+grown up, and she had not been given to him as a wife.
+15 And Yehudah saw her, and he reckoned her to be a prostitute, because she had covered her face.
+16 And he turned aside to her by the road, and he said, “Come now, please, let me go in to you,”
+because he did not know that she was his daughter-in-law.
+17 And he said, “I will send you a young goat from the flock.” And she said, “If you will give a pledge
+until you send.” 18 And he said, “What pledge shall I give you?” And she said, “Your seal and your cord,
+and your staff that is in your hand.” And he gave to her and he went in to her, and she conceived by him.
+19 And she arose and she went, and she removed her veil and she put on her widow’s garments.</span></p>
 
-    <h2 class="section reveal"><span class="lang-pt">O Design Literário de Gênesis e a Melodia Temática da Bíblia Hebraica</span><span class="lang-en">The Literary Design of Genesis and the Thematic Melody of the Hebrew Bible</span></h2>
-    <table class="md reveal">
-  <tr><th>The Literary Design of Genesis and the Thematic Melody of the</th><th>Hebrew Bible</th></tr>
-  <tr><td>Genesis 1:1-2:3</td><td>Genesis 6:2-9:17</td></tr>
-  <tr><td>Genesis 2:4-5:32</td><td>De-Creation by Water</td></tr>
-  <tr><td>Creation Out of Waters</td><td>4:1-26</td></tr>
-  <tr><td>2:4-3:24</td><td>5:1-32</td></tr>
-  <tr><td>1:3-13</td><td>8:6-9:17</td></tr>
-  <tr><td>1:14-31</td><td>6:1-7:17a</td></tr>
-  <tr><td>1:1-2</td><td>Folly &amp; Fallout 2nd Generation</td></tr>
-  <tr><td>2:1-3</td><td>Divided Lineage 3 Sons</td></tr>
-  <tr><td>Folly &amp; Fallout 1st Generation</td><td>7:17b-8:5</td></tr>
-  <tr><td>Day 1</td><td>4:1-16<br>4:17-26</td></tr>
-  <tr><td>Day 4</td><td>5:1-2<br>5:3-27<br>5:28-32</td></tr>
-  <tr><td>2:4-17</td><td>Genesis 11:1-9</td></tr>
-  <tr><td>3:14-24</td><td>De-Creation by Scattering</td></tr>
-  <tr><td>Day 2<br>Day 3</td><td>11:1-2</td></tr>
-  <tr><td>Day 5<br>Day 6</td><td>11:8-9</td></tr>
-  <tr><td>2:18-3:13</td><td>11:3-7</td></tr>
-  <tr><td>Genesis 1:1-9:17. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</td><td>10:32</td></tr>
-  <tr><td>Genesis 6:1-9:17</td><td>11:3-4<br>11:5<br>11:6-7</td></tr>
-  <tr><td>Genesis 9:18-10:32</td><td>10:6-20</td></tr>
-  <tr><td>New Creation Out of Water</td><td>10:21-31</td></tr>
-  <tr><td>9:18-29</td><td>Ham</td></tr>
-  <tr><td>10:1-32</td><td>Shem</td></tr>
-  <tr><td>8:6-9:17</td><td>Genesis 11:27-12:5</td></tr>
-  <tr><td>6:1-7:17a</td><td>De-Creation by Death, New Creation by Blessing</td></tr>
-  <tr><td>7:17b-8:5</td><td>11:27-32</td></tr>
-  <tr><td>Folly &amp; Fallout 1st &amp; 2nd Generation</td><td>12:1-5</td></tr>
-  <tr><td>Divided Lineage 3 Sons</td><td>11:26b</td></tr>
-  <tr><td>9:18-19</td><td>11:27-28<br>11:29-30<br>11:31-32</td></tr>
-  <tr><td>9:28-29</td><td>12:1-3<br>12:4<br>12:5</td></tr>
-  <tr><td>10:1</td><td></td></tr>
-  <tr><td>9:20-27</td><td></td></tr>
-  <tr><td>10:2-5</td><td></td></tr>
-  <tr><td>Japheth</td><td></td></tr>
-  <tr><td>Genesis 6:1-11:9. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</td><td></td></tr>
-  <tr><td>Genesis 11:1-9</td><td></td></tr>
-  <tr><td>Genesis 11:10-26</td><td></td></tr>
-  <tr><td>New Creation by Scattering</td><td></td></tr>
-  <tr><td>Divided Lineage, 10 Generations + 3 Sons</td><td></td></tr>
-  <tr><td>11:1-2</td><td></td></tr>
-  <tr><td>11:8-9</td><td></td></tr>
-  <tr><td>11:3-7</td><td></td></tr>
-  <tr><td>11:10a</td><td></td></tr>
-  <tr><td>11:10b-26a</td><td></td></tr>
-  <tr><td>11:3-4<br>11:5<br>11:6-7</td><td></td></tr>
-  <tr><td>Genesis 11:1-12:5. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</td><td></td></tr>
-</table>
-  <p class="caption"><span class="lang-pt">Gênesis 1:1-9:17. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: Abraão (2021). Gênesis 6:1-11:9. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: Abraão (2021). Gênesis 11:1-12:5. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: Abraão (2021).</span><span class="lang-en">Genesis 1:1-9:17. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021). Genesis 6:1-11:9. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021). Genesis 11:1-12:5. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
+<p class="body reveal"><span class="lang-pt">Genesis 38:12-23. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).
+Tamar’s counter-deception is the mirror image of the Eden story: where the serpent deceived Eve to bring
+death, Tamar deceives Yehudah to bring life — preserving the seed of Yehudah’s family line. She takes on
+the role of a vulnerable outsider (a widow disguised as a sex-worker) and risks her own life to overcome
+Yehudah’s failure to care for her. In doing so she becomes a foremother in the line that leads to David,
+joining Ruth and Lot’s daughters as women who, through daring action, secure the future of God’s people.</span></p>
 
-    <p class="body reveal"><span class="lang-pt">Esses ciclos temáticos estabelecem um padrão narrativo, uma melodia temática, que se recicla a cada geração, desenvolvendo e avançando a melodia. A melodia básica é assim.</span><span class="lang-en">These thematic cycles set up a narrative pattern, a thematic melody, that re-cycles with each generation, developing and advancing the melody. The basic melody goes like this.</span></p>
-
-    <h3 class="sub reveal"><span class="lang-pt">1. Criação e bênção</span><span class="lang-en">1. Creation and blessing</span></h3>
-    <p class="body reveal"><span class="lang-pt">Deus traz ordem/vida/bênção para fora do caos/águas/morte/maldição.</span><span class="lang-en">God brings order/life/blessing out of chaos/waters/death/curse.</span></p>
-    <p class="body reveal"><span class="lang-pt"><span class="keylabel">Palavras-chave</span><br>Vida, bênção, criar, estabelecer, semente, brotar, crescer, fruto, frutífero, multiplicar<br>Sete, plenitude, juramento (todos grafados שבע)<br>Imagens-chave: terra seca, refúgio, segurança, ordem</span><span class="lang-en"><span class="keylabel">Key words</span><br>Life, blessing, create, establish, seed, sprout, grow, fruit, fruitful, multiply<br>Seven, fullness, oath (all spelled שבע)<br>Key images: dry land, refuge, safety, order</span></p>
-
-    <h3 class="sub reveal"><span class="lang-pt">2. Loucura, teste e fracasso (também chamado de "a queda tola")</span><span class="lang-en">2. Folly, test, and failure (a.k.a. "the foolish fall")</span></h3>
-    <p class="body reveal"><span class="lang-pt">Deus convida um parceiro humano escolhido a compartilhar da ordem/vida/bênção, o que coloca uma decisão/teste de sua confiabilidade sobre a mesa.</span><span class="lang-en">God invites a chosen human partner to share in the order/life/blessing, which places a decision/test of their trustworthiness on the table.</span></p>
-    <p class="body reveal"><span class="lang-pt">O parceiro escolhido de Deus falha/passa no teste, geralmente envolvendo decepção/divisão/violência.</span><span class="lang-en">God's chosen partner fails/succeeds the test, usually involving deception/division/violence.</span></p>
-    <p class="body reveal"><span class="lang-pt">A mesma pessoa/próxima geração enfrenta sua própria oportunidade e teste, e falha/passa, geralmente envolvendo uma expressão intensificada de decepção/divisão/violência.</span><span class="lang-en">The same person/next generation faces their own opportunity and test and fails/succeeds, usually involving an intensified expression of deception/division/violence.</span></p>
-    <p class="body reveal"><span class="lang-pt">A sequência escalada de testes e fracassos leva a uma separação entre os personagens-chave, de modo que uma pessoa ou família se separa do resto e é escolhida por Deus para um novo futuro.</span><span class="lang-en">The escalating sequence of tests and failures leads to a separation between the key characters so that one person or family splits off from the rest and is chosen by God for a new future.</span></p>
-    <p class="body reveal"><span class="lang-pt">Palavras-chave encontradas em Gênesis 2-3, 4-5, 6:1-4.</span><span class="lang-en">Key words found in Genesis 2-3, 4-5, 6:1-4.</span></p>
-
-    <h3 class="sub reveal"><span class="lang-pt">3. Des-criação e re-criação</span><span class="lang-en">3. De-creation and re-creation</span></h3>
-    <p class="body reveal"><span class="lang-pt">Des-criação: Deus provoca uma inversão do nº 1 acima, geralmente uma escalada de caos/morte/maldição.</span><span class="lang-en">De-creation: God brings about an inversion of #1 above, usually an escalation of chaos/death/curse.</span></p>
-    <p class="body reveal"><span class="lang-pt">A partir dessa des-criação, Deus escolhe/preserva um remanescente/semente e inicia um novo movimento de re-criação através dele, muitas vezes marcado por alianças e trocadilhos sobre a raiz hebraica שבע, "sete/plenitude/juramento" ou "aliança" (ברית).</span><span class="lang-en">Out of that de-creation, God chooses/preserves a remnant/seed and begins a new movement of re-creation through them, often marked by covenants and wordplays on the Hebrew root שבע, "seven/fullness/oath" or "covenant" (ברית).</span></p>
-    <p class="body reveal"><span class="lang-pt">Palavras-chave encontradas em Gênesis 6:5-9:17.</span><span class="lang-en">Key words found in Genesis 6:5-9:17.</span></p>
-
-    <h3 class="sub reveal"><span class="lang-pt">4. Repita</span><span class="lang-en">4. Repeat</span></h3>
-    <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
-    <p class="body reveal"><span class="lang-pt">De que maneiras você vê a história de Yoseph reencenando eventos dos capítulos iniciais de Gênesis?</span><span class="lang-en">In what ways do you see Yoseph's story replaying events from the early chapters of Genesis?</span></p>
-  
 <footer class="page-footer">
     <span class="lang-pt">Anotações de Aula: José</span><span class="lang-en">Class Notes: Joseph</span>
     <span class="lang-pt">Sessão 9</span><span class="lang-en">Session 9</span>

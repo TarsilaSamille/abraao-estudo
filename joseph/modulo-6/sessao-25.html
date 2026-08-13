@@ -11,46 +11,123 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../css/shared-tutorial.css">
   <style>
-  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
-  html[lang="pt"] .lang-en { display: none !important; }
-  html[lang="en"] .lang-pt { display: none !important; }
-  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
-  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
-  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
-  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
-  .verse-link { color: inherit; cursor: pointer; }
-  ul.bullets { list-style: none; padding: 0; }
-  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
-  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
-  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-  .keylabel { font-weight: 700; color: #17181a; }
-    table.md { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; background: #fff; margin: 1.5rem 0; font-size: .92rem; }
-  table.md th { background: #e3e7ec; text-align: left; padding: .8rem 1rem; font-weight: 700; color: #1b1b1b; }
-  table.md td { padding: .85rem 1rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.65; color: #1b1b1b; }
-  table.md td + td, table.md th + th { border-left: 1px solid #e5e7eb; }
-  table.md tbody tr:hover td { background: #f8fafc; }
-  .hl-tan { background: #fae3c3; color: #90362e; }
-  .hl-sky { background: #d9ecfd; color: #404ba6; }
-  .hl-grn { background: #d3f1cc; color: #2a6145; }
-  .hl-rose { background: #f9e3de; color: #97294e; }
-  .hl-brick { background: #b4533a; color: #fff; }
-  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
-  .table-img img { width: 100%; display: block; }
-  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
-  .reveal.visible { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
-  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
-  .nav-btn:hover { background: #f1f5f9; }
-  .nav-back { left: 1rem; }
-  .nav-lang { right: 1rem; }
-  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
+  .reveal.visible { opacity: 1 !important; transform: none !important; }  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s;}
+  .ref:hover { color: #2563eb;}
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s;}
+  .scripture:hover { border-left-color: #9aa7b8;}
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem;}
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem;}
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a;}
+  .scripture .innerbox { background: #f6f8fa; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1rem;}
+  .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem;}
+  .macro { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; align-items: start; margin: 2rem 0 .75rem;}
+  .mcol { border: 3px solid #2e7d4e; border-radius: 12px; padding: .9rem .9rem 1rem; background: #fff;}
+  .mcol.dark { border-color: #3d4453; margin-top: 1.3rem;}
+  .mtag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 3px 10px; border-radius: 5px;}
+  .mtag-green { background: #2e7d4e;}
+  .mtag-dark { background: #3d4453;}
+  .mcol-title { font-size: 1rem; font-weight: 800; color: #17181a; margin: .55rem 0 .8rem; line-height: 1.3;}
+  .mboxes { display: flex; gap: .55rem;}
+  .mbox { flex: 1; border: 3px solid #b9c2cf; border-radius: 9px; background: #fff; min-height: 15.5rem; position: relative; transition: box-shadow .25s, transform .25s;}
+  .mbox:hover { box-shadow: 0 8px 20px -10px rgba(30,41,59,.4); transform: translateY(-3px);}
+  .mbox .mhdr { position: absolute; top: .55rem; left: .55rem; right: .55rem; background: #7d8697; color: #fff; font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 5px;}
+  .mbox.s1 { margin-top: 0;}
+  .mbox.s2 { margin-top: 2.4rem; min-height: 13rem;}
+  .mbox.s3 { margin-top: 2.4rem; min-height: 13rem;}
+  @media (max-width: 860px) { .macro { grid-template-columns: 1fr;}
+  .mcol.dark { margin-top: 0;}
+  .mbox, .mbox.s2, .mbox.s3 { min-height: 7.5rem; margin-top: 0;}
+  .cx { border: 3px solid; border-radius: 12px; padding: 1.35rem 1.5rem 1.2rem; margin: 1.15rem 0; transition: box-shadow .25s, transform .25s;}
+  .cx:hover { box-shadow: 0 12px 26px -16px rgba(23,24,26,.45); transform: translateY(-2px);}
+  .cx-tag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 1px 13px; border-radius: 6px; margin-bottom: .7rem;}
+  .cx h4 { font-weight: 800; font-size: 1.06rem; color: #17181a; margin-bottom: .7rem;}
+  .cx ul.bullets > li { font-size: .99rem; margin-bottom: .45rem;}
+  .cx-slate  { border-color: #6b7280; background: #e9ebee;}
+  .cx-slate  .cx-tag { background: #6b7280;}
+  .cx-rust   { border-color: #c0562f; background: #f7e6dd;}
+  .cx-rust   .cx-tag { background: #c0562f;}
+  .cx-rose   { border-color: #c04a63; background: #f7e0e5;}
+  .cx-rose   .cx-tag { background: #c04a63;}
+  .cx-blue   { border-color: #5468d4; background: #e4e8f9;}
+  .cx-blue   .cx-tag { background: #5468d4;}
+  .cx-green  { border-color: #2e7d4e; background: #dfeee2;}
+  .cx-green  .cx-tag { background: #2e7d4e;}
+  .cx-purple { border-color: #8b5cf6; background: #efe2f8;}
+  .cx-purple .cx-tag { background: #8b5cf6;}
+  .cx-tan    { border-color: #8a6d3b; background: #ece7dc;}
+  .cx-tan    .cx-tag { background: #8a6d3b;}
+  .k { display: inline; padding: 3px 9px; border-radius: 6px; font-weight: 700; color: #fff; line-height: 1.85; -webkit-box-decoration-break: clone; box-decoration-break: clone;}
+  .k-blue   { background: #3b82c4;}
+  .k-green  { background: #2e7d4e;}
+  .k-rose { background: #c04a63;}
+  .k-gray   { background: #6b7280;}
+  .k-rust   { background: #bf5a2b;}
+  .k-teal { background: #0d7d8c;}
+  .k-purple { background: #7c5ad0;}
+  .k-brown  { background: #8a6d3b;}
+  .t-teal { color: #0d8aa0; font-weight: 700;}
+  .v-outer { border: 3px solid #e3e7ee; border-radius: 20px; padding: 1.4rem 1.5rem; margin: 1.4rem 0;}
+  .v-black { border: 3px solid #17181a; border-radius: 16px; padding: 1.3rem 1.5rem; margin: 1.1rem 0;}
+  .v-light { border: 3px solid #e3e7ee; border-radius: 16px; padding: 1.2rem 1.4rem; margin: 1.1rem 0;}
+  .v-line { font-size: 1.06rem; line-height: 2.1; color: #1f2937;}
+  .v-div { border: 0; border-top: 1px solid #e6eaf0; margin: 1.1rem 0;}
+  .vbar-b { border-left: 5px solid #5468d4; padding-left: .8rem;}
+  .lbl { color: #6b7280; font-weight: 600; font-size: .85rem; margin-right: .2rem;}
+  sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px;}
+  .i1 { padding-left: 1.6rem;}
+  .i2 { padding-left: 3.2rem;}
+  .i3 { padding-left: 4.8rem;}
+  .doc-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 3px solid #d9dee6; border-radius: 14px; overflow: hidden; background: #fff;}
+  .doc-table th { background: #e2e6eb; text-align: left; padding: 1rem 1.3rem; font-weight: 800; font-size: 1.02rem; color: #17181a;}
+  .doc-table td { padding: 1.1rem 1.3rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.78; font-size: .97rem; color: #24262a; transition: background .2s;}
+  .doc-table tbody tr:hover td { background: #f8fafc;}
+  .doc-table tfoot td { border-top: 1px solid #d1d5db; background: #fbfcfd; color: #5b6472; font-size: .92rem;}
+  .kblue-soft { background: #cddcf5; color: #2b5fb0; padding: 2px 8px; border-radius: 6px; font-weight: 700;}
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1);}
+  @media print {
+    @page { margin: 14mm 12mm;}
+  #reading-progress, .print\:hidden { display: none !important;}
+  .reveal { opacity: 1 !important; transform: none !important;}
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important;}
+  .max-w-4xl { max-width: 100% !important; padding: 0 !important; margin: 0 !important;}
+  h1.title, h2.section, h3.sub { break-after: avoid-page;}
+  .cx, .v-outer, .v-black, .v-light, .doc-table tr, .scripture, .mcol { break-inside: avoid;}
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none;}
+  .cx, .mbox { transition: none;}}}}
+
+  /* joseph base typography */
   
-  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  @media print { #reading-progress { display: none !important; } }
-</style>
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  
+  .verse-link { color: inherit; cursor: pointer; }
+  
+  ul.bullets { list-style: none; padding: 0; }
+  
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  
+    table.md { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; background: #fff; margin: 1.5rem 0; font-size: .92rem; }
+  
+  table.md th { background: #e3e7ec; text-align: left; padding: .8rem 1rem; font-weight: 700; color: #1b1b1b; }
+  
+  table.md td { padding: .85rem 1rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.65; color: #1b1b1b; }
+  
+  table.md td + td, table.md th + th { border-left: 1px solid #e5e7eb; }
+  
+  table.md tbody tr:hover td { background: #f8fafc; }
+  
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }</style>
 </head>
 <body class="bg-white">
 <div id="reading-progress" aria-hidden="true"></div>
@@ -74,91 +151,91 @@
     <hr class="rule">
     <h2 class="section reveal">Key Takeaways</h2>
     <ul class="bullets reveal">
-      <li>Yaaqov’s words for his sons often carry deep connections to the fate of their descendants in Joshua, Judges, and beyond.</li>
-      <li>Dan’s blessing could mean he will be a judge over the snake or a snake himself.</li>
-      <li>Yoseph is set on analogy with Ishmael, recasting the division of Ishmael and Isaac as a story of reconciliation in this new generation and into Israel’s future.</li>
+      <li><span class="lang-en">Yaaqov’s words for his sons often carry deep connections to the fate of their descendants in Joshua, Judges, and beyond.</span></li>
+      <li><span class="lang-en">Dan’s blessing could mean he will be a judge over the snake or a snake himself.</span></li>
+      <li><span class="lang-en">Yoseph is set on analogy with Ishmael, recasting the division of Ishmael and Isaac as a story of reconciliation in this new generation and into Israel’s future.</span></li>
     </ul>
     <ul class="bullets reveal">
-      <li>The Word About Zevulun</li>
-      <li>13 Zevulun , he dwells on the coast of the sea</li>
-      <li>and he is on the coast of ships,</li>
+      <li><span class="lang-en">The Word About Zevulun</span></li>
+      <li><span class="lang-en">13 Zevulun , he dwells on the coast of the sea</span></li>
+      <li><span class="lang-en">and he is on the coast of ships,</span></li>
     </ul>
     <p class="body reveal">his north part is by Sidon.</p>
     <ul class="bullets reveal">
       <li>a</li>
-      <li>14 Yissakhar , he is a strong donkey</li>
+      <li><span class="lang-en">14 Yissakhar , he is a strong donkey</span></li>
     </ul>
-    <p class="body reveal">crouching down between the sheep pens.</p>
+    <p class="body reveal"><span class="lang-en">crouching down between the sheep pens.</span></p>
     <h2 class="section reveal">b</h2>
-    <p class="body reveal">15 And he saw a resting place, that it was good and the land, that it was pleasant , a' and he bowed his shoulder to carry and he became a forced laborer 16 Dan  (דן) , he will judge  (ידין) his people like one of the tribes of Yisra'el.</p>
+    <p class="body reveal"><span class="lang-en">15 And he saw a resting place, that it was good and the land, that it was pleasant , a' and he bowed his shoulder to carry and he became a forced laborer 16 Dan  (דן) , he will judge  (ידין) his people like one of the tribes of Yisra'el.</span></p>
     <ul class="bullets reveal">
-      <li>May Dan  (דן) be a snake on the path,</li>
-      <li>a viper along the way,</li>
-      <li>which bites the heel of the horse,</li>
+      <li><span class="lang-en">May Dan  (דן) be a snake on the path,</span></li>
+      <li><span class="lang-en">a viper along the way,</span></li>
+      <li><span class="lang-en">which bites the heel of the horse,</span></li>
     </ul>
-    <p class="body reveal">so its rider falls backward. 18 O Yahweh, I am waiting for your rescue! 19 Gad  (גד) , a troop  (גדוד) will raid him  (יגדנו) and he will raid  (יגד) with the heel .</p>
-<p class="body reveal">Genesis 49:13-21. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022) Yaaqov’s word about Zevulun is linked to the region of the land where his descendants would settle in the days of Joshua and the judges (see Josh. 19:10-16, 27, 34; Judg. 1:30). The puzzle, however, is that in Joshua’s days, Zevulun settled many miles inland from the northern coast of the Mediterranean. However, “dwelling” doesn’t have to mean permanent land-holding. The blessing of Moses on Zebulun (Deut. 33:18-20) also links this tribe to the sea.</p>
-    <h2 class="section reveal">The Word About Yissakhar</h2>
-    <p class="body reveal">IDF Mapping Unit. The Twelve Tribes of Israel, Israel Ministry of Foreign Affairs This word also relates to the future land settlement of the tribe of Yissakhar. Their land holdings were right next to Zevulun, inland from the coast and south-west of the lake of Galilee (see Josh. 17:10-11, 19:17-23). Judges 1:19-34 makes clear that most of the tribes were not able to clear the land of its Canaanite inhabitants, and so they intermixed with them. This narrative omits any mention of Yissakhar at all, a fact which this poem appears to explore. Yissakhar appears to have been a capable tribe (“a strong ass”) but he did not use his strength. Rather, this tribe laid down passively (lazily?) among the sheep pens. Why? Because he found a nice resting place that came with a cost: slavery and oppression, precisely the status to which Yissakhar's kinsmen reduced the Canaanites in Judges 1: “forced laborer” )(למס = Judges 1:28, 30, 33, 35.</p>
+    <p class="body reveal"><span class="lang-en">so its rider falls backward. 18 O Yahweh, I am waiting for your rescue! 19 Gad  (גד) , a troop  (גדוד) will raid him  (יגדנו) and he will raid  (יגד) with the heel .</span></p>
+<p class="body reveal"><span class="lang-en">Genesis 49:13-21. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022) Yaaqov’s word about Zevulun is linked to the region of the land where his descendants would settle in the days of Joshua and the judges (see Josh. 19:10-16, 27, 34; Judg. 1:30). The puzzle, however, is that in Joshua’s days, Zevulun settled many miles inland from the northern coast of the Mediterranean. However, “dwelling” doesn’t have to mean permanent land-holding. The blessing of Moses on Zebulun (Deut. 33:18-20) also links this tribe to the sea.</span></p>
+    <h2 class="section reveal"><span class="lang-en">The Word About Yissakhar</span></h2>
+    <p class="body reveal"><span class="lang-en">IDF Mapping Unit. The Twelve Tribes of Israel, Israel Ministry of Foreign Affairs This word also relates to the future land settlement of the tribe of Yissakhar. Their land holdings were right next to Zevulun, inland from the coast and south-west of the lake of Galilee (see Josh. 17:10-11, 19:17-23). Judges 1:19-34 makes clear that most of the tribes were not able to clear the land of its Canaanite inhabitants, and so they intermixed with them. This narrative omits any mention of Yissakhar at all, a fact which this poem appears to explore. Yissakhar appears to have been a capable tribe (“a strong ass”) but he did not use his strength. Rather, this tribe laid down passively (lazily?) among the sheep pens. Why? Because he found a nice resting place that came with a cost: slavery and oppression, precisely the status to which Yissakhar's kinsmen reduced the Canaanites in Judges 1: “forced laborer” )(למס = Judges 1:28, 30, 33, 35.</span></p>
     <ul class="bullets reveal">
-      <li>The Word About Dan</li>
-      <li>20 From Asher , rich is his bread,</li>
+      <li><span class="lang-en">The Word About Dan</span></li>
+      <li><span class="lang-en">20 From Asher , rich is his bread,</span></li>
     </ul>
-    <p class="body reveal">so he will give delights of a king.</p>
-    <h2 class="section reveal">21 Naphtali , a doe sent out,</h2>
-    <p class="body reveal">who gives lovely lambs.</p>
-<p class="body reveal">The middle line of Yaaqov's poetic word about Dan is capable of two different interpretations, and both seem intended.</p>
+    <p class="body reveal"><span class="lang-en">so he will give delights of a king.</span></p>
+    <h2 class="section reveal"><span class="lang-en">21 Naphtali , a doe sent out,</span></h2>
+    <p class="body reveal"><span class="lang-en">who gives lovely lambs.</span></p>
+<p class="body reveal"><span class="lang-en">The middle line of Yaaqov's poetic word about Dan is capable of two different interpretations, and both seem intended.</span></p>
     <ul class="bullets reveal">
       <li>Option 1</li>
-      <li>Genesis 49:16-17 Instructor's Translation</li>
-      <li>16 Dan, he will judge his people</li>
+      <li><span class="lang-en">Genesis 49:16-17 Instructor's Translation</span></li>
+      <li><span class="lang-en">16 Dan, he will judge his people</span></li>
     </ul>
-    <p class="body reveal">as one of the tribes of Israel. 17 May there be a judge of the snake on the path a viper along the way which bites the heels of the horse so that its rider falls backward.</p>
+    <p class="body reveal"><span class="lang-en">as one of the tribes of Israel. 17 May there be a judge of the snake on the path a viper along the way which bites the heels of the horse so that its rider falls backward.</span></p>
     <ul class="bullets reveal">
       <li>Option 2</li>
-      <li>Genesis 49:16-17 Instructor's Translation</li>
-      <li>16 Dan, he will judge his people</li>
+      <li><span class="lang-en">Genesis 49:16-17 Instructor's Translation</span></li>
+      <li><span class="lang-en">16 Dan, he will judge his people</span></li>
     </ul>
-    <p class="body reveal">as one of the tribes of Israel.</p>
+    <p class="body reveal"><span class="lang-en">as one of the tribes of Israel.</span></p>
     <ul class="bullets reveal">
-      <li>17 May Dan be a snake on the path</li>
-      <li>a viper along the way</li>
-      <li>which bites the heels of the horse</li>
+      <li><span class="lang-en">17 May Dan be a snake on the path</span></li>
+      <li><span class="lang-en">a viper along the way</span></li>
+      <li><span class="lang-en">which bites the heels of the horse</span></li>
     </ul>
-    <p class="body reveal">so that its rider falls backward. The translation issue revolves around the name “Dan” in the Hebrew phrase יהי דן נחש. The basic challenge is that the name Dan is the Hebrew word for “one who brings justice.” This yields two possible meanings for Yaaqov’s words. 1. Option 1 anticipates a future Danite who will judge the snake! 2. Option 2 portrays Dan as a snake on a path. The allusion to Genesis 3:15 is intentional, especially in light of the following word “viper” )(שפיפון, which contains the consonants of the key word for “strike” in Genesis 3:15 .)(שוף Dan never settled in their allotted tribal territory (Josh. 19:47) due to Canaanite hostility (Josh. 1:34), so they migrated north of Galilee and settled there (see Josh. 18). They never held permanent land, and they were a small but tenacious tribe. This tribe produced an important hero, whose story is cryptically anticipated in this poem: Samson in Judges 13-16. Samson was a Danite (Judg. 13:2), and his entire story depicts him as a deceiver who is deceived unto his own destruction, an anti-Genesis-3:15 figure. He is a wounded-victor, but he is deceived by his wife and suffers because of his own sins. The entire Samson narrative develops the “seed of the woman vs. snake” pattern from Genesis 3:15-16, which is anticipated here in riddle-like form.</p>
-<p class="body reveal">Early Jewish Interpretations of Genesis 49:16-18 “16. From those of the house of Dan shall redemption arise, and a judge. Together, all the tribes of the sons of Israel shall obey him. 17. This shall be the redeemer who is to arise from the house of Dan; he will be strong, exalted above all nations. He will be compared to the serpent that lies on the ground, and to a venomous serpent that lies in wait at the crossroads, that bites the horses in the heels and out of fear of it the rider turns around and falls backward. He is Samson bar Manoah, the dread of whom is upon his enemies and the fear of whom is upon those who hate him. He goes out to war against those that hate him and kills kings together with rulers.” 18. Our father Jacob said: 'Not to the redemption of Gideon bar Joash does my soul look, which is the redemption of an hour; and not to the redemption of Samson bar Manoah does my soul look, which is a transient redemption. Rather to the redemption of him does my soul look that you have said to bring your people, the house of Israel. To you, to your redemption, do I look, O Lord.'” McNamara, Martin, translator (1991). Targum Neofiti 1: Genesis (The Aramaic Bible).. Liturgical Press. “In blessing Dan, Jacob’s thoughts were occupied chiefly with his descendant Samson, who, like unto God, without any manner of assistance, conferred victory upon his people. Jacob even believed the strong, heroic man to be the Messiah, but when Samson’s death was revealed to him, he exclaimed, ‘I wait for Thy salvation, O Lord, for Thy help is unto all eternity, while Samson’s help is only for a time. The redemption,’ continued Jacob, ‘will not be accomplished by Samson the Danite, but by Elijah the Gadite, who will appear at the end of time.‘” Ginzberg, Louis (2003). Legends of the Jews (2nd ed.). Jewish Publication Society. 408.</p>
-    <h2 class="section reveal">The Cry for Deliverance</h2>
-    <p class="body reveal">This line appears, somewhat surprisingly, as a first-person exclamation addressed not to the sons, but to Yahweh. The phrase is a common liturgical one expressed in the Prophets and Psalms.</p>
+    <p class="body reveal"><span class="lang-en">so that its rider falls backward. The translation issue revolves around the name “Dan” in the Hebrew phrase יהי דן נחש. The basic challenge is that the name Dan is the Hebrew word for “one who brings justice.” This yields two possible meanings for Yaaqov’s words. 1. Option 1 anticipates a future Danite who will judge the snake! 2. Option 2 portrays Dan as a snake on a path. The allusion to Genesis 3:15 is intentional, especially in light of the following word “viper” )(שפיפון, which contains the consonants of the key word for “strike” in Genesis 3:15 .)(שוף Dan never settled in their allotted tribal territory (Josh. 19:47) due to Canaanite hostility (Josh. 1:34), so they migrated north of Galilee and settled there (see Josh. 18). They never held permanent land, and they were a small but tenacious tribe. This tribe produced an important hero, whose story is cryptically anticipated in this poem: Samson in Judges 13-16. Samson was a Danite (Judg. 13:2), and his entire story depicts him as a deceiver who is deceived unto his own destruction, an anti-Genesis-3:15 figure. He is a wounded-victor, but he is deceived by his wife and suffers because of his own sins. The entire Samson narrative develops the “seed of the woman vs. snake” pattern from Genesis 3:15-16, which is anticipated here in riddle-like form.</span></p>
+<p class="body reveal"><span class="lang-en">Early Jewish Interpretations of Genesis 49:16-18 “16. From those of the house of Dan shall redemption arise, and a judge. Together, all the tribes of the sons of Israel shall obey him. 17. This shall be the redeemer who is to arise from the house of Dan; he will be strong, exalted above all nations. He will be compared to the serpent that lies on the ground, and to a venomous serpent that lies in wait at the crossroads, that bites the horses in the heels and out of fear of it the rider turns around and falls backward. He is Samson bar Manoah, the dread of whom is upon his enemies and the fear of whom is upon those who hate him. He goes out to war against those that hate him and kills kings together with rulers.” 18. Our father Jacob said: 'Not to the redemption of Gideon bar Joash does my soul look, which is the redemption of an hour; and not to the redemption of Samson bar Manoah does my soul look, which is a transient redemption. Rather to the redemption of him does my soul look that you have said to bring your people, the house of Israel. To you, to your redemption, do I look, O Lord.'” McNamara, Martin, translator (1991). Targum Neofiti 1: Genesis (The Aramaic Bible).. Liturgical Press. “In blessing Dan, Jacob’s thoughts were occupied chiefly with his descendant Samson, who, like unto God, without any manner of assistance, conferred victory upon his people. Jacob even believed the strong, heroic man to be the Messiah, but when Samson’s death was revealed to him, he exclaimed, ‘I wait for Thy salvation, O Lord, for Thy help is unto all eternity, while Samson’s help is only for a time. The redemption,’ continued Jacob, ‘will not be accomplished by Samson the Danite, but by Elijah the Gadite, who will appear at the end of time.‘” Ginzberg, Louis (2003). Legends of the Jews (2nd ed.). Jewish Publication Society. 408.</span></p>
+    <h2 class="section reveal"><span class="lang-en">The Cry for Deliverance</span></h2>
+    <p class="body reveal"><span class="lang-en">This line appears, somewhat surprisingly, as a first-person exclamation addressed not to the sons, but to Yahweh. The phrase is a common liturgical one expressed in the Prophets and Psalms.</span></p>
     <ul class="bullets reveal">
       <li>Psalm 25:5 NASB</li>
-      <li>Lead me in your truth and teach me,</li>
+      <li><span class="lang-en">Lead me in your truth and teach me,</span></li>
     </ul>
-    <p class="body reveal">for you are the God of my deliverance; for you I wait all the day.</p>
+    <p class="body reveal"><span class="lang-en">for you are the God of my deliverance; for you I wait all the day.</span></p>
     <ul class="bullets reveal">
       <li>Isaiah 25:9 NASB</li>
-      <li>And it will be said in that day,</li>
+      <li><span class="lang-en">And it will be said in that day,</span></li>
     </ul>
-    <p class="body reveal">“Behold, this is our God for whom we have waited that he might save us.</p>
-    <h2 class="section reveal">This is the LORD for whom we have waited;</h2>
-    <p class="body reveal">let us rejoice and be glad in his deliverance.” Isaiah 33:2 NASB O LORD, be gracious to us; we have waited for you.</p>
-    <h2 class="section reveal">Be their strength every morning,</h2>
-    <p class="body reveal">our deliverance also in the time of distress.</p>
-<p class="body reveal">Notice that this line appears in the structural center of the entire chapter, in between two sets of poetic sayings about the brothers. But more specifically, it appears after the third poetic saying in the first two sets. Interestingly, those brothers feature Yehudah and Dan, both of whom are described as contrasting animals (lion vs. snake), and with imagery that recalls the Eden promise of Genesis 3:15-16 about a future seed of the woman who will crush the snake and restore humanity’s rule over the world. If the above observations about the link between Yehudah and Dan are correct, that would place Yaaqov’s cry for deliverance in a seventh position after the two sets of three poetic sayings. This is a common design strategy in biblical literature, to place a climactic seventh statement after a series of triads (like the seventh day after the six days of creation in Genesis 1:1-2:3, or like the 10th Passover plague after the nine plagues of the Exodus in Exodus 7-13).</p>
+    <p class="body reveal"><span class="lang-en">“Behold, this is our God for whom we have waited that he might save us.</span></p>
+    <h2 class="section reveal"><span class="lang-en">This is the LORD for whom we have waited;</span></h2>
+    <p class="body reveal"><span class="lang-en">let us rejoice and be glad in his deliverance.” Isaiah 33:2 NASB O LORD, be gracious to us; we have waited for you.</span></p>
+    <h2 class="section reveal"><span class="lang-en">Be their strength every morning,</span></h2>
+    <p class="body reveal"><span class="lang-en">our deliverance also in the time of distress.</span></p>
+<p class="body reveal"><span class="lang-en">Notice that this line appears in the structural center of the entire chapter, in between two sets of poetic sayings about the brothers. But more specifically, it appears after the third poetic saying in the first two sets. Interestingly, those brothers feature Yehudah and Dan, both of whom are described as contrasting animals (lion vs. snake), and with imagery that recalls the Eden promise of Genesis 3:15-16 about a future seed of the woman who will crush the snake and restore humanity’s rule over the world. If the above observations about the link between Yehudah and Dan are correct, that would place Yaaqov’s cry for deliverance in a seventh position after the two sets of three poetic sayings. This is a common design strategy in biblical literature, to place a climactic seventh statement after a series of triads (like the seventh day after the six days of creation in Genesis 1:1-2:3, or like the 10th Passover plague after the nine plagues of the Exodus in Exodus 7-13).</span></p>
     <ul class="bullets reveal">
       <li>Triad #1</li>
       <li>Triad #2</li>
       <li>1. Reuven</li>
       <li>4. Zevulun</li>
-      <li>2. Shimon and Levi</li>
+      <li><span class="lang-en">2. Shimon and Levi</span></li>
       <li>5. Yissakhar</li>
     </ul>
-    <p class="body reveal">3. Yehudah the lion ! 6. Dan the snake !</p>
-    <h2 class="section reveal">7. “For your deliverance I wait, Yahweh!”</h2>
-    <p class="body reveal">Two Triads of Jacob’s Sons. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</p>
-    <h2 class="section reveal">The Word About Gad</h2>
-    <p class="body reveal">This poem exploits the letters of Gad’s name and their similarity with the Hebrew word gedud, which means “a unit of soldiers” (see this word in 1 Sam. 30:8, 15, 23; 2 Sam. 3:22; 2 Kgs. 6:23), or the verb gad, “to raid.” This poem anticipates the role played by Gad (along with Reuven and half the tribe of Manasseh) in the conquest of the land: He will cross over and participate in the raid on Canaan (Num. 32:16–32; Deut. 3:18; Josh. 1:12, 4:12). There is a translation challenge revolving around the meaning of “heel.” Is it the (1) object of “raid” (i.e., Gad will be stomped by a raiding heel of an enemy army)? Or (2) an instrumental accusative, in which case this line joins with the poem about Dan—Gad also will produce one who “raids with the heel,” which is another allusion to Genesis 3:15.</p>
-    <h2 class="section reveal">The Word About Asher</h2>
-    <p class="body reveal">The name “Asher” is formed from the Semitic root word “to declare someone is blessed with abundance” (see the word in other contexts in Gen. 30:13; Mal. 3:12; Ps. 72:17). And this “blessing” theme of Asher’s name</p>
+    <p class="body reveal"><span class="lang-en">3. Yehudah the lion ! 6. Dan the snake !</span></p>
+    <h2 class="section reveal"><span class="lang-en">7. “For your deliverance I wait, Yahweh!”</span></h2>
+    <p class="body reveal"><span class="lang-en">Two Triads of Jacob’s Sons. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
+    <h2 class="section reveal"><span class="lang-en">The Word About Gad</span></h2>
+    <p class="body reveal"><span class="lang-en">This poem exploits the letters of Gad’s name and their similarity with the Hebrew word gedud, which means “a unit of soldiers” (see this word in 1 Sam. 30:8, 15, 23; 2 Sam. 3:22; 2 Kgs. 6:23), or the verb gad, “to raid.” This poem anticipates the role played by Gad (along with Reuven and half the tribe of Manasseh) in the conquest of the land: He will cross over and participate in the raid on Canaan (Num. 32:16–32; Deut. 3:18; Josh. 1:12, 4:12). There is a translation challenge revolving around the meaning of “heel.” Is it the (1) object of “raid” (i.e., Gad will be stomped by a raiding heel of an enemy army)? Or (2) an instrumental accusative, in which case this line joins with the poem about Dan—Gad also will produce one who “raids with the heel,” which is another allusion to Genesis 3:15.</span></p>
+    <h2 class="section reveal"><span class="lang-en">The Word About Asher</span></h2>
+    <p class="body reveal"><span class="lang-en">The name “Asher” is formed from the Semitic root word “to declare someone is blessed with abundance” (see the word in other contexts in Gen. 30:13; Mal. 3:12; Ps. 72:17). And this “blessing” theme of Asher’s name</span></p>
 <table class="md reveal">
   <tr><th>The opening line of the poem about Yoseph is a riddle filled with Hebrew words capable of more than one</th><th>meaning. This produces an “overabundance of possible meaning” that matches the theme of the poem,</th></tr>
   <tr><td>26 the blessings of your father, they are mighty<br>above the blessings of the mountains<br>up to the desire of eternal hills .</td><td>Yoseph is compared to a young male donkey (a foal), born to a wild female donkey, which finds itself by a<br>desert spring on the way to Shur, a desert oasis stop south of the land promised to Abraham (see Gen. 16:7<br>and 20:7).</td></tr>
@@ -173,72 +250,72 @@
   <tr><td>Genesis 49:22-24 Instructor&#x27;s Translation</td><td></td></tr>
 </table>
   <p class="caption"><span class="lang-pt">Gênesis X:Y. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2021).</span><span class="lang-en">Genesis X:Y. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2021).</span></p>
-    <p class="body reveal">evokes the Eden narrative, which will be drawn upon in this short poem. This tribe settled west of Galilee in the fertile hills between Carmel and the coast where the Phoenicians were located (Josh. 19:24-31). The fertility of this region is reemphasized in Moses’ blessing (Deut. 33:24). The “delights” )(מעדן are an allusion to Eden )(עדן, but tragically this tribe will offer its Eden delights to the Canaanites, as recounted in Judges 1:13-21.</p>
-    <h2 class="section reveal">The Word About Naphtali</h2>
-    <p class="body reveal">This tribe settled west of the lake of Galilee from its southern end up to Lake Huleh, north of the lake of Galilee (Josh. 19:32-39). They had to coexist with Canaanites they could not drive out, until they won a few cities for themselves (Judg. 1:33). This tribe played an honorable role in the battle of Deborah because Barak, the Israelite general, was from Naphtali (Judg. 4:6, 5:18). The final two words (lit. ‘imrey shapher / אמרי שפר) admit multiple interpretations. 1. “lovely words” = a herald of victory in the war of Deborah, see Judges 4:6, 10 and 5:18. 2. “lovely lambs/fawns = tribute of animals to Canaanite overlords, just as “give” means offering tribute in the words spoken to Yissakhar (Gen. 49:15) and Asher (Gen. 49:20). 3. “lovely boughs” = metaphor of a spreading tree, an image of fruitfulness.</p>
+    <p class="body reveal"><span class="lang-en">evokes the Eden narrative, which will be drawn upon in this short poem. This tribe settled west of Galilee in the fertile hills between Carmel and the coast where the Phoenicians were located (Josh. 19:24-31). The fertility of this region is reemphasized in Moses’ blessing (Deut. 33:24). The “delights” )(מעדן are an allusion to Eden )(עדן, but tragically this tribe will offer its Eden delights to the Canaanites, as recounted in Judges 1:13-21.</span></p>
+    <h2 class="section reveal"><span class="lang-en">The Word About Naphtali</span></h2>
+    <p class="body reveal"><span class="lang-en">This tribe settled west of the lake of Galilee from its southern end up to Lake Huleh, north of the lake of Galilee (Josh. 19:32-39). They had to coexist with Canaanites they could not drive out, until they won a few cities for themselves (Judg. 1:33). This tribe played an honorable role in the battle of Deborah because Barak, the Israelite general, was from Naphtali (Judg. 4:6, 5:18). The final two words (lit. ‘imrey shapher / אמרי שפר) admit multiple interpretations. 1. “lovely words” = a herald of victory in the war of Deborah, see Judges 4:6, 10 and 5:18. 2. “lovely lambs/fawns = tribute of animals to Canaanite overlords, just as “give” means offering tribute in the words spoken to Yissakhar (Gen. 49:15) and Asher (Gen. 49:20). 3. “lovely boughs” = metaphor of a spreading tree, an image of fruitfulness.</span></p>
     <ul class="bullets reveal">
-      <li>The Manifold Blessing on Yoseph</li>
-      <li>22 Yoseph is a son of a wild female donkey,</li>
-      <li>son of a wild donkey by a spring,</li>
+      <li><span class="lang-en">The Manifold Blessing on Yoseph</span></li>
+      <li><span class="lang-en">22 Yoseph is a son of a wild female donkey,</span></li>
+      <li><span class="lang-en">son of a wild donkey by a spring,</span></li>
     </ul>
-    <p class="body reveal">(sons of) wild donkeys by Shur.</p>
-    <h2 class="section reveal">23 They were hostile to him, and they fired,</h2>
-    <p class="body reveal">and they were opposed to him, those possessing arrows.</p>
+    <p class="body reveal"><span class="lang-en">(sons of) wild donkeys by Shur.</span></p>
+    <h2 class="section reveal"><span class="lang-en">23 They were hostile to him, and they fired,</span></h2>
+    <p class="body reveal"><span class="lang-en">and they were opposed to him, those possessing arrows.</span></p>
     <ul class="bullets reveal">
-      <li>24 But his bow remained perpetual,</li>
-      <li>and the hands of his arms were agile,</li>
+      <li><span class="lang-en">24 But his bow remained perpetual,</span></li>
+      <li><span class="lang-en">and the hands of his arms were agile,</span></li>
     </ul>
-    <p class="body reveal">because of the hands of the Strong One of Ya'akov , from there is the Shepherd, the Rock of Yisra'el , 25 from the Elohim of your father , who will help you, and Shaddai , who will bless you: blessings from heaven above blessings from the deep, lying beneath blessings of breast and womb,</p>
-<p class="body reveal">Genesis 49:22-26. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022) The opening line of the poem about Yoseph is a riddle filled with Hebrew words capable of more than one meaning. This produces an “overabundance of possible meaning” that matches the theme of the poem, which is about a son given an overabundance of favor and abundance. Here are two possible translations alongside one another; both meanings are intended.</p>
+    <p class="body reveal"><span class="lang-en">because of the hands of the Strong One of Ya'akov , from there is the Shepherd, the Rock of Yisra'el , 25 from the Elohim of your father , who will help you, and Shaddai , who will bless you: blessings from heaven above blessings from the deep, lying beneath blessings of breast and womb,</span></p>
+<p class="body reveal"><span class="lang-en">Genesis 49:22-26. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022) The opening line of the poem about Yoseph is a riddle filled with Hebrew words capable of more than one meaning. This produces an “overabundance of possible meaning” that matches the theme of the poem, which is about a son given an overabundance of favor and abundance. Here are two possible translations alongside one another; both meanings are intended.</span></p>
     <ul class="bullets reveal">
       <li>Possible Meaning 1</li>
-      <li>Genesis 49:22-24 Instructor's Translation</li>
-      <li>22 Yoseph is a son of a wild female donkey,</li>
-      <li>son of a wild donkey by a spring,</li>
+      <li><span class="lang-en">Genesis 49:22-24 Instructor's Translation</span></li>
+      <li><span class="lang-en">22 Yoseph is a son of a wild female donkey,</span></li>
+      <li><span class="lang-en">son of a wild donkey by a spring,</span></li>
     </ul>
-    <p class="body reveal">(sons of) wild donkeys by Shur.</p>
-    <h2 class="section reveal">23 They were hostile to him, and they fired,</h2>
-    <p class="body reveal">and they were opposed to him, those possessing arrows.</p>
+    <p class="body reveal"><span class="lang-en">(sons of) wild donkeys by Shur.</span></p>
+    <h2 class="section reveal"><span class="lang-en">23 They were hostile to him, and they fired,</span></h2>
+    <p class="body reveal"><span class="lang-en">and they were opposed to him, those possessing arrows.</span></p>
     <ul class="bullets reveal">
-      <li>24 But his bow remained perpetual,</li>
-      <li>and the hands of his arms were agile</li>
+      <li><span class="lang-en">24 But his bow remained perpetual,</span></li>
+      <li><span class="lang-en">and the hands of his arms were agile</span></li>
     </ul>
-    <p class="body reveal">Yoseph is compared to a young male donkey (a foal), born to a wild female donkey, which finds itself by a desert spring on the way to Shur, a desert oasis stop south of the land promised to Abraham (see Gen. 16:7 and 20:7). This meaning uses the key words “wild female donkey” )(פרא // פרת, “spring” )(עין, and “Shur” )(שור to recall the stories of Hagar and Ishmael, comparing them to Rachel and Yoseph. Recall that in Genesis 16:7, Hagar flees from Sarai to a spring )(עין on the way to Shur )(שור, and she hears from an angel that her son will be a “wild donkey” )(פרא of a human. Recall that in Genesis 20:7, Ishmael and Hagar live in the wilderness where he “is a shooter of the bow” )(רבה קשת. The reference to a hostile “they” in 49:23 would then refer to Yoseph’s jealous older brothers, activating the brothers // Esau analogy (see Gen. 27:41, “And Esau was hostile )(שטם to Yaaqov”). On this reading, Yoseph is the blessed and chosen younger brother who unlocks the divine blessings of Eden for others, but he was persecuted by his elder brothers and chased into the wilderness like Ishmael. But God kept Yoseph’s arms stable and blessed him with cosmic blessing (skies and abyss = Gen. 1 vocabulary).</p>
+    <p class="body reveal"><span class="lang-en">Yoseph is compared to a young male donkey (a foal), born to a wild female donkey, which finds itself by a desert spring on the way to Shur, a desert oasis stop south of the land promised to Abraham (see Gen. 16:7 and 20:7). This meaning uses the key words “wild female donkey” )(פרא // פרת, “spring” )(עין, and “Shur” )(שור to recall the stories of Hagar and Ishmael, comparing them to Rachel and Yoseph. Recall that in Genesis 16:7, Hagar flees from Sarai to a spring )(עין on the way to Shur )(שור, and she hears from an angel that her son will be a “wild donkey” )(פרא of a human. Recall that in Genesis 20:7, Ishmael and Hagar live in the wilderness where he “is a shooter of the bow” )(רבה קשת. The reference to a hostile “they” in 49:23 would then refer to Yoseph’s jealous older brothers, activating the brothers // Esau analogy (see Gen. 27:41, “And Esau was hostile )(שטם to Yaaqov”). On this reading, Yoseph is the blessed and chosen younger brother who unlocks the divine blessings of Eden for others, but he was persecuted by his elder brothers and chased into the wilderness like Ishmael. But God kept Yoseph’s arms stable and blessed him with cosmic blessing (skies and abyss = Gen. 1 vocabulary).</span></p>
     <ul class="bullets reveal">
       <li>Possible Meaning 2</li>
-      <li>Genesis 49:22-24 Instructor's Translation</li>
+      <li><span class="lang-en">Genesis 49:22-24 Instructor's Translation</span></li>
     </ul>
-    <p class="body reveal">26 the blessings of your father, they are mighty above the blessings of the mountains up to the desire of eternal hills .</p>
-    <h2 class="section reveal">These will be upon the head of Yoseph ,</h2>
-    <p class="body reveal">on the crown of one set apart from his brothers.</p>
+    <p class="body reveal"><span class="lang-en">26 the blessings of your father, they are mighty above the blessings of the mountains up to the desire of eternal hills .</span></p>
+    <h2 class="section reveal"><span class="lang-en">These will be upon the head of Yoseph ,</span></h2>
+    <p class="body reveal"><span class="lang-en">on the crown of one set apart from his brothers.</span></p>
 <ul class="bullets reveal">
-      <li>22 Yoseph is a son of a fruit-bearing (tree),</li>
-      <li>a fruit-bearing (tree) by a spring,</li>
+      <li><span class="lang-en">22 Yoseph is a son of a fruit-bearing (tree),</span></li>
+      <li><span class="lang-en">a fruit-bearing (tree) by a spring,</span></li>
     </ul>
-    <p class="body reveal">daughters striding over a wall.</p>
-    <h2 class="section reveal">23 They were hostile to him, and they fired,</h2>
-    <p class="body reveal">and they were opposed to him, those possessing arrows.</p>
+    <p class="body reveal"><span class="lang-en">daughters striding over a wall.</span></p>
+    <h2 class="section reveal"><span class="lang-en">23 They were hostile to him, and they fired,</span></h2>
+    <p class="body reveal"><span class="lang-en">and they were opposed to him, those possessing arrows.</span></p>
     <ul class="bullets reveal">
-      <li>24 But his bow remained perpetual,</li>
-      <li>and the hands of his arms were agile</li>
+      <li><span class="lang-en">24 But his bow remained perpetual,</span></li>
+      <li><span class="lang-en">and the hands of his arms were agile</span></li>
     </ul>
-    <p class="body reveal">Yoseph is compared to a branch from a fruit-bearing tree (literally “son of a fruit-bearer”) that is located by a spring, with tendril-runners (literally “daughters”) that climb over walls to spread their fruitfulness outside the garden. “Son of a fruit-bearer” is a possible way the images could be understood, and so Yoseph would be compared to a fruit-tree bearing much fruit (i.e., Yaaqov and Rachel). The “spring” would be the gift of Yahweh’s blessing on the chosen ones. The “wall” would represent the overabundance of God’s fruitful blessing, so that even a garden wall can’t contain the blessing as it spreads out of its original area of planting. These Eden images are so rooted in the narrative of Genesis 2-3, as well as the Eden imagery activated by Yoseph’s rule over his family in the land of Goshen (which is an Eden place), it is unlikely that these possible meanings were not in the mind of the poet.</p>
-    <h2 class="section reveal">The Royal Blessing on Yoseph</h2>
-    <p class="body reveal">The blessing given to Yoseph recalls the blessing given to Yaaqov by his father Isaac in Genesis 27. This similarity makes it clear that Yoseph is being marked as the firstborn among all the sons.</p>
+    <p class="body reveal"><span class="lang-en">Yoseph is compared to a branch from a fruit-bearing tree (literally “son of a fruit-bearer”) that is located by a spring, with tendril-runners (literally “daughters”) that climb over walls to spread their fruitfulness outside the garden. “Son of a fruit-bearer” is a possible way the images could be understood, and so Yoseph would be compared to a fruit-tree bearing much fruit (i.e., Yaaqov and Rachel). The “spring” would be the gift of Yahweh’s blessing on the chosen ones. The “wall” would represent the overabundance of God’s fruitful blessing, so that even a garden wall can’t contain the blessing as it spreads out of its original area of planting. These Eden images are so rooted in the narrative of Genesis 2-3, as well as the Eden imagery activated by Yoseph’s rule over his family in the land of Goshen (which is an Eden place), it is unlikely that these possible meanings were not in the mind of the poet.</span></p>
+    <h2 class="section reveal"><span class="lang-en">The Royal Blessing on Yoseph</span></h2>
+    <p class="body reveal"><span class="lang-en">The blessing given to Yoseph recalls the blessing given to Yaaqov by his father Isaac in Genesis 27. This similarity makes it clear that Yoseph is being marked as the firstborn among all the sons.</span></p>
     <ul class="bullets reveal">
       <li>Genesis 49:25-26</li>
-      <li>Yaaqov’s Blessing on Yoseph</li>
+      <li><span class="lang-en">Yaaqov’s Blessing on Yoseph</span></li>
     </ul>
-    <p class="body reveal">from the Elohim of your father , who will help you, and Shaddai, who will bless you: blessings from the skies above blessings from the deep, lying beneath blessings of breast and womb, the blessings of your father , they are mighty above the blessings of the mountains up to the desire of eternal hills.</p>
-    <h2 class="section reveal">These will be upon the head of Yoseph ,</h2>
-    <p class="body reveal">on the crown of one set apart from his brothers .</p>
+    <p class="body reveal"><span class="lang-en">from the Elohim of your father , who will help you, and Shaddai, who will bless you: blessings from the skies above blessings from the deep, lying beneath blessings of breast and womb, the blessings of your father , they are mighty above the blessings of the mountains up to the desire of eternal hills.</span></p>
+    <h2 class="section reveal"><span class="lang-en">These will be upon the head of Yoseph ,</span></h2>
+    <p class="body reveal"><span class="lang-en">on the crown of one set apart from his brothers .</span></p>
     <ul class="bullets reveal">
       <li>Genesis 27:27-29</li>
-      <li>Isaac’s Blessing on Yaaqov</li>
-      <li>See, the smell of my son,</li>
-      <li>like the smell of the field,</li>
+      <li><span class="lang-en">Isaac’s Blessing on Yaaqov</span></li>
+      <li><span class="lang-en">See, the smell of my son,</span></li>
+      <li><span class="lang-en">like the smell of the field,</span></li>
     </ul>
-    <p class="body reveal">which Yahweh has blessed. May Elohim give to you from the dew of the skies, and from the fat of the land, Symmetry in Blessing of Joseph and Jacob. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</p>
+    <p class="body reveal"><span class="lang-en">which Yahweh has blessed. May Elohim give to you from the dew of the skies, and from the fat of the land, Symmetry in Blessing of Joseph and Jacob. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
 <table class="md reveal">
   <tr><th>Symmetry in Blessing of Joseph and Jacob. Created by Tim Mackie for BibleProject Classroom: Joseph</th><th>(2022).</th></tr>
   <tr><td>Genesis 1:27–28<br>Elohim created human in his own image, <br>   in the image of Elohim he created him; <br>   male and female he created them. <br>And Elohim blessed them; <br>   and Elohim said to them, <br>         “Be fruitful and multiply,<br>and fill the land, and subdue it;<br>and rule over the fish of the sea and over the birds of the sky <br>            and over every living thing that moves on the earth.”</td><td>It’s clear that Yoseph is inheriting the divine blessing of abundance that has marked the promised lineage<br>from Abraham to Isaac to Yaaqov.</td></tr>
@@ -246,28 +323,28 @@
   <tr><td></td><td>Yoseph<br>Eden abundance<br>Royal status among the sons of Yisrael</td></tr>
 </table>
   <p class="caption"><span class="lang-pt">Gênesis X:Y. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2021).</span><span class="lang-en">Genesis X:Y. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2021).</span></p>
-    <p class="body reveal">and much grain and new wine.</p>
+    <p class="body reveal"><span class="lang-en">and much grain and new wine.</span></p>
     <ul class="bullets reveal">
       <li>May peoples serve you,</li>
-      <li>and may people groups bow down to you ,</li>
-      <li>be a mighty one to your brothers,</li>
+      <li><span class="lang-en">and may people groups bow down to you ,</span></li>
+      <li><span class="lang-en">be a mighty one to your brothers,</span></li>
     </ul>
-    <p class="body reveal">and may the sons of your mother bow down to you.</p>
-    <h2 class="section reveal">Cursed are those who curse you,</h2>
-    <p class="body reveal">and those who blessed you are blessed. Symmetry in Blessing of Joseph and Jacob. Created by Tim Mackie for BibleProject Classroom: Joseph (2022). It’s clear that Yoseph is inheriting the divine blessing of abundance that has marked the promised lineage from Abraham to Isaac to Yaaqov. Notice the echoes of Genesis 1:1-2 (“skies,” “the deep,” the land”) and also of the human image of Elohim who is “set apart” from the animals to a place of blessing and rule. Now that Yoseph and Yehudah have each received their blessings, notice that the two aspects of the image of Elohim from Genesis 1 have here been allotted to two special sons of Yaaqov.</p>
+    <p class="body reveal"><span class="lang-en">and may the sons of your mother bow down to you.</span></p>
+    <h2 class="section reveal"><span class="lang-en">Cursed are those who curse you,</span></h2>
+    <p class="body reveal"><span class="lang-en">and those who blessed you are blessed. Symmetry in Blessing of Joseph and Jacob. Created by Tim Mackie for BibleProject Classroom: Joseph (2022). It’s clear that Yoseph is inheriting the divine blessing of abundance that has marked the promised lineage from Abraham to Isaac to Yaaqov. Notice the echoes of Genesis 1:1-2 (“skies,” “the deep,” the land”) and also of the human image of Elohim who is “set apart” from the animals to a place of blessing and rule. Now that Yoseph and Yehudah have each received their blessings, notice that the two aspects of the image of Elohim from Genesis 1 have here been allotted to two special sons of Yaaqov.</span></p>
     <ul class="bullets reveal">
       <li>Genesis 1:27–28</li>
-      <li>Elohim created human in his own image,</li>
-      <li>in the image of Elohim he created him;</li>
+      <li><span class="lang-en">Elohim created human in his own image,</span></li>
+      <li><span class="lang-en">in the image of Elohim he created him;</span></li>
     </ul>
-    <p class="body reveal">male and female he created them.</p>
+    <p class="body reveal"><span class="lang-en">male and female he created them.</span></p>
     <ul class="bullets reveal">
-      <li>And Elohim blessed them;</li>
-      <li>and Elohim said to them,</li>
-      <li>“Be fruitful and multiply,</li>
-      <li>and fill the land, and subdue it;</li>
+      <li><span class="lang-en">And Elohim blessed them;</span></li>
+      <li><span class="lang-en">and Elohim said to them,</span></li>
+      <li><span class="lang-en">“Be fruitful and multiply,</span></li>
+      <li><span class="lang-en">and fill the land, and subdue it;</span></li>
     </ul>
-    <p class="body reveal">and rule over the fish of the sea and over the birds of the sky and over every living thing that moves on the earth.” Yehudah Eden abundance A ruler among the sons of Yisrael A ruler among the nations Yoseph Eden abundance Royal status among the sons of Yisrael Comparing Judah and Joseph. Created by Tim Mackie for BibleProject Classroom: Joseph (2022). Both sons are given the Eden blessing of abundance and of royal rule among the brothers. Only Yehudah is assigned a place of rule outside of the family of Israel. This dual blessing sets up the reader for the long history of rivalry that will plague these two tribes, which will come to dominate Israel’s story in the land. It is the tribe of Yoseph’s son Ephrayim who will become the most powerful and numerous in the north, and the tribe of Yehudah will dominate in the south.</p>
+    <p class="body reveal"><span class="lang-en">and rule over the fish of the sea and over the birds of the sky and over every living thing that moves on the earth.” Yehudah Eden abundance A ruler among the sons of Yisrael A ruler among the nations Yoseph Eden abundance Royal status among the sons of Yisrael Comparing Judah and Joseph. Created by Tim Mackie for BibleProject Classroom: Joseph (2022). Both sons are given the Eden blessing of abundance and of royal rule among the brothers. Only Yehudah is assigned a place of rule outside of the family of Israel. This dual blessing sets up the reader for the long history of rivalry that will plague these two tribes, which will come to dominate Israel’s story in the land. It is the tribe of Yoseph’s son Ephrayim who will become the most powerful and numerous in the north, and the tribe of Yehudah will dominate in the south.</span></p>
 <table class="md reveal">
   <tr><th>The Word About Binyamin</th></tr>
   <tr><td>27 Binyamin , a wolf who will tear.</td><td>Genesis 49:27-28. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022)</td></tr>
@@ -279,45 +356,45 @@
   <tr><td></td><td>Notice that the sequence of sons corresponds to the symmetrical arrangement of the triads and to the<br>distribution of animal imagery in the poems. Yehudah and Binyamin occupy matching positions as the<br>conclusion to the first and last triad, pairing the imagery of lion versus wolf. Recall that David and Saul were<br>from the tribes of Yehudah (lion) and Binyamin (wolf).</td></tr>
 </table>
   <p class="caption"><span class="lang-pt">Gênesis X:Y. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2021).</span><span class="lang-en">Genesis X:Y. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2021).</span></p>
-    <p class="body reveal">This division in the age of the patriarchs is a preview of the division that will take place after David and Solomon’s death (1 Kings 1-2 and 11). The kingdom of “Yisrael and Yehudah” will split into north and south, and Rehoboam and Jeroboam will become the descendants who replay the rivalry of their ancestors (see 1 Kings 12-14).</p>
-    <h2 class="section reveal">The Word About Binyamin</h2>
-    <p class="body reveal">Genesis 49:27-28. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022) Here the tribe of Binyamin is portrayed as aggressive and powerful, which is pretty much the opposite of his passive and powerless portrait in Genesis 42-46. The aggressive nature of the sons of Binyamin are a core theme of Judges-Samuel.</p>
+    <p class="body reveal"><span class="lang-en">This division in the age of the patriarchs is a preview of the division that will take place after David and Solomon’s death (1 Kings 1-2 and 11). The kingdom of “Yisrael and Yehudah” will split into north and south, and Rehoboam and Jeroboam will become the descendants who replay the rivalry of their ancestors (see 1 Kings 12-14).</span></p>
+    <h2 class="section reveal"><span class="lang-en">The Word About Binyamin</span></h2>
+    <p class="body reveal"><span class="lang-en">Genesis 49:27-28. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022) Here the tribe of Binyamin is portrayed as aggressive and powerful, which is pretty much the opposite of his passive and powerless portrait in Genesis 42-46. The aggressive nature of the sons of Binyamin are a core theme of Judges-Samuel.</span></p>
     <h2 class="section reveal">Ehud (Judg. 3:15)</h2>
-    <p class="body reveal">The warriors of Binyamin in the battle of Deborah (Judg. 5:14) The notoriously accurate slingshot warriors of Binyamin (Judg. 20:15-16) who fought savagely in the Israelite civil war described in Judges 20 The territory of this tribe occupied the central location between Yehudah in the south and Ephraim in the north (Josh. 18:11-20), as well as the main road from east of the Jordan to the western Mediterranean—i.e., it was the arena of many wars throughout Israel’s history. We can detect allusions to Saul in this poem. Israel’s first king was from Binyamin, and his downfall was precisely in his aggressive “eating” of the “plunder” in 1 Samuel 14:30-32 and 15:19-21. Notice that the sequence of sons corresponds to the symmetrical arrangement of the triads and to the distribution of animal imagery in the poems. Yehudah and Binyamin occupy matching positions as the conclusion to the first and last triad, pairing the imagery of lion versus wolf. Recall that David and Saul were from the tribes of Yehudah (lion) and Binyamin (wolf). 27 Binyamin , a wolf who will tear.</p>
-    <h2 class="section reveal">In the morning he devours,</h2>
-    <p class="body reveal">and in the evening he divides plunder. 28 All these are the twelve tribes of Yisra’el , and this is what their father said to them, and he blessed them, each according to his blessing, he blessed them.</p>
+    <p class="body reveal"><span class="lang-en">The warriors of Binyamin in the battle of Deborah (Judg. 5:14) The notoriously accurate slingshot warriors of Binyamin (Judg. 20:15-16) who fought savagely in the Israelite civil war described in Judges 20 The territory of this tribe occupied the central location between Yehudah in the south and Ephraim in the north (Josh. 18:11-20), as well as the main road from east of the Jordan to the western Mediterranean—i.e., it was the arena of many wars throughout Israel’s history. We can detect allusions to Saul in this poem. Israel’s first king was from Binyamin, and his downfall was precisely in his aggressive “eating” of the “plunder” in 1 Samuel 14:30-32 and 15:19-21. Notice that the sequence of sons corresponds to the symmetrical arrangement of the triads and to the distribution of animal imagery in the poems. Yehudah and Binyamin occupy matching positions as the conclusion to the first and last triad, pairing the imagery of lion versus wolf. Recall that David and Saul were from the tribes of Yehudah (lion) and Binyamin (wolf). 27 Binyamin , a wolf who will tear.</span></p>
+    <h2 class="section reveal"><span class="lang-en">In the morning he devours,</span></h2>
+    <p class="body reveal"><span class="lang-en">and in the evening he divides plunder. 28 All these are the twelve tribes of Yisra’el , and this is what their father said to them, and he blessed them, each according to his blessing, he blessed them.</span></p>
 <ul class="bullets reveal">
       <li>1. Reuven</li>
-      <li>2. Shimon and Levi</li>
+      <li><span class="lang-en">2. Shimon and Levi</span></li>
     </ul>
-    <p class="body reveal">3. Yehudah the lion!</p>
+    <p class="body reveal"><span class="lang-en">3. Yehudah the lion!</span></p>
     <ul class="bullets reveal">
       <li>A</li>
       <li>1. Zevulun</li>
-      <li>2. Yissakhar the donkey</li>
-      <li>3. Dan the snake</li>
+      <li><span class="lang-en">2. Yissakhar the donkey</span></li>
+      <li><span class="lang-en">3. Dan the snake</span></li>
       <li>B</li>
-      <li>“For your deliverance I wait, Yahweh!”</li>
+      <li><span class="lang-en">“For your deliverance I wait, Yahweh!”</span></li>
       <li>1. Gad</li>
       <li>2. Asher</li>
-      <li>3. Naphtali the deer</li>
+      <li><span class="lang-en">3. Naphtali the deer</span></li>
       <li>B’</li>
-      <li>Yoseph the wild donkey</li>
+      <li><span class="lang-en">Yoseph the wild donkey</span></li>
       <li>1. Ephrayim</li>
       <li>2. Manasseh</li>
-      <li>3. Binyamin the wolf</li>
+      <li><span class="lang-en">3. Binyamin the wolf</span></li>
       <li>A’</li>
     </ul>
-    <p class="body reveal">Judah and Benjamin the Animals. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</p>
+    <p class="body reveal"><span class="lang-en">Judah and Benjamin the Animals. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
     <h3 class="sub reveal">Reflection Question</h3>
-    <p class="body reveal">What are some implications of the links between Yoseph and Ishmael in Yaaqov’s poem of blessing in Genesis 49:22-26?</p>
+    <p class="body reveal"><span class="lang-en">What are some implications of the links between Yoseph and Ishmael in Yaaqov’s poem of blessing in Genesis 49:22-26?</span></p>
 
   <p class="caption"><span class="lang-pt">Gênesis X:Y. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2021).</span><span class="lang-en">Genesis X:Y. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2021).</span></p>
     <ul class="bullets reveal">
-      <li>Module 7: Going Up to Canaan</li>
+      <li><span class="lang-en">Module 7: Going Up to Canaan</span></li>
       <li>SESSIONS 26-29</li>
     </ul>
-    <p class="body reveal">As Jacob and Joseph reach the ends of their long lives, each looks forward with hope to a promise of God’s faithfulness beyond the grave.</p>
+    <p class="body reveal"><span class="lang-en">As Jacob and Joseph reach the ends of their long lives, each looks forward with hope to a promise of God’s faithfulness beyond the grave.</span></p>
 
 <footer class="page-footer">
     <span class="lang-pt">Anotações de Aula: José</span><span class="lang-en">Class Notes: Joseph</span>

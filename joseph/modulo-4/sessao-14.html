@@ -11,46 +11,123 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../css/shared-tutorial.css">
   <style>
-  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
-  html[lang="pt"] .lang-en { display: none !important; }
-  html[lang="en"] .lang-pt { display: none !important; }
-  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
-  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
-  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
-  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
-  .verse-link { color: inherit; cursor: pointer; }
-  ul.bullets { list-style: none; padding: 0; }
-  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
-  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
-  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-  .keylabel { font-weight: 700; color: #17181a; }
-    table.md { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; background: #fff; margin: 1.5rem 0; font-size: .92rem; }
-  table.md th { background: #e3e7ec; text-align: left; padding: .8rem 1rem; font-weight: 700; color: #1b1b1b; }
-  table.md td { padding: .85rem 1rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.65; color: #1b1b1b; }
-  table.md td + td, table.md th + th { border-left: 1px solid #e5e7eb; }
-  table.md tbody tr:hover td { background: #f8fafc; }
-  .hl-tan { background: #fae3c3; color: #90362e; }
-  .hl-sky { background: #d9ecfd; color: #404ba6; }
-  .hl-grn { background: #d3f1cc; color: #2a6145; }
-  .hl-rose { background: #f9e3de; color: #97294e; }
-  .hl-brick { background: #b4533a; color: #fff; }
-  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
-  .table-img img { width: 100%; display: block; }
-  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
-  .reveal.visible { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
-  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
-  .nav-btn:hover { background: #f1f5f9; }
-  .nav-back { left: 1rem; }
-  .nav-lang { right: 1rem; }
-  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
+  .reveal.visible { opacity: 1 !important; transform: none !important; }  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s;}
+  .ref:hover { color: #2563eb;}
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s;}
+  .scripture:hover { border-left-color: #9aa7b8;}
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem;}
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem;}
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a;}
+  .scripture .innerbox { background: #f6f8fa; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1rem;}
+  .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem;}
+  .macro { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; align-items: start; margin: 2rem 0 .75rem;}
+  .mcol { border: 3px solid #2e7d4e; border-radius: 12px; padding: .9rem .9rem 1rem; background: #fff;}
+  .mcol.dark { border-color: #3d4453; margin-top: 1.3rem;}
+  .mtag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 3px 10px; border-radius: 5px;}
+  .mtag-green { background: #2e7d4e;}
+  .mtag-dark { background: #3d4453;}
+  .mcol-title { font-size: 1rem; font-weight: 800; color: #17181a; margin: .55rem 0 .8rem; line-height: 1.3;}
+  .mboxes { display: flex; gap: .55rem;}
+  .mbox { flex: 1; border: 3px solid #b9c2cf; border-radius: 9px; background: #fff; min-height: 15.5rem; position: relative; transition: box-shadow .25s, transform .25s;}
+  .mbox:hover { box-shadow: 0 8px 20px -10px rgba(30,41,59,.4); transform: translateY(-3px);}
+  .mbox .mhdr { position: absolute; top: .55rem; left: .55rem; right: .55rem; background: #7d8697; color: #fff; font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 5px;}
+  .mbox.s1 { margin-top: 0;}
+  .mbox.s2 { margin-top: 2.4rem; min-height: 13rem;}
+  .mbox.s3 { margin-top: 2.4rem; min-height: 13rem;}
+  @media (max-width: 860px) { .macro { grid-template-columns: 1fr;}
+  .mcol.dark { margin-top: 0;}
+  .mbox, .mbox.s2, .mbox.s3 { min-height: 7.5rem; margin-top: 0;}
+  .cx { border: 3px solid; border-radius: 12px; padding: 1.35rem 1.5rem 1.2rem; margin: 1.15rem 0; transition: box-shadow .25s, transform .25s;}
+  .cx:hover { box-shadow: 0 12px 26px -16px rgba(23,24,26,.45); transform: translateY(-2px);}
+  .cx-tag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 1px 13px; border-radius: 6px; margin-bottom: .7rem;}
+  .cx h4 { font-weight: 800; font-size: 1.06rem; color: #17181a; margin-bottom: .7rem;}
+  .cx ul.bullets > li { font-size: .99rem; margin-bottom: .45rem;}
+  .cx-slate  { border-color: #6b7280; background: #e9ebee;}
+  .cx-slate  .cx-tag { background: #6b7280;}
+  .cx-rust   { border-color: #c0562f; background: #f7e6dd;}
+  .cx-rust   .cx-tag { background: #c0562f;}
+  .cx-rose   { border-color: #c04a63; background: #f7e0e5;}
+  .cx-rose   .cx-tag { background: #c04a63;}
+  .cx-blue   { border-color: #5468d4; background: #e4e8f9;}
+  .cx-blue   .cx-tag { background: #5468d4;}
+  .cx-green  { border-color: #2e7d4e; background: #dfeee2;}
+  .cx-green  .cx-tag { background: #2e7d4e;}
+  .cx-purple { border-color: #8b5cf6; background: #efe2f8;}
+  .cx-purple .cx-tag { background: #8b5cf6;}
+  .cx-tan    { border-color: #8a6d3b; background: #ece7dc;}
+  .cx-tan    .cx-tag { background: #8a6d3b;}
+  .k { display: inline; padding: 3px 9px; border-radius: 6px; font-weight: 700; color: #fff; line-height: 1.85; -webkit-box-decoration-break: clone; box-decoration-break: clone;}
+  .k-blue   { background: #3b82c4;}
+  .k-green  { background: #2e7d4e;}
+  .k-rose { background: #c04a63;}
+  .k-gray   { background: #6b7280;}
+  .k-rust   { background: #bf5a2b;}
+  .k-teal { background: #0d7d8c;}
+  .k-purple { background: #7c5ad0;}
+  .k-brown  { background: #8a6d3b;}
+  .t-teal { color: #0d8aa0; font-weight: 700;}
+  .v-outer { border: 3px solid #e3e7ee; border-radius: 20px; padding: 1.4rem 1.5rem; margin: 1.4rem 0;}
+  .v-black { border: 3px solid #17181a; border-radius: 16px; padding: 1.3rem 1.5rem; margin: 1.1rem 0;}
+  .v-light { border: 3px solid #e3e7ee; border-radius: 16px; padding: 1.2rem 1.4rem; margin: 1.1rem 0;}
+  .v-line { font-size: 1.06rem; line-height: 2.1; color: #1f2937;}
+  .v-div { border: 0; border-top: 1px solid #e6eaf0; margin: 1.1rem 0;}
+  .vbar-b { border-left: 5px solid #5468d4; padding-left: .8rem;}
+  .lbl { color: #6b7280; font-weight: 600; font-size: .85rem; margin-right: .2rem;}
+  sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px;}
+  .i1 { padding-left: 1.6rem;}
+  .i2 { padding-left: 3.2rem;}
+  .i3 { padding-left: 4.8rem;}
+  .doc-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 3px solid #d9dee6; border-radius: 14px; overflow: hidden; background: #fff;}
+  .doc-table th { background: #e2e6eb; text-align: left; padding: 1rem 1.3rem; font-weight: 800; font-size: 1.02rem; color: #17181a;}
+  .doc-table td { padding: 1.1rem 1.3rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.78; font-size: .97rem; color: #24262a; transition: background .2s;}
+  .doc-table tbody tr:hover td { background: #f8fafc;}
+  .doc-table tfoot td { border-top: 1px solid #d1d5db; background: #fbfcfd; color: #5b6472; font-size: .92rem;}
+  .kblue-soft { background: #cddcf5; color: #2b5fb0; padding: 2px 8px; border-radius: 6px; font-weight: 700;}
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1);}
+  @media print {
+    @page { margin: 14mm 12mm;}
+  #reading-progress, .print\:hidden { display: none !important;}
+  .reveal { opacity: 1 !important; transform: none !important;}
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important;}
+  .max-w-4xl { max-width: 100% !important; padding: 0 !important; margin: 0 !important;}
+  h1.title, h2.section, h3.sub { break-after: avoid-page;}
+  .cx, .v-outer, .v-black, .v-light, .doc-table tr, .scripture, .mcol { break-inside: avoid;}
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none;}
+  .cx, .mbox { transition: none;}}}}
+
+  /* joseph base typography */
   
-  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  @media print { #reading-progress { display: none !important; } }
-</style>
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  
+  .verse-link { color: inherit; cursor: pointer; }
+  
+  ul.bullets { list-style: none; padding: 0; }
+  
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  
+    table.md { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; background: #fff; margin: 1.5rem 0; font-size: .92rem; }
+  
+  table.md th { background: #e3e7ec; text-align: left; padding: .8rem 1rem; font-weight: 700; color: #1b1b1b; }
+  
+  table.md td { padding: .85rem 1rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.65; color: #1b1b1b; }
+  
+  table.md td + td, table.md th + th { border-left: 1px solid #e5e7eb; }
+  
+  table.md tbody tr:hover td { background: #f8fafc; }
+  
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }</style>
 </head>
 <body class="bg-white">
 <div id="reading-progress" aria-hidden="true"></div>
@@ -74,49 +151,49 @@
     <hr class="rule">
     <h2 class="section reveal">Key Takeaways</h2>
     <ul class="bullets reveal">
-      <li>Reuven laments that their brother’s blood is required of them, activating a pattern of innocent blood crying out to God for justice that stretches all the way back to Cain and Abel in Genesis 4.</li>
-      <li>Yoseph’s translator is called a “mediator,” the same word used to describe the prophets who stand in the gap and intercede between God and Israel.</li>
-      <li>The Bible presents a realistic portrait of the human condition, and characters who seem simple at first glance have layers of complexity and insight.</li>
+      <li><span class="lang-en">Reuven laments that their brother’s blood is required of them, activating a pattern of innocent blood crying out to God for justice that stretches all the way back to Cain and Abel in Genesis 4.</span></li>
+      <li><span class="lang-en">Yoseph’s translator is called a “mediator,” the same word used to describe the prophets who stand in the gap and intercede between God and Israel.</span></li>
+      <li><span class="lang-en">The Bible presents a realistic portrait of the human condition, and characters who seem simple at first glance have layers of complexity and insight.</span></li>
     </ul>
     <ul class="bullets reveal">
-      <li>The Brothers’ Confession</li>
-      <li>21 And each man said to his brother ,</li>
-      <li>“Oh no! We are guilty concerning our brother,</li>
+      <li><span class="lang-en">The Brothers’ Confession</span></li>
+      <li><span class="lang-en">21 And each man said to his brother ,</span></li>
+      <li><span class="lang-en">“Oh no! We are guilty concerning our brother,</span></li>
     </ul>
     <p class="body reveal">when we saw the distress  (צרה) of his very being, when he pleaded for favor from us, and we didn’t listen !</p>
     <ul class="bullets reveal">
-      <li>For this reason, this</li>
+      <li><span class="lang-en">For this reason, this</span></li>
       <li>distress  (צרה)</li>
       <li>has come upon us!”</li>
-      <li>22 And Reuven answered them saying,</li>
-      <li>“Didn’t I speak to you, saying,</li>
-      <li>‘Don’t sin against the boy!’</li>
+      <li><span class="lang-en">22 And Reuven answered them saying,</span></li>
+      <li><span class="lang-en">“Didn’t I speak to you, saying,</span></li>
+      <li><span class="lang-en">‘Don’t sin against the boy!’</span></li>
       <li>But y’all didn’t listen ,</li>
-      <li>and now look, his blood is required!”</li>
+      <li><span class="lang-en">and now look, his blood is required!”</span></li>
     </ul>
-    <p class="body reveal">23 Now, they did not know that Yoseph was listening , because there was a mediator between them, 24 and he turned away from them and wept, and he returned to them, and he spoke to them, and he took Shim’on from them, and he bound him up before their eyes.</p>
+    <p class="body reveal"><span class="lang-en">23 Now, they did not know that Yoseph was listening , because there was a mediator between them, 24 and he turned away from them and wept, and he returned to them, and he spoke to them, and he took Shim’on from them, and he bound him up before their eyes.</span></p>
     <ul class="bullets reveal">
-      <li>25 And Yoseph commanded</li>
-      <li>that they should fill their bags with grain ,</li>
-      <li>and to return their silver, each in his sack ,</li>
+      <li><span class="lang-en">25 And Yoseph commanded</span></li>
+      <li><span class="lang-en">that they should fill their bags with grain ,</span></li>
+      <li><span class="lang-en">and to return their silver, each in his sack ,</span></li>
     </ul>
-<p class="body reveal">Genesis 42:21-28. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022) After Yoseph recreates the scenario of Genesis 37 by imprisoning Shimon as a test (recall that this test is set on analogy to the snake and the test of Adam and Eve), his brothers begin processing the poetic justice of their situation. And they do so in speeches filled with the language of the Cain and Abel story from Genesis 4.</p>
+<p class="body reveal"><span class="lang-en">Genesis 42:21-28. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022) After Yoseph recreates the scenario of Genesis 37 by imprisoning Shimon as a test (recall that this test is set on analogy to the snake and the test of Adam and Eve), his brothers begin processing the poetic justice of their situation. And they do so in speeches filled with the language of the Cain and Abel story from Genesis 4.</span></p>
     <ul class="bullets reveal">
       <li>Genesis 42</li>
       <li>Genesis 4</li>
-      <li>Gen. 42:21 “We are guilty</li>
+      <li><span class="lang-en">Gen. 42:21 “We are guilty</span></li>
       <li>concerning our brother”</li>
     </ul>
-    <p class="body reveal">Gen. 4:13 “My guilt/punishment is too great to bear!” Gen. 42:22 “Didn’t I say, ‘Don’t sin against the boy?’” Gen. 4:7 “If you don’t do good, sin is crouching at the door; it’s desire is for you, and you can rule it.” Gen. 42:22 “Now look, his blood is required” Gen. 4:10 “The voice of your brother’s blood is crying to me from the ground.” Gen. 42:28 “What is Elohim doing to us?!” Gen. 4:10 “What is this you have done?!” Comparing Genesis 42 and Genesis 4. Created by Tim Mackie for BibleProject Classroom: Joseph (2022). Just as God confronted Cain after murdering his brother, now Yoseph confronts his brothers after they sold him as a slave and pretended that he was murdered. This scene of Yoseph bringing his brothers' sin to light is clearly being linked to God’s confrontation with Cain to bring his murderous sin to light.</p>
+    <p class="body reveal"><span class="lang-en">Gen. 4:13 “My guilt/punishment is too great to bear!” Gen. 42:22 “Didn’t I say, ‘Don’t sin against the boy?’” Gen. 4:7 “If you don’t do good, sin is crouching at the door; it’s desire is for you, and you can rule it.” Gen. 42:22 “Now look, his blood is required” Gen. 4:10 “The voice of your brother’s blood is crying to me from the ground.” Gen. 42:28 “What is Elohim doing to us?!” Gen. 4:10 “What is this you have done?!” Comparing Genesis 42 and Genesis 4. Created by Tim Mackie for BibleProject Classroom: Joseph (2022). Just as God confronted Cain after murdering his brother, now Yoseph confronts his brothers after they sold him as a slave and pretended that he was murdered. This scene of Yoseph bringing his brothers' sin to light is clearly being linked to God’s confrontation with Cain to bring his murderous sin to light.</span></p>
     <h2 class="section reveal">Ill-Gotten Silver</h2>
-    <p class="body reveal">and to give them rations  (צדה) for the road. And so it was done for them . 26 And they took up their grain onto their donkeys, and they went from there, 27 and one opened up his sack , to give fodder to his donkey at the night-stop, and he saw his silver, and look, it was in the mouth of his bag .</p>
+    <p class="body reveal"><span class="lang-en">and to give them rations  (צדה) for the road. And so it was done for them . 26 And they took up their grain onto their donkeys, and they went from there, 27 and one opened up his sack , to give fodder to his donkey at the night-stop, and he saw his silver, and look, it was in the mouth of his bag .</span></p>
     <ul class="bullets reveal">
-      <li>28 And he said to his brothers,</li>
+      <li><span class="lang-en">28 And he said to his brothers,</span></li>
       <li>“My silver has been returned ,</li>
-      <li>and look, its it my bag !”</li>
-      <li>And their hearts went out,</li>
+      <li><span class="lang-en">and look, its it my bag !”</span></li>
+      <li><span class="lang-en">And their hearts went out,</span></li>
     </ul>
-    <p class="body reveal">and they shuddered, each man to his brother, saying , “ What is this that Elohim is doing to us?! ”</p>
+    <p class="body reveal"><span class="lang-en">and they shuddered, each man to his brother, saying , “ What is this that Elohim is doing to us?! ”</span></p>
 <table class="md reveal">
   <tr><th>Ill-Gotten Silver</th></tr>
   <tr><td>and to give them rations  (צדה) for the road.</td><td>26 And they took up their grain onto their donkeys,</td></tr>
@@ -127,76 +204,76 @@
   <tr><td>And their hearts went out,</td><td></td></tr>
 </table>
   <p class="caption"><span class="lang-pt">Gênesis X:Y. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2021).</span><span class="lang-en">Genesis X:Y. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2021).</span></p>
-    <p class="body reveal">The narrative focuses on the silver found in the mouth of the camel bags. This seems to be an intentional parallel to the “20 shekels of silver” that the brothers received by selling Yoseph as a slave headed for Egypt (recall Gen. 37:27-28). Now the brothers are in Egypt, and though a brother was imprisoned, they now also have their money back! Yoseph here recreates the circumstances of his slavery sale down to the last detail. The brothers now have extra money and plenty of food for a time, the only cost is their brother. Will the brothers go back and lie to Yaaqov again, as they did about Yoseph, or will they choose differently?</p>
+    <p class="body reveal"><span class="lang-en">The narrative focuses on the silver found in the mouth of the camel bags. This seems to be an intentional parallel to the “20 shekels of silver” that the brothers received by selling Yoseph as a slave headed for Egypt (recall Gen. 37:27-28). Now the brothers are in Egypt, and though a brother was imprisoned, they now also have their money back! Yoseph here recreates the circumstances of his slavery sale down to the last detail. The brothers now have extra money and plenty of food for a time, the only cost is their brother. Will the brothers go back and lie to Yaaqov again, as they did about Yoseph, or will they choose differently?</span></p>
     <ul class="bullets reveal">
-      <li>The Brothers Return to Yaaqov</li>
+      <li><span class="lang-en">The Brothers Return to Yaaqov</span></li>
       <li>A</li>
-      <li>29 And they came to Ya’akov their father</li>
-      <li>in the land of Cana’an ,</li>
+      <li><span class="lang-en">29 And they came to Ya’akov their father</span></li>
+      <li><span class="lang-en">in the land of Cana’an ,</span></li>
     </ul>
-    <p class="body reveal">and they told him everything that happened to them, saying, 30 “ The man, the master of the land, spoke harsh things to us , and he took us to be like spies of the land!</p>
+    <p class="body reveal"><span class="lang-en">and they told him everything that happened to them, saying, 30 “ The man, the master of the land, spoke harsh things to us , and he took us to be like spies of the land!</span></p>
     <ul class="bullets reveal">
       <li>B</li>
-      <li>31 And we said to him ,</li>
+      <li><span class="lang-en">31 And we said to him ,</span></li>
     </ul>
-    <p class="body reveal">‘We are upright ! We are not spies! 32 We are two and ten brothers, sons of our father .</p>
-    <h2 class="section reveal">One is no more ,</h2>
-    <p class="body reveal">and the little one is with our father today, in the land of Cana’an .’ A' 33 And the man, the master of the land, said to us , ‘By this I will know that y’all are upright : Your one brother , make him rest here with me, and the famine-ration for your houses, take and go!</p>
-    <h2 class="section reveal">34 And bring to me your little brother ,</h2>
-    <p class="body reveal">so I can know that y’all are not spies, that y’all are upright !</p>
+    <p class="body reveal"><span class="lang-en">‘We are upright ! We are not spies! 32 We are two and ten brothers, sons of our father .</span></p>
+    <h2 class="section reveal"><span class="lang-en">One is no more ,</span></h2>
+    <p class="body reveal"><span class="lang-en">and the little one is with our father today, in the land of Cana’an .’ A' 33 And the man, the master of the land, said to us , ‘By this I will know that y’all are upright : Your one brother , make him rest here with me, and the famine-ration for your houses, take and go!</span></p>
+    <h2 class="section reveal"><span class="lang-en">34 And bring to me your little brother ,</span></h2>
+    <p class="body reveal"><span class="lang-en">so I can know that y’all are not spies, that y’all are upright !</span></p>
     <ul class="bullets reveal">
-      <li>I will give your brother to you,</li>
-      <li>then you may trade in the land.’”</li>
+      <li><span class="lang-en">I will give your brother to you,</span></li>
+      <li><span class="lang-en">then you may trade in the land.’”</span></li>
     </ul>
-    <p class="body reveal">35 And it came about, as they were emptying their sacks, that look, each had a pouch of silver in his sack, and they saw the pouches of silver, they and their father, and they became afraid.</p>
+    <p class="body reveal"><span class="lang-en">35 And it came about, as they were emptying their sacks, that look, each had a pouch of silver in his sack, and they saw the pouches of silver, they and their father, and they became afraid.</span></p>
     <ul class="bullets reveal">
-      <li>Report of Yoseph’s Speech</li>
-      <li>Report of Brothers’ Speech</li>
-      <li>Report of Yoseph’s Speech</li>
+      <li><span class="lang-en">Report of Yoseph’s Speech</span></li>
+      <li><span class="lang-en">Report of Brothers’ Speech</span></li>
+      <li><span class="lang-en">Report of Yoseph’s Speech</span></li>
     </ul>
-<p class="body reveal">Genesis 42:29-38. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022) Yaaqov’s Many Lost Sons Notice how Yaaqov sees a disastrous pattern at work in his life. He compares the past loss of Yoseph to the present loss of Shimon. And now both are compared to the potential loss of Binyamin in the future. Also recall how Yaaqov’s lost sons were earlier compared to Yehudah’s two lost sons, Er and Onan, who both died at the beginning of Genesis 38. The loss of those two sons was restored by the birth of the twins from Tamar, the disguised deceiver whose deception led to life. Here Yaaqov’s two lost sons (Yoseph and Shimon) are going to be restored through the disguised deception of Yoseph! But not before another layer of complications and testing.</p>
-    <h2 class="section reveal">Reuven’s Inadequate Offer</h2>
-    <p class="body reveal">In Genesis 37, Reuven proposed a plan to save Yoseph that did not work. Instead, it was the plan of his younger brother Yehudah that was accepted, and so Yoseph was sold as a slave. Now Reuven, the firstborn of Yaaqov, offers the lives of his own two sons in the place of Shimon and Binyamin. While this could appear noble, it does seem a bit misdirected. Instead of confessing his own treachery and betrayal, he offers up the lives of his innocent sons to die for his own sins.</p>
+<p class="body reveal"><span class="lang-en">Genesis 42:29-38. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022) Yaaqov’s Many Lost Sons Notice how Yaaqov sees a disastrous pattern at work in his life. He compares the past loss of Yoseph to the present loss of Shimon. And now both are compared to the potential loss of Binyamin in the future. Also recall how Yaaqov’s lost sons were earlier compared to Yehudah’s two lost sons, Er and Onan, who both died at the beginning of Genesis 38. The loss of those two sons was restored by the birth of the twins from Tamar, the disguised deceiver whose deception led to life. Here Yaaqov’s two lost sons (Yoseph and Shimon) are going to be restored through the disguised deception of Yoseph! But not before another layer of complications and testing.</span></p>
+    <h2 class="section reveal"><span class="lang-en">Reuven’s Inadequate Offer</span></h2>
+    <p class="body reveal"><span class="lang-en">In Genesis 37, Reuven proposed a plan to save Yoseph that did not work. Instead, it was the plan of his younger brother Yehudah that was accepted, and so Yoseph was sold as a slave. Now Reuven, the firstborn of Yaaqov, offers the lives of his own two sons in the place of Shimon and Binyamin. While this could appear noble, it does seem a bit misdirected. Instead of confessing his own treachery and betrayal, he offers up the lives of his innocent sons to die for his own sins.</span></p>
     <ul class="bullets reveal">
       <li>A</li>
-      <li>36 And their father Ya’akov said to them ,</li>
+      <li><span class="lang-en">36 And their father Ya’akov said to them ,</span></li>
     </ul>
-    <p class="body reveal">“Y’all have bereaved me! Yoseph is no more ! Shim’on is no more! And you would take Binyamin ?!</p>
+    <p class="body reveal"><span class="lang-en">“Y’all have bereaved me! Yoseph is no more ! Shim’on is no more! And you would take Binyamin ?!</span></p>
     <ul class="bullets reveal">
       <li>These things always come upon me !”</li>
       <li>B</li>
-      <li>37 And Reuven said to their father , saying,</li>
-      <li>“Put my two sons to death,</li>
+      <li><span class="lang-en">37 And Reuven said to their father , saying,</span></li>
+      <li><span class="lang-en">“Put my two sons to death,</span></li>
     </ul>
-    <p class="body reveal">if I do not return him to you!</p>
+    <p class="body reveal"><span class="lang-en">if I do not return him to you!</span></p>
     <ul class="bullets reveal">
-      <li>Give him into my hand,</li>
-      <li>and I will return him to you!”</li>
+      <li><span class="lang-en">Give him into my hand,</span></li>
+      <li><span class="lang-en">and I will return him to you!”</span></li>
       <li>A'</li>
-      <li>38 And he said ,</li>
-      <li>“ My son will not go down with y’all,</li>
-      <li>because his brother is dead ,</li>
-      <li>and he alone is the remnant,</li>
+      <li><span class="lang-en">38 And he said ,</span></li>
+      <li><span class="lang-en">“ My son will not go down with y’all,</span></li>
+      <li><span class="lang-en">because his brother is dead ,</span></li>
+      <li><span class="lang-en">and he alone is the remnant,</span></li>
     </ul>
-    <p class="body reveal">and should disaster happen to him on the road you go upon, then you would make my gray-hair go down to the grave in grief.” Ya’akov’s Speech Reuven’s Speech Ya’akov’s Speech</p>
-<p class="body reveal">Yaaqov refuses this offer, as it will only result in more death. It’s better to cut his losses and move forward. This portrait of Reuven, as a failed firstborn, repeats his failure from Genesis 37 and opens the way for his younger brother Yehudah to propose an even more noble plan, which is precisely what’s going to happen.</p>
-    <h2 class="section reveal">Binyamin, the New Yoseph</h2>
-    <p class="body reveal">Notice how Yaaqov’s response mirrors the response he gave when he was shown Yoseph’s garment.</p>
+    <p class="body reveal"><span class="lang-en">and should disaster happen to him on the road you go upon, then you would make my gray-hair go down to the grave in grief.” Ya’akov’s Speech Reuven’s Speech Ya’akov’s Speech</span></p>
+<p class="body reveal"><span class="lang-en">Yaaqov refuses this offer, as it will only result in more death. It’s better to cut his losses and move forward. This portrait of Reuven, as a failed firstborn, repeats his failure from Genesis 37 and opens the way for his younger brother Yehudah to propose an even more noble plan, which is precisely what’s going to happen.</span></p>
+    <h2 class="section reveal"><span class="lang-en">Binyamin, the New Yoseph</span></h2>
+    <p class="body reveal"><span class="lang-en">Notice how Yaaqov’s response mirrors the response he gave when he was shown Yoseph’s garment.</span></p>
     <ul class="bullets reveal">
       <li>Genesis 42:38</li>
       <li>Genesis 37:35</li>
-      <li>And he said,</li>
-      <li>“My son will not go down with y’all,</li>
-      <li>because his brother is dead,</li>
-      <li>and he alone is the remnant,</li>
+      <li><span class="lang-en">And he said,</span></li>
+      <li><span class="lang-en">“My son will not go down with y’all,</span></li>
+      <li><span class="lang-en">because his brother is dead,</span></li>
+      <li><span class="lang-en">and he alone is the remnant,</span></li>
     </ul>
-    <p class="body reveal">and should disaster happen to him … you would make my gray-hair go down to the grave in grief .” And all his sons and all his daughters got up to comfort him, and he refused to be comforted, and he said, “Surely, I will go down to my son, grieving, to the grave !” And his father wept for him. Grieving in Genesis 42 and Genesis 37. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</p>
+    <p class="body reveal"><span class="lang-en">and should disaster happen to him … you would make my gray-hair go down to the grave in grief .” And all his sons and all his daughters got up to comfort him, and he refused to be comforted, and he said, “Surely, I will go down to my son, grieving, to the grave !” And his father wept for him. Grieving in Genesis 42 and Genesis 37. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
     <ul class="bullets reveal">
-      <li>Yoseph’s Brothers Take a Second Trip to Egypt</li>
+      <li><span class="lang-en">Yoseph’s Brothers Take a Second Trip to Egypt</span></li>
       <li>Genesis 43:1-15</li>
       <li>43:1-5</li>
     </ul>
-    <p class="body reveal">Ya'akov &amp; Yehudah Debate About Going Down to Egypt; Without Binyamin, They Cannot Return • 43:3 “[Yoseph] swore an oath )(העד העד that we can’t see him with our brother” • 43:5 “If you do not send him, we cannot go down” 43:6-7 Ya'akov &amp; The Brothers Debate About Yoseph’s Demand to See Binyamin 43:8-15 Yehudah and Ya'akov Debate Going Down to Egypt With Binyamin • 43:8 “Send the young boy )(נער with me!” • 43:9a Yehudah swears to offers his life as a substitute pledge )(ערבin place of Binyamin • 43:9b “If I do not return [Binyamin] to you, it will be my sin against you all my days” Genesis 43:15-44:13</p>
+    <p class="body reveal"><span class="lang-en">Ya'akov &amp; Yehudah Debate About Going Down to Egypt; Without Binyamin, They Cannot Return • 43:3 “[Yoseph] swore an oath )(העד העד that we can’t see him with our brother” • 43:5 “If you do not send him, we cannot go down” 43:6-7 Ya'akov &amp; The Brothers Debate About Yoseph’s Demand to See Binyamin 43:8-15 Yehudah and Ya'akov Debate Going Down to Egypt With Binyamin • 43:8 “Send the young boy )(נער with me!” • 43:9a Yehudah swears to offers his life as a substitute pledge )(ערבin place of Binyamin • 43:9b “If I do not return [Binyamin] to you, it will be my sin against you all my days” Genesis 43:15-44:13</span></p>
 <table class="md reveal">
   <tr><th>Binyamin, the New Yoseph</th></tr>
   <tr><td>Notice how Yaaqov’s response mirrors the response he gave when he was shown Yoseph’s garment.</td><td>And all his sons and all his daughters got<br>up to comfort him,<br>and he refused to be comforted,<br>and he said, “Surely, I will go down to my<br>son, grieving, to the grave !”<br>And his father wept for him.</td></tr>
@@ -204,9 +281,9 @@
   <tr><td>And he said,<br>“My son will not go down with y’all,<br>  because his brother is dead,<br>  and he alone is the remnant,<br>  and should disaster happen to him … you would make<br>my gray-hair go down to the grave in grief .”</td><td></td></tr>
 </table>
   <p class="caption"><span class="lang-pt">Gênesis X:Y. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2021).</span><span class="lang-en">Genesis X:Y. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2021).</span></p>
-    <p class="body reveal">Genesis 43:1-44:34. Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022). This large section is the center of the center of the story of Yoseph and his brothers. It consists of three larger units (Gen. 43:1-15, 43:15-44:13, and 44:14-34) designed as a symmetry. The outer sections highlight a transformed Yehudah, who sees that their entire family is going to die if Yaaqov won’t surrender the life of Binyamin. He is compelled to do the opposite of what he did to Yoseph in Genesis 37, and he offers his own life in the place of Yoseph’s brother.</p>
+    <p class="body reveal"><span class="lang-en">Genesis 43:1-44:34. Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022). This large section is the center of the center of the story of Yoseph and his brothers. It consists of three larger units (Gen. 43:1-15, 43:15-44:13, and 44:14-34) designed as a symmetry. The outer sections highlight a transformed Yehudah, who sees that their entire family is going to die if Yaaqov won’t surrender the life of Binyamin. He is compelled to do the opposite of what he did to Yoseph in Genesis 37, and he offers his own life in the place of Yoseph’s brother.</span></p>
     <h2 class="section reveal">43:15-25</h2>
-    <p class="body reveal">The Brothers Go Down to Egypt, Return the Silver, and Are Brought Into Yoseph’s House For A Meal • 43:16 Yoseph said to the one over his house, “Bring the men inside” • 43:21-22 “We brought the [extra] silver in our hands … we don’t know who put it in our bags!” 43:26-34 Yoseph Seats the Brothers for a Meal, Treating Binyamin With More Favor Than the Brothers 44:1-13 The Brothers Are Sent Back to Canaan, Binyamin Is Caught With the Silver Divination Cup • 44:1-2 Yoseph said to the one over his house, “Put silver in each man’s bag … and put my silver cup in the bag of the little one” • 44:8 “Look, we found silver in our bags and we returned it to you!” Genesis 44:14-34 44:14 Yehudah &amp; Brothers Return to Yoseph and Fall Down Before Him 44:15-17 Yoseph &amp; Yehudah Discuss About the Stolen Silver Divination Cup 44:18-34 Yehudah’s Speech Before Yoseph • Yehudah retells the events of 43:1-15: • 44:33 “Let the young boy )(נער return back up with his brothers!” • 44:32-34 He offers his own life as a substitute pledge )(ערבin place of Binyamin and his father • 44:32 “If I do not return [Binyamin] to you, it will be my sin against my father for all my days</p>
+    <p class="body reveal"><span class="lang-en">The Brothers Go Down to Egypt, Return the Silver, and Are Brought Into Yoseph’s House For A Meal • 43:16 Yoseph said to the one over his house, “Bring the men inside” • 43:21-22 “We brought the [extra] silver in our hands … we don’t know who put it in our bags!” 43:26-34 Yoseph Seats the Brothers for a Meal, Treating Binyamin With More Favor Than the Brothers 44:1-13 The Brothers Are Sent Back to Canaan, Binyamin Is Caught With the Silver Divination Cup • 44:1-2 Yoseph said to the one over his house, “Put silver in each man’s bag … and put my silver cup in the bag of the little one” • 44:8 “Look, we found silver in our bags and we returned it to you!” Genesis 44:14-34 44:14 Yehudah &amp; Brothers Return to Yoseph and Fall Down Before Him 44:15-17 Yoseph &amp; Yehudah Discuss About the Stolen Silver Divination Cup 44:18-34 Yehudah’s Speech Before Yoseph • Yehudah retells the events of 43:1-15: • 44:33 “Let the young boy )(נער return back up with his brothers!” • 44:32-34 He offers his own life as a substitute pledge )(ערבin place of Binyamin and his father • 44:32 “If I do not return [Binyamin] to you, it will be my sin against my father for all my days</span></p>
 <table class="md reveal">
   <tr><th>It is also important to notice that Genesis 43-45 replays the main movements of the preceding Genesis 42.</th><th>However, each step of the narrative in Genesis 42 is developed in greater detail and drama by its parallel in</th><th>Genesis 43-45. In this way, the story feels like an intensified replay that forces the drama to its finish.</th></tr>
   <tr><td>Reflection Question</td><td>Genesis 42<br>Plot Elements<br>Genesis 43-45</td><td>Gen. 43:1–14</td></tr>
@@ -221,30 +298,30 @@
   <tr><td></td><td>Plot Elements of Genesis 42-45. Adapted from Godon J. Wenham, Genesis 16-50, 419.</td><td></td></tr>
 </table>
   <p class="caption"><span class="lang-pt">Gênesis X:Y. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2021).</span><span class="lang-en">Genesis X:Y. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2021).</span></p>
-    <p class="body reveal">The inner section focuses on the climactic additional test that Yoseph forces the brothers to undergo. With Binyamin now in Egypt, Yoseph can test their integrity even more precisely: he will create a scenario where they are forced to choose between Binyamin and a load of silver, just they did in Genesis 37. This three-part section brings all the themes and conflict between Yoseph and his brothers to a climax, as the brothers’ evil comes full circle upon them. It is also important to notice that Genesis 43-45 replays the main movements of the preceding Genesis 42. However, each step of the narrative in Genesis 42 is developed in greater detail and drama by its parallel in Genesis 43-45. In this way, the story feels like an intensified replay that forces the drama to its finish.</p>
+    <p class="body reveal"><span class="lang-en">The inner section focuses on the climactic additional test that Yoseph forces the brothers to undergo. With Binyamin now in Egypt, Yoseph can test their integrity even more precisely: he will create a scenario where they are forced to choose between Binyamin and a load of silver, just they did in Genesis 37. This three-part section brings all the themes and conflict between Yoseph and his brothers to a climax, as the brothers’ evil comes full circle upon them. It is also important to notice that Genesis 43-45 replays the main movements of the preceding Genesis 42. However, each step of the narrative in Genesis 42 is developed in greater detail and drama by its parallel in Genesis 43-45. In this way, the story feels like an intensified replay that forces the drama to its finish.</span></p>
     <ul class="bullets reveal">
       <li>Genesis 42</li>
       <li>Plot Elements</li>
       <li>Genesis 43-45</li>
       <li>Gen. 42:1–4</li>
     </ul>
-    <p class="body reveal">Yaaqov sends his sons to Egypt to buy grain )(שבר and get food.</p>
+    <p class="body reveal"><span class="lang-en">Yaaqov sends his sons to Egypt to buy grain )(שבר and get food.</span></p>
     <ul class="bullets reveal">
       <li>Gen. 43:1–14</li>
       <li>Gen. 42:5</li>
-      <li>Arrival in Egypt</li>
+      <li><span class="lang-en">Arrival in Egypt</span></li>
       <li>Gen. 43:15–25</li>
       <li>Gen. 42:6–16</li>
-      <li>First audience with Yoseph</li>
+      <li><span class="lang-en">First audience with Yoseph</span></li>
       <li>Gen. 43:26–34</li>
       <li>Gen. 42:17</li>
-      <li>Brothers in custody</li>
+      <li><span class="lang-en">Brothers in custody</span></li>
       <li>Gen. 44:1–13</li>
       <li>Gen. 42:25</li>
     </ul>
-    <p class="body reveal">Departure from Egypt with money secretly returned in the bags Gen. 44:1 Gen. 42:18–24 Second audience with Yoseph Gen. 44:14–45:15 Gen. 42:25–28 Departure from Egypt Gen. 45:16–24 Gen. 42:29–38 Sons report to Yaaqov Gen. 45:25–28 Plot Elements of Genesis 42-45. Adapted from Godon J. Wenham, Genesis 16-50, 419.</p>
+    <p class="body reveal"><span class="lang-en">Departure from Egypt with money secretly returned in the bags Gen. 44:1 Gen. 42:18–24 Second audience with Yoseph Gen. 44:14–45:15 Gen. 42:25–28 Departure from Egypt Gen. 45:16–24 Gen. 42:29–38 Sons report to Yaaqov Gen. 45:25–28 Plot Elements of Genesis 42-45. Adapted from Godon J. Wenham, Genesis 16-50, 419.</span></p>
     <h3 class="sub reveal">Reflection Question</h3>
-    <p class="body reveal">How are tragic characters in the Bible valuable for modern readers?</p>
+    <p class="body reveal"><span class="lang-en">How are tragic characters in the Bible valuable for modern readers?</span></p>
 
   <p class="caption"><span class="lang-pt">Gênesis X:Y. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2021).</span><span class="lang-en">Genesis X:Y. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2021).</span></p>
 <footer class="page-footer">

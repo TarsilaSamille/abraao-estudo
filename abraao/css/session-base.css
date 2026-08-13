@@ -1,16 +1,19 @@
 /* Shared base styles for all Abraão sessions.
    Extracted from the byte-identical rules duplicated across sessao-*.html.
-   Keep this in sync: only add rules that are 100% identical in every page. */
+   Keep this in sync: only add rules that are 100% identical in every page.
+   !important on layout rules so they win over the Tailwind v4 browser-CDN
+   preflight (which otherwise resets h1/h2/p to inherited/small sizes). */
 html[lang^="pt"] .lang-en { display: none !important; }
 html[lang="en"] .lang-pt { display: none !important; }
 * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
 .heb { font-family: 'SBL Hebrew','Times New Roman',serif; font-size: 1.05em; direction: rtl; unicode-bidi: embed; }
-h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
-h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
-h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+h1.title { font-size: 2.6rem !important; font-weight: 800 !important; letter-spacing: -0.025em; line-height: 1.08; }
+h2.section { font-size: 1.9rem !important; font-weight: 800 !important; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+h3.sub { font-weight: 800 !important; font-size: 1.3rem !important; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+p.body { font-size: 1.05rem !important; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
 .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+.rule { border-top-width: 2px !important; }
 ul.bullets { list-style: none; padding: 0; }
 ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
 ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }

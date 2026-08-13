@@ -11,46 +11,123 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../css/shared-tutorial.css">
   <style>
-  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
-  html[lang="pt"] .lang-en { display: none !important; }
-  html[lang="en"] .lang-pt { display: none !important; }
-  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
-  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
-  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
-  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
-  .verse-link { color: inherit; cursor: pointer; }
-  ul.bullets { list-style: none; padding: 0; }
-  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
-  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
-  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-  .keylabel { font-weight: 700; color: #17181a; }
-    table.md { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; background: #fff; margin: 1.5rem 0; font-size: .92rem; }
-  table.md th { background: #e3e7ec; text-align: left; padding: .8rem 1rem; font-weight: 700; color: #1b1b1b; }
-  table.md td { padding: .85rem 1rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.65; color: #1b1b1b; }
-  table.md td + td, table.md th + th { border-left: 1px solid #e5e7eb; }
-  table.md tbody tr:hover td { background: #f8fafc; }
-  .hl-tan { background: #fae3c3; color: #90362e; }
-  .hl-sky { background: #d9ecfd; color: #404ba6; }
-  .hl-grn { background: #d3f1cc; color: #2a6145; }
-  .hl-rose { background: #f9e3de; color: #97294e; }
-  .hl-brick { background: #b4533a; color: #fff; }
-  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
-  .table-img img { width: 100%; display: block; }
-  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
-  .reveal.visible { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
-  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
-  .nav-btn:hover { background: #f1f5f9; }
-  .nav-back { left: 1rem; }
-  .nav-lang { right: 1rem; }
-  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
+  .reveal.visible { opacity: 1 !important; transform: none !important; }  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s;}
+  .ref:hover { color: #2563eb;}
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s;}
+  .scripture:hover { border-left-color: #9aa7b8;}
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem;}
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem;}
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a;}
+  .scripture .innerbox { background: #f6f8fa; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1rem;}
+  .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem;}
+  .macro { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; align-items: start; margin: 2rem 0 .75rem;}
+  .mcol { border: 3px solid #2e7d4e; border-radius: 12px; padding: .9rem .9rem 1rem; background: #fff;}
+  .mcol.dark { border-color: #3d4453; margin-top: 1.3rem;}
+  .mtag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 3px 10px; border-radius: 5px;}
+  .mtag-green { background: #2e7d4e;}
+  .mtag-dark { background: #3d4453;}
+  .mcol-title { font-size: 1rem; font-weight: 800; color: #17181a; margin: .55rem 0 .8rem; line-height: 1.3;}
+  .mboxes { display: flex; gap: .55rem;}
+  .mbox { flex: 1; border: 3px solid #b9c2cf; border-radius: 9px; background: #fff; min-height: 15.5rem; position: relative; transition: box-shadow .25s, transform .25s;}
+  .mbox:hover { box-shadow: 0 8px 20px -10px rgba(30,41,59,.4); transform: translateY(-3px);}
+  .mbox .mhdr { position: absolute; top: .55rem; left: .55rem; right: .55rem; background: #7d8697; color: #fff; font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 5px;}
+  .mbox.s1 { margin-top: 0;}
+  .mbox.s2 { margin-top: 2.4rem; min-height: 13rem;}
+  .mbox.s3 { margin-top: 2.4rem; min-height: 13rem;}
+  @media (max-width: 860px) { .macro { grid-template-columns: 1fr;}
+  .mcol.dark { margin-top: 0;}
+  .mbox, .mbox.s2, .mbox.s3 { min-height: 7.5rem; margin-top: 0;}
+  .cx { border: 3px solid; border-radius: 12px; padding: 1.35rem 1.5rem 1.2rem; margin: 1.15rem 0; transition: box-shadow .25s, transform .25s;}
+  .cx:hover { box-shadow: 0 12px 26px -16px rgba(23,24,26,.45); transform: translateY(-2px);}
+  .cx-tag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 1px 13px; border-radius: 6px; margin-bottom: .7rem;}
+  .cx h4 { font-weight: 800; font-size: 1.06rem; color: #17181a; margin-bottom: .7rem;}
+  .cx ul.bullets > li { font-size: .99rem; margin-bottom: .45rem;}
+  .cx-slate  { border-color: #6b7280; background: #e9ebee;}
+  .cx-slate  .cx-tag { background: #6b7280;}
+  .cx-rust   { border-color: #c0562f; background: #f7e6dd;}
+  .cx-rust   .cx-tag { background: #c0562f;}
+  .cx-rose   { border-color: #c04a63; background: #f7e0e5;}
+  .cx-rose   .cx-tag { background: #c04a63;}
+  .cx-blue   { border-color: #5468d4; background: #e4e8f9;}
+  .cx-blue   .cx-tag { background: #5468d4;}
+  .cx-green  { border-color: #2e7d4e; background: #dfeee2;}
+  .cx-green  .cx-tag { background: #2e7d4e;}
+  .cx-purple { border-color: #8b5cf6; background: #efe2f8;}
+  .cx-purple .cx-tag { background: #8b5cf6;}
+  .cx-tan    { border-color: #8a6d3b; background: #ece7dc;}
+  .cx-tan    .cx-tag { background: #8a6d3b;}
+  .k { display: inline; padding: 3px 9px; border-radius: 6px; font-weight: 700; color: #fff; line-height: 1.85; -webkit-box-decoration-break: clone; box-decoration-break: clone;}
+  .k-blue   { background: #3b82c4;}
+  .k-green  { background: #2e7d4e;}
+  .k-rose { background: #c04a63;}
+  .k-gray   { background: #6b7280;}
+  .k-rust   { background: #bf5a2b;}
+  .k-teal { background: #0d7d8c;}
+  .k-purple { background: #7c5ad0;}
+  .k-brown  { background: #8a6d3b;}
+  .t-teal { color: #0d8aa0; font-weight: 700;}
+  .v-outer { border: 3px solid #e3e7ee; border-radius: 20px; padding: 1.4rem 1.5rem; margin: 1.4rem 0;}
+  .v-black { border: 3px solid #17181a; border-radius: 16px; padding: 1.3rem 1.5rem; margin: 1.1rem 0;}
+  .v-light { border: 3px solid #e3e7ee; border-radius: 16px; padding: 1.2rem 1.4rem; margin: 1.1rem 0;}
+  .v-line { font-size: 1.06rem; line-height: 2.1; color: #1f2937;}
+  .v-div { border: 0; border-top: 1px solid #e6eaf0; margin: 1.1rem 0;}
+  .vbar-b { border-left: 5px solid #5468d4; padding-left: .8rem;}
+  .lbl { color: #6b7280; font-weight: 600; font-size: .85rem; margin-right: .2rem;}
+  sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px;}
+  .i1 { padding-left: 1.6rem;}
+  .i2 { padding-left: 3.2rem;}
+  .i3 { padding-left: 4.8rem;}
+  .doc-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 3px solid #d9dee6; border-radius: 14px; overflow: hidden; background: #fff;}
+  .doc-table th { background: #e2e6eb; text-align: left; padding: 1rem 1.3rem; font-weight: 800; font-size: 1.02rem; color: #17181a;}
+  .doc-table td { padding: 1.1rem 1.3rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.78; font-size: .97rem; color: #24262a; transition: background .2s;}
+  .doc-table tbody tr:hover td { background: #f8fafc;}
+  .doc-table tfoot td { border-top: 1px solid #d1d5db; background: #fbfcfd; color: #5b6472; font-size: .92rem;}
+  .kblue-soft { background: #cddcf5; color: #2b5fb0; padding: 2px 8px; border-radius: 6px; font-weight: 700;}
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1);}
+  @media print {
+    @page { margin: 14mm 12mm;}
+  #reading-progress, .print\:hidden { display: none !important;}
+  .reveal { opacity: 1 !important; transform: none !important;}
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important;}
+  .max-w-4xl { max-width: 100% !important; padding: 0 !important; margin: 0 !important;}
+  h1.title, h2.section, h3.sub { break-after: avoid-page;}
+  .cx, .v-outer, .v-black, .v-light, .doc-table tr, .scripture, .mcol { break-inside: avoid;}
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none;}
+  .cx, .mbox { transition: none;}}}}
+
+  /* joseph base typography */
   
-  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  @media print { #reading-progress { display: none !important; } }
-</style>
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  
+  .verse-link { color: inherit; cursor: pointer; }
+  
+  ul.bullets { list-style: none; padding: 0; }
+  
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  
+  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  
+    table.md { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; background: #fff; margin: 1.5rem 0; font-size: .92rem; }
+  
+  table.md th { background: #e3e7ec; text-align: left; padding: .8rem 1rem; font-weight: 700; color: #1b1b1b; }
+  
+  table.md td { padding: .85rem 1rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.65; color: #1b1b1b; }
+  
+  table.md td + td, table.md th + th { border-left: 1px solid #e5e7eb; }
+  
+  table.md tbody tr:hover td { background: #f8fafc; }
+  
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }</style>
 </head>
 <body class="bg-white">
 <div id="reading-progress" aria-hidden="true"></div>
@@ -74,10 +151,10 @@
     <hr class="rule">
     <h2 class="section reveal">Key Takeaways</h2>
     <ul class="bullets reveal">
-      <li>As Genesis draws to a close, the narrative revisits the question of how God's blessing of Abraham will carry forward, with an intensification of blessing vocabulary not seen for many chapters.</li>
-      <li>Yaaqov blessing his sons in Genesis 48-49 is matched by Moses blessing the tribes of Israel at the end of Deuteronomy, creating a bookend frame around the whole Torah.</li>
-      <li>Yaaqov adopts Joseph’s Egyptian sons as his own, making Egypt part of the family of promise and pointing to a future hope of the inclusion of the nations in the Eden blessing of Abraham’s family.</li>
-      <li>Yaaqov Commissions Yoseph To Bury Him in Canaan 28 And Ya’akov lived in the land of Egypt for seven  (שבע) and ten years , a and the days of Ya’akov, b the years of his life , b' were seven  (שבע) and forty and one hundred years .</li>
+      <li><span class="lang-en">As Genesis draws to a close, the narrative revisits the question of how God's blessing of Abraham will carry forward, with an intensification of blessing vocabulary not seen for many chapters.</span></li>
+      <li><span class="lang-en">Yaaqov blessing his sons in Genesis 48-49 is matched by Moses blessing the tribes of Israel at the end of Deuteronomy, creating a bookend frame around the whole Torah.</span></li>
+      <li><span class="lang-en">Yaaqov adopts Joseph’s Egyptian sons as his own, making Egypt part of the family of promise and pointing to a future hope of the inclusion of the nations in the Eden blessing of Abraham’s family.</span></li>
+      <li><span class="lang-en">Yaaqov Commissions Yoseph To Bury Him in Canaan 28 And Ya’akov lived in the land of Egypt for seven  (שבע) and ten years , a and the days of Ya’akov, b the years of his life , b' were seven  (שבע) and forty and one hundred years .</span></li>
     </ul>
     <ul class="bullets reveal">
       <li>a'</li>
@@ -85,49 +162,49 @@
     </ul>
     <p class="body reveal">29 And the days for Yisra’el to die came near.</p>
     <ul class="bullets reveal">
-      <li>And he called for his son, for Yoseph,</li>
-      <li>and he said to him,</li>
+      <li><span class="lang-en">And he called for his son, for Yoseph,</span></li>
+      <li><span class="lang-en">and he said to him,</span></li>
       <li>b</li>
-      <li>“If, please , I have found favor in your eyes,</li>
-      <li>please set your hand under my thigh,</li>
+      <li><span class="lang-en">“If, please , I have found favor in your eyes,</span></li>
+      <li><span class="lang-en">please set your hand under my thigh,</span></li>
     </ul>
-    <p class="body reveal">and perform loyal love and faithfulness for me: please , do not bury me in Egypt.</p>
+    <p class="body reveal"><span class="lang-en">and perform loyal love and faithfulness for me: please , do not bury me in Egypt.</span></p>
     <ul class="bullets reveal">
       <li>a</li>
-      <li>30 But I will lay down with my fathers ,</li>
-      <li>and you will take me up from Egypt,</li>
-      <li>and you will bury me in their graves.”</li>
-      <li>And he said,</li>
-      <li>“I will do according your word.”</li>
-      <li>31 And he said,</li>
-      <li>“ Swear an oath  (השבעה) !”</li>
-      <li>And he swore an oath  (ישבע) to him,</li>
+      <li><span class="lang-en">30 But I will lay down with my fathers ,</span></li>
+      <li><span class="lang-en">and you will take me up from Egypt,</span></li>
+      <li><span class="lang-en">and you will bury me in their graves.”</span></li>
+      <li><span class="lang-en">And he said,</span></li>
+      <li><span class="lang-en">“I will do according your word.”</span></li>
+      <li><span class="lang-en">31 And he said,</span></li>
+      <li><span class="lang-en">“ Swear an oath  (השבעה) !”</span></li>
+      <li><span class="lang-en">And he swore an oath  (ישבע) to him,</span></li>
     </ul>
-    <p class="body reveal">and Yisra’el bowed down upon the head of the bed.</p>
-<p class="body reveal">Genesis 47:28-31. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022) Like Grandson, Like Grandfather Yaaqov requests that Yoseph specifically take up his body for burial with his fathers in Canaan. This act is portrayed on analogy to the promise the Abraham requested of his servant (likely Eliezer) in Genesis 24.</p>
+    <p class="body reveal"><span class="lang-en">and Yisra’el bowed down upon the head of the bed.</span></p>
+<p class="body reveal"><span class="lang-en">Genesis 47:28-31. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022) Like Grandson, Like Grandfather Yaaqov requests that Yoseph specifically take up his body for burial with his fathers in Canaan. This act is portrayed on analogy to the promise the Abraham requested of his servant (likely Eliezer) in Genesis 24.</span></p>
     <ul class="bullets reveal">
-      <li>Yaaqov in Genesis 47</li>
-      <li>Abraham in Genesis 24</li>
-      <li>Gen. 47:29a “When the days for Yaaqov to</li>
+      <li><span class="lang-en">Yaaqov in Genesis 47</span></li>
+      <li><span class="lang-en">Abraham in Genesis 24</span></li>
+      <li><span class="lang-en">Gen. 47:29a “When the days for Yaaqov to</span></li>
       <li>die grew near …”</li>
     </ul>
-    <p class="body reveal">Gen. 24:1 “Now Abraham was old, and advanced in years …” Gen. 47:29 Yaaqov to Yoseph: “ Place your hand under my thigh , and perform covenant loyalty and faithfulness with me, don’t bury me in Egypt.</p>
+    <p class="body reveal"><span class="lang-en">Gen. 24:1 “Now Abraham was old, and advanced in years …” Gen. 47:29 Yaaqov to Yoseph: “ Place your hand under my thigh , and perform covenant loyalty and faithfulness with me, don’t bury me in Egypt.</span></p>
     <ul class="bullets reveal">
-      <li>Gen. 47:31 And [Yaaqov] said, “ Swear an</li>
-      <li>oath )(שב׳׳ע!” And [Yoseph] swore )(שב׳׳ע</li>
+      <li><span class="lang-en">Gen. 47:31 And [Yaaqov] said, “ Swear an</span></li>
+      <li><span class="lang-en">oath )(שב׳׳ע!” And [Yoseph] swore )(שב׳׳ע</span></li>
     </ul>
-    <p class="body reveal">an oath . Gen. 24:2-3 Abraham to Eliezer: “ Place your hand under my thigh , and swear an oath )(שב׳׳ע to me by Yahweh … that you won’t take a wife for my son from the daughters of the Canaanites.” Gen. 24:49 Eliezer to Laban: “If you will perform covenant loyalty and faithfulness with my lord, tell me!” Comparing Jacob and Abraham in Genesis. Created by Tim Mackie for BibleProject Classroom: Joseph (2022). Like Abraham, who sought to protect the integrity of God’s promise to him by ensuring that Isaac marry within the chosen line, Yaaqov seeks to protect the future integrity of God’s promise by ensuring that his family’s time in Egypt isn’t permanent and they return to the promised land one day.</p>
-    <h2 class="section reveal">The Age of Yaaqov and the Sojourn in Egypt</h2>
-    <p class="body reveal">The details of Yaaqov’s age and the number of years he was in Egypt are more than interesting historical facts. They fit into the larger symbolic chronology of the Torah, and meaning is revealed when the dates are coordinated with other significant events in the Torah. The 17 years of Yaaqov’s life in Egypt match precisely with the age of Yoseph when he was sold into slavery in Egypt (Gen. 37:2). In this way, the lives of father and son are parallel to each other in relationship to their exiles from the land. Yaaqov's age, when connected to the ages of the other patriarchs, adds up to a meaningful number.</p>
+    <p class="body reveal"><span class="lang-en">an oath . Gen. 24:2-3 Abraham to Eliezer: “ Place your hand under my thigh , and swear an oath )(שב׳׳ע to me by Yahweh … that you won’t take a wife for my son from the daughters of the Canaanites.” Gen. 24:49 Eliezer to Laban: “If you will perform covenant loyalty and faithfulness with my lord, tell me!” Comparing Jacob and Abraham in Genesis. Created by Tim Mackie for BibleProject Classroom: Joseph (2022). Like Abraham, who sought to protect the integrity of God’s promise to him by ensuring that Isaac marry within the chosen line, Yaaqov seeks to protect the future integrity of God’s promise by ensuring that his family’s time in Egypt isn’t permanent and they return to the promised land one day.</span></p>
+    <h2 class="section reveal"><span class="lang-en">The Age of Yaaqov and the Sojourn in Egypt</span></h2>
+    <p class="body reveal"><span class="lang-en">The details of Yaaqov’s age and the number of years he was in Egypt are more than interesting historical facts. They fit into the larger symbolic chronology of the Torah, and meaning is revealed when the dates are coordinated with other significant events in the Torah. The 17 years of Yaaqov’s life in Egypt match precisely with the age of Yoseph when he was sold into slavery in Egypt (Gen. 37:2). In this way, the lives of father and son are parallel to each other in relationship to their exiles from the land. Yaaqov's age, when connected to the ages of the other patriarchs, adds up to a meaningful number.</span></p>
     <ul class="bullets reveal">
       <li>Abraham</li>
-      <li>Gen. 12:4 75 yrs old when he entered</li>
+      <li><span class="lang-en">Gen. 12:4 75 yrs old when he entered</span></li>
       <li>Canaan</li>
-      <li>Gen 21:5 100 yrs old when he had</li>
-      <li>Total years the patriarchs</li>
-      <li>sojourned in Canaan:</li>
+      <li><span class="lang-en">Gen 21:5 100 yrs old when he had</span></li>
+      <li><span class="lang-en">Total years the patriarchs</span></li>
+      <li><span class="lang-en">sojourned in Canaan:</span></li>
     </ul>
-    <p class="body reveal">Patriarchs Sojourning to Canaan. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</p>
+    <p class="body reveal"><span class="lang-en">Patriarchs Sojourning to Canaan. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
 <table class="md reveal">
   <tr><th>Like Grandson, Like Grandfather</th></tr>
   <tr><td>Yaaqov in Genesis 47<br>Abraham in Genesis 24</td><td>Yaaqov requests that Yoseph specifically take up his body for burial with his fathers in Canaan. This act is<br>portrayed on analogy to the promise the Abraham requested of his servant (likely Eliezer) in Genesis 24.</td></tr>
@@ -138,79 +215,79 @@
   <p class="caption"><span class="lang-pt">Gênesis X:Y. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2021).</span><span class="lang-en">Genesis X:Y. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2021).</span></p>
     <ul class="bullets reveal">
       <li>Yitskhak</li>
-      <li>Gen. 25:7 175 yrs old when he dies</li>
-      <li>= lived in Canaan 25 yrs before Isaac</li>
+      <li><span class="lang-en">Gen. 25:7 175 yrs old when he dies</span></li>
+      <li><span class="lang-en">= lived in Canaan 25 yrs before Isaac</span></li>
       <li>25 + 60 + 130 =</li>
       <li>215 years</li>
       <li>Isaac</li>
-      <li>Gen. 25:26 60 yrs old when he fathered</li>
+      <li><span class="lang-en">Gen. 25:26 60 yrs old when he fathered</span></li>
       <li>Yaaqov</li>
       <li>Yaaqov</li>
-      <li>130 yrs old when he leaves the land of</li>
+      <li><span class="lang-en">130 yrs old when he leaves the land of</span></li>
       <li>Canaan</li>
-      <li>Gen. 47:28 147 yrs old when he dies</li>
-      <li>Hebrew MT of</li>
+      <li><span class="lang-en">Gen. 47:28 147 yrs old when he dies</span></li>
+      <li><span class="lang-en">Hebrew MT of</span></li>
       <li>Exodus 12:40-41</li>
-      <li>“And the sojourn of the Israelites who</li>
-      <li>sojourned in Egypt was thirty years and</li>
+      <li><span class="lang-en">“And the sojourn of the Israelites who</span></li>
+      <li><span class="lang-en">sojourned in Egypt was thirty years and</span></li>
       <li>four hundred.”</li>
-      <li>The 430 year exile in Egypt was</li>
-      <li>twice the number of years the</li>
-      <li>patriarchs were in Canaan (see</li>
+      <li><span class="lang-en">The 430 year exile in Egypt was</span></li>
+      <li><span class="lang-en">twice the number of years the</span></li>
+      <li><span class="lang-en">patriarchs were in Canaan (see</span></li>
     </ul>
     <p class="body reveal">Isaiah 40:2).</p>
     <ul class="bullets reveal">
       <li>Old Greek</li>
-      <li>translation and the</li>
-      <li>Samaritan version of</li>
+      <li><span class="lang-en">translation and the</span></li>
+      <li><span class="lang-en">Samaritan version of</span></li>
       <li>Exodus 12:40-41</li>
-      <li>“And the sojourn of the Israelites who</li>
-      <li>sojourned in the land of Canaan and in</li>
-      <li>the land of Egypt was thirty years and</li>
+      <li><span class="lang-en">“And the sojourn of the Israelites who</span></li>
+      <li><span class="lang-en">sojourned in the land of Canaan and in</span></li>
+      <li><span class="lang-en">the land of Egypt was thirty years and</span></li>
       <li>four hundred.”</li>
-      <li>The 215 year exile in Egypt was</li>
-      <li>equal to the 215 years the</li>
+      <li><span class="lang-en">The 215 year exile in Egypt was</span></li>
+      <li><span class="lang-en">equal to the 215 years the</span></li>
     </ul>
-    <p class="body reveal">patriarchs were in Canaan. Patriarchs Sojourning to Canaan. Created by Tim Mackie for BibleProject Classroom: Joseph (2022). In this connection, Abraham's life, which began outside the land, is paired with Yaaqov's life, which ends outside the land. Their total time in the land is 215 years, which is precisely half of the time of Israel's exile in Egypt (in the Masoretic text).</p>
+    <p class="body reveal"><span class="lang-en">patriarchs were in Canaan. Patriarchs Sojourning to Canaan. Created by Tim Mackie for BibleProject Classroom: Joseph (2022). In this connection, Abraham's life, which began outside the land, is paired with Yaaqov's life, which ends outside the land. Their total time in the land is 215 years, which is precisely half of the time of Israel's exile in Egypt (in the Masoretic text).</span></p>
     <ul class="bullets reveal">
-      <li>The Death and Blessings of Yaaqov</li>
+      <li><span class="lang-en">The Death and Blessings of Yaaqov</span></li>
       <li>Genesis 48:1-22</li>
     </ul>
-    <p class="body reveal">• 48:1-12 Ya’akov adopts Yoseph’s sons, Ephrayim and Manasseh • 48:13-20 Ya’akov inverts the birth order and blessing of the sons • 48:21-22 Ya’akov blesses Yoseph over and above his brothers Genesis 49:1-28 49:1-2 Ya’akov Gathers the Sons of Yisrael to Announce What Will Happen “In the End of Days” 49:3-27 Ya’akov’s Speech to His 12 Sons</p>
+    <p class="body reveal"><span class="lang-en">• 48:1-12 Ya’akov adopts Yoseph’s sons, Ephrayim and Manasseh • 48:13-20 Ya’akov inverts the birth order and blessing of the sons • 48:21-22 Ya’akov blesses Yoseph over and above his brothers Genesis 49:1-28 49:1-2 Ya’akov Gathers the Sons of Yisrael to Announce What Will Happen “In the End of Days” 49:3-27 Ya’akov’s Speech to His 12 Sons</span></p>
 
     <h2 class="section reveal">49:28</h2>
-    <p class="body reveal">c - 49:18 “For your deliverance I wait, O Yahweh!!” b&#x27; - 49:19-21 Ya’akov speaks of Zilpah and Bilhah’s sons a&#x27; - 49:22-27 Ya’akov blesses Yoseph and Binyamin, sons of Rakhel a - 49:3-12 Ya’akov inverts the birth order and blessing of Leah’s sons b - 49:13-17 Ya’akov speaks of Leah and Bilhah’s sons Similarities “These are the tribes of Yisrael … when their father blessed them ” Genesis 48:1-49:28. Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</p>
+    <p class="body reveal"><span class="lang-en">c - 49:18 “For your deliverance I wait, O Yahweh!!” b&#x27; - 49:19-21 Ya’akov speaks of Zilpah and Bilhah’s sons a&#x27; - 49:22-27 Ya’akov blesses Yoseph and Binyamin, sons of Rakhel a - 49:3-12 Ya’akov inverts the birth order and blessing of Leah’s sons b - 49:13-17 Ya’akov speaks of Leah and Bilhah’s sons Similarities “These are the tribes of Yisrael … when their father blessed them ” Genesis 48:1-49:28. Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
     <h2 class="section reveal">Differences</h2>
-    <p class="body reveal">Both stories focus on a blessing for Yoseph and his family. This section contains two deathbed scenes from the end of Yaaqov’s life, and they mark the moment when he passes on to his sons the divine Eden blessing that was given to him by his father (back in Gen. 27). Both of these stories share important similarities and differences. Both stories focus on an inversion of sibling birth order. In Genesis 48, the blessing is for Yoseph and his two sons, especially Ephrayim. In Genesis 49, Yoseph receives the greatest and most abundant blessing among the brothers.</p>
-    <h2 class="section reveal">Genesis 48-49 Within the Torah as a Whole</h2>
-    <p class="body reveal">In Genesis 48, Ephrayim the younger is elevated and blessed over and above Manasseh the older. In Genesis 49, Yehudah the fourth son of Leah is elevated and blessed over and above his three older brothers, Reuven, Shimon, and Levi. Genesis 48 elevates the lineage of Yoseph as the future of the Eden blessing, while chapter 49 elevates the lineage of Yehudah and Yoseph as dual carriers of the Eden blessing. Genesis 48 involves only blessing for Yoseph and his sons, while in chapter 49, three sons get a non- blessing (Reuven) or even a curse (Shimon and Levi).</p>
+    <p class="body reveal"><span class="lang-en">Both stories focus on a blessing for Yoseph and his family. This section contains two deathbed scenes from the end of Yaaqov’s life, and they mark the moment when he passes on to his sons the divine Eden blessing that was given to him by his father (back in Gen. 27). Both of these stories share important similarities and differences. Both stories focus on an inversion of sibling birth order. In Genesis 48, the blessing is for Yoseph and his two sons, especially Ephrayim. In Genesis 49, Yoseph receives the greatest and most abundant blessing among the brothers.</span></p>
+    <h2 class="section reveal"><span class="lang-en">Genesis 48-49 Within the Torah as a Whole</span></h2>
+    <p class="body reveal"><span class="lang-en">In Genesis 48, Ephrayim the younger is elevated and blessed over and above Manasseh the older. In Genesis 49, Yehudah the fourth son of Leah is elevated and blessed over and above his three older brothers, Reuven, Shimon, and Levi. Genesis 48 elevates the lineage of Yoseph as the future of the Eden blessing, while chapter 49 elevates the lineage of Yehudah and Yoseph as dual carriers of the Eden blessing. Genesis 48 involves only blessing for Yoseph and his sons, while in chapter 49, three sons get a non- blessing (Reuven) or even a curse (Shimon and Levi).</span></p>
 
   <p class="caption"><span class="lang-pt">Gênesis X:Y. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2021).</span><span class="lang-en">Genesis X:Y. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2021).</span></p>
-    <p class="body reveal">Genesis 48:1-49:28. Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022). This section contains two deathbed scenes from the end of Yaaqov’s life, and they mark the moment when he passes on to his sons the divine Eden blessing that was given to him by his father (back in Gen. 27). Both of these stories share important similarities and differences.</p>
+    <p class="body reveal"><span class="lang-en">Genesis 48:1-49:28. Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022). This section contains two deathbed scenes from the end of Yaaqov’s life, and they mark the moment when he passes on to his sons the divine Eden blessing that was given to him by his father (back in Gen. 27). Both of these stories share important similarities and differences.</span></p>
     <h2 class="section reveal">Similarities</h2>
-    <p class="body reveal">Both stories focus on a blessing for Yoseph and his family. In Genesis 48, the blessing is for Yoseph and his two sons, especially Ephrayim. In Genesis 49, Yoseph receives the greatest and most abundant blessing among the brothers. Both stories focus on an inversion of sibling birth order. In Genesis 48, Ephrayim the younger is elevated and blessed over and above Manasseh the older. In Genesis 49, Yehudah the fourth son of Leah is elevated and blessed over and above his three older brothers, Reuven, Shimon, and Levi.</p>
+    <p class="body reveal"><span class="lang-en">Both stories focus on a blessing for Yoseph and his family. In Genesis 48, the blessing is for Yoseph and his two sons, especially Ephrayim. In Genesis 49, Yoseph receives the greatest and most abundant blessing among the brothers. Both stories focus on an inversion of sibling birth order. In Genesis 48, Ephrayim the younger is elevated and blessed over and above Manasseh the older. In Genesis 49, Yehudah the fourth son of Leah is elevated and blessed over and above his three older brothers, Reuven, Shimon, and Levi.</span></p>
     <h2 class="section reveal">Differences</h2>
-    <p class="body reveal">Genesis 48 elevates the lineage of Yoseph as the future of the Eden blessing, while chapter 49 elevates the lineage of Yehudah and Yoseph as dual carriers of the Eden blessing. Genesis 48 involves only blessing for Yoseph and his sons, while in chapter 49, three sons get a non- blessing (Reuven) or even a curse (Shimon and Levi).</p>
-    <h2 class="section reveal">Genesis 48-49 Within the Torah as a Whole</h2>
-    <p class="body reveal">a - 49:3-12 Ya’akov inverts the birth order and blessing of Leah’s sons b - 49:13-17 Ya’akov speaks of Leah and Bilhah’s sons c - 49:18 “For your deliverance I wait, O Yahweh!!” b' - 49:19-21 Ya’akov speaks of Zilpah and Bilhah’s sons a' - 49:22-27 Ya’akov blesses Yoseph and Binyamin, sons of Rakhel 49:28 “These are the tribes of Yisrael … when their father blessed them ”</p>
-<p class="body reveal">Genesis 48-49 Within the Torah. Diagram created by Tim Mackie for BibleProject Classroom: Joseph (2022). The Torah has two bookend frame stories about the final words and death of the leading figure in the story: Yaaqov in Genesis and Moses in Deuteronomy. Both Yaaqov and Moses offer a final series of poetic blessings or curses on the twelve sons of Yisrael ( Gen. 49 // Deut. 28, 32-33). Both Yaaqov and Moses open their poems by claiming that their words speak of realities that are present and future.</p>
+    <p class="body reveal"><span class="lang-en">Genesis 48 elevates the lineage of Yoseph as the future of the Eden blessing, while chapter 49 elevates the lineage of Yehudah and Yoseph as dual carriers of the Eden blessing. Genesis 48 involves only blessing for Yoseph and his sons, while in chapter 49, three sons get a non- blessing (Reuven) or even a curse (Shimon and Levi).</span></p>
+    <h2 class="section reveal"><span class="lang-en">Genesis 48-49 Within the Torah as a Whole</span></h2>
+    <p class="body reveal"><span class="lang-en">a - 49:3-12 Ya’akov inverts the birth order and blessing of Leah’s sons b - 49:13-17 Ya’akov speaks of Leah and Bilhah’s sons c - 49:18 “For your deliverance I wait, O Yahweh!!” b' - 49:19-21 Ya’akov speaks of Zilpah and Bilhah’s sons a' - 49:22-27 Ya’akov blesses Yoseph and Binyamin, sons of Rakhel 49:28 “These are the tribes of Yisrael … when their father blessed them ”</span></p>
+<p class="body reveal"><span class="lang-en">Genesis 48-49 Within the Torah. Diagram created by Tim Mackie for BibleProject Classroom: Joseph (2022). The Torah has two bookend frame stories about the final words and death of the leading figure in the story: Yaaqov in Genesis and Moses in Deuteronomy. Both Yaaqov and Moses offer a final series of poetic blessings or curses on the twelve sons of Yisrael ( Gen. 49 // Deut. 28, 32-33). Both Yaaqov and Moses open their poems by claiming that their words speak of realities that are present and future.</span></p>
     <ul class="bullets reveal">
-      <li>Yaaqov in Genesis 48-49</li>
-      <li>Moses in Deuteronomy 27-34</li>
+      <li><span class="lang-en">Yaaqov in Genesis 48-49</span></li>
+      <li><span class="lang-en">Moses in Deuteronomy 27-34</span></li>
       <li>Gen. 49:1</li>
-      <li>And Yaaqov gathered his sons and said,</li>
-      <li>“ Gather around and I will tell you</li>
-      <li>a thing that will happen in the end of days .”</li>
+      <li><span class="lang-en">And Yaaqov gathered his sons and said,</span></li>
+      <li><span class="lang-en">“ Gather around and I will tell you</span></li>
+      <li><span class="lang-en">a thing that will happen in the end of days .”</span></li>
       <li>Deut. 31:28-30</li>
     </ul>
-    <p class="body reveal">“ Gather to me all the elders of your tribes . … For I know that after my death you all are going to act corruptly … and evil will happen to you in the end of days . …” And Moses spoke the words of this song in the ears of all the assembly of Yisrael. Comparing Jacob in Genesis 48-49 to Moses in Genesis 27-34. Created by Tim Mackie for BibleProject Classroom: Joseph (2022). In both stories, the dying patriarch warns of a future time of ruin and exile that will be followed by a restoration of the land of promise and the Eden-blessing (Gen. 48:21; 50:24-25 // Deut. 28, 30). In both stories, the vocabulary of the Eden story fills the poems and narratives (Gen. 48-50 // Deut. 27-34). The Torah features bookends that both end with the sons of Israel outside the land of promise, waiting for Yahweh to act and bring the next generation into the full realization of the Eden blessing. Yaaqov and Moses offer warnings and hope, and together they offer the readers of the TaNaK in its final form a challenge and a comfort that Yahweh will yet fulfill his ancient promises to Abraham.</p>
-    <h2 class="section reveal">Yaaqov Blesses Yoseph’s Sons</h2>
+    <p class="body reveal"><span class="lang-en">“ Gather to me all the elders of your tribes . … For I know that after my death you all are going to act corruptly … and evil will happen to you in the end of days . …” And Moses spoke the words of this song in the ears of all the assembly of Yisrael. Comparing Jacob in Genesis 48-49 to Moses in Genesis 27-34. Created by Tim Mackie for BibleProject Classroom: Joseph (2022). In both stories, the dying patriarch warns of a future time of ruin and exile that will be followed by a restoration of the land of promise and the Eden-blessing (Gen. 48:21; 50:24-25 // Deut. 28, 30). In both stories, the vocabulary of the Eden story fills the poems and narratives (Gen. 48-50 // Deut. 27-34). The Torah features bookends that both end with the sons of Israel outside the land of promise, waiting for Yahweh to act and bring the next generation into the full realization of the Eden blessing. Yaaqov and Moses offer warnings and hope, and together they offer the readers of the TaNaK in its final form a challenge and a comfort that Yahweh will yet fulfill his ancient promises to Abraham.</span></p>
+    <h2 class="section reveal"><span class="lang-en">Yaaqov Blesses Yoseph’s Sons</span></h2>
 <ul class="bullets reveal">
       <li>Genesis 48:1-12</li>
       <li>48:1-2</li>
-      <li>Yoseph Brings His Two Sons to Sick Ya’akov</li>
+      <li><span class="lang-en">Yoseph Brings His Two Sons to Sick Ya’akov</span></li>
     </ul>
-    <p class="body reveal">• 48:1 “Look, your father is sick” )(הנה אביך חלה • Yoseph took his two sons, Manasseh and Ephrayim 48:3-7 Ya’akov Adopts Yoseph’s Two Sons As His Own • 48:5 “Ephrayim and Manasseh, they belong to me” • 48:6 “They will be called by )(על the name of their brothers )(אחיהם” 48:8-12 Ya’akov Takes the Two Sons Upon His Knees for Blessing Genesis 48:13-20 48:13-14 Ya’akov Inverts the Birth-Order and Blessing of the Sons • 48:14a “He set his right hand upon Ephrayim, though he was the smaller one” • 48:14b “He crossed )(שכל his hands” 48:15-16 Ya’akov Blesses Both Sons • 48:16 “May my name and the name of my fathers be called over )(על them” 48:17-20 Ya’akov Inverts the Birth-Order and Blessing of the Sons • 48:17 “He set his right hand upon the head of Ephrayim” • 48:19 “I know )(ידע, my son, I know )(ידע” • 48:19 “The smaller one will be greater than his brother” Genesis 48:21-22 Ya’akov Blesses Yoseph Over and Above His Brothers • 48:21 “Look, I am dying” )(הנה אנכי מת</p>
+    <p class="body reveal"><span class="lang-en">• 48:1 “Look, your father is sick” )(הנה אביך חלה • Yoseph took his two sons, Manasseh and Ephrayim 48:3-7 Ya’akov Adopts Yoseph’s Two Sons As His Own • 48:5 “Ephrayim and Manasseh, they belong to me” • 48:6 “They will be called by )(על the name of their brothers )(אחיהם” 48:8-12 Ya’akov Takes the Two Sons Upon His Knees for Blessing Genesis 48:13-20 48:13-14 Ya’akov Inverts the Birth-Order and Blessing of the Sons • 48:14a “He set his right hand upon Ephrayim, though he was the smaller one” • 48:14b “He crossed )(שכל his hands” 48:15-16 Ya’akov Blesses Both Sons • 48:16 “May my name and the name of my fathers be called over )(על them” 48:17-20 Ya’akov Inverts the Birth-Order and Blessing of the Sons • 48:17 “He set his right hand upon the head of Ephrayim” • 48:19 “I know )(ידע, my son, I know )(ידע” • 48:19 “The smaller one will be greater than his brother” Genesis 48:21-22 Ya’akov Blesses Yoseph Over and Above His Brothers • 48:21 “Look, I am dying” )(הנה אנכי מת</span></p>
 <table class="md reveal">
   <tr><th>Then Pharaoh named Yoseph Zaphenath-paneah; and he gave him Asenath, the daughter of Potiphera</th><th>priest of On, as his wife. And Yoseph went forth over the land of Egypt.</th></tr>
   <tr><td>*Key Words Adapted by Teacher</td><td>50 Now before the year of famine came, two sons were born to Yoseph, whom Asenath, the daughter of<br>Potiphera priest of On, bore to him.</td></tr>
@@ -223,60 +300,60 @@
   <tr><td></td><td>What is significant about Yaaqov adopting Yoseph’s sons as his own in Genesis 48?</td></tr>
 </table>
   <p class="caption"><span class="lang-pt">Gênesis X:Y. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2021).</span><span class="lang-en">Genesis X:Y. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2021).</span></p>
-    <p class="body reveal">Genesis 48:1-22. Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022). This literary unit has been designed with three main parts arranged in a symmetrical pattern. The outer sections focus on the impending death of Yaaqov (v. 1 // v. 21), which is the scene where he passes on the blessing to Yoseph’s sons (v. 3-7) and to Yoseph himself (v. 21-22). The central section focuses on the inversion of the siblings. Yaaqov replays the ancient pattern of Yahweh’s blessing: He elevates the younger Ephrayim over the older Manasseh. The center of the center (Gen. 48:15-16) focuses on the full adoption of the two sons of Yoseph and their inheritance of Yaaqov’s name and blessing. • 48:22 “I give to you one shoulder over )(על your brothers )(אחיך” a 48:1 And it came about after these things, that he said to Yoseph, “ Look, your father is sick.” b And he took his two sons with him, Manasseh and Ephrayim  (אפרים) .</p>
+    <p class="body reveal"><span class="lang-en">Genesis 48:1-22. Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022). This literary unit has been designed with three main parts arranged in a symmetrical pattern. The outer sections focus on the impending death of Yaaqov (v. 1 // v. 21), which is the scene where he passes on the blessing to Yoseph’s sons (v. 3-7) and to Yoseph himself (v. 21-22). The central section focuses on the inversion of the siblings. Yaaqov replays the ancient pattern of Yahweh’s blessing: He elevates the younger Ephrayim over the older Manasseh. The center of the center (Gen. 48:15-16) focuses on the full adoption of the two sons of Yoseph and their inheritance of Yaaqov’s name and blessing. • 48:22 “I give to you one shoulder over )(על your brothers )(אחיך” a 48:1 And it came about after these things, that he said to Yoseph, “ Look, your father is sick.” b And he took his two sons with him, Manasseh and Ephrayim  (אפרים) .</span></p>
     <ul class="bullets reveal">
       <li>a'</li>
-      <li>2 And he told Ya’akov and said,</li>
-      <li>“ Look, your son is coming to you.”</li>
+      <li><span class="lang-en">2 And he told Ya’akov and said,</span></li>
+      <li><span class="lang-en">“ Look, your son is coming to you.”</span></li>
     </ul>
-    <p class="body reveal">And he strengthened himself and sat upon the bed .</p>
+    <p class="body reveal"><span class="lang-en">And he strengthened himself and sat upon the bed .</span></p>
     <ul class="bullets reveal">
-      <li>a 3 And Ya’akov said to Yoseph,</li>
-      <li>“El-Shaddai became seen to me,</li>
+      <li><span class="lang-en">a 3 And Ya’akov said to Yoseph,</span></li>
+      <li><span class="lang-en">“El-Shaddai became seen to me,</span></li>
       <li>a</li>
       <li>in Luz,</li>
       <li>b</li>
-      <li>in the land of Cana’an ,</li>
+      <li><span class="lang-en">in the land of Cana’an ,</span></li>
       <li>b'</li>
-      <li>and he blessed  (ברך) me,</li>
+      <li><span class="lang-en">and he blessed  (ברך) me,</span></li>
       <li>a</li>
-      <li>4 and he said to me,</li>
+      <li><span class="lang-en">4 and he said to me,</span></li>
     </ul>
-    <p class="body reveal">‘Look, I am about to make you fruitful  (פרה) and multiply, and I will give you to become an assembly of nations, and I will give this land to your seed after you, an eternal possession.’ 5 And now, your two sons who were born for you in the land of Egypt, before I came to you in Egypt, they will be mine, Ephrayim  (אפרים) and Manasseh. Like Reuven and Shim’on, they will be mine. 6 And your family which you caused to be born after them, they will be yours. By the name of their brothers, they will be called in their inheritance. 7 And as for me, when I came from Paddan-Aram, Rakhel died on me, a in the land of Cana’an , b on the road with one more stretch of land to enter Ephrathah  (אפרתה) .</p>
+    <p class="body reveal"><span class="lang-en">‘Look, I am about to make you fruitful  (פרה) and multiply, and I will give you to become an assembly of nations, and I will give this land to your seed after you, an eternal possession.’ 5 And now, your two sons who were born for you in the land of Egypt, before I came to you in Egypt, they will be mine, Ephrayim  (אפרים) and Manasseh. Like Reuven and Shim’on, they will be mine. 6 And your family which you caused to be born after them, they will be yours. By the name of their brothers, they will be called in their inheritance. 7 And as for me, when I came from Paddan-Aram, Rakhel died on me, a in the land of Cana’an , b on the road with one more stretch of land to enter Ephrathah  (אפרתה) .</span></p>
     <ul class="bullets reveal">
       <li>b'</li>
       <li>And I</li>
       <li>buried</li>
     </ul>
-    <p class="body reveal">her there by the road to Ephrathah  (אפרתה) (this is Bethlehem).” a</p>
-<p class="body reveal">Genesis 48:1-12. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022) Blessing, Blessing, Everywhere! The Hebrew vocabulary of blessing fills this story by using the repetition of the word “blessing” itself )(ברך ,ברכה and by using synonyms, related words, and homonym wordplays. “bless, blessing” )(ברך in Genesis 48:3, 9, 15, 16, 20 “knees” )(ברכים in Genesis 48:12 “fruit/fruitful” in Gen. 48:4 “Ephrayim” (אפרים, whose name has the word “fruit“ in the center, see Gen. 41:52) “Ephratah” (אפרתה, a place name with the verb “be fruitful” in the center) “multiply” (רבה, associated with the blessing back in Gen. 1:21, 28) in Genesis 48:4 All these repetitions of blessing make it clear that the full scale of the Eden blessing that has been passed on to each generation is now being inherited by the next generation.</p>
-    <h2 class="section reveal">The Adoption of Yoseph’s Egyptian Sons</h2>
-    <p class="body reveal">Recall from Genesis 41 that Yoseph’s two sons are half-Egyptian, and they are from the lineage of Egypt’s priesthood located in On.</p>
+    <p class="body reveal"><span class="lang-en">her there by the road to Ephrathah  (אפרתה) (this is Bethlehem).” a</span></p>
+<p class="body reveal"><span class="lang-en">Genesis 48:1-12. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022) Blessing, Blessing, Everywhere! The Hebrew vocabulary of blessing fills this story by using the repetition of the word “blessing” itself )(ברך ,ברכה and by using synonyms, related words, and homonym wordplays. “bless, blessing” )(ברך in Genesis 48:3, 9, 15, 16, 20 “knees” )(ברכים in Genesis 48:12 “fruit/fruitful” in Gen. 48:4 “Ephrayim” (אפרים, whose name has the word “fruit“ in the center, see Gen. 41:52) “Ephratah” (אפרתה, a place name with the verb “be fruitful” in the center) “multiply” (רבה, associated with the blessing back in Gen. 1:21, 28) in Genesis 48:4 All these repetitions of blessing make it clear that the full scale of the Eden blessing that has been passed on to each generation is now being inherited by the next generation.</span></p>
+    <h2 class="section reveal"><span class="lang-en">The Adoption of Yoseph’s Egyptian Sons</span></h2>
+    <p class="body reveal"><span class="lang-en">Recall from Genesis 41 that Yoseph’s two sons are half-Egyptian, and they are from the lineage of Egypt’s priesthood located in On.</span></p>
     <ul class="bullets reveal">
       <li>A</li>
-      <li>8 And Ya’akov saw the sons of Yoseph,</li>
-      <li>and he said,</li>
-      <li>“Who are these?”</li>
-      <li>9 And Yoseph said to his father,</li>
+      <li><span class="lang-en">8 And Ya’akov saw the sons of Yoseph,</span></li>
+      <li><span class="lang-en">and he said,</span></li>
+      <li><span class="lang-en">“Who are these?”</span></li>
+      <li><span class="lang-en">9 And Yoseph said to his father,</span></li>
     </ul>
-    <p class="body reveal">“These are the sons who Elohim gave to me in this place.” And he said, “Take them to me, please, so that I can bless  (ברך) them.” B 10 Now, the eyes of Yisra’el were heavy from age. He was not able to see .</p>
+    <p class="body reveal"><span class="lang-en">“These are the sons who Elohim gave to me in this place.” And he said, “Take them to me, please, so that I can bless  (ברך) them.” B 10 Now, the eyes of Yisra’el were heavy from age. He was not able to see .</span></p>
     <ul class="bullets reveal">
       <li>A'</li>
-      <li>And he drew them near to him,</li>
-      <li>and he kissed them,</li>
+      <li><span class="lang-en">And he drew them near to him,</span></li>
+      <li><span class="lang-en">and he kissed them,</span></li>
     </ul>
-    <p class="body reveal">and he embraced them.</p>
-    <h2 class="section reveal">11 And Yisra’el said to Yoseph,</h2>
-    <p class="body reveal">“I had not considered that I would see your face, but look, Elohim has let me see even your seed !” 12 And Yoseph brought them out from upon his knees  (ברכיו) and they bowed down, faces to the ground.</p>
+    <p class="body reveal"><span class="lang-en">and he embraced them.</span></p>
+    <h2 class="section reveal"><span class="lang-en">11 And Yisra’el said to Yoseph,</span></h2>
+    <p class="body reveal"><span class="lang-en">“I had not considered that I would see your face, but look, Elohim has let me see even your seed !” 12 And Yoseph brought them out from upon his knees  (ברכיו) and they bowed down, faces to the ground.</span></p>
 <h2 class="section reveal">Genesis 41:45 NASB*</h2>
-    <p class="body reveal">Then Pharaoh named Yoseph Zaphenath-paneah; and he gave him Asenath, the daughter of Potiphera priest of On, as his wife. And Yoseph went forth over the land of Egypt.</p>
+    <p class="body reveal"><span class="lang-en">Then Pharaoh named Yoseph Zaphenath-paneah; and he gave him Asenath, the daughter of Potiphera priest of On, as his wife. And Yoseph went forth over the land of Egypt.</span></p>
     <ul class="bullets reveal">
       <li>*Key Words Adapted by Teacher</li>
       <li>Genesis 41:50-52 NASB*</li>
     </ul>
-    <p class="body reveal">50 Now before the year of famine came, two sons were born to Yoseph, whom Asenath, the daughter of Potiphera priest of On, bore to him. 51 Yoseph named the firstborn Manasseh, “For,” he said, “God has made me forget all my trouble and all my father’s household.” 52 He named the second Ephraim, “For,” he said, “God has made me fruitful in the land of my affliction.” *Key Words Adapted by Teacher This important fact about Yoseph’s sons also needs to be connected to the fact that Yaaqov fully adopts Yoseph’s Egyptian sons as his own (Gen. 48:5-6). This incorporation of Egyptian sons into the Eden blessing given to Abraham is crucially important for the overall story of tribal families in Genesis. This is yet another moment where the lineage of Ham begins to merge back together with the lineage of Shem (Recall Noah’s sons from Gen. 9:18-27, 10:1-32). Here, the sons of Ham are connected into the line of Shem and the family of Abraham, which means they are connected to the Eden blessing. Later biblical authors will draw upon this connection when they describe the ultimate restoration of Egypt into the Eden blessings that God has in store for the new creation (for example, see Isa. 19:18-25 and 45:11-15). This pattern will be developed more in the Prophets and Writings as more descendants from Ham are brought into Abraham’s blessing (Rahab and the Gibeonites in Josh. 2 and 9), as well as the sons of Lot (through Ruth the Moabite) and Esau (through Caleb the Kenazite, see Num. 13-14).</p>
+    <p class="body reveal"><span class="lang-en">50 Now before the year of famine came, two sons were born to Yoseph, whom Asenath, the daughter of Potiphera priest of On, bore to him. 51 Yoseph named the firstborn Manasseh, “For,” he said, “God has made me forget all my trouble and all my father’s household.” 52 He named the second Ephraim, “For,” he said, “God has made me fruitful in the land of my affliction.” *Key Words Adapted by Teacher This important fact about Yoseph’s sons also needs to be connected to the fact that Yaaqov fully adopts Yoseph’s Egyptian sons as his own (Gen. 48:5-6). This incorporation of Egyptian sons into the Eden blessing given to Abraham is crucially important for the overall story of tribal families in Genesis. This is yet another moment where the lineage of Ham begins to merge back together with the lineage of Shem (Recall Noah’s sons from Gen. 9:18-27, 10:1-32). Here, the sons of Ham are connected into the line of Shem and the family of Abraham, which means they are connected to the Eden blessing. Later biblical authors will draw upon this connection when they describe the ultimate restoration of Egypt into the Eden blessings that God has in store for the new creation (for example, see Isa. 19:18-25 and 45:11-15). This pattern will be developed more in the Prophets and Writings as more descendants from Ham are brought into Abraham’s blessing (Rahab and the Gibeonites in Josh. 2 and 9), as well as the sons of Lot (through Ruth the Moabite) and Esau (through Caleb the Kenazite, see Num. 13-14).</span></p>
     <h3 class="sub reveal">Reflection Question</h3>
-    <p class="body reveal">What is significant about Yaaqov adopting Yoseph’s sons as his own in Genesis 48?</p>
+    <p class="body reveal"><span class="lang-en">What is significant about Yaaqov adopting Yoseph’s sons as his own in Genesis 48?</span></p>
 <footer class="page-footer">
     <span class="lang-pt">Anotações de Aula: José</span><span class="lang-en">Class Notes: Joseph</span>
     <span class="lang-pt">Sessão 21</span><span class="lang-en">Session 21</span>

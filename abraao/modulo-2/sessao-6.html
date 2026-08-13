@@ -8,20 +8,122 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/shared-tutorial.css">
+<style>
+/* === base (session-base.css, inlined so it survives Tailwind v4 CDN) === */
+html[lang^="pt"] .lang-en { display: none !important; }
+html[lang="en"] .lang-pt { display: none !important; }
+* { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+.heb { font-family: 'SBL Hebrew','Times New Roman',serif; font-size: 1.05em; direction: rtl; unicode-bidi: embed; }
+h1.title { font-size: 2.6rem !important; font-weight: 800 !important; letter-spacing: -0.025em; line-height: 1.08; }
+h2.section { font-size: 1.9rem !important; font-weight: 800 !important; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+h3.sub { font-weight: 800 !important; font-size: 1.3rem !important; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+p.body { font-size: 1.05rem !important; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+.rule { border: 0; border-top: 2px solid #d7dde5 !important; margin: 1.75rem 0 2.75rem; }
+ul.bullets { list-style: none; padding: 0; }
+ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+ul.bullets > li:before { content: "•" !important; position: absolute !important; left: .55rem !important; color: #1a1a1a !important; }
+.caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+.page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+#reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+.doc-table td + td { border-left: 1px solid #e5e7eb; }
+.reveal.visible { opacity: 1; transform: none; }
+/* === end base === */
 
-  <link rel="stylesheet" href="../../css/shared-tutorial.css">
-  <style>
-  .reveal.visible { opacity: 1 !important; transform: none !important; }  .heb { font-family: 'SBL Hebrew','Times New Roman',serif; font-size: 1.1em; direction: rtl; unicode-bidi: isolate;}
-  .sub2 { font-weight: 800; font-size: 1.12rem; margin-top: 2.4rem; margin-bottom: .9rem; letter-spacing: -0.005em;}
-  .chiasm-container { margin: 2rem 0 2.5rem;}
-  .chiasm-box {
+.reveal.visible { opacity: 1 !important; transform: none !important; }  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s;}
+  .ref:hover { color: #2563eb;}
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s;}
+  .scripture:hover { border-left-color: #9aa7b8;}
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem;}
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem;}
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a;}
+  .scripture .innerbox { background: #f6f8fa; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1rem;}
+  .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem;}
+  .macro { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; align-items: start; margin: 2rem 0 .75rem;}
+  .mcol { border: 3px solid #2e7d4e; border-radius: 12px; padding: .9rem .9rem 1rem; background: #fff;}
+  .mcol.dark { border-color: #3d4453; margin-top: 1.3rem;}
+  .mtag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 3px 10px; border-radius: 5px;}
+  .mtag-green { background: #2e7d4e;}
+  .mtag-dark { background: #3d4453;}
+  .mcol-title { font-size: 1rem; font-weight: 800; color: #17181a; margin: .55rem 0 .8rem; line-height: 1.3;}
+  .mboxes { display: flex; gap: .55rem;}
+  .mbox { flex: 1; border: 3px solid #b9c2cf; border-radius: 9px; background: #fff; min-height: 15.5rem; position: relative; transition: box-shadow .25s, transform .25s;}
+  .mbox:hover { box-shadow: 0 8px 20px -10px rgba(30,41,59,.4); transform: translateY(-3px);}
+  .mbox .mhdr { position: absolute; top: .55rem; left: .55rem; right: .55rem; background: #7d8697; color: #fff; font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 5px;}
+  .mbox.s1 { margin-top: 0;}
+  .mbox.s2 { margin-top: 2.4rem; min-height: 13rem;}
+  .mbox.s3 { margin-top: 2.4rem; min-height: 13rem;}
+  @media (max-width: 860px) { .macro { grid-template-columns: 1fr;}
+  .mcol.dark { margin-top: 0;}
+  .mbox, .mbox.s2, .mbox.s3 { min-height: 7.5rem; margin-top: 0;}
+  .cx { border: 3px solid; border-radius: 12px; padding: 1.35rem 1.5rem 1.2rem; margin: 1.15rem 0; transition: box-shadow .25s, transform .25s;}
+  .cx:hover { box-shadow: 0 12px 26px -16px rgba(23,24,26,.45); transform: translateY(-2px);}
+  .cx-tag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 1px 13px; border-radius: 6px; margin-bottom: .7rem;}
+  .cx h4 { font-weight: 800; font-size: 1.06rem; color: #17181a; margin-bottom: .7rem;}
+  .cx ul.bullets > li { font-size: .99rem; margin-bottom: .45rem;}
+  .cx-slate  { border-color: #6b7280; background: #e9ebee;}
+  .cx-slate  .cx-tag { background: #6b7280;}
+  .cx-rust   { border-color: #c0562f; background: #f7e6dd;}
+  .cx-rust   .cx-tag { background: #c0562f;}
+  .cx-rose   { border-color: #c04a63; background: #f7e0e5;}
+  .cx-rose   .cx-tag { background: #c04a63;}
+  .cx-blue   { border-color: #5468d4; background: #e4e8f9;}
+  .cx-blue   .cx-tag { background: #5468d4;}
+  .cx-green  { border-color: #2e7d4e; background: #dfeee2;}
+  .cx-green  .cx-tag { background: #2e7d4e;}
+  .cx-purple { border-color: #8b5cf6; background: #efe2f8;}
+  .cx-purple .cx-tag { background: #8b5cf6;}
+  .cx-tan    { border-color: #8a6d3b; background: #ece7dc;}
+  .cx-tan    .cx-tag { background: #8a6d3b;}
+  .k { display: inline; padding: 3px 9px; border-radius: 6px; font-weight: 700; color: #fff; line-height: 1.85; -webkit-box-decoration-break: clone; box-decoration-break: clone;}
+  .k-blue   { background: #3b82c4;}
+  .k-green  { background: #2e7d4e;}
+  .k-rose { background: #c04a63;}
+  .k-gray   { background: #6b7280;}
+  .k-rust   { background: #bf5a2b;}
+  .k-teal { background: #0d7d8c;}
+  .k-purple { background: #7c5ad0;}
+  .k-brown  { background: #8a6d3b;}
+  .t-teal { color: #0d8aa0; font-weight: 700;}
+  .v-outer { border: 3px solid #e3e7ee; border-radius: 20px; padding: 1.4rem 1.5rem; margin: 1.4rem 0;}
+  .v-black { border: 3px solid #17181a; border-radius: 16px; padding: 1.3rem 1.5rem; margin: 1.1rem 0;}
+  .v-light { border: 3px solid #e3e7ee; border-radius: 16px; padding: 1.2rem 1.4rem; margin: 1.1rem 0;}
+  .v-line { font-size: 1.06rem; line-height: 2.1; color: #1f2937;}
+  .v-div { border: 0; border-top: 1px solid #e6eaf0; margin: 1.1rem 0;}
+  .vbar-b { border-left: 5px solid #5468d4; padding-left: .8rem;}
+  .lbl { color: #6b7280; font-weight: 600; font-size: .85rem; margin-right: .2rem;}
+  sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px;}
+  .i1 { padding-left: 1.6rem;}
+  .i2 { padding-left: 3.2rem;}
+  .i3 { padding-left: 4.8rem;}
+  .doc-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 3px solid #d9dee6; border-radius: 14px; overflow: hidden; background: #fff;}
+  .doc-table th { background: #e2e6eb; text-align: left; padding: 1rem 1.3rem; font-weight: 800; font-size: 1.02rem; color: #17181a;}
+  .doc-table td { padding: 1.1rem 1.3rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.78; font-size: .97rem; color: #24262a; transition: background .2s;}
+  .doc-table tbody tr:hover td { background: #f8fafc;}
+  .doc-table tfoot td { border-top: 1px solid #d1d5db; background: #fbfcfd; color: #5b6472; font-size: .92rem;}
+  .kblue-soft { background: #cddcf5; color: #2b5fb0; padding: 2px 8px; border-radius: 6px; font-weight: 700;}
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1);}
+  @media print {
+    @page { margin: 14mm 12mm;}
+  #reading-progress, .print\:hidden { display: none !important;}
+  .reveal { opacity: 1 !important; transform: none !important;}
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important;}
+  .max-w-4xl { max-width: 100% !important; padding: 0 !important; margin: 0 !important;}
+  h1.title, h2.section, h3.sub { break-after: avoid-page;}
+  .cx, .v-outer, .v-black, .v-light, .doc-table tr, .scripture, .mcol { break-inside: avoid;}
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none;}
+  .cx, .mbox { transition: none;}}}}
+.sub2 { font-weight: 800; font-size: 1.12rem; margin-top: 2.4rem; margin-bottom: .9rem; letter-spacing: -0.005em;}
+.chiasm-container { margin: 2rem 0 2.5rem;}
+.chiasm-box {
       position: relative;
       background: #fff;
       border: 3px solid #d9dee6;
       border-radius: 0 12px 12px 12px;
       padding: 1.6rem 1.4rem 1.1rem;
       margin: 2rem 0;}
-  .chiasm-pill {
+.chiasm-pill {
       position: absolute;
       top: -30px;
       left: -2px;
@@ -31,60 +133,59 @@
       font-weight: 700;
       padding: 4px 14px;
       border-radius: 8px 8px 0   0 ;}
-  .chiasm-bracket {
+.chiasm-bracket {
       border-left: 4px solid #1b1b1b;
       padding-left: .25rem;
       margin-left: 1.25rem;
       border-radius: 4px ;}
-  .chiasm-bracket-c {
+.chiasm-bracket-c {
       border-left: 4px solid #3a8060;
       margin-left: 4.25rem;}
-  .v-text {
+.v-text {
       font-size: 1.05rem;
       line-height: 1.85;
       color: #1f2937;
       margin-bottom: 0.5rem;}
-  .indent-1 { padding-left: 1.5rem;}
-  sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 3px;}
-  .verse-line {
+.indent-1 { padding-left: 1.5rem;}
+sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 3px;}
+.verse-line {
       display: flex;
       align-items: flex-start;
       margin-bottom: 0.4rem;}
-  .verse-lbl {
+.verse-lbl {
       width: 1.8rem;
       flex-shrink: 0;
       color: #6b7280;
       font-weight: 600;
       font-size: 0.9rem;
       padding-top: 0.2rem;}
-  .verse-txt {
+.verse-txt {
       flex-grow: 1;
       font-size: 1.05rem;
       line-height: 1.85;
       color: #1f2937;}
-  .k { display: inline; padding: 1px 5px; border-radius: 6px; box-decoration-break: clone; -webkit-box-decoration-break: clone;}
-  .k-sand  { background: #efe8db; color: #645537; font-weight: 600;}
-  .k-blush { background: #f9e3de; color: #972a4e; font-weight: 600;}
-  .k-seed  { background: #d3f2cd; color: #2b6146; font-weight: 600;}
-  .k-green { background: #3a8060; color: #fff; font-weight: 700;}
-  .k-lav   { background: #e6e6fa; color: #5d4897; font-weight: 600;}
-  .k-teal  { background: #b9eff7; color: #00626f; font-weight: 600;}
-  .k-rose  { background: #be4967; color: #fff; font-weight: 700;}
-  .k-lblue { background: #d9ecfd; color: #404ca6; font-weight: 600;}
-  .macro { border: 2px solid; border-radius: 12px; padding: 1.25rem 1.4rem; margin: 1rem 0;}
-  .macro-tag { display: inline-block; font-size: .9rem; font-weight: 700; padding: 3px 12px; border-radius: 999px; margin-bottom: .8rem;}
-  .macro h4 { font-weight: 800; font-size: 1.03rem; color: #17181a; margin: 0 0 .7rem; line-height: 1.4;}
-  .macro ul.bullets { margin-top: 0;}
-  .macro ul.bullets > li { font-size: .98rem; margin-bottom: .4rem; line-height: 1.65;}
-  .m-navy { border-color: #3e4054; background: #e4e8ed;}
-  .m-navy .macro-tag { background: #3e4054; color: #fff;}
-  .m-grey { border-color: #6b7384; background: #fff;}
-  .m-grey .macro-tag { background: #6b7384; color: #fff;}
-  .m-light { border-color: #d9dee6; background: #fff;}
-  .m-light .macro-tag { background: #e4e8ed; color: #17181a;}
-  .stair-1 { margin-left: 1.5rem;}
-  .stair-2 { margin-left: 3rem;}
-  @media(max-width:640px){ .stair-1, .stair-2 { margin-left: 0;}
+.k { display: inline; padding: 1px 5px; border-radius: 6px; box-decoration-break: clone; -webkit-box-decoration-break: clone;}
+.k-sand  { background: #efe8db; color: #645537; font-weight: 600;}
+.k-blush { background: #f9e3de; color: #972a4e; font-weight: 600;}
+.k-seed  { background: #d3f2cd; color: #2b6146; font-weight: 600;}
+.k-green { background: #3a8060; color: #fff; font-weight: 700;}
+.k-lav   { background: #e6e6fa; color: #5d4897; font-weight: 600;}
+.k-teal  { background: #b9eff7; color: #00626f; font-weight: 600;}
+.k-rose  { background: #be4967; color: #fff; font-weight: 700;}
+.k-lblue { background: #d9ecfd; color: #404ca6; font-weight: 600;}
+.macro-tag { display: inline-block; font-size: .9rem; font-weight: 700; padding: 3px 12px; border-radius: 999px; margin-bottom: .8rem;}
+.macro h4 { font-weight: 800; font-size: 1.03rem; color: #17181a; margin: 0 0 .7rem; line-height: 1.4;}
+.macro ul.bullets { margin-top: 0;}
+.macro ul.bullets > li { font-size: .98rem; margin-bottom: .4rem; line-height: 1.65;}
+.m-navy { border-color: #3e4054; background: #e4e8ed;}
+.m-navy .macro-tag { background: #3e4054; color: #fff;}
+.m-grey { border-color: #6b7384; background: #fff;}
+.m-grey .macro-tag { background: #6b7384; color: #fff;}
+.m-light { border-color: #d9dee6; background: #fff;}
+.m-light .macro-tag { background: #e4e8ed; color: #17181a;}
+.stair-1 { margin-left: 1.5rem;}
+.stair-2 { margin-left: 3rem;}
+@media(max-width:640px){ .stair-1, .stair-2 { margin-left: 0;}
   .scripture { border-left: 4px solid #1b1b1b; padding: .2rem 0 .2rem 1.25rem; margin: 1.5rem 0;}
   .cite { color: #4f5669; font-size: .95rem; margin-top: .4rem;}
   .cite a { color: #0000ee; text-decoration: none;}
@@ -101,7 +202,8 @@
   .instr-block { background: #fff; padding: 0; margin: 1.5rem 0;}
   @media print {
     .reveal { opacity: 1 !important; transform: none !important;}
-  .chiasm-box, .macro, .doc-table tr, .scripture, .instr { break-inside: avoid;}}}</style>
+  .chiasm-box, .macro, .doc-table tr, .scripture, .instr { break-inside: avoid;}}}
+</style>
 </head>
 <body>
 
