@@ -13,8 +13,7 @@
 function setLang(lang) {
   var target = (lang === 'en' || lang === 'en-US' || lang === 'en-GB') ? 'en' : window.__ptForm;
   document.documentElement.setAttribute('lang', target);
-  var m = location.pathname.match(/sessao-(\d+)/);
-  var key = m ? 's' + m[1] + '-lang' : 'session-lang';
+  var key = 'lang-' + location.pathname;
   try { localStorage.setItem(key, target); } catch (e) {}
   var pt = document.getElementById('lang-pt'), en = document.getElementById('lang-en');
   if (!pt || !en) return;
@@ -29,8 +28,7 @@ function setLang(lang) {
 
 (function () {
   var ptForm = window.__ptForm || 'pt';
-  var m = location.pathname.match(/sessao-(\d+)/);
-  var key = m ? 's' + m[1] + '-lang' : 'session-lang';
+  var key = 'lang-' + location.pathname;
   var saved = null;
   try { saved = localStorage.getItem(key); } catch (e) {}
   var valid = saved === 'en' || saved === ptForm;
