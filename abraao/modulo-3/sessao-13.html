@@ -8,74 +8,53 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
-    <style>
-        * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-        body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
-        html[lang="pt"] .lang-en { display: none !important; }
-        html[lang="en"] .lang-pt { display: none !important; }
-        .heb { font-family: 'SBL Hebrew', 'Times New Roman', serif; font-size: 1.05em; direction: rtl; unicode-bidi: embed; }
-
-        h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
-        h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
-        h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-        p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
-        .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
-        .ref { cursor: pointer; }
-        
-        ul.bullets { list-style: none; padding: 0; }
-        ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
-        ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
-
-        .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
-        .scripture:hover { border-left-color: #9aa7b8; }
-        .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
-        .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
-        .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
-        .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem; }
-
-        .blockquote { border-left: 5px solid #17181a; padding: .5rem 1rem .5rem 1.25rem; margin: 1.75rem 0; color: #24262a; line-height: 1.78; font-size: 1.02rem; }
-        .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-
-        /* verse design cards */
-        .vcard { display: flex; gap: .8rem; align-items: stretch; margin: 1.3rem 0; }
-        .vlbl { width: 1.3rem; display: flex; align-items: center; justify-content: center; color: #6b7280; font-weight: 700; font-size: .95rem; flex-shrink: 0; }
-        .vbar { width: 7px; border-radius: 5px; flex-shrink: 0; }
-        .vbar-blk { background: #17181a; } .vbar-rose { background: #c14b60; }
-        .vbox { flex: 1; border: 2px solid #17181a; border-radius: 14px; padding: 1.5rem 1.7rem; line-height: 2.05; font-size: 1.05rem; color: #1f2937; background: #fff; transition: box-shadow .25s, transform .25s; }
-        .vbox:hover { box-shadow: 0 12px 28px -16px rgba(23,24,26,.5); transform: translateY(-2px); }
-        .vl { }
-        .vi1 { padding-left: 1.6rem; } .vi2 { padding-left: 3.2rem; } .vi3 { padding-left: 4.8rem; }
-        .lbl { color: #6b7280; font-weight: 600; font-size: .85rem; margin-right: .2rem; }
-        sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px; }
-
-        .k { display: inline; padding: 3px 9px; border-radius: 6px; font-weight: 700; color: #fff; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
-        .k-rust { background: #bf5a35; } .k-olive { background: #8a6d3b; } .k-teal { background: #0e7d8a; } .k-slate { background: #64748b; }
-        .tx-rust { color: #c05f2c; font-weight: 700; }
-
-        .info { background: #f1f5f9; border-radius: 8px; padding: .75rem 1.1rem; color: #5b6472; margin-top: .9rem; font-size: .98rem; }
-        .info a { color: #475569; text-decoration: underline; }
-
-        figure.mapfig { margin: 2.2rem auto; max-width: 560px; }
-        figure.mapfig svg { width: 100%; height: auto; display: block; border-radius: 4px; }
-        figure.mapfig figcaption { text-align: center; color: #5b6472; margin-top: .6rem; font-size: .95rem; }
-        figure.mapfig figcaption a { color: #5b6472; }
-
-        .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
-        #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-        .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
-        .reveal.visible { opacity: 1; transform: none; }
-
-        @media print {
-            @page { margin: 14mm 12mm; }
-            #reading-progress, .print\:hidden { display: none !important; }
-            .reveal { opacity: 1 !important; transform: none !important; }
-            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-            .max-w-4xl { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
-            h1.title, h2.section, h3.sub { break-after: avoid-page; }
-            .scripture, .vcard, .blockquote, figure.mapfig { break-inside: avoid; }
-        }
-        @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .vbox { transition: none; } }
-    </style>
+    
+  <link rel="stylesheet" href="../../css/shared-tutorial.css">
+  <style>  .heb { font-family: 'SBL Hebrew', 'Times New Roman', serif; font-size: 1.05em; direction: rtl; unicode-bidi: embed;}
+  .ref { cursor: pointer;}
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s;}
+  .scripture:hover { border-left-color: #9aa7b8;}
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem;}
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem;}
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a;}
+  .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem;}
+  .blockquote { border-left: 5px solid #17181a; padding: .5rem 1rem .5rem 1.25rem; margin: 1.75rem 0; color: #24262a; line-height: 1.78; font-size: 1.02rem;}
+  .vcard { display: flex; gap: .8rem; align-items: stretch; margin: 1.3rem 0;}
+  .vlbl { width: 1.3rem; display: flex; align-items: center; justify-content: center; color: #6b7280; font-weight: 700; font-size: .95rem; flex-shrink: 0;}
+  .vbar { width: 7px; border-radius: 5px; flex-shrink: 0;}
+  .vbar-blk { background: #17181a;}
+  .vbar-rose { background: #c14b60;}
+  .vbox { flex: 1; border: 2px solid #17181a; border-radius: 14px; padding: 1.5rem 1.7rem; line-height: 2.05; font-size: 1.05rem; color: #1f2937; background: #fff; transition: box-shadow .25s, transform .25s;}
+  .vbox:hover { box-shadow: 0 12px 28px -16px rgba(23,24,26,.5); transform: translateY(-2px);}
+  .vl {}
+  .vi1 { padding-left: 1.6rem;}
+  .vi2 { padding-left: 3.2rem;}
+  .vi3 { padding-left: 4.8rem;}
+  .lbl { color: #6b7280; font-weight: 600; font-size: .85rem; margin-right: .2rem;}
+  sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px;}
+  .k { display: inline; padding: 3px 9px; border-radius: 6px; font-weight: 700; color: #fff; -webkit-box-decoration-break: clone; box-decoration-break: clone;}
+  .k-rust { background: #bf5a35;}
+  .k-olive { background: #8a6d3b;}
+  .k-teal { background: #0e7d8a;}
+  .k-slate { background: #64748b;}
+  .tx-rust { color: #c05f2c; font-weight: 700;}
+  .info { background: #f1f5f9; border-radius: 8px; padding: .75rem 1.1rem; color: #5b6472; margin-top: .9rem; font-size: .98rem;}
+  .info a { color: #475569; text-decoration: underline;}
+  figure.mapfig { margin: 2.2rem auto; max-width: 560px;}
+  figure.mapfig svg { width: 100%; height: auto; display: block; border-radius: 4px;}
+  figure.mapfig figcaption { text-align: center; color: #5b6472; margin-top: .6rem; font-size: .95rem;}
+  figure.mapfig figcaption a { color: #5b6472;}
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1);}
+  @media print {
+            @page { margin: 14mm 12mm;}
+  #reading-progress, .print\:hidden { display: none !important;}
+  .reveal { opacity: 1 !important; transform: none !important;}
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important;}
+  .max-w-4xl { max-width: 100% !important; padding: 0 !important; margin: 0 !important;}
+  h1.title, h2.section, h3.sub { break-after: avoid-page;}
+  .scripture, .vcard, .blockquote, figure.mapfig { break-inside: avoid;}
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none;}
+  .vbox { transition: none;}}}</style>
 </head>
 <body>
 

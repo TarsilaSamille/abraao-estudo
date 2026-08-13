@@ -8,34 +8,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
-<style>
-  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
-  html[lang="pt"] .lang-en { display: none !important; }
-  html[lang="en"] .lang-pt { display: none !important; }
-  .heb { font-family: 'SBL Hebrew','Times New Roman',serif; font-size: 1.1em; direction: rtl; unicode-bidi: isolate; }
 
-  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
-  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
-  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  .sub2 { font-weight: 800; font-size: 1.12rem; margin-top: 2.4rem; margin-bottom: .9rem; letter-spacing: -0.005em; }
-  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
-  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
-  ul.bullets { list-style: none; padding: 0; }
-  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
-  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
-  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-
-  /* ---------- TRANSLATION CHIASM STRUCTURE ---------- */
+  <link rel="stylesheet" href="../../css/shared-tutorial.css">
+  <style>  .heb { font-family: 'SBL Hebrew','Times New Roman',serif; font-size: 1.1em; direction: rtl; unicode-bidi: isolate;}
+  .sub2 { font-weight: 800; font-size: 1.12rem; margin-top: 2.4rem; margin-bottom: .9rem; letter-spacing: -0.005em;}
   .t-box {
       position: relative;
       border: 1.5px solid #d1d5db;
       border-radius: 12px;
       padding: 2.2rem 1.5rem 1.4rem;
       background-color: #fff;
-      margin: 2.5rem 0 1.5rem;
-  }
-
+      margin: 2.5rem 0 1.5rem;}
   .t-pill {
       position: absolute;
       top: 0;
@@ -48,60 +31,39 @@
       padding: 4px 14px;
       border-radius: 9999px;
       box-shadow: 0 0 0 4px #fff;
-      display: inline-flex;
-  }
-
-  .v-line { display: flex; align-items: flex-start; margin-bottom: 0.5rem; font-size: 1.05rem; line-height: 1.85; color: #1f2937; }
-  .v-lbl { width: 1.8rem; flex-shrink: 0; color: #6b7280; font-weight: 600; font-size: 0.9rem; padding-top: 0.15rem; }
-  .v-txt { flex-grow: 1; }
-  .i1 { padding-left: 1.5rem; }
-  .i2 { padding-left: 3rem; }
-  sup.vs { font-size: 0.72em; color: #333; font-weight: 500; margin-right: 3px; }
-  
-  .v-divider { border: 0; border-top: 1px solid #e5e7eb; margin: 1.4rem 0; }
-
-  /* ---------- KEYWORD CHIPS (Sessão 7 Palette) ---------- */
-  .k { display: inline; padding: 1px 5px; border-radius: 6px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
-  .k-dpurple { background: #7A62B6; color: #fff; font-weight: 600; }
-  .k-lpurple { background: #E8E3F4; color: #5D4897; font-weight: 600; }
-  .k-tpurple { color: #5D4897; font-weight: 600; }
-  
-  .k-dblue   { background: #313C86; color: #fff; font-weight: 600; }
-  .k-lblue   { background: #D9ECFD; color: #404CA6; font-weight: 600; }
-  
-  .k-lred    { background: #F9E3DE; color: #972A4E; font-weight: 600; }
-  .k-lorange { background: #FDE8D7; color: #B25E2B; font-weight: 600; }
-  
-  .k-sand    { background: #EFE8DB; color: #645537; font-weight: 600; }
-  
-  .k-lgreen  { background: #D3F2CD; color: #2B6146; font-weight: 600; }
-  .k-tgreen  { color: #2B6146; font-weight: 600; }
-  
-  .k-lteal   { background: #B9EFF7; color: #00626F; font-weight: 600; }
-
-  /* ---------- BLOCKQUOTES & TABLES ---------- */
-  .scripture { border-left: 4px solid #1b1b1b; padding: .2rem 0 .2rem 1.25rem; margin: 1.5rem 0; }
-  .cite { color: #4f5669; font-size: .95rem; margin-top: .4rem; }
-  .cite a { color: #0000ee; text-decoration: none; }
-  
-  .img-placeholder { text-align: center; padding: 2rem 0; font-style: italic; color: #5b6472; font-size: .95rem; border: 1.5px dashed #cbd5e1; border-radius: 12px; margin: 2rem 0; }
-
-  /* ---------- INSTRUCTOR'S TRANSLATION BLOCK ---------- */
-  .instr { background: #fff; border-left: 3px solid #e4e8ed; border-radius: 0 12px 12px 0; padding: 1.2rem 1.4rem; margin: 1.3rem 0; }
-  .instr-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
-  .instr-type { color: #4f5669; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
-  .instr p { font-size: 1.02rem; line-height: 1.85; color: #1b1b1b; margin-bottom: .35rem; }
-  .instr .def { font-size: .95rem; color: #4f5669; margin-top: .5rem; }
-  .instr-block { background: #fff; padding: 0; margin: 1.5rem 0; }
-
-  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
-  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-
+      display: inline-flex;}
+  .v-line { display: flex; align-items: flex-start; margin-bottom: 0.5rem; font-size: 1.05rem; line-height: 1.85; color: #1f2937;}
+  .v-lbl { width: 1.8rem; flex-shrink: 0; color: #6b7280; font-weight: 600; font-size: 0.9rem; padding-top: 0.15rem;}
+  .v-txt { flex-grow: 1;}
+  .i1 { padding-left: 1.5rem;}
+  .i2 { padding-left: 3rem;}
+  sup.vs { font-size: 0.72em; color: #333; font-weight: 500; margin-right: 3px;}
+  .v-divider { border: 0; border-top: 1px solid #e5e7eb; margin: 1.4rem 0;}
+  .k { display: inline; padding: 1px 5px; border-radius: 6px; box-decoration-break: clone; -webkit-box-decoration-break: clone;}
+  .k-dpurple { background: #7A62B6; color: #fff; font-weight: 600;}
+  .k-lpurple { background: #E8E3F4; color: #5D4897; font-weight: 600;}
+  .k-tpurple { color: #5D4897; font-weight: 600;}
+  .k-dblue   { background: #313C86; color: #fff; font-weight: 600;}
+  .k-lblue   { background: #D9ECFD; color: #404CA6; font-weight: 600;}
+  .k-lred    { background: #F9E3DE; color: #972A4E; font-weight: 600;}
+  .k-lorange { background: #FDE8D7; color: #B25E2B; font-weight: 600;}
+  .k-sand    { background: #EFE8DB; color: #645537; font-weight: 600;}
+  .k-lgreen  { background: #D3F2CD; color: #2B6146; font-weight: 600;}
+  .k-tgreen  { color: #2B6146; font-weight: 600;}
+  .k-lteal   { background: #B9EFF7; color: #00626F; font-weight: 600;}
+  .scripture { border-left: 4px solid #1b1b1b; padding: .2rem 0 .2rem 1.25rem; margin: 1.5rem 0;}
+  .cite { color: #4f5669; font-size: .95rem; margin-top: .4rem;}
+  .cite a { color: #0000ee; text-decoration: none;}
+  .img-placeholder { text-align: center; padding: 2rem 0; font-style: italic; color: #5b6472; font-size: .95rem; border: 1.5px dashed #cbd5e1; border-radius: 12px; margin: 2rem 0;}
+  .instr { background: #fff; border-left: 3px solid #e4e8ed; border-radius: 0 12px 12px 0; padding: 1.2rem 1.4rem; margin: 1.3rem 0;}
+  .instr-label { font-weight: 800; color: #17181a; font-size: 1.05rem;}
+  .instr-type { color: #4f5669; font-weight: 700; font-size: .95rem; margin-left: .5rem;}
+  .instr p { font-size: 1.02rem; line-height: 1.85; color: #1b1b1b; margin-bottom: .35rem;}
+  .instr .def { font-size: .95rem; color: #4f5669; margin-top: .5rem;}
+  .instr-block { background: #fff; padding: 0; margin: 1.5rem 0;}
   @media print {
-    .reveal { opacity: 1 !important; transform: none !important; }
-    .t-box, .scripture, .instr { break-inside: avoid; }
-  }
-</style>
+    .reveal { opacity: 1 !important; transform: none !important;}
+  .t-box, .scripture, .instr { break-inside: avoid;}}</style>
 </head>
 <body>
 

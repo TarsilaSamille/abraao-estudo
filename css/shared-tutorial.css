@@ -1,0 +1,10 @@
+/* Shared fixes for the Abraão-style tutorial courses.
+   Additive rules only — they fix bugs without altering any page's appearance:
+   1) language-hide via html[lang^="pt"] (covers pt-BR; fixes the pt-BR hide gap);
+   2) .reveal.visible un-hide — Abraão pages set .reveal{opacity:0} but lacked the
+      .visible rule, so content stayed blank; this restores it for all pages;
+   3) print reset so reveal content is visible when printed/PDF'd (opacity:0 bug). */
+html[lang^="pt"] .lang-en { display: none !important; }
+html[lang="en"] .lang-pt { display: none !important; }
+.reveal.visible { opacity: 1 !important; transform: none !important; }
+@media print { .reveal { opacity: 1 !important; transform: none !important; } }

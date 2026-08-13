@@ -8,36 +8,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
-<style>
-  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
-  html[lang="pt"] .lang-en { display: none !important; }
-  html[lang="en"] .lang-pt { display: none !important; }
-  .heb { font-family: 'SBL Hebrew','Times New Roman',serif; font-size: 1.1em; direction: rtl; unicode-bidi: isolate; }
 
-  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
-  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
-  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  .sub2 { font-weight: 800; font-size: 1.12rem; margin-top: 2.4rem; margin-bottom: .9rem; letter-spacing: -0.005em; }
-  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
-  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
-  ul.bullets { list-style: none; padding: 0; }
-  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
-  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
-  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-
-  /* ---------- TRANSLATION CHIASM STRUCTURE ---------- */
-  .chiasm-container { margin: 2rem 0 2.5rem; }
-  
+  <link rel="stylesheet" href="../../css/shared-tutorial.css">
+  <style>  .heb { font-family: 'SBL Hebrew','Times New Roman',serif; font-size: 1.1em; direction: rtl; unicode-bidi: isolate;}
+  .sub2 { font-weight: 800; font-size: 1.12rem; margin-top: 2.4rem; margin-bottom: .9rem; letter-spacing: -0.005em;}
+  .chiasm-container { margin: 2rem 0 2.5rem;}
   .chiasm-box {
       position: relative;
       background: #fff;
       border: 3px solid #d9dee6;
       border-radius: 0 12px 12px 12px;
       padding: 1.6rem 1.4rem 1.1rem;
-      margin: 2rem 0;
-  }
-  
+      margin: 2rem 0;}
   .chiasm-pill {
       position: absolute;
       top: -30px;
@@ -47,110 +29,78 @@
       font-size: 0.95rem;
       font-weight: 700;
       padding: 4px 14px;
-      border-radius: 8px 8px 0   0 ;
-  }
-
+      border-radius: 8px 8px 0   0 ;}
   .chiasm-bracket {
       border-left: 4px solid #1b1b1b;
       padding-left: .25rem;
       margin-left: 1.25rem;
-      border-radius: 4px ;
-
-  }
-
+      border-radius: 4px ;}
   .chiasm-bracket-c {
       border-left: 4px solid #3a8060;
-      margin-left: 4.25rem;
-
-  }
-
+      margin-left: 4.25rem;}
   .v-text {
       font-size: 1.05rem;
       line-height: 1.85;
       color: #1f2937;
-      margin-bottom: 0.5rem;
-  }
-  
-  .indent-1 { padding-left: 1.5rem; }
-  sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 3px; }
-
-  /* Verses with left labels (a, b, a') */
+      margin-bottom: 0.5rem;}
+  .indent-1 { padding-left: 1.5rem;}
+  sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 3px;}
   .verse-line {
       display: flex;
       align-items: flex-start;
-      margin-bottom: 0.4rem;
-  }
+      margin-bottom: 0.4rem;}
   .verse-lbl {
       width: 1.8rem;
       flex-shrink: 0;
       color: #6b7280;
       font-weight: 600;
       font-size: 0.9rem;
-      padding-top: 0.2rem;
-  }
+      padding-top: 0.2rem;}
   .verse-txt {
       flex-grow: 1;
       font-size: 1.05rem;
       line-height: 1.85;
-      color: #1f2937;
-  }
-
-  /* ---------- KEYWORD CHIPS ---------- */
-  .k { display: inline; padding: 1px 5px; border-radius: 6px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
-  .k-sand  { background: #efe8db; color: #645537; font-weight: 600; }
-  .k-blush { background: #f9e3de; color: #972a4e; font-weight: 600; }
-  .k-seed  { background: #d3f2cd; color: #2b6146; font-weight: 600; }
-  .k-green { background: #3a8060; color: #fff; font-weight: 700; }
-  .k-lav   { background: #e6e6fa; color: #5d4897; font-weight: 600; }
-  .k-teal  { background: #b9eff7; color: #00626f; font-weight: 600; }
-  .k-rose  { background: #be4967; color: #fff; font-weight: 700; }
-  .k-lblue { background: #d9ecfd; color: #404ca6; font-weight: 600; }
-
-  /* ---------- MACRO DESIGN BOXES ---------- */
-  .macro { border: 2px solid; border-radius: 12px; padding: 1.25rem 1.4rem; margin: 1rem 0; }
-  .macro-tag { display: inline-block; font-size: .9rem; font-weight: 700; padding: 3px 12px; border-radius: 999px; margin-bottom: .8rem; }
-  .macro h4 { font-weight: 800; font-size: 1.03rem; color: #17181a; margin: 0 0 .7rem; line-height: 1.4; }
-  .macro ul.bullets { margin-top: 0; }
-  .macro ul.bullets > li { font-size: .98rem; margin-bottom: .4rem; line-height: 1.65; }
-  
-  .m-navy { border-color: #3e4054; background: #e4e8ed; }
-  .m-navy .macro-tag { background: #3e4054; color: #fff; }
-  .m-grey { border-color: #6b7384; background: #fff; }
-  .m-grey .macro-tag { background: #6b7384; color: #fff; }
-  .m-light { border-color: #d9dee6; background: #fff; }
-  .m-light .macro-tag { background: #e4e8ed; color: #17181a; }
-  
-  .stair-1 { margin-left: 1.5rem; } .stair-2 { margin-left: 3rem; }
-  @media(max-width:640px){ .stair-1, .stair-2 { margin-left: 0; } }
-
-  /* ---------- BLOCKQUOTES & TABLES ---------- */
-  .scripture { border-left: 4px solid #1b1b1b; padding: .2rem 0 .2rem 1.25rem; margin: 1.5rem 0; }
-  .cite { color: #4f5669; font-size: .95rem; margin-top: .4rem; }
-  .cite a { color: #0000ee; text-decoration: none; }
-
-  .doc-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid #d9dee6; border-radius: 12px; overflow: hidden; background: #fff; margin: 1.5rem 0 1rem; }
-  .doc-table th { background: #e4e8ed; text-align: left; padding: 1.1rem 1.4rem; font-weight: 800; font-size: 1.02rem; color: #17181a; }
-  .doc-table td { padding: 1.2rem 1.4rem; border-top: 1px solid #e5e7eb; vertical-align: top; }
-  .doc-table td + td { border-left: 1px solid #e5e7eb; }
-  .doc-table .desc { font-weight: 700; color: #17181a; font-size: .98rem; line-height: 1.6; margin-bottom: .6rem; }
-  .doc-table .q { margin-top: .6rem; font-size: .96rem; line-height: 1.75; color: #24262a; }
-
-  /* ---------- INSTRUCTOR'S TRANSLATION BLOCK ---------- */
-  .instr { background: #fff; border-left: 3px solid #e4e8ed; border-radius: 0 12px 12px 0; padding: 1.2rem 1.4rem; margin: 1.3rem 0; }
-  .instr-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
-  .instr-type { color: #4f5669; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
-  .instr p { font-size: 1.02rem; line-height: 1.85; color: #1b1b1b; margin-bottom: .35rem; }
-  .instr .note { color: #6b7280; }
-  .instr-block { background: #fff; padding: 0; margin: 1.5rem 0; }
-
-  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
-  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-
+      color: #1f2937;}
+  .k { display: inline; padding: 1px 5px; border-radius: 6px; box-decoration-break: clone; -webkit-box-decoration-break: clone;}
+  .k-sand  { background: #efe8db; color: #645537; font-weight: 600;}
+  .k-blush { background: #f9e3de; color: #972a4e; font-weight: 600;}
+  .k-seed  { background: #d3f2cd; color: #2b6146; font-weight: 600;}
+  .k-green { background: #3a8060; color: #fff; font-weight: 700;}
+  .k-lav   { background: #e6e6fa; color: #5d4897; font-weight: 600;}
+  .k-teal  { background: #b9eff7; color: #00626f; font-weight: 600;}
+  .k-rose  { background: #be4967; color: #fff; font-weight: 700;}
+  .k-lblue { background: #d9ecfd; color: #404ca6; font-weight: 600;}
+  .macro { border: 2px solid; border-radius: 12px; padding: 1.25rem 1.4rem; margin: 1rem 0;}
+  .macro-tag { display: inline-block; font-size: .9rem; font-weight: 700; padding: 3px 12px; border-radius: 999px; margin-bottom: .8rem;}
+  .macro h4 { font-weight: 800; font-size: 1.03rem; color: #17181a; margin: 0 0 .7rem; line-height: 1.4;}
+  .macro ul.bullets { margin-top: 0;}
+  .macro ul.bullets > li { font-size: .98rem; margin-bottom: .4rem; line-height: 1.65;}
+  .m-navy { border-color: #3e4054; background: #e4e8ed;}
+  .m-navy .macro-tag { background: #3e4054; color: #fff;}
+  .m-grey { border-color: #6b7384; background: #fff;}
+  .m-grey .macro-tag { background: #6b7384; color: #fff;}
+  .m-light { border-color: #d9dee6; background: #fff;}
+  .m-light .macro-tag { background: #e4e8ed; color: #17181a;}
+  .stair-1 { margin-left: 1.5rem;}
+  .stair-2 { margin-left: 3rem;}
+  @media(max-width:640px){ .stair-1, .stair-2 { margin-left: 0;}
+  .scripture { border-left: 4px solid #1b1b1b; padding: .2rem 0 .2rem 1.25rem; margin: 1.5rem 0;}
+  .cite { color: #4f5669; font-size: .95rem; margin-top: .4rem;}
+  .cite a { color: #0000ee; text-decoration: none;}
+  .doc-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid #d9dee6; border-radius: 12px; overflow: hidden; background: #fff; margin: 1.5rem 0 1rem;}
+  .doc-table th { background: #e4e8ed; text-align: left; padding: 1.1rem 1.4rem; font-weight: 800; font-size: 1.02rem; color: #17181a;}
+  .doc-table td { padding: 1.2rem 1.4rem; border-top: 1px solid #e5e7eb; vertical-align: top;}
+  .doc-table .desc { font-weight: 700; color: #17181a; font-size: .98rem; line-height: 1.6; margin-bottom: .6rem;}
+  .doc-table .q { margin-top: .6rem; font-size: .96rem; line-height: 1.75; color: #24262a;}
+  .instr { background: #fff; border-left: 3px solid #e4e8ed; border-radius: 0 12px 12px 0; padding: 1.2rem 1.4rem; margin: 1.3rem 0;}
+  .instr-label { font-weight: 800; color: #17181a; font-size: 1.05rem;}
+  .instr-type { color: #4f5669; font-weight: 700; font-size: .95rem; margin-left: .5rem;}
+  .instr p { font-size: 1.02rem; line-height: 1.85; color: #1b1b1b; margin-bottom: .35rem;}
+  .instr .note { color: #6b7280;}
+  .instr-block { background: #fff; padding: 0; margin: 1.5rem 0;}
   @media print {
-    .reveal { opacity: 1 !important; transform: none !important; }
-    .chiasm-box, .macro, .doc-table tr, .scripture, .instr { break-inside: avoid; }
-  }
-</style>
+    .reveal { opacity: 1 !important; transform: none !important;}
+  .chiasm-box, .macro, .doc-table tr, .scripture, .instr { break-inside: avoid;}}}</style>
 </head>
 <body>
 
