@@ -4,15 +4,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Módulo 6: Bênção para a Próxima Geração</title>
+    <title data-i18n="title">Módulo 6: Bênção para a Próxima Geração</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-
 <body class="bg-white font-sans text-slate-800">
   <div class="fixed left-4 top-4 z-50">
     <a href="../index.html"
       class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
-      <span>&larr;</span><span>Voltar</span>
+      <span>&larr;</span><span data-i18n="back">Voltar</span>
     </a>
   </div>
   <div class="fixed right-4 top-4 z-50">
@@ -26,45 +25,14 @@
             <main class="flex flex-1 flex-col items-center justify-center text-center">
                 <img src="../image/img-6.png" alt="Ilustração de vasos com plantas"
                     class="mb-8 h-48 w-48 rounded-2xl object-cover shadow-lg" />
-                <h1 class="text-5xl font-bold text-slate-900">Módulo 6: Bênção para a Próxima Geração</h1>
-                <h2 class="mt-4 text-lg font-semibold uppercase tracking-wider text-slate-500">Sessões 25-30</h2>
-                <p class="mt-8 max-w-2xl text-lg text-slate-700">Conclua o estudo com a transição da bênção para a
+                <h1 class="text-5xl font-bold text-slate-900" data-i18n="h1">Módulo 6: Bênção para a Próxima Geração</h1>
+                <h2 class="mt-4 text-lg font-semibold uppercase tracking-wider text-slate-500" data-i18n="sessions">Sessões 25-30</h2>
+                <p class="mt-8 max-w-2xl text-lg text-slate-700" data-i18n="desc">Conclua o estudo com a transição da bênção para a
                     próxima geração.</p>
 
                 <div class="mt-12 w-full max-w-3xl">
-                    <h2 class="mb-6 text-2xl font-bold text-slate-900">Índice de Sessões</h2>
-                    <div class="grid gap-4 md:grid-cols-2">
-                        <a href="sessao-25.html"
-                            class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg">
-                            <h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">Sessão 25</h3>
-                            <p class="mt-2 text-slate-600">Uma Heroína da Família Não Escolhida</p>
-                        </a>
-                        <a href="sessao-26.html"
-                            class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg">
-                            <h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">Sessão 26</h3>
-                            <p class="mt-2 text-slate-600">O Túmulo de Sara como um Mini Éden</p>
-                        </a>
-                        <a href="sessao-27.html"
-                            class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg">
-                            <h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">Sessão 27</h3>
-                            <p class="mt-2 text-slate-600">O Casamento de Isaque com Rebeca</p>
-                        </a>
-                        <a href="sessao-28.html"
-                            class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg">
-                            <h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">Sessão 28</h3>
-                            <p class="mt-2 text-slate-600">Não Escolhidos, Mas Abençoados</p>
-                        </a>
-                        <a href="sessao-29.html"
-                            class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg">
-                            <h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">Sessão 29</h3>
-                            <p class="mt-2 text-slate-600">Refletindo sobre a História de Abraão</p>
-                        </a>
-                        <a href="sessao-30.html"
-                            class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg">
-                            <h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">Sessão 30</h3>
-                            <p class="mt-2 text-slate-600">Estudando a História de Abraão em Diferentes Contextos</p>
-                        </a>
-                    </div>
+                    <h2 class="mb-6 text-2xl font-bold text-slate-900" data-i18n="toc">Índice de Sessões</h2>
+                    <div id="sessgrid" class="grid gap-4 md:grid-cols-2"></div>
                 </div>
             </main>
         </div>
@@ -72,13 +40,26 @@
   </div>
 
   <script>
+    const SESSIONS = [{"n": 25, "title_pt": "Uma Heroína da Família Não Escolhida", "title_en": "A Heroine from the Unchosen Family"}, {"n": 26, "title_pt": "O Túmulo de Sara como um Mini Éden", "title_en": "Sarah's Tomb as a Mini Eden"}, {"n": 27, "title_pt": "O Casamento de Isaque com Rebeca", "title_en": "The Marriage of Isaac and Rebekah"}, {"n": 28, "title_pt": "Não Escolhidos, Mas Abençoados", "title_en": "Not Chosen, But Blessed"}, {"n": 29, "title_pt": "Refletindo sobre a História de Abraão", "title_en": "Reflecting on Abraham's Story"}, {"n": 30, "title_pt": "Estudando a História de Abraão em Diferentes Contextos", "title_en": "Studying Abraham's Story in Different Contexts"}];
+    const I18N = {"pt": {"title": "Módulo 6: Bênção para a Próxima Geração", "h1": "Módulo 6: Bênção para a Próxima Geração", "sessions": "Sessões 25-30", "toc": "Índice de Sessões", "back": "Voltar", "session": "Sessão", "desc": "Conclua o estudo com a transição da bênção para a próxima geração."}, "en": {"title": "Module 6: Blessing for the Next Generation", "h1": "Module 6: Blessing for the Next Generation", "sessions": "Sessions 25-30", "toc": "Table of Sessions", "back": "Back", "session": "Session", "desc": "Conclude the study with the transition of the blessing to the next generation."}};
+    function render(lang){
+      document.getElementById('sessgrid').innerHTML = SESSIONS.map(s=>`
+        <a href="sessao-${s.n}.html"
+          class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg">
+          <h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">${I18N[lang].session} ${s.n}</h3>
+          <p class="mt-2 text-slate-600">${lang==='pt'?s.title_pt:s.title_en}</p>
+        </a>`).join('');
+    }
     function setLang(lang){
       localStorage.setItem('bp_lang',lang);
       document.documentElement.lang=lang==='pt'?'pt-BR':'en';
+      const t=I18N[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(t[k]!==undefined)el.innerHTML=t[k];});
+      document.title=t.title;
       const on='bg-sky-600 text-white',off='bg-white text-slate-600 hover:bg-slate-100';
-      const pt=document.getElementById('lang-pt'),en=document.getElementById('lang-en');
-      if(pt)pt.className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='pt'?on:off);
-      if(en)en.className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='en'?on:off);
+      document.getElementById('lang-pt').className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='pt'?on:off);
+      document.getElementById('lang-en').className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='en'?on:off);
+      render(lang);
     }
     setLang(localStorage.getItem('bp_lang')||'pt');
   </script>
