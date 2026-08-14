@@ -5,93 +5,64 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sessão 24: A Simetria da Cena do Navio</title>
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-<script src="../../js/verse-modal.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../css/shared-tutorial.css">
-  <style>
+<style>
   * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
-  html[lang="pt"] .lang-en { display: none !important; }
-  html[lang="en"] .lang-pt { display: none !important; }
+  html[lang="pt"] .lang-en, html[lang="en"] .lang-pt { display: none !important; }
   h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
   h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
   h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
   p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
   .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
-  .verse-link { color: inherit; cursor: pointer; }
   ul.bullets { list-style: none; padding: 0; }
   ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
-  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
-  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
-  .scripture:hover { border-left-color: #9aa7b8; }
-  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
-  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
-  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
-  .scripture-text sup.vs { font-size: .72em; color: #333; vertical-align: super; margin-right: 2px; }
-  .quote { border-left: 4px solid #b9c2cf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a4150; font-style: italic; }
+  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
   .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
-  .table-img img { width: 100%; display: block; }
-  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .poem { background: #f8fafc; border-left: 4px solid #cbd5e1; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.4rem 0; font-family: 'Newsreader', serif; line-height: 1.9; font-size: 1.05rem; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
   .reveal.visible { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
-  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d4dae2; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
-  .nav-btn:hover { background: #f1f5f9; }
-  .nav-back { left: 1rem; }
-  .nav-lang { right: 1rem; }
-  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
-  
-  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  @media print { #reading-progress { display: none !important; } }
+  @media print { @page { margin: 14mm 12mm; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 </style>
 </head>
-<body class="bg-white">
-<div id="reading-progress" aria-hidden="true"></div>
+<body>
 <div class="fixed left-4 top-4 z-50 print:hidden">
-  <a href="../index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
-    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
-  </a>
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
   <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
-  </button>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span></button>
   <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
     <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
     <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
   </div>
 </div>
-
-  <div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
-    <h1 class="title reveal"><span class="lang-pt">Sessão 24: A Simetria da Cena do Navio</span><span class="lang-en">Session 24: The Symmetry of the Ship Scene</span></h1>
-    <hr class="rule">
-    <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">A cena do navio em Jonas 1 é construída com simetria concêntrica em torno do centro (a tempestade e o sono de Jonas).</span><span class="lang-en">The ship scene in Jonah 1 is built with concentric symmetry around its center (the storm and Jonah's sleep).</span></li>
-      <li><span class="lang-pt">As ações de Jonas e dos marinheiros formam pares espelhados que destacam a inversão de papéis: o profeta que deveria interceder está dormindo, enquanto os pagãos clamam a Deus.</span><span class="lang-en">Jonah's and the sailors' actions form mirrored pairs that highlight the role reversal: the prophet who should intercede is asleep while the pagans cry out to God.</span></li>
-    </ul>
-
-    <h2 class="section reveal"><span class="lang-pt">O Design Simétrico de Jonas 1</span><span class="lang-en">The Symmetric Design of Jonah 1</span></h2>
-    <p class="body reveal"><span class="lang-pt">A cena do navio exibe simetria concêntrica: cada ação tem seu par espelhado à sua volta. Jonas “desce” a Jope e encontra o navio (1:3), paga a passagem e “desce” para dentro dele (1:3); os marinheiros “têm medo” e “clamam” (1:5), lançam sortes e a sorte cai sobre Jonas (1:7), e Jonas é confrontado (“O que é isso que fizeste?”). O centro da simetria é a tempestade que Yahweh envia e o sono de Jonas — enquanto todos ao redor entram em pânico, o profeta de Deus dorme, invertendo a expectativa de quem deveria liderar a resposta espiritual. Essa simetria convida o leitor a comparar as unidades pareadas (A com A') e a notar como Jonas falha onde os marinheiros percebem.</span><span class="lang-en">The ship scene exhibits concentric symmetry: each action has its mirrored pair around it. Jonah “goes down” to Joppa and finds the ship (1:3), pays the fare and “goes down” into it (1:3); the sailors “fear” and “cry out” (1:5), cast lots and the lot falls on Jonah (1:7), and Jonah is confronted (“What is this you have done?”). The center of symmetry is the storm Yahweh sends and Jonah's sleep — while all around him panic, the prophet of God sleeps, inverting the expectation of who should lead the spiritual response. This symmetry invites the reader to compare the paired units (A with A') and notice how Jonah fails where the sailors perceive.</span></p>
-    <p class="caption reveal"><span class="lang-pt">Contrastes no Design de Jonas 1. Ilustração criada por Tim Mackie para BibleProject Classroom: Jonah (2019).</span><span class="lang-en">Contrasts in the Design of Jonah 1. Illustration created by Tim Mackie for BibleProject Classroom: Jonah (2019).</span></p>
-
-    <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
-    <p class="body reveal"><span class="lang-pt">Como a simetria da cena do navio ajuda você a ver o caráter de Jonas e dos marinheiros de forma diferente do que esperaria numa história de profeta?</span><span class="lang-en">How does the symmetry of the ship scene help you see Jonah's and the sailors' character differently than you would expect in a prophet story?</span></p>  
-
-<footer class="page-footer">
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+  <h1 class="title reveal"><span class="lang-pt">Sessão 24: A Simetria da Cena do Navio</span><span class="lang-en">Session 24: The Symmetry of the Ship Scene</span></h1>
+  <hr class="rule">
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Aprendizados</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">Quiasmos nos encorajam a comparar e contrastar seções paralelas do texto.</span><span class="lang-en">Chiasms encourage us to compare and contrast parallel sections of the text.</span></li>
+    <li><span class="lang-pt">As ações e palavras de Jonas estão frequentemente em contraste, e isso é intencional. O autor quer que tiremos nossas próprias conclusões e continuemos questionando os motivos de Jonas.</span><span class="lang-en">Jonah's actions and words are often in contrast, and this is intentional. The author wants us to draw our own conclusions and continue questioning Jonah's motives.</span></li>
+  </ul>
+  <h2 class="section reveal"><span class="lang-pt">Jonas, a Tempestade e os Marinheiros: Tradução e Design Literário de Jonas 1:4-16</span><span class="lang-en">Jonah, the Storm, and the Sailors: Translation and Literary Design of Jonah 1:4-16</span></h2>
+  <div class="poem reveal"><span class="lang-pt">4 Ora, Yahweh havia lançado um grande vento sobre o mar, e houve uma grande tempestade no mar, e o navio pensava em se despedaçar. A — 5 E os marinheiros temeram, e cada um clamou ao seu deus, e lançaram ao mar a carga que estava no navio, para torná-lo mais leve sobre eles. Ora, Jonas desceu às partes mais remotas do navio, e se deitou e adormeceu. 6 E o chefe dos marinheiros se aproximou dele e disse: "Que tens tu, que dormes? Levanta-te, clama ao teu deus. Porventura um deus se importará conosco, para que não pereçamos." B — 7 E cada homem disse ao seu companheiro: "Vinde, lancemos sortes, para que saibamos por causa de quem é este mal sobre nós." E lançaram sortes, e a sorte caiu sobre Jonas. 8 E disseram-lhe: "Peço-te, dize-nos, por causa de quem é este mal sobre nós? Qual é a tua obra? E de onde vens? Qual é a tua terra? De que povo és tu?" C — 9 E ele lhes disse: "Eu sou hebreu, e temo a Yahweh, o Deus do céu, que fez o mar e a terra seca." 10 E os homens temeram com grande temor, e disseram-lhe: "Que é isto que fizeste?!" D — Pois os homens sabiam que ele fugia de diante da face de Yahweh, porque ele lhes havia dito. 11 E disseram-lhe: "Que te faremos nós, para que o mar se acalme para conosco?" pois o mar ia e tempestuava. C' — 12 E ele lhes disse: "Tomai-me e lançai-me ao mar; então o mar se acalmará para vós, pois bem sei eu que por minha causa é esta grande tempestade sobre vós." 13 E os homens bateram remos para voltar à terra, mas não puderam, porque o mar ia e tempestuava contra eles. B' — 14 E clamaram a Yahweh, e disseram: "Peço-te, Yahweh, não nos deixes perecer por causa da vida deste homem, e não ponhas sobre nós sangue inocente; pois tu, ó Senhor, fizeste como te aprouve." 15 E tomaram a Jonas, e o lançaram ao mar, A' — e o mar cessou do seu furor. 16 Então os homens temeram a Yahweh com grande temor, e ofereceram sacrifícios a Yahweh, e fizeram votos.</span><span class="lang-en">4 Now, Yahweh had hurled a great wind to the sea and there was a great storm on the sea, and the ship considered breaking apart. A — 5 And the sailors feared and each cried to his god, and they hurled the cargo which was in the ship to the sea to make it lighter from upon them. Now, Jonah went down into the far reaches of the ship, and he laid down and fell asleep. 6 And the chief of the sailors approached him and said, "What is it with you, sleeping? Get up, call to your god. Perhaps a god will be concerned about us so that we will not perish." B — 7 And each man said to his companion, "Come, let us cast lots, so that we can know on whose account this evil is to us." So they cast lots and the lot fell on Jonah. 8 And they said to him, "Please tell us, on whose account is this evil to us? What is your work? And where do you come from? What is your country? From what people are you?" C — 9 And he said to them, "I am a Hebrew, and I fear Yahweh God of heaven who made the sea and the dry land." 10 And the men feared a great fear and they said to him, "What is this you have done?!" D — For the men knew that he was fleeing from before the face of Yahweh because he had told them. 11 And they said to him, "What should we do to you that the sea may become calm for us?" for the sea was going and storming. C' — 12 And he said to them, "Pick me up and hurl me to the sea. Then the sea will become calm for you, for I know that on account of me this great storm is to you." 13 And the men dug in to return to land but they could not, for the sea was going and storming against them. B' — 14 And they called to Yahweh and said, "Please Yahweh, do not let us perish on account of this man's life and don't set innocent blood against us; for you, O Lord, have done as you have pleased." 15 And they picked up Jonah, and they hurled him to the sea, A' — and the sea stopped its raging. 16 Then the men feared the Lord a great fear, and they offered sacrifices to Yahweh and they vowed vows.</span></div>
+  <p class="cite reveal"><span class="lang-pt">Jonas 1:4-16. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: Jonas (2019).</span><span class="lang-en">Jonah 1:4-16. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Jonah (2019).</span></p>
+  <h2 class="section reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h2>
+  <p class="body reveal"><span class="lang-pt">Até aqui no capítulo 1, que evidência de os motivos de Jonas serem positivos você vê? Que evidência de os motivos de Jonas serem negativos você vê? Por que você acha que o autor decide não nos dizer quais são os motivos de Jonas?</span><span class="lang-en">So far in chapter 1, what evidence of Jonah's motives being positive do you see? What evidence of Jonah's motives being negative do you see? Why do you think the author decides not to tell us what Jonah's motives are?</span></p>
+  <footer class="page-footer">
     <span class="lang-pt">Anotações de Aula: Jonas</span><span class="lang-en">Class Notes: Jonah</span>
     <span class="lang-pt">Sessão 24</span><span class="lang-en">Session 24</span>
   </footer>
 </div>
-  <script src="../../js/reading-progress.js"></script>
-  <script src="../../js/lang-toggle.js"></script>
-  <script src="../../js/reveal.js"></script>
-  <script>
-    setLang(localStorage.getItem('bp_lang')||'pt');
-  </script>
+<script src="../../js/lang-toggle.js"></script>
+<script src="../../js/reveal.js"></script>
+<script>setLang(localStorage.getItem('bp_lang')||'pt');</script>
 </body>
 </html>
