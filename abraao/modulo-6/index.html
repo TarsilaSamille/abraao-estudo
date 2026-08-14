@@ -9,12 +9,23 @@
 </head>
 
 <body class="bg-white font-sans text-slate-800">
+  <div class="fixed left-4 top-4 z-50">
+    <a href="../index.html"
+      class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+      <span>&larr;</span><span>Voltar</span>
+    </a>
+  </div>
+  <div class="fixed right-4 top-4 z-50">
+    <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white shadow-sm">
+      <button id="lang-pt" onclick="setLang('pt')" class="px-4 py-1.5 text-sm font-semibold transition-colors">PT</button>
+      <button id="lang-en" onclick="setLang('en')" class="px-4 py-1.5 text-sm font-semibold transition-colors">EN</button>
+    </div>
+  </div>
     <div class="min-h-screen p-8">
         <div class="flex min-h-screen flex-col p-8 md:p-12">
             <main class="flex flex-1 flex-col items-center justify-center text-center">
                 <img src="../image/img-6.png" alt="Ilustração de vasos com plantas"
                     class="mb-8 h-48 w-48 rounded-2xl object-cover shadow-lg" />
-                <a href="../index.html" class="mb-8 text-sky-600 hover:underline">← Voltar para o Início</a>
                 <h1 class="text-5xl font-bold text-slate-900">Módulo 6: Bênção para a Próxima Geração</h1>
                 <h2 class="mt-4 text-lg font-semibold uppercase tracking-wider text-slate-500">Sessões 25-30</h2>
                 <p class="mt-8 max-w-2xl text-lg text-slate-700">Conclua o estudo com a transição da bênção para a
@@ -58,6 +69,19 @@
             </main>
         </div>
     </div>
+  </div>
+
+  <script>
+    function setLang(lang){
+      localStorage.setItem('bp_lang',lang);
+      document.documentElement.lang=lang==='pt'?'pt-BR':'en';
+      const on='bg-sky-600 text-white',off='bg-white text-slate-600 hover:bg-slate-100';
+      const pt=document.getElementById('lang-pt'),en=document.getElementById('lang-en');
+      if(pt)pt.className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='pt'?on:off);
+      if(en)en.className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='en'?on:off);
+    }
+    setLang(localStorage.getItem('bp_lang')||'pt');
+  </script>
 </body>
 
 </html>

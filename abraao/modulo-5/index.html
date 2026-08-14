@@ -4,55 +4,64 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Módulo 5: Abraão Entrega Seus Filhos</title>
+    <title data-i18n="title">Módulo 5: Abraão Entrega Seus Filhos</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-
 <body class="bg-white font-sans text-slate-800">
+  <div class="fixed left-4 top-4 z-50">
+    <a href="../index.html"
+      class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+      <span>&larr;</span><span data-i18n="back">Voltar</span>
+    </a>
+  </div>
+  <div class="fixed right-4 top-4 z-50">
+    <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white shadow-sm">
+      <button id="lang-pt" onclick="setLang('pt')" class="px-4 py-1.5 text-sm font-semibold transition-colors">PT</button>
+      <button id="lang-en" onclick="setLang('en')" class="px-4 py-1.5 text-sm font-semibold transition-colors">EN</button>
+    </div>
+  </div>
     <div class="min-h-screen p-8">
         <div class="flex min-h-screen flex-col p-8 md:p-12">
             <main class="flex flex-1 flex-col items-center justify-center text-center">
                 <img src="../image/img-5.png" alt="Ilustração de vasos com plantas"
                     class="mb-8 h-48 w-48 rounded-2xl object-cover shadow-lg" />
-                <a href="../index.html" class="mb-8 text-sky-600 hover:underline">← Voltar para o Início</a>
-                <h1 class="text-5xl font-bold text-slate-900">Módulo 5: Abraão Entrega Seus Filhos</h1>
-                <h2 class="mt-4 text-lg font-semibold uppercase tracking-wider text-slate-500">Sessões 20-24</h2>
-                <p class="mt-8 max-w-2xl text-lg text-slate-700">Acompanhe os testes finais de Abraão e a entrega de
-                    seus filhos.</p>
+                <h1 class="text-5xl font-bold text-slate-900" data-i18n="h1">Módulo 5: Abraão Entrega Seus Filhos</h1>
+                <h2 class="mt-4 text-lg font-semibold uppercase tracking-wider text-slate-500" data-i18n="sessions">Sessões 20-24</h2>
+                <p class="mt-8 max-w-2xl text-lg text-slate-700" data-i18n="desc">Acompanhe os testes finais de Abraão e a entrega de seus filhos.</p>
 
                 <div class="mt-12 w-full max-w-3xl">
-                    <h2 class="mb-6 text-2xl font-bold text-slate-900">Índice de Sessões</h2>
-                    <div class="grid gap-4 md:grid-cols-2">
-                        <a href="sessao-20.html"
-                            class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg">
-                            <h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">Sessão 20</h3>
-                            <p class="mt-2 text-slate-600">Abraão Coloca Sara em Perigo Novamente</p>
-                        </a>
-                        <a href="sessao-21.html"
-                            class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg">
-                            <h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">Sessão 21</h3>
-                            <p class="mt-2 text-slate-600">O Nascimento de Isaque</p>
-                        </a>
-                        <a href="sessao-22.html"
-                            class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg">
-                            <h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">Sessão 22</h3>
-                            <p class="mt-2 text-slate-600">A Aliança de Abraão com Abimeleque</p>
-                        </a>
-                        <a href="sessao-23.html"
-                            class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg">
-                            <h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">Sessão 23</h3>
-                            <p class="mt-2 text-slate-600">O Teste Final de Abraão</p>
-                        </a>
-                        <a href="sessao-24.html"
-                            class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg">
-                            <h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">Sessão 24</h3>
-                            <p class="mt-2 text-slate-600">Abraão Entrega Isaque</p>
-                        </a>
-                    </div>
+                    <h2 class="mb-6 text-2xl font-bold text-slate-900" data-i18n="toc">Índice de Sessões</h2>
+                    <div id="sessgrid" class="grid gap-4 md:grid-cols-2"></div>
                 </div>
             </main>
         </div>
     </div>
+  </div>
+
+  <script>
+    const SESSIONS = [{"n": 20, "title_pt": "Abraão Coloca Sara em Perigo Novamente", "title_en": "Abraham Endangers Sarah Again"}, {"n": 21, "title_pt": "O Nascimento de Isaque", "title_en": "The Birth of Isaac"}, {"n": 22, "title_pt": "A Aliança de Abraão com Abimeleque", "title_en": "Abraham's Covenant with Abimelech"}, {"n": 23, "title_pt": "O Teste Final de Abraão", "title_en": "Abraham's Final Test"}, {"n": 24, "title_pt": "Abraão Entrega Isaque", "title_en": "Abraham Gives Up Isaac"}];
+    const I18N = {"pt": {"title": "Módulo 5: Abraão Entrega Seus Filhos", "h1": "Módulo 5: Abraão Entrega Seus Filhos", "sessions": "Sessões 20-24", "toc": "Índice de Sessões", "back": "Voltar", "session": "Sessão", "desc": "Acompanhe os testes finais de Abraão e a entrega de seus filhos."}, "en": {"title": "Module 5: Abraham Gives Up His Sons", "h1": "Module 5: Abraham Gives Up His Sons", "sessions": "Sessions 20-24", "toc": "Table of Sessions", "back": "Back", "session": "Session", "desc": "Follow Abraham's final tests and the giving up of his sons."}};
+    function render(lang){
+      document.getElementById('sessgrid').innerHTML = SESSIONS.map(s=>`
+        <a href="sessao-${s.n}.html"
+          class="group block rounded-lg border-2 border-slate-200 p-6 transition-all hover:border-sky-500 hover:shadow-lg">
+          <h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600">${I18N[lang].session} ${s.n}</h3>
+          <p class="mt-2 text-slate-600">${lang==='pt'?s.title_pt:s.title_en}</p>
+        </a>`).join('');
+    }
+    function setLang(lang){
+      localStorage.setItem('bp_lang',lang);
+      document.documentElement.lang=lang==='pt'?'pt-BR':'en';
+      const t=I18N[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(t[k]!==undefined)el.innerHTML=t[k];});
+      document.title=t.title;
+      const on='bg-sky-600 text-white',off='bg-white text-slate-600 hover:bg-slate-100';
+      document.getElementById('lang-pt').className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='pt'?on:off);
+      document.getElementById('lang-en').className='px-4 py-1.5 text-sm font-semibold transition-colors '+(lang==='en'?on:off);
+      render(lang);
+    }
+    setLang(localStorage.getItem('bp_lang')||'pt');
+  </script>
 </body>
 
 </html>
