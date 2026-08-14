@@ -1,0 +1,32 @@
+# Proposta de CSS vars — joseph (bot refactor)
+# Estado: SUGESTÃO (não aplicado). Pendente de ack do usuário.
+#
+# Diagnóstico (check bot): 12 hex únicos fora da paleta golden em 20 arquivos.
+#   - #e4e7ec x18  -> drift de #e5e7eb (border-abraham2)  [MAIS FREQUENTE]
+#   - #d4dae2 x2   -> drift de #d7dde5 (border)
+#   - #8a93a3 x2   -> drift de #6b7280 (cx-slate) / grey
+#   - #e5e9f0 x2   -> drift de #e5e7eb
+#   - #3a4150 x2   -> drift de #3d4453 (macro-dark)
+#   - #fae4c4,#91362e,#d9ecfd,#404ca6,#d3f2cd,#2b6146,#f9e3de x1 cada
+#     -> cores de diagrama custom em sessao-1 (não estão no DESIGN.md; checar se são intencionais)
+#
+# Sugestão: centralizar neutros recorrentes em :root do <style> de cada sessao,
+# e normalizar os drifts (#e4e7ec->#e5e7eb etc.) antes de tokenizar.
+#
+# BLOCO A INSERIR no <style> de cada sessao-*.html afetada (após <style> aberto):
+:root{
+  --bp-border:#d7dde5;
+  --bp-border-abraham2:#e5e7eb;
+  --bp-macro-dark:#3d4453;
+  --bp-grey:#6b7280;
+}
+#
+# SUBSTITUIÇÕES por arquivo (find/replace, 1 a 1 — NÃO script bulk por decisão do usuário):
+#   sessao-1.html:  #e4e7ec->#e5e7eb  #d4dae2->#d7dde5  #8a93a3->#6b7280
+#                   #e5e9f0->#e5e7eb  #3a4150->#3d4453
+#                   (cores de diagrama #fae4c4 #91362e #d9ecfd #404ca6 #d3f2cd #2b6146 #f9e3de:
+#                    confirmar com usuário se são intencionais antes de mexer)
+#   sessao-2/3/4/5/6/7/9/12/14/15/16/18/20/21/22/25/26/27/28.html:  #e4e7ec->#e5e7eb
+#
+# Após normalizar: trocar usos por var(--bp-border-abraham2) etc. (segunda passada).
+# Arquivos afetados: 20 de 29 sessões joseph.

@@ -3,96 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sessão 38: Deus Muda de Ideia?</title>
+<title>Sessão 38: Interpretando o Curto Sermão de Jonas</title>
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-<script src="../../js/verse-modal.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../css/shared-tutorial.css">
-  <style>
+<style>
   * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
-  html[lang="pt"] .lang-en { display: none !important; }
-  html[lang="en"] .lang-pt { display: none !important; }
+  html[lang="pt"] .lang-en, html[lang="en"] .lang-pt { display: none !important; }
   h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
   h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
   h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
   p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
   .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
-  .verse-link { color: inherit; cursor: pointer; }
   ul.bullets { list-style: none; padding: 0; }
   ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
-  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
-  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
-  .scripture:hover { border-left-color: #9aa7b8; }
-  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
-  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
-  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
-  .scripture-text sup.vs { font-size: .72em; color: #333; vertical-align: super; margin-right: 2px; }
-  .quote { border-left: 4px solid #b9c2cf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a4150; font-style: italic; }
+  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
   .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
-  .table-img img { width: 100%; display: block; }
-  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .quote { border-left: 4px solid #b9c2cf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a4150; font-style: italic; }
+  .cite { color: #4f5669; font-size: .95rem; line-height: 1.7; margin-top: .35rem; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
   .reveal.visible { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
-  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d4dae2; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
-  .nav-btn:hover { background: #f1f5f9; }
-  .nav-back { left: 1rem; }
-  .nav-lang { right: 1rem; }
-  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
-  
-  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  @media print { #reading-progress { display: none !important; } }
+  @media print { @page { margin: 14mm 12mm; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: bary; print-color-adjust: exact !important; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 </style>
 </head>
-<body class="bg-white">
-<div id="reading-progress" aria-hidden="true"></div>
+<body>
 <div class="fixed left-4 top-4 z-50 print:hidden">
-  <a href="../index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
-    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
-  </a>
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
   <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
-  </button>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span></button>
   <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
     <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
     <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
   </div>
 </div>
-
-  <div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
-    <h1 class="title reveal"><span class="lang-pt">Sessão 38: Deus Muda de Ideia?</span><span class="lang-en">Session 38: Does God Change His Mind?</span></h1>
-    <hr class="rule">
-    <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">A palavra hebraica nikham nos convida ao mistério profundo do propósito de Deus de se associar aos humanos no curso da história.</span><span class="lang-en">The Hebrew word nikham invites us into the deep mystery of God's purpose to partner with humans in the course of history.</span></li>
-      <li><span class="lang-pt">Não importa o que o povo faça, Deus nunca retrocede em seu propósito da aliança de usar essa família para abençoar as nações.</span><span class="lang-en">No matter what the people do, God never goes back on his covenant purpose to use this family to bless the nations.</span></li>
-    </ul>
-
-    <h2 class="section reveal"><span class="lang-pt">O Arrependimento de Nínive: Tradução e Design Literário de Jonas 3:5-10</span><span class="lang-en">The Repentance of Nineveh: Translation and Literary Design of Jonah 3:5-10</span></h2>
-    <p class="body reveal"><span class="lang-pt">As ações dos ninivitas (A) antecipam o decreto do rei (A'). Eles jejuam antes de serem mandados, e sua crença é um cumprimento antecipado do chamado do rei para “se voltar e se arrepender”. Em B, as ações do rei são um espelho simétrico: uma palavra chega ao rei (a) e sai dele (a'); ele se levanta do trono (b) e se assenta no pó (b'); no centro, ele tira o manto real (c) apenas para vestir pano de saco (c') — uma reversão completa de suas palavras, seu papel social e seus símbolos de alto status. Em A', há simetria progressiva: humano e besta, e uma série crescente de privações levando à proibição final: “que cada um se volte do seu caminho mau.” Em C, há um final climático: Deus responde ao arrependimento dos ninivitas; suas ações correspondem às deles — eles se arrependem, então ele reluta. A descrição da fé dos ninivitas ativa uma analogia com os israelitas após o resgate do mar (Êxodo 14:31; comparado a Jonas 1:16 e 3:5) — criando um contraste irônico, pois Jonas é quem está sendo resgatado do mar, mas são os pagãos (marinheiros e ninivitas) que temem e creem em Deus. O decreto do rei ativa analogias com Moisés (Êxodo 32:12,14) e Jeremias (18:7-8; 26:3): em ambos, o profeta é mediador; a ironia é que Jonas, ao contrário de Moisés e Jeremias, abdicou de seu papel de mediador profético, mas ao contrário dos jerusalenses, os ninivitas se arrependem!</span><span class="lang-en">The Ninevites' actions (A) anticipate the king's edict (A'). They fast before being told, and their belief is a forward fulfillment of the king's call to “turn and repent.” In B, the king's actions are a symmetrical mirror: a word comes to the king (a) and goes out from him (a'); he rises from his throne (b) and sits in ashes (b'); at the center he removes his royal robe (c) only to put on sackcloth (c') — a complete reversal of his words, social role, and high-status symbols. In A' there is forward symmetry: human and beast, and an increasing series of deprivations leading to the ultimate prohibition: “let each turn from his evil way.” In C, a climactic ending: God responds to the Ninevites' repentance; his actions match theirs — they repent, so he relents. The depiction of the Ninevites' faith activates an analogy with the Israelites after rescue from the sea (Exodus 14:31; compared to Jonah 1:16 and 3:5) — an ironic contrast, since Jonah is the one being rescued from the sea, yet it is the pagan sailors and Ninevites who fear and believe. The king's edict activates analogies with Moses (Exodus 32:12,14) and Jeremiah (18:7-8; 26:3): in both, the prophet is mediator; the irony is that Jonah, unlike Moses and Jeremiah, has abdicated his role as prophetic mediator, yet unlike the Jerusalemites, the Ninevites repent!</span></p>
-    <h3 class="sub reveal"><span class="lang-pt">O Arrependimento de Deus</span><span class="lang-en">God's Repentance</span></h3>
-    <p class="body reveal"><span class="lang-pt">Em Jonas 3:10, Deus vê o arrependimento dos ninivitas e reluta do desastre que falara em fazer-lhes. Quando humanos se arrependem do mal, eles shuv (שוב, “virar”). Quando Deus reluta de trazer mal sobre pessoas más, ele pode shuv, mas há uma palavra adicional, nikham (נחם, “reluctar, ser satisfeito”). No ativo (piel) pode significar confortar; no reflexivo (niphal) pode significar lamentar uma ação passada ou mudar de ideia sobre uma ação futura (Gên. 6:6; 2 Sam. 24:16). Em cada exemplo do reluto de Yahweh, o foco está em seu propósito de trazer julgamento ou bênção sobre povos violentos (Jer. 18:7-10). Deus se associou aos humanos (Gên. 1:26-28) e experimenta dor emocional sobre o mal deles (Gên. 6:6). O reluto de Deus pela contrição dos ninivitas é uma inversão hiperligada da história do bezerro de ouro (Êxodo 32), onde Moisés desempenhou seu papel de mediador (ao contrário de Jonas) e sua intercessão é o que compela Deus a relutar. Wright observa que a intercessão de Moisés se torna parte integral de como a soberania de Deus na história é exercida — Deus não apenas permite, mas convida e integra a intercessão humana nos processos decisórios do conselho celestial. A aparente contradição (Deus mudando de ideia em 1 Sam. 15:10-11,35 vs. não mudando em 15:29 / Núm. 23:19) é resolvida por seu propósito último para a história e a criação, independente do que os humanos fazem.</span><span class="lang-en">In Jonah 3:10, God sees the Ninevites' repentance and relents of the disaster he had spoken to do to them. When humans repent from evil, they shuv (שוב, “turn around”). When God relents from bringing evil on evil people, he can shuv, but there is an additional word, nikham (נחם, “relent, be satisfied”). In the active (piel) it can mean to comfort; in the reflexive (niphal) it can mean to regret a past action or change one's mind about a future action (Gen. 6:6; 2 Sam. 24:16). In each example of Yahweh's relenting, the focus is on his purpose to bring judgment or blessing on violent people (Jer. 18:7-10). God partnered with humans (Gen. 1:26-28) and experiences emotional pain over their evil (Gen. 6:6). God's relenting due to the Ninevites' repentance is a hyperlinked inversion of the golden calf story (Exodus 32), where Moses stepped into his mediator role (unlike Jonah) and his intercession compels God to relent. Wright notes Moses' intercession becomes integral to how God's sovereignty in history is exercised — God not only allows but invites and builds human intercession into heavenly decision-making. The apparent contradiction (God changing his mind in 1 Sam. 15:10-11,35 vs. not in 15:29 / Num. 23:19) is resolved by his ultimate purpose for history and creation regardless of what humans do.</span></p>
-
-    <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
-    <p class="body reveal"><span class="lang-pt">Como você entende a ideia de Deus mudar de ideia ou relutar (hebraico: nikham)? Como esse entendimento afeta como você e outros no seu contexto veem a Deus e interagem com ele?</span><span class="lang-en">How do you understand the idea of God changing his mind or relenting (Hebrew: nikham)? How does this understanding affect how you and others in your context view God and interact with him?</span></p>  
-
-<footer class="page-footer">
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+  <h1 class="title reveal"><span class="lang-pt">Sessão 38: Interpretando o Curto Sermão de Jonas</span><span class="lang-en">Session 38: Interpreting Jonah's Short Sermon</span></h1>
+  <hr class="rule">
+  <h2 class="section reveal"><span class="lang-pt">Uma Ameaça Condicional</span><span class="lang-en">A Conditional Threat</span></h2>
+  <p class="body reveal"><span class="lang-pt">Jonas de fato entregou a mensagem de Yahweh exatamente como a recebeu, mas ele, Yahweh, os ninivitas e nós como leitores somos levados a entendê-la como algo outro — uma ameaça condicional que não será executada se Nínive se arrepender.</span><span class="lang-en">Jonah did deliver Yahweh's message exactly as he received it, but he, Yahweh, the Ninevites, and we as readers are meant to understand it as something else—a conditional threat that will not be carried out if Nineveh repents.</span></p>
+  <blockquote class="quote reveal"><span class="lang-pt">"Que esta era [a mensagem de Yahweh] ... é autoevidente pois era a mensagem que Jonas efetivamente entregou."</span><span class="lang-en">"That this was [Yahweh's] message ... is self-evident since it was the message which Jonah actually delivered."</span></blockquote>
+  <p class="cite reveal"><span class="lang-pt">Zlotowitz, Meir (1980). Yonah: A New Translation With a Commentary Anthologized from Talmudic, Midrashic and Rabbinic Sources. Messorah Publications. 119.</span><span class="lang-en">Zlotowitz, Meir (1980). Yonah: A New Translation With a Commentary Anthologized from Talmudic, Midrashic and Rabbinic Sources. Messorah Publications. 119.</span></p>
+  <blockquote class="quote reveal"><span class="lang-pt">"[E]stas palavras não são o que Jonas compôs, mas são exatamente o que Yahweh lhe mandou dizer."</span><span class="lang-en">"[T]hese words are not what Jonah composed, but are exactly what Yahweh told him to say."</span></blockquote>
+  <p class="cite reveal"><span class="lang-pt">Stuart, Douglas (1987). Word Biblical Commentary Vol. 31, Hosea-Jonah. Thomas Nelson. 489.</span><span class="lang-en">Stuart, Douglas (1987). Word Biblical Commentary Vol. 31, Hosea-Jonah. Thomas Nelson. 489.</span></p>
+  <h3 class="sub reveal"><span class="lang-pt">Problema</span><span class="lang-en">Problem</span></h3>
+  <p class="body reveal"><span class="lang-pt">O rei claramente entende o oráculo como uma predição irreversível de juízo (3:8-9: "Que cada um se volte do seu caminho mau! Quem sabe, Deus se volte e se arrependa!"). Enquanto profetas reconhecem que oráculos de juízo podem ser desviados por arrependimento (Jr 18:7-10), esses oráculos quase sempre são acompanhados de um chamado ao arrependimento.</span><span class="lang-en">The king clearly understands the oracle as an irreversible prediction of judgment (3:8-9: "Let each man turn from his wicked way! Who knows, God might turn and relent!"). While prophets recognize that oracles of judgment might be averted by repentance (Jer. 18:7-10), those oracles are almost always accompanied by a call to repent.</span></p>
+  <h2 class="section reveal"><span class="lang-pt">Uma Ameaça Justificável</span><span class="lang-en">A Justifiable Threat</span></h2>
+  <p class="body reveal"><span class="lang-pt">Jonas entregou a mensagem como lhe foi dada por Deus, mas ele sabia de antemão que era falsa (por isso fugiu, como diz em 4:2). Yahweh nunca pretendeu executar esta subversão, mas sua ameaça é justificável com base em que alcançou um bem maior, o arrependimento dos ninivitas.</span><span class="lang-en">Jonah delivered the message as given to him by God, but he knew beforehand that it was false (so he fled as he says in 4:2). Yahweh never intended to execute this overturning, but his threat is justifiable on the grounds that it achieved a higher good, the repentance of the Ninevites.</span></p>
+  <blockquote class="quote reveal"><span class="lang-pt">"[A] história bíblica não é sobre um profeta mas sobre uma profecia não cumprida. A maravilhosa graça de Deus aqui explica o fracasso da predição de Jonas."</span><span class="lang-en">"[T]he biblical story is not about a prophet but about an unfulfilled prophecy. God's wonderful graciousness here explains the failure of Jonah's prediction."</span></blockquote>
+  <p class="cite reveal"><span class="lang-pt">Bickerman, Elias (1985). Four Strange Books of the Bible: Jonah, Daniel, Koheleth, Esther. Shocken. 32.</span><span class="lang-en">Bickerman, Elias (1985). Four Strange Books of the Bible: Jonah, Daniel, Koheleth, Esther. Shocken. 32.</span></p>
+  <blockquote class="quote reveal"><span class="lang-pt">"Este é o paradoxo misterioso da fé hebraica: O Onisciente e Onipotente pode mudar uma palavra que Ele proclama."</span><span class="lang-en">"This is the mysterious paradox of Hebrew faith: The All-wise and Almighty may change a word that He proclaims."</span></blockquote>
+  <p class="cite reveal"><span class="lang-pt">Heschel, Abraham J. (2001). The Prophets. Harper Perennial Modern Classics. 28.</span><span class="lang-en">Heschel, Abraham J. (2001). The Prophets. Harper Perennial Modern Classics. 28.</span></p>
+  <h3 class="sub reveal"><span class="lang-pt">Problema</span><span class="lang-en">Problem</span></h3>
+  <p class="body reveal"><span class="lang-pt">Esta interpretação tecnicamente faz de Jonas um falso profeta (um grande problema em Deuteronômio 18), proclamando intencionalmente uma palavra que ele sabe não ser verdadeira. Também retrata Deus como dando falso testemunho.</span><span class="lang-en">This interpretation technically makes Jonah a false prophet (a big deal in Deuteronomy 18), intentionally proclaiming a word he knows is not true. It also portrays God as bearing false witness.</span></p>
+  <h2 class="section reveal"><span class="lang-pt">Um Sermão Abreviado</span><span class="lang-en">An Abbreviated Sermon</span></h2>
+  <p class="body reveal"><span class="lang-pt">Jonas não proferiu a mensagem que Yahweh lhe deu mas alterou ou abreviou-a para servir a seus próprios propósitos. Em vez de entregar uma mensagem original, condicional de juízo e arrependimento, Jonas declarou o oráculo de modo que os ninivitas o entenderiam como uma pronúncia de juízo irrevogável.</span><span class="lang-en">Jonah did not utter the message Yahweh gave him but altered or abbreviated it to suit his own purposes. Instead of delivering an original, conditional message of judgment and repentance, Jonah stated the oracle so that the Ninevites would understand it as a pronouncement of irrevocable judgment.</span></p>
+  <h3 class="sub reveal"><span class="lang-pt">Problemas</span><span class="lang-en">Problems</span></h3>
+  <p class="body reveal"><span class="lang-pt">Isto retrata Jonas como estando num estado de contínua rebelião e desobediência a Deus, o que é inteiramente possível.</span><span class="lang-en">This portrays Jonah as being in a state of continued rebellion and disobedience to God, which is entirely possible.</span></p>
+  <blockquote class="quote reveal"><span class="lang-pt">"Isto retrata Jonas como distorcendo a palavra de Deus." Exatamente! Jonas é consistentemente retratado como um personagem não-confiável cujas palavras evadem toda pessoa que fala com ele (os marinheiros em 1:8-9 e Deus em 4:3-4 e 4:8-9).</span><span class="lang-en">"This portrays Jonah as distorting God's word." Exactly! Jonah is consistently portrayed as an unreliable character whose words evade every person who speaks with him (the sailors in 1:8-9 and God in 4:3-4 and 4:8-9).</span></blockquote>
+  <h2 class="section reveal"><span class="lang-pt">Deus Ensinando Jonas</span><span class="lang-en">God Teaching Jonah</span></h2>
+  <p class="body reveal"><span class="lang-pt">Jonas proferiu fielmente a mensagem, mas Deus está continuando a "ensinar uma lição" a Jonas. A mensagem é redigida ambiguamente de modo que Jonas pensará que "subvertida" significa "destruída," ao passo que Deus sabe que significa "mudada," antecipando a resposta de Nínive.</span><span class="lang-en">Jonah faithfully uttered the message, but God is continuing to "teach a lesson" to Jonah. The message is worded ambiguously so that Jonah will think "overturned" means "destroyed," whereas God knows that it means "changed," anticipating Nineveh's response.</span></p>
+  <h3 class="sub reveal"><span class="lang-pt">Problemas (e Soluções)</span><span class="lang-en">Problems (and Solutions)</span></h3>
+  <p class="body reveal"><span class="lang-pt">Esta visão retrata Deus como um trapaceiro que sabe que Jonas será motivado por uma mensagem de destruição. Mas ao capitalizar o duplo sentido potencial, Deus pode ser fiel à palavra do profeta enquanto também vence o ódio de Jonas. Este "truque divino" nos prepara para a próxima lição para Jonas no capítulo 4: a videira, o verme e o vento.</span><span class="lang-en">This view depicts God as a trickster who knows Jonah will be motivated by a message of destruction. But by capitalizing on the potential double meaning, God can be faithful to the word of the prophet while also overcoming Jonah's hatred. This "divine trick" prepares us for the next lesson for Jonah in chapter 4: the vine, the worm, and the wind.</span></p>
+  <blockquote class="quote reveal"><span class="lang-pt">"A ambiguidade de 'subvertida' equivale a uma espécie de trocadilho. A palavra pode significar subverter e destruir, mas também virar, dar a volta, de modo que uma coisa se torna outra ... Alguma tal transformação ou conversão ... parece ser o que o Senhor tinha em mente, se de fato estas são as exatas palavras dadas a Jonas para falar. Assim pode ser que o Senhor tenha enganado Jonas, dando-lhe uma mensagem contendo mais boas novas do que Jonas percebe. Não precisamos supor que o Deus da Bíblia esteja acima de tal engano. Pense em como ele brinca com Faraó na história do Êxodo, propondo a princípio apenas uma breve viagem de três dias para os israelitas (como o tempo de Jonas no peixe!) adorarem seu Deus ... Deus o supera e manobra, atraindo-o para uma armadilha para vencer seu mal ... Assim também com Jonas, e podemos imaginar antigos israelitas contando esta história em voz alta e rindo. Não é como se Faraó, ou Jonas, não o merecesse."</span><span class="lang-en">"The ambiguity of 'overturned' amounts to a kind of pun. The word can mean to overthrow and destroy, but also to turn over, around, so that one thing becomes another ... Some such transformation or conversion ... seems to be what the Lord had in mind, if indeed these are the exact words given to Jonah to speak. So it may be that the Lord has fooled Jonah, giving him a message containing more good news than Jonah realizes. We need not suppose that the God of the Bible is above such fooling. Think of how he plays Pharaoh in the story of the Exodus, by at first proposing just a brief trip of three days for the Israelites (like Jonah's time in the fish!) to worship their God ... God outwits and out maneuvers him, luring him into a trap to overcome his evil ... So too with Jonah, and we can imagine ancient Israelites telling this story aloud and chuckling. It's not as if Pharaoh, or Jonah, didn't deserve it."</span></blockquote>
+  <p class="cite reveal"><span class="lang-pt">Cary, Phillip (2008), Jonah. Brazos Press. 109.</span><span class="lang-en">Cary, Phillip (2008), Jonah. Brazos Press. 109.</span></p>
+  <blockquote class="quote reveal"><span class="lang-pt">"Ao final do terceiro capítulo (na verdade, assim que o v 5 nos diz que os ninivitas 'creram em Deus'), Deus se torna mais brincalhão com Jonas, mais tolerante de suas cáusticas respostas, mais disposto a indulgir sua teimosia. Como também veremos, a narrativa em si se torna mais caprichosa; mais indulgente, eu diria, na medida em que se desvia de atacar questões frontalmente. Ao observarmos esta mudança de caráter, humor e temperamento, começamos a nos perguntar se as grandes obras de Deus no mar, debaixo das águas e dentro de Nínive não são senão meros expoentes para a educação de um profeta. Todas estas modificações serão necessárias porque, até o fim, o narrador precisa manter Jonas inconsciente dos pequenos jogos que as palavras hebraicas podem fazer."</span><span class="lang-en">"By the end of the third chapter (in fact, as soon as v 5 tells us that the Ninevites 'believed in God'), God becomes more playful with Jonah, more tolerant of his caustic responses, more willing to indulge his stubbornness. As we shall also see, the narrative itself becomes more whimsical; more indulgent, I may say, in that it veers from attacking issues frontally. As we observe this shift in character, mood, and temper, we begin to wonder whether God's great deeds at sea, below waters, and within Nineveh are but mere exhibits for a prophet's education. All these modifications will be necessary because, to the last, the narrator needs to keep Jonah oblivious of the little games that Hebrew words can play."</span></blockquote>
+  <p class="cite reveal"><span class="lang-pt">Sasson, Jack M. (1995). Jonah. Yale University Press. 268.</span><span class="lang-en">Sasson, Jack M. (1995). Jonah. Yale University Press. 268.</span></p>
+  <h2 class="section reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h2>
+  <p class="body reveal"><span class="lang-pt">O que você faz do curto sermão de Jonas aos ninivitas? O que Jonas não diz aos ninivitas que poderíamos esperar que ele dissesse?</span><span class="lang-en">What do you make of Jonah's short sermon to the Ninevites? What does Jonah not say to the Ninevites that we might expect him to say?</span></p>
+  <footer class="page-footer">
     <span class="lang-pt">Anotações de Aula: Jonas</span><span class="lang-en">Class Notes: Jonah</span>
     <span class="lang-pt">Sessão 38</span><span class="lang-en">Session 38</span>
   </footer>
 </div>
-  <script src="../../js/reading-progress.js"></script>
-  <script src="../../js/lang-toggle.js"></script>
-  <script src="../../js/reveal.js"></script>
-  <script>
-    setLang(localStorage.getItem('bp_lang')||'pt');
-  </script>
+<script src="../../js/lang-toggle.js"></script>
+<script src="../../js/reveal.js"></script>
+<script>setLang(localStorage.getItem('bp_lang')||'pt');</script>
 </body>
 </html>

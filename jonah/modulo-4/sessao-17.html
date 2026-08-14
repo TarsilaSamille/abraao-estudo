@@ -5,93 +5,64 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sessão 17: Palavras Repetidas e Implicações para o Design Literário</title>
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-<script src="../../js/verse-modal.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../css/shared-tutorial.css">
-  <style>
+<style>
   * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
-  html[lang="pt"] .lang-en { display: none !important; }
-  html[lang="en"] .lang-pt { display: none !important; }
+  html[lang="pt"] .lang-en, html[lang="en"] .lang-pt { display: none !important; }
   h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
   h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
-  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
   p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
   .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
-  .verse-link { color: inherit; cursor: pointer; }
   ul.bullets { list-style: none; padding: 0; }
   ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
-  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
-  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
-  .scripture:hover { border-left-color: #9aa7b8; }
-  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
-  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
-  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
-  .scripture-text sup.vs { font-size: .72em; color: #333; vertical-align: super; margin-right: 2px; }
-  .quote { border-left: 4px solid #b9c2cf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a4150; font-style: italic; }
+  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
   .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
-  .table-img img { width: 100%; display: block; }
-  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
   .reveal.visible { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
-  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d4dae2; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
-  .nav-btn:hover { background: #f1f5f9; }
-  .nav-back { left: 1rem; }
-  .nav-lang { right: 1rem; }
-  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
-  
-  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  @media print { #reading-progress { display: none !important; } }
+  @media print { @page { margin: 14mm 12mm; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 </style>
 </head>
-<body class="bg-white">
-<div id="reading-progress" aria-hidden="true"></div>
+<body>
 <div class="fixed left-4 top-4 z-50 print:hidden">
-  <a href="../index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
-    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
-  </a>
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
   <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
-  </button>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span></button>
   <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
     <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
     <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
   </div>
 </div>
-
-  <div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
-    <h1 class="title reveal"><span class="lang-pt">Sessão 17: Palavras Repetidas e Implicações para o Design Literário</span><span class="lang-en">Session 17: Repeated Words and Implications for Literary Design</span></h1>
-    <hr class="rule">
-    <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">A narrativa bíblica alcança caracterização máxima através de detalhes mínimos. Os autores fazem muito com pouco, e é por isso que tudo importa.</span><span class="lang-en">Biblical narrative achieves maximal characterization through minimal details. The authors do a lot with a little, which is why everything matters.</span></li>
-      <li><span class="lang-pt">Design simétrico é quando palavras repetidas conectam passagens que não estão lado a lado, levando o leitor a compará-las. Todos os quatro capítulos de Jonas têm design simétrico.</span><span class="lang-en">Symmetrical design is when repeated words link passages that are not side by side, prompting the reader to compare the passages. All four chapters of Jonah are symmetrically designed.</span></li>
-    </ul>
-
-    <h2 class="section reveal"><span class="lang-pt">O Fluxo de Jonas</span><span class="lang-en">The Flow of Jonah</span></h2>
-    <p class="body reveal"><span class="lang-pt">Palavras repetidas nas unidades literárias de Jonas desenvolvem um fluxo temático e dão impulso ao arco da história. Palavras repetidas em unidades literárias distantes permitem ao leitor conectar partes de uma história que não são imediatamente adjacentes. Os autores bíblicos usam essa técnica para unir unidades literárias distantes dentro de um rolo, ou até conectar um rolo a outro.</span><span class="lang-en">Repeated words in Jonah's literary units develop a thematic flow and lend momentum to the story arc. Repeated words in distant literary units allow the reader to connect parts of a story that are not immediately adjacent. The biblical authors use this technique to draw together distant literary units within a scroll, or even connect one scroll to another.</span></p>
-    <p class="caption reveal"><span class="lang-pt">O Macro-Design de Jonas e os Contrastes no Design de Jonas 1. Ilustrações criadas por Tim Mackie para BibleProject Classroom: Jonah (2019).</span><span class="lang-en">The Macro-Design of Jonah and Contrasts in the Design of Jonah 1. Illustrations created by Tim Mackie for BibleProject Classroom: Jonah (2019).</span></p>
-
-    <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
-    <p class="body reveal"><span class="lang-pt">Quais são algumas das palavras (jogos de palavras ou temas) repetidas em Jonas 1? Qual poderia ser a mais significativa e útil de destacar para as pessoas no seu contexto?</span><span class="lang-en">What are some of the words (wordplays or themes) repeated in Jonah 1? Which might be the most significant and helpful to highlight for those in your context?</span></p>  
-
-<footer class="page-footer">
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+  <h1 class="title reveal"><span class="lang-pt">Sessão 17: Palavras Repetidas e Implicações para o Design Literário</span><span class="lang-en">Session 17: Repeated Words and Implications for Literary Design</span></h1>
+  <hr class="rule">
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Aprendizados</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">A narrativa bíblica alcança caracterização máxima através de detalhes mínimos. Os autores fazem muito com pouco, e é por isso que tudo importa.</span><span class="lang-en">Biblical narrative achieves maximal characterization through minimal details. The authors do a lot with a little, which is why everything matters.</span></li>
+    <li><span class="lang-pt">Design simétrico é quando palavras repetidas ligam passagens que não estão lado a lado, levando o leitor a comparar as passagens. Todos os quatro capítulos de Jonas são simetricamente desenhados.</span><span class="lang-en">Symmetrical design is when repeated words link passages that are not side by side, prompting the reader to compare the passages. All four chapters of Jonah are symmetrically designed.</span></li>
+  </ul>
+  <h2 class="section reveal"><span class="lang-pt">O Fluxo de Jonas</span><span class="lang-en">The Flow of Jonah</span></h2>
+  <p class="body reveal"><span class="lang-pt">Palavras repetidas nas unidades literárias de Jonas desenvolvem um fluxo temático e emprestam impulso ao arco da história.</span><span class="lang-en">Repeated words in Jonah's literary units develop a thematic flow and lend momentum to the story arc.</span></p>
+  <p class="cite reveal"><span class="lang-pt">Contrastes no Design de Jonas 1. Ilustração criada por Tim Mackie para BibleProject Classroom: Jonas (2019).</span><span class="lang-en">Contrasts in the Design of Jonah 1. Illustration created by Tim Mackie for BibleProject Classroom: Jonah (2019).</span></p>
+  <p class="body reveal"><span class="lang-pt">Palavras repetidas em unidades literárias distantes permitem ao leitor conectar partes de uma história que não são imediatamente adjacentes. Os autores bíblicos usam esta técnica para unir unidades literárias distantes dentro de um rolo, ou mesmo conectar um rolo a outro.</span><span class="lang-en">Repeated words in distant literary units allow the reader to connect parts of a story that are not immediately adjacent. The biblical authors use this technique to draw together distant literary units within a scroll, or even connect one scroll to another.</span></p>
+  <p class="cite reveal"><span class="lang-pt">O Macro-Design de Jonas. Ilustração criada por Tim Mackie para BibleProject Classroom: Jonas (2019).</span><span class="lang-en">The Macro-Design of Jonah. Illustration created by Tim Mackie for BibleProject Classroom: Jonah (2019).</span></p>
+  <h2 class="section reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h2>
+  <p class="body reveal"><span class="lang-pt">Quais são algumas das palavras (trocadilhos ou temas) repetidas em Jonas 1? Quais poderiam ser as mais significativas e úteis para destacar para aqueles no seu contexto?</span><span class="lang-en">What are some of the words (wordplays or themes) repeated in Jonah 1? Which might be the most significant and helpful to highlight for those in your context?</span></p>
+  <footer class="page-footer">
     <span class="lang-pt">Anotações de Aula: Jonas</span><span class="lang-en">Class Notes: Jonah</span>
     <span class="lang-pt">Sessão 17</span><span class="lang-en">Session 17</span>
   </footer>
 </div>
-  <script src="../../js/reading-progress.js"></script>
-  <script src="../../js/lang-toggle.js"></script>
-  <script src="../../js/reveal.js"></script>
-  <script>
-    setLang(localStorage.getItem('bp_lang')||'pt');
-  </script>
+<script src="../../js/lang-toggle.js"></script>
+<script src="../../js/reveal.js"></script>
+<script>setLang(localStorage.getItem('bp_lang')||'pt');</script>
 </body>
 </html>

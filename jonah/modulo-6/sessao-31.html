@@ -5,93 +5,77 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sessão 31: O Significado de Três Dias e Três Noites</title>
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-<script src="../../js/verse-modal.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../css/shared-tutorial.css">
-  <style>
+<style>
   * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
-  html[lang="pt"] .lang-en { display: none !important; }
-  html[lang="en"] .lang-pt { display: none !important; }
+  html[lang="pt"] .lang-en, html[lang="en"] .lang-pt { display: none !important; }
   h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
   h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
   h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
   p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
   .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
-  .verse-link { color: inherit; cursor: pointer; }
   ul.bullets { list-style: none; padding: 0; }
   ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
-  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
-  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
-  .scripture:hover { border-left-color: #9aa7b8; }
-  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
-  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
-  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
-  .scripture-text sup.vs { font-size: .72em; color: #333; vertical-align: super; margin-right: 2px; }
-  .quote { border-left: 4px solid #b9c2cf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a4150; font-style: italic; }
+  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
   .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
-  .table-img img { width: 100%; display: block; }
-  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .quote { border-left: 4px solid #b9c2cf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a4150; font-style: italic; }
+  .cite { color: #4f5669; font-size: .95rem; line-height: 1.7; margin-top: .35rem; }
+  .poem { background: #f8fafc; border-left: 4px solid #cbd5e1; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.4rem 0; font-family: 'Newsreader', serif; line-height: 1.9; font-size: 1.05rem; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
   .reveal.visible { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
-  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d4dae2; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
-  .nav-btn:hover { background: #f1f5f9; }
-  .nav-back { left: 1rem; }
-  .nav-lang { right: 1rem; }
-  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
-  
-  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  @media print { #reading-progress { display: none !important; } }
+  @media print { @page { margin: 14mm 12mm; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 </style>
 </head>
-<body class="bg-white">
-<div id="reading-progress" aria-hidden="true"></div>
+<body>
 <div class="fixed left-4 top-4 z-50 print:hidden">
-  <a href="../index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
-    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
-  </a>
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
   <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
-  </button>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span></button>
   <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
     <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
     <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
   </div>
 </div>
-
-  <div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
-    <h1 class="title reveal"><span class="lang-pt">Sessão 31: O Significado de Três Dias e Três Noites</span><span class="lang-en">Session 31: The Meaning of Three Days and Three Nights</span></h1>
-    <hr class="rule">
-    <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">“Três dias”, o tempo que Jonas esteve no ventre do peixe, era uma frase comum que transmitia a ideia de uma jornada perigosa e ameaçadora que aproximava alguém da morte.</span><span class="lang-en">“Three days,” the time Jonah was in the belly of the fish, was a common phrase that conveyed the idea of a dangerous, ominous journey that brought someone near to death.</span></li>
-    </ul>
-
-    <h2 class="section reveal"><span class="lang-pt">Um Útero Peixe?</span><span class="lang-en">A Fishy Womb?</span></h2>
-    <p class="body reveal"><span class="lang-pt">Em Jonas 2:1, a palavra “peixe” é um substantivo masculino, dag (דג), mas em 2:2, “do ventre do peixe”, inesperadamente usa um substantivo feminino, dagah (דגה). Sweeney e Ackerman observam que essa mudança sugere a imagem de gravidez para o peixe e de novo nascimento ou nova criação para Jonas — ouvimos Jonas, do ventre de um peixe fêmea, cantar uma canção equivocada do útero de Sheol.</span><span class="lang-en">In Jonah 2:1 the word “fish” is masculine, dag (דג), but in 2:2, “from the belly of the fish,” it unexpectedly uses the feminine dagah (דגה). Sweeney and Ackerman note this shift suggests imagery of pregnancy for the fish and new birth or new creation for Jonah — we hear Jonah, from the belly of a female fish, sing a misguided song from the womb of Sheol.</span></p>
-    <h3 class="sub reveal"><span class="lang-pt">Três Dias e Três Noites</span><span class="lang-en">Three Days and Three Nights</span></h3>
-    <p class="body reveal"><span class="lang-pt">O estudo de referência sobre essa frase foi feito por George Landes (1967). Dentro da Bíblia Hebraica, o período de “três dias e três noites” ou chegar a algum lugar “no terceiro dia” aparece em duas conexões principais: (1) Um tempo de provação, perigo ou quase-morte — 1 Samuel 30:12 (sem comer nem beber por três dias e três noites); 2 Reis 20:5,8 (Ezequias sararia e subiria à casa do Senhor no terceiro dia); Oséias 6:1-2 (ele nos dará vida após dois dias, nos ressuscitará no terceiro dia). Landes observa que, em cada caso, o período é especificado não para implicar a ainda presente possibilidade de livramento, mas para enfatizar a duração comparativa da aflição. (2) Uma jornada ameaçadora — a jornada de três dias dos israelitas do Egito através das águas ao Monte Sinai (Êx. 3:18 etc.); a primeira jornada de três dias na Bíblia é a de Abraão a Jerusalém para sacrificar Isaque (Gên. 22:4). A aparição mais antiga da frase é num texto mitológico sumério (ca. 1800 a.C.) onde a deusa desce ao submundo por três dias e três noites. Landes conclui que em Jonas 2:1 a frase indica o tempo que o peixe levou para trazer Jonas de volta do Profundo, entendido no poema como o submundo (2:2 “do ventre de Sheol”). Note que em Oséias 5-6 e em Jonas 2, Yahweh é quem controla um animal aterrorizante (leão/grande peixe); sendo devorado por esse animal seria morte certa em circunstâncias normais, mas com o Criador da vida, a morte aparente pode se tornar um veículo estranho de humilhação que leva à nova vida. Jesus se apoia nessa rede de passagens de “três dias” quando usa a frase para descrever sua libertação da morte para a vida de ressurreição (Mt. 12:40, 16:21; Lc 24:21,46).</span><span class="lang-en">The landmark study of this phrase was by George Landes (1967). Within the Hebrew Bible, “three days and three nights” or arriving “on the third day” appears in two main connections: (1) A time of testing, danger, or near-death — 1 Samuel 30:12 (no food or water for three days and nights); 2 Kings 20:5,8 (Hezekiah healed, go to the temple on the third day); Hosea 6:1-2 (he will revive us after two days, raise us on the third day). Landes notes the period emphasizes the comparative duration of affliction. (2) An ominous journey — Israel's three-day journey from Egypt through the waters to Sinai (Exod. 3:18); the first three-day journey is Abraham's to sacrifice Isaac (Gen. 22:4). The oldest appearance is a Sumerian (ca. 1800 B.C.E.) text where the goddess descends to the underworld for three days and nights. Landes concludes that in Jonah 2:1 the phrase indicates the time the fish took to bring Jonah back from the Deep, understood in the poem as the netherworld (2:2 “from the belly of Sheol”). Note that in Hosea 5-6 and Jonah 2, Yahweh controls a terrifying animal (lion/great fish); devouring would be certain death normally, but with the Creator, apparent death becomes a strange vehicle for humbling leading to new life. Jesus draws on this network when he uses “three days” for his resurrection (Matt. 12:40, 16:21; Luke 24:21,46).</span></p>
-
-    <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
-    <p class="body reveal"><span class="lang-pt">Qual é o significado de Jonas estar no peixe por três dias e três noites? O que deveríamos entender?</span><span class="lang-en">What's the significance of Jonah being in the fish for three days and three nights? What are we supposed to understand?</span></p>  
-
-<footer class="page-footer">
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+  <h1 class="title reveal"><span class="lang-pt">Sessão 31: O Significado de Três Dias e Três Noites</span><span class="lang-en">Session 31: The Meaning of Three Days and Three Nights</span></h1>
+  <hr class="rule">
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Aprendizados</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">"Três dias," o tempo que Jonas esteve no ventre do peixe, era uma frase comum que transmitia a ideia de uma jornada perigosa e funesta que aproximava alguém da morte.</span><span class="lang-en">"Three days," the time Jonah was in the belly of the fish, was a common phrase that conveyed the idea of a dangerous, ominous journey that brought someone near to death.</span></li>
+  </ul>
+  <h2 class="section reveal"><span class="lang-pt">Um Útero Peixoso?</span><span class="lang-en">A Fishy Womb?</span></h2>
+  <p class="body reveal"><span class="lang-pt">Em Jonas 2:1, a palavra "peixe" é um substantivo masculino, dag (דג), mas em 2:2, "das entranhas do peixe," inesperadamente usa um substantivo feminino, dagah (דגה).</span><span class="lang-en">In Jonah 2:1, the word "fish" is a masculine noun, dag (דג), but in 2:2, "from the belly of the fish," unexpectedly uses a feminine noun, dagah (דגה).</span></p>
+  <blockquote class="quote reveal"><span class="lang-pt">"Intérpretes notaram que o termo hebraico para 'o peixe' muda da forma masculina haddāg no versículo 1 para a forma feminina haddāgâ no versículo 2 [nrsv: 1]. Embora esta mudança permaneça problemática, a presença de Jonas no ventre do peixe sugere a imagística de gravidez para o peixe e de novo nascimento ou nova criação para Jonas."</span><span class="lang-en">"Interpreters have noted that the Hebrew term for 'the fish' changes from the masculine form haddāg in verse 1 to the feminine form haddāgâ in verse 2 [nrsv: 1]. Although this shift remains problematic, Jonah's presence in the belly of the fish suggests the imagery of pregnancy for the fish and new birth or new creation for Jonah."</span></blockquote>
+  <p class="cite reveal"><span class="lang-pt">Sweeney, Marvin A. (2000). Berit Olam: Studies in Hebrew Narrative and Poetry: The Twelve Prophets. Liturgical Press. 317.</span><span class="lang-en">Sweeney, Marvin A. (2000). Berit Olam: Studies in Hebrew Narrative and Poetry: The Twelve Prophets. Liturgical Press. 317.</span></p>
+  <blockquote class="quote reveal"><span class="lang-pt">"[O] peixe macho (dag) que devorou Jonas em 2:1 torna-se fêmea (dagah) para Jonas uma vez que ele entra nas suas entranhas. O ponto nos é imposto mais fortemente à medida que ouvimos Jonas, das entranhas de um peixe fêmea, cantar uma canção equivocada do útero de Sheol."</span><span class="lang-en">"[T]he male fish (dag) that devoured Jonah in 2:1 becomes a female (dagah) for Jonah once he enters her entrails. The point is forced upon us further as we hear Jonah, from the belly of a female fish, sing a misguided song from the womb of Sheol."</span></blockquote>
+  <p class="cite reveal"><span class="lang-pt">Ackerman, James (1981). "Satire and Symbolism in the Song of Jonah." Traditions in Transformation: Turning Points in Biblical Faith. Eisenbrauns. 235-256.</span><span class="lang-en">Ackerman, James (1981). "Satire and Symbolism in the Song of Jonah." Traditions in Transformation: Turning Points in Biblical Faith. Eisenbrauns. 235-256.</span></p>
+  <h2 class="section reveal"><span class="lang-pt">Três Dias e Três Noites</span><span class="lang-en">Three Days and Three Nights</span></h2>
+  <p class="body reveal"><span class="lang-pt">O estudo de referência sobre esta frase foi feito por George Landes em "The Three Days and Three Nights Motif in Jonah 2:1" do Journal of Biblical Literature, vol. 86 (1967), páginas 446-450. Dentro da Bíblia Hebraica, o intervalo de tempo de "três dias e três noites" ou chegar a algum lugar "no terceiro dia" aparece em duas conexões principais.</span><span class="lang-en">The landmark study on this phrase was made by George Landes in "The Three Days and Three Nights Motif in Jonah 2:1" from the Journal of Biblical Literature, vol. 86 (1967), pages 446-450. Within the Hebrew Bible, the time span of "three days and nights" or arriving somewhere "on the third day" appears in two main connections.</span></p>
+  <h3 class="sub reveal"><span class="lang-pt">Um Tempo de Provação, Perigo ou Quase-Morte</span><span class="lang-en">A Time of Testing, Danger, or Near-Death</span></h3>
+  <p class="body reveal"><span class="lang-pt">Esta frase é frequentemente usada para significar um período de provação ou perigo que aproxima alguém da morte.</span><span class="lang-en">This phrase is often used to signify a period of testing or danger that brings someone near death.</span></p>
+  <div class="poem reveal"><span class="lang-pt">1 Samuel 30:12b NASB — Pois não havia comido pão nem bebido água por três dias e três noites. 2 Reis 20:5, 8 NASB — 5 "Volta e dize a Ezequias, o líder do meu povo: 'Isto é o que diz Yahweh, o Deus de teu pai Davi: Ouvi a tua oração, vi as tuas lágrimas; eis que te vou sarar. No terceiro dia subirás à casa de Yahweh.'" ... 8 "E Ezequias disse a Isaías: 'Que sinal haverá de que Yahweh me sarará, e de que subirei à casa de Yahweh no terceiro dia?'" Oséias 6:1-2 NASB — 1 "Vinde, e voltemos para Yahweh; pois ele nos despedaçou, mas nos sarará; feriu-nos, mas nos envolverá em faixas. 2 Depois de dois dias nos vivificará; no terceiro dia nos ressuscitará, para vivermos diante dele."</span><span class="lang-en">1 Samuel 30:12b NASB — For he had not eaten bread or drunk water for three days and three nights. 2 Kings 20:5, 8 NASB — 5 "Return and say to Hezekiah the leader of my people, 'This is what the LORD, the God of your father David says: "I have heard your prayer, I have seen your tears; behold, I am going to heal you. On the third day you shall go up to the house of the LORD."'" ... 8 "Now Hezekiah said to Isaiah, 'What will be the sign that the LORD will heal me, and that I will go up to the house of the LORD on the third day?'" Hosea 6:1-2 NASB — 1 "Come, let's return to the LORD. For he has torn us, but he will heal us; he has wounded us, but he will bandage us. 2 He will revive us after two days; he will raise us up on the third day, that we may live before him."</span></div>
+  <blockquote class="quote reveal"><span class="lang-pt">"Em cada caso, o período de tempo é especificado não para implicar a ainda presente possibilidade de um livramento, mas para enfatizar a duração comparativa da aflição sob as circunstâncias."</span><span class="lang-en">"In each case, the time period is specified not to imply the still present possibility of a deliverance but to emphasize the comparative duration of the affliction under the circumstances."</span></blockquote>
+  <p class="cite reveal"><span class="lang-pt">Landes, George (1967). "The 'Three Days and Three Nights' Motif in Jonah 2:1." Journal of Biblical Literature, vol. 86. 448.</span><span class="lang-en">Landes, George (1967). "The 'Three Days and Three Nights' Motif in Jonah 2:1." Journal of Biblical Literature, vol. 86. 448.</span></p>
+  <h3 class="sub reveal"><span class="lang-pt">Uma Jornada Funesta</span><span class="lang-en">An Ominous Journey</span></h3>
+  <p class="body reveal"><span class="lang-pt">"Três dias" também é usado na Bíblia para sinalizar uma jornada funesta ou desafiadora. A jornada dos israelitas do Egito através das águas até o Monte Sinai deveria levar três dias (Êx. 3:18, 5:3, 8:27, 15:22). A primeira jornada de três dias na Bíblia é a jornada de Abraão a Jerusalém para sacrificar Isaque (Gn 22:4). Ver também Josué 2:16, 9:17; 1 Samuel 30:1; 2 Samuel 20:4; 2 Reis 2:17.</span><span class="lang-en">"Three days" is also used in the Bible to signal an ominous or challenging journey. The Israelites' journey from Egypt through the waters to Mount Sinai was to take three days (Exod. 3:18, 5:3, 8:27, 15:22). The first three-day journey in the Bible is Abraham's journey to Jerusalem to sacrifice Isaac (Gen. 22:4). See also Joshua 2:16, 9:17; 1 Samuel 30:1; 2 Samuel 20:4; 2 Kings 2:17.</span></p>
+  <p class="body reveal"><span class="lang-pt">O aparecimento mais antigo da frase "três dias e três noites" é num texto mitológico sumério (ca. 1800 a.C.) onde a deusa desce ao submundo da morte para visitar sua irmã recentemente falecida Ereshkigal. O tempo de sua "morte virtual" é descrito como três dias e três noites.</span><span class="lang-en">The most ancient appearance of the phrase "three days and three nights" is in a Sumerian (ca. 1800 B.C.E.) mythological text, where the goddess descends into the underworld of death to visit her recently dead sister Ereshkigal. The time of her "virtual death" is described as three days and three nights.</span></p>
+  <blockquote class="quote reveal"><span class="lang-pt">"Os três dias e três noites destinam-se a cobrir o tempo da viagem de Inanna às profundezas do submundo ... Isto parece ser a pista mais promissora para entender a importância plena desta frase para os escribas e leitores do antigo Oriente Próximo, incluindo o autor de Jonas. Em Jonas 2:1 a frase indica o período de tempo que levou o peixe para trazer Jonas de volta do Profundo, entendido mais explicitamente no poema seguinte como o mundo inferior (2:2 'das entranhas de Sheol') ... A permanência de Jonas no peixe portanto não é a mesma coisa que estar no Profundo ou em Sheol, e o peixe não é empregado como uma personificação das águas caóticas ou do reino dos mortos. Está claro que antes de Jonas ser engolido pelo peixe ele é ameaçado pelo mar e em perigo de residência permanente no mundo inferior."</span><span class="lang-en">"The three days and three nights are intended to cover the time of Inanna's travel to the depths of the underworld ... This appears to be a most promising clue for understanding the full import of this phrase to ancient near eastern scribes and readers, including the author of Jonah. In Jonah 2:1 the phrase indicates the period of time it took the fish to bring Jonah back from the Deep, understood more explicitly in the following poem as the netherworld (2:2 'from the belly of Sheol') ... Jonah's residence in the fish is therefore not the same thing as being in the Deep or in Sheol, and the fish is not employed as a personification of the chaotic waters or the realm of the dead. It is clearly before Jonah is swallowed by the fish that he is threatened by the sea and in danger of permanent residence in the nether world."</span></blockquote>
+  <footer class="page-footer">
     <span class="lang-pt">Anotações de Aula: Jonas</span><span class="lang-en">Class Notes: Jonah</span>
     <span class="lang-pt">Sessão 31</span><span class="lang-en">Session 31</span>
   </footer>
 </div>
-  <script src="../../js/reading-progress.js"></script>
-  <script src="../../js/lang-toggle.js"></script>
-  <script src="../../js/reveal.js"></script>
-  <script>
-    setLang(localStorage.getItem('bp_lang')||'pt');
-  </script>
+<script src="../../js/lang-toggle.js"></script>
+<script src="../../js/reveal.js"></script>
+<script>setLang(localStorage.getItem('bp_lang')||'pt');</script>
 </body>
 </html>
