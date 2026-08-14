@@ -5,145 +5,70 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sessão 1: José e o Mosaico Messiânico</title>
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-<script src="../../js/verse-modal.js"></script>
+<script src="../js/verse-modal.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../css/shared-tutorial.css">
   <style>
-  .reveal.visible { opacity: 1 !important; transform: none !important; }  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s;}
-  .ref:hover { color: #2563eb;}
-  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s;}
-  .scripture:hover { border-left-color: #9aa7b8;}
-  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem;}
-  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem;}
-  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a;}
-  .scripture .innerbox { background: #f6f8fa; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1rem;}
-  .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem;}
-  .macro { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; align-items: start; margin: 2rem 0 .75rem;}
-  .mcol { border: 3px solid #2e7d4e; border-radius: 12px; padding: .9rem .9rem 1rem; background: #fff;}
-  .mcol.dark { border-color: #3d4453; margin-top: 1.3rem;}
-  .mtag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 3px 10px; border-radius: 5px;}
-  .mtag-green { background: #2e7d4e;}
-  .mtag-dark { background: #3d4453;}
-  .mcol-title { font-size: 1rem; font-weight: 800; color: #17181a; margin: .55rem 0 .8rem; line-height: 1.3;}
-  .mboxes { display: flex; gap: .55rem;}
-  .mbox { flex: 1; border: 3px solid #b9c2cf; border-radius: 9px; background: #fff; min-height: 15.5rem; position: relative; transition: box-shadow .25s, transform .25s;}
-  .mbox:hover { box-shadow: 0 8px 20px -10px rgba(30,41,59,.4); transform: translateY(-3px);}
-  .mbox .mhdr { position: absolute; top: .55rem; left: .55rem; right: .55rem; background: #7d8697; color: #fff; font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 5px;}
-  .mbox.s1 { margin-top: 0;}
-  .mbox.s2 { margin-top: 2.4rem; min-height: 13rem;}
-  .mbox.s3 { margin-top: 2.4rem; min-height: 13rem;}
-  @media (max-width: 860px) { .macro { grid-template-columns: 1fr;}
-  .mcol.dark { margin-top: 0;}
-  .mbox, .mbox.s2, .mbox.s3 { min-height: 7.5rem; margin-top: 0;}
-  .cx { border: 3px solid; border-radius: 12px; padding: 1.35rem 1.5rem 1.2rem; margin: 1.15rem 0; transition: box-shadow .25s, transform .25s;}
-  .cx:hover { box-shadow: 0 12px 26px -16px rgba(23,24,26,.45); transform: translateY(-2px);}
-  .cx-tag { display: inline-block; font-size: 1rem; font-weight: 700; color: #fff; padding: 1px 13px; border-radius: 6px; margin-bottom: .7rem;}
-  .cx h4 { font-weight: 800; font-size: 1.06rem; color: #17181a; margin-bottom: .7rem;}
-  .cx ul.bullets > li { font-size: .99rem; margin-bottom: .45rem;}
-  .cx-slate  { border-color: #6b7280; background: #e9ebee;}
-  .cx-slate  .cx-tag { background: #6b7280;}
-  .cx-rust   { border-color: #c0562f; background: #f7e6dd;}
-  .cx-rust   .cx-tag { background: #c0562f;}
-  .cx-rose   { border-color: #c04a63; background: #f7e0e5;}
-  .cx-rose   .cx-tag { background: #c04a63;}
-  .cx-blue   { border-color: #5468d4; background: #e4e8f9;}
-  .cx-blue   .cx-tag { background: #5468d4;}
-  .cx-green  { border-color: #2e7d4e; background: #dfeee2;}
-  .cx-green  .cx-tag { background: #2e7d4e;}
-  .cx-purple { border-color: #8b5cf6; background: #efe2f8;}
-  .cx-purple .cx-tag { background: #8b5cf6;}
-  .cx-tan    { border-color: #8a6d3b; background: #ece7dc;}
-  .cx-tan    .cx-tag { background: #8a6d3b;}
-  .k { display: inline; padding: 3px 9px; border-radius: 6px; font-weight: 700; color: #fff; line-height: 1.85; -webkit-box-decoration-break: clone; box-decoration-break: clone;}
-  .k-blue   { background: #3b82c4;}
-  .k-green  { background: #2e7d4e;}
-  .k-rose { background: #c04a63;}
-  .k-gray   { background: #6b7280;}
-  .k-rust   { background: #bf5a2b;}
-  .k-teal { background: #0d7d8c;}
-  .k-purple { background: #7c5ad0;}
-  .k-brown  { background: #8a6d3b;}
-  .t-teal { color: #0d8aa0; font-weight: 700;}
-  .v-outer { border: 3px solid #e3e7ee; border-radius: 20px; padding: 1.4rem 1.5rem; margin: 1.4rem 0;}
-  .v-black { border: 3px solid #17181a; border-radius: 16px; padding: 1.3rem 1.5rem; margin: 1.1rem 0;}
-  .v-light { border: 3px solid #e3e7ee; border-radius: 16px; padding: 1.2rem 1.4rem; margin: 1.1rem 0;}
-  .v-line { font-size: 1.06rem; line-height: 2.1; color: #1f2937;}
-  .v-div { border: 0; border-top: 1px solid #e6eaf0; margin: 1.1rem 0;}
-  .vbar-b { border-left: 5px solid #5468d4; padding-left: .8rem;}
-  .lbl { color: #6b7280; font-weight: 600; font-size: .85rem; margin-right: .2rem;}
-  sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px;}
-  .i1 { padding-left: 1.6rem;}
-  .i2 { padding-left: 3.2rem;}
-  .i3 { padding-left: 4.8rem;}
-  .doc-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 3px solid #d9dee6; border-radius: 14px; overflow: hidden; background: #fff;}
-  .doc-table th { background: #e2e6eb; text-align: left; padding: 1rem 1.3rem; font-weight: 800; font-size: 1.02rem; color: #17181a;}
-  .doc-table td { padding: 1.1rem 1.3rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.78; font-size: .97rem; color: #24262a; transition: background .2s;}
-  .doc-table tbody tr:hover td { background: #f8fafc;}
-  .doc-table tfoot td { border-top: 1px solid #d1d5db; background: #fbfcfd; color: #5b6472; font-size: .92rem;}
-  .kblue-soft { background: #cddcf5; color: #2b5fb0; padding: 2px 8px; border-radius: 6px; font-weight: 700;}
-  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1);}
-  @media print {
-    @page { margin: 14mm 12mm;}
-  #reading-progress, .print\:hidden { display: none !important;}
-  .reveal { opacity: 1 !important; transform: none !important;}
-  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important;}
-  .max-w-4xl { max-width: 100% !important; padding: 0 !important; margin: 0 !important;}
-  h1.title, h2.section, h3.sub { break-after: avoid-page;}
-  .cx, .v-outer, .v-black, .v-light, .doc-table tr, .scripture, .mcol { break-inside: avoid;}
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none;}
-  .cx, .mbox { transition: none;}}}}
-
-  /* joseph base typography (abraao lacks these classes) */
-  
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en { display: none !important; }
+  html[lang="en"] .lang-pt { display: none !important; }
   h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
-  
   h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
-  
   h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  
   p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
-  
   .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
-  
   .verse-link { color: inherit; cursor: pointer; }
-  
   ul.bullets { list-style: none; padding: 0; }
-  
   ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
-  
   ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
-  
   .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-  
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+  .scripture:hover { border-left-color: #9aa7b8; }
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+  .scripture-text sup.vs { font-size: .72em; color: #333; vertical-align: super; margin-right: 2px; }
   .quote { border-left: 4px solid #aeb6bf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a3f47; font-style: italic; }
-  
   .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  
     table.md { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; background: #fff; margin: 1.5rem 0; font-size: .92rem; }
-  
   table.md th { background: #e3e7ec; text-align: left; padding: .8rem 1rem; font-weight: 700; color: #1b1b1b; }
-  
   table.md td { padding: .85rem 1rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.65; color: #1b1b1b; }
-  
   table.md td + td, table.md th + th { border-left: 1px solid #e5e7eb; }
+  table.md tbody tr:hover td { background: #f8fafc; }
+  .hl-tan { background: #fae3c3; color: #90362e; }
+  .hl-sky { background: #d9ecfd; color: #404ba6; }
+  .hl-grn { background: #d3f1cc; color: #2a6145; }
+  .hl-rose { background: #f9e3de; color: #97294e; }
+  .hl-brick { background: #b4533a; color: #fff; }
+  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
+  .table-img img { width: 100%; display: block; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
+  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
+  .nav-btn:hover { background: #f1f5f9; }
+  .nav-back { left: 1rem; }
+  .nav-lang { right: 1rem; }
+  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
   
-  table.md tbody tr:hover td { background: #f8fafc; }</style>
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  @media print { #reading-progress { display: none !important; } }
+</style>
 </head>
 <body class="bg-white">
 <div id="reading-progress" aria-hidden="true"></div>
 <div class="fixed left-4 top-4 z-50 print:hidden">
   <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
-    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Session 1: Joseph and the Messianic Mosaic</span>
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
   </a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
   <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-    <span class="lang-pt">Imprimir</span><span class="lang-en">Key Takeaways
-The Yoseph story is about God transforming betrayal into a vehicle for blessing and rescue.
-The biblical authors shaped the Yoseph story to enrich the developing portrait of the promised messiah.</span>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
   </button>
   <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
     <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
@@ -151,22 +76,67 @@ The biblical authors shaped the Yoseph story to enrich the developing portrait o
   </div>
 </div>
 <div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
-    <h2 class="section reveal">Key Takeaways</h2>
+    <h1 class="title reveal"><span class="lang-pt">Sessão 1: José e o Mosaico Messiânico</span><span class="lang-en">Session 1: Joseph and the Messianic Mosaic</span></h1>
+    <hr class="rule">
+    <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
     <ul class="bullets reveal">
-      <li>The Yoseph story is about God transforming betrayal into a vehicle for blessing and rescue.</li>
-      <li>The biblical authors shaped the Yoseph story to enrich the developing portrait of the promised messiah.</li>
+      <li><span class="lang-pt">A história de Yoseph é sobre Deus transformando a traição em um veículo para bênção e resgate.</span><span class="lang-en">The Yoseph story is about God transforming betrayal into a vehicle for blessing and rescue.</span></li>
+      <li><span class="lang-pt">Os autores bíblicos moldaram a história de Yoseph para enriquecer o retrato em desenvolvimento do messias prometido.</span><span class="lang-en">The biblical authors shaped the Yoseph story to enrich the developing portrait of the promised messiah.</span></li>
     </ul>
-    <h2 class="section reveal">Yaaqov’s Sons in the Biblical Imagination</h2>
+
+    <h2 class="section reveal"><span class="lang-pt">Os Filhos de Yaaqov na Imaginação Bíblica</span><span class="lang-en">Yaaqov's Sons in the Biblical Imagination</span></h2>
+    <p class="body reveal"><span class="lang-pt">As histórias encontradas em <span class="verse-link" style="color:inherit;cursor:pointer" data-reference="Gênesis 37-50">Gênesis 37-50</span> levam a narrativa do rolo de Gênesis ao seu clímax, quando a família de Yaaqov é quase destruída pela rivalidade ciumenta de seus filhos. A inveja dos irmãos mais velhos pelo irmão mais novo, Yoseph, põe em movimento uma cadeia de eventos que resulta, em última análise, na salvação da família de uma terrível fome. Abaixo está uma visão geral básica da história.</span><span class="lang-en">The stories found in Genesis 37-50 bring the narrative of the Genesis scroll to its climax, as Yaaqov's family is nearly destroyed by the jealous rivalry of his sons. The older brothers' envy of the youngest brother, Yoseph, sets in motion a chain of events that ultimately results in the salvation of the family from a terrible famine. Below is a basic overview of the story.</span></p>
+
+    <ul class="bullets reveal">
+      <li>Key Takeaways</li>
+      <li>Session 1: Joseph and the Messianic Mosaic</li>
+      <li>Yaaqov’s Sons in the Biblical Imagination</li>
+    </ul>
+    <p class="body reveal">The Yoseph story is about God transforming betrayal into a vehicle for blessing and rescue. The biblical authors shaped the Yoseph story to enrich the developing portrait of the promised messiah.</p>
+    <h2 class="section reveal">Act 1—Genesis 37:2-41:57</h2>
     <p class="body reveal">The stories found in Genesis 37-50 bring the narrative of the Genesis scroll to its climax, as Yaaqov’s family is nearly destroyed by the jealous rivalry of his sons. The older brothers’ envy of the youngest brother, Yoseph, sets in motion a chain of events that ultimately results in the salvation of the family from a terrible famine. Below is a basic overview of the story.</p>
+    <h2 class="section reveal">Genesis 37a</h2>
+    <p class="body reveal">The beloved Yoseph dreams about being elevated as ruler b - Reuven&#x27;s failed plan vs. Yehudah&#x27;s successful plan = Yoseph enslaved in Egypt a&#x27; - Jealous sons deceive father Genesis 37b a - Yoseph is kidnapped by jealous brothers Yehudah&#x27;s seed rescued from ruin through the deception of his disguised daughter Tamar Genesis 38 Genesis 39-41 Slave Yoseph is elevated as ruler over Egypt Act 2 — Genesis 42:1-45:25a Genesis 42</p>
+
+  <p class="caption"><span class="lang-pt">Gênesis 37:2-41:57 (Vertical). Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 37:2-41:57 (Vertical). Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
+
+    <p class="body reveal"><span class="lang-pt">Esta antiga história dos filhos de Yaaqov não é de interesse meramente histórico para os autores bíblicos. Como o restante do rolo de Gênesis, ela serve como um modelo através do qual os autores bíblicos viam o seu mundo inteiro. Essas narrativas do passado antecipam o restante da história, que se concentrará nos descendentes desses mesmos filhos rivais.</span><span class="lang-en">This ancient story of the sons of Yaaqov is not simply of historical interest for the biblical authors. Like the rest of the Genesis scroll, it serves as a template through which the biblical authors saw their entire world. These narratives of the past anticipate the rest of the story, which will focus on the descendants of these same rival sons.</span></p>
+
+    <h3 class="sub reveal"><span class="lang-pt">Recordações Posteriores: A História dos Filhos de Yaaqov</span><span class="lang-en">Later Recollections: The Story of Yaaqov's Sons</span></h3>
     <ul class="bullets reveal">
-      <li>Act 1—Genesis 37:2-41:57</li>
-      <li>Genesis 37a</li>
+      <li><span class="lang-pt"><span class="verse-link" style="color:inherit;cursor:pointer" data-reference="Números 13-14">Números 13-14</span>: Espias das 12 tribos são enviados para investigar a terra prometida. Josué (de Ephrayim, de Yoseph) e Calebe (de Yehudah) são os únicos espias, dentre todas as 12 tribos, que confiam em Yahweh; os demais morrem no exílio, enquanto esses dois herdam a terra.</span><span class="lang-en">Numbers 13-14: Spies from the 12 tribes are sent to investigate the promised land. Joshua (from Ephrayim of Yoseph) and Caleb (from Yehudah) are the only spies among all the 12 tribes who trust Yahweh; the others die in exile while these two inherit the land.</span></li>
+      <li><span class="lang-pt"><span class="verse-link" style="color:inherit;cursor:pointer" data-reference="1 Reis 11:26-40">1 Reis 11:26-40</span>: As 10 tribos do norte de Israel são lideradas por Jeroboão, filho de Yoseph, a se rebelarem contra Salomão, filho de Yehudah, e assim as tribos se dividem em dois reinos. Salomão fica com ciúmes e tenta matar Jeroboão, que foge para o exílio no Egito (!).</span><span class="lang-en">1 Kings 11:26-40: The 10 northern tribes of Israel are led by Jeroboam son of Yoseph to rebel against Solomon son of Yehudah, and so the tribes divide into two kingdoms. Solomon is jealous and tries to kill Jeroboam, who flees into exile in Egypt (!).</span></li>
+      <li><span class="lang-pt"><span class="verse-link" style="color:inherit;cursor:pointer" data-reference="Ezequiel 37:15-22">Ezequiel 37:15-22</span>: Ezequiel desenvolve o retrato da reconciliação de Yoseph com seus irmãos em Gênesis 45-50, e antecipa a reconciliação final dos irmãos. Ele destaca as tribos de Yoseph e Yehudah como dois grupos separados que se tornarão um, e a sua reunião sinalizará a herança de um Éden renovado.</span><span class="lang-en">Ezekiel 37:15-22: Ezekiel develops the portrait of Yoseph's reconciliation with his brothers in Genesis 45-50, and he anticipates the final reconciliation of the brothers. He highlights the tribes of Yoseph and Yehudah as two separate groups that will be one, and their reunion will signal the inheritance of a renewed Eden.</span></li>
+      <li><span class="lang-pt"><span class="verse-link" style="color:inherit;cursor:pointer" data-reference="Zacarias 10:6-10">Zacarias 10:6-10</span>: Zacarias vê o exílio passado de Israel no Egito como uma imagem do exílio presente de Israel, e a divisão dos irmãos como uma imagem da dispersão de Israel que será revertida por mais um êxodo e pela reconciliação da família.</span><span class="lang-en">Zechariah 10:6-10: Zechariah sees Israel's past exile in Egypt as an image of Israel's present exile, and the division of the brothers as an image of Israel's scattering that will be reversed by yet another exodus and reconciliation of the family.</span></li>
+      <li><span class="lang-pt"><span class="verse-link" style="color:inherit;cursor:pointer" data-reference="1 Crônicas 5:1-2">1 Crônicas 5:1-2</span>: Nesta recordação da linhagem familiar de Yisrael, o Cronista (que vive muito tempo depois do exílio babilônico) reflete sobre a inversão da ordem de nascimento relatada em Gênesis 37-50. Mas ele também vê como essa inversão antecipa toda a história de rivalidade entre as tribos de Yehudah e Yoseph narrada nos Profetas Anteriores (Josué-Reis).</span><span class="lang-en">1 Chronicles 5:1-2: In this recollection of the family line of Yisrael, the Chronicler (who lives long after the Babylonian exile) reflects back on the reversal of birth order recounted in Genesis 37-50. But he also sees how that reversal anticipates the entire history of rivalry between the tribes of Yehudah and Yoseph narrated in the Former Prophets (Joshua-Kings).</span></li>
     </ul>
-    <p class="body reveal">The beloved Yoseph dreams about being elevated as ruler Genesis 37b a - Yoseph is kidnapped by jealous brothers b - Reuven's failed plan vs. Yehudah's successful plan = Yoseph enslaved in Egypt a' - Jealous sons deceive father Genesis 38 Yehudah's seed rescued from ruin through the deception of his disguised daughter Tamar Genesis 39-41 Slave Yoseph is elevated as ruler over Egypt Act 2 — Genesis 42:1-45:25a Genesis 42</p>
 
+    <div class="scripture reveal">
+      <div><span class="scripture-label"><span class="lang-pt">1 Crônicas 5:1-2</span><span class="lang-en">1 Chronicles 5:1-2</span></span><span class="scripture-type">NASB*</span></div>
+      <div class="scripture-text"><span class="lang-pt"><sup class="vs">1</sup> E os filhos de Reuven, o primogênito de Yisrael<br>(pois ele era o primogênito,<br>mas, porque profanou o leito de seu pai,<br>o seu direito de primogenitura foi dado aos filhos de Yoseph, filho de Israel;<br>e assim ele não está inscrito na genealogia segundo o direito de primogenitura.<br><sup class="vs">2</sup> Contudo, Yehudah prevaleceu mais poderoso entre os seus irmãos,<br>e dele veio o líder,<br>ainda que o direito de primogenitura pertencesse a Yoseph)</span><span class="lang-en"><sup class="vs">1</sup> And the sons of Reuven the firstborn of Yisrael<br>(for he was the firstborn,<br>but because he defiled his father's bed,<br>his firstborn-right was given to the sons of Yoseph the son of Israel;<br>and so he is not enrolled in the genealogy according to the firstborn-right.<br><sup class="vs">2</sup> However, Yehudah proved more mighty among his brothers,<br>and from him came the leader,<br>yet the firstborn-right belonged to Yoseph)</span></div>
+      <p class="caption"><span class="lang-pt">Palavras-chave adaptadas pelo Instrutor</span><span class="lang-en">Key Words Adapted by Teacher</span></p>
+    </div>
 
-  <script src="../../js/reading-progress.js"></script>
-  <script src="../../js/lang-toggle.js"></script>
-  <script src="../../js/reveal.js"></script>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt"><span class="verse-link" style="color:inherit;cursor:pointer" data-reference="Atos 7:9-29">Atos 7:9-29</span>: No discurso final de Estêvão, antes de ser assassinado, ele reconta a história da Torá e dos Profetas, concentrando-se especialmente em dois governantes em Israel que foram rejeitados por seus irmãos: Yoseph e Moisés. Ele vê um paralelo profundo entre ambas as figuras, que foram escolhidas por Deus para governar e libertar, mas que foram rejeitadas e perseguidas por seus próprios familiares. Estêvão argumenta que esse padrão se repetiu na rejeição de Jesus Messias pelos líderes de Israel em seus próprios dias.</span><span class="lang-en">Acts 7:9-29: In Stephen's final speech before he is murdered, he recounts the story of the Torah and Prophets, focusing specially on two rulers in Israel who were rejected by their brothers: Yoseph and Moses. He sees a deep parallel between both figures, who were chosen by God to rule and deliver, but who were rejected and persecuted by their own family members. Stephen argues that this pattern has repeated itself in the rejection of Jesus Messiah by the leaders of Israel in his own day.</span></li>
+    </ul>
+
+    <h3 class="sub reveal"><span class="lang-pt">O Ponto</span><span class="lang-en">The Point</span></h3>
+    <p class="body reveal"><span class="lang-pt">Autores bíblicos posteriores veem a história de Yoseph, Yehudah, e a divisão e reconciliação da família como uma prévia antecipada de toda a história de Israel até a era messiânica.</span><span class="lang-en">Later biblical authors see the story of Yoseph, Yehudah, and the division and reconciliation of the family as a forward preview of the entire history of Israel leading up to the messianic age.</span></p>
+    <p class="body reveal"><span class="lang-pt">Essas histórias passadas foram concebidas para exibir um padrão que continuava se repetindo ao longo da história de Israel, até o tempo de Jesus e dos apóstolos.</span><span class="lang-en">These past stories were designed to display a pattern that kept repeating itself through Israel's history, leading up to the time of Jesus and the apostles.</span></p>
+    <p class="body reveal"><span class="lang-pt">Para os autores bíblicos, a chave para compreender o seu presente e o seu futuro era encontrada nessas narrativas sobre o seu passado. O passado antecipa o futuro, e o presente se ajusta ao que veio antes e ao que virá depois.</span><span class="lang-en">For the biblical authors, the key to understanding their present and future was found in these narrative about their past. The past anticipates the future, and the present maps onto what has come before and what will come later.</span></p>
+
+    <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+    <p class="body reveal"><span class="lang-pt">De acordo com Jesus em <span class="verse-link" style="color:inherit;cursor:pointer" data-reference="Lucas 24:44-47">Lucas 24:44-47</span>, sobre o que é a Bíblia Hebraica? Como isso deve guiar a maneira como lemos a história de José?</span><span class="lang-en">According to Jesus in Luke 24:44-47, what is the Hebrew Bible about? How should this guide the way we read the Joseph story?</span></p>
+  
+<footer class="page-footer">
+    <span class="lang-pt">Anotações de Aula: José</span><span class="lang-en">Class Notes: Joseph</span>
+    <span class="lang-pt">Sessão 1</span><span class="lang-en">Session 1</span>
+  </footer>
+</div>
+
+  <script src="../js/reading-progress.js"></script>
+  <script src="../js/lang-toggle.js"></script>
+  <script src="../js/reveal.js"></script>
 </body>
 </html>
