@@ -1,8 +1,7 @@
 /* Shared base styles for all Abraão sessions.
-   Extracted from the byte-identical rules duplicated across sessao-*.html.
-   Keep this in sync: only add rules that are 100% identical in every page.
-   !important on layout rules so they win over the Tailwind v4 browser-CDN
-   preflight (which otherwise resets h1/h2/p to inherited/small sizes). */
+   Inlined (or @imported) so they survive the Tailwind v4 browser-CDN preflight,
+   which otherwise resets h1/h2/p to inherited/small sizes.
+   Keep this in sync: only rules identical in every page. */
 html[lang^="pt"] .lang-en { display: none !important; }
 html[lang="en"] .lang-pt { display: none !important; }
 * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
@@ -12,11 +11,10 @@ h1.title { font-size: 2.6rem !important; font-weight: 800 !important; letter-spa
 h2.section { font-size: 1.9rem !important; font-weight: 800 !important; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
 h3.sub { font-weight: 800 !important; font-size: 1.3rem !important; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
 p.body { font-size: 1.05rem !important; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
-.rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
-.rule { border-top-width: 2px !important; }
+.rule { border: 0; border-top: 2px solid #d7dde5 !important; margin: 1.75rem 0 2.75rem; }
 ul.bullets { list-style: none; padding: 0; }
 ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
-ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+ul.bullets > li:before { content: "•" !important; position: absolute !important; left: .55rem !important; color: #1a1a1a !important; }
 .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
 .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
 #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
