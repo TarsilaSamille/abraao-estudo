@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sessão 19: Descansando na Provisão de Deus</title>
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="../../js/verse-modal.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
-<script src="../../js/verse-modal.js"></script>
 <link rel="stylesheet" href="../../css/shared-tutorial.css">
   <style>
   * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
@@ -20,36 +20,48 @@
   h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
   p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
   .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  .verse-link { color: inherit; cursor: pointer; }
   ul.bullets { list-style: none; padding: 0; }
   ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
-  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
-  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; }
-  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
-  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
-  .quote { border-left: 4px solid #b9c2cf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a4150; font-style: italic; }
-  .cite { color: #4f5669; font-size: .95rem; line-height: 1.7; margin-top: .35rem; }
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
   .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-  .compare { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
-  .compare table { width: 100%; border-collapse: collapse; }
-  .compare th, .compare td { border: 1px solid #e2e8f0; padding: .75rem 1rem; vertical-align: top; font-size: .98rem; line-height: 1.7; }
-  .compare th { background: #f1f5f9; font-weight: 800; }
-  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
-  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
+  .scripture:hover { border-left-color: #9aa7b8; }
+  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
+  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
+  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
+  .scripture-text sup.vs { font-size: .72em; color: #333; vertical-align: super; margin-right: 2px; }
+  .quote { border-left: 4px solid #aeb6bf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a3f47; font-style: italic; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
+  .table-img img { width: 100%; display: block; }
+  .outline { border: 1px solid #d7dde5; border-radius: 12px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; font-size: 1.02rem; line-height: 1.9; }
+  .outline .lv1 { font-weight: 800; margin-top: .6rem; }
+  .outline .lv2 { padding-left: 1.5rem; }
+  .outline .lv3 { padding-left: 3rem; color: #3a3f47; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
   .reveal.visible { opacity: 1; transform: none; }
-  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
+  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7d7df; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
+  .nav-btn:hover { background: #f1f5f9; }
+  .nav-back { left: 1rem; }
+  .nav-lang { right: 1rem; }
+  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
+
+  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+  @media print { #reading-progress { display: none !important; } }
 </style>
 </head>
-<body>
+<body class="bg-white">
 <div id="reading-progress" aria-hidden="true"></div>
 <div class="fixed left-4 top-4 z-50 print:hidden">
-  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
+  </a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
   <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
-    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 0 0 1-2-2v-5a2 0 0 1 2-2h16a2 0 0 1 2 2v5a2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
     <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
   </button>
   <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
@@ -57,48 +69,48 @@
     <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
   </div>
 </div>
-<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
-  <h1 class="title reveal"><span class="lang-pt">Sessão 19: Descansando na Provisão de Deus</span><span class="lang-en">Session 19: Resting in God's Provision</span></h1>
-  <hr class="rule">
+<div class="max-w-4xl mx-auto px-5 py-12 md:py-16">    <h1 class="title reveal"><span class="lang-pt">Sessão 19: Descansando na Provisão de Deus</span><span class="lang-en">Session 19: Resting in God's Provision</span></h1>\n    <hr class="rule">\n
 
-  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Aprendizados</span><span class="lang-en">Key Takeaways</span></h3>
-  <ul class="bullets reveal">
-    <li><span class="lang-pt">O mandamento do Sabá é uma bênção do descanso de Deus para toda pessoa e todo animal da nação.</span><span class="lang-en">The Sabbath command is a blessing of God's rest for every person and animal in the nation.</span></li>
-    <li><span class="lang-pt">Os chefes de família são responsáveis por garantir que todos tenham a oportunidade de descansar.</span><span class="lang-en">Heads of the household are responsible for ensuring that everyone has the opportunity to rest.</span></li>
-    <li><span class="lang-pt">O próprio Deus descansa no sétimo dia da criação. Ele também destrói a opressão que força os seres humanos a um trabalho escravo interminável, e ambas as realidades se tornam razões para o mandamento do Sabá.</span><span class="lang-en">God himself rests on the seventh day of creation. He also destroys the oppression that forces humans into endless slave labor, and both of these realities become reasons for the Sabbath command.</span></li>
-  </ul>
+    <h2 class="section reveal"><span class="lang-pt">Principais Aprendizados</span><span class="lang-en">Key Takeaways</span></h2>
+    <ul class="bullets reveal">
+      <li><span class="lang-pt">O mandamento do Sabá é uma bênção de descanso de Deus para toda pessoa e animal da nação.</span><span class="lang-en">The Sabbath command is a blessing of God's rest for every person and animal in the nation.</span></li>
+      <li><span class="lang-pt">Cabeças de família são responsáveis por garantir que todos tenham a oportunidade de descansar.</span><span class="lang-en">Heads of the household are responsible for ensuring that everyone has the opportunity to rest.</span></li>
+      <li><span class="lang-pt">O próprio Deus descansa no sétimo dia da criação. Ele também destrói a opressão que força humanos a um trabalho escravo sem fim, e ambas as realidades se tornam razões para o mandamento do Sabá.</span><span class="lang-en">God himself rests on the seventh day of creation. He also destroys the oppression that forces humans into endless slave labor, and both of these realities become reasons for the Sabbath command.</span></li>
+    </ul>
 
-  <h3 class="sub reveal"><span class="lang-pt">O Mandamento do Sabá</span><span class="lang-en">The Sabbath Command</span></h3>
-  <div class="scripture reveal">
-    <div class="scripture-label"><span class="lang-pt">Êxodo 20:8-11 (NVI)</span><span class="lang-en">Exodus 20:8-11 (NIV)</span></div>
-    <div class="scripture-text">
-      <span class="lang-pt">8 Lembra-te do dia de Sábado para o santificar. 9 Seis dias trabalharás e farás toda a tua obra, 10 mas o sétimo dia é o Sábado do Senhor, teu Deus; não farás nenhuma obra, nem tu, nem teu filho, nem tua filha, nem o teu servo, nem a tua serva, nem os teus animais, nem o estrangeiro que está dentro das tuas portas. 11 Porque em seis dias fez o Senhor os céus e a terra, o mar e tudo o que neles há, e ao sétimo dia descansou; por isso o Senhor abençoou o dia de Sábado e o santificou.</span>
-      <span class="lang-en">8 Remember the Sabbath day by keeping it holy. 9 Six days you shall labor and do all your work, 10 but the seventh day is a sabbath to the LORD your God. On it you shall not do any work, neither you, nor your son or daughter, nor your male or female servant, nor your animals, nor any foreigner residing in your towns. 11 For in six days the LORD made the heavens and the earth, the sea, and all that is in them, but he rested on the seventh day. Therefore the LORD blessed the Sabbath day and made it holy.</span>
+    <h2 class="section reveal"><span class="lang-pt">O Mandamento do Sabá</span><span class="lang-en">The Sabbath Command</span></h2>
+    <div class="scripture reveal">
+      <div class="scripture-label"><span class="lang-pt">Êxodo 20:8-11 NVI</span><span class="lang-en">Exodus 20:8-11 NIV</span></div>
+      <div class="scripture-text">
+        <p><sup class="vs">8</sup> <span class="lang-pt">Lembra-te do dia de sábado, para o santificar.</span><span class="lang-en">Remember the Sabbath day by keeping it holy.</span></p>
+        <p><sup class="vs">9</sup> <span class="lang-pt">Seis dias trabalharás e farás toda a tua obra.</span><span class="lang-en">Six days you shall labor and do all your work,</span></p>
+        <p><sup class="vs">10</sup> <span class="lang-pt">Mas o sétimo dia é o sábado do Senhor teu Deus; não farás nenhuma obra, nem tu, nem teu filho, nem tua filha, nem o teu servo, nem a tua serva, nem os teus animais, nem o estrangeiro que está às tuas portas.</span><span class="lang-en">but the seventh day is a sabbath to the LORD your God. On it you shall not do any work, neither you, nor your son or daughter, nor your male or female servant, nor your animals, nor any foreigner residing in your towns.</span></p>
+        <p><sup class="vs">11</sup> <span class="lang-pt">Porque em seis dias o Senhor fez os céus e a terra, o mar e tudo o que neles há, e ao sétimo dia descansou. Portanto, o Senhor abençoou o dia de sábado e o santificou.</span><span class="lang-en">For in six days the LORD made the heavens and the earth, the sea, and all that is in them, but he rested on the seventh day. Therefore the LORD blessed the Sabbath day and made it holy.</span></p>
+      </div>
     </div>
-  </div>
-  <p class="body reveal"><span class="lang-pt">Preste muita atenção em como esse mandamento é formulado. Para que serve o Sabá? É um dia de descanso e de parar. Para quem é o Sabá? É para todos na comunidade—ricos ou pobres, nativos ou estrangeiros, homens ou mulheres, humanos ou animais. Todos recebem um descanso.</span><span class="lang-en">Pay close attention how this command is phrased. What is the Sabbath for? It's a day of rest and stopping. Who is the Sabbath for? It is for everyone in the community—rich or poor, native-born or foreigner, male or female, human or animal. Everyone gets a rest.</span></p>
-  <p class="body reveal"><span class="lang-pt">Finalmente, por que devemos guardar o Sabá? É porque Deus estabeleceu esse padrão na criação, quando terminou a sua obra e descansou.</span><span class="lang-en">Finally, why should we keep the Sabbath? It's because God set this pattern at creation when he finished his work and rested.</span></p>
+    <p class="body reveal"><span class="lang-pt">Preste muita atenção em como este mandamento é formulado. Para que serve o Sabá? É um dia de descanso e parada. Para quem é o Sabá? É para todos na comunidade — rico ou pobre, nativo ou estrangeiro, homem ou mulher, humano ou animal. Todos recebem descanso. Finalmente, por que devemos guardar o Sabá? É porque Deus estabeleceu este padrão na criação quando terminou sua obra e descansou.</span><span class="lang-en">Pay close attention how this command is phrased. What is the Sabbath for? It's a day of rest and stopping. Who is the Sabbath for? It is for everyone in the community—rich or poor, native-born or foreigner, male or female, human or animal. Everyone gets a rest. Finally, why should we keep the Sabbath? It's because God set this pattern at creation when he finished his work and rested.</span></p>
 
-  <h3 class="sub reveal"><span class="lang-pt">Uma História de Dois Sabás</span><span class="lang-en">A Tale of Two Sabbaths</span></h3>
-  <p class="body reveal"><span class="lang-pt">Observe que, quando esse mandamento é repetido em Deuteronômio, o motivo para guardar o Sabá muda de foco.</span><span class="lang-en">Notice that when this command is repeated in Deuteronomy the reason for keeping the Sabbath shifts focus.</span></p>
-  <div class="compare reveal">
-    <table>
-      <thead><tr><th><span class="lang-pt">Êxodo 20:8-11</span><span class="lang-en">Exodus 20:8-11</span></th><th><span class="lang-pt">Deuteronômio 5:12-15</span><span class="lang-en">Deuteronomy 5:12-15</span></th></tr></thead>
-      <tbody>
-        <tr><td><span class="lang-pt">8 "Lembra-te do dia de Sábado para o santificar."</span><span class="lang-en">8 "Remember the Sabbath day by keeping it holy."</span></td><td><span class="lang-pt">12 "Observa o dia de Sábado para o santificar, como o Senhor, teu Deus, te ordenou."</span><span class="lang-en">12 "Observe the Sabbath day by keeping it holy, as the LORD your God has commanded you."</span></td></tr>
-        <tr><td><span class="lang-pt">9 Seis dias trabalharás e farás toda a tua obra,</span><span class="lang-en">9 Six days you shall labor and do all your work,</span></td><td><span class="lang-pt">13 Seis dias trabalharás e farás toda a tua obra,</span><span class="lang-en">13 Six days you shall labor and do all your work,</span></td></tr>
-        <tr><td><span class="lang-pt">10 mas o sétimo dia é um sábado do Senhor, teu Deus. Nele não farás trabalho algum, nem tu, nem teu filho ou tua filha, nem teu servo ou tua serva, nem teus animais, nem o estrangeiro que está em tuas cidades.</span><span class="lang-en">10 but the seventh day is a sabbath to the LORD your God. On it you shall not do any work, neither you, nor your son or daughter, nor your male or female servant, nor your animals, nor any foreigner residing in your towns.</span></td><td><span class="lang-pt">14 mas o sétimo dia é um sábado do Senhor, teu Deus. Nele não farás trabalho algum, nem tu, nem teu filho ou tua filha, nem teu servo ou tua serva, nem teu boi, nem teu jumento ou qualquer de teus animais, nem o estrangeiro que está em tuas cidades, para que teu servo e tua serva descansem como tu.</span><span class="lang-en">14 but the seventh day is a sabbath to the LORD your God. On it you shall not do any work, neither you, nor your son or daughter, nor your male or female servant, nor your ox, your donkey or any of your animals, nor any foreigner residing in your towns, so that your male and female servants may rest, as you do.</span></td></tr>
-        <tr><td><span class="lang-pt">11 Porque em seis dias o Senhor fez os céus e a terra, o mar e tudo o que neles há, mas descansou no sétimo dia. Portanto o Senhor abençoou o dia de Sábado e o santificou.</span><span class="lang-en">11 For in six days the LORD made the heavens and the earth, the sea, and all that is in them, but he rested on the seventh day. Therefore the LORD blessed the Sabbath day and made it holy.</span></td><td><span class="lang-pt">15 Lembra-te de que foste escravo no Egito, e que o Senhor, teu Deus, te tirou de lá com mão poderosa e braço estendido; portanto o Senhor, teu Deus, te ordenou que observasses o dia de Sábado.</span><span class="lang-en">15 Remember that you were slaves in Egypt and that the LORD your God brought you out of there with a mighty hand and an outstretched arm. Therefore the LORD your God has commanded you to observe the Sabbath day.</span></td></tr>
-      </tbody>
-    </table>
-    <div class="caption"><span class="lang-pt">Comparando os Mandamentos do Sabá. Criado por Carmen Imes para BibleProject Classroom: Visão Geral do Êxodo (2021).</span><span class="lang-en">Comparing the Sabbath Commands. Created by Carmen Imes for BibleProject Classroom: Exodus Overview (2021).</span></div>
-  </div>
-  <p class="body reveal"><span class="lang-pt">O mandamento do Sabá está enraizado no padrão da criação, na memória da escravidão e no desejo de Deus de que os seres humanos vivam livres da opressão.</span><span class="lang-en">The Sabbath command is rooted in the pattern of creation, the memory of enslavement, and God's desire for humans to live free from oppression.</span></p>
+    <h2 class="section reveal"><span class="lang-pt">Um Conto de Dois Sabás</span><span class="lang-en">A Tale of Two Sabbaths</span></h2>
+    <p class="body reveal"><span class="lang-pt">Note que quando este mandamento é repetido em Deuteronômio, a razão para guardar o Sabá muda de foco.</span><span class="lang-en">Notice that when this command is repeated in Deuteronomy the reason for keeping the Sabbath shifts focus.</span></p>
+    <div class="outline reveal">
+      <div class="lv1"><span class="lang-pt">Êxodo 20:8-11</span><span class="lang-en">Exodus 20:8-11</span></div>
+      <div class="lv2"><sup class="vs">8</sup> <span class="lang-pt">"Lembra-te do dia de sábado, para o santificar."</span><span class="lang-en">"Remember the Sabbath day by keeping it holy."</span></div>
+      <div class="lv2"><sup class="vs">9</sup> <span class="lang-pt">"Seis dias trabalharás e farás toda a tua obra,"</span><span class="lang-en">"Six days you shall labor and do all your work,"</span></div>
+      <div class="lv2"><sup class="vs">10</sup> <span class="lang-pt">"mas o sétimo dia é o sábado do Senhor teu Deus. Nele não farás obra alguma, nem tu, nem teu filho, nem tua filha, nem teu servo, nem tua serva, nem teus animais, nem o estrangeiro que reside em tuas cidades."</span><span class="lang-en">"but the seventh day is a sabbath to the LORD your God. On it you shall not do any work, neither you, nor your son or daughter, nor your male or female servant, nor your animals, nor any foreigner residing in your towns."</span></div>
+      <div class="lv2"><sup class="vs">11</sup> <span class="lang-pt">"Porque em seis dias o Senhor fez os céus e a terra, o mar e tudo o que neles há, mas descansou no sétimo dia. Portanto o Senhor abençoou o dia de sábado e o santificou."</span><span class="lang-en">"For in six days the LORD made the heavens and the earth, the sea, and all that is in them, but he rested on the seventh day. Therefore the LORD blessed the Sabbath day and made it holy."</span></div>
+      <div class="lv1"><span class="lang-pt">Deuteronômio 5:12-15</span><span class="lang-en">Deuteronomy 5:12-15</span></div>
+      <div class="lv2"><sup class="vs">12</sup> <span class="lang-pt">"Guarda o dia de sábado, para o santificares, como o Senhor teu Deus te ordenou."</span><span class="lang-en">"Observe the Sabbath day by keeping it holy, as the LORD your God has commanded you."</span></div>
+      <div class="lv2"><sup class="vs">13</sup> <span class="lang-pt">"Seis dias trabalharás e farás toda a tua obra,"</span><span class="lang-en">"Six days you shall labor and do all your work,"</span></div>
+      <div class="lv2"><sup class="vs">14</sup> <span class="lang-pt">"mas o sétimo dia é o sábado do Senhor teu Deus; não farás nela obra alguma, nem tu, nem teu filho, nem tua filha, nem teu servo, nem tua serva, nem teu boi, nem teu jumento, nem nenhum dos teus animais, nem o estrangeiro que está em teu meio, para que o teu servo e a tua serva descansem como tu."</span><span class="lang-en">"but the seventh day is a sabbath to the LORD your God. On it you shall not do any work, neither you, nor your son or daughter, nor your male or female servant, nor your ox, your donkey or any of your animals, nor any foreigner residing in your towns, so that your male and female servants may rest, as you do."</span></div>
+      <div class="lv2"><sup class="vs">15</sup> <span class="lang-pt">"Lembra-te de que foste escravo no Egito, e que o Senhor teu Deus te tirou de lá com mão forte e braço estendido; por isso o Senhor teu Deus te ordenou que guardasses o dia de sábado."</span><span class="lang-en">"Remember that you were slaves in Egypt and that the LORD your God brought you out of there with a mighty hand and an outstretched arm. Therefore the LORD your God has commanded you to observe the Sabbath day."</span></div>
+    </div>
+    <p class="caption reveal"><span class="lang-pt">Comparando os Mandamentos do Sabá. Criado por Carmen Imes para BibleProject Classroom: Visão Geral do Êxodo (2021).</span><span class="lang-en">Comparing the Sabbath Commands. Created by Carmen Imes for BibleProject Classroom: Exodus Overview (2021).</span></p>
+    <p class="body reveal"><span class="lang-pt">O mandamento do Sabá está enraizado no padrão da criação, na memória da escravidão e no desejo de Deus de que os humanos vivam livres da opressão.</span><span class="lang-en">The Sabbath command is rooted in the pattern of creation, the memory of enslavement, and God's desire for humans to live free from oppression.</span></p>
 
-  <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
-  <p class="body reveal"><span class="lang-pt">De que maneiras o mandamento de "lembrar o dia de Sábado" se conecta à história bíblica até aqui?</span><span class="lang-en">In what ways does the command to "remember the Sabbath day" connect to the biblical story so far?</span></p>
+    <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+    <p class="body reveal"><span class="lang-pt">De que maneiras o mandamento de "lembrar o dia de sábado" se conecta à história bíblica até agora?</span><span class="lang-en">In what ways does the command to "remember the Sabbath day" connect to the biblical story so far?</span></p>
 
-  <footer class="page-footer">
+<footer class="page-footer">
     <span class="lang-pt">Anotações de Aula: Visão Geral do Êxodo</span><span class="lang-en">Class Notes: Exodus Overview</span>
     <span class="lang-pt">Sessão 19</span><span class="lang-en">Session 19</span>
   </footer>
