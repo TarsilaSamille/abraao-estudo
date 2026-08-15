@@ -5,92 +5,70 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sessão 45: Refletindo sobre o Final de Jonas</title>
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-<script src="../../js/verse-modal.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../css/shared-tutorial.css">
-  <style>
+<style>
   * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
-  html[lang="pt"] .lang-en { display: none !important; }
-  html[lang="en"] .lang-pt { display: none !important; }
+  html[lang="pt"] .lang-en, html[lang="en"] .lang-pt { display: none !important; }
   h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
   h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
   h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
   p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
   .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
-  .verse-link { color: inherit; cursor: pointer; }
   ul.bullets { list-style: none; padding: 0; }
   ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
-  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
-  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s; }
-  .scripture:hover { border-left-color: #9aa7b8; }
-  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem; }
-  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
-  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a; }
-  .scripture-text sup.vs { font-size: .72em; color: #333; vertical-align: super; margin-right: 2px; }
-  .quote { border-left: 4px solid #b9c2cf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a4150; font-style: italic; }
+  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
   .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
-  .table-img img { width: 100%; display: block; }
-  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .quote { border-left: 4px solid #b9c2cf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a4150; font-style: italic; }
+  .cite { color: #4f5669; font-size: .95rem; line-height: 1.7; margin-top: .35rem; }
+  .poem { background: #f8fafc; border-left: 4px solid #cbd5e1; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.4rem 0; font-family: 'Newsreader', serif; line-height: 1.9; font-size: 1.05rem; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
   .reveal.visible { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
-  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d4dae2; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
-  .nav-btn:hover { background: #f1f5f9; }
-  .nav-back { left: 1rem; }
-  .nav-lang { right: 1rem; }
-  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
-  
-  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  @media print { #reading-progress { display: none !important; } }
+  @media print { @page { margin: 14mm 12mm; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 </style>
 </head>
-<body class="bg-white">
-<div id="reading-progress" aria-hidden="true"></div>
+<body>
 <div class="fixed left-4 top-4 z-50 print:hidden">
-  <a href="../index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
-    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
-  </a>
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
   <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
-  </button>
-  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
-    <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
-    <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
-  </div>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span></button>
+  <div class="inline-flex overflow-hidden rounded-full border border rounded-full ..."> <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button> <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button> </div>
 </div>
-
-  <div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
-    <h1 class="title reveal"><span class="lang-pt">Sessão 45: Refletindo sobre o Final de Jonas</span><span class="lang-en">Session 45: Reflecting on the Ending of Jonah</span></h1>
-    <hr class="rule">
-    <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">A misericórdia de Deus é notável. É dada a nossos inimigos e também a nós quando lutamos com o fato de que Deus ama nossos inimigos.</span><span class="lang-en">The mercy of God is remarkable. It is given to our enemies and also to us when we struggle with the fact that God loves our enemies.</span></li>
-      <li><span class="lang-pt">O significado de Jonas é claro, e podemos todos concordar com ele não importa nossas diferentes visões sobre a referência histórica dos eventos do livro.</span><span class="lang-en">The meaning of Jonah is clear, and we can all agree on it no matter our different views about the historical reference of the events in the book.</span></li>
-    </ul>
-
-    <h2 class="section reveal"><span class="lang-pt">O Sentido de um Fim</span><span class="lang-en">The Sense of an Ending</span></h2>
-    <p class="body reveal"><span class="lang-pt">Crouch observa que a narrativa de Jonas carece de fechamento — o livro termina sem resolução do conflito principal, deixando a resposta de Jonas na mente do leitor. A maior sensação de fechamento ocorre no fim do capítulo 3 (Nínive se arrepende, Deus perdoa), mas o capítulo 4 reabre imediatamente esse fechamento com a pergunta de Deus. Esse dispositivo literário envolve o leitor no conflito ideológico real: o senso de justiça de Jonas versus a misericórdia ilimitada de Deus. Wolff e Shemesh mostram que a impressão inicial (Deus irado e punitivo, Jonas fugindo por ser terno demais para levar mensagem de juízo) está invertida: Jonas não foge porque Deus é irado, mas porque Deus é misericordioso — e a misericórdia de Deus se estende a toda a criação, incluindo seus animais, que (ao contrário de Jonas) são agentes obedientes de sua vontade e objetos de sua misericórdia. O poema “You! Jonah!” de Carlisle encerra com Deus ainda esperando por uma multidão de Jonas em suas casas confortáveis para mudar para o seu jeito de amar.</span><span class="lang-en">Crouch notes that Jonah's narrative lacks closure — the book ends without resolution to the major conflict, leaving Jonah's response in the reader's mind. The greatest sense of closure comes at the end of chapter 3 (Nineveh repents, God forgives), but chapter 4 immediately reopens it with God's question. This literary device involves the reader in the real ideological conflict: Jonah's sense of justice versus God's boundless mercy. Wolff and Shemesh show the initial impression (an angry, punitive God; Jonah fleeing because he's too tenderhearted to carry a doom message) is backwards: Jonah does not flee because God is wrathful, but because he is merciful — and God's mercy extends to all creation, including its animals, who (unlike Jonah) are obedient agents of his will and objects of his mercy. Carlisle's “You! Jonah!” poem ends with God still waiting for a host of Jonahs in their comfortable houses to come around to his way of loving.</span></p>
-
-    <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
-    <p class="body reveal"><span class="lang-pt">Ao ponderar o final de Jonas, por que você acha que o livro termina com uma pergunta?</span><span class="lang-en">As you ponder the end of Jonah, why do you think the book ends with a question?</span></p>  
-
-<footer class="page-footer">
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+  <h1 class="title reveal"><span class="lang-pt">Sessão 45: Refletindo sobre o Final de Jonas</span><span class="lang-en">Session 45: Reflecting on the Ending of Jonah</span></h1>
+  <hr class="rule">
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Aprendizados</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">A misericórdia de Deus é notável. É dada a nossos inimigos e também a nós quando lutamos com o fato de que Deus ama nossos inimigos.</span><span class="lang-en">The mercy of God is remarkable. It is given to our enemies and also to us when we struggle with the fact that God loves our enemies.</span></li>
+    <li><span class="lang-pt">O significado de Jonas é claro, e todos podemos concordar com ele não importam nossas diferentes visões sobre a referência histórica dos eventos no livro.</span><span class="lang-en">The meaning of Jonah is clear, and we can all agree on it no matter our different views about the historical reference of the events in the book.</span></li>
+  </ul>
+  <h2 class="section reveal"><span class="lang-pt">O Sentido de um Final</span><span class="lang-en">The Sense of an Ending</span></h2>
+  <blockquote class="quote reveal"><span class="lang-pt">"A narrativa da história de Jonas carece de fechamento, de um sentido de conclusão, e de um sentido de que nada necessário foi omitido da obra. O livro termina sem uma resolução para o grande conflito do enredo da narrativa. O leitor experimenta o maior sentido de fechamento ao final do terceiro capítulo conforme Nínive se arrepende e Deus perdoa. Até o quarto capítulo começa provendo fechamento quanto à fuga de Jonas, mas a cena final do livro imediatamente reabre aquele fechamento tão experimentado pelo leitor. A pergunta de Deus conclui o livro, deixando a resposta de Jonas nas mentes do leitor. Esta falta de fechamento no final da narrativa é um dispositivo literário usado para envolver o leitor no conflito ideológico que impulsiona o enredo real do livro: o senso de justiça de Jonas versus a misericórdia ilimitada de Deus. A cena final desfoca a moldura narrativa, de modo que o mundo do texto alcança e envolve o mundo do leitor, forçando-os a perguntar que perspectiva adotarão."</span><span class="lang-en">"The narrative of Jonah's story lacks closure, a sense of completion, and a sense that nothing necessary has been omitted from the work. The book ends without a resolution to the major conflict of the narrative's plot. The reader experiences the greatest sense of closure at the end of the third chapter as Nineveh repents and God forgives. Even the fourth chapter begins by providing closure regarding Jonah's flight, but the book's final scene immediately reopens that closure just experienced by the reader. God's question concludes the book, leaving Jonah's response in the minds of the reader. This lack of closure at the end of the narrative is a literary device used to involve the reader in the ideological conflict that propels the real plot of the book: Jonah's sense of justice versus God's boundless mercy. The final scene blurs the narrative frame, so that the world of the text reaches out and envelops the world of the reader, forcing them to ask whose perspective they will adopt."</span></blockquote>
+  <p class="cite reveal"><span class="lang-pt">Crouch, Walter B. (1994). "To Question and End, To End and Question: Opening and Closure in the Book of Jonah." Sage Journals, vol. 19, 62. 112.</span><span class="lang-en">Crouch, Walter B. (1994). "To Question and End, To End and Question: Opening and Closure in the Book of Jonah." Sage Journals, vol. 19, 62. 112.</span></p>
+  <blockquote class="quote reveal"><span class="lang-pt">"[A] cena final é tão habilmente desenhada que quando Jonas insiste na livre compaixão de Yahweh, ele não pode realmente evitar simultaneamente conceder a seu Deus a misericórdia perdoadora que ele estendeu aos pagãos. Mas o narrador deixa os leitores tirar esta conclusão harmonizadora por si mesmos. Até os mais morosamente obstinados dificilmente podem fazer outra coisa senão — no lugar de Jonas — responder com gratidão à última pergunta de seu Deus."</span><span class="lang-en">"[T]he final scene is so skillfully designed that when Jonah insists on Yahweh's free pity, he cannot really avoid simultaneously conceding to his God the forgiving mercy he has extended to the pagans. But the narrator leaves the readers to draw this harmonizing conclusion themselves. Even the most morosely obstinate of them can hardly do other than—in Jonah's place—respond with gratitude to their God's final question."</span></blockquote>
+  <p class="cite reveal"><span class="lang-pt">Wolff, Hans Walter (1986). Obadiah and Jonah: A Commentary. Augsburg Fortress. 88.</span><span class="lang-en">Wolff, Hans Walter (1986). Obadiah and Jonah: A Commentary. Augsburg Fortress. 88.</span></p>
+  <blockquote class="quote reveal"><span class="lang-pt">"O 'vão' surpresa no início da história, no tocante ao motivo de Jonas fugir, é preenchido na conclusão, quando Jonas imputa a graça e compaixão do Senhor como a razão de sua fuga (4:2), e ainda mais no último versículo do livro, no qual o Senhor justifica Sua decisão de mostrar misericórdia a Nínive. Como Meir Sternberg argumenta, a impressão transmitida pelo início da história é que Deus é irado e punitivo. Quanto a Jonas e sua fuga, erroneamente cremos que o profeta recalcitrante 'é misericordioso demais para levar uma mensagem de ruína a uma grande cidade. Obviamente ele protesta contra um Deus irado não com palavras, como Abraão ou Moisés ou Samuel, mas com seus pés.' Mas os últimos versículos do livro mostram que tínhamos tudo ao contrário: Jonas não foge porque Deus é um Deus irado, mas porque Ele é um Deus misericordioso."</span><span class="lang-en">"The 'surprise' gap at the beginning of the story, with regard to Jonah's motive for running away, is filled in at the conclusion, when Jonah impeaches the Lord's grace and compassion as the reason for his flight (4:2), and even more so in the last verse of the book, in which the Lord justifies His decision to show mercy for Nineveh. As Meir Sternberg argues, the impression conveyed by the start of the story is that God is wrathful and punitive. As for Jonah and his flight, we mistakenly believe that the recalcitrant prophet 'is too tenderhearted to carry a message of doom to a great city. He obviously protests against a wrathful God not with words, like Abraham or Moses or Samuel, but with his feet.' But the last verses of the book show that we had it backwards: Jonah does not flee because God is a wrathful God, but because He is a merciful God."</span></blockquote>
+  <blockquote class="quote reveal"><span class="lang-pt">"A reação do Senhor à penitência dos ninivitas — 'Quando Deus viu o que fizeram, como se voltaram do seu caminho mau, Deus se arrependeu do mal que tinha dito que lhes faria; e não o fez' (3:10) — claramente ecoa 'o Senhor se arrependeu do mal que pensava fazer ao seu povo' (Êxod 32:14). Assim o livro de Jonas nos ensina que a misericórdia do Senhor não é reservada exclusivamente para 'Seu povo' mas estende-se a toda a Sua criação, incluindo seus animais, que (diferente de Jonas) não são apenas agentes obedientes de sua vontade nesta história, mas também, juntamente com os humanos, objetos de sua misericórdia."</span><span class="lang-en">"The Lord's reaction to the Ninevites' penance—'When God saw what they did, how they turned from their evil way, God repented of the evil which He had said he would do to them; and He did not do it' (3:10)—clearly echoes 'the Lord repented of the evil which he thought to do to his people' (Exod 32:14). Thus the book of Jonah teaches us that the Lord's mercy is not reserved exclusively for 'His people' but extends to all of His creation, including its animals, who (unlike Jonah) are not only obedient agents of his will in this story, but also, along with humans, objects of his mercy."</span></blockquote>
+  <p class="cite reveal"><span class="lang-pt">Shemesh, Yael (2010). "'And Many Beasts' (Jonah 4:11): The Function and Status of Animals in the Book of Jonah." Journal of Hebrew Scriptures, vol. 10. 22.</span><span class="lang-en">Shemesh, Yael (2010). "'And Many Beasts' (Jonah 4:11): The Function and Status of Animals in the Book of Jonah." Journal of Hebrew Scriptures, vol. 10. 22.</span></p>
+  <div class="poem reveal"><span class="lang-pt">Você, Jonas, quão baixo quão profundo irá para assegurar o sono? Você, Jonas, quão alto seguirá esperando eu o ignorarei lá? Você, Jonas, quão longe mirará seu marinheiro para proteger seu nome da minha reivindicação? Você! Jonas! E Jonas marchou para seu assento sombreado e esperou por Deus mudar para seu modo de pensar. E Deus ainda espera por uma hoste de Jonas em suas casas confortáveis mudar para seu modo de amar.</span><span class="lang-en">You, Jonah, how low how deep will you go to secure sleep? You, Jonah, how high will you fare hoping I will ignore you there? You, Jonah, how far will you aim your mariner to protect your name from my claim? You! Jonah! And Jonah stalked to his shaded seat and waited for God to come around to his way of thinking. And God is still waiting for a host of Jonahs in their comfortable houses to come around to his way of loving.</span></div>
+  <p class="cite reveal"><span class="lang-pt">Carlisle, Thomas John (1968). You! Jonah! Eerdmans.</span><span class="lang-en">Carlisle, Thomas John (1968). You! Jonah! Eerdmans.</span></p>
+  <h2 class="section reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h2>
+  <p class="body reveal"><span class="lang-pt">Ao ponderar o final de Jonas, por que você acha que o livro termina com uma pergunta?</span><span class="lang-en">As you ponder the end of Jonah, why do you think the book ends with a question?</span></p>
+  <footer class="page-footer">
     <span class="lang-pt">Anotações de Aula: Jonas</span><span class="lang-en">Class Notes: Jonah</span>
     <span class="lang-pt">Sessão 45</span><span class="lang-en">Session 45</span>
   </footer>
 </div>
-  <script src="../../js/reading-progress.js"></script>
-  <script src="../../js/lang-toggle.js"></script>
-  <script src="../../js/reveal.js"></script>
-  <script>
-    setLang(localStorage.getItem('bp_lang')||'pt');
-  </script>
+<script src="../../js/lang-toggle.js"></script>
+<script src="../../js/reveal.js"></script>
+<script>setLang(localStorage.getItem('bp_lang')||'pt');</script>
 </body>
 </html>

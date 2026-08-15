@@ -3,30 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sessão 1: Como Nós Leemos a História do Dilúvio</title>
+<title>Sessão 1: Como Leemos a História do Dilúvio</title>
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
-<script src="../../js/verse-modal.js"></script>
 <link rel="stylesheet" href="../../css/shared-tutorial.css">
-  <style>
-  table.md { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; background: #fff; margin: 1.5rem 0; font-size: .92rem; }
-  table.md th { background: #e4e7ec; text-align: left; padding: .8rem 1rem; font-weight: 700; color: #1b1b1b; }
-  table.md td { padding: .85rem 1rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.65; color: #1b1b1b; }
-  table.md td + td, table.md th + th { border-left: 1px solid #e5e7eb; }
-  table.md tbody tr:hover td { background: #f8fafc; }
-  table.md tfoot td { border-top: 1px solid #d7dde5; background: #fbfcfd; color: #6b7280; font-size: .86rem; font-style: italic; padding: .7rem 1rem; }
-  .hlx { padding: .05rem .35rem; border-radius: .3rem; font-weight: 600; }
-  .hl-tan  { background: #fae4c4; color: #91362e; }
-  .hl-sky  { background: #d9ecfd; color: #404ca6; }
-  .hl-grn  { background: #d3f2cd; color: #2b6146; }
-  .hl-rose { background: #f9e3de; color: #972a4e; }
-  .hl-brick{ background: #b5543a; color: #fff; }
+<style>
   * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
-  html[lang="pt"] .lang-en { display: none !important; }
-  html[lang="en"] .lang-pt { display: none !important; }
+  html[lang="pt"] .lang-en, html[lang="en"] .lang-pt { display: none !important; }
   h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
   h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
   h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
@@ -36,123 +22,55 @@
   ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
   ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
   .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  .figure { margin: 1.75rem 0; }
-  .figure img { width: 100%; height: auto; border-radius: 10px; }
-  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-  .hebrew { font-family: 'Newsreader', serif; }
   .quote { border-left: 4px solid #b9c2cf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a4150; font-style: italic; }
   .cite { color: #4f5669; font-size: .95rem; line-height: 1.7; margin-top: .35rem; }
   .poem { background: #f8fafc; border-left: 4px solid #cbd5e1; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.4rem 0; font-family: 'Newsreader', serif; line-height: 1.9; font-size: 1.05rem; }
   .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
-  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
   .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
   .reveal.visible { opacity: 1; transform: none; }
-  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media print { @page { margin: 14mm 12mm; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } }
   @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 </style>
 </head>
 <body>
-<div id="reading-progress" aria-hidden="true"></div>
 <div class="fixed left-4 top-4 z-50 print:hidden">
   <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
   <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
-    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 0 0 1 2-2h16a2 0 0 1 2 2v5a2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
-  </button>
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span></button>
   <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
     <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
     <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
   </div>
 </div>
 <div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
-  <h1 class="title reveal"><span class="lang-pt">Sessão 1: Como Nós Leemos a História do Dilúvio</span><span class="lang-en">Session 1: How We Read the Flood Story</span></h1>
+  <h1 class="title reveal"><span class="lang-pt">Sessão 1: Como Lemos a História do Dilúvio</span><span class="lang-en">Session 1: How We Read the Flood Story</span></h1>
   <hr class="rule">
-
-  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Aprendizados</span><span class="lang-en">Key Takeaways</span></h3>
   <ul class="bullets reveal">
-    <li><span class="lang-pt">Para entender o que os autores bíblicos pretendem comunicar, o contexto literário, cultural e histórico de Gênesis deve ter precedência sobre perguntas e preocupações modernas.</span><span class="lang-en">In order to understand what the biblical authors intend to communicate, the literary, cultural, and historic context of Genesis must take precedence over modern questions and concerns.</span></li>
+    <li><span class="lang-pt">Para entender o que os autores bíblicos pretendem comunicar, o contexto literário, cultural e histórico de Gênesis deve preceder questões e preocupações modernas.</span><span class="lang-en">In order to understand what the biblical authors intend to communicate, the literary, cultural, and historic context of Genesis must take precedence over modern questions and concerns.</span></li>
     <li><span class="lang-pt">Gênesis 1-11 é intricadamente desenhado para introduzir os temas, vocabulário e ideias necessários para entender o resto da Bíblia Hebraica.</span><span class="lang-en">Genesis 1-11 is intricately designed to introduce the themes, vocabulary, and ideas needed to understand the rest of the Hebrew Bible.</span></li>
-    <li><span class="lang-pt">Jesus e seus contemporâneos assumem a organização de três partes das Escrituras Hebraicas chamada TaNaK.</span><span class="lang-en">Jesus and his contemporaries assume the three-part organization of the Hebrew Scriptures called the TaNaK.</span></li>
+    <li><span class="lang-pt">Jesus e seus contemporâneos assumem a organização em três partes das Escrituras Hebraicas chamada TaNaK.</span><span class="lang-en">Jesus and his contemporaries assume the three-part organization of the Hebrew Scriptures called the TaNaK.</span></li>
   </ul>
-
-  <h3 class="sub reveal"><span class="lang-pt">Literatura Meditativa Judaica Antiga</span><span class="lang-en">Reading Ancient Jewish Meditation Literature</span></h3>
-
-  <p class="body reveal"><span class="lang-pt">A Bíblia Hebraica é um conjunto de pergaminhos israelitas antigos que foram formados em uma unidade editorial ao longo de sua composição e coleção. Sua forma final data de algum momento do século III-II a.C. Eles receberam um macrodesign de três partes, e essa ordem é preservada na tradição judaica moderna e é bem atestada em textos judeus do Segundo Templo e no Novo Testamento.</span><span class="lang-en">The Hebrew Bible is a set of ancient Israelite scrolls that were formed into an editorial unity over the course of their composition and collection. Their final shape dates to sometime in the 3rd-2nd century B.C.E. They were given a three-part macro design, and this order is preserved in modern Jewish tradition and is well attested in Second Temple Jewish texts and in the New Testament.</span></p>
-
-  <ul class="bullets reveal">
-    <li><span class="lang-pt"><strong>Seções</strong></span><span class="lang-en"><strong>Sections</strong></span></li>
-    <li><span class="lang-pt"><strong>Pergaminhos</strong></span><span class="lang-en"><strong>Scrolls</strong></span></li>
-    <li><span class="lang-pt"><strong>Torá</strong> (A Lei) — Gênesis, Êxodo, Levítico, Números, Deuteronômio</span><span class="lang-en"><strong>Torah</strong> (The Law) — Genesis, Exodus, Leviticus, Numbers, Deuteronomy</span></li>
-    <li><span class="lang-pt"><strong>Nevi’im</strong> (Os Profetas) — Profetas Anteriores: Josué, Juízes, Samuel, Reis; Profetas Posteriores: Isaías, Jeremias, Ezequiel, Oséias, Joel, Amós, Obadias, Jonas, Miquéias, Naum, Habacuque, Sofonias, Ageu, Zacarias, Malaquias</span><span class="lang-en"><strong>Nevi’im</strong> (The Prophets) — Former Prophets: Joshua, Judges, Samuel, Kings; Latter Prophets: Isaiah, Jeremiah, Ezekiel, Hosea, Joel, Amos, Obadaiah, Jonah, Micah, Nahum, Habakkuk, Zaphaniah, Haggai, Zechariah, Malachi</span></li>
-    <li><span class="lang-pt"><strong>Ketuvim</strong> (Os Escritos) — Salmos, Jó, Provérbios, Rute, Cântico dos Cânticos, Eclesiastes, Lamentações, Ester [As Megilot], Daniel, Esdras, Neemias, Crônicas</span><span class="lang-en"><strong>Ketuvim</strong> (The Writings) — Psalms, Job, Proverbs, Ruth, Song of Songs, Ecclesiastes, Lementations, Esther [The Megillot], Daniel, Ezra, Nehemiah, Chronicles</span></li>
-  </ul>
-
-  <h3 class="sub reveal"><span class="lang-pt">A TaNaK como Unidade Composta</span><span class="lang-en">The TaNaK as a Composite Unity</span></h3>
-
-  <table class="md reveal">
-    <thead><tr>
-      <th><span class="lang-pt">Seções</span><span class="lang-en">Sections</span></th>
-      <th><span class="lang-pt">Rolos</span><span class="lang-en">Scrolls</span></th>
-    </tr></thead>
-    <tbody>
-      <tr>
-        <td><strong>Torá</strong><br><span class="lang-pt">(A Lei)</span><span class="lang-en">(The Law)</span></td>
-        <td><span class="lang-pt">Gênesis, Êxodo, Levítico, Números, Deuteronômio</span><span class="lang-en">Genesis, Exodus, Leviticus, Numbers, Deuteronomy</span></td>
-      </tr>
-      <tr>
-        <td><strong>Nevi&rsquo;im</strong><br><span class="lang-pt">(Os Profetas)</span><span class="lang-en">(The Prophets)</span></td>
-        <td><span class="lang-pt"><em>Profetas Anteriores:</em> Josué, Juízes, Samuel, Reis<br><br><em>Profetas Posteriores:</em> Isaías, Jeremias, Ezequiel, Oseias, Joel, Amós, Obadias, Jonas, Miqueias, Naum, Habacuque, Sofonias, Ageu, Zacarias, Malaquias</span><span class="lang-en"><em>Former Prophets:</em> Joshua, Judges, Samuel, Kings<br><br><em>Latter Prophets:</em> Isaiah, Jeremiah, Ezekiel, Hosea, Joel, Amos, Obadiah, Jonah, Micah, Nahum, Habakkuk, Zephaniah, Haggai, Zechariah, Malachi</span></td>
-      </tr>
-      <tr>
-        <td><strong>Ketuvim</strong><br><span class="lang-pt">(Os Escritos)</span><span class="lang-en">(The Writings)</span></td>
-        <td><span class="lang-pt">Salmos, Jó, Provérbios, Rute, Cântico dos Cânticos, Eclesiastes, Lamentações, Ester [os <em>Megillot</em>], Daniel, Esdras, Neemias, Crônicas</span><span class="lang-en">Psalms, Job, Proverbs, Ruth, Song of Songs, Ecclesiastes, Lamentations, Esther [the <em>Megillot</em>], Daniel, Ezra, Nehemiah, Chronicles</span></td>
-      </tr>
-    </tbody>
-    <tfoot><tr><td colspan="2"><span class="lang-pt">Coleção de Três Partes da Bíblia Hebraica. Por Tim Mackie para BibleProject Classroom: De Noé a Abraão (2020).</span><span class="lang-en">Three-Part Collection of the Hebrew Bible. Created by Tim Mackie for BibleProject Classroom: Noah to Abraham (2020).</span></td></tr></tfoot>
-  </table>
-
-  <h2 class="section reveal"><span class="lang-pt">Jesus e a Ordem da Bíblia Hebraica</span><span class="lang-en">Jesus and the Order of the Hebrew Bible</span></h2>
-
-  <p class="body reveal"><span class="lang-pt">Quando Jesus alude à ordem da Bíblia Hebraica, ele assume um design de três partes, que concorda com outros autores judeus contemporâneos que também aludem às seções ordenadas.</span><span class="lang-en">When Jesus alludes to the order of the Hebrew Bible, he assumes a three-part design, which agrees with other contemporary Jewish authors who also allude to the ordered sections.</span></p>
-
-  <p class="body reveal"><span class="lang-pt">Lucas 24:44 NVI — “Isto é o que eu lhes disse enquanto ainda estava com vocês: Tudo deve ser cumprido que está escrito sobre mim na Torá de Moisés, nos Profetas e nos Salmos.”</span><span class="lang-en">Luke 24:44 NIV — “This is what I told you while I was still with you: Everything must be fulfilled that is written about me in the Torah of Moses, the Prophets, and the Psalms.”</span></p>
-
-  <p class="body reveal"><span class="lang-pt">Lucas 11:50-51a NVI — 50 Portanto esta geração será responsabilizada pelo sangue de todos os profetas que foi derramado desde o início do mundo, 51 do sangue de Abel ao sangue de Zacarias, que foi morto entre o altar e o santuário. Abel foi assassinado por Caim em Gênesis 4, e Zacarias filho de Jeoaida foi assassinado por Joás em 2 Crônicas 24, o que corresponde à ordem da TaNaK.</span><span class="lang-en">Luke 11:50-51a NIV — 50 Therefore this generation will be held responsible for the blood of all the prophets that has been shed since the beginning of the world, 51 from the blood of Abel to the blood of Zechariah, who was killed between the altar and the sanctuary. Abel was murdered by Cain in Genesis 4, and Zechariah son of Jehoiada was murdered by Joash in 2 Chronicles 24, which corresponds to the TaNaK order.</span></p>
-
-  <div class="quote reveal">
-    <span class="lang-pt">“Muitos grandes ensinamentos nos foram dados através da Lei [= Torá], e dos Profetas [= Nevi’im], e dos outros que os seguem [= Ketuvim] ... Por isso meu avô Yeshua dedicou-se especialmente à leitura da Lei e dos Profetas e dos outros pergaminhos de nossos Antepassados.”</span>
-    <span class="lang-en">“Many great teachings have been given to us through the Law [= Torah], and the Prophets [= Nevi’im], and the others that follow them [= Ketuvim] ... So my grandfather Yeshua devoted himself especially to the reading of the Law and the Prophets and the other scrolls of our Ancestors.”</span>
-    <p class="cite">— Prólogo da Sabedoria de Ben Siraque.</p>
-  </div>
-
-  <div class="quote reveal">
-    <span class="lang-pt">“Os pergaminhos de Moisés, as palavras dos profetas, e de Davi.”</span>
-    <span class="lang-en">“The scrolls of Moses, the words of the prophets, and of David.”</span>
-    <p class="cite">— Manuscritos do Mar Morto (4QMMT).</p>
-  </div>
-
-  <div class="quote reveal">
-    <span class="lang-pt">“As leis e os oráculos dados por inspiração através dos profetas e os Salmos, e os outros pergaminhos pelos quais o conhecimento e a piedade são aumentados e completados.”</span>
-    <span class="lang-en">“The laws and the oracles given by inspiration through the prophets and the Psalms, and the other scrolls whereby knowledge and piety are increased and completed.”</span>
-    <p class="cite">— Filo de Alexandria, De Vita Contemplativa, 25.</p>
-  </div>
-
-  <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
-  <p class="body reveal"><span class="lang-pt">Na sua experiência de leitura da história do dilúvio, quais elementos da história fazem menos sentido para você? O que na narrativa o desafia mais?</span><span class="lang-en">In your experience of reading the flood story, what elements of the story make the least sense to you? What about the narrative challenges you the most?</span></p>
-
+  <h2 class="section reveal"><span class="lang-pt">Lendo a Literatura de Meditação Judaica Antiga</span><span class="lang-en">Reading Ancient Jewish Meditation Literature</span></h2>
+  <h3 class="sub reveal"><span class="lang-pt">O TaNaK como Uma Unidade Composta</span><span class="lang-en">The TaNaK as a Composite Unity</span></h3>
+  <div class="poem reveal"><span class="lang-pt">Seções — Rolos — Torá: Gênesis, Êxodo, Levítico, Números, Deuteronômio (A Lei). Nevi'im: Profetas Anteriores: Josué, Juízes, Samuel, Reis; Profetas Posteriores: Isaías, Jeremias, Ezequiel, Oséias, Joel, Amós, Obadias, Jonas, Miquéias, Naum, Habacuque, Sofonias, Ageu, Zacarias, Malaquias (Os Profetas). Ketuvim: Salmos, Jó, Provérbios, Rute, Cântico dos Cânticos, Eclesiastes, Lamentações, Ester [Os Megillot], Daniel, Esdras, Neemias, Crônicas (As Escrituras).</span><span class="lang-en">Sections — Scrolls — Torah: Genesis, Exodus, Leviticus, Numbers, Deuteronomy (The Law). Nevi'im: Former Prophets: Joshua, Judges, Samuel, Kings; Latter Prophets: Isaiah, Jeremiah, Ezekiel, Hosea, Joel, Amos, Obadiah, Jonah, Micah, Nahum, Habakkuk, Zephaniah, Haggai, Zechariah, Malachi (The Prophets). Ketuvim: Psalms, Job, Proverbs, Ruth, Song of Songs, Ecclesiastes, Lamentations, Esther [The Megillot], Daniel, Ezra, Nehemiah, Chronicles (The Writings).</span></div>
+  <p class="cite reveal"><span class="lang-pt">Coleção em Três Partes da Bíblia Hebraica. Criado por Tim Mackie para BibleProject Classroom: Adão a Noé (2020).</span><span class="lang-en">Three-Part Collection of the Hebrew Bible. Created by Tim Mackie for BibleProject Classroom: Adam to Noah (2020).</span></p>
+  <p class="body reveal"><span class="lang-pt">A Bíblia Hebraica é um conjunto de rolos de Israel antigo que foram formados em uma unidade editorial ao longo do curso de sua composição e coleção. Sua forma final data de algum momento entre o século 3º e 2º a.C. Eles receberam um design macro de três partes, e esta ordem é preservada na tradição judaica moderna e é bem atestada em textos judaicos do Segundo Templo e no Novo Testamento.</span><span class="lang-en">The Hebrew Bible is a set of ancient Israelite scrolls that were formed into an editorial unity over the course of their composition and collection. Their final shape dates to sometime in the 3rd-2nd century B.C.E. They were given a three-part macro design, and this order is preserved in modern Jewish tradition and is well attested in Second Temple Jewish texts and in the New Testament.</span></p>
+  <p class="body reveal"><span class="lang-pt">Quando Jesus alude à ordem da Bíblia Hebraica, ele assume um design de três partes, o que concorda com outros autores judeus contemporâneos que também aludem às seções ordenadas.</span><span class="lang-en">When Jesus alludes to the order of the Hebrew Bible, he assumes a three-part design, which agrees with other contemporary Jewish authors who also allude to the ordered sections.</span></p>
+  <blockquote class="quote reveal"><span class="lang-pt">Lucas 24:44 NVI — "...Isto é o que eu lhes disse enquanto ainda estava com vocês: Era necessário que se cumprisse tudo o que está escrito a meu respeito na Lei de Moisés, nos Profetas e nos Salmos." Lucas 11:50-51a NVI — 50 "Portanto esta geração será responsabilizada pelo sangue de todos os profetas que tem sido derramado desde o princípio do mundo, 51 desde o sangue de Abel até o sangue de Zacarias, que foi morto entre o altar e o santuário." Abel foi morto por Caim em Gênesis 4, e Zacarias filho de Jeoiada foi morto por Joás em 2 Crônicas 24, o que corresponde à ordem do TaNaK.</span><span class="lang-en">Luke 24:44 NIV — "... 'This is what I told you while I was still with you: Everything must be fulfilled that is written about me in the Torah of Moses, the Prophets, and the Psalms.' Luke 11:50-51a NIV — 50 "Therefore this generation will be held responsible for the blood of all the prophets that has been shed since the beginning of the world, 51 from the blood of Abel to the blood of Zechariah, who was killed between the altar and the sanctuary." Abel was murdered by Cain in Genesis 4, and Zechariah son of Jehoiada was murdered by Joash in 2 Chronicles 24, which corresponds to the TaNaK order.</span></blockquote>
+  <blockquote class="quote reveal"><span class="lang-pt">"Muitos grandes ensinamentos nos foram dados através da Lei [= Torá], e dos Profetas [= Nevi'im], e dos outros que os seguem [= Ketuvim] ... Assim meu avô Yeshua dedicou-se especialmente à leitura da Lei e dos Profetas e dos outros rolos de nossos Antepassados." Prólogo à Sabedoria de Ben Siraque. "Os rolos de Moisés, as palavras dos profetas, e de Davi." Manuscritos do Mar Morto (4QMMT). "As leis e os oráculos dados por inspiração através dos profetas e dos Salmos, e os outros rolos pelos quais o conhecimento e a piedade são aumentados e completados." Filo de Alexandria, De Vita Contemplativa, 25.</span><span class="lang-en">"Many great teachings have been given to us through the Law [= Torah], and the Prophets [= Nevi'im], and the others that follow them [= Ketuvim] ... So my grandfather Yeshua devoted himself especially to the reading of the Law and the Prophets and the other scrolls of our Ancestors." Prologue to The Wisdom of Ben Sirach. "The scrolls of Moses, the words of the prophets, and of David." Dead Sea Scrolls (4QMMT). "The laws and the oracles given by inspiration through the prophets and the Psalms, and the other scrolls whereby knowledge and piety are increased and completed." Philo of Alexandria, De Vita Contemplativa, 25.</span></blockquote>
+  <h2 class="section reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h2>
+  <p class="body reveal"><span class="lang-pt">Em sua experiência de leitura da história do dilúvio, quais elementos da história fazem menos sentido para você? O que no narrativo mais o desafia?</span><span class="lang-en">In your experience of reading the flood story, what elements of the story make the least sense to you? What about the narrative challenges you the most?</span></p>
   <footer class="page-footer">
     <span class="lang-pt">Anotações de Aula: Noé a Abraão</span><span class="lang-en">Class Notes: Noah to Abraham</span>
     <span class="lang-pt">Sessão 1</span><span class="lang-en">Session 1</span>
   </footer>
 </div>
-
-  <script src="../../js/reading-progress.js"></script>
-  <script src="../../js/lang-toggle.js"></script>
-  <script src="../../js/reveal.js"></script>
-  <script>
-    setLang(localStorage.getItem('bp_lang')||'pt');
-  </script>
+<script src="../../js/lang-toggle.js"></script>
+<script src="../../js/reveal.js"></script>
+<script>setLang(localStorage.getItem('bp_lang')||'pt');</script>
 </body>
 </html>

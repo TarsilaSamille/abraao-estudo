@@ -8,13 +8,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
-<script src="../../js/verse-modal.js"></script>
 <link rel="stylesheet" href="../../css/shared-tutorial.css">
-  <style>
+<style>
   * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
-  html[lang="pt"] .lang-en { display: none !important; }
-  html[lang="en"] .lang-pt { display: none !important; }
+  html[lang="pt"] .lang-en, html[lang="en"] .lang-pt { display: none !important; }
   h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
   h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
   h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
@@ -26,24 +24,22 @@
   .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
   .quote { border-left: 4px solid #b9c2cf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a4150; font-style: italic; }
   .cite { color: #4f5669; font-size: .95rem; line-height: 1.7; margin-top: .35rem; }
+  .poem { background: #f8fafc; border-left: 4px solid #cbd5e1; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.4rem 0; font-family: 'Newsreader', serif; line-height: 1.9; font-size: 1.05rem; }
   .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
-  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
   .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
   .reveal.visible { opacity: 1; transform: none; }
-  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media print { @page { margin: 14mm 12mm; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } }
   @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 </style>
 </head>
 <body>
-<div id="reading-progress" aria-hidden="true"></div>
 <div class="fixed left-4 top-4 z-50 print:hidden">
   <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
   <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
-    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 0 0 1-2-2v-5a2 0 0 1 2-2h16a2 0 0 1 2 2v5a2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
-  </button>
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span></button>
   <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
     <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
     <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
@@ -52,41 +48,25 @@
 <div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
   <h1 class="title reveal"><span class="lang-pt">Sessão 21: Refletindo sobre a Aliança de Deus</span><span class="lang-en">Session 21: Reflecting on God's Covenant</span></h1>
   <hr class="rule">
-
-  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Aprendizados</span><span class="lang-en">Key Takeaways</span></h3>
   <ul class="bullets reveal">
-    <li><span class="lang-pt">Diferente dos deuses dos vizinhos de Israel, que faziam promessas condicionadas à manutenção dos termos da aliança pelo povo, Deus se obriga sozinho a sustentar a aliança que fez com toda a Terra após o dilúvio.</span><span class="lang-en">Unlike the gods of Israel's neighbors who made promises contingent upon the people upholding the terms of their covenant, God obligates himself alone to sustain the covenant he made with all the Earth after the flood.</span></li>
-    <li><span class="lang-pt">O sinal do arco evoca imagens de paz (o arco de guerra aposentado), reconciliação (uma ponte entre o Céu e a Terra) e esperança (o triunfo da luz sobre a escuridão da tempestade caótica).</span><span class="lang-en">The sign of the bow evokes images of peace (the retired war bow), reconciliation (a bridge between Heaven and Earth), and hope (the triumph of light over the darkness of the chaotic storm).</span></li>
+    <li><span class="lang-pt">Ao contrário dos deuses dos vizinhos de Israel que faziam promessas contingentes à manutenção dos termos de sua aliança pelo povo, Deus se obriga sozinho a sustentar a aliança que fez com toda a Terra após o dilúvio.</span><span class="lang-en">Unlike the gods of Israel's neighbors who made promises contingent upon the people upholding the terms of their covenant, God obligates himself alone to sustain the covenant he made with all the Earth after the flood.</span></li>
+    <li><span class="lang-pt">O sinal do arco evoca imagens de paz (o arco de guerra aposentado), reconciliação (uma ponte entre Céu e Terra), e esperança (o triunfo da luz sobre a escuridão da tempestade caótica).</span><span class="lang-en">The sign of the bow evokes images of peace (the retired war bow), reconciliation (a bridge between Heaven and Earth), and hope (the triumph of light over the darkness of the chaotic storm).</span></li>
   </ul>
-
   <h3 class="sub reveal"><span class="lang-pt">A Imagem do "Arco nas Nuvens" (Gn 9:13, 14, 16)</span><span class="lang-en">The Image of the "Bow in the Clouds" (Gen. 9:13, 14, 16)</span></h3>
-  <blockquote class="quote reveal">
-    <span class="lang-pt">"E não há, para cada lei da natureza, um pano de fundo que aponta para os mistérios da natureza e da vontade divina? O rótulo do arco-íris é suficientemente legível. Brilhando sobre um fundo escuro ... ele representa a vitória da luz do amor sobre a escuridão ardente da ira. Originando-se do efeito do sol sobre uma nuvem escura, tipifica a disposição do celestial em penetrar o terreno. Estendido entre o céu e a terra, é como um vínculo de paz entre ambos, e, abrangendo o horizonte, aponta para a universalidade abrangente da misericórdia divina."</span>
-    <span class="lang-en">"And is there not to every law of nature a background pointing to the mysteries of the Divine nature and will? The label of the rainbow is sufficiently legible. Shining upon a dark ground ... it represents the victory of the light of love over the fiery darkness of wrath. Originating from the effect of the sun upon a dark cloud, it typifies the willingness of the heavenly to penetrate the earthly. Stretched between heaven and earth, it is as a bond of peace between both, and, spanning the horizon, it points to the all-embracing universality of the Divine mercy."</span>
-    <span class="cite">Keil, C. F., and Delitzsch, F. (2006). Commentary on the Old Testament: Pentateuch (Vol. 1). Hendrickson Publishers. 289-290.</span>
-  </blockquote>
-
-  <h3 class="sub reveal"><span class="lang-pt">Noé como Arquétipo da Descendência da Mulher</span><span class="lang-en">Noah as an Archetypal Seed of the Woman</span></h3>
-  <blockquote class="quote reveal">
-    <span class="lang-pt">"Embora Deus seja o personagem principal da narrativa, Noé, o sacerdote justo, pode ainda ser considerado o 'herói' literário da história, que tanto 'anda com' quanto 'traz descanso' a Deus. Noé (נח), de fato, traz 'conforto' (נחם) tanto à humanidade quanto a Deus. Mas além disso, não apenas porque a narrativa começa e termina com o discurso de Deus a Noé; e não apenas porque os vários trocadilhos com seu nome indicam Noé como personagem central; mas porque a questão central da narrativa concerne salvação e adoração: 'Quem subirá ao monte do Senhor?' (Salmo 24:3). A narrativa do dilúvio é realmente sobre Noé. Isso enfatiza que a narrativa não é realmente sobre o juízo do mundo, mas sobre como Noé foi salvo daquele juízo. ... O propósito da história não é mostrar por que Deus enviou o dilúvio, mas mostrar por que Deus salvou Noé. A arca, não o dilúvio, é o foco da atenção do autor. ... Como uma figura sacerdotal capaz de subir ao monte do Senhor, Noé se ergue como um novo Adão, o humano primordial que pode habitar na presença divina. Como tal, ele prefigura o sumo sacerdote no tabernáculo, que sozinho pode entrar no paraíso do santíssimo para purificar o tabernáculo microcósmico fazendo expiação."</span>
-    <span class="lang-en">"While God is the main character of the narrative, Noah the righteous priest may yet be considered the literary 'hero' of the story, who both 'walks with' and 'brings rest' to God. Noah (נח), in fact, brings 'comfort' (נחם) both to humankind and to God. But further, not only because the narrative begins and ends with God's speech to Noah; and not only because the various wordplays on his name indicate Noah as a central character; but because the central question of the narrative concern salvation and worship: 'Who may ascend the mountain of Yahweh?' (Psalm 24:3) The flood narrative is really about Noah. This is to stress that the narrative is not really about the judgment of the world, but about how it was that Noah was saved from that judgment. ... The purpose of the story is not to show why God sent the flood, but to show why God saved Noah. The ark, not the flood, is the focus of the author's attention. ... As a priestly figure who is able to ascend the mountain of Yahweh, Noah stands as a new Adam, the primordial human who can dwell in the divine presence. As such he foreshadows the high priest in the tabernacle, who alone can enter the paradise of the holy of holies to purge the micro-cosmic tabernacle by making atonement."</span>
-    <span class="cite">Morales, Michael (2012). The Tabernacle Pre-Figured: Cosmic Mountain Ideology in Genesis and Exodus. Peeters Publishers. 190-192.</span>
-  </blockquote>
-
-  <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
-  <p class="body reveal"><span class="lang-pt">Você já considerou o formato horizontal, de meio-círculo, de um arco-íris? Quase parece um arco para atirar flechas. O que representa o arco de Deus nas nuvens?</span><span class="lang-en">Have you ever considered the horizontal, half-circle shape of a rainbow? It almost looks like a bow for shooting arrows. What does God's bow in the clouds represent?</span></p>
-
+  <blockquote class="quote reveal"><span class="lang-pt">"E não há para toda lei da natureza um pano de fundo que aponte para os mistérios da natureza e vontade divinas? O rótulo do arco-íris é suficientemente legível. Brilhando sobre um fundo escuro ... ele representa a vitória da luz do amor sobre a escuridão flamejante da ira. Originando-se do efeito do sol sobre uma nuvem escura, tipifica a disposição do celestial em penetrar o terreno. Estendido entre céu e terra, é como um vínculo de paz entre ambos, e, abrangendo o horizonte, aponta para a universalidade abrangente da misericórdia divina." Keil, C. F., e Delitzsch, F. (2006). Commentary on the Old Testament: Pentateuch (Vol. 1). Hendrickson Publishers. 289-290.</span><span class="lang-en">"And is there not to every law of nature a background pointing to the mysteries of the Divine nature and will? The label of the rainbow is sufficiently legible. Shining upon a dark ground ... it represents the victory of the light of love over the fiery darkness of wrath. Originating from the effect of the sun upon a dark cloud, it typifies the willingness of the heavenly to penetrate the earthly. Stretched between heaven and earth, it is as a bond of peace between both, and, spanning the horizon, it points to the all-embracing universality of the Divine mercy." Keil, C. F., and Delitzsch, F. (2006). Commentary on the Old Testament: Pentateuch (Vol. 1). Hendrickson Publishers. 289-290.</span></blockquote>
+  <h3 class="sub reveal"><span class="lang-pt">Noé como Arquetípico Semeador da Mulher</span><span class="lang-en">Noah as an Archetypal Seed of the Woman</span></h3>
+  <blockquote class="quote reveal"><span class="lang-pt">"Embora Deus seja o personagem principal da narrativa, Noé o sacerdote justo pode ainda ser considerado o 'herói' literário da história, que tanto 'caminha com' quanto 'traz descanso' a Deus. Noé (נח), de fato, traz 'consolo' (נחם) tanto à humanidade quanto a Deus. Mas ademais, não apenas porque a narrativa começa e termina com o discurso de Deus a Noé; e não apenas porque os vários trocadilhos em seu nome indicam Noé como um personagem central; mas porque a questão central da narrativa concerne salvação e adoração: 'Quem subirá ao monte de Yahweh?' (Salmo 24:3) A narrativa do dilúvio é realmente sobre Noé. Isto é para enfatizar que a narrativa não é realmente sobre o juízo do mundo, mas sobre como foi que Noé foi salvo daquele juízo. ... O propósito da história não é mostrar por que Deus enviou o dilúvio, mas mostrar por que Deus salvou Noé. A arca, não o dilúvio, é o foco da atenção do autor. ... Como uma figura sacerdotal que é capaz de subir ao monte de Yahweh, Noé se ergue como um novo Adão, o humano primordial que pode habitar na presença divina. Como tal ele antecipa o sumo sacerdote na tabernáculo, que sozinho pode entrar no paraíso do santo dos santos para purgar a micro-cósmica tabernáculo fazendo expiação." Morales, Michael (2012). The Tabernacle Pre-Figured: Cosmic Mountain Ideology in Genesis and Exodus. Peeters Publishers. 190-192.</span><span class="lang-en">"While God is the main character of the narrative, Noah the righteous priest may yet be considered the literary 'hero' of the story, who both 'walks with' and 'brings rest' to God. Noah (נח), in fact, brings 'comfort' (נחם) both to humankind and to God. But further, not only because the narrative begins and ends with God's speech to Noah; and not only because the various wordplays on his name indicate Noah as a central character; but because the central question of the narrative concern salvation and worship: 'Who may ascend the mountain of Yahweh?' (Psalm 24:3) The flood narrative is really about Noah. This is to stress that the narrative is not really about the judgment of the world, but about how it was that Noah was saved from that judgment. ... The purpose of the story is not to show why God sent the flood, but to show why God saved Noah. The ark, not the flood, is the focus of the author's attention. ... As a priestly figure who is able to ascend the mountain of Yahweh, Noah stands as a new Adam, the primordial human who can dwell in the divine presence. As such he foreshadows the high priest in the tabernacle, who alone can enter the paradise of the holy of holies to purge the micro-cosmic tabernacle by making atonement." Morales, Michael (2012). The Tabernacle Pre-Figured: Cosmic Mountain Ideology in Genesis and Exodus. Peeters Publishers. 190-192.</span></blockquote>
+  <p class="body reveal"><span class="lang-pt">Esta sessão não tem outras anotações.</span><span class="lang-en">This session has no other notes.</span></p>
+  <h2 class="section reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h2>
+  <p class="body reveal"><span class="lang-pt">Você já considerou o formato horizontal, meio-círculo de um arco-íris? Quase se parece com um arco para atirar flechas. O que o arco de Deus nas nuvens representa?</span><span class="lang-en">Have you ever considered the horizontal, half-circle shape of a rainbow? It almost looks like a bow for shooting arrows. What does God's bow in the clouds represent?</span></p>
   <footer class="page-footer">
     <span class="lang-pt">Anotações de Aula: Noé a Abraão</span><span class="lang-en">Class Notes: Noah to Abraham</span>
     <span class="lang-pt">Sessão 21</span><span class="lang-en">Session 21</span>
   </footer>
 </div>
-
-  <script src="../../js/reading-progress.js"></script>
-  <script src="../../js/lang-toggle.js"></script>
-  <script src="../../js/reveal.js"></script>
-  <script>
-    setLang(localStorage.getItem('bp_lang')||'pt');
-  </script>
+<script src="../../js/lang-toggle.js"></script>
+<script src="../../js/reveal.js"></script>
+<script>setLang(localStorage.getItem('bp_lang')||'pt');</script>
 </body>
 </html>

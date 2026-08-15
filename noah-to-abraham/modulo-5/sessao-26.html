@@ -8,13 +8,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
-<script src="../../js/verse-modal.js"></script>
 <link rel="stylesheet" href="../../css/shared-tutorial.css">
-  <style>
+<style>
   * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
-  html[lang="pt"] .lang-en { display: none !important; }
-  html[lang="en"] .lang-pt { display: none !important; }
+  html[lang="pt"] .lang-en, html[lang="en"] .lang-pt { display: none !important; }
   h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
   h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
   h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
@@ -24,31 +22,24 @@
   ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
   ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
   .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  .figure { margin: 1.75rem 0; }
-  .figure img { width: 100%; height: auto; border-radius: 10px; }
-  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-  .hebrew { font-family: 'Newsreader', serif; }
   .quote { border-left: 4px solid #b9c2cf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a4150; font-style: italic; }
   .cite { color: #4f5669; font-size: .95rem; line-height: 1.7; margin-top: .35rem; }
   .poem { background: #f8fafc; border-left: 4px solid #cbd5e1; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.4rem 0; font-family: 'Newsreader', serif; line-height: 1.9; font-size: 1.05rem; }
   .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
-  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
   .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
   .reveal.visible { opacity: 1; transform: none; }
-  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media print { @page { margin: 14mm 12mm; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } }
   @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 </style>
 </head>
 <body>
-<div id="reading-progress" aria-hidden="true"></div>
 <div class="fixed left-4 top-4 z-50 print:hidden">
   <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
   <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
-    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 0 0 1-2-2v-5a2 0 0 1 2-2h16a2 0 0 1 2 2v5a2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
-  </button>
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span></button>
   <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
     <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
     <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
@@ -57,27 +48,21 @@
 <div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
   <h1 class="title reveal"><span class="lang-pt">Sessão 26: Os Irmãos se Reúnem em Paz</span><span class="lang-en">Session 26: The Brothers Come Together in Peace</span></h1>
   <hr class="rule">
-
-  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Aprendizados</span><span class="lang-en">Key Takeaways</span></h3>
   <ul class="bullets reveal">
     <li><span class="lang-pt">Quando os profetas compartilham sua visão de esperança futura no Reino de Deus, eles pintam um quadro de todas as nações reunidas em paz.</span><span class="lang-en">When the prophets share their vision of future hope in God's Kingdom, they paint a picture of all nations drawn together in peace.</span></li>
-    <li><span class="lang-pt">As jornadas missionárias de Paulo têm a ver com querer ver as nações de Jafé acolhidas nas tendas de Sem.</span><span class="lang-en">Paul's missionary journeys are about wanting to see the nations of Japheth welcomed into the tents of Shem.</span></li>
+    <li><span class="lang-pt">As jornadas missionárias de Paulo dizem respeito a querer ver as nações de Jafé acolhidas nas tendas de Sem.</span><span class="lang-en">Paul's missionary journeys are about wanting to see the nations of Japheth welcomed into the tents of Shem.</span></li>
   </ul>
-
-  <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+  <p class="body reveal"><span class="lang-pt">Esta sessão não tem outras anotações.</span><span class="lang-en">This session has no other notes.</span></p>
+  <h2 class="section reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h2>
   <p class="body reveal"><span class="lang-pt">Qual é a conexão entre Gênesis 10 e as jornadas missionárias de Paulo?</span><span class="lang-en">What is the connection between Genesis 10 and Paul's missionary journeys?</span></p>
-
   <footer class="page-footer">
     <span class="lang-pt">Anotações de Aula: Noé a Abraão</span><span class="lang-en">Class Notes: Noah to Abraham</span>
     <span class="lang-pt">Sessão 26</span><span class="lang-en">Session 26</span>
   </footer>
 </div>
-
-  <script src="../../js/reading-progress.js"></script>
-  <script src="../../js/lang-toggle.js"></script>
-  <script src="../../js/reveal.js"></script>
-  <script>
-    setLang(localStorage.getItem('bp_lang')||'pt');
-  </script>
+<script src="../../js/lang-toggle.js"></script>
+<script src="../../js/reveal.js"></script>
+<script>setLang(localStorage.getItem('bp_lang')||'pt');</script>
 </body>
 </html>

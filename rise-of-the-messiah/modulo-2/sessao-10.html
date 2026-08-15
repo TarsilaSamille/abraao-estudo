@@ -1,108 +1,74 @@
-<!doctype html>
-<html lang="pt-BR">
-
+<!DOCTYPE html>
+<html lang="pt">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><span class="lang-pt">Sessão 10: O Nazareno</span><span class="lang-en">Session 10: The Nazarene</span></title>
-    <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessão 10: O Nazareno</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/shared-tutorial.css">
 <style>
-    html[lang="pt-BR"] .lang-en { display: none !important; }
-    html[lang="en"] .lang-pt { display: none !important; }
-
-  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
-
-  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  @media print { #reading-progress { display: none !important; } }
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
+  html[lang="pt"] .lang-en, html[lang="en"] .lang-pt { display: none !important; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
+  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  ul.bullets { list-style: none; padding: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
+  ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
+  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .quote { border-left: 4px solid #b9c2cf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a4150; font-style: italic; }
+  .cite { color: #4f5669; font-size: .95rem; line-height: 1.7; margin-top: .35rem; }
+  .poem { background: #f8fafc; border-left: 4px solid #cbd5e1; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.4rem 0; font-family: 'Newsreader', serif; line-height: 1.9; font-size: 1.05rem; }
+  table.tbl { width: 100%; border-collapse: collapse; margin: 1.4rem 0; font-size: 1rem; }
+  table.tbl th, table.tbl td { border: 1px solid #d7dde5; padding: .6rem .8rem; text-align: left; vertical-align: top; }
+  table.tbl th { background: #eef2f6; font-weight: 700; }
+  .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media print { @page { margin: 14mm 12mm; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 </style>
 </head>
-
-<body class="bg-white font-sans text-slate-800">
-<div id="reading-progress" aria-hidden="true"></div>
+<body>
 <div class="fixed left-4 top-4 z-50 print:hidden">
-  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
-    <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
-  </a>
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
   <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
-  </button>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span></button>
   <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
     <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
     <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
   </div>
 </div>
-<div class="min-h-screen p-8 md:px-16 ">
-        <div id="sessao-10" class="max-w-4xl mx-auto">
-            <h1 class="text-4xl font-bold text-slate-900 mb-8 border-b pb-4"><span class="lang-pt">Sessão 10: O Nazareno</span><span class="lang-en">Session 10: The Nazarene</span></h1>
-
-            <h2 class="text-2xl font-bold text-slate-800 mb-3"><span class="lang-pt">Pontos-Chave</span><span class="lang-en">Key Points</span></h2>
-            <ul class="list-disc list-inside space-y-2 mb-10 text-lg text-slate-700">
-                <li><span class="lang-pt">Citando Oseias, que molda a situação de Israel na linguagem e imagens do êxodo, Mateus continua a
-                    tradição de interpretar eventos atuais através das lentes das Escrituras de Israel.</span><span class="lang-en">Citing Hosea, who frames Israel's situation in the language and imagery of the exodus, Matthew continues the
-                    tradition of interpreting current events through the lens of Israel's Scriptures.</span></li>
-                <li><span class="lang-pt">As camadas mais profundas de significado que Mateus constrói através dessas referências enriquecem
-                    as partes mais diretas de sua mensagem.</span><span class="lang-en">The deeper layers of meaning that Matthew builds through these references enrich
-                    the more straightforward parts of his message.</span></li>
-                <li><span class="lang-pt">O termo <em>Nazoraios</em> (Nazareno, Mt 2:23) pode conectar Jesus à promessa de um "ramo/broto" da
-                    linhagem de Davi (Is 11:1), ou pode ligá-lo ao voto de nazireu (Nm 6:1-21), um compromisso
-                    santíssimo. A ambiguidade pode nos convidar a fazer ambas as comparações.</span><span class="lang-en">The term <em>Nazoraios</em> (Nazarene, Mt 2:23) may connect Jesus to the promise of a "branch/shoot" from the
-                    line of David (Is 11:1), or it may link him to the Nazirite vow (Nm 6:1-21), a most holy
-                    commitment. The ambiguity may invite us to make both comparisons.</span></li>
-            </ul>
-
-            <h2 class="text-3xl font-bold text-slate-800 mb-4"><span class="lang-pt">A Profecia do Nazareno</span><span class="lang-en">The Nazarene Prophecy</span></h2>
-            <div class="space-y-4 text-lg text-slate-700 leading-relaxed">
-                <p><span class="lang-pt">Mateus 2:23 afirma que Jesus viveu em Nazaré "para que se cumprisse o que fora dito pelos profetas:
-                    Ele será chamado Nazareno."</span><span class="lang-en">Matthew 2:23 states that Jesus lived in Nazareth "so that what was spoken by the prophets would be fulfilled:
-                    He will be called a Nazarene."</span></p>
-                <p><span class="lang-pt">Esta profecia não é encontrada literalmente em nenhum livro do Antigo Testamento, o que levou a muita
-                    discussão. No entanto, o termo provavelmente funciona como um duplo sentido.</span><span class="lang-en">This prophecy is not found literally in any book of the Old Testament, which has led to much
-                    discussion. Nevertheless, the term likely functions as a double meaning.</span></p>
-
-                <div class="grid gap-6 md:grid-cols-2 mt-6">
-                    <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
-                        <h4 class="font-bold text-slate-900 mb-2"><span class="lang-pt">O Ramo (Netzer)</span><span class="lang-en">The Branch (Netzer)</span></h4>
-                        <p class="text-sm text-slate-600"><span class="lang-pt">Isaías 11:1 promete um "broto" ou "ramo" (Hebraico:
-                            <em>netzer</em>) do tronco de Jessé. Isso conecta Jesus à linhagem real davídica.</span><span class="lang-en">Isaiah 11:1 promises a "shoot" or "branch" (Hebrew:
-                            <em>netzer</em>) from the stump of Jesse. This connects Jesus to the Davidic royal line.</span></p>
-                    </div>
-                    <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
-                        <h4 class="font-bold text-slate-900 mb-2"><span class="lang-pt">O Nazireu</span><span class="lang-en">The Nazirite</span></h4>
-                        <p class="text-sm text-slate-600"><span class="lang-pt">Números 6 descreve o voto de nazireu, uma dedicação especial a
-                            Deus. Juízes 13:5 descreve Sansão como um nazireu desde o ventre.</span><span class="lang-en">Numbers 6 describes the Nazirite vow, a special dedication to
-                            God. Judges 13:5 describes Samson as a Nazirite from the womb.</span></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="my-8 max-w-4xl mx-auto w-full">
-                <h2 class="text-2xl font-bold text-slate-800 mb-4"><span class="lang-pt">Questão para Reflexão</span><span class="lang-en">Reflection Question</span></h2>
-                <div class="bg-slate-50 border border-slate-200 rounded-lg p-6">
-                    <p class="text-lg text-slate-700"><span class="lang-pt">As citações de Mateus ajudam ou dificultam sua compreensão de sua
-                        mensagem? Você precisa entender todas as referências para entender o que ele está tentando lhe
-                        dizer?</span><span class="lang-en">Do Matthew's quotations help or hinder your understanding of his
-                        message? Do you need to understand all the references in order to grasp what he is trying to tell
-                        you?</span></p>
-
-<footer class="page-footer">
+<div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
+  <h1 class="title reveal"><span class="lang-pt">Sessão 10: O Nazareno</span><span class="lang-en">Session 10: The Nazarene</span></h1>
+  <hr class="rule">
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Aprendizados</span><span class="lang-en">Key Takeaways</span></h3>
+  <ul class="bullets reveal">
+    <li><span class="lang-pt">Citando Oseias, que ele mesmo enquadra a situação de Israel na linguagem e imagens do êxodo, Mateus continua a tradição de interpretar eventos atuais através da lente das Escrituras de Israel.</span><span class="lang-en">Quoting from Hosea, who himself frames Israel's situation in the language and imagery of the exodus, Matthew continues the tradition of interpreting current events through the lens of Israel's Scriptures.</span></li>
+    <li><span class="lang-pt">As camadas mais profundas de significado que Mateus constrói através destas referências enriquecem as partes mais diretas de sua mensagem. O texto oferece muito de uma leitura simples, e guarda riquezas para uma vida de meditação profunda.</span><span class="lang-en">The deeper layers of meaning Matthew constructs through these references enrich the more direct parts of his message. The text offers much from a simple reading, and it holds riches for a lifetime of deep meditation.</span></li>
+    <li><span class="lang-pt">O termo Nazoraios (Nazareno, Mt 2:23) pode conectar Jesus à promessa de um "ramo/broto" da linhagem de Davi (Is 11:1), ou pode ligá-lo ao voto nazireu (Nm 6:1-21), um compromisso santíssimo. A ambiguidade pode nos convidar a fazer ambas as comparações.</span><span class="lang-en">The term Nazoraios (Nazarene, Matt. 2:23) may connect Jesus to the promise of a "branch/shoot" from the line of David (Isa. 11:1), or it may link him to the Nazirite vow (Num. 6:1-21), a most holy commitment. The ambiguity may invite us to make both comparisons.</span></li>
+  </ul>
+  <p class="body reveal"><span class="lang-pt">É mais provável que Mateus tenha providenciado um enigma para o leitor que leva a múltiplos hiperlinks na Bíblia Hebraica, mas todos os caminhos levam de volta a Isaías 4:2-3 e 11:1-2.</span><span class="lang-en">It is most likely that Matthew has provided a riddle for the reader that leads to multiple hyperlinks in the Hebrew Bible, but all roads lead back to Isaiah 4:2-3 and 11:1-2.</span></p>
+  <div class="poem reveal"><span class="lang-pt">Isaías 4:2-3 Tradução do Instrutor — 2 Naquele dia, o renovo de YHWH será para beleza e para honra, e o fruto da terra será para orgulho e para beleza para o remanescente que escapou de Yisrael. 3 E o que restar em Sião, e o que sobrar em Yerushalayim, será chamado santo, todos os que estiverem inscritos para vida em Yerushalayim. Isaías 11:1 NASB — Então um rebento procederá do tronco de Jessé, e um ramo (heb. netser / נצר) de suas raízes dará fruto.</span><span class="lang-en">Isaiah 4:2-3 Instructor's Translation — 2 In that day, the sprout of YHWH will be for beauty and for honor, and the fruit of the land will be for pride and for beauty for the escaped-remnant of Yisrael. 3 And the one remaining in Zion, and the one left-over in Yerushalayim, he will be called a holy one, everyone who is written for life in Yerushalayim. Isaiah 11:1 NASB — Then a shoot will spring from the stem of Jesse, and a branch (Heb. netser / נצר) from his roots will bear fruit.</span></div>
+  <p class="body reveal"><span class="lang-pt">Estes dois textos estão profundamente conectados no design de Isaías 1-12 porque ambos retratam o crescimento de uma planta messiânica conectada com um remanescente fiel em Jerusalém que se tornará a semente de um Israel renovado que espalhará a bênção do Éden às nações. 1. Significado #1: "ramo/broto" rima em hebraico com o nome da cidade "Nazaret." A palavra rebento em Isaías 11:1 é netser em hebraico (provavelmente pronunciado natsr no século 1). Isto provê um jogo de palavras quase exato: O netser / נצר é de natseret / נצרת! 2. Significado #2: "ele será chamado um santo" = "ele será chamado um Nazireu!" Na Septuaginta Grega Antiga, encontramos uma característica curiosa: Quando a figura do "Nazireu" (heb. nazir / נזיר = "um apartado") aparece, os tradutores às vezes simplesmente a transliteram com a palavra "Naziraion" (gr. ναζιραιος, ver Jz 13:7, 16:17), mas outras vezes interpretam a palavra em vez disso e a renderizam como "o santo de Deus" (αγιος θεου, ver Codex A e B para Jz 13:7 e 16:17). Isto é significativo porque o próprio Jesus é chamado "o santo de Deus" múltiplas vezes no Novo Testamento (Mc 1:24, Lc 4:34, Jo 6:69). Em outras palavras, Jesus era visto como um tipo de Nazireu pelos primeiros cristãos. Embora Jesus não fosse asceta (ele regularmente bebia vinho), ele fez em seu último Pessach o voto de nunca mais beber até que o Reino de Deus tivesse chegado (Mt 26:29), e recusou vinagre de vinho durante sua crucificação (Mt 27:48).</span><span class="lang-en">These two texts are deeply connected in the design of Isaiah 1-12 because both portray the growth of a messianic plant connected with a faithful remnant in Jerusalem that will become the seed of a renewed Israel who will spread the Eden blessing to the nations. 1. Meaning #1: "branch/shoot" rhymes in Hebrew with the name of the town "Nazeret." The word shoot in Isaiah 11:1 is netser in Hebrew (likely pronounced natsr in the 1st century). This provides an almost exact wordplay: The netser / נצר is from natseret / נצרת! 2. Meaning #2: "he will be called a holy one" = "he will be called a Nazirite!" In the Old Greek Septuagint, we find a curious feature: When the figure of the "Nazirite" (Heb. nazir / נזיר = "a set-apart one") appears, the translators sometimes simply transliterate it with the word "Naziraion" (Grk. ναζιραιος, see Judg. 13:7, 16:17), but other times they interpret the word instead and so render the word as "the holy one of God" (αγιος θεου, see Codex A and B for Judg. 13:7 and 16:17). This is significant because Jesus himself is called "the holy one of God" multiple times in the New Testament (Mark 1:24, Luke 4:34, John 6:69). In other words, Jesus was viewed as a type of Nazirite by the earliest Christians. While Jesus was no ascetic (he regulary drank wine), he did at his final Passover vow to never drink again until the Kingdom of God has arrived (Matt. 26:29), and he refused wine-vinegar during his crucifixion (Matt. 27:48).</span></p>
+  <h2 class="section reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h2>
+  <p class="body reveal"><span class="lang-pt">Que paralelos Mateus traça entre a história de Jesus e Moisés ou o êxodo? As citações de Mateus ajudam ou atrapalham sua compreensão de sua mensagem? Você precisa entender todas as referências para entender o que ele está tentando lhe dizer?</span><span class="lang-en">What parallels does Matthew draw between Jesus' story and Moses or the exodus? Do Matthew's quotations help or hinder your understanding of his message? Do you need to understand all of the references to understand what he is trying to tell you?</span></p>
+  <footer class="page-footer">
     <span class="lang-pt">Anotações de Aula: A Ascensão do Messias</span><span class="lang-en">Class Notes: Rise of the Messiah</span>
     <span class="lang-pt">Sessão 10</span><span class="lang-en">Session 10</span>
   </footer>
 </div>
-            </div>
-        </div>
-    </div>
-    <script src="../../js/verse-modal.js"></script>
-
-  <script src="../../js/reading-progress.js"></script>
-  <script src="../../js/lang-toggle.js"></script>
-  <script src="../../js/reveal.js"></script>
-  <script>
-    setLang(localStorage.getItem('bp_lang')||'pt');
-  </script>
+<script src="../../js/lang-toggle.js"></script>
+<script src="../../js/reveal.js"></script>
+<script>setLang(localStorage.getItem('bp_lang')||'pt');</script>
 </body>
-
 </html>

@@ -8,13 +8,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
-<script src="../../js/verse-modal.js"></script>
 <link rel="stylesheet" href="../../css/shared-tutorial.css">
-  <style>
+<style>
   * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
-  html[lang="pt"] .lang-en { display: none !important; }
-  html[lang="en"] .lang-pt { display: none !important; }
+  html[lang="pt"] .lang-en, html[lang="en"] .lang-pt { display: none !important; }
   h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
   h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
   h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
@@ -24,31 +22,24 @@
   ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
   ul.bullets > li:before { content: "\2022"; position: absolute; left: .55rem; color: #1a1a1a; }
   .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
-  .figure { margin: 1.75rem 0; }
-  .figure img { width: 100%; height: auto; border-radius: 10px; }
-  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
-  .hebrew { font-family: 'Newsreader', serif; }
   .quote { border-left: 4px solid #b9c2cf; padding: .4rem 0 .4rem 1.25rem; margin: 1.1rem 0; font-size: 1.0rem; line-height: 1.78; color: #3a4150; font-style: italic; }
   .cite { color: #4f5669; font-size: .95rem; line-height: 1.7; margin-top: .35rem; }
   .poem { background: #f8fafc; border-left: 4px solid #cbd5e1; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.4rem 0; font-family: 'Newsreader', serif; line-height: 1.9; font-size: 1.05rem; }
   .page-footer { display: flex; justify-content: space-between; font-size: .875rem; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
-  #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
   .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); }
   .reveal.visible { opacity: 1; transform: none; }
-  @media print { @page { margin: 14mm 12mm; } #reading-progress, .print\:hidden { display: none !important; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } h1.title, h2.section, h3.sub { break-after: avoid-page; } }
+  @media print { @page { margin: 14mm 12mm; } .reveal { opacity: 1 !important; transform: none !important; } * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } }
   @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 </style>
 </head>
 <body>
-<div id="reading-progress" aria-hidden="true"></div>
 <div class="fixed left-4 top-4 z-50 print:hidden">
   <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100"><span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span></a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
   <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
-    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 0 0 1 2-2h16a2 0 0 1 2 2v5a2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
-  </button>
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span></button>
   <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
     <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
     <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
@@ -57,40 +48,28 @@
 <div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
   <h1 class="title reveal"><span class="lang-pt">Sessão 2: A História do Dilúvio na Bíblia Hebraica</span><span class="lang-en">Session 2: The Flood Story in the Hebrew Bible</span></h1>
   <hr class="rule">
-
-  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+  <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Aprendizados</span><span class="lang-en">Key Takeaways</span></h3>
   <ul class="bullets reveal">
-    <li><span class="lang-pt">A Bíblia Hebraica é como uma colcha de retalhos. É uma coleção de narrativas e poemas de todos os períodos da história israelita antiga que foi curada e montada em um design literário para contar uma história unificada.</span><span class="lang-en">The Hebrew Bible is like a family quilt. It is a collection of narratives and poems from all periods of ancient Israelite history that have been curated and assembled into a literary design shape in order to tell a unified story.</span></li>
+    <li><span class="lang-pt">A Bíblia Hebraica é como uma colcha de família. É uma coleção de narrativas e poemas de todos os períodos da história de Israel antigo que foram curados e montados em um formato de design literário a fim de contar uma história unificada.</span><span class="lang-en">The Hebrew Bible is like a family quilt. It is a collection of narratives and poems from all periods of ancient Israelite history that have been curated and assembled into a literary design shape in order to tell a unified story.</span></li>
     <li><span class="lang-pt">Jesus entendeu a história do dilúvio como um padrão — uma categoria teológica para falar sobre quando Deus derruba os sistemas de poder corruptos do nosso mundo.</span><span class="lang-en">Jesus understood the flood story as a pattern—a theological category to talk about when God overthrows the corrupt power systems of our world.</span></li>
-    <li><span class="lang-pt">Os autores bíblicos desenharam as histórias de Gênesis 6-11 para abordar as questões principais em jogo na TaNaK, não nossas preocupações modernas.</span><span class="lang-en">The biblical authors designed the stories of Genesis 6-11 to address the main issues of concern at work in the TaNaK, not our modern concerns.</span></li>
+    <li><span class="lang-pt">Os autores bíblicos desenharam as histórias de Gênesis 6-11 para abordar as questões principais de preocupação em operação no TaNaK, não nossas preocupações modernas.</span><span class="lang-en">The biblical authors designed the stories of Genesis 6-11 to address the main issues of concern at work in the TaNaK, not our modern concerns.</span></li>
   </ul>
-
-  <h3 class="sub reveal"><span class="lang-pt">A Bíblia Hebraica como Colcha de Retalhos</span><span class="lang-en">The Hebrew Bible as a Family Quilt</span></h3>
-
-  <p class="body reveal"><span class="lang-pt">Uma colcha é feita de muitos materiais preexistentes, consistindo em peças individuais (como a história do Éden ou as histórias de Abraão) ou subcoleções de peças (as leis no Monte Sinai, as histórias de Davi, ou os Salmos) ou livros inteiros (como Rute ou Ester). Esses materiais anteriores podiam ser incorporados à coleção como estavam ou editorialmente reformulados para caber no novo contexto. Mas — e este é o ponto-chave — é esse novo contexto geral da colcha final que dá a cada peça individual seu significado quando vista à luz do todo. Independentemente do significado de qualquer peça individual fora de ou antes de sua incorporação à colcha, o contexto inteiro da colcha é agora a referência própria para entender cada peça menor.</span><span class="lang-en">A quilt is made of many preexisting materials, consisting of individual pieces (like the Eden story or the Abraham stories) or sub-collections of pieces (the laws at Mount Sinai, the David stories, or the Psalms) or entire books (like Ruth or Esther). These earlier materials could be incorporated into the collection as they stood or editorially reshaped to fit the new context. But—and this is the key point—it is this new overall context of the final quilt that gives each individual piece its meaning when viewed in light of the whole. Regardless of the meaning of any individual piece outside of or before its incorporation into the quilt, the entire context of the quilt is now the proper frame of reference for understanding every smaller piece.</span></p>
-
-  <p class="body reveal"><span class="lang-pt">No caso de Gênesis 6-11 (o foco desta aula), devemos nos perguntar isso a cada passo de nossa leitura: Qual é o significado de Gênesis 6-11 que os autores que moldaram a forma final da TaNaK pretendiam comunicar, na medida em que podemos discernir? Para os autores, Gênesis 1-11 formava uma introdução a toda a TaNaK, contendo os temas básicos, vocabulário e elementos de enredo que seriam desenvolvidos no resto da coleção.</span><span class="lang-en">In the case of Genesis 6-11 (the focus of this class), we must ask ourselves this at every step of our reading: What is the meaning of Genesis 6-11 that is intended by the authors who framed the final shape of the TaNaK, as far as we can discern it? For the authors, Genesis 1-11 formed an introduction to the entire TaNaK, containing the basic themes, vocabulary, and plot elements that would be developed throughout the rest of the collection.</span></p>
-
+  <h2 class="section reveal"><span class="lang-pt">A Bíblia Hebraica como uma Colcha de Família</span><span class="lang-en">The Hebrew Bible as a Family Quilt</span></h2>
+  <p class="body reveal"><span class="lang-pt">Uma colcha é feita de muitos materiais pré-existentes, consistindo de peças individuais (como a história do Éden ou as histórias de Abraão) ou sub-coleções de peças (as leis no Monte Sinai, as histórias de Davi, ou os Salmos) ou livros inteiros (como Rute ou Ester). Estes materiais anteriores podiam ser incorporados à coleção como estavam ou reformatados editorialmente para caber no novo contexto. Mas — e este é o ponto-chave — é este novo contexto geral da colcha final que dá a cada peça individual seu significado quando vista à luz do todo. Independentemente do significado de qualquer peça individual fora de ou antes de sua incorporação à colcha, todo o contexto da colcha é agora a moldura de referência apropriada para entender cada peça menor.</span><span class="lang-en">A quilt is made of many preexisting materials, consisting of individual pieces (like the Eden story or the Abraham stories) or sub-collections of pieces (the laws at Mount Sinai, the David stories, or the Psalms) or entire books (like Ruth or Esther). These earlier materials could be incorporated into the collection as they stood or editorially reshaped to fit the new context. But—and this is the key point—it is this new overall context of the final quilt that gives each individual piece its meaning when viewed in light of the whole. Regardless of the meaning of any individual piece outside of or before its incorporation into the quilt, the entire context of the quilt is now the proper frame of reference for understanding every smaller piece.</span></p>
+  <p class="body reveal"><span class="lang-pt">No caso de Gênesis 6-11 (o foco desta aula), devemos nos perguntar isto a cada passo de nossa leitura: Qual é o significado de Gênesis 6-11 que é pretendido pelos autores que emolduraram a forma final do TaNaK, tanto quanto possamos discernir? Para os autores, Gênesis 1-11 formou uma introdução a todo o TaNaK, contendo os temas básicos, vocabulário e elementos de enredo que seriam desenvolvidos através do resto da coleção.</span><span class="lang-en">In the case of Genesis 6-11 (the focus of this class), we must ask ourselves this at every step of our reading: What is the meaning of Genesis 6-11 that is intended by the authors who framed the final shape of the TaNaK, as far as we can discern it? For the authors, Genesis 1-11 formed an introduction to the entire TaNaK, containing the basic themes, vocabulary, and plot elements that would be developed throughout the rest of the collection.</span></p>
   <h3 class="sub reveal"><span class="lang-pt">Os Muitos Contextos Potenciais da História de Noé e do Dilúvio</span><span class="lang-en">The Many Potential Contexts of the Story of Noah and the Flood</span></h3>
-
-  <p class="body reveal"><span class="lang-pt">Em nosso cenário cultural moderno, a história de Noé tem sido feita para falar sobre muitos temas que os autores bíblicos não pretenderam abordar. Devemos ser vigilantes para distinguir entre perguntar o que Gênesis 6-11 significa dentro do contexto da TaNaK versus o que significa para outras áreas de interesse. A diferença é uma questão de intenção.</span><span class="lang-en">In our modern cultural setting, the Noah story has been made to speak to many topics that the biblical authors did not mean to address. We must be vigilant to distinguish between asking what Genesis 6-11 means within the context of the TaNaK versus what it means for other areas of interest. The difference is one of intention.</span></p>
-
-  <p class="body reveal"><span class="lang-pt">Os autores bíblicos realmente pretendiam que as histórias abordassem as questões principais em jogo na TaNaK, não nossas preocupações modernas. Gênesis 6-11 pode ter significância para como pensamos sobre outros temas à luz da perspectiva bíblica, mas não devemos confundir isso com o significado de Gênesis 6-11 em seu contexto nativo.</span><span class="lang-en">The biblical authors actually intended the stories to address the main issues of concern at work in the TaNaK, not our modern concerns. Genesis 6-11 may have significance for how we think about other topics in light of the biblical perspective, but we should not mistake this for the meaning of Genesis 6-11 in its native context.</span></p>
-
-  <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
-  <p class="body reveal"><span class="lang-pt">Segundo Jesus, do que se trata a Bíblia Hebraica (a Torá, os Profetas e os Salmos)?</span><span class="lang-en">According to Jesus, what is the Hebrew Bible (the Torah, the Prophets, and the Psalms) all about?</span></p>
-
+  <p class="body reveal"><span class="lang-pt">Em nossa configuração cultural moderna, a história de Noé foi feita para falar a muitos tópicos que os autores bíblicos não tiveram a intenção de abordar. Devemos estar vigilantes para distinguir entre perguntar o que Gênesis 6-11 significa dentro do contexto do TaNaK versus o que significa para outras áreas de interesse. A diferença é de intenção. Os autores bíblicos realmente pretenderam que as histórias abordassem as questões principais de preocupação em operação no TaNaK, não nossas preocupações modernas. Gênesis 6-11 pode ter significância para como pensamos sobre outros tópicos à luz da perspectiva bíblica, mas não devemos confundir isto com o significado de Gênesis 6-11 em seu contexto nativo.</span><span class="lang-en">In our modern cultural setting, the Noah story has been made to speak to many topics that the biblical authors did not mean to address. We must be vigilant to distinguish between asking what Genesis 6-11 means within the context of the TaNaK versus what it means for other areas of interest. The difference is one of intention. The biblical authors actually intended the stories to address the main issues of concern at work in the TaNaK, not our modern concerns. Genesis 6-11 may have significance for how we think about other topics in light of the biblical perspective, but we should not mistake this for the meaning of Genesis 6-11 in its native context.</span></p>
+  <div class="poem reveal"><span class="lang-pt">Significado — Gênesis 6-11: Uma Introdução ao TaNaK. Significância — Um Primário sobre Biologia Animal, Geologia, Biologia, Construção Naval Antiga.</span><span class="lang-en">Meaning — Genesis 6-11: Introduction to the TaNaK. Significance — A Primer on Animal Biology, Geology, Biology, Ancient Shipbuilding.</span></div>
+  <p class="cite reveal"><span class="lang-pt">O Significado Versus a Significância de Gênesis 6-11. Criado por Tim Mackie para BibleProject Classroom: Noé a Abraão (2020).</span><span class="lang-en">The Meaning Versus Signficance of Genesis 6-11. Created by Tim Mackie for BibleProject Classroom: Noah to Abraham (2020).</span></p>
+  <h2 class="section reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h2>
+  <p class="body reveal"><span class="lang-pt">De acordo com Jesus, do que se trata a Bíblia Hebraica (a Torá, os Profetas e os Salmos)?</span><span class="lang-en">According to Jesus, what is the Hebrew Bible (the Torah, the Prophets, and the Psalms) all about?</span></p>
   <footer class="page-footer">
     <span class="lang-pt">Anotações de Aula: Noé a Abraão</span><span class="lang-en">Class Notes: Noah to Abraham</span>
     <span class="lang-pt">Sessão 2</span><span class="lang-en">Session 2</span>
   </footer>
 </div>
-
-  <script src="../../js/reading-progress.js"></script>
-  <script src="../../js/lang-toggle.js"></script>
-  <script src="../../js/reveal.js"></script>
-  <script>
-    setLang(localStorage.getItem('bp_lang')||'pt');
-  </script>
+<script src="../../js/lang-toggle.js"></script>
+<script src="../../js/reveal.js"></script>
+<script>setLang(localStorage.getItem('bp_lang')||'pt');</script>
 </body>
 </html>
