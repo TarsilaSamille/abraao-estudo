@@ -4,174 +4,435 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sessão 2: Temas e Fundamentos de 1 Coríntios</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     html[lang="pt"] .lang-en { display: none !important; }
     html[lang="en"] .lang-pt { display: none !important; }
     .verse-link { cursor: pointer; }
+    .ref { text-decoration: underline !important; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
     @media print { .nav-btn-fixed { display: none !important; } }
-  /* sess-visual-standard v1 */
-      /* Figure captions: centered, small, italic, muted — like the PDF */
-      section figure { margin: 1.75rem 0 !important; }
-      section figure figcaption {
-        margin-top: 0.5rem; text-align: center;
-        font-size: 0.8rem; font-style: italic; color: #64748b;
-      }
-      .ref { cursor: pointer; }
-    /* Consistent paragraph rhythm */
-      section > p { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
-      section > p:first-child { margin-top: 0; }
-      #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  @media print { #reading-progress { display: none !important; } }
-  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
-  
-</style>
+    
+    section figure { margin: 1.75rem 0 !important; }
+    section figure figcaption {
+      margin-top: 0.5rem; text-align: center;
+      font-size: 0.8rem; font-style: italic; color: #64748b;
+    }
+    
+    section > p { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
+    section > figure,
+    section > ul,
+    section > ol { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
+    
+    #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+    @media print { #reading-progress { display: none !important; } }
+    
+    .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
+    
+    body { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important; font-size: 1.05rem !important; line-height: 1.78 !important; color: #24262a; }
+    section > p { margin: 1.1rem 0 1.1rem !important; line-height: 1.78 !important; }
+    section > h2 { margin: 3rem 0 1.25rem !important; font-size: 1.9rem !important; font-weight: 800 !important; letter-spacing: -0.015em; }
+    section > h3 { margin: 2rem 0 .75rem !important; font-size: 1.3rem !important; font-weight: 800 !important; }
+    
+    /* Citação Acadêmica (linha mais grossa e escura) */
+    blockquote.academic-quote { border-left: 4px solid #475569 !important; padding-left: 1.25rem !important; margin: 2rem 0 !important; }
+    blockquote.academic-quote p { font-style: normal !important; color: #334155 !important; line-height: 1.75 !important; margin-bottom: 1rem !important; }
+    blockquote.academic-quote p:last-child { margin-bottom: 0 !important; }
+    
+    /* Bloco dos Versículos (linha mais fina e clara abraçando todo o conjunto) */
+    .verse-block { border-left: 3px solid #cbd5e1; padding-left: 1.25rem; margin: 2rem 0; }
+    .verse-text { margin-top: 0.5rem !important; margin-bottom: 0.5rem !important; }
+    
+    sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px; }
+    .book-title { color: #2563eb; text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+  </style>
 </head>
 <body class="bg-white font-sans text-slate-800">
 <div id="reading-progress" aria-hidden="true"></div>
 
   <div class="nav-btn-fixed fixed left-4 top-4 z-50">
-    <a href="../index.html"
-      class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <a href="./index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
       <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
     </a>
   </div>
-  <div class="nav-btn-fixed fixed right-4 top-4 z-50 print:hidden">
+  <div class="nav-btn-fixed fixed right-8 top-4 z-50 print:hidden">
     <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white shadow-sm">
       <button id="lang-pt" onclick="setLang('pt')" class="px-4 py-1.5 text-sm font-semibold transition-colors">PT</button>
       <button id="lang-en" onclick="setLang('en')" class="px-4 py-1.5 text-sm font-semibold transition-colors">EN</button>
       <button onclick="window.print()" class="inline-flex items-center gap-2 px-4 py-1.5 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg><span class="lang-pt">Imprimir</span><span class="lang-en">Print</span></button>
     </div>
+  </div>
   
-  <!-- conteudo adicional do PDF -->
-  <p class="body reveal"><span class="lang-en">Warn a divisive (Greek: αἱρετικὸν) person once, and then</span></p>
-  <p class="body reveal"><span class="lang-en">warped and sinful; they are self-condemned.</span></p>
-  <p class="body reveal"><span class="lang-en">“Now concerning” (Greek: Περὶ δὲ) occurs in 1 Corinthians 7:1, 25; 8:1; 12:1, 16:1, 12.</span></p>
-</div>
   <main class="mx-auto max-w-3xl px-6 py-20 md:py-24">
     <h1 class="text-4xl font-bold text-slate-900 md:text-5xl"><span class="lang-pt">Sessão 2: Temas e Fundamentos de 1 Coríntios</span><span class="lang-en">Session 2: Themes and Foundations of 1 Corinthians</span></h1>
     <hr class="my-8 border-t-2 border-slate-200" />
     <section>
-    <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h2>
-    <ul class="list-disc space-y-2 pl-6 text-slate-700">
-      <li><span class="lang-pt">Paulo trata a imaturidade nociva e o comportamento equivocado dos líderes coríntios.</span><span class="lang-en">Paul addresses the Corinthian leaders' harmful immaturity and misguided behavior.</span></li>
-      <li><span class="lang-pt">Paulo usa uma estrutura retórica grega em 1 Coríntios para apresentar seu caso e persuadir seus leitores.</span><span class="lang-en">Paul uses a Greek rhetorical structure in 1 Corinthians to make his case and persuade his readers.</span></li>
-      <li><span class="lang-pt">Como carta, 1 Coríntios é apenas metade da conversa, e devemos reconhecer que não podemos saber tudo sobre a outra metade.</span><span class="lang-en">As a letter, 1 Corinthians is only half the conversation, and we must recognize that we can't know everything about the other half.</span></li>
-    </ul>
-    <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Temas em 1 Coríntios</span><span class="lang-en">Themes in 1 Corinthians</span></h2>
-    <p class="text-slate-700"><span class="lang-pt">Há vários temas entrelaçados por toda a carta que continuam a emergir. Reconhecê-los primeiro ajuda a entender a carta inteira.</span><span class="lang-en">There are a number of themes woven throughout the letter that keep emerging. Recognizing them first helps us understand the whole letter.</span></p>
-    <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Santidade</span><span class="lang-en">Holiness</span></h3>
-    <p class="text-slate-700"><span class="lang-pt">Paulo começa a carta chamando os coríntios de santos ou santificados. <span class="ref" data-reference="1 Corinthians 1:1-3">1 Coríntios 1:1-3</span> (NRSV): “Paulo, chamado para ser apóstolo... e nosso irmão Sóstenes, à igreja de Deus que está em Corinto, àqueles que são santificados (grego: <em>hēgiasmenois</em>) em Cristo Jesus, chamados para serem santos (grego: <em>klētois hagiois</em>)...” A frase “tendo sido santificados” é um particípio perfeito médio/passivo: perfeito = ação completada no passado com significado contínuo; passivo = foi feito por eles. A santidade não é algo que ganhamos ou merecemos — é nos dada. Note quantas vezes Paulo menciona Jesus Cristo (quatro). Ele centraliza a carta toda em Jesus. A santidade é “em Cristo Jesus”.</span><span class="lang-en">Paul begins by calling the Corinthians holy or sanctified. 1 Corinthians 1:1-3 (NRSV): "Paul, called to be an apostle... and our brother Sosthenes, to the church of God that is in Corinth, to those who are sanctified (Greek: <em>hēgiasmenois</em>) in Christ Jesus, called to be saints (Greek: <em>klētois hagiois</em>)..." The phrase "having been sanctified" is a perfect participle middle/passive: perfect = completed action with ongoing significance; passive = done for them. Holiness is not something we earn — it is given. Notice how many times Paul mentions Jesus Christ (four). He's centering the whole letter on Jesus. Holiness is "in Christ Jesus."</span></p>
-    <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Dotados: Os Coríntios São Dotados</span><span class="lang-en">Gifted: The Corinthians Are Gifted</span></h3>
-    <p class="text-slate-700"><span class="lang-pt"><span class="ref" data-reference="1 Corinthians 1:4-9">1 Coríntios 1:4-9</span> (NRSV): “Dou graças ao meu Deus sempre por vós, pela graça de Deus que vos foi dada em Cristo Jesus, pois em tudo fostes enriquecidos (grego: <em>eploutisthēte</em>, aoristo indicativo passivo) nele, em Jesus...”</span><span class="lang-en">1 Corinthians 1:4-9 (NRSV): "I give thanks to my God always for you because of the grace of God that has been given you in Christ Jesus, for in every way you have been enriched (Greek: <em>eploutisthēte</em>, aorist indicative passive) in him, in Jesus..."</span></p>
-    <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Divisão, Facções e Unidade</span><span class="lang-en">Division, Factions, and Unity</span></h3>
-    <p class="text-slate-700"><span class="lang-pt">O processo de ler um texto escrito há 2.000 anos exige bastante trabalho! <span class="ref" data-reference="1 Corinthians 1:10-13">1 Coríntios 1:10-13</span> (NRSV): "Rogo-vos, pois, irmãos, pelo nome de nosso Senhor Jesus Cristo, que faleis a mesma coisa e que não haja divisões entre vós; antes, sejais unidos no mesmo sentido e no mesmo parecer. Porque a mim me foi comunicado, meus irmãos, pelos da casa de Cloe que há contendas entre vós. Refiro-me ao que cada um de vós diz: 'Eu sou de Paulo', ou 'Eu de Apolo', ou 'Eu de Cefas', ou 'Eu de Cristo'. Acaso Cristo foi dividido? Foi Paulo crucificado por vós? Ou fostes batizados em nome de Paulo?" Discórdias e divisões são extremamente sérias aos olhos de Paulo (cf. <span class="ref" data-reference="Philippians 4:2">Fp 4:2</span>, onde Paulo suplica a Euódia e Sintique que sejam "do mesmo sentimento"). <span class="ref" data-reference="Titus 3:9-11">Tito 3:9-11</span> (NIV): "Evita contendas insensatas, genealogias, discussionários (grego: ἔρεις) e questões acerca da lei, porque são inúteis e vãs."</span><span class="lang-en">The process of reading a particular text requires quite a lot of work! 1 Corinthians 1:10-13 (NRSV): "Now I appeal to you, brothers and sisters, by the name of our Lord Jesus Christ, that all of you be in agreement and that there be no divisions among you, but that you be united in the same mind and the same purpose. For it has been reported to me by Chloe's people that there are quarrels (Greek: ἔριδες) among you. What I mean is that each of you says, 'I belong to Paul,' or 'I belong to Apollos,' or 'I belong to Cephas,' or 'I belong to Christ.' Has Christ been divided? Was Paul crucified for you? Or were you baptised in the name of Paul?" Quarrelling and division are extremely serious in Paul's eyes (cf. <span class="ref" data-reference="Philippians 4:2">Phil. 4:2</span> Euodia and Syntyche whom Paul pleads with to be "of the same mind"). <span class="ref" data-reference="Titus 3:9-11">Titus 3:9-11</span> (NIV): "But avoid foolish controversies and genealogies and arguments (Greek: ἔρεις) and quarrels about the law, because these are unprofitable and useless."</span></p>
-    <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Inversão</span><span class="lang-en">Reversal</span></h3>
-    <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Sabedoria e Loucura Invertidas</span><span class="lang-en">Wisdom and Foolishness Reversed</span></h3>
-    <p class="text-slate-700"><span class="lang-pt"><span class="ref" data-reference="1 Corinthians 1:18-25">1 Coríntios 1:18-25</span> (NIV): “Pois a mensagem da cruz é loucura para os que estão perecendo, mas para nós, que estamos sendo salvos, é o poder de Deus. Pois está escrito: ‘Destruirei a sabedoria dos sábios; frustrarei a inteligência dos inteligentes.’ Onde está o sábio? Onde está o mestre da lei? Onde está o filósofo desta era? Acaso Deus não tornou loucura a sabedoria deste mundo? Visto que na sabedoria de Deus o mundo não o conheceu por meio de sua sabedoria, Deus se agradou em, pela loucura da pregação, salvar os que crêem. Os judeus pedem sinais miraculosos e os gregos buscam sabedoria, mas nós pregamos a Cristo crucificado: escândalo para os judeus, loucura para os gentios, mas para os chamados, tanto judeus quanto gregos, Cristo é o poder de Deus e a sabedoria de Deus. Pois a loucura de Deus é mais sábia que a sabedoria humana, e a fraqueza de Deus é mais forte que a força humana.”</span><span class="lang-en">1 Corinthians 1:18-25 (NIV): “For the message of the cross is foolishness to those who are perishing, but to us who are being saved it is the power of God. For it is written: ‘I will destroy the wisdom of the wise; the intelligence of the intelligent I will frustrate.’ Where is the wise person? Where is the teacher of the law? Where is the philosopher of this age? Has not God made foolish the wisdom of the world? Since in the wisdom of God the world through its wisdom did not know him, God was pleased through the foolishness of what was preached to save those who believe. Jews demand signs and Greeks look for wisdom, but we preach Christ crucified: a stumbling block to Jews and foolishness to Gentiles, but to those whom God has called, both Jews and Greeks, Christ the power of God and the wisdom of God. For the foolishness of God is wiser than human wisdom, and the weakness of God is stronger than human strength.”</span></p>
-    <p class="text-slate-700"><span class="lang-pt">Veja <span class="ref" data-reference="Isaiah 29:14">Isaías 29:14</span>.</span><span class="lang-en">See Isaiah 29:14.</span></p>
-    <ul class="list-disc space-y-2 pl-6 text-slate-700">
-      <li><span class="lang-pt">A sabedoria do mundo equivale a loucura.</span><span class="lang-en">The wisdom of the world equals foolishness.</span></li>
-      <li><span class="lang-pt">A sabedoria de Deus aparece como loucura, mas é mais sábia que tudo no mundo.</span><span class="lang-en">The wisdom of God appears as foolishness, but it is wiser than anything in the world.</span></li>
-      <li><span class="lang-pt">A “loucura” de Deus é uma sabedoria superior à sabedoria do mundo.</span><span class="lang-en">The “folly” of God is a higher wisdom than the wisdom of the world.</span></li>
-      <li><span class="lang-pt">A fraqueza de Deus é um poder maior.</span><span class="lang-en">The weakness of God is a greater power.</span></li>
-    </ul>
-    <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Cristo Crucificado É a Chave</span><span class="lang-en">Christ Crucified Is the Key</span></h3>
-    <p class="text-slate-700"><span class="lang-pt">A sabedoria e o poder de Deus centralizam-se em Cristo crucificado; Cristo crucificado é o poder de Deus e a sabedoria de Deus.</span><span class="lang-en">The wisdom and the power of God center on Christ crucified; Christ crucified is the power of God and the wisdom of God.</span></p>
-    <p class="text-slate-700"><span class="lang-pt">Sabedoria aqui refere-se à visão grega de sabedoria e não à tradição da sabedoria judaica. Lembre-se dos filósofos, retóricos e oradores.</span><span class="lang-en">Wisdom here refers to the Greek view of wisdom and not the Jewish wisdom tradition. Remember the philosophers, rhetoricians, and orators.</span></p>
-    <blockquote class="reveal" style="border-left:3px solid #111; padding:.25rem 0 .25rem 1.25rem; margin:1.1rem 0; font-style:normal; color:#111;"><span class="lang-pt">“Devemos antes supor, ao contrário, que a aceitação do Evangelho levou os coríntios a se sentirem ricos e sábios na posse da nova vida e dos dons espirituais. Esse sentimento expressou-se em chamarem o cristianismo de uma espécie de sabedoria, seus líderes de mestres de sabedoria, e a si mesmos — esta era a coisa mais importante para eles — de homens sábios que haviam bebido dessa sabedoria por meio dos líderes cristãos. Os pobres, insignificantes coríntios, sem ascendência distinta nem sabedoria pagã para ampará-los, tornaram-se tão ricos pela nova proclamação que se apropriaram da terminologia grega que estava à mão e a usaram para expressar sua nova glória. Não perceberam que, pelo próprio uso dessa terminologia de sabedoria, estavam traindo a mensagem que era sua riqueza, e que o sentimento de estar no topo e compadecer os outros era uma traição a Cristo e a seus apóstolos.”</span><span class="lang-en">“We should rather suppose, on the contrary, that the acceptance of the Gospel led the Corinthians to feel rich and wise in the possession of new life and spiritual gifts. That feeling was expressed in their calling Christianity a kind of wisdom, its leaders teachers of wisdom, and themselves—this was the most important thing for them—wise men who had drawn on that wisdom through the Christian leaders. The poor, insignificant Corinthians, with neither distinguished ancestry nor pagan wisdom to support them, had become so rich through the new proclamation that they seized on the Greek terminology that was there for them, and used it to express their new glory. They did not realize that by the very use of that wisdom terminology they were betraying the message that was their wealth, and that the feeling of being up on the pinnacle and pitying the others was a betrayal of Christ and his apostles.”</span><span class="cite" style="display:block; margin-top:.4rem; font-style:normal; color:#6b7280;">Munck, Johannes (2004). “The Church without Factions: Studies in 1 Corinthians 1–4.” Christianity at Corinth: The Quest for the Pauline Church. Editado por Edward Adams e David G. Horrell. Westminster John Knox. 70.</span></blockquote>
-    <p class="text-slate-700"><span class="lang-pt">Eles estavam usando sua experiência cristã do Espírito e seus dons espirituais como sinais de que eram “sábios” e que conheciam todos os mistérios.</span><span class="lang-en">They were using their Christian experience of the Spirit and their spiritual gifts as signs that they were “wise” and that they knew all mysteries.</span></p>
-    <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Temas Adicionais</span><span class="lang-en">Further Themes</span></h3>
-    <ul class="list-disc space-y-2 pl-6 text-slate-700">
-      <li><span class="lang-pt">A natureza do apostolado e daqueles que seguem a Jesus, comportamento maduro versus infantil, servos de Cristo e mordomos do mistério de Deus (<span class="ref" data-reference="1 Corinthians 4:1">1 Cor. 4:1</span>)</span><span class="lang-en">The nature of apostleship and those who follow Jesus, mature versus childish behavior, servants of Christ and stewards of the mystery of God (1 Cor. 4:1)</span></li>
-      <li><span class="lang-pt">Relação de pai e mãe / filho (1 Cor. 4:14-16; 3:2-3a)</span><span class="lang-en">Father and mother/child relationship (1 Cor. 4:14-16; 3:2-3a)</span></li>
-      <li><span class="lang-pt">Todas as coisas vêm de Deus e a ele retornarão, e a relação Deus/Cristo (1 Cor. 1:30; 3:21-23)</span><span class="lang-en">All things come from God and will return to him and the God/Christ relation (1 Cor. 1:30; 3:21-23)</span></li>
-      <li><span class="lang-pt">O corpo: o que fazemos com nossos corpos, os nossos e os dos outros (comida, ídolos, relações sexuais)</span><span class="lang-en">The body: what we do with our bodies, our own and others (Food, idols, sexual relations)</span></li>
-      <li><span class="lang-pt">Maturidade e koinonia (grego: κοινωνία / comunhão/participação)</span><span class="lang-en">Maturity and koinonia (Greek: κοινωνία / fellowship/participation)</span></li>
-      <li><span class="lang-pt">Missão e dinheiro: liberdade e tornar-se tudo para todas as pessoas</span><span class="lang-en">Mission and money: freedom and becoming all things to all people</span></li>
-      <li><span class="lang-pt">Dons espirituais e como os usamos</span><span class="lang-en">Spiritual gifts and how we use them</span></li>
-      <li><span class="lang-pt">A centralidade do amor</span><span class="lang-en">The centrality of love</span></li>
-      <li><span class="lang-pt">A ressurreição: as coisas de primeira importância</span><span class="lang-en">The resurrection: the things of first importance</span></li>
-    </ul>
-    <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">A Estrutura como Conversação</span><span class="lang-en">The Structure as a Conversation</span></h3>
-    <ul class="list-disc space-y-2 pl-6 text-slate-700">
-      <li><span class="lang-pt">“Quanto a isso” (grego: Περὶ δὲ) ocorre em 1 Coríntios 7:1, 25; 8:1; 12:1; 16:1, 12.</span><span class="lang-en">“Now concerning” (Greek: Περὶ δὲ) occurs in 1 Corinthians 7:1, 25; 8:1; 12:1; 16:1, 12.</span></li>
-      <li><span class="lang-pt">“Acaso não sabeis?” (grego: οὐκ οἴδατε) ocorre 10 vezes.</span><span class="lang-en">“Do you not know” (Greek: οὐκ οἴδατε) occurs 10 times.</span></li>
-      <li><span class="lang-pt">“Se alguém pensa” (grego: εἴ τις δοκεῖ) ocorre 3 vezes.</span><span class="lang-en">“If anyone thinks” (Greek: εἴ τις δοκεῖ) occurs 3 times.</span></li>
-      <li><span class="lang-pt">“Julgai por vós mesmos” (grego: Ἐν ὑμῖν αὐτοῖς κρίνατε) é usado como pergunta retórica em 1 Coríntios 11:13.</span><span class="lang-en">“Judge for yourselves” (Greek: Ἐν ὑμῖν αὐτοῖς κρίνατε) is used as a rhetorical question in 1 Corinthians 11:13.</span></li>
-    </ul>
-    <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">“Slogans” Coríntios</span><span class="lang-en">Corinthian “Slogans”</span></h3>
-    <p class="text-slate-700"><span class="lang-pt">Paulo também repete algumas das frases deles, mas não temos certeza de quantas são nem onde estão.</span><span class="lang-en">Paul also repeats some of their phrases, but we’re unsure how many there are and where they are.</span></p>
-    <ul class="list-disc space-y-2 pl-6 text-slate-700">
-      <li><span class="lang-pt">“Tenho o direito de fazer qualquer coisa.” (1 Cor. 6:12)</span><span class="lang-en">“I have the right to do anything.” (1 Cor. 6:12)</span></li>
-      <li><span class="lang-pt">“Comida para o estômago e estômago para a comida.” (1 Cor. 6:13)</span><span class="lang-en">“Food for the stomach and stomach for the food.” (1 Cor. 6:13)</span></li>
-      <li><span class="lang-pt">“É bom que o homem não toque numa mulher”, ou não ter relações sexuais com uma mulher. (1 Cor. 7:1)</span><span class="lang-en">“It is good for a man not to touch a woman,” or not to have sexual relations with a woman. (1 Cor. 7:1)</span></li>
-      <li><span class="lang-pt">“Todos nós possuímos conhecimento.” (1 Cor. 8:1)</span><span class="lang-en">“We all possess knowledge.” (1 Cor. 8:1)</span></li>
-      <li><span class="lang-pt">“Tenho o direito de fazer qualquer coisa.” (1 Cor. 10:23)</span><span class="lang-en">“I have the right to do anything.” (1 Cor. 10:23)</span></li>
-    </ul>
-    <p class="text-slate-700"><span class="lang-pt">Pode haver mais!</span><span class="lang-en">There might be more!</span></p>
-    <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Organização da Carta</span><span class="lang-en">Organization of the Letter</span></h3>
-    <p class="text-slate-700"><span class="lang-pt">Há uma estrutura retórica em 1 Coríntios, na qual Paulo usa a retórica grega (uma forma de organizar seu material) para apresentar seu caso e persuadir os coríntios. Não vamos estudar isso juntos, mas Ben Witherington demonstra isso muito bem em seu livro <em>Conflict and Community in Corinth</em>. Olharemos 1 Coríntios do ponto de vista do que E. Randolph Richards chama de “metade de uma conversa”, reconhecendo que não podemos saber tudo sobre a outra metade.</span><span class="lang-en">There is a rhetorical structure to 1 Corinthians in that Paul uses Greek rhetoric (a way of organizing his material) in order to make his case and persuade the Corinthians. We’re not going to study this together, but Ben Witherington demonstrates this really well in his book Conflict and Community in Corinth. We will look at 1 Corinthians from the point of view of what E. Randolph Richards calls “half a conversation,” recognizing that we can’t know everything about the other half.</span></p>
-    <p class="text-slate-700"><span class="lang-pt">Richards também fala sobre material pré-formado ou o uso de citar outro material inserido na carta. Às vezes isso é facilmente identificável, como uma citação da Bíblia Hebraica. Outras vezes, porque os destinatários de Paulo saberiam do que ele falava e nós não, não sabemos exatamente onde ele pode estar usando material pré-formado. “Paulo e seus coautores nem sempre diziam quando citavam material. Como então, como agora, eles sabiam que seus leitores o reconheceriam.” (Richards, 2004).</span><span class="lang-en">Richards also talks about preformed material or the use of quoting other material inserted into the letter. Sometimes that’s easily identifiable, like a quote from the Hebrew Bible, for example. Other times, because Paul’s recipients would know what he was talking about and we don’t, we don’t know exactly where he might be using preformed material. “Paul and his coauthors did not always say when they were quoting material. Then, like now, they knew their readers would recognize it.” (Richards, 2004).</span></p>
-    <blockquote class="reveal" style="border-left:3px solid #111; padding:.25rem 0 .25rem 1.25rem; margin:1.1rem 0; font-style:normal; color:#111;"><span class="lang-pt">“Às vezes Paulo indicava quando citava algum material, como ‘pois está escrito’ (Gl 3:10) ou ‘vos transmiti o que também recebi’ (1 Cor 15:3) ou ‘a palavra é digna de confiança’ (1 Tm 3:1). Paulo evidentemente nem sempre escolhia indicar quando citava trechos pré-formados. Resta-nos a tarefa de destilá-los de suas cartas. Assim, o uso de material pré-formado por Paulo situa-se em um espectro. Num extremo estão fragmentos de material citado cuja identificação é tão elusiva que não se tem certeza de que o material foi citado ou já integrado à teologia da equipe. No outro extremo estão lugares onde o material citado foi introduzido por uma frase que o identificou claramente como pré-formado. O desafio é identificar o material entre esses extremos.”</span><span class="lang-en">“Sometimes Paul told when he was quoting some material, such as ‘for it is written’ (Gal. 3:10) or ‘I handed on to you what I in turn had received’ (1 Cor. 15:3) or ‘the saying is sure’ (1 Tim. 3:1). Paul evidently did not choose to indicate always when he was citing preformed pieces. We are left with the task of distilling them from his letters. So Paul’s use of preformed material falls on a spectrum. On one extreme there are snippets of quoted material that are too elusive to be certain the material was quoted or already integrated into the team’s theology. On the other extreme there are places where the quoted material was introduced by a phrase that clearly identified it as preformed. The challenge is identifying the material between these extremes.”</span><span class="cite" style="display:block; margin-top:.4rem; font-style:normal; color:#6b7280;">Richards, E. Randolph (2004). Paul and First-Century Letter Writing. InterVarsity. 96.</span></blockquote>
-    <p class="text-slate-700"><span class="lang-pt">Podemos usar os critérios de conteúdo e de forma ao decidir quando Paulo está citando outros.</span><span class="lang-en">We can use the criteria of content and form when we make the decision about when Paul is citing others.</span></p>
-    <ul class="list-disc space-y-2 pl-6 text-slate-700">
-      <li><span class="lang-pt">Conteúdo: O conteúdo do escrito nos diz?</span><span class="lang-en">Content: Does the content of the writing tell us?</span></li>
-      <li><span class="lang-pt">Forma: A forma do escrito nos diz?</span><span class="lang-en">Form: Does the form of the writing tell us?</span></li>
-    </ul>
-    <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Interpolação = Inserção</span><span class="lang-en">Interpolation = Insertion</span></h3>
-    <p class="text-slate-700"><span class="lang-pt">Há também lugares onde estudiosos pensam que outra pessoa inseriu algo nas cartas de Paulo.</span><span class="lang-en">There are also places where scholars think that someone else has inserted something into Paul’s letters.</span></p>
-    <blockquote class="reveal" style="border-left:3px solid #111; padding:.25rem 0 .25rem 1.25rem; margin:1.1rem 0; font-style:normal; color:#111;"><span class="lang-pt">“Interpolação é como enfiar uma pá na terra, separando duas porções de solo, inserir algo e retirar a pá; resta evidência, mas as quebras são razoavelmente limpas e contidas. Redação, por outro lado, assemelha-se muito mais a uma planta que cresceu no solo; ao puxá-la, as raízes vêm junto, e não é claro onde a redação termina.”</span><span class="lang-en">“Interpolation is like pushing a shovel in the ground, separating two portions of soil, inserting something, and removing the shovel; evidence is left, but the breaks are reasonably clean and contained. Redaction, on the other hand, much more closely resembles a plant which has grown in the ground; in pulling it up, the roots come too, and it is unclear where the redaction ends.”</span><span class="cite" style="display:block; margin-top:.4rem; font-style:normal; color:#6b7280;">Walker Jr., William O. (2001). Interpolations in the Pauline Letters. Sheffield Academic Press. 23.</span></blockquote>
-    <p class="text-slate-700"><span class="lang-pt">Assim, às vezes podemos identificar onde ideias extraídas de outra fonte estão entrelaçadas num texto, e às vezes não.</span><span class="lang-en">So sometimes we can identify where ideas that are drawn from another source are woven into a text and sometimes we can’t.</span></p>
-    <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Paulo Foi um Escritor de Cartas Hábil</span><span class="lang-en">Paul Was a Skilled Letter Writer</span></h3>
-    <p class="text-slate-700"><span class="lang-pt">Michael Gorman destaca a habilidade com que Paulo escreveu. Em seu livro <em>Apostle of the Crucified Lord</em>, ele ressalta a grande perícia retórica de Paulo.</span><span class="lang-en">Michael Gorman highlights the skill with which Paul wrote. In his book, Apostle of the Crucified Lord, he brings out Paul’s great rhetorical skill.</span></p>
-    <blockquote class="reveal" style="border-left:3px solid #111; padding:.25rem 0 .25rem 1.25rem; margin:1.1rem 0; font-style:normal; color:#111;"><span class="lang-pt">“As cartas de Paulo revelam um conhecimento profundo da substância e dos truques do ofício do retórico, embora ele se distancie formalmente da retórica, ou pelo menos do exibicionismo retórico (1 Cor 2:1-5). … Paulo pode adotar, adaptar ou refutar certas noções estoicas, dependendo de sua compreensão de sua correspondência com as Escrituras ou com seu evangelho.”</span><span class="lang-en">“Paul’s letters reveal a thorough acquaintance with the substance and the tricks of the rhetor’s trade, even though he formally distances himself from rhetoric, or at least rhetorical showmanship (1 Cor. 2:1-5). … Paul can either adopt, adapt, or refute certain Stoic notions, depending on his understanding of their correspondence to the Scriptures or to his gospel.”</span><span class="cite" style="display:block; margin-top:.4rem; font-style:normal; color:#6b7280;">Gorman, Michael J. (2004). Apostle of the Crucified Lord. Eerdmans. 7.</span></blockquote>
-    <blockquote class="reveal" style="border-left:3px solid #111; padding:.25rem 0 .25rem 1.25rem; margin:1.1rem 0; font-style:normal; color:#111;"><span class="lang-pt">“[Isto] é um pouco irônico, visto que o próprio Paulo tem suspeitas sobre a retórica como algo antitético ao poder do evangelho, embora seja criticamente principalmente da retórica extravagante que se tornara popular em seus dias e com a qual certos crentes coríntios estavam encantados (1 Cor 1:18-25; 2:1-5).”</span><span class="lang-en">“[This is] a bit ironic, since Paul himself has suspicions about rhetoric as antithetical to the power of the gospel, though he is primarily critical of the flashy rhetoric that had become popular in his day and with which certain Corinthian believers were enamored (1 Cor. 1:18-25; 2:1-5).”</span><span class="cite" style="display:block; margin-top:.4rem; font-style:normal; color:#6b7280;">Gorman, Michael J. (2004). Apostle of the Crucified Lord. Eerdmans. 12.</span></blockquote>
-    <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Diatribe</span><span class="lang-en">Diatribe</span></h3>
-    <blockquote class="reveal" style="border-left:3px solid #111; padding:.25rem 0 .25rem 1.25rem; margin:1.1rem 0; font-style:normal; color:#111;"><span class="lang-pt">“Uma forma retórica particular que ocasionalmente aparece nas cartas de Paulo é a diatribe. Muitas vezes usada por antigos mestres (como o estoico do primeiro século Epiteto, em seus Discursos), a diatribe não consistia primariamente em uma longa repreensão, como frequentemente hoje, mas num modo criativo de instrução e exortação dialógica. Ela emprega tais recursos retóricos como parceiros de conversa imaginários, perguntas retóricas, exagero, objeções hipotéticas e conclusões errôneas. O verdadeiro orador refuta os erros do interlocutor (às vezes começando com a famosa frase ‘Nunca tal aconteça!’), usando-os como trampolim para o ensino.”</span><span class="lang-en">“One particular rhetorical form that occasionally appears in Paul’s letters is the diatribe. Often used by ancient teachers (such as the first-century Stoic Epictetus, in his Discourses), the diatribe did not consist primarily of a lengthy rebuke, as it often does today, but of a creative dialogical mode of instruction and exhortation. It employs such rhetorical devices as imaginary conversation partners, rhetorical questions, exaggeration, hypothetical objections, and erroneous conclusions. The real speaker refutes the interlocutor’s errors (sometimes beginning with the famous phrase, ‘May it never be!’), using them as a springboard for teaching.”</span><span class="cite" style="display:block; margin-top:.4rem; font-style:normal; color:#6b7280;">Gorman, Michael J. (2004). Apostle of the Crucified Lord. Eerdmans. 84.</span></blockquote>
-    <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Reconhecendo Nossa Subjetividade</span><span class="lang-en">Acknowledging Our Subjectivity</span></h3>
-    <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">O Poder da Imaginação</span><span class="lang-en">The Power of Imagination</span></h3>
-    <p class="text-slate-700"><span class="lang-pt">Todos trazem um cenário imaginado para o estudo! Quando você lê comentários da Bíblia, note quantas vezes as pessoas dizem “Eu consigo imaginar…”</span><span class="lang-en">Everyone brings an imagined scenario to the study! When you read commentaries on the Bible note how many times people say, “I can just imagine …”</span></p>
-    <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Preferência/Bies Pessoal</span><span class="lang-en">Personal Preference/Bias</span></h3>
-    <p class="text-slate-700"><span class="lang-pt">Minha preferência pessoal: há uma influência estoica sobre os coríntios, mas não necessariamente sobre Paulo, embora Paulo esteja familiarizado com seu pensamento e linguagem.</span><span class="lang-en">My personal preference: There is a Stoicizing influence on the Corinthians but not necessarily on Paul, although Paul is familiar with their thought and language.</span></p>
-    <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Estoicismo e Paulo</span><span class="lang-en">Stoicism and Paul</span></h3>
-    <blockquote class="reveal" style="border-left:3px solid #111; padding:.25rem 0 .25rem 1.25rem; margin:1.1rem 0; font-style:normal; color:#111;"><span class="lang-pt">“A pergunta que desejo levantar não é se Paulo pensava de maneira estoica ou não; antes, poderia ser que ele esteja escrevendo para pessoas que elas mesmas usam tal linguagem, pensam de modo estoizante, ou se impressionam com ideias estoicas? Caso contrário, por que ele usa com tanta frequência uma linguagem que parece estoica, embora opere com pressupostos diferentes? Afinal, a maneira de expressão de Paulo não é moldada unicamente por sua formação judaica e confissão cristã, mas certamente, em alguma medida, também pelas necessidades de sua audiência? Seus problemas, vocabulário e nível de entendimento influenciam a maneira da comunicação do apóstolo com eles?”</span><span class="lang-en">“The question I wish to raise is not whether or not Paul thought in Stoic manner; rather, could it be that he is writing to people who themselves use such language, think in a Stoicizing manner, or are impressed with Stoic ideas? Otherwise why does he so frequently use language that appears Stoic, though he operates with different assumptions? After all, the manner of Paul’s expression is not shaped solely by his Jewish background and Christian confession, but surely to some extent by the needs of his audience as well? Do their problems, vocabulary, and level of understanding influence the manner of the apostle’s communication with them?”</span><span class="cite" style="display:block; margin-top:.4rem; font-style:normal; color:#6b7280;">Paige, Terence (2004). “Stoicism, ἐλευθερία and Community at Corinth.” Christianity at Corinth: The Quest for the Pauline Church. Westminster John Knox. 209.</span></blockquote>
-    <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Ideias Estoicas em 1 Coríntios</span><span class="lang-en">Stoic Ideas in 1 Corinthians</span></h3>
-    <ul class="list-disc space-y-2 pl-6 text-slate-700">
-      <li><span class="lang-pt">Busca de uma espiritualidade elitista e desprovida de dimensão comunitária</span><span class="lang-en">Pursuit of a spirituality that was elitist and devoid of community-oriented dimension</span></li>
-      <li><span class="lang-pt">A ideia de si mesmos como reis e ricos</span><span class="lang-en">The idea of themselves as kings and rich</span></li>
-      <li><span class="lang-pt">A afirmação de liberdade absoluta para o cristão que é sofos</span><span class="lang-en">The assertion of absolute freedom for the Christian who is sofos</span></li>
-      <li><span class="lang-pt">O credo de que todas as coisas me são lícitas</span><span class="lang-en">The creed that all things are lawful for me</span></li>
-      <li><span class="lang-pt">O fato de o ídolo não ser nada</span><span class="lang-en">The fact that the idol is nothing</span></li>
-      <li><span class="lang-pt">A abordagem altamente individualista dos problemas morais (Paige, 2004)</span><span class="lang-en">The highly individualistic approach to moral problems (Paige, 2004)</span></li>
-    </ul>
-    <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Sabedoria e o Estoa</span><span class="lang-en">Wisdom and the Stoa</span></h3>
-    <p class="text-slate-700"><span class="lang-pt">O uso de sabedoria (grego: ὁ σοφός) é uma figura-chave para o Estoa.</span><span class="lang-en">The use of wisdom (Greek: ὁ σοφός) is a key figure for the Stoa.</span></p>
-    <blockquote class="reveal" style="border-left:3px solid #111; padding:.25rem 0 .25rem 1.25rem; margin:1.1rem 0; font-style:normal; color:#111;"><span class="lang-pt">“Para o Estoa havia um vasto abismo entre o ‘sábio’ (ὁ σοφός) e as pessoas comuns (οἱ πολλοί). O σοφός (também descrito como σπουδαῖος, ‘bom’, e φρόνιμος, ‘sábio/prudente’) é aquele que fez do ‘viver de acordo com a natureza’ (κατά φύσιν ζῆν) o objetivo de sua existência. Isto se destina a auxiliar a busca da virtude, que é o único ‘bem’ absoluto reconhecido pelo Estoa. Somente a virtude é necessária para ser feliz (εὐδαίμων) e sábio; todo o resto é ἀδιάφορον (‘indiferente’).”</span><span class="lang-en">“For the Stoa there was a vast gulf between the ‘wise man’ (ὁ σοφός) and the common people (οἱ πολλοί). The σοφός (who is also described as σπουδαῖος, ‘good,’ and φρόνιμος, ‘wise/prudent’) is one who has made the goal of his existence the ‘life in accord with nature’ (κατά φύσιν ζῆν). This is intended to aid the pursuit of virtue, which is the only absolute ‘good’ recognized by the Stoa. Only virtue is necessary to be happy (εὐδαίμων) and wise; all else is ἀδιάφορον (‘indifferent’).”</span><span class="cite" style="display:block; margin-top:.4rem; font-style:normal; color:#6b7280;">Paige, Terence (2004). “Stoicism, ἐλευθερία and Community at Corinth.” Christianity at Corinth: The Quest for the Pauline Church. Westminster John Knox. 210-211.</span></blockquote>
-    <p class="text-slate-700"><span class="lang-pt">O estudante deve escolher aquilo que é segundo a natureza. Ele precisa entender intuitivamente “tanto sua própria natureza quanto a do cosmo, e estas estão em harmonia” (Paige, 2004). Paige também aponta que “a compreensão estoica da virtude está intimamente ligada ao conhecimento” (Paige, 2004).</span><span class="lang-en">The student must choose that which is according to nature. He needs to intuitively understand “both his own nature and that of the cosmos, and these are in harmony” (Paige, 2004). Paige also makes the point that “the Stoic understanding of virtue is closely tied to knowledge” (Paige, 2004).</span></p>
-    <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">A Mentalidade Independente e o Estoico</span><span class="lang-en">The Independent Mindset and the Stoic</span></h3>
-    <blockquote class="reveal" style="border-left:3px solid #111; padding:.25rem 0 .25rem 1.25rem; margin:1.1rem 0; font-style:normal; color:#111;"><span class="lang-pt">“A liberdade é um dos atributos mais prezados e exaltados do sábio estoico: liberdade de paixões irracionais; liberdade para escolher ou rejeitar aquelas coisas que estão em seu poder; liberdade para viver a vida de acordo com a natureza e buscar a virtude. Mas Paulo subverte essa perspectiva autocentrada por sua própria vida, que em sua imitatio Christi traz uma nova definição de liberdade.”</span><span class="lang-en">“Freedom is one of the most cherished and exalted of attributes of the Stoic wise man: freedom from irrational passions; freedom to choose or reject those things which are in his power; freedom to live the life according to nature and to pursue virtue. But Paul overturns this self-centred perspective by his very life, which in its imitatio Christi makes a new definition of freedom.”</span><span class="cite" style="display:block; margin-top:.4rem; font-style:normal; color:#6b7280;">Paige, Terence (2004). “Stoicism, ἐλευθερία and Community at Corinth.” Christianity at Corinth: The Quest for the Pauline Church. Westminster John Knox. 217.</span></blockquote>
-    <p class="text-slate-700"><span class="lang-pt">Paige sugere que os coríntios pensam estar sendo fortes ao participar de comida sacrificada a ídolos, como se estivessem quase provando sua invulnerabilidade. Assim Paige os chama de “um grupo de elite de sofoi autoproclamados dentro da igreja, que mantinha uma ética altamente individualista e egocêntrica” (Paige, 2004).</span><span class="lang-en">Paige suggests that the Corinthians think they are being strong by participating in food sacrificed to idols as if they are almost proving their invulnerability. So Paige calls them an “elite group of self-styled sophoi within the church who held a highly individualistic, self-centred ethics” (Paige, 2004).</span></p>
-    <p class="text-slate-700"><span class="lang-pt">Mas, para encerrar esta seção, entramos numa conversa. Estamos tentando desembaraçar diferentes pensamentos e palavras usadas de modos diferentes tanto pelos coríntios quanto por Paulo, e então tentando discernir o que Paulo quer dizer com eles.</span><span class="lang-en">But to wrap up this section, we have entered a conversation. We’re trying to untangle different thoughts and words used in different ways by both the Corinthians and Paul and then trying to discern what Paul means by them.</span></p>
-    <p class="text-slate-700"><span class="lang-pt">E, para complicar ainda mais, podemos estar encontrando algo que o próprio Paulo lhes ensinou e que eles corromperam e distorceram para tornar-se outra coisa, como sabedoria, mistério, glória — todas palavras usadas de modos diferentes por Paulo e pelos coríntios.</span><span class="lang-en">And to complicate things even further, we may be encountering something that Paul taught them in the first place that they have corrupted and twisted to become something else, like wisdom, mystery, glory—all words used in different ways by Paul and the Corinthians.</span></p>
-    <blockquote class="reveal" style="border-left:3px solid #111; padding:.25rem 0 .25rem 1.25rem; margin:1.1rem 0; font-style:normal; color:#111;"><span class="lang-pt">“Algumas premissas com as quais Paulo concorda — e que ele mesmo pode ter afirmado em sua pregação em Corinto — estavam sendo postas a serviço de uma conclusão em desacordo com a teologia de Paulo e, ademais, em conflito com a nova existência em Cristo.”</span><span class="lang-en">“Some premises that Paul agrees with—and which he may have asserted himself in his preaching at Corinth—were being made to serve a conclusion at variance with Paul’s theology and, further, at odds with the new existence in Christ.”</span><span class="cite" style="display:block; margin-top:.4rem; font-style:normal; color:#6b7280;">Paige, Terence (2004). “Stoicism, ἐλευθερία and Community at Corinth.” Christianity at Corinth: The Quest for the Pauline Church. Westminster John Knox. 215.</span></blockquote>
-    <blockquote class="reveal" style="border-left:3px solid #111; padding:.25rem 0 .25rem 1.25rem; margin:1.1rem 0; font-style:normal; color:#111;"><span class="lang-pt">“Podemos dar o melhor sentido ao texto se imaginarmos que os problemas surgiram não entre os níveis mais altos ou mais baixos da sociedade, mas entre aqueles com pretensões sociais que estavam mais preocupados em ganhar uma maior parte de honra e mais sensíveis a insultos que traziam vergonha.”</span><span class="lang-en">“We can make best sense of the text if we imagine the problems to have arisen not among the highest or lowest levels of society, but among those with social pretensions who were most concerned with gaining a greater share of honor and most sensitive to insults which brought shame.”</span><span class="cite" style="display:block; margin-top:.4rem; font-style:normal; color:#6b7280;">Pogoloff, Stephen (1992). Logos and Sophia. Scholars Press. 255.</span></blockquote>
-    <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h2>
-    <p class="text-slate-700"><span class="lang-pt">Quais são os critérios para determinar se Paulo está citando outros no texto?</span><span class="lang-en">What are the criteria for determining whether or not Paul is citing others in the text?</span></p>
-    <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">O Cristão Maduro</span><span class="lang-en">The Mature Christian</span></h2>
-    <p class="text-slate-700"><span class="lang-pt">Como Paulo fala sobre conflito, o papel do Espírito e a maturidade na vida cristã? Estude os primeiros quatro capítulos de 1 Coríntios e veja.</span><span class="lang-en">How does Paul talk about conflict, the role of the Spirit, and maturity in the Christian life? Study the first four chapters of 1 Corinthians and see.</span></p>
+      
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Principais Aprendizados</span><span class="lang-en">Key Takeaways</span></h2>
+      <ul class="list-disc space-y-2 pl-6 text-slate-700">
+        <li><span class="lang-pt">Paulo trata da imaturidade prejudicial e do comportamento equivocado dos líderes coríntios.</span><span class="lang-en">Paul addresses the Corinthian leaders' harmful immaturity and misguided behavior.</span></li>
+        <li><span class="lang-pt">Paulo usa uma estrutura retórica grega em 1 Coríntios para apresentar seu caso e persuadir seus leitores.</span><span class="lang-en">Paul uses a Greek rhetorical structure in 1 Corinthians to make his case and persuade his readers.</span></li>
+        <li><span class="lang-pt">Como carta, 1 Coríntios é apenas metade da conversa, e devemos reconhecer que não podemos saber tudo sobre a outra metade.</span><span class="lang-en">As a letter, 1 Corinthians is only half the conversation, and we must recognize that we can’t know everything about the other half.</span></li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Temas em 1 Coríntios</span><span class="lang-en">Themes in 1 Corinthians</span></h2>
+      <p><span class="lang-pt">Há vários temas que estão entrelaçados por toda a carta e continuam a emergir. Reconhecê-los primeiro nos ajudará a entender a carta inteira.</span><span class="lang-en">There are a number of themes that are woven throughout the letter and keep emerging. Recognizing them first will help us to understand the whole letter.</span></p>
+
+      <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Santidade</span><span class="lang-en">Holiness</span></h3>
+      <p><span class="lang-pt">Paulo começa a sua carta chamando os coríntios de santos ou santificados.</span><span class="lang-en">Paul begins his letter by calling the Corinthians holy or sanctified.</span></p>
+      
+      <!-- Bloco de versículo atualizado -->
+      <div class="verse-block">
+        <p class="font-bold text-slate-900 mb-2">
+          <span class="lang-pt">1 Coríntios 1:1-3 <span class="font-medium text-slate-500">NRSV*</span></span>
+          <span class="lang-en">1 Corinthians 1:1-3 <span class="font-medium text-slate-500">NRSV*</span></span>
+        </p>
+        <p class="text-slate-800 leading-relaxed verse-text">
+          <span class="lang-pt"><sup class="vs">1</sup> Paulo, chamado para ser apóstolo de Cristo Jesus pela vontade de Deus, e o nosso irmão Sóstenes,</span>
+          <span class="lang-en"><sup class="vs">1</sup> Paul, called to be an apostle of Christ Jesus by the will of God, and our brother Sosthenes,</span>
+        </p>
+        <p class="text-slate-800 leading-relaxed verse-text">
+          <span class="lang-pt"><sup class="vs">2</sup> À igreja de Deus que está em Corinto, àqueles que são santificados (grego: ἡγιασμένοις / tendo sido santificados) em Cristo Jesus, chamados para serem santos (grego: κλητοῖς ἁγίοις / chamados santos), juntamente com todos os que em todo lugar invocam o nome de nosso Senhor Jesus Cristo, Senhor deles e nosso:</span>
+          <span class="lang-en"><sup class="vs">2</sup> To the church of God that is in Corinth, to those who are sanctified (Greek: ἡγιασμένοις / having been sanctified) in Christ Jesus, called to be saints (Greek: κλητοῖς ἁγίοις / called holy), together with all those who in every place call on the name of our Lord Jesus Christ, both their Lord and ours:</span>
+        </p>
+        <p class="text-slate-800 leading-relaxed verse-text">
+          <span class="lang-pt"><sup class="vs">3</sup> Graça a vós e paz da parte de Deus nosso Pai e do Senhor Jesus Cristo.</span>
+          <span class="lang-en"><sup class="vs">3</sup> Grace to you and peace from God our Father and the Lord Jesus Christ.</span>
+        </p>
+        <p class="text-sm text-slate-500 mt-4">
+          <span class="lang-pt">*Palavras-chave adaptadas pelo professor</span>
+          <span class="lang-en">*Key Words Adapted by Teacher</span>
+        </p>
+      </div>
+      
+      <p><span class="lang-pt">A frase "tendo sido santificados" da palavra grega ἡγιασμένοις (hēgiasmenois), é um particípio perfeito médio/passivo:</span><span class="lang-en">The phrase “having been sanctified” from the Greek word ἡγιασμένοις (hēgiasmenois), is a perfect participle middle/passive:</span></p>
+      <ul class="list-disc space-y-2 pl-6 text-slate-700">
+        <li><span class="lang-pt">Perfeito: uma ação que foi completada no passado com significado contínuo</span><span class="lang-en">Perfect: an action that is completed in the past with ongoing significance</span></li>
+        <li><span class="lang-pt">Passivo: foi feito por eles</span><span class="lang-en">Passive: it has been done for them</span></li>
+      </ul>
+      
+      <p><span class="lang-pt">A santidade não é algo que ganhamos ou merecemos. É nos dada. Note quantas vezes Paulo menciona Jesus Cristo (quatro). Ele está centralizando a carta toda em Jesus. A santidade é "em Cristo Jesus."</span><span class="lang-en">Holiness is not something we earn or merit. It is given to us. Notice how many times Paul mentions Jesus Christ (four). He’s centering the whole letter on Jesus. Holiness is “in Christ Jesus.”</span></p>
+
+      <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Dotados: Os Coríntios São Dotados</span><span class="lang-en">Gifted: The Corinthians Are Gifted</span></h3>
+      
+      <div class="verse-block">
+        <p class="font-bold text-slate-900 mb-2">
+          <span class="lang-pt">1 Coríntios 1:4-9 <span class="font-medium text-slate-500">NRSV*</span></span>
+          <span class="lang-en">1 Corinthians 1:4-9 <span class="font-medium text-slate-500">NRSV*</span></span>
+        </p>
+        <p class="text-slate-800 leading-relaxed verse-text">
+          <span class="lang-pt"><sup class="vs">4</sup> Dou graças ao meu Deus sempre por vós, pela graça de Deus que vos foi dada em Cristo Jesus, <sup class="vs">5</sup> pois em tudo fostes enriquecidos (grego: ἐπλουτίσθητε / aoristo indicativo passivo) nele, em toda a palavra e em todo o conhecimento — <sup class="vs">6</sup> assim como o testemunho de Cristo foi confirmado entre vós — <sup class="vs">7</sup> de modo que não vos falte nenhum dom espiritual, enquanto aguardais a revelação de nosso Senhor Jesus Cristo. <sup class="vs">8</sup> Ele também vos confirmará até o fim, para que sejais irrepreensíveis (grego: ἀνεγκλήτους) no dia de nosso Senhor Jesus Cristo. <sup class="vs">9</sup> Fiel é Deus, pelo qual fostes chamados para a comunhão de seu Filho, Jesus Cristo nosso Senhor.</span>
+          <span class="lang-en"><sup class="vs">4</sup> I give thanks to my God always for you because of the grace of God that has been given you in Christ Jesus, <sup class="vs">5</sup> for in every way you have been enriched (Greek: ἐπλουτίσθητε / aorist indicative passive) in him, in speech and knowledge of every kind— <sup class="vs">6</sup> just as the testimony of Christ has been strengthened among you — <sup class="vs">7</sup> so that you are not lacking in any spiritual gift as you wait for the revealing of our Lord Jesus Christ. <sup class="vs">8</sup> He will also strengthen you to the end, so that you may be blameless (Greek: ἀνεγκλήτους) on the day of our Lord Jesus Christ. <sup class="vs">9</sup> God is faithful; by him you were called into the fellowship of his Son, Jesus Christ our Lord.</span>
+        </p>
+        <p class="text-sm text-slate-500 mt-4">
+          <span class="lang-pt">*Palavras-chave adaptadas pelo professor</span>
+          <span class="lang-en">*Key Words Adapted by Teacher</span>
+        </p>
+      </div>
+
+      <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Divisão, Facções e Unidade</span><span class="lang-en">Division, Factions, and Unity</span></h3>
+      <p><span class="lang-pt">O processo de ler um texto particular que foi escrito há 2.000 anos numa língua que nenhum de nós fala para pessoas que não viviam como nós e aplicar esse texto hoje nas nossas configurações culturais exige bastante trabalho!</span><span class="lang-en">The process of reading a particular text that was written 2,000 years ago in a language that none of us speak to people who didn’t live like us and applying that text to today in our cultural settings requires quite a lot of work!</span></p>
+      
+      <div class="verse-block">
+        <p class="font-bold text-slate-900 mb-2">
+          <span class="lang-pt">1 Coríntios 1:10-13 <span class="font-medium text-slate-500">NRSV*</span></span>
+          <span class="lang-en">1 Corinthians 1:10-13 <span class="font-medium text-slate-500">NRSV*</span></span>
+        </p>
+        <p class="text-slate-800 leading-relaxed verse-text">
+          <span class="lang-pt"><sup class="vs">10</sup> Rogo-vos, pois, irmãos e irmãs, pelo nome de nosso Senhor Jesus Cristo, que estejais todos de acordo e que não haja divisões entre vós, mas que sejais unidos no mesmo sentido e no mesmo propósito. <sup class="vs">11</sup> Porque me foi reportado pelo pessoal de Cloe que há contendas (grego: ἔριδες) entre vós, meus irmãos e irmãs. <sup class="vs">12</sup> O que quero dizer é que cada um de vós diz: “Eu pertenço a Paulo”, ou “Eu pertenço a Apolo”, ou “Eu pertenço a Cefas”, ou “Eu pertenço a Cristo”. <sup class="vs">13</sup> Acaso Cristo foi dividido? Foi Paulo crucificado por vós? Ou fostes batizados em nome de Paulo?</span>
+          <span class="lang-en"><sup class="vs">10</sup> Now I appeal to you, brothers and sisters, by the name of our Lord Jesus Christ, that all of you be in agreement and that there be no divisions among you, but that you be united in the same mind and the same purpose. <sup class="vs">11</sup> For it has been reported to me by Chloe’s people that there are quarrels (Greek: ἔριδες) among you, my brothers and sisters. <sup class="vs">12</sup> What I mean is that each of you says, “I belong to Paul,” or “I belong to Apollos,” or “I belong to Cephas,” or “I belong to Christ.” <sup class="vs">13</sup> Has Christ been divided? Was Paul crucified for you? Or were you baptised in the name of Paul?</span>
+        </p>
+        <p class="text-sm text-slate-500 mt-4">
+          <span class="lang-pt">*Palavras-chave adaptadas pelo professor</span>
+          <span class="lang-en">*Key Words Adapted by Teacher</span>
+        </p>
+      </div>
+      
+      <p><span class="lang-pt">As contendas e divisões são extremamente sérias aos olhos de Paulo (cf. <span class="ref" data-reference="Filipenses 4:2">Fp 4:2</span> Euódia e Síntique, a quem Paulo implora para que tenham "o mesmo modo de pensar").</span><span class="lang-en">Quarrelling and division are extremely serious in Paul’s eyes (cf. <span class="ref" data-reference="Philippians 4:2">Phil. 4:2</span> Euodia and Syntyche whom Paul pleads with to be “of the same mind”).</span></p>
+
+      <div class="verse-block">
+        <p class="font-bold text-slate-900 mb-2">
+          <span class="lang-pt">Tito 3:9-11 <span class="font-medium text-slate-500">NIV*</span></span>
+          <span class="lang-en">Titus 3:9-11 <span class="font-medium text-slate-500">NIV*</span></span>
+        </p>
+        <p class="text-slate-800 leading-relaxed verse-text">
+          <span class="lang-pt"><sup class="vs">9</sup> Evita, porém, contendas insensatas, genealogias, discussões (grego: ἔρεις) e querelas acerca da lei, porque são inúteis e vãs. <sup class="vs">10</sup> Adverte uma pessoa facciosa (grego: αἱρετικὸν) uma vez, e depois adverte-a uma segunda vez. Depois disso, não tenhas nada a ver com ela. <sup class="vs">11</sup> Podes ter certeza de que tal pessoa é pervertida e pecaminosa; ela está condenada por si mesma.</span>
+          <span class="lang-en"><sup class="vs">9</sup> But avoid foolish controversies and genealogies and arguments (Greek: ἔρεις) and quarrels about the law, because these are unprofitable and useless. <sup class="vs">10</sup> Warn a divisive (Greek: αἱρετικὸν) person once, and then warn them a second time. After that, have nothing to do with them. <sup class="vs">11</sup> You may be sure that such people are warped and sinful; they are self-condemned.</span>
+        </p>
+        <p class="text-sm text-slate-500 mt-4">
+          <span class="lang-pt">*Palavras-chave adaptadas pelo professor</span>
+          <span class="lang-en">*Key Words Adapted by Teacher</span>
+        </p>
+      </div>
+
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Reversão</span><span class="lang-en">Reversal</span></h2>
+      
+      <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Sabedoria e Loucura Invertidas</span><span class="lang-en">Wisdom and Foolishness Reversed</span></h3>
+      
+      <div class="verse-block">
+        <p class="font-bold text-slate-900 mb-2">
+          <span class="lang-pt">1 Coríntios 1:18-25 <span class="font-medium text-slate-500">NIV*</span></span>
+          <span class="lang-en">1 Corinthians 1:18-25 <span class="font-medium text-slate-500">NIV*</span></span>
+        </p>
+        <p class="text-slate-800 leading-relaxed verse-text">
+          <span class="lang-pt"><sup class="vs">18</sup> Pois a mensagem da cruz é loucura para os que estão perecendo, mas para nós, que estamos sendo salvos, é o poder de Deus. <sup class="vs">19</sup> Pois está escrito:<br>
+          "Destruirei a sabedoria dos sábios;<br>
+          a inteligência dos inteligentes eu frustrarei."</span>
+          <span class="lang-en"><sup class="vs">18</sup> For the message of the cross is foolishness to those who are perishing, but to us who are being saved it is the power of God. <sup class="vs">19</sup> For it is written:<br>
+          “I will destroy the wisdom of the wise;<br>
+          the intelligence of the intelligent I will frustrate.”</span>
+        </p>
+        <p class="text-slate-800 leading-relaxed verse-text mt-4">
+          <span class="lang-pt"><sup class="vs">20</sup> Onde está o sábio? Onde está o mestre da lei? Onde está o filósofo desta era? Acaso Deus não tornou loucura a sabedoria do mundo? <sup class="vs">21</sup> Visto que na sabedoria de Deus o mundo por meio de sua sabedoria não o conheceu, Deus se agradou em, através da loucura do que foi pregado, salvar aqueles que crêem. <sup class="vs">22</sup> Os judeus pedem sinais e os gregos buscam sabedoria, <sup class="vs">23</sup> mas nós pregamos a Cristo crucificado: pedra de tropeço para os judeus e loucura para os gentios, <sup class="vs">24</sup> mas para aqueles a quem Deus chamou, tanto judeus como gregos, Cristo é o poder de Deus e a sabedoria de Deus. <sup class="vs">25</sup> Porque a loucura de Deus é mais sábia que a sabedoria humana, e a fraqueza de Deus é mais forte que a força humana.</span>
+          <span class="lang-en"><sup class="vs">20</sup> Where is the wise person? Where is the teacher of the law? Where is the philosopher of this age? Has not God made foolish the wisdom of the world? <sup class="vs">21</sup> For since in the wisdom of God the world through its wisdom did not know him, God was pleased through the foolishness of what was preached to save those who believe. <sup class="vs">22</sup> Jews demand signs and Greeks look for wisdom, <sup class="vs">23</sup> but we preach Christ crucified: a stumbling block to Jews and foolishness to Gentiles, <sup class="vs">24</sup> but to those whom God has called, both Jews and Greeks, Christ the power of God and the wisdom of God. <sup class="vs">25</sup> For the foolishness of God is wiser than human wisdom, and the weakness of God is stronger than human strength.</span>
+        </p>
+        <p class="text-sm text-slate-500 mt-4">
+          <span class="lang-pt">*Palavras-chave adaptadas pelo professor</span>
+          <span class="lang-en">*Key Words Adapted by Teacher</span>
+        </p>
+      </div>
+
+      <p><span class="lang-pt">Veja <span class="ref" data-reference="Isaías 29:14">Isaías 29:14</span></span><span class="lang-en">See <span class="ref" data-reference="Isaiah 29:14">Isaiah 29:14</span></span></p>
+      
+      <ul class="list-disc space-y-2 pl-6 text-slate-700">
+        <li><span class="lang-pt">A sabedoria do mundo equivale a loucura.</span><span class="lang-en">The wisdom of the world equals foolishness.</span></li>
+        <li><span class="lang-pt">A sabedoria de Deus parece loucura, mas é mais sábia do que qualquer coisa no mundo.</span><span class="lang-en">The wisdom of God appears as foolishness, but it is wiser than anything in the world.</span></li>
+        <li><span class="lang-pt">A "loucura" de Deus é uma sabedoria superior à sabedoria do mundo.</span><span class="lang-en">The “folly” of God is a higher wisdom than the wisdom of the world.</span></li>
+        <li><span class="lang-pt">A fraqueza de Deus é um poder maior.</span><span class="lang-en">The weakness of God is a greater power.</span></li>
+      </ul>
+
+      <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Cristo Crucificado É a Chave</span><span class="lang-en">Christ Crucified Is the Key</span></h3>
+      <p><span class="lang-pt">A sabedoria e o poder de Deus centram-se em Cristo crucificado; Cristo crucificado é o poder de Deus e a sabedoria de Deus.</span><span class="lang-en">The wisdom and the power of God center on Christ crucified; Christ crucified is the power of God and the wisdom of God.</span></p>
+      
+      <p><span class="lang-pt">Sabedoria aqui se refere à visão grega de sabedoria e não à tradição de sabedoria judaica. Lembre-se dos filósofos, dos especialistas em retórica e dos oradores.</span><span class="lang-en">Wisdom here refers to the Greek view of wisdom and not the Jewish wisdom tradition. Remember the philosophers, rhetoricians, and orators.</span></p>
+
+      <blockquote class="academic-quote">
+        <p>
+          <span class="lang-pt">"Devemos antes supor, pelo contrário, que a aceitação do Evangelho levou os coríntios a se sentirem ricos e sábios na posse de nova vida e dos dons espirituais. Esse sentimento expressou-se ao chamarem ao Cristianismo uma espécie de sabedoria, aos seus líderes mestres de sabedoria e a si mesmos — essa era a coisa mais importante para eles — sábios que tinham se alimentado dessa sabedoria através dos líderes cristãos. Os pobres, insignificantes coríntios, sem qualquer ascendência distinta nem sabedoria pagã que os apoiasse, tinham se tornado tão ricos por intermédio da nova proclamação que agarraram-se à terminologia grega que lá havia para eles e a utilizaram para expressar a sua nova glória. Não perceberam que através da mera utilização daquela terminologia de sabedoria estavam a trair a mensagem que era a sua riqueza e de que o sentimento de estar no cume tendo piedade dos outros era uma traição a Cristo e aos seus apóstolos."</span>
+          <span class="lang-en">“We should rather suppose, on the contrary, that the acceptance of the Gospel led the Corinthians to feel rich and wise in the possession of new life and spiritual gifts. That feeling was expressed in their calling Christianity a kind of wisdom, its leaders teachers of wisdom, and themselves—this was the most important thing for them—wise men who had drawn on that wisdom through the Christian leaders. The poor, insignificant Corinthians, with neither distinguished ancestry nor pagan wisdom to support them, had become so rich through the new proclamation that they seized on the Greek terminology that was there for them, and used it to express their new glory. They did not realize that by the very use of that wisdom terminology they were betraying the message that was their wealth, and that the feeling of being up on the pinnacle and pitying the others was a betrayal of Christ and his apostles.”</span>
+        </p>
+        <p>
+          <span class="lang-pt">Munck, Johannes (2004). "The Church without Factions: Studies in 1 Corinthians 1–4." <span class="book-title">Christianity at Corinth: The Quest for the Pauline Church</span>. Editado por Edward Adams e David G. Horrell. Westminster John Knox. 70.</span>
+          <span class="lang-en">Munck, Johannes (2004). “The Church without Factions: Studies in 1 Corinthians 1–4.” <span class="book-title">Christianity at Corinth: The Quest for the Pauline Church</span>. Edited by Edward Adams and David G. Horrell. Westminster John Knox. 70.</span>
+        </p>
+      </blockquote>
+      
+      <p><span class="lang-pt">Eles estavam usando a sua experiência cristã do Espírito e seus dons espirituais como provas de que eram "sábios" e de que conheciam todos os mistérios.</span><span class="lang-en">They were using their Christian experience of the Spirit and their spiritual gifts as signs that they were “wise” and that they knew all mysteries.</span></p>
+
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Temas Adicionais</span><span class="lang-en">Further Themes</span></h2>
+      <ul class="list-disc space-y-2 pl-6 text-slate-700">
+        <li><span class="lang-pt">A natureza do apostolado e daqueles que seguem a Jesus, comportamento maduro versus comportamento infantil, servos de Cristo e administradores dos mistérios de Deus (<span class="ref" data-reference="1 Coríntios 4:1">1 Cor. 4:1</span>)</span><span class="lang-en">The nature of apostleship and those who follow Jesus, mature versus childish behavior, servants of Christ and stewards of the mystery of God (<span class="ref" data-reference="1 Corinthians 4:1">1 Cor. 4:1</span>)</span></li>
+        <li><span class="lang-pt">O relacionamento pai e mãe/filho (<span class="ref" data-reference="1 Coríntios 4:14-16">1 Cor. 4:14-16</span>; <span class="ref" data-reference="1 Coríntios 3:2-3">3:2-3a</span>)</span><span class="lang-en">Father and mother/child relationship (<span class="ref" data-reference="1 Corinthians 4:14-16">1 Cor. 4:14-16</span>; <span class="ref" data-reference="1 Corinthians 3:2-3">3:2-3a</span>)</span></li>
+        <li><span class="lang-pt">Todas as coisas vêm de Deus e voltarão para ele, e a relação entre Deus e Cristo (<span class="ref" data-reference="1 Coríntios 1:30">1 Cor. 1:30</span>; <span class="ref" data-reference="1 Coríntios 3:21-23">3:21-23</span>)</span><span class="lang-en">All things come from God and will return to him and the God/Christ relation (<span class="ref" data-reference="1 Corinthians 1:30">1 Cor. 1:30</span>; <span class="ref" data-reference="1 Corinthians 3:21-23">3:21-23</span>)</span></li>
+        <li><span class="lang-pt">O corpo: o que fazemos com os nossos corpos, os nossos e os dos outros (Comida, ídolos, relações sexuais)</span><span class="lang-en">The body: what we do with our bodies, our own and others (Food, idols, sexual relations)</span></li>
+        <li><span class="lang-pt">Maturidade e koinonia (grego: κοινωνία / comunhão/participação)</span><span class="lang-en">Maturity and koinonia (Greek: κοινωνία / fellowship/participation)</span></li>
+        <li><span class="lang-pt">Missão e dinheiro: liberdade e tornar-se todas as coisas para todas as pessoas</span><span class="lang-en">Mission and money: freedom and becoming all things to all people</span></li>
+        <li><span class="lang-pt">Dons espirituais e como os usamos</span><span class="lang-en">Spiritual gifts and how we use them</span></li>
+        <li><span class="lang-pt">A centralidade do amor</span><span class="lang-en">The centrality of love</span></li>
+        <li><span class="lang-pt">A ressurreição: as coisas de primeiríssima importância</span><span class="lang-en">The resurrection: the things of first importance</span></li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">A Estrutura como Conversa</span><span class="lang-en">The Structure as a Conversation</span></h2>
+      <ul class="list-disc space-y-2 pl-6 text-slate-700">
+        <li><span class="lang-pt">“Quanto a isso” (grego: Περὶ δὲ) ocorre em <span class="ref" data-reference="1 Coríntios 7:1">1 Coríntios 7:1</span>, <span class="ref" data-reference="1 Coríntios 7:25">25</span>; <span class="ref" data-reference="1 Coríntios 8:1">8:1</span>; <span class="ref" data-reference="1 Coríntios 12:1">12:1</span>, <span class="ref" data-reference="1 Coríntios 16:1">16:1</span>, <span class="ref" data-reference="1 Coríntios 16:12">12</span>.</span><span class="lang-en">“Now concerning” (Greek: Περὶ δὲ) occurs in <span class="ref" data-reference="1 Corinthians 7:1">1 Corinthians 7:1</span>, <span class="ref" data-reference="1 Corinthians 7:25">25</span>; <span class="ref" data-reference="1 Corinthians 8:1">8:1</span>; <span class="ref" data-reference="1 Corinthians 12:1">12:1</span>, <span class="ref" data-reference="1 Corinthians 16:1">16:1</span>, <span class="ref" data-reference="1 Corinthians 16:12">12</span>.</span></li>
+        <li><span class="lang-pt">“Não sabeis” (grego: οὐκ οἴδατε) ocorre 10 vezes.</span><span class="lang-en">“Do you not know” (Greek: οὐκ οἴδατε) occurs 10 times.</span></li>
+        <li><span class="lang-pt">“Se alguém pensa” (grego: εἴ τις δοκεῖ) ocorre 3 vezes.</span><span class="lang-en">“If anyone thinks” (Greek: εἴ τις δοκεῖ) occurs 3 times.</span></li>
+        <li><span class="lang-pt">“Julgai entre vós mesmos” (grego: Ἐν ὑμῖν αὐτοῖς κρίνατε) é usado como uma pergunta retórica em <span class="ref" data-reference="1 Coríntios 11:13">1 Coríntios 11:13</span>.</span><span class="lang-en">“Judge for yourselves” (Greek: Ἐν ὑμῖν αὐτοῖς κρίνατε) is used as a rhetorical question in <span class="ref" data-reference="1 Corinthians 11:13">1 Corinthians 11:13</span>.</span></li>
+      </ul>
+
+      <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">"Slogans" Coríntios</span><span class="lang-en">Corinthian “Slogans”</span></h3>
+      <p><span class="lang-pt">Paulo também repete algumas das frases deles, mas não temos certeza de quantas são nem onde estão.</span><span class="lang-en">Paul also repeats some of their phrases, but we’re unsure how many there are and where they are.</span></p>
+      <ul class="list-disc space-y-2 pl-6 text-slate-700">
+        <li><span class="lang-pt">"Tenho o direito de fazer qualquer coisa." (<span class="ref" data-reference="1 Coríntios 6:12">1 Cor. 6:12</span>)</span><span class="lang-en">“I have the right to do anything.” (<span class="ref" data-reference="1 Corinthians 6:12">1 Cor. 6:12</span>)</span></li>
+        <li><span class="lang-pt">"Os alimentos são para o estômago e o estômago para os alimentos." (<span class="ref" data-reference="1 Coríntios 6:13">1 Cor. 6:13</span>)</span><span class="lang-en">“Food for the stomach and stomach for the food.” (<span class="ref" data-reference="1 Corinthians 6:13">1 Cor. 6:13</span>)</span></li>
+        <li><span class="lang-pt">"É bom que o homem não toque em mulher", ou não ter relações sexuais com uma mulher. (<span class="ref" data-reference="1 Coríntios 7:1">1 Cor. 7:1</span>)</span><span class="lang-en">“It is good for a man not to touch a woman,” or not to have sexual relations with a woman. (<span class="ref" data-reference="1 Corinthians 7:1">1 Cor. 7:1</span>)</span></li>
+        <li><span class="lang-pt">"Todos nós possuímos conhecimento." (<span class="ref" data-reference="1 Coríntios 8:1">1 Cor. 8:1</span>)</span><span class="lang-en">“We all possess knowledge.” (<span class="ref" data-reference="1 Corinthians 8:1">1 Cor. 8:1</span>)</span></li>
+        <li><span class="lang-pt">"Tenho o direito de fazer qualquer coisa." (<span class="ref" data-reference="1 Coríntios 10:23">1 Cor. 10:23</span>)</span><span class="lang-en">“I have the right to do anything.” (<span class="ref" data-reference="1 Corinthians 10:23">1 Cor. 10:23</span>)</span></li>
+      </ul>
+      <p><span class="lang-pt">Pode haver mais!</span><span class="lang-en">There might be more!</span></p>
+
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Organização da Carta</span><span class="lang-en">Organization of the Letter</span></h2>
+      <p><span class="lang-pt">Existe uma estrutura retórica em 1 Coríntios na qual Paulo utiliza retórica grega (uma maneira de organizar o seu material) de modo a construir o seu argumento e persuadir os coríntios. Não vamos estudar isso juntos, mas Ben Witherington demonstra isso muito bem no seu livro <span class="italic">Conflict and Community in Corinth</span>.</span><span class="lang-en">There is a rhetorical structure to 1 Corinthians in that Paul uses Greek rhetoric (a way of organizing his material) in order to make his case and persuade the Corinthians. We’re not going to study this together, but Ben Witherington demonstrates this really well in his book <span class="italic">Conflict and Community in Corinth</span>.</span></p>
+      
+      <p><span class="lang-pt">Vamos analisar 1 Coríntios sob o ponto de vista daquilo que E. Randolph Richards chama de "metade de uma conversa", reconhecendo que não podemos saber tudo sobre a outra metade.</span><span class="lang-en">We will look at 1 Corinthians from the point of view of what E. Randolph Richards calls “half a conversation,” (Richards, 2004) recognizing that we can’t know everything about the other half.</span></p>
+      
+      <p><span class="lang-pt">Richards também fala sobre material pré-formado ou a utilização de citação de outro material introduzido na carta. Algumas vezes, isso é facilmente identificável, como uma citação da Bíblia Hebraica, por exemplo. Outras vezes, por os destinatários de Paulo saberem sobre aquilo de que ele estava a falar e nós não, nós não sabemos exatamente em que momento é que ele poderá estar utilizando material pré-formado. "Paulo e os seus co-autores não diziam sempre quando estavam citando material. Naquele tempo, tal como hoje, eles sabiam que os seus leitores iriam reconhecê-lo." (Richards, 2004).</span><span class="lang-en">Richards also talks about preformed material or the use of quoting other material inserted into the letter. Sometimes that’s easily identifiable, like a quote from the Hebrew Bible, for example. Other times, because Paul’s recipients would know what he was talking about and we don’t, we don’t know exactly where he might be using preformed material. “Paul and his coauthors did not always say when they were quoting material. Then, like now, they knew their readers would recognize it.” (Richards, 2004).</span></p>
+
+      <blockquote class="academic-quote">
+        <p>
+          <span class="lang-pt">"Por vezes, Paulo revelava o momento em que estava citando algum material, tal como 'pois está escrito' (<span class="ref" data-reference="Gálatas 3:10">Gál. 3:10</span>) ou 'pois o que vos transmiti foi aquilo que também recebi' (<span class="ref" data-reference="1 Coríntios 15:3">1 Cor. 15:3</span>) ou 'esta palavra é digna de confiança' (<span class="ref" data-reference="1 Timóteo 3:1">1 Tim. 3:1</span>). Obviamente Paulo escolhia não indicar sempre quando estava a citar pedaços pré-formados. Somos deixados com a tarefa de deduzi-los a partir de suas cartas. Então o uso de Paulo de material pré-formado recai num espectro. Num extremo encontram-se pequenos excertos de material citado que são demasiado fugidios para que se tenha certeza de que o material foi citado ou já integrado na teologia do grupo. No outro extremo há lugares onde o material citado foi introduzido por meio de uma frase que inequivocamente o identificou como pré-formado. O desafio está em identificar o material posicionado entre estes extremos."</span>
+          <span class="lang-en">“Sometimes Paul told when he was quoting some material, such as ‘for it is written’ (<span class="ref" data-reference="Galatians 3:10">Gal. 3:10</span>) or ‘I handed on to you what I in turn had received’ (<span class="ref" data-reference="1 Corinthians 15:3">1 Cor. 15:3</span>) or ‘the saying is sure’ (<span class="ref" data-reference="1 Timothy 3:1">1 Tim. 3:1</span>). Paul evidently did not choose to indicate always when he was citing preformed pieces. We are left with the task of distilling them from his letters. So Paul’s use of preformed material falls on a spectrum. On one extreme there are snippets of quoted material that are too elusive to be certain the material was quoted or already integrated into the team’s theology. On the other extreme there are places where the quoted material was introduced by a phrase that clearly identified it as preformed. The challenge is identifying the material between these extremes.”</span>
+        </p>
+        <p>
+          <span class="lang-pt">Richards, E. Randolph (2004). <span class="book-title">Paul and First-Century Letter Writing</span>. InterVarsity. 96.</span>
+          <span class="lang-en">Richards, E. Randolph (2004). <span class="book-title">Paul and First-Century Letter Writing</span>. InterVarsity. 96.</span>
+        </p>
+      </blockquote>
+      
+      <p><span class="lang-pt">Podemos utilizar os critérios do conteúdo e da forma quando tentamos decidir a respeito de quando Paulo está citando outras pessoas.</span><span class="lang-en">We can use the criteria of content and form when we make the decision about when Paul is citing others.</span></p>
+      
+      <ol class="list-decimal space-y-2 pl-6 text-slate-700">
+        <li><span class="lang-pt">Conteúdo: O conteúdo do que está escrito no-lo diz?</span><span class="lang-en">Content: Does the content of the writing tell us?</span></li>
+        <li><span class="lang-pt">Forma: A forma do que está escrito no-lo diz?</span><span class="lang-en">Form: Does the form of the writing tell us?</span></li>
+      </ol>
+
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Interpolação = Inserção</span><span class="lang-en">Interpolation = Insertion</span></h2>
+      <p><span class="lang-pt">Há também lugares onde os estudiosos acreditam que outra pessoa inseriu algo nas cartas de Paulo.</span><span class="lang-en">There are also places where scholars think that someone else has inserted something into Paul’s letters.</span></p>
+
+      <blockquote class="academic-quote">
+        <p>
+          <span class="lang-pt">"Interpolação é como enfiar uma pá na terra, separar dois pedaços de solo, inserir algo, e remover a pá; deixam-se as evidências, mas os cortes são razoavelmente limpos e contidos. Redação, por outro lado, muito mais se assemelha a uma planta que cresceu no chão; ao puxá-la para cima, as raízes vêm também, e torna-se incerto onde é que a redação termina."</span>
+          <span class="lang-en">“Interpolation is like pushing a shovel in the ground, separating two portions of soil, inserting something, and removing the shovel; evidence is left, but the breaks are reasonably clean and contained. Redaction, on the other hand, much more closely resembles a plant which has grown in the ground; in pulling it up, the roots come too, and it is unclear where the redaction ends.”</span>
+        </p>
+        <p>
+          <span class="lang-pt">Walker Jr., William O. (2001). <span class="book-title">Interpolations in the Pauline Letters</span>. Sheffield Academic Press. 23.</span>
+          <span class="lang-en">Walker Jr., William O. (2001). <span class="book-title">Interpolations in the Pauline Letters</span>. Sheffield Academic Press. 23.</span>
+        </p>
+      </blockquote>
+      
+      <p><span class="lang-pt">Por isso algumas vezes nós conseguimos identificar onde é que ideias que foram retiradas de outra fonte estão entrelaçadas em um texto, e outras vezes não.</span><span class="lang-en">So sometimes we can identify where ideas that are drawn from another source are woven into a text and sometimes we can’t.</span></p>
+
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Paulo Era um Hábil Escritor de Cartas</span><span class="lang-en">Paul Was a Skilled Letter Writer</span></h2>
+      <p><span class="lang-pt">Michael Gorman destaca a competência com que Paulo escrevia. No seu livro, <span class="italic">Apostle of the Crucified Lord</span>, ele traz à tona o forte dom de retórica de Paulo.</span><span class="lang-en">Michael Gorman highlights the skill with which Paul wrote. In his book, <span class="italic">Apostle of the Crucified Lord</span>, he brings out Paul’s great rhetorical skill.</span></p>
+
+      <blockquote class="academic-quote">
+        <p>
+          <span class="lang-pt">"As cartas de Paulo revelam um exaustivo conhecimento do teor e dos truques da arte do orador, mesmo ele distanciando-se do uso da retórica com formalidade, ou pelo menos do exibicionismo da oratória (<span class="ref" data-reference="1 Coríntios 2:1-5">1 Cor. 2:1-5</span>). ... Paulo pode seja adotar, adaptar, ou rebater determinadas noções estoicas, consoante a sua compreensão da sua correspondência com as Escrituras ou com o seu evangelho."</span>
+          <span class="lang-en">“Paul’s letters reveal a thorough acquaintance with the substance and the tricks of the rhetor’s trade, even though he formally distances himself from rhetoric, or at least rhetorical showmanship (<span class="ref" data-reference="1 Corinthians 2:1-5">1 Cor. 2:1-5</span>). … Paul can either adopt, adapt, or refute certain Stoic notions, depending on his understanding of their correspondence to the Scriptures or to his gospel.”</span>
+        </p>
+        <p>
+          <span class="lang-pt">Gorman, Michael J. (2004). <span class="book-title">Apostle of the Crucified Lord</span>. Eerdmans. 7.</span>
+          <span class="lang-en">Gorman, Michael J. (2004). <span class="book-title">Apostle of the Crucified Lord</span>. Eerdmans. 7.</span>
+        </p>
+      </blockquote>
+
+      <blockquote class="academic-quote">
+        <p>
+          <span class="lang-pt">"[Isto] é um bocado irônico, uma vez que o próprio Paulo tem desconfianças a respeito da oratória, tratando-se duma atitude antitética ao poder do evangelho, não obstante ser essencialmente crítico do tipo de retórica vistosa que se tornara popular nos seus dias e da qual certos crentes coríntios se agradavam de grande maneira (<span class="ref" data-reference="1 Coríntios 1:18-25">1 Cor. 1:18-25</span>; <span class="ref" data-reference="1 Coríntios 2:1-5">2:1-5</span>)."</span>
+          <span class="lang-en">“[This is] a bit ironic, since Paul himself has suspicions about rhetoric as antithetical to the power of the gospel, though he is primarily critical of the flashy rhetoric that had become popular in his day and with which certain Corinthian believers were enamored (<span class="ref" data-reference="1 Corinthians 1:18-25">1 Cor. 1:18-25</span>; <span class="ref" data-reference="1 Corinthians 2:1-5">2:1-5</span>).”</span>
+        </p>
+        <p>
+          <span class="lang-pt">Gorman, Michael J. (2004). <span class="book-title">Apostle of the Crucified Lord</span>. Eerdmans. 12.</span>
+          <span class="lang-en">Gorman, Michael J. (2004). <span class="book-title">Apostle of the Crucified Lord</span>. Eerdmans. 12.</span>
+        </p>
+      </blockquote>
+
+      <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Diatribe</span><span class="lang-en">Diatribe</span></h3>
+      
+      <blockquote class="academic-quote">
+        <p>
+          <span class="lang-pt">"Uma determinada forma de retórica que ocasionalmente transparece nas cartas de Paulo é a diatribe. Usada frequentemente por mestres ancestrais (como o filósofo estoico do século I, Epicteto, nos seus <span class="italic">Discursos</span>), a diatribe não era consistida maioritariamente de uma extensa reprimenda, da forma em que o é regularmente hoje, mas de um método dialogado criativo de ensino e conselho moralizante. A mesma emprega mecanismos oratórios como partes parceiras de uma conversa imaginárias, as perguntas retóricas, o exagero, as objeções hipotéticas, e ainda conclusões incorretas. O falante verdadeiro refuta os equívocos daquele que fala com ele (algumas vezes começando pela famosa expressão, 'Que tal nunca aconteça!'), utilizando-os como trampolim para o ato de ensinar."</span>
+          <span class="lang-en">“One particular rhetorical form that occasionally appears in Paul’s letters is the diatribe. Often used by ancient teachers (such as the first-century Stoic Epictetus, in his Discourses), the diatribe did not consist primarily of a lengthy rebuke, as it often does today, but of a creative dialogical mode of instruction and exhortation. It employs such rhetorical devices as imaginary conversation partners, rhetorical questions, exaggeration, hypothetical objections, and erroneous conclusions. The real speaker refutes the interlocutor’s errors (sometimes beginning with the famous phrase, ‘May it never be!’), using them as a springboard for teaching.”</span>
+        </p>
+        <p>
+          <span class="lang-pt">Gorman, Michael J. (2004). <span class="book-title">Apostle of the Crucified Lord</span>. Eerdmans. 84.</span>
+          <span class="lang-en">Gorman, Michael J. (2004). <span class="book-title">Apostle of the Crucified Lord</span>. Eerdmans. 84.</span>
+        </p>
+      </blockquote>
+
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Reconhecendo Nossa Subjetividade</span><span class="lang-en">Acknowledging Our Subjectivity</span></h2>
+      
+      <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">O Poder da Imaginação</span><span class="lang-en">The Power of Imagination</span></h3>
+      <p><span class="lang-pt">Todos trazem um cenário imaginado ao estudo! Ao ler os comentários que foram redigidos no tocante à Bíblia confira quantas vezes é que as pessoas proferem a seguinte frase: "Consigo imaginar …"</span><span class="lang-en">Everyone brings an imagined scenario to the study! When you read commentaries on the Bible note how many times people say, “I can just imagine …”</span></p>
+
+      <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Preferência Pessoal/Viés</span><span class="lang-en">Personal Preference/Bias</span></h3>
+      <p><span class="lang-pt">A minha preferência pessoal: Há uma influência do estoicismo incidindo sobre os coríntios mas não obrigatoriamente sobre Paulo, apesar de que Paulo encontra-se familiarizado com os seus pensamentos e o seu vocabulário.</span><span class="lang-en">My personal preference: There is a Stoicizing influence on the Corinthians but not necessarily on Paul, although Paul is familiar with their thought and language.</span></p>
+
+      <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">O Estoicismo e Paulo</span><span class="lang-en">Stoicism and Paul</span></h3>
+      <blockquote class="academic-quote">
+        <p>
+          <span class="lang-pt">"A questão que desejo levantar não é se Paulo pensava à moda estoica ou não; por outro lado, será que ele está escrevendo a pessoas que utilizam por si sós uma linguagem idêntica àquela, pensam através de uma maneira estoica, ou estão entusiasmados com as noções estoicas? De outra forma porque é que ele usa tão frequentemente uma linguagem que aparenta ser estoica, apesar de atuar utilizando pressupostos diferentes? Acima de tudo, a conduta de manifestação de Paulo não é forjada em absoluto pela sua experiência judaica nem pela confissão de fé Cristã, mas indubitavelmente de alguma forma a mesma também é forjada pelas próprias carências do seu público? Os problemas do seu público, o vocabulário por eles usado, e ainda a respectiva capacidade de compreensão, influenciam a conduta da interação tida com os mesmos por parte do apóstolo?"</span>
+          <span class="lang-en">“The question I wish to raise is not whether or not Paul thought in Stoic manner; rather, could it be that he is writing to people who themselves use such language, think in a Stoicizing manner, or are impressed with Stoic ideas? Otherwise why does he so frequently use language that appears Stoic, though he operates with different assumptions? After all, the manner of Paul’s expression is not shaped solely by his Jewish background and Christian confession, but surely to some extent by the needs of his audience as well? Do their problems, vocabulary, and level of understanding influence the manner of the apostle’s communication with them?”</span>
+        </p>
+        <p>
+          <span class="lang-pt">Paige, Terence (2004). "Stoicism, ἐλευθερία and Community at Corinth." <span class="book-title">Christianity at Corinth: The Quest for the Pauline Church</span>. Westminster John Knox. 209.</span>
+          <span class="lang-en">Paige, Terence (2004). “Stoicism, ἐλευθερία and Community at Corinth.” <span class="book-title">Christianity at Corinth: The Quest for the Pauline Church</span>. Westminster John Knox. 209.</span>
+        </p>
+      </blockquote>
+
+      <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">As Ideias Estoicas Presentes na 1ª Epístola aos Coríntios</span><span class="lang-en">Stoic Ideas in 1 Corinthians</span></h3>
+      <ul class="list-disc space-y-2 pl-6 text-slate-700">
+        <li><span class="lang-pt">O esforço para a conquista de um fervor espiritual elitista e carente de uma vertente vocacionada para a vida em comunidade</span><span class="lang-en">Pursuit of a spirituality that was elitist and devoid of community-oriented dimension</span></li>
+        <li><span class="lang-pt">A concepção que possuíam de si próprios como sendo tanto reis como pessoas de considerável posse de bens</span><span class="lang-en">The idea of themselves as kings and rich</span></li>
+        <li><span class="lang-pt">A alegação sobre uma liberdade absoluta em favor do fiel Cristão que é um sofo (<span class="italic">sofos</span>)</span><span class="lang-en">The assertion of absolute freedom for the Christian who is sofos</span></li>
+        <li><span class="lang-pt">A doutrina que prescrevia que tudo me é facultado fazer</span><span class="lang-en">The creed that all things are lawful for me</span></li>
+        <li><span class="lang-pt">O indício relativo a de que o ídolo nada representa</span><span class="lang-en">The fact that the idol is nothing</span></li>
+        <li><span class="lang-pt">A visão fortemente individualista para os dilemas morais (Paige, 2004)</span><span class="lang-en">The highly individualistic approach to moral problems (Paige, 2004)</span></li>
+      </ul>
+
+      <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">A Sabedoria e o Estoicismo (O Estoa)</span><span class="lang-en">Wisdom and the Stoa</span></h3>
+      <p><span class="lang-pt">A utilização de sabedoria (grego: ὁ σοφός) é um personagem principal no que respeita ao Estoa.</span><span class="lang-en">The use of wisdom (Greek: ὁσοφός) is a key figure for the Stoa.</span></p>
+
+      <blockquote class="academic-quote">
+        <p>
+          <span class="lang-pt">"Para o Estoa, houve uma enorme disparidade entre o 'homem sábio' (ὁ σοφός) e a classe popular (οἱ πολλοί). O σοφός (que se denota da mesma maneira enquanto σπουδαῖος, 'o que é bom', e φρόνιμος, 'o que demonstra sabedoria/o que é prudente') retrata uma pessoa que converteu no intento da sua sobrevivência a ideia correspondente à de 'vida em harmonia mediante o estado da natureza' (κατά φύσιν ζῆν). Isto destina-se a colaborar com o esforço para a conquista de um bem virtuoso, sendo que o mesmo representa aquilo que é a única e solitária porção de conduta estritamente 'adequada' admitida da parte do Estoa. É requerida apenas e estritamente a virtude no sentido de a pessoa ser alguém feliz (εὐδαίμων) e provida de sabedoria; as restantes coisas configuram um elemento ἀδιάφορον ('o que é indiferente')."</span>
+          <span class="lang-en">“For the Stoa there was a vast gulf between the ‘wise man’ (ὁ σοφός) and the common people (οἱ πολλοί). The σοφός (who is also described as σπουδαῖος, ‘good,’ and φρόνιμος, ‘wise/prudent’) is one who has made the goal of his existence the ‘life in accord with nature’ (κατά φύσιν ζῆν). This is intended to aid the pursuit of virtue, which is the only absolute ‘good’ recognized by the Stoa. Only virtue is necessary to be happy (εὐδαίμων) and wise; all else is ἀδιάφορον (‘indifferent’).”</span>
+        </p>
+        <p>
+          <span class="lang-pt">Paige, Terence (2004). "Stoicism, ἐλευθερία and Community at Corinth." <span class="book-title">Christianity at Corinth: The Quest for the Pauline Church</span>. Westminster John Knox. 210-211.</span>
+          <span class="lang-en">Paige, Terence (2004). “Stoicism, ἐλευθερία and Community at Corinth.” <span class="book-title">Christianity at Corinth: The Quest for the Pauline Church</span>. Westminster John Knox. 210-211.</span>
+        </p>
+      </blockquote>
+      
+      <p><span class="lang-pt">O aprendiz tem o dever de selecionar o elemento atinente e em conformidade com o estado da natureza. O mesmo tem a necessidade de intuitivamente interpretar "tanto o seu inerente estado natural humano como o estado natural do Universo de modo global, e compreender que estes elementos perfazem uma conjugação" (Paige, 2004). Paige estabelece também do mesmo modo a consideração de que "o entendimento de virtude de teor estoico interliga-se intimamente com o dom do conhecimento" (Paige, 2004).</span><span class="lang-en">The student must choose that which is according to nature. He needs to intuitively understand “both his own nature and that of the cosmos, and these are in harmony” (Paige, 2004). Paige also makes the point that “the Stoic understanding of virtue is closely tied to knowledge” (Paige, 2004).</span></p>
+
+      <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">O Estado Espiritual Independente e a Atitude Estoica</span><span class="lang-en">The Independent Mindset and the Stoic</span></h3>
+      
+      <blockquote class="academic-quote">
+        <p>
+          <span class="lang-pt">"A liberdade consagra uma propriedade englobada nos atributos mais cobiçados e enaltecidos daquele que representa um homem virtuoso e estoico: a libertação de paixões irracionais; a liberdade de escolha ou aversão aos elementos inseridos no seu dispor; a liberdade para experienciar a existência por meio de uma vivência enraizada em conformidade com o estado da natureza, e no empenho por abraçar a virtude. Todavia, Paulo desestrutura integralmente a presente interpretação assente numa vertente egoísta através do seu testemunho de vida, que no seu preceito de imitação de Cristo (<span class="italic">imitatio Christi</span>) providencia uma nova definição de liberdade."</span>
+          <span class="lang-en">“Freedom is one of the most cherished and exalted of attributes of the Stoic wise man: freedom from irrational passions; freedom to choose or reject those things which are in his power; freedom to live the life according to nature and to pursue virtue. But Paul overturns this self-centred perspective by his very life, which in its <span class="italic">imitatio Christi</span> makes a new definition of freedom.”</span>
+        </p>
+        <p>
+          <span class="lang-pt">Paige, Terence (2004). "Stoicism, ἐλευθερία and Community at Corinth." <span class="book-title">Christianity at Corinth: The Quest for the Pauline Church</span>. Westminster John Knox. 217.</span>
+          <span class="lang-en">Paige, Terence (2004). “Stoicism, ἐλευθερία and Community at Corinth.” <span class="book-title">Christianity at Corinth: The Quest for the Pauline Church</span>. Westminster John Knox. 217.</span>
+        </p>
+      </blockquote>
+      
+      <p><span class="lang-pt">Paige propõe que os coríntios pensam estar agindo com coragem ao estarem envolvidos na prática de comer comida sacrificada a ídolos, como se estivessem quase provando a sua invulnerabilidade. Por esta mesma razão, Paige chama-lhes de "um grupo de elite que assumem para si mesmos o título de <span class="italic">sophoi</span>, abrigados no seio da igreja e que prezavam por uma ética altamente individualista e egocêntrica" (Paige, 2004).</span><span class="lang-en">Paige suggests that the Corinthians think they are being strong by participating in food sacrificed to idols as if they are almost proving their invulnerability. So Paige calls them an “elite group of self-styled <span class="italic">sophoi</span> within the church who held a highly individualistic, self-centred ethics” (Paige, 2004).</span></p>
+      
+      <p><span class="lang-pt">Mas para encerrar esta seção, deparamo-nos com uma conversa. Encontramo-nos tentando desembaraçar diferentes pensamentos e palavras usados de maneiras diferentes tanto pelos coríntios como por Paulo, e então tentando discernir o que Paulo pretende dizer com eles.</span><span class="lang-en">But to wrap up this section, we have entered a conversation. We’re trying to untangle different thoughts and words used in different ways by both the Corinthians and Paul and then trying to discern what Paul means by them.</span></p>
+      
+      <p><span class="lang-pt">E, para complexificar as situações ainda mais, corremos o risco de nos depararmos com algo que primeiramente foi ensinado por Paulo, e que eles corromperam e distorceram para se tornar algo diferente, como sabedoria, mistério, glória — todas palavras usadas de maneiras diferentes por Paulo e pelos coríntios.</span><span class="lang-en">And to complicate things even further, we may be encountering something that Paul taught them in the first place that they have corrupted and twisted to become something else, like wisdom, mystery, glory—all words used in different ways by Paul and the Corinthians.</span></p>
+
+      <blockquote class="academic-quote">
+        <p>
+          <span class="lang-pt">"Algumas premissas com as quais Paulo concorda — e que ele mesmo pode ter afirmado em sua pregação em Corinto — estavam sendo usadas para servir a uma conclusão em desacordo com a teologia de Paulo e, além disso, em conflito com a nova existência em Cristo."</span>
+          <span class="lang-en">“Some premises that Paul agrees with—and which he may have asserted himself in his preaching at Corinth—were being made to serve a conclusion at variance with Paul’s theology and, further, at odds with the new existence in Christ.”</span>
+        </p>
+        <p>
+          <span class="lang-pt">Paige, Terence (2004). "Stoicism, ἐλευθερία and Community at Corinth." <span class="book-title">Christianity at Corinth: The Quest for the Pauline Church</span>. Westminster John Knox. 215.</span>
+          <span class="lang-en">Paige, Terence (2004). “Stoicism, ἐλευθερία and Community at Corinth.” <span class="book-title">Christianity at Corinth: The Quest for the Pauline Church</span>. Westminster John Knox. 215.</span>
+        </p>
+      </blockquote>
+
+      <blockquote class="academic-quote">
+        <p>
+          <span class="lang-pt">"Fazemos melhor sentido deste texto se imaginarmos que os problemas surgiram não nas camadas mais elevadas nem mais inferiores da sociedade, mas entre aqueles que tinham pretensões sociais, que estavam mais preocupados em ganhar uma fatia maior de honra e que eram mais sensíveis a insultos que trouxessem a vergonha."</span>
+          <span class="lang-en">“We can make best sense of the text if we imagine the problems to have arisen not among the highest or lowest levels of society, but among those with social pretensions who were most concerned with gaining a greater share of honor and most sensitive to insults which brought shame.”</span>
+        </p>
+        <p>
+          <span class="lang-pt">Pogoloff, Stephen (1992). <span class="book-title">Logos and Sophia</span>. Scholars Press. 255.</span>
+          <span class="lang-en">Pogoloff, Stephen (1992). <span class="book-title">Logos and Sophia</span>. Scholars Press. 255.</span>
+        </p>
+      </blockquote>
+
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h2>
+      <p><span class="lang-pt">Quais são os critérios para determinar se Paulo está ou não a citar os demais ao longo do texto?</span><span class="lang-en">What are the criteria for determining whether or not Paul is citing others in the text?</span></p>
+
     </section>
+  </main>
   
-<footer class="page-footer">
+  <footer class="page-footer max-w-3xl mx-auto px-6 pb-20 md:pb-24">
     <span class="lang-pt">Anotações de Aula: 1 Coríntios</span><span class="lang-en">Class Notes: 1 Corinthians</span>
     <span class="lang-pt">Sessão 2</span><span class="lang-en">Session 2</span>
   </footer>
-</main>
-  <script src="../../js/verse-modal.js"></script>
-
+  
   <script src="../../js/reading-progress.js"></script>
-<script src="../../js/lang-toggle.js"></script>
-  <script src="../../js/reveal.js"></script>
+  <script src="../../js/lang-toggle.js"></script>
+  <script src="../../js/verse-modal.js"></script>
   <script>
     setLang(localStorage.getItem('bp_lang')||'pt');
   </script>
