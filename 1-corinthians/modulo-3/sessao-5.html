@@ -4,107 +4,140 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sessão 5: Imoralidade Sexual dentro da Igreja</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     html[lang="pt"] .lang-en { display: none !important; }
     html[lang="en"] .lang-pt { display: none !important; }
     .verse-link { cursor: pointer; }
+    .ref { text-decoration: underline !important; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
     @media print { .nav-btn-fixed { display: none !important; } }
-  /* sess-visual-standard v1 */
-      /* Figure captions: centered, small, italic, muted — like the PDF */
-      section figure { margin: 1.75rem 0 !important; }
-      section figure figcaption {
-        margin-top: 0.5rem; text-align: center;
-        font-size: 0.8rem; font-style: italic; color: #64748b;
-      }
-      .ref { cursor: pointer; }
-    /* Consistent paragraph rhythm */
-      section > p { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
-      section > p:first-child { margin-top: 0; }
-      #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  @media print { #reading-progress { display: none !important; } }
-  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
-      /* Scripture blocks: light-grey left bar matching the source PDF (#e4e8ed); NRSV tag in link blue */
-      section > p.scripture { border-left: 3px solid #e4e8ed; padding-left: 1.1rem; }
-      .nrsv { color: #0056b3; font-weight: 700; }
+    
+    section figure { margin: 1.75rem 0 !important; }
+    section figure figcaption {
+      margin-top: 0.5rem; text-align: center;
+      font-size: 0.8rem; font-style: italic; color: #64748b;
+    }
+    
+    section > p { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
+    section > figure,
+    section > ul,
+    section > ol { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
+    
+    #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+    @media print { #reading-progress { display: none !important; } }
+    
+    .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
+    
+    body { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important; font-size: 1.05rem !important; line-height: 1.78 !important; color: #24262a; }
+    section > p { margin: 1.1rem 0 1.1rem !important; line-height: 1.78 !important; }
+    section > h2 { margin: 3rem 0 1.25rem !important; font-size: 1.9rem !important; font-weight: 800 !important; letter-spacing: -0.015em; }
+    section > h3 { margin: 2rem 0 .75rem !important; font-size: 1.3rem !important; font-weight: 800 !important; }
+    
+    /* Citação Acadêmica (linha mais grossa e escura) */
+    blockquote.academic-quote { border-left: 4px solid #475569 !important; padding-left: 1.25rem !important; margin: 2rem 0 !important; }
+    blockquote.academic-quote p { font-style: normal !important; color: #334155 !important; line-height: 1.75 !important; margin-bottom: 1rem !important; }
+    blockquote.academic-quote p:last-child { margin-bottom: 0 !important; }
+    
+    /* Bloco dos Versículos (linha mais fina e clara abraçando todo o conjunto) */
+    .verse-block { border-left: 3px solid #cbd5e1; padding-left: 1.25rem; margin: 2rem 0; }
+    .verse-text { margin-top: 0.5rem !important; margin-bottom: 0.5rem !important; }
+    
+    sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px; }
+    .book-title { color: #2563eb; text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
   </style>
 </head>
 <body class="bg-white font-sans text-slate-800">
 <div id="reading-progress" aria-hidden="true"></div>
 
   <div class="nav-btn-fixed fixed left-4 top-4 z-50">
-    <a href="../index.html"
+    <a href="./index.html"
       class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
       <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
     </a>
   </div>
-  <div class="nav-btn-fixed fixed right-4 top-4 z-50 print:hidden">
+  <div class="nav-btn-fixed fixed right-8 top-4 z-50 print:hidden">
     <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white shadow-sm">
       <button id="lang-pt" onclick="setLang('pt')" class="px-4 py-1.5 text-sm font-semibold transition-colors">PT</button>
       <button id="lang-en" onclick="setLang('en')" class="px-4 py-1.5 text-sm font-semibold transition-colors">EN</button>
       <button onclick="window.print()" class="inline-flex items-center gap-2 px-4 py-1.5 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1 2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg><span class="lang-pt">Imprimir</span><span class="lang-en">Print</span></button>
     </div>
   
-  <!-- conteudo adicional do PDF -->
-  <p class="body reveal"><span class="lang-en">Summary Verses: 1 Corinthians 6:19-20</span></p>
-  <p class="body reveal"><span class="lang-en">Immorality at Corinth</span></p>
-  <p class="body reveal"><span class="lang-en">εἰδωλολάτραις (Greek: idololatrais—idolaters)</span></p>
-  <p class="body reveal"><span class="lang-en">λοίδορος (Greek: loidoros—verbal abuser)</span></p>
-  <p class="body reveal"><span class="lang-en">μέθυσος (Greek: methusos—drunkard)</span></p>
-  <p class="body reveal"><span class="lang-en">Reflection Question</span></p>
-</div>
+  </div>
   <main class="mx-auto max-w-3xl px-6 py-20 md:py-24">
     <h1 class="text-4xl font-bold text-slate-900 md:text-5xl"><span class="lang-pt">Sessão 5: Imoralidade Sexual dentro da Igreja</span><span class="lang-en">Session 5: Sexual Immorality Inside the Church</span></h1>
     <hr class="my-8 border-t-2 border-slate-200" />
     <section>
-    <h2 class="text-2xl font-bold text-slate-900">Principais Lições</h2>
-    <ul class="list-disc space-y-2 pl-6 text-slate-700">
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Principais Aprendizados</span><span class="lang-en">Key Takeaways</span></h2>
+      <ul class="list-disc pl-10 text-slate-700">
       <li><span class="lang-pt">A ética sexual cristã não se baseia apenas na escolha e no consentimento individual, mas na crença de que nossas ações têm impacto em toda a comunidade.</span><span class="lang-en">The Christian sexual ethic is not based solely on individual choice and consent. Rather, it's grounded in the belief that our actions have full-community impact, whether they are done privately or not.</span></li>
-      <li><span class="lang-pt">Paulo distingue entre quem pertence ao corpo de crentes e quem está fora do corpo; ele não instrui a corrigir os comportamentos sexuais do mundo, e nem mesmo a julgá-los. Em vez disso, ele se dirige especificamente aos membros da igreja.</span><span class="lang-en">Paul distinguishes between those who belong to the body of believers and those outside the body. Paul does not instruct people to correct the sexual behaviors common in the world or even to pass judgment on them. Instead, he is addressing church members specifically.</span></li>
+      <li><span class="lang-pt">Paulo distingue entre quem pertence ao corpo de crentes e quem está fora do corpo.</span><span class="lang-en">Paul distinguishes between those who belong to the body of believers and those outside the body.</span></li>
+      <li><span class="lang-pt">Paulo não instrui a corrigir os comportamentos sexuais comuns no mundo, nem mesmo a julgá-los. Em vez disso, ele se dirige especificamente aos membros da igreja.</span><span class="lang-en">Paul does not instruct people to correct the sexual behaviors common in the world or even to pass judgment on them. Instead, he is addressing church members specifically.</span></li>
     </ul>
-    <h2 class="text-2xl font-bold text-slate-900">O Ensino de Paulo sobre Relações Sexuais</h2>
+
+    <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">O Ensino de Paulo sobre Relações Sexuais</span><span class="lang-en">Paul’s Teaching on Sexual Relations</span></h2>
     <p class="text-slate-700"><span class="lang-pt">Esta seção como um todo lida com o modo como Paulo enquadra as relações sexuais e a imoralidade sexual, como ele vê o corpo e o que fazemos com ele, mas não é apenas sobre isso. Também trata de outros comportamentos que destroem o corpo.</span><span class="lang-en">This section as a whole deals with how Paul frames sexual relations and sexual immorality, how he views the body and what we do with it, but it isn't only about that. It's also about other behaviors that destroy the body.</span></p>
     <p class="text-slate-700"><span class="lang-pt">Seu ensino segue dois fios principais:</span><span class="lang-en">His teaching follows two main threads:</span></p>
-    <ul class="list-disc space-y-2 pl-6 text-slate-700">
+    <ol class="list-decimal pl-10 text-slate-700">
       <li><span class="lang-pt">O que Paulo quer impressionar a eles sobre seus corpos em relação a Jesus Cristo e uns aos outros. Isto forma o fundamento de sua ética sexual nestes capítulos.</span><span class="lang-en">What Paul wants to impress upon them about their bodies in relation to Jesus Christ and to one another. This forms the foundation of his sexual ethic in these chapters.</span></li>
       <li><span class="lang-pt">A distinção que ele faz entre o corpo de crentes e aqueles fora do corpo. Ele é muito rigoroso em julgar os primeiros, e não os últimos.</span><span class="lang-en">The distinction he makes between the body of believers and those outside the body. He is very strict at judging the former and not the latter.</span></li>
-    </ul>
+    </ol>
     <p class="text-slate-700"><span class="lang-pt">O que esta seção muito especificamente não aborda é qualquer sentido de a Igreja precisar corrigir o mundo ou mesmo julgar o mundo em relação à ética sexual. Tudo isso se refere a relações internas da igreja, e é uma janela para como Paulo lidou com desordem sexual, casamento, solteirice e virgindade.</span><span class="lang-en">What this section very specifically does not address is any sense of the Church needing to correct the world or even to pass judgment on the world in relation to sexual ethics. This is all about internal church relations, and it is a window into how Paul dealt with sexual disorder, marriage, singleness, and virginity.</span></p>
-    <p class="text-slate-700 scripture"><span class="lang-pt"><span class="ref" data-reference="1 Corinthians 6:19-20">1 Coríntios 6:19-20</span> (<span class="nrsv">NRSV</span>): “Ou não sabeis que o vosso corpo é santuário do Espírito Santo que habita em vós, o qual tendes da parte de Deus, e que não sois de vós mesmos? Porque fostes comprados por preço; glorificai, pois, a Deus no vosso corpo.”</span><span class="lang-en">1 Corinthians 6:19-20 (<span class="nrsv">NRSV</span>): "Or do you not know that your body is a temple of the Holy Spirit within you, which you have from God, and that you are not your own? For you were bought with a price; therefore glorify God in your body."</span></p>
-    <h2 class="text-2xl font-bold text-slate-900">Imoralidade em Corinto</h2>
-    <p class="text-slate-700"><span class="lang-pt"><span class="ref" data-reference="1 Corinthians 5">1 Coríntios 5</span> começa com Paulo tratando de um relatório de imoralidade sexual (grego: <em>porneia</em>/πορνεία — fornicação, de onde vem o termo pornografia) — ouviu que um homem na igreja está tendo relação sexual com a mulher do pai (sua madrasta), classificado como incesto no direito romano.</span><span class="lang-en">1 Corinthians 5 begins with Paul addressing a report about sexual immorality (Greek: porneia/πορνεία—fornication, from which we get the term pornography). He has heard that a man in the church is having sex with his father's wife.</span></p>
+          <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Versículos de Resumo</span><span class="lang-en">Summary Verses</span></h2>
+<div class="verse-block">
+  <p class="font-bold text-slate-900 mb-2">
+    <span class="lang-pt">1 Coríntios 6:19-20 <span class="font-medium text-slate-500">NRSV*</span></span>
+    <span class="lang-en">1 Corinthians 6:19-20 <span class="font-medium text-slate-500">NRSV*</span></span>
+  </p>
+  <p class="text-slate-800 leading-relaxed verse-text">
+    <span class="lang-pt"><sup class="vs">19</sup> “Ou não sabeis que o vosso corpo é santuário do Espírito Santo que habita em vós, o qual tendes da parte de Deus, e que não sois de vós mesmos? <sup class="vs">20</sup> Porque fostes comprados por preço; glorificai, pois, a Deus no vosso corpo.”</span>
+    <span class="lang-en"><sup class="vs">19</sup> "Or do you not know that your body is a temple of the Holy Spirit within you, which you have from God, and that you are not your own? <sup class="vs">20</sup> For you were bought with a price; therefore glorify God in your body."</span>
+  </p>
+</div>
+    <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Imoralidade em Corinto</span><span class="lang-en">Immorality at Corinth</span></h2>
+    <p class="text-slate-700"><span class="lang-pt"><span class="ref" data-reference="1 Corinthians 5">1 Coríntios 5</span> começa com Paulo tratando de um relatório de imoralidade sexual (grego: <em>porneia</em>/<span class="font-serif">πορνεία</span> — fornicação, de onde vem o termo pornografia) — ouviu que um homem na igreja está tendo relação sexual com a mulher do pai (sua madrasta), classificado como incesto no direito romano.</span><span class="lang-en">1 Corinthians 5 begins with Paul addressing a report about sexual immorality (Greek: porneia/<span class="font-serif">πορνεία</span>—fornication, from which we get the term pornography). He has heard that a man in the church is having sex with his father's wife.</span></p>
     <p class="text-slate-700"><span class="lang-pt">Embora esta não seja sua mãe biológica, é sua madrasta, este relacionamento é classificado como incesto no direito romano, daí o comentário de Paulo de que nem mesmo pagãos toleram esse comportamento. Era punível por lei.</span><span class="lang-en">Although this is not his birth mother, it's his stepmother, this relationship is classed as incest in Roman law, hence Paul's comment that not even pagans tolerate this behavior. It was punishable by law.</span></p>
     <p class="text-slate-700"><span class="lang-pt">Não sabemos as circunstâncias exatas. O que poderia significar que eles se orgulham disso? Ele era poderoso ou rico? Era um patrono ou líder?</span><span class="lang-en">We don't know the exact circumstances. What might it mean that they are proud about it? Was he powerful or rich? Was he a patron or a leader?</span></p>
     <p class="text-slate-700"><span class="lang-pt">As visões de Paulo aqui são muito fortes! “Entregar tal pessoa a Satanás para a destruição da carne.” O que Paulo poderia querer dizer com isso?</span><span class="lang-en">Paul's views here are very strong! "To deliver such a one to Satan for the destruction of the flesh." What might Paul mean by that?</span></p>
-    <h2 class="text-2xl font-bold text-slate-900">Os do “Mundo” e Os do Corpo</h2>
-    <p class="text-slate-700 scripture"><span class="lang-pt"><span class="ref" data-reference="1 Corinthians 5:9-13">1 Coríntios 5:9-13</span> (<span class="nrsv">NRSV</span>): “Escrevi a vós, na carta, que não vos associásseis com os que se entregam à imoralidade sexual — não querendo dizer, de modo algum, com os imorais deste mundo, ou com os avarentos e roubadores, ou com os idólatras, pois, nesse caso, teríeis de sair do mundo. Mas, agora, vos escrevo que não vos associeis com quem, chamando-se irmão, é imoral, ou avarento, ou idólatra, ou caluniador, ou beberrão, ou roubador; com esse tal, nem mesmo comais. Pois, que tenho eu de julgar os que estão de fora? Não julgais vós os que estão dentro? Deus julgará os que estão de fora. “Retirai o perverso do meio de vós.”</span><span class="lang-en">1 Corinthians 5:9-13 (<span class="nrsv">NRSV</span>): "I wrote to you in my letter not to associate with sexually immoral persons—not at all meaning the immoral of this world, or the greedy and robbers, or idolaters, since you would then need to go out of the world. But now I am writing to you not to associate with anyone who bears the name of brother or sister who is sexually immoral or greedy, or is an idolater, reviler, drunkard, or robber. Do not even eat with such a one. For what have I to do with judging those outside? Is it not those who are inside that you are to judge? God will judge those outside. 'Drive out the wicked person from among you.'"</span></p>
+    <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Aqueles no “Mundo” e Aqueles no Corpo</span><span class="lang-en">Those in the “World” and Those in the Body</span></h2>
+    <div class="verse-block">
+  <p class="font-bold text-slate-900 mb-2">
+    <span class="lang-pt">1 Coríntios 5:9-13 <span class="font-medium text-slate-500">NRSV*</span></span>
+    <span class="lang-en">1 Corinthians 5:9-13 <span class="font-medium text-slate-500">NRSV*</span></span>
+  </p>
+  <p class="text-slate-800 leading-relaxed verse-text">
+    <span class="lang-pt"><sup class="vs">9</sup> “Escrevi a vós, na carta, que não vos associásseis com os que se entregam à imoralidade sexual — não querendo dizer, de modo algum, com os imorais deste mundo, ou com os avarentos e roubadores, ou com os idólatras, pois, nesse caso, teríeis de sair do mundo. Mas, agora, vos escrevo que não vos associeis com quem, chamando-se irmão, é imoral, ou avarento, ou idólatra, ou caluniador, ou beberrão, ou roubador; com esse tal, nem mesmo comais. Pois, que tenho eu de julgar os que estão de fora? Não julgais vós os que estão dentro? Deus julgará os que estão de fora. “Retirai o perverso do meio de vós.”</span>
+    <span class="lang-en"><sup class="vs">9</sup> "I wrote to you in my letter not to associate with sexually immoral persons—not at all meaning the immoral of this world, or the greedy and robbers, or idolaters, since you would then need to go out of the world. But now I am writing to you not to associate with anyone who bears the name of brother or sister who is sexually immoral or greedy, or is an idolater, reviler, drunkard, or robber. Do not even eat with such a one. For what have I to do with judging those outside? Is it not those who are inside that you are to judge? God will judge those outside. 'Drive out the wicked person from among you.'"</span>
+  </p>
+</div>
     <p class="text-slate-700"><span class="lang-pt">Note os comportamentos que Paulo identifica.</span><span class="lang-en">Note the behaviors Paul identifies.</span></p>
     <p class="text-slate-700"><span class="lang-pt">As pessoas no mundo com as quais temos de nos associar no dia a dia incluem:</span><span class="lang-en">The people in the world that we have to associate with in our everyday lives include:</span></p>
-    <ul class="list-disc space-y-2 pl-6 text-slate-700">
-      <li><span class="lang-pt">τοῖς πλεονέκταις (grego: <em>tois pleonektais</em> — os cobiçosos, querendo mais do que os outros têm)</span><span class="lang-en">τοῖς πλεονέκταις (Greek: <em>tois pleonektais</em>—the covetous, you want more of what others have)</span></li>
-      <li><span class="lang-pt">ἅρπαξ (grego: <em>harpax</em> — trapaceiro, ladrão, extorquidor)</span><span class="lang-en">ἅρπαξ (Greek: <em>harpax</em>—swindler, robber, extortioner)</span></li>
-      <li><span class="lang-pt">εἰδωλολάτραις (grego: <em>idololatrais</em> — idólatras)</span><span class="lang-en">εἰδωλολάτραις (Greek: <em>idololatrais</em>—idolaters)</span></li>
+    <ul class="list-disc pl-10 text-slate-700">
+      <li><span class="lang-pt"><span class="font-serif">τοῖς πλεονέκταις</span> (grego: <em>tois pleonektais</em> — os cobiçosos, querendo mais do que os outros têm)</span><span class="lang-en"><span class="font-serif">τοῖς πλεονέκταις</span> (Greek: <em>tois pleonektais</em>—the covetous, you want more of what others have)</span></li>
+      <li><span class="lang-pt"><span class="font-serif">ἅρπαξ</span> (grego: <em>harpax</em> — trapaceiro, ladrão, extorquidor)</span><span class="lang-en"><span class="font-serif">ἅρπαξ</span> (Greek: <em>harpax</em>—swindler, robber, extortioner)</span></li>
+      <li><span class="lang-pt"><span class="font-serif">εἰδωλολάτραις</span> (grego: <em>idololatrais</em> — idólatras)</span><span class="lang-en"><span class="font-serif">εἰδωλολάτραις</span> (Greek: <em>idololatrais</em>—idolaters)</span></li>
     </ul>
     <p class="text-slate-700"><span class="lang-pt">As pessoas no corpo com as quais Paulo pensa que não devemos nos misturar (nem mesmo comer!) são todas as acima mais:</span><span class="lang-en">The people in the body who Paul thinks we shouldn't mix with (not even eat with!) are all those above plus:</span></p>
-    <ul class="list-disc space-y-2 pl-6 text-slate-700">
-      <li><span class="lang-pt">λοίδορος (grego: <em>loidoros</em> — agressor verbal)</span><span class="lang-en">λοίδορος (Greek: <em>loidoros</em>—verbal abuser)</span></li>
-      <li><span class="lang-pt">μέθυσος (grego: <em>methusos</em> — beberrão)</span><span class="lang-en">μέθυσος (Greek: <em>methusos</em>—drunkard)</span></li>
+    <ul class="list-disc pl-10 text-slate-700">
+      <li><span class="lang-pt"><span class="font-serif">λοίδορος</span> (grego: <em>loidoros</em> — agressor verbal)</span><span class="lang-en"><span class="font-serif">λοίδορος</span> (Greek: <em>loidoros</em>—verbal abuser)</span></li>
+      <li><span class="lang-pt"><span class="font-serif">μέθυσος</span> (grego: <em>methusos</em> — beberrão)</span><span class="lang-en"><span class="font-serif">μέθυσος</span> (Greek: <em>methusos</em>—drunkard)</span></li>
     </ul>
 
-    <h2 class="text-2xl font-bold text-slate-900">Pergunta de Reflexão</h2>
-    <p class="text-slate-700"><span class="lang-pt">Qual o significado de Paulo se dirigir aos seguidores de Jesus e não ao “mundo” (ou seja, àqueles que não claimam seguir a Jesus)? Como isso informa o modo como os seguidores de Jesus podem entender a ética sexual hoje?</span><span class="lang-en">What is the significance of Paul addressing followers of Jesus and not the "world" (i.e., those who do not claim to follow Jesus)? How does this inform the way followers of Jesus can understand sexual ethics today?</span></p>
+    <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h2>
+    <p class="text-slate-700"><span class="lang-pt">Qual o significado de Paulo se dirigir aos seguidores de Jesus e não ao “mundo” (ou seja, àqueles que não professam seguir a Jesus)? Como isso informa o modo como os seguidores de Jesus podem entender a ética sexual hoje?</span><span class="lang-en">What is the significance of Paul addressing followers of Jesus and not the "world" (i.e., those who do not claim to follow Jesus)? How does this inform the way followers of Jesus can understand sexual ethics today?</span></p>
     </section>
+  </main>
 
-<footer class="page-footer">
+  <footer class="page-footer max-w-3xl mx-auto px-6 pb-20 md:pb-24">
     <span class="lang-pt">Anotações de Aula: 1 Coríntios</span><span class="lang-en">Class Notes: 1 Corinthians</span>
     <span class="lang-pt">Sessão 5</span><span class="lang-en">Session 5</span>
   </footer>
-</main>
-  <script src="../../js/verse-modal.js"></script>
 
   <script src="../../js/reading-progress.js"></script>
-<script src="../../js/lang-toggle.js"></script>
-  <script src="../../js/reveal.js"></script>
+  <script src="../../js/lang-toggle.js"></script>
+  <script src="../../js/verse-modal.js"></script>
   <script>
     setLang(localStorage.getItem('bp_lang')||'pt');
   </script>
