@@ -3,27 +3,62 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sessão 12: O Maior Desses é o Amor</title>
+  <title>Sessão 12: O Maior Deles é o Amor</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     html[lang="pt"] .lang-en { display: none !important; }
     html[lang="en"] .lang-pt { display: none !important; }
     .verse-link { cursor: pointer; }
+    .ref { text-decoration: underline !important; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
     @media print { .nav-btn-fixed { display: none !important; } }
-      section figure { margin: 1.75rem 0 !important; }
-      section figure figcaption { margin-top: 0.5rem; text-align: center; font-size: 0.8rem; font-style: italic; color: #64748b; }
-      section > p { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
-      section > figure, section > ul, section > ol { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
-      section > h2 { margin: 1.75rem 0 0.75rem !important; }
-      #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  @media print { #reading-progress { display: none !important; } }
-  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
-</style>
+    
+    section figure { margin: 1.75rem 0 !important; }
+    section figure figcaption {
+      margin-top: 0.5rem; text-align: center;
+      font-size: 0.8rem; font-style: italic; color: #64748b;
+    }
+    
+    section > p { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
+    section > figure,
+    section > ul,
+    section > ol { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
+    
+    /* Agrupamento de Listas */
+    section ul li, section ol li { margin-bottom: 0.25rem !important; line-height: 1.6 !important; }
+    
+    #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+    @media print { #reading-progress { display: none !important; } }
+    
+    .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
+    
+    body { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important; font-size: 1.05rem !important; line-height: 1.78 !important; color: #24262a; }
+    section > p { margin: 1.1rem 0 1.1rem !important; line-height: 1.78 !important; }
+    
+    /* Hierarquia de Cabeçalhos (H2 = Grande, H3 = Menor) */
+    section > h2 { margin: 3rem 0 1.25rem !important; font-size: 1.9rem !important; font-weight: 800 !important; letter-spacing: -0.015em; }
+    section > h3 { margin: 2rem 0 .75rem !important; font-size: 1.4rem !important; font-weight: 700 !important; }
+    
+    /* Citação Acadêmica */
+    blockquote.academic-quote { border-left: 4px solid #475569 !important; padding-left: 1.25rem !important; margin: 2rem 0 !important; }
+    blockquote.academic-quote p { font-style: normal !important; color: #334155 !important; line-height: 1.75 !important; margin-bottom: 1rem !important; }
+    blockquote.academic-quote p:last-child { margin-bottom: 0 !important; }
+    
+    /* Bloco de Versículos (Linha Cinza Clara) */
+    .verse-block { border-left: 3px solid #cbd5e1; padding-left: 1.25rem; margin: 2rem 0; }
+    .verse-text { margin-top: 0.5rem !important; margin-bottom: 0.5rem !important; }
+    
+    sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px; }
+    .book-title { color: #2563eb; text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+  </style>
 </head>
 <body class="bg-white font-sans text-slate-800">
 <div id="reading-progress" aria-hidden="true"></div>
+
   <div class="nav-btn-fixed fixed left-4 top-4 z-50">
-    <a href="../index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <a href="./index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
       <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
     </a>
   </div>
@@ -34,54 +69,119 @@
       <button onclick="window.print()" class="inline-flex items-center gap-2 px-4 py-1.5 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg><span class="lang-pt">Imprimir</span><span class="lang-en">Print</span></button>
     </div>
   </div>
+  
   <main class="mx-auto max-w-3xl px-6 py-20 md:py-24">
-    <h1 class="text-4xl font-bold text-slate-900 md:text-5xl"><span class="lang-pt">Sessão 12: O Maior Desses é o Amor</span><span class="lang-en">Session 12: The Greatest of These Is Love</span></h1>
+    <h1 class="text-4xl font-bold text-slate-900 md:text-5xl mb-8"><span class="lang-pt">Sessão 12: O Maior Deles é o Amor</span><span class="lang-en">Session 12: The Greatest of These Is Love</span></h1>
     <hr class="my-8 border-t-2 border-slate-200" />
+    
     <section>
-      <h2 class="text-2xl font-bold text-slate-900">Key Takeaways</h2>
-      <ul class="list-disc space-y-2 pl-6 text-slate-700">
-        <li><span class="lang-pt">1 Coríntios 13 é a peça central do ensino de Paulo sobre os dons do Espírito nos capítulos 12 a 14.</span><span class="lang-en">1 Corinthians 13 is the centerpiece of Paul's teaching on the gifts of the Spirit in chapters 12 through 14.</span></li>
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Principais Aprendizados</span><span class="lang-en">Key Takeaways</span></h2>
+      <ul class="list-disc pl-10 text-slate-700">
+        <li><span class="lang-pt"><span class="ref" data-reference="1 Coríntios 13">1 Coríntios 13</span> é o elemento central do ensino de Paulo sobre os dons do Espírito nos <span class="ref" data-reference="1 Coríntios 12-14">capítulos 12 a 14</span>.</span><span class="lang-en"><span class="ref" data-reference="1 Corinthians 13">1 Corinthians 13</span> is the centerpiece of Paul’s teaching on the gifts of the Spirit in <span class="ref" data-reference="1 Corinthians 12-14">chapters 12 through 14</span>.</span></li>
         <li><span class="lang-pt">Paulo enfatiza os dons de profecia, conhecimento e línguas porque vários grupos estavam erroneamente valorizando alguns desses dons acima de outros.</span><span class="lang-en">Paul emphasizes the gifts of prophecy, knowledge, and tongues because various groups were mistakenly valuing some of these gifts over others.</span></li>
-        <li><span class="lang-pt">Em vez de fazer julgamentos desconectados da lateral, Paulo escreve na primeira pessoa, humildemente incluindo a si mesmo com os coríntios como um membro participante de seu grupo que tanto celebra quanto sofre com eles.</span><span class="lang-en">Rather than making disconnected judgments from the sidelines, Paul writes in the first person, humbly including himself with the Corinthians as a participating member of their group who both celebrates and suffers with them.</span></li>
+        <li><span class="lang-pt">Em vez de fazer julgamentos desconectados de fora, Paulo escreve na primeira pessoa, incluindo a si mesmo humildemente junto com os coríntios como um membro participante do grupo deles, que tanto celebra quanto sofre com eles.</span><span class="lang-en">Rather than making disconnected judgments from the sidelines, Paul writes in the first person, humbly including himself with the Corinthians as a participating member of their group who both celebrates and suffers with them.</span></li>
       </ul>
 
-      <h2 class="text-2xl font-bold text-slate-900">The Centrality of Love</h2>
-      <p><span class="lang-pt">Paulo começa o capítulo 13 mudando para a primeira pessoa. O que faz conosco como ouvintes e leitores que Paulo usa a primeira pessoa aqui? Paulo não se coloca à distância da verdade que compartilha com os coríntios porque ele também seria nada sem o amor. Note quais dons Paulo menciona em 1 Coríntios 13:1-3. Este capítulo não é um tópico lateral; é central ao seu ensino sobre as questões com as quais a igreja coríntia está lutando — falar em línguas, profecia, e conhecimento.</span><span class="lang-en">Paul begins chapter 13 by switching into the first person. What does it do to us as hearers and readers that Paul uses the first person here? Paul does not stand at a distance from the truth he shares with the Corinthians because he, too, would be nothing without love. Note which gifts Paul mentions in 1 Corinthians 13:1-3. This chapter is not a side topic; it is central to his teaching on the issues the Corinthian church is struggling with—speaking in tongues, prophecy, and knowledge.</span></p>
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">A Centralidade do Amor</span><span class="lang-en">The Centrality of Love</span></h2>
+      <p><span class="lang-pt">Paulo começa o <span class="ref" data-reference="1 Coríntios 13">capítulo 13</span> mudando para a primeira pessoa. O que causa a nós, ouvintes e leitores, o fato de Paulo usar a primeira pessoa aqui? Paulo não se posiciona à distância da verdade que ele compartilha com os coríntios, porque ele também não seria nada sem o amor.</span><span class="lang-en">Paul begins <span class="ref" data-reference="1 Corinthians 13">chapter 13</span> by switching into the first person. What does it do to us as hearers and readers that Paul uses the first person here? Paul does not stand at a distance from the truth he shares with the Corinthians because he, too, would be nothing without love.</span></p>
+      
+      <p><span class="lang-pt">Observe quais dons Paulo menciona em <span class="ref" data-reference="1 Coríntios 13:1-3">1 Coríntios 13:1-3</span>. Este capítulo não é um tópico marginal; ele é central para o seu ensino sobre as questões com as quais a igreja de Corinto está lutando—o falar em línguas, a profecia e o conhecimento.</span><span class="lang-en">Note which gifts Paul mentions in <span class="ref" data-reference="1 Corinthians 13:1-3">1 Corinthians 13:1-3</span>. This chapter is not a side topic; it is central to his teaching on the issues the Corinthian church is struggling with—speaking in tongues, prophecy, and knowledge.</span></p>
 
-      <h2 class="text-2xl font-bold text-slate-900">What Love Is</h2>
-      <p><span class="lang-pt">Em 1 Coríntios 13:4, Paulo começa a expressar o que é o amor com duas afirmações do que o amor faz. Ele fala sobre o amor μακροθυμεῖ (grego: makrothymeo — perseverar, ser paciente, longânimo, tolerante), e o amor χρηστεύεται (grego: chresteuomai — ser gentil, bondoso).</span><span class="lang-en">In 1 Corinthians 13:4, Paul begins to express what love is with two affirmations of what love does do. He talks about love μακροθυμεῖ (Greek: makrothymeo—to persevere, be patient, long-suffering, forbearing), and love χρηστεύεται (Greek: chresteuomai—to be kind, gentle).</span></p>
+      <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">O Que o Amor É</span><span class="lang-en">What Love Is</span></h3>
+      <p><span class="lang-pt">Em <span class="ref" data-reference="1 Coríntios 13:4">1 Coríntios 13:4</span>, Paulo começa a expressar o que é o amor com duas afirmações sobre o que o amor faz. Ele fala sobre o amor <span class="font-serif">μακροθυμεῖ</span> (grego: <em>makrothymeo</em>—perseverar, ser paciente, longânimo, ser tolerante), e o amor <span class="font-serif">χρηστεύεται</span> (grego: <em>chresteuomai</em>—ser bondoso, gentil).</span><span class="lang-en">In <span class="ref" data-reference="1 Corinthians 13:4">1 Corinthians 13:4</span>, Paul begins to express what love is with two affirmations of what love does do. He talks about love <span class="font-serif">μακροθυμεῖ</span> (Greek: <em>makrothymeo</em>—to persevere, be patient, long-suffering, forbearing), and love <span class="font-serif">χρηστεύεται</span> (Greek: <em>chresteuomai</em>—to be kind, gentle).</span></p>
 
-      <h2 class="text-2xl font-bold text-slate-900">What Love Is Not</h2>
+      <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">O Que o Amor Não É</span><span class="lang-en">What Love Is Not</span></h3>
       <p><span class="lang-pt">A teologia apofática descreve a natureza de Deus expressando o que ele não é. Paulo adota essa abordagem, descrevendo o que o amor não faz.</span><span class="lang-en">Apophatic theology describes the nature of God by expressing what he is not. Paul takes this approach, describing what love does not do.</span></p>
-      <blockquote class="border-l-4 border-slate-400 pl-4 italic text-slate-600">
-        <p><span class="lang-pt">1 Coríntios 13:4b-6 (NIV): "Não inveja, não se vangloria, não se orgulha (grego: phusioo / φυσιόω — inchado, orgulhoso). Não desonra os outros, não é egoísta, não se irrita facilmente, não guarda registro de ofensas. Não se alegra com o mal, mas regozija-se com a verdade." *Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">1 Corinthians 13:4b-6 (NIV*): "It does not envy, it does not boast, it is not proud (Greek: phusioo / φυσιόω—puffed up, arrogant). It does not dishonor others, it is not self-seeking, it is not easily angered, it keeps no record of wrongs. Love does not delight in evil but rejoices with the truth." *Key Words Adapted by Teacher</span></p>
-      </blockquote>
-      <p><span class="lang-pt">Paulo usa φυσιόω várias vezes na carta para descrever os coríntios.</span><span class="lang-en">Paul uses φυσιόω a number of times in the letter to describe the Corinthians.</span></p>
-
-      <h2 class="text-2xl font-bold text-slate-900">All Things</h2>
-      <p><span class="lang-pt">Em 13:7, Paulo repete "todas as coisas" quatro vezes. Amor cobre/suporta (grego: panta stegei / πάντα στέγει). Amor crê/confia (grego: panta pisteuei / πάντα πιστεύει). Espera (grego: panta elpizei / πάντα ἐλπίζει). Suporta, permanece, espera (grego: panta hypomenei / πάντα ὑπομένει).</span><span class="lang-en">In 13:7, Paul repeats "all things" four times. Love covers/endures (Greek: panta stegei / πάντα στέγει). Love believes/trusts (Greek: panta pisteuei / πάντα πιστεύει). Hopes (Greek: panta elpizei / πάντα ἐλπίζει). Endures, remains, waits upon (Greek: panta hypomenei / πάντα ὑπομένει).</span></p>
-
-      <h2 class="text-2xl font-bold text-slate-900">Love Endures</h2>
-      <p><span class="lang-pt">Paulo conclui a descrição do amor em 1 Coríntios 13:8, afirmando que "o amor nunca falha/cai (grego: piptei / πίπτει)." Ele então contrasta a natureza duradoura do amor com a natureza temporária dos dons espirituais com os quais começou o capítulo — profecia, línguas, e conhecimento. Em última análise, tudo o que é apenas parcial será abolido para dar lugar àquilo que é perfeito e completo (1 Cor. 13:10). Todos cessam (grego: katargeo / καταργέω — tornar inoperante, abolir) a fim de dar lugar a uma nova ordem. As línguas cessarão e darão lugar à nossa adoração celestial. As profecias não serão mais necessárias quando tivermos uma revelação completa da natureza divina. Completude, integridade e plenitude virão. 1 Coríntios 13:11 (NIV*): "Quando eu era criança, falava como criança, pensava como criança, raciocinava como criança. Quando me tornei homem, anulei (grego: katergeka / κατήργηκα) os modos da infância." *Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">Paul concludes the description of love in 1 Corinthians 13:8, stating that "love never fails/falls (Greek: piptei / πίπτει)." He then contrasts the enduring nature of love with the temporary nature of the spiritual gifts he started the chapter with—prophecy, tongues, and knowledge. Ultimately, all that is only partial will be abolished to give way to that which is perfect and complete (1 Cor. 13:10). They all cease (Greek: katargeo / καταργέω—to render inoperative, abolish) in order to give way to a new order. Tongues will cease and will give way to our heavenly worship. Prophecies will no longer be needed as we have a full revelation of the divine nature. Completeness, wholeness, and fullness will come. 1 Corinthians 13:11 (NIV*): "When I was a child, I talked like a child, I thought like a child, I reasoned like a child. When I became a man, I nullified (Greek: katergeka / κατήργηκα) the ways of childhood." *Key Words Adapted by Teacher</span></p>
-
-      <h2 class="text-2xl font-bold text-slate-900">Now and Then</h2>
-      <p><span class="lang-pt">Note os pares de contraste entre o que experinciamos "agora" e o que aguardamos "então".</span><span class="lang-en">Note the pairs of contrast between what we experience "now" and what we look forward to "then."</span></p>
-      <blockquote class="border-l-4 border-slate-400 pl-4 italic text-slate-600">
-        <p><span class="lang-pt">1 Coríntios 13:12-13 (NIV): "Agora vemos apenas um reflexo como em um espelho; então veremos face a face. Agora conheço em parte; então conhecerei plenamente, assim como sou plenamente conhecido. Agora, porém, permanecem estas três: a fé, a esperança e o amor. Mas o maior destes é o amor." O reflexo é visto "obscuramente" (grego: ainigmati / αἰνίγματι — ligado a enigma).</span><span class="lang-en">1 Corinthians 13:12-13 (NIV): "For now we see only a reflection as in a mirror; then we shall see face to face. Now I know in part; then I shall know fully, even as I am fully known. And now these three remain: faith, hope and love. But the greatest of these is love." The reflection is seen "dimly" (Greek: ainigmati / αἰνίγματι—linked to enigma).</span></p>
-      </blockquote>
-      <p><span class="lang-pt">Quando chegarmos a 1 Coríntios 15, veremos que algumas coisas permanecem (o corpo) e algumas coisas são abolidas.</span><span class="lang-en">When we get to 1 Corinthians 15, we'll see that some things endure (the body) and some things are abolished.</span></p>
-
-      <h2 class="text-2xl font-bold text-slate-900">Reflection Question</h2>
-      <p><span class="lang-pt">Paulo desenhou 1 Coríntios 12 e 13 para serem lidos e entendidos juntos. Como o capítulo 12 nos ajuda a entender o capítulo 13?</span><span class="lang-en">Paul designed 1 Corinthians 12 and 13 to be read and understood together. How does chapter 12 help us understand chapter 13?</span></p>
-
-      <div class="page-footer">
-        <span class="lang-pt">Anotações de Aula: 1 Coríntios</span><span class="lang-en">Class Notes: 1 Corinthians</span>
-        <span class="lang-pt">Sessão 12</span><span class="lang-en">Session 12</span>
+      
+      <div class="verse-block">
+        <p class="font-bold text-slate-900 mb-2">
+          <span class="lang-pt">1 Coríntios 13:4b-6 <span class="font-medium text-slate-500">NIV*</span></span>
+          <span class="lang-en">1 Corinthians 13:4b-6 <span class="font-medium text-slate-500">NIV*</span></span>
+        </p>
+        <p class="text-slate-800 leading-relaxed verse-text">
+          <span class="lang-pt"><sup class="vs">4b</sup> Não inveja, não se vangloria, não se orgulha (grego: <em>phusioo</em> / <span class="font-serif">φυσιόω</span>—inchado, arrogante). <sup class="vs">5</sup> Não desonra os outros, não procura os seus próprios interesses, não se ira facilmente, não guarda rancor. <sup class="vs">6</sup> O amor não se alegra com o mal, mas regozija-se com a verdade.</span>
+          <span class="lang-en"><sup class="vs">4b</sup> It does not envy, it does not boast, it is not proud (Greek: <em>phusioo</em> / <span class="font-serif">φυσιόω</span>—puffed up, arrogant). <sup class="vs">5</sup> It does not dishonor others, it is not self-seeking, it is not easily angered, it keeps no record of wrongs. <sup class="vs">6</sup> Love does not delight in evil but rejoices with the truth.</span>
+        </p>
+        
+        <p class="text-sm text-slate-500 mt-4 mb-3">
+          <span class="lang-pt">*Palavras-chave adaptadas pelo professor</span>
+          <span class="lang-en">*Key Words Adapted by Teacher</span>
+        </p>
+        
+        <!-- A CAIXINHA CINZA ARREDONDADA COM A NOTA COMO MOSTRA NO PRINT -->
+        <div class="bg-slate-50 rounded-lg p-3 text-slate-600 text-sm">
+          <span class="lang-pt">Paulo usa <span class="font-serif">φυσιόω</span> várias vezes na carta para descrever os coríntios.</span>
+          <span class="lang-en">Paul uses <span class="font-serif">φυσιόω</span> a number of times in the letter to describe the Corinthians.</span>
+        </div>
       </div>
+
+      <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Todas as Coisas</span><span class="lang-en">All Things</span></h3>
+      <p><span class="lang-pt">Em <span class="ref" data-reference="13:7">13:7</span>, Paulo repete "todas as coisas" quatro vezes.</span><span class="lang-en">In <span class="ref" data-reference="13:7">13:7</span>, Paul repeats “all things” four times.</span></p>
+      
+      <ul class="list-disc pl-10 text-slate-700">
+        <li><span class="lang-pt">O amor cobre/suporta (grego: <em>panta stegei</em> / <span class="font-serif">πάντα στέγει</span>)</span><span class="lang-en">Love covers/endures (Greek: <em>panta stegei</em> / <span class="font-serif">πάντα στέγει</span>)</span></li>
+        <li><span class="lang-pt">O amor acredita/confia (grego: <em>panta pisteuei</em> / <span class="font-serif">πάντα πιστεύει</span>)</span><span class="lang-en">Love believes/trusts (Greek: <em>panta pisteuei</em> / <span class="font-serif">πάντα πιστεύει</span>)</span></li>
+        <li><span class="lang-pt">Espera (grego: <em>panta elpizei</em> / <span class="font-serif">πάντα ἐλπίζει</span>)</span><span class="lang-en">Hopes (Greek: <em>panta elpizei</em> / <span class="font-serif">πάντα ἐλπίζει</span>)</span></li>
+        <li><span class="lang-pt">Persevera, permanece, aguarda (grego: <em>panta hypomenei</em> / <span class="font-serif">πάντα ὑπομένει</span>)</span><span class="lang-en">Endures, remains, waits upon (Greek: <em>panta hypomenei</em> / <span class="font-serif">πάντα ὑπομένει</span>)</span></li>
+      </ul>
+
+      <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">O Amor Persevera</span><span class="lang-en">Love Endures</span></h3>
+      <p><span class="lang-pt">Paulo conclui a descrição do amor em <span class="ref" data-reference="1 Coríntios 13:8">1 Coríntios 13:8</span>, declarando que "o amor nunca falha/cai (grego: <em>piptei</em> / <span class="font-serif">πίπτει</span>)." Em seguida, ele contrasta a natureza duradoura do amor com a natureza temporária dos dons espirituais com os quais começou o capítulo—profecia, línguas e conhecimento. Em última análise, tudo o que é apenas parcial será abolido para dar lugar àquilo que é perfeito e completo (<span class="ref" data-reference="1 Coríntios 13:10">1 Cor. 13:10</span>).</span><span class="lang-en">Paul concludes the description of love in <span class="ref" data-reference="1 Corinthians 13:8">1 Corinthians 13:8</span>, stating that “love never fails/falls (Greek: <em>piptei</em> / <span class="font-serif">πίπτει</span>).” He then contrasts the enduring nature of love with the temporary nature of the spiritual gifts he started the chapter with—prophecy, tongues, and knowledge. Ultimately, all that is only partial will be abolished to give way to that which is perfect and complete (<span class="ref" data-reference="1 Corinthians 13:10">1 Cor. 13:10</span>).</span></p>
+      
+      <p><span class="lang-pt">Todos eles cessam (grego: <em>katargeo</em> / <span class="font-serif">καταργέω</span>—tornar inoperante, abolir) para dar lugar a uma nova ordem. As línguas cessarão e darão lugar à nossa adoração celestial. As profecias não serão mais necessárias, pois teremos uma revelação completa da natureza divina. A completude, a integridade e a plenitude virão.</span><span class="lang-en">They all cease (Greek: <em>katargeo</em> / <span class="font-serif">καταργέω</span>—to render inoperative, abolish) in order to give way to a new order. Tongues will cease and will give way to our heavenly worship. Prophecies will no longer be needed as we have a full revelation of the divine nature. Completeness, wholeness, and fullness will come.</span></p>
+      
+      <div class="verse-block">
+        <p class="font-bold text-slate-900 mb-2">
+          <span class="lang-pt">1 Coríntios 13:11 <span class="font-medium text-slate-500">NIV*</span></span>
+          <span class="lang-en">1 Corinthians 13:11 <span class="font-medium text-slate-500">NIV*</span></span>
+        </p>
+        <p class="text-slate-800 leading-relaxed verse-text">
+          <span class="lang-pt">Quando eu era menino, falava como menino, pensava como menino, raciocinava como menino. Quando me tornei homem, anulei (grego: <em>katergeka</em> / <span class="font-serif">κατήργηκα</span>) os costumes de menino.</span>
+          <span class="lang-en">When I was a child, I talked like a child, I thought like a child, I reasoned like a child. When I became a man, I nullified (Greek: <em>katergeka</em> / <span class="font-serif">κατήργηκα</span>) the ways of childhood.</span>
+        </p>
+        <p class="text-sm text-slate-500 mt-4">
+          <span class="lang-pt">*Palavras-chave adaptadas pelo professor</span>
+          <span class="lang-en">*Key Words Adapted by Teacher</span>
+        </p>
+      </div>
+
+      <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Agora e Então</span><span class="lang-en">Now and Then</span></h3>
+      <p><span class="lang-pt">Observe os pares de contraste entre o que experimentamos "agora" e o que aguardamos "então".</span><span class="lang-en">Note the pairs of contrast between what we experience “now” and what we look forward to “then.”</span></p>
+      
+      <div class="verse-block">
+        <p class="font-bold text-slate-900 mb-2">
+          <span class="lang-pt">1 Coríntios 13:12-13 <span class="font-medium text-slate-500">NIV</span></span>
+          <span class="lang-en">1 Corinthians 13:12-13 <span class="font-medium text-slate-500">NIV</span></span>
+        </p>
+        <p class="text-slate-800 leading-relaxed verse-text">
+          <span class="lang-pt"><sup class="vs">12</sup> Porque agora vemos apenas um reflexo como num espelho; então veremos face a face. Agora conheço em parte; então conhecerei plenamente, assim como sou plenamente conhecido. <sup class="vs">13</sup> E agora permanecem estas três coisas: a fé, a esperança e o amor. Mas a maior delas é o amor.</span>
+          <span class="lang-en"><sup class="vs">12</sup> For now we see only a reflection as in a mirror; then we shall see face to face. Now I know in part; then I shall know fully, even as I am fully known. <sup class="vs">13</sup> And now these three remain: faith, hope and love. But the greatest of these is love.</span>
+        </p>
+        
+        <div class="bg-slate-50 rounded-lg p-3 text-slate-600 text-sm">
+          <span class="lang-pt">O reflexo é visto "obscuramente" (grego: <em>ainigmati</em> / <span class="font-serif">αἰνίγματι</span>—ligado a enigma).</span>
+          <span class="lang-en">The reflection is seen “dimly” (Greek: <em>ainigmati</em> / <span class="font-serif">αἰνίγματι</span>—linked to enigma).</span>
+        </div>
+      </div>
+      
+      <p><span class="lang-pt">Quando chegarmos a <span class="ref" data-reference="1 Coríntios 15">1 Coríntios 15</span>, veremos que algumas coisas perduram (o corpo) e algumas coisas são abolidas.</span><span class="lang-en">When we get to <span class="ref" data-reference="1 Corinthians 15">1 Corinthians 15</span>, we’ll see that some things endure (the body) and some things are abolished.</span></p>
+
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h2>
+      <p><span class="lang-pt">Paulo idealizou <span class="ref" data-reference="1 Coríntios 12">1 Coríntios 12</span> e <span class="ref" data-reference="1 Coríntios 13">13</span> para serem lidos e compreendidos juntos. De que maneira o <span class="ref" data-reference="1 Coríntios 12">capítulo 12</span> nos ajuda a compreender o <span class="ref" data-reference="1 Coríntios 13">capítulo 13</span>?</span><span class="lang-en">Paul designed <span class="ref" data-reference="1 Corinthians 12">1 Corinthians 12</span> and <span class="ref" data-reference="1 Corinthians 13">13</span> to be read and understood together. How does <span class="ref" data-reference="1 Corinthians 12">chapter 12</span> help us understand <span class="ref" data-reference="1 Corinthians 13">chapter 13</span>?</span></p>
+
     </section>
   </main>
+  
+  <footer class="page-footer max-w-3xl mx-auto px-6 pb-20 md:pb-24">
+    <span class="lang-pt">Anotações de Aula: 1 Coríntios</span><span class="lang-en">Class Notes: 1 Corinthians</span>
+    <span class="lang-pt">Sessão 12</span><span class="lang-en">Session 12</span>
+  </footer>
+  
   <script src="../../js/reading-progress.js"></script>
   <script src="../../js/lang-toggle.js"></script>
-  <script>setLang(localStorage.getItem('bp_lang')||'pt');</script>
+  <script src="../../js/verse-modal.js"></script>
+  <script>
+    setLang(localStorage.getItem('bp_lang')||'pt');
+  </script>
 </body>
 </html>

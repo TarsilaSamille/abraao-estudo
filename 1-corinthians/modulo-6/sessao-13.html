@@ -4,85 +4,114 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sessão 13: Os Dons Superiores</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     html[lang="pt"] .lang-en { display: none !important; }
     html[lang="en"] .lang-pt { display: none !important; }
     .verse-link { cursor: pointer; }
+    .ref { text-decoration: underline !important; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
     @media print { .nav-btn-fixed { display: none !important; } }
-  /* sess-visual-standard v1 */
-      /* Figure captions: centered, small, italic, muted — like the PDF */
-      section figure { margin: 1.75rem 0 !important; }
-      section figure figcaption {
-        margin-top: 0.5rem; text-align: center;
-        font-size: 0.8rem; font-style: italic; color: #64748b;
-      }
-      .ref { cursor: pointer; }
-    /* Consistent paragraph rhythm */
-      section > p { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
-      section > p:first-child { margin-top: 0; }
-      #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  @media print { #reading-progress { display: none !important; } }
-  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
-  
+
+    section figure { margin: 1.75rem 0 !important; }
+    section figure figcaption {
+      margin-top: 0.5rem; text-align: center;
+      font-size: 0.8rem; font-style: italic; color: #64748b;
+    }
+
+    section > p { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
+    section > figure,
+    section > ul,
+    section > ol { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
+
+    #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+    @media print { #reading-progress { display: none !important; } }
+
+    .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
+
+    body { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important; font-size: 1.05rem !important; line-height: 1.78 !important; color: #24262a; }
+    section > p { margin: 1.1rem 0 1.1rem !important; line-height: 1.78 !important; }
+    section > h2 { margin: 3rem 0 1.25rem !important; font-size: 1.9rem !important; font-weight: 800 !important; letter-spacing: -0.015em; }
+    section > h3 { margin: 2rem 0 .75rem !important; font-size: 1.4rem !important; font-weight: 700 !important; }
+
+    /* Citação Acadêmica (texto preto normal; referência cinza; título do livro azul) */
+    blockquote.academic-quote { border-left: 4px solid #475569 !important; padding-left: 1.25rem !important; margin: 2rem 0 !important; }
+    blockquote.academic-quote p { font-style: normal !important; color: #334155 !important; line-height: 1.75 !important; margin-bottom: 1rem !important; }
+    blockquote.academic-quote p:last-child { margin-bottom: 0 !important; }
+    .book-title { color: #2563eb; text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+
+    /* Bloco dos Versículos (linha mais fina e clara abraçando todo o conjunto) */
+    .verse-block { border-left: 3px solid #cbd5e1; padding-left: 1.25rem; margin: 2rem 0; }
+    .verse-text { margin-top: 0.5rem !important; margin-bottom: 0.5rem !important; }
+
+    sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px; }
+      section ul li, section ol li { margin-bottom: 0.25rem !important; line-height: 1.6 !important; }
 </style>
 </head>
 <body class="bg-white font-sans text-slate-800">
 <div id="reading-progress" aria-hidden="true"></div>
-
   <div class="nav-btn-fixed fixed left-4 top-4 z-50">
-    <a href="../index.html"
-      class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <a href="./index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
       <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
     </a>
   </div>
-  <div class="nav-btn-fixed fixed right-4 top-4 z-50 print:hidden">
+  <div class="nav-btn-fixed fixed right-8 top-4 z-50 print:hidden">
     <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white shadow-sm">
       <button id="lang-pt" onclick="setLang('pt')" class="px-4 py-1.5 text-sm font-semibold transition-colors">PT</button>
       <button id="lang-en" onclick="setLang('en')" class="px-4 py-1.5 text-sm font-semibold transition-colors">EN</button>
       <button onclick="window.print()" class="inline-flex items-center gap-2 px-4 py-1.5 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg><span class="lang-pt">Imprimir</span><span class="lang-en">Print</span></button>
     </div>
-  
-  <!-- conteudo adicional do PDF -->
-  <p class="body reveal"><span class="lang-en">“Earnestly pursue love” is διώκω (Greek: dioko) which has connotations of to pursue or to hunt down.</span></p>
-  <p class="body reveal"><span class="lang-en">Chaos at Corinth</span></p>
-  <p class="body reveal"><span class="lang-en">*Key Words Adapted by Teacher</span></p>
-  <p class="body reveal"><span class="lang-en">Reflection Question</span></p>
-  <p class="body reveal"><span class="lang-en">corporate gathering?</span></p>
-</div>
+  </div>
   <main class="mx-auto max-w-3xl px-6 py-20 md:py-24">
     <h1 class="text-4xl font-bold text-slate-900 md:text-5xl"><span class="lang-pt">Sessão 13: Os Dons Superiores</span><span class="lang-en">Session 13: The Higher Gifts</span></h1>
     <hr class="my-8 border-t-2 border-slate-200" />
     <section>
-    <h2 class="text-2xl font-bold text-slate-900">Principais Lições</h2>
-    <ul class="list-disc space-y-2 pl-6 text-slate-700">
-      <li><span class="lang-pt">As línguas são faladas não a pessoas, mas a Deus, no Espírito, edificando o que fala e permitindo-lhe proferir mistérios.</span><span class="lang-en">Tongues are spoken not to people but to God, in the Spirit, edifying the speaker and allowing them to utter mysteries.</span></li>
-      <li><span class="lang-pt">A profecia é falada a pessoas para edificação, encorajamento, consolação e edificação da Igreja.</span><span class="lang-en">Prophecy is spoken to people for edification, encouragement, consolation, and building up the Church.</span></li>
-      <li><span class="lang-pt">Paulo encoraja línguas, mas deseja mais que profetizem, usando palavras inteligíveis para ajudar outros.</span><span class="lang-en">Paul encourages tongues but wants even more that they prophesy, using intelligible words to help others.</span></li>
-    </ul>
-    <h2 class="text-2xl font-bold text-slate-900">Desejando Dons Espirituais</h2>
-    <p class="text-slate-700"><span class="lang-pt">Paulo usa verbos diferentes para amor e dons: “procurai diligentemente o amor” (grego: <em>dioko</em>, perseguir) e “desejai ardentemente os dons espirituais” (grego: <em>zeloo</em>, buscar ciumentamente). A profecia é “maior” porque, além da língua, a igreja precisa de revelação, conhecimento, profecia e ensino. No capítulo 13, Paulo usa a imagem de instrumentos (um gongo ou címbalo retumbante) — se o instrumento não é claro, é inútil ouvir.</span><span class="lang-en">Paul uses different verbs: "Earnestly pursue love" (Greek: <em>dioko</em>) and "Earnestly desire spiritual gifts" (Greek: <em>zeloo</em>). Prophecy is "greater" because, besides tongues, the church needs revelation, knowledge, prophecy, and teaching. In chapter 13, Paul uses the image of instruments (a resounding gong or clanging cymbal) — if an instrument isn't clear, listening is pointless.</span></p>
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Principais Aprendizados</span><span class="lang-en">Key Takeaways</span></h2>
+      <ul class="list-disc space-y-2 pl-10 text-slate-700">
+        <li><span class="lang-pt">As características de falar em línguas como dom espiritual são que não são faladas a pessoas, mas a Deus, e são faladas no Espírito.</span></li>
+        <li><span class="lang-pt">O dom espiritual de profecia é falado a pessoas para edificação, encorajamento, consolação e edificação da Igreja.</span></li>
+        <li><span class="lang-pt">Paulo encoraja falar em línguas, mas, ainda mais, ele quer que os coríntios profetizem, implorando que usem palavras inteligíveis para ajudar outros.</span></li>
+      </ul>
 
-    <h2 class="text-2xl font-bold text-slate-900">Caos em Corinto</h2>
-    <p class="text-slate-700"><span class="lang-pt">No capítulo 13, Paulo usou a imagem de instrumentos (um gongo retumbante ou um címbalo que soa) e a usa de novo aqui. Se um instrumento não é claro e as notas não são distintas, ouvir é inútil — ele diz que precisam usar palavras inteligíveis mais do que línguas. <span class="ref" data-reference="1 Corinthians 14:11-12">1 Coríntios 14:11-12</span> (NVI): “Se, pois, não compreender o sentido do que ele diz, serei estrangeiro para o que fala, e o que fala será estrangeiro para mim. Assim também vós, como estais ansiosos por dons espirituais, procurai progredir naquilo que edifica a igreja.” <em>Barbaros</em> (grego: βάρβαρος) é alguém que não fala grego. Pelo contexto de 14:13-19, inferimos que os coríntios falavam em línguas de modo caótico em suas reuniões — provavelmente várias pessoas falando ao mesmo tempo sem interpretação. Paulo nota que línguas precisam de interpretação; enquanto o espírito é ativo na oração, a mente fica infrutífera, ao passo que palavras inteligíveis engajam a mente.</span><span class="lang-en">In Chapter 13, Paul used the image of instruments (a sounding gong or clanging cymbal) and uses it again here. If an instrument isn’t clear and the notes distinct, it’s pointless listening. Paul is telling them they need to use intelligible words more than tongues. 1 Corinthians 14:11-12 (NIV): “If then I do not grasp the meaning of what someone is saying, I am a foreigner (Greek: <em>barbaros</em> / βάρβαρος) to the speaker, and the speaker is a foreigner to me. So it is with you. Since you are eager for gifts of the Spirit, try to excel in those that build up the church.” <em>Barbaros</em> is someone who doesn’t speak Greek. From the context of 1 Corinthians 14:13-19, we can infer that the Corinthians were speaking in tongues in a chaotic manner — likely multiple people spoke at once with no interpretation. Paul notes that tongues needs interpreting; while the spirit is active in prayer, the mind remains unfruitful, whereas intelligible words engage the mind.</span></p>
-    <h2 class="text-2xl font-bold text-slate-900">Edificação e Inclusão</h2>
-    <p class="text-slate-700"><span class="lang-pt">Paulo quer que a adoração em Corinto seja inteligível e ordenada por causa do “não instruído”. O versículo 16 diz “não instruído” (grego: <em>idiotes</em> / ἰδιώτης) — “amador”, “pessoa sem treino” ou “estranho”. Fazemos isso para que alguém que não conhece o grupo seja incluído, edificado e capaz de dizer “amém” à ação de graças. Cinco palavras inteligíveis são melhores que dez mil palavras em língua, segundo Paulo.</span><span class="lang-en">Paul wants worship at Corinth to be intelligible and orderly for the sake of the “uninstructed.” Verse 16 says the “uninstructed” (Greek: <em>idiotes</em> / ἰδιώτης), which means “amateur,” “unskilled person,” or “outsider.” We do this so someone who is not knowledgeable of the group will be included, edified, and able to say “amen” to the thanksgiving offered. Five intelligible words is better than ten thousand words in a tongue according to Paul.</span></p>
-    <h2 class="text-2xl font-bold text-slate-900">Pergunta de Reflexão</h2>
-    <p class="text-slate-700"><span class="lang-pt">Por que a profecia edifica mais a comunidade do que as línguas, segundo Paulo?</span><span class="lang-en">Why does prophecy build up the community more than tongues, according to Paul?</span></p>
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Desejo de Dons Espirituais</span><span class="lang-en">Desiring Spiritual Gifts</span></h2>
+      <p class="text-slate-700"><span class="lang-pt">Paulo é entusiasta tanto sobre amor quanto sobre dons espirituais, mas usa verbos diferentes para cada um. Em <span class="ref" data-reference="1 Corinthians 14:1">1 Coríntios 14:1</span>, "Procurai ardentemente o amor" é <span class="font-serif">διώκω</span> (grego: <em>dioko</em>), que tem conotações de perseguir ou caçar. "Desejai ardentemente os dons espirituais" é <span class="font-serif">ζηλόω</span> (grego: <em>zeloo</em>), que é mais como "ser eager para possuir" ou "buscar zelosamente".</span><span class="lang-en">Paul is enthusiastic about love and spiritual gifts, but he uses different verbs for each. In 1 Corinthians 14:1, "Earnestly pursue love" is διώκω (Greek: dioko) which has connotations of to pursue or to hunt down. "Earnestly desire spiritual gifts" is ζηλόω (Greek: zeloo) which is more like "be eager to possess" or "jealously seek."</span></p>
+      <p class="text-slate-700"><span class="lang-pt">Assim, eles devem procurar ardentemente o amor e desejar zelosamente os dons espirituais, especialmente que possam profetizar.</span><span class="lang-en">So they are to earnestly pursue love and jealously desire spiritual gifts, especially that they might prophesy.</span></p>
+
+      <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Línguas Versus Profecia</span><span class="lang-en">Tongues Versus Prophecy</span></h3>
+      <p class="text-slate-700"><span class="lang-pt">Note o contraste que Paulo traça entre os dons de línguas e profecia. Línguas são faladas não a pessoas, mas a Deus, faladas no Espírito, proferindo mistérios, e edificando o falante. Profecia é falada a pessoas para edificação, encorajamento e consolação da Igreja.</span><span class="lang-en">Note the contrast Paul draws between the gifts of tongues and prophecy. Tongues are spoken not to people but to God, spoken in the Spirit, uttering mysteries, and edifying the speaker. Prophecy is spoken to people for the edification, encouragement, and consolation of the Church.</span></p>
+
+      <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">O que Paulo Quer para a Igreja</span><span class="lang-en">What Paul Wants for the Church</span></h3>
+      <p class="text-slate-700"><span class="lang-pt">Paulo expressa seu desejo de que os coríntios falem em línguas, mas deseja mais que eles profetizem.</span><span class="lang-en">Paul expresses his desire that the Corinthians speak in tongues, but he desires more that they would prophesy.</span></p>
+      <p class="text-slate-700"><span class="lang-pt">Que razão ele dá para aquele que profetiza ser "maior" do que aquele que fala em línguas? Línguas são proveitosas se for apenas um de um grupo de dons. Além do dom de línguas, a igreja precisa de revelação, conhecimento, profecia e ensino.</span><span class="lang-en">What reason does he give for the one prophesying as "greater" than the one speaking in tongues? Tongues is profitable if it is only one of a group of gifts. In addition to the gift of tongues, the church needs revelation, knowledge, prophecy, and teaching.</span></p>
+
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Caos em Corinto</span><span class="lang-en">Chaos at Corinth</span></h2>
+      <p class="text-slate-700"><span class="lang-pt">No capítulo 13, Paulo usou a imagem de instrumentos (de um gongo retumbante ou um címbalo que soa) e ele a usa novamente aqui. Se um instrumento não é claro e as notas distintas, é inútil ouvir. Paulo está dizendo a eles que precisam usar palavras inteligíveis mais do que línguas.</span><span class="lang-en">In Chapter 13, Paul has used the image of instruments (of a resounding gong or a clanging cymbal) and he uses it again here. If an instrument isn't clear and the notes distinct, it's pointless listening. Paul is telling them they need to use intelligible words more than tongues.</span></p>
+      <div class="verse-block">
+        <p class="font-bold text-slate-900 mb-2"><span class="lang-pt">1 Coríntios 14:11-12 <span class="font-medium text-slate-500">NVI</span></span><span class="lang-en">1 Corinthians 14:11-12 <span class="font-medium text-slate-500">NIV</span></span></p>
+        <p class="text-slate-800 leading-relaxed verse-text"><span class="lang-pt">"Portanto, se não compreender o sentido do que alguém diz, serei estrangeiro para quem fala, e quem fala será estrangeiro para mim. Assim também vós, como estais ansiosos por dons espirituais, procurai abundantemente os que edificam a igreja." (grego: <em>barbaros</em> / <span class="font-serif">βάρβαρος</span> — bárbaro: alguém que não fala grego).</span><span class="lang-en">"If then I do not grasp the meaning of what someone is saying, I am a foreigner (Greek: barbaros / βάρβαρος) to the speaker, and the speaker is a foreigner to me. So it is with you. Since you are eager for gifts of the Spirit, try to excel in those that build up the church."</span></p>
+        <p class="text-sm text-slate-500 mt-4"><span class="lang-pt">*Palavras-chave adaptadas pela Professora</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+        <p class="text-sm text-slate-600 bg-slate-50 border border-slate-100 rounded-md px-4 py-3 mt-3"><em><span class="lang-pt">Barbaros</span></em> <span class="lang-pt">é alguém que não fala grego.</span><em><span class="lang-en">Barbaros</span></em><span class="lang-en"> is someone who doesn't speak Greek.</span></p>
+      </div>
+      <p class="text-slate-700"><span class="lang-pt">A partir do contexto de 1 Coríntios 14:13-19, podemos inferir que os coríntios estavam falando em línguas de maneira caótica em suas reuniões. Provavelmente, múltiplas pessoas falavam ao mesmo tempo em reuniões públicas sem interpretação.</span><span class="lang-en">From the context of 1 Corinthians 14:13-19, we can infer that the Corinthians were speaking in tongues in a chaotic manner in their gatherings. Likely, multiple people spoke at once in public gatherings with no interpretation.</span></p>
+      <p class="text-slate-700"><span class="lang-pt">Paulo continua seu contraste, observando que línguas precisam de interpretação e, enquanto o espírito está ativo na oração, a mente permanece infrutífera, ao passo que palavras inteligíveis em oração ou louvor engajam a mente.</span><span class="lang-en">Paul continues his contrast noting that tongues needs interpreting and, while the spirit is active in prayer, the mind remains unfruitful, whereas intelligible words in prayer or praise engage the mind.</span></p>
+
+      <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Edificação e Inclusão</span><span class="lang-en">Edification and Inclusion</span></h3>
+      <p class="text-slate-700"><span class="lang-pt">Paulo quer que a adoração em Corinto seja inteligível e ordenada para o bem do "não instruído". O versículo 16 diz o "não instruído" (grego: <em>idiotes</em> / <span class="font-serif">ἰδιώτης</span>), que significa "amador", "pessoa inábil", ou "estranho". Fazemos isso para que alguém que não conhece o grupo seja incluído, edificado, e capaz de dizer "amém" à ação de graças oferecida. Cinco palavras inteligíveis são melhores do que dez mil palavras em língua, segundo Paulo.</span><span class="lang-en">Paul wants worship at Corinth to be intelligible and orderly for the sake of the "uninstructed." Verse 16 says the "uninstructed" (Greek: idiotes / ἰδιώτης), which means "amateur," "unskilled person," or "outsider." We do this so someone who is not knowledgeable of the group will be included, edified, and able to say "amen" to the thanksgiving offered. Five intelligible words is better than ten thousand words in a tongue according to Paul.</span></p>
+
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h2>
+      <p class="text-slate-700"><span class="lang-pt">Por que Paulo se refere àquele que profetiza como "maior" do que aquele que fala em línguas em uma reunião corporativa coríntia?</span><span class="lang-en">Why does Paul refer to the one prophesying as "greater" than the one speaking in tongues in a Corinthian corporate gathering?</span></p>
+
+      <div class="page-footer">
+        <span class="lang-pt">Anotações de Aula: 1 Coríntios</span><span class="lang-en">Class Notes: 1 Corinthians</span>
+        <span class="lang-pt">Sessão 13</span><span class="lang-en">Session 13</span>
+      </div>
     </section>
-  
-<footer class="page-footer">
-    <span class="lang-pt">Anotações de Aula: 1 Coríntios</span><span class="lang-en">Class Notes: 1 Corinthians</span>
-    <span class="lang-pt">Sessão 13</span><span class="lang-en">Session 13</span>
-  </footer>
-</main>
+  </main>
   <script src="../../js/verse-modal.js"></script>
-
   <script src="../../js/reading-progress.js"></script>
-<script src="../../js/lang-toggle.js"></script>
-  <script src="../../js/reveal.js"></script>
-  <script>
-    setLang(localStorage.getItem('bp_lang')||'pt');
-  </script>
+  <script src="../../js/lang-toggle.js"></script>
+  <script>setLang(localStorage.getItem('bp_lang')||'pt');</script>
 </body>
 </html>

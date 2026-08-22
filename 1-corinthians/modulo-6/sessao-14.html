@@ -4,26 +4,57 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sessão 14: Uma Passagem Desafiadora sobre Línguas</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     html[lang="pt"] .lang-en { display: none !important; }
     html[lang="en"] .lang-pt { display: none !important; }
     .verse-link { cursor: pointer; }
+    .ref { text-decoration: underline !important; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
     @media print { .nav-btn-fixed { display: none !important; } }
-      section figure { margin: 1.75rem 0 !important; }
-      section figure figcaption { margin-top: 0.5rem; text-align: center; font-size: 0.8rem; font-style: italic; color: #64748b; }
-      section > p { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
-      section > figure, section > ul, section > ol { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
-      section > h2 { margin: 1.75rem 0 0.75rem !important; }
-      #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  @media print { #reading-progress { display: none !important; } }
-  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
-</style>
+
+    section figure { margin: 1.75rem 0 !important; }
+    section figure figcaption {
+      margin-top: 0.5rem; text-align: center;
+      font-size: 0.8rem; font-style: italic; color: #64748b;
+    }
+
+    section > p { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
+    section > figure,
+    section > ul,
+    section > ol { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
+
+    #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+    @media print { #reading-progress { display: none !important; } }
+
+    .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
+
+    body { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important; font-size: 1.05rem !important; line-height: 1.78 !important; color: #24262a; }
+    section > p { margin: 1.1rem 0 1.1rem !important; line-height: 1.78 !important; }
+    section > h2 { margin: 3rem 0 1.25rem !important; font-size: 1.9rem !important; font-weight: 800 !important; letter-spacing: -0.015em; }
+    section > h3 { margin: 2rem 0 .75rem !important; font-size: 1.4rem !important; font-weight: 700 !important; }
+
+    /* Citação Acadêmica (texto preto normal; referência cinza; título do livro azul) */
+    blockquote.academic-quote { border-left: 4px solid #475569 !important; padding-left: 1.25rem !important; margin: 2rem 0 !important; }
+    blockquote.academic-quote p { font-style: normal !important; color: #334155 !important; line-height: 1.75 !important; margin-bottom: 1rem !important; }
+    blockquote.academic-quote p:last-child { margin-bottom: 0 !important; }
+    .book-title { color: #2563eb; text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+
+    /* Bloco dos Versículos (linha mais fina e clara abraçando todo o conjunto) */
+    .verse-block { border-left: 3px solid #cbd5e1; padding-left: 1.25rem; margin: 2rem 0; }
+    .verse-text { margin-top: 0.5rem !important; margin-bottom: 0.5rem !important; }
+
+    sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px; }
+    /* Correção do espaçamento das listas para ficarem agrupadas como no PDF */
+    section ul li, section ol li { margin-bottom: 0.25rem !important; line-height: 1.6 !important; }
+  </style>
 </head>
 <body class="bg-white font-sans text-slate-800">
 <div id="reading-progress" aria-hidden="true"></div>
   <div class="nav-btn-fixed fixed left-4 top-4 z-50">
-    <a href="../index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <a href="./index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
       <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
     </a>
   </div>
@@ -31,70 +62,95 @@
     <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white shadow-sm">
       <button id="lang-pt" onclick="setLang('pt')" class="px-4 py-1.5 text-sm font-semibold transition-colors">PT</button>
       <button id="lang-en" onclick="setLang('en')" class="px-4 py-1.5 text-sm font-semibold transition-colors">EN</button>
-      <button onclick="window.print()" class="inline-flex items-center gap-2 px-4 py-1.5 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg><span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>...</button>
+      <button onclick="window.print()" class="inline-flex items-center gap-2 px-4 py-1.5 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg><span class="lang-pt">Imprimir</span><span class="lang-en">Print</span></button>
     </div>
   </div>
   <main class="mx-auto max-w-3xl px-6 py-20 md:py-24">
     <h1 class="text-4xl font-bold text-slate-900 md:text-5xl"><span class="lang-pt">Sessão 14: Uma Passagem Desafiadora sobre Línguas</span><span class="lang-en">Session 14: A Challenging Passage on Tongues</span></h1>
     <hr class="my-8 border-t-2 border-slate-200" />
     <section>
-      <h2 class="text-2xl font-bold text-slate-900">Key Takeaways</h2>
-      <ul class="list-disc space-y-2 pl-6 text-slate-700">
-        <li><span class="lang-pt">1 Coríntios 14:20-26 apresenta desafios interpretativos únicos.</span><span class="lang-en">1 Corinthians 14:20-26 presents unique interpretive challenges.</span></li>
-        <li><span class="lang-pt">Paulo cita Isaías 28:11-12, mas a formulação não corresponde a nenhum manuscrito conhecido.</span><span class="lang-en">Paul quotes from Isaiah 28:11-12, but the phrasing does not match any known manuscripts.</span></li>
-        <li><span class="lang-pt">É possível que 1 Coríntios 14:21-22 seja outro lugar onde Paulo cita os coríntios.</span><span class="lang-en">It's possible 1 Corinthians 14:21-22 is another place where Paul quotes the Corinthians.</span></li>
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Principais Aprendizados</span><span class="lang-en">Key Takeaways</span></h2>
+      <ul class="list-disc space-y-2 pl-10 text-slate-700">
+        <li><span class="lang-pt">1 Coríntios 14:20-26 apresenta desafios únicos de interpretação.</span></li>
+        <li><span class="lang-pt">Paulo cita Isaías 28:11-12, mas a fraseologia não corresponde a nenhum manuscrito conhecido.</span></li>
+        <li><span class="lang-pt">É possível que 1 Coríntios 14:21-22 seja outro lugar onde Paulo cita os coríntios.</span></li>
       </ul>
 
-      <h2 class="text-2xl font-bold text-slate-900">The Gift of Tongues</h2>
-      <p><span class="lang-pt">Em 1 Coríntios 14:20, Paulo revisita o tema de crianças e crescer. Não seja infantil em suas mentes (cresçam), apenas sejam infantes no mal. Em pensamento, sede plenamente crescidos ou completos (grego: τέλειοι). Então ele cita a Lei.</span><span class="lang-en">In 1 Corinthians 14:20, Paul revisits the theme of children and growing up. Don't be childish in your minds (grow up), only be infants in evil. In thinking, be fully grown or complete (Greek: τέλειοι). Then he cites the Law.</span></p>
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">O Dom de Línguas</span><span class="lang-en">The Gift of Tongues</span></h2>
+      <p class="text-slate-700"><span class="lang-pt">Em <span class="ref" data-reference="1 Corinthians 14:20">1 Coríntios 14:20</span>, Paulo revisitou o tema de crianças e crescer. Não seja infantil em sua mente (cresça), apenas seja infantil no mal. Em pensamento, seja plenamente maduro ou completo (grego: <em>telesioi</em> / <span class="font-serif">τέλειοι</span>). Então ele cita a Lei.</span><span class="lang-en">In 1 Corinthians 14:20, Paul revisits the theme of children and growing up. Don't be childish in your minds (grow up), only be infants in evil. In thinking, be fully grown or complete (Greek: τέλειοι). Then he cites the Law.</span></p>
 
-      <h2 class="text-2xl font-bold text-slate-900">Paul References Isaiah 28:11-12</h2>
-      <p><span class="lang-pt">Esta é uma seção notoriamente difícil. J.B. Phillips reescreveu 1 Coríntios 14:22, mudando as palavras de Paulo para o oposto porque pensou que era "um deslize da pena por parte de Paulo, ou, mais provavelmente, um erro de copista." (Phillips, 1960). Há uma enorme quantidade de discordância aqui sobre o que Paulo poderia estar dizendo aos coríntios através de citar este versículo. A questão que enfrentamos é como poderia fazer sentido que as línguas sejam um "sinal" para incrédulos dado o que já ouvimos?</span><span class="lang-en">This is a notoriously difficult section. J.B. Philips rewrote 1 Corinthians 14:22, changing Paul's words to the opposite because he thought it was "a slip of the pen on the part of Paul, or, more probably, a copyist's error." (Phillips, 1960). There is a huge amount of disagreement here as to what Paul might be saying to the Corinthians through citing this verse. The question we are faced with is how might it make sense that tongues are a "sign" for unbelievers given what we have already heard?</span></p>
-      <blockquote class="border-l-4 border-slate-400 pl-4 italic text-slate-600">
-        <p><span class="lang-pt">1 Coríntios 14:22 (NIV): "Assim, as línguas são um sinal, não para os crentes, mas para os incrédulos; a profecia, porém, não é para os incrédulos, mas para os crentes." O versículo 22 começa com ὥστε (grego: hoste — portanto) ligando este versículo ao anterior, a citação de Isaías. Aqui lemos um contraste entre pessoas que apenas creem e incrédulos.</span><span class="lang-en">1 Corinthians 14:22 (NIV): "Tongues, then, are a sign, not for believers but for unbelievers; prophecy, however, is not for unbelievers but for believers." Verse 22 begins with ὥστε (Greek: hoste—therefore) linking this verse to the previous one, the quote from Isaiah. Here we read a contrast between just believing and unbelieving people.</span></p>
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Paulo Referecia Isaías 28:11-12</span><span class="lang-en">Paul References Isaiah 28:11-12</span></h2>
+      <p class="text-slate-700"><span class="lang-pt">Esta é uma seção notoriamente difícil. J.B. Phillips reescreveu 1 Coríntios 14:22, mudando as palavras de Paulo para o oposto porque pensou que era "um deslize da pena por parte de Paulo, ou, mais provavelmente, um erro de copista." (Phillips, 1960).</span><span class="lang-en">This is a notoriously difficult section. J.B. Philips rewrote 1 Corinthians 14:22, changing Paul's words to the opposite because he thought it was "a slip of the pen on the part of Paul, or, more probably, a copyist's error." (Phillips, 1960).</span></p>
+      <p class="text-slate-700"><span class="lang-pt">Há uma enorme quantidade de discordância aqui sobre o que Paulo poderia estar dizendo aos coríntios ao citar este versículo. A questão que enfrentamos é como poderia fazer sentido que línguas sejam um "sinal" para incrédulos, dado o que já ouvimos?</span><span class="lang-en">There is a huge amount of disagreement here as to what Paul might be saying to the Corinthians through citing this verse. The question we are faced with is how might it make sense that tongues are a "sign" for unbelievers given what we have already heard?</span></p>
+      <div class="verse-block">
+        <p class="font-bold text-slate-900 mb-2"><span class="lang-pt">1 Coríntios 14:22 <span class="font-medium text-slate-500">NVI</span></span><span class="lang-en">1 Corinthians 14:22 <span class="font-medium text-slate-500">NIV</span></span></p>
+        <p class="text-slate-800 leading-relaxed verse-text"><span class="lang-pt">"Assim, as línguas são um sinal, não para os que crêem, mas para os descrentes; a profecia, porém, não é para os descrentes, mas para os que crêem."</span><span class="lang-en">"Tongues, then, are a sign, not for believers but for unbelievers; prophecy, however, is not for unbelievers but for believers."</span></p>
+      </div>
+      <p class="text-slate-700"><span class="lang-pt">O versículo 22 começa com <span class="font-serif">ὥστε</span> (grego: <em>hoste</em> — portanto), ligando este versículo ao anterior, a citação de Isaías. Aqui lemos um contraste entre apenas crentes e incrédulos.</span><span class="lang-en">Verse 22 begins with ὥστε (Greek: hoste—therefore) linking this verse to the previous one, the quote from Isaiah. Here we read a contrast between just believing and unbelieving people.</span></p>
+
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Entendendo a Citação de Isaías</span><span class="lang-en">Understanding the Quotation From Isaiah</span></h2>
+      <p class="text-slate-700"><span class="lang-pt">Um fator realmente complicador é que o texto hebraico, o Texto Massorético (MT), é diferente do texto grego, a Septuaginta (LXX), e a citação em 1 Coríntios 14 é diferente de ambos. (O Texto Massorético é a forma autoritativa da Bíblia Hebraica para o Judaísmo Rabínico e a Septuaginta nos séculos 3 e 2 A.E.C.).</span><span class="lang-en">One really complicating factor is that the Hebrew text, the Masoretic Text (MT), is different from the Greek text, the Septuagint (LXX), and the quote in 1 Corinthians 14 is different from them both. (The Masoretic Text is the authoritative form of the Hebrew Bible for Rabbinic Judaism and the Septuagint in the 3rd and 2nd centuries B.C.E.).</span></p>
+      <p class="text-slate-700"><span class="lang-pt">O debate centra-se em:</span></p>
+      <ul class="list-disc pl-10 text-slate-700">
+        <li><span class="lang-pt">O uso por Paulo do texto de Isaías</span></li>
+        <li><span class="lang-pt">O significado de <span class="font-serif">σημεῖον</span> (sinal)</span></li>
+        <li><span class="lang-pt">O significado de <span class="font-serif">ἀπίστοις</span> (incrédulos) como usado nas a) afirmações e b) ilustrações.</span></li>
+      </ul>
+
+      <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">O Uso do Texto de Isaías</span><span class="lang-en">The Use of the Isaiah Text</span></h3>
+      <blockquote class="academic-quote">
+        <p><span class="lang-pt">"A maioria dos comentaristas aponta que a citação de Isaías diverge substancialmente do MT e da LXX. Ou é citada livremente ou então de uma tradução grega diferente da LXX."</span><span class="lang-en">"Most commentators point out that the Isaiah quote diverges substantially from the MT and the LXX. Either it is quoted loosely or else from a Greek translation other than the LXX."</span></p>
+        <p>Johanson, Bruce (1979). "Tongues, A Sign for Unbelievers?" <span class="book-title">New Testament Studies</span>, 25. 181.</p>
+      </blockquote>
+      <p class="text-slate-700"><span class="lang-pt">Orígenes alegou ter encontrado o texto em uma versão grega diferente da Bíblia além da LXX, mas isso não foi verificado (Ver Philocalia, IX. 2).</span><span class="lang-en">Origen claimed to have found the text in a different Greek version of the Bible apart from the LXX, but this has not been verified (See Philocalia, IX. 2).</span></p>
+      <div class="verse-block">
+        <p class="font-bold text-slate-900 mb-2"><span class="lang-pt">1 Coríntios 14:21 <span class="font-medium text-slate-500">RSV</span></span><span class="lang-en">1 Corinthians 14:21 <span class="font-medium text-slate-500">RSV</span></span></p>
+        <p class="text-slate-800 leading-relaxed verse-text"><span class="lang-pt">"Por homens de línguas estranhas e pelos lábios de estrangeiros falarei a este povo, e mesmo assim não me ouvirão, diz o Senhor."</span><span class="lang-en">"By men of strange tongues and by the lips of foreigners will I speak to this people, and even then they will not listen to me, says the Lord."</span></p>
+      </div>
+      <div class="verse-block">
+        <p class="font-bold text-slate-900 mb-2"><span class="lang-pt">Isaías 28:11-12 Texto Massorético</span><span class="lang-en">Isaiah 28:11-12 Masoretic Text</span></p>
+        <p class="text-slate-800 leading-relaxed verse-text"><span class="lang-pt">"Sim, mas por homens de lábios estranhos e com língua estranha o Senhor falará a este povo, 12 aos quais tem dito: Este é o descanso; dai descanso ao cansado; e este é o repouso; todavia não quiseram ouvir."</span><span class="lang-en">"Nay, but by men of strange lips and with an alien tongue the Lord will speak to this people, 12 to whom he has said, 'This is rest; give rest to the weary; and this is repose'; yet they would not hear."</span></p>
+      </div>
+      <div class="verse-block">
+        <p class="font-bold text-slate-900 mb-2"><span class="lang-pt">Isaías 28:11-12 LXX</span><span class="lang-en">Isaiah 28:11-12 LXX</span></p>
+        <p class="text-slate-800 leading-relaxed verse-text"><span class="lang-pt">"através da fala desdenhosa de lábios, através de outra língua falarão a este povo, 12 dizendo-lhes: Este é o descanso para o faminto; e esta é a calamidade; mas não quiseram ouvir."</span><span class="lang-en">"through the contemptuous speech of lips, through another tongue for they will speak to this people, 12 saying to them 'This is rest for the hungry; and this is the calamity'; but they would not hear."</span></p>
+      </div>
+      <p class="text-slate-700"><span class="lang-pt">As mudanças que lemos em 1 Coríntios incluem:</span></p>
+      <ul class="list-disc pl-10 text-slate-700">
+        <li><span class="lang-pt">1 Coríntios tem "eu falarei" no lugar de "o Senhor falará" (MT) e "eles falarão" (LXX).</span></li>
+        <li><span class="lang-pt">1 Coríntios omite a mensagem inteligível falada pelo "Senhor" (MT) e "eles" (LXX) à qual "este povo" se recusa a ouvir em ambos os casos.</span></li>
+        <li><span class="lang-pt">1 Coríntios adiciona a frase autoritativa <span class="font-serif">λέγει κύριος</span> (diz o Senhor), não encontrada nem no MT nem na LXX.</span></li>
+      </ul>
+
+      <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Paulo Está CItando Livremente de Memória ou Adaptando Deliberadamente?</span><span class="lang-en">Is Paul Quoting Loosely From Memory Or Deliberately Adapting?</span></h3>
+      <blockquote class="academic-quote">
+        <p><span class="lang-pt">"Os textos do MT, LXX e NT diferem tanto que sinais definidos de dependência literária são difíceis de encontrar. … Ele desvia de todos os textos hebraicos e gregos conhecidos …"</span><span class="lang-en">"The texts of the MT, LXX, and NT differ so much that definite signs of literary dependence are difficult to find. … He deviates from all known Hebrew and Greek texts …"</span></p>
+        <p>Lanier, D.E. (1991). "With Stammering Lips and Another Tongue." <span class="book-title">Criswell Theological Review</span>, 5. 269-270.</p>
+      </blockquote>
+      <p class="text-slate-700"><span class="lang-pt">Há uma exceção proposta de um texto desconhecido ao qual não temos acesso, mas isso é um argumento do silêncio. Qual o efeito das mudanças? A força do que lemos aqui está mais próxima do MT, que Deus está falando, não está sendo ouvido, e isso traz julgamento.</span><span class="lang-en">There is a proposed exception from an unknown text that we don't have access to, but that's an argument from silence. What is the effect of the changes? The thrust of what we read here is closer to the MT, that God is speaking, is not being heard, and this brings judgement.</span></p>
+      <p class="text-slate-700"><span class="lang-pt">Lanier escreve que Paulo adapta o texto para torná-lo uma versão muito mais enfática da ideia de que Deus está falando (eu em vez de "ele" no MT e "eles" na LXX) de modo que "embora o próprio YHWH tenha feito o apelo, eles não me ouviriam, diz o Senhor." (Lanier, 1991).</span><span class="lang-en">Lanier writes that Paul adapts the text to make it a much more forceful rendition of the idea that God is speaking (I instead of "he" in the MT and "they" in the LXX) so that "even though YHWH himself made the appeal, they would not hearken to me, says the Lord." (Lanier, 1991).</span></p>
+      <blockquote class="academic-quote">
+        <p><span class="lang-pt">"Devemos … notar que a omissão da mensagem inteligível tem o efeito de tornar o objeto da recusa do ouvinte em ouvir, não a mensagem inteligível como no MT e LXX, mas a fala ininteligível de 'estrangeiros' através de quem Deus falará. A adição de <span class="font-serif">οὕτως</span> [assim] e o uso do composto <span class="font-serif">εἰσακούειν</span> [realmente ouvir] em lugar do simples <span class="font-serif">ἀκούειν</span> [ouvir] torna o fato de que o povo não ouvirá ainda mais enfático."</span><span class="lang-en">"We should … note that the omission of the intelligible message has the effect of making the object of the hearer's refusal to listen, not the intelligible message as in the MT and LXX, but the unintelligible speech of 'foreigners' through whom God will speak. The addition of οὕτως [thus] and the use of the compound εἰσακούειν [to really listen] in place of the simple ἀκούειν [to listen] makes the fact that the people will not listen even more emphatic."</span></p>
+        <p>Johanson, Bruce (1979). "Tongues, A Sign for Unbelievers?" <span class="book-title">New Testament Studies</span>, 25. 182.</p>
       </blockquote>
 
-      <h2 class="text-2xl font-bold text-slate-900">Understanding the Quotation From Isaiah</h2>
-      <p><span class="lang-pt">Um fator realmente complicador é que o texto hebraico, o Texto Massorético (MT), é diferente do texto grego, a Septuaginta (LXX), e a citação em 1 Coríntios 14 é diferente de ambos. (O Texto Massorético é a forma autoritativa da Bíblia Hebraica para o Judaísmo Rabínico e a Septuaginta nos séculos 3 e 2 A.E.C.).</span><span class="lang-en">One really complicating factor is that the Hebrew text, the Masoretic Text (MT), is different from the Greek text, the Septuagint (LXX), and the quote in 1 Corinthians 14 is different from them both. (The Masoretic Text is the authoritative form of the Hebrew Bible for Rabbinic Judaism and the Septuagint in the 3rd and 2nd centuries B.C.E.).</span></p>
-      <p><span class="lang-pt">O debate centra-se em:</span><span class="lang-en">Debate centers on:</span></p>
-      <ol class="list-decimal space-y-1 pl-6 text-slate-700">
-        <li><span class="lang-pt">O uso de Paulo do texto de Isaías.</span><span class="lang-en">Paul's use of the Isaiah text.</span></li>
-        <li><span class="lang-pt">O significado de σημεῖον (sinal).</span><span class="lang-en">The meaning of σημεῖον (sign).</span></li>
-        <li><span class="lang-pt">O significado de ἀπίστοις (incrédulos) como usado nas a) afirmações e b) ilustrações.</span><span class="lang-en">The meaning of ἀπίστοις (unbelievers) as used in the a) assertions and b) the illustrations.</span></li>
-      </ol>
-      <h2 class="text-2xl font-bold text-slate-900">The Use of the Isaiah Text</h2>
-      <blockquote class="border-l-4 border-slate-400 pl-4 italic text-slate-600">
-        <p><span class="lang-pt">"A maioria dos comentaristas aponta que a citação de Isaías diverge substancialmente do MT e da LXX. Ou é citada livremente ou então de uma tradução grega outra que não a LXX." Johanson, Bruce (1979). "Tongues, A Sign for Unbelievers?" New Testament Studies, 25. 181.</span><span class="lang-en">"Most commentators point out that the Isaiah quote diverges substantially from the MT and the LXX. Either it is quoted loosely or else from a Greek translation other than the LXX." Johanson, Bruce (1979). "Tongues, A Sign for Unbelievers?" New Testament Studies, 25. 181.</span></p>
-      </blockquote>
-      <p><span class="lang-pt">Orígenes alegou ter encontrado o texto numa versão grega diferente da Bíblia além da LXX, mas isso não foi verificado (ver Philocalia, IX. 2).</span><span class="lang-en">Origen claimed to have found the text in a different Greek version of the Bible apart from the LXX, but this has not been verified (See Philocalia, IX. 2).</span></p>
-      <blockquote class="border-l-4 border-slate-400 pl-4 italic text-slate-600">
-        <p><span class="lang-pt">1 Coríntios 14:21 RSV: "Por homens de línguas estranhas e pelos lábios de estrangeiros falarei a este povo, e mesmo assim não me ouvirão, diz o Senhor."</span><span class="lang-en">1 Corinthians 14:21 RSV: "By men of strange tongues and by the lips of foreigners will I speak to this people, and even then they will not listen to me, says the Lord."</span></p>
-      </blockquote>
-      <blockquote class="border-l-4 border-slate-400 pl-4 italic text-slate-600">
-        <p><span class="lang-pt">Isaías 28:11-12 Texto Massorético: "Na verdade, por homens de lábios estranhos e com língua estrangeira o Senhor falará a este povo, aos quais disse: 'Este é o descanso; dai descanso ao cansado; e este é o repouso'; mas não quiseram ouvir."</span><span class="lang-en">Isaiah 28:11-12 Masoretic Text: "Nay, but by men of strange lips and with an alien tongue the Lord will speak to this people, to whom he has said, 'This is rest; give rest to the weary; and this is repose'; yet they would not hear."</span></p>
-      </blockquote>
-      <blockquote class="border-l-4 border-slate-400 pl-4 italic text-slate-600">
-        <p><span class="lang-pt">Isaías 28:11-12 LXX: "através da fala desdenhosa de lábios, através de outra língua falarão a este povo, dizendo-lhes: 'Este é o descanso para o faminto; e este é a calamidade'; mas não ouviram."</span><span class="lang-en">Isaiah 28:11-12 LXX: "through the contemptuous speech of lips, through another tongue for they will speak to this people, saying to them 'This is rest for the hungry; and this is the calamity'; but they would not hear."</span></p>
-      </blockquote>
-      <p><span class="lang-pt">As mudanças que lemos em 1 Coríntios incluem:</span><span class="lang-en">The changes we read in 1 Corinthians include:</span></p>
-      <ol class="list-decimal space-y-1 pl-6 text-slate-700">
-        <li><span class="lang-pt">1 Coríntios tem "eu falarei" no lugar de "o Senhor falará" (MT) e "eles falarão" (LXX).</span><span class="lang-en">1 Corinthians has "I will speak" in the place of "the Lord will speak" (MT) and "they will speak" (LXX).</span></li>
-        <li><span class="lang-pt">1 Coríntios omite a mensagem inteligível falada pelo "Senhor" (MT) e "eles" (LXX) à qual "este povo" se recusa a ouvir em ambos os casos.</span><span class="lang-en">1 Corinthians omits the intelligible message spoken by the "Lord" (MT) and "they" (LXX) to which "this people" refuse to listen in both cases.</span></li>
-        <li><span class="lang-pt">1 Coríntios acrescenta a frase autoritativa λέγει κύριος (diz o Senhor) não encontrada nem no MT nem na LXX.</span><span class="lang-en">1 Corinthians adds the authoritative phrase λέγει κύριος (says the Lord) found neither in the MT nor in the LXX.</span></li>
-      </ol>
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Línguas como um "Sinal"</span><span class="lang-en">Tongues as a "Sign"</span></h2>
+      <p class="text-slate-700"><span class="lang-pt">Se pensamos que Paulo está fazendo um ponto sobre línguas sendo um "sinal" para incrédulos baseado neste texto que temos, que tipo de sinal poderia ser esse? Um sinal negativo ou positivo ou algo mais?</span><span class="lang-en">If we think that Paul is making a point about tongues being a "sign" for unbelievers based on this text that we have, what kind of sign might that be? A negative or a positive sign or something else?</span></p>
 
-      <h2 class="text-2xl font-bold text-slate-900">Is Paul Quoting Loosely From Memory Or Deliberately Adapting?</h2>
-      <p><span class="lang-pt">"Os textos do MT, LXX e NT diferem tanto que sinais definidos de dependência literária são difíceis de encontrar. ... Ele desvia de todos os textos hebraicos e gregos conhecidos ..." Lanier, D.E. (1991). "With Stammering Lips and Another Tongue." Criswell Theological Review, 5. 269-270. Há uma exceção proposta de um texto desconhecido ao qual não temos acesso, mas isso é um argumento do silêncio. Qual é o efeito das mudanças? A força do que lemos aqui está mais próxima do MT, que Deus está falando, não está sendo ouvido, e isso traz julgamento. Lanier escreve que Paulo adapta o texto para torná-lo uma versão muito mais enfática da ideia de que Deus está falando (eu em vez de "ele" no MT e "eles" na LXX) de modo que "mesmo que o próprio YHWH tenha feito o apelo, eles não me ouviriam, diz o Senhor." (Lanier, 1991). "Devemos notar que a omissão da mensagem inteligível tem o efeito de tornar o objeto da recusa do ouvinte em ouvir, não a mensagem inteligível como no MT e LXX, mas a fala ininteligível de 'estrangeiros' através de quem Deus falará. A adição de οὕτως [assim] e o uso do composto εἰσακούειν [realmente ouvir] em lugar do simples ἀκούειν [ouvir] torna o fato de que o povo não ouvirá ainda mais enfático." Johanson, Bruce (1979). "Tongues, A Sign for Unbelievers?" New Testament Studies, 25. 182.</span><span class="lang-en">"The texts of the MT, LXX, and NT differ so much that definite signs of literary dependence are difficult to find. … He deviates from all known Hebrew and Greek texts …" Lanier, D.E. (1991). "With Stammering Lips and Another Tongue." Criswell Theological Review, 5. 269-270. There is a proposed exception from an unknown text that we don't have access to, but that's an argument from silence. What is the effect of the changes? The thrust of what we read here is closer to the MT, that God is speaking, is not being heard, and this brings judgement. Lanier writes that Paul adapts the text to make it a much more forceful rendition of the idea that God is speaking (I instead of "he" in the MT and "they" in the LXX) so that "even though YHWH himself made the appeal, they would not hearken to me, says the Lord." (Lanier, 1991). "We should … note that the omission of the intelligible message has the effect of making the object of the hearer's refusal to listen, not the intelligible message as in the MT and LXX, but the unintelligible speech of 'foreigners' through whom God will speak. The addition of οὕτως [thus] and the use of the compound εἰσακούειν [to really listen] in place of the simple ἀκούειν [to listen] makes the fact that the people will not listen even more emphatic." Johanson, Bruce (1979). "Tongues, A Sign for Unbelievers?" New Testament Studies, 25. 182.</span></p>
+      <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Línguas como um Sinal Negativo</span><span class="lang-en">Tongues as a Negative Sign</span></h3>
+      <p class="text-slate-700"><span class="lang-pt">Lanier argumenta que podemos dar sentido a isso se estudarmos o pano de fundo de Isaías 28. "Isaías 28:1-6 constitui um oráculo contra o reino do norte, Efraim, e leva a uma acusação da própria Judá" (Lanier, 1991).</span><span class="lang-en">Lanier argues that we can make sense of it if we study the background to Isaiah 28. "Isaiah 28:1-6 constitutes one oracle versus the northern kingdom, Ephraim, and leads to an indictment of Judah itself" (Lanier, 1991).</span></p>
+      <p class="text-slate-700"><span class="lang-pt">O povo não ouvirá aos profetas de Deus; portanto, estarão sujeitos a ter de "suportar uma lição diferente de Deus, mediatizada através de mestres gaguejantes". Eles vão para o exílio aos assírios (Lanier, 1991).</span><span class="lang-en">The people will not listen to the prophets of God, therefore, they will be subject to having to "endure a different lesson from God, mediated through babbling masters." They are going to go into exile to the Assyrians (Lanier, 1991).</span></p>
+      <blockquote class="academic-quote">
+        <p><span class="lang-pt">"Isaías 28:11-12 ilustra 'da Lei' este exato fenômeno: línguas não traduzidas endurecem incrédulos em sua incredulidade, ao passo que profecia clara sempre teve a intenção de edificar aqueles que crerão e a aplicarão."</span><span class="lang-en">"Isaiah 28:11-12 illustrates 'from the Law' this exact phenomenon: untranslated tongues harden unbelievers in their unbelief, whereas clear prophecy has always been intended to build up those who will believe and apply it."</span></p>
+        <p>Lanier, D.E. (1991). "With Stammering Lips and Another Tongue." <span class="book-title">Criswell Theological Review</span>, 5. 269-270.</p>
+      </blockquote>
+      <p class="text-slate-700"><span class="lang-pt">Assim, Lanier entende línguas funcionando como um sinal de julgamento sobre incrédulos com um paralelo de um sinal negativo na Bíblia Hebraica. Lanier reconhece que a língua assíria não interpretada de Isaías 28 era uma forma de punição pela incredulidade (Lanier, 1991). No entanto, ele propõe que vejamos "sinal" em 1 Coríntios como um termo neutro, "conotando evidência de atividade divina seja para julgamento ou bênção" (Lanier, 1991).</span><span class="lang-en">Thus, Lanier recognizes that the uninterpreted Assyrian language of Isaiah 28 was a form of punishment for unbelief (Lanier, 1991). However, he proposes that we see "sign" in 1 Corinthians as a neutral term, "connoting evidence of divine activity whether for judgement or blessing" (Lanier, 1991).</span></p>
+      <p class="text-slate-700"><span class="lang-pt">Ele argumenta que línguas não interpretadas os colocará sob julgamento porque não serão capazes de entender, mas línguas interpretadas serão um sinal positivo.</span><span class="lang-en">He argues that uninterpreted tongues will put them under judgement because they won't be able to understand, but interpreted tongues will be a positive sign.</span></p>
+      <p class="text-slate-700"><span class="lang-pt">Johanson argumenta que esta é a visão coríntia, e Paulo os repreende por sua infantilidade no uso de línguas.</span><span class="lang-en">Johanson argues that this is the Corinthian view, and Paul rebukes them for their childishness in the use of tongues.</span></p>
+      <p class="text-slate-700"><span class="lang-pt">E se a citação é uma citação errônea dos coríntios para justificar seu falar em línguas e as pessoas não entenderem? Eles estão justificando todo falar em línguas de uma vez, mesmo que aqueles de fora e incrédulos não tenham ideia do que estão dizendo.</span><span class="lang-en">What if the quote is a misquote by the Corinthians to justify their speaking in tongues and people not understanding? They are justifying all speaking in tongues all at once even if those on the outside and unbelievers will have no idea what they're saying.</span></p>
 
-      <h2 class="text-2xl font-bold text-slate-900">Tongues as a "Sign"</h2>
-      <p><span class="lang-pt">Se pensamos que Paulo está fazendo um ponto sobre as línguas serem um "sinal" para incrédulos baseado neste texto que temos, que tipo de sinal poderia ser? Um sinal negativo ou positivo ou outra coisa?</span><span class="lang-en">If we think that Paul is making a point about tongues being a "sign" for unbelievers based on this text that we have, what kind of sign might that be? A negative or a positive sign or something else?</span></p>
-
-      <h2 class="text-2xl font-bold text-slate-900">Tongues as a Negative Sign</h2>
-      <p><span class="lang-pt">Lanier argumenta que podemos dar sentido a isso se estudarmos o pano de fundo de Isaías 28. "Isaías 28:1-6 constitui um oráculo contra o reino do norte, Efraim, e leva a uma acusação contra a própria Judá" (Lanier, 1991). O povo não ouvirá aos profetas de Deus, portanto, estarão sujeitos a ter que "suportar uma lição diferente de Deus, mediada através de mestres gaguejantes." Eles vão para o exílio aos assírios (Lanier, 1991). "Isaías 28:11-12 ilustra 'da Lei' este fenômeno exato: línguas não traduzidas endurecem incrédulos em sua incredulidade, enquanto a profecia clara sempre foi destinada a edificar aqueles que crerão e a aplicarão." Lanier, D.E. (1991). "With Stammering Lips and Another Tongue." Criswell Theological Review, 5. 269-270. Assim, Lanier entende as línguas funcionando como um sinal de julgamento sobre incrédulos com um paralelo de um sinal negativo na Bíblia Hebraica. Lanier reconhece que a língua assíria não interpretada de Isaías 28 era uma forma de punição pela incredulidade (Lanier, 1991). Contudo, ele propõe que vejamos "sinal" em 1 Coríntios como um termo neutro, "conotando evidência de atividade divina seja para julgamento ou bênção" (Lanier, 1991). Ele argumenta que línguas não interpretadas os colocará sob julgamento porque não poderão entender, mas línguas interpretadas serão um sinal positivo. Johanson argumenta que esta é a visão coríntia, e Paulo os repreende por sua infantilidade no uso de línguas.</span><span class="lang-en">Lanier argues that we can make sense of it if we study the background to Isaiah 28. "Isaiah 28:1-6 constitutes one oracle versus the northern kingdom, Ephraim, and leads to an indictment of Judah itself" (Lanier, 1991). The people will not listen to the prophets of God, therefore, they will be subject to having to "endure a different lesson from God, mediated through babbling masters." They are going to go into exile to the Assyrians (Lanier, 1991). "Isaiah 28:11-12 illustrates 'from the Law' this exact phenomenon: untranslated tongues harden unbelievers in their unbelief, whereas clear prophecy has always been intended to build up those who will believe and apply it." Lanier, D.E. (1991). "With Stammering Lips and Another Tongue." Criswell Theological Review, 5. 269-270. Thus, Lanier understands tongues functioning as a sign of judgement on unbelievers with a parallel of a negative sign in the Hebrew Bible. Lanier recognizes that the uninterpreted Assyrian language of Isaiah 28 was a form of punishment for unbelief (Lanier, 1991). However, he proposes that we see "sign" in 1 Corinthians as a neutral term, "connoting evidence of divine activity whether for judgement or blessing" (Lanier, 1991). He argues that reprimanding tongues will put them under judgement because they won't be able to understand, but interpreted tongues will be a positive sign. Johanson argues that this is the Corinthian view, and Paul rebukes them for their childishness in the use of tongues.</span></p>
-      <p><span class="lang-pt">E se a citação é uma citação errônea dos coríntios para justificar seu falar em línguas e as pessoas não entenderem? Eles estão justificando todo falar em línguas de uma vez mesmo que aqueles de fora e incrédulos não terão ideia do que estão dizendo.</span><span class="lang-en">What if the quote is a misquote by the Corinthians to justify their speaking in tongues and people not understanding? They are justifying all speaking in tongues all at once even if those on the outside and unbelievers will have no idea what they're saying.</span></p>
-
-      <h2 class="text-2xl font-bold text-slate-900">Reflection Question</h2>
-      <p><span class="lang-pt">Faça o seu melhor para resumir as diferentes interpretações desta passagem. Qual das interpretações você acha mais convincente?</span><span class="lang-en">Do your best to summarize the different interpretations of this passage. Which of the interpretations do you find the most convincing?</span></p>
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h2>
+      <p class="text-slate-700"><span class="lang-pt">Faça o melhor que puder para resumir as diferentes interpretações desta passagem. Qual das interpretações você acha mais convincente?</span><span class="lang-en">Do your best to summarize the different interpretations of this passage. Which of the interpretations do you find the most convincing?</span></p>
 
       <div class="page-footer">
         <span class="lang-pt">Anotações de Aula: 1 Coríntios</span><span class="lang-en">Class Notes: 1 Corinthians</span>
@@ -102,6 +158,7 @@
       </div>
     </section>
   </main>
+  <script src="../../js/verse-modal.js"></script>
   <script src="../../js/reading-progress.js"></script>
   <script src="../../js/lang-toggle.js"></script>
   <script>setLang(localStorage.getItem('bp_lang')||'pt');</script>

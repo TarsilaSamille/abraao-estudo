@@ -4,26 +4,59 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sessão 6: A Importância do Corpo</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     html[lang="pt"] .lang-en { display: none !important; }
     html[lang="en"] .lang-pt { display: none !important; }
     .verse-link { cursor: pointer; }
+    .ref { text-decoration: underline !important; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
     @media print { .nav-btn-fixed { display: none !important; } }
-      section figure { margin: 1.75rem 0 !important; }
-      section figure figcaption { margin-top: 0.5rem; text-align: center; font-size: 0.8rem; font-style: italic; color: #64748b; }
-      section > p { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
-      section > figure, section > ul, section > ol { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
-      section > h2 { margin: 1.75rem 0 0.75rem !important; }
-      #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  @media print { #reading-progress { display: none !important; } }
-  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
-</style>
+    
+    section figure { margin: 1.75rem 0 !important; }
+    section figure figcaption {
+      margin-top: 0.5rem; text-align: center;
+      font-size: 0.8rem; font-style: italic; color: #64748b;
+    }
+    
+    section > p { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
+    section > figure,
+    section > ul,
+    section > ol { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
+    
+    /* Correção do espaçamento das listas para ficarem agrupadas como no PDF */
+    section ul li, section ol li { margin-bottom: 0.25rem !important; line-height: 1.6 !important; }
+    
+    #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+    @media print { #reading-progress { display: none !important; } }
+    
+    .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
+    
+    body { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important; font-size: 1.05rem !important; line-height: 1.78 !important; color: #24262a; }
+    section > p { margin: 1.1rem 0 1.1rem !important; line-height: 1.78 !important; }
+    section > h2 { margin: 3rem 0 1.25rem !important; font-size: 1.9rem !important; font-weight: 800 !important; letter-spacing: -0.015em; }
+    section > h3 { margin: 2rem 0 .75rem !important; font-size: 1.3rem !important; font-weight: 800 !important; }
+    
+    /* Citação Acadêmica (linha mais grossa e escura) */
+    blockquote.academic-quote { border-left: 4px solid #475569 !important; padding-left: 1.25rem !important; margin: 2rem 0 !important; }
+    blockquote.academic-quote p { font-style: normal !important; color: #334155 !important; line-height: 1.75 !important; margin-bottom: 1rem !important; }
+    blockquote.academic-quote p:last-child { margin-bottom: 0 !important; }
+    
+    /* Bloco dos Versículos (linha mais fina e clara abraçando todo o conjunto) */
+    .verse-block { border-left: 3px solid #cbd5e1; padding-left: 1.25rem; margin: 2rem 0; }
+    .verse-text { margin-top: 0.5rem !important; margin-bottom: 0.5rem !important; }
+    
+    sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px; }
+    .book-title { color: #2563eb; text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+  </style>
 </head>
 <body class="bg-white font-sans text-slate-800">
 <div id="reading-progress" aria-hidden="true"></div>
+
   <div class="nav-btn-fixed fixed left-4 top-4 z-50">
-    <a href="../index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <a href="./index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
       <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
     </a>
   </div>
@@ -34,95 +67,179 @@
       <button onclick="window.print()" class="inline-flex items-center gap-2 px-4 py-1.5 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg><span class="lang-pt">Imprimir</span><span class="lang-en">Print</span></button>
     </div>
   </div>
+  
   <main class="mx-auto max-w-3xl px-6 py-20 md:py-24">
     <h1 class="text-4xl font-bold text-slate-900 md:text-5xl"><span class="lang-pt">Sessão 6: A Importância do Corpo</span><span class="lang-en">Session 6: The Importance of the Body</span></h1>
     <hr class="my-8 border-t-2 border-slate-200" />
+    
     <section>
-      <h2 class="text-2xl font-bold text-slate-900">Key Takeaways</h2>
-      <ul class="list-disc space-y-2 pl-6 text-slate-700">
-        <li><span class="lang-pt">O primeiro slogam coríntio concordado aparece em 1 Coríntios 6:12 e dá insight sobre o pensamento coríntio a respeito do corpo físico: "Todas as coisas me são lícitas."</span><span class="lang-en">The first agreed-upon Corinthian slogan appears in 1 Corinthians 6:12 and gives insight into Corinthian thought about the physical body: "All things are lawful for me."</span></li>
-        <li><span class="lang-pt">Paulo lembra os coríntios que eles estão "em Cristo" e, portanto, deveriam estar participando da vida ressuscitada de Jesus.</span><span class="lang-en">Paul reminds the Corinthians that they are "in Christ" and, therefore, ought to be participating in Jesus' resurrected life.</span></li>
-        <li><span class="lang-pt">A crença dos coríntios de que as coisas deste mundo serão destruídas no futuro os motivou a pensar que o que faziam com seus corpos tinha pouca ou nenhuma consequência.</span><span class="lang-en">The Corinthians' belief that the things of this world will be destroyed in the future motivated them to think that what they did with their bodies was of little to no consequence.</span></li>
-        <li><span class="lang-pt">De acordo com Paulo, se alguém é cristão, a integridade sexual é uma das maneiras primárias e inegociáveis de responder ao amor e à graça de Jesus.</span><span class="lang-en">According to Paul, if someone is a Christian, sexual integrity is one of the primary, non-negotiable ways to respond to Jesus' love and grace.</span></li>
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Principais Aprendizados</span><span class="lang-en">Key Takeaways</span></h2>
+      <ul class="list-disc pl-10 text-slate-700">
+        <li><span class="lang-pt">O primeiro slogan coríntio sobre o qual há consenso aparece em <span class="ref" data-reference="1 Coríntios 6:12">1 Coríntios 6:12</span> e nos dá discernimento sobre o pensamento coríntio acerca do corpo físico: "Todas as coisas me são lícitas."</span><span class="lang-en">The first agreed-upon Corinthian slogan appears in <span class="ref" data-reference="1 Corinthians 6:12">1 Corinthians 6:12</span> and gives insight into Corinthian thought about the physical body: “All things are lawful for me.”</span></li>
+        <li><span class="lang-pt">Paulo lembra aos coríntios que eles estão "em Cristo" e, portanto, deveriam estar participando da vida ressuscitada de Jesus.</span><span class="lang-en">Paul reminds the Corinthians that they are "in Christ" and, therefore, ought to be participating in Jesus' resurrected life.</span></li>
+        <li><span class="lang-pt">A crença dos coríntios de que as coisas deste mundo serão destruídas no futuro os motivou a pensar que o que faziam com seus corpos tinha pouca ou nenhuma consequência.</span><span class="lang-en">The Corinthians’ belief that the things of this world will be destroyed in the future motivated them to think that what they did with their bodies was of little to no consequence.</span></li>
+        <li><span class="lang-pt">De acordo com Paulo, se alguém é cristão, a integridade sexual é uma das maneiras primárias e inegociáveis de responder ao amor e à graça de Jesus.</span><span class="lang-en">According to Paul, if someone is a Christian, sexual integrity is one of the primary, non-negotiable ways to respond to Jesus’ love and grace.</span></li>
       </ul>
 
-      <h2 class="text-2xl font-bold text-slate-900">Who Judges the Body?</h2>
-      <p><span class="lang-pt">Crentes coríntios estavam levando uns aos outros a um tribunal secular para julgamento. Isso era provavelmente mais como litígio vexatório, fazendo do ganho da causa uma questão de honra. Os tribunais eram notoriamente corruptos e favoreceriam os poderosos. Isso nos lembra dos ensinos de Jesus em Mateus.</span><span class="lang-en">Corinthian believers were taking one another to a secular court for judgment. This was probably more like vexatious litigation, making winning the case a matter of honor. Courts were notoriously corrupt and would favor the powerful. This reminds us of Jesus' teachings in Matthew.</span></p>
-      <blockquote class="border-l-4 border-slate-400 pl-4 italic text-slate-600">
-        <p><span class="lang-pt">Mateus 5:25-26 (NIV): "Acorda depressa com o teu adversário, enquanto estás com ele a caminho, para que não suceda que o adversário te entregue ao juiz, e o juiz te entregue ao oficial, e sejas lançado na prisão. Em verdade te digo que de maneira nenhuma sairás dali, até que pagues o último ceitil."</span><span class="lang-en">Matthew 5:25-26 (NIV): "Settle matters quickly with your adversary who is taking you to court. Do it while you are still together on the way, or your adversary may hand you over to the judge, and the judge may hand you over to the officer, and you may be thrown into prison. Truly I tell you, you will not get out until you have paid the last penny."</span></p>
-      </blockquote>
-      <p><span class="lang-pt">Paulo diz sarcasticamente: "É possível que não haja entre vós ninguém sábio o suficiente para julgar uma disputa entre crentes?" (1 Cor. 6:5b). Paulo está realmente aborrecido aqui e está tendo um diálogo com eles. Vários comentaristas agora veem isso como diatribe — um argumento para persuadir um oponente. Isso é sinalizado pelo número de vezes que ele diz "Não sabeis vós?" (grego: ouk oidate/οὐκ οἴδατε) em 1 Coríntios 6.</span><span class="lang-en">Paul sarcastically says, "Is it possible that there is nobody among you wise enough to judge a dispute between believers?" (1 Cor. 6:5b). Paul is really upset here and is having a dialogue with them. A number of commentators now see this as diatribal—an argument to persuade an opponent. This is signalled by the number of times he says "Do you not know?" (Greek: ouk oidate/οὐκ οἴδατε) in 1 Corinthians 6.</span></p>
-      <ul class="list-disc space-y-1 pl-6 text-slate-700">
-        <li><span class="lang-pt">"Não sabeis vós (οὐκ οἴδατε) que os santos hão de julgar o mundo?" (v. 2)</span><span class="lang-en">"Do you not know (οὐκ οἴδατε)?" "the saints will judge the world" (v. 2)</span></li>
-        <li><span class="lang-pt">"que havemos de julgar os anjos?" (v. 3)</span><span class="lang-en">"that we will judge angels" (v. 3)</span></li>
-        <li><span class="lang-pt">"os injustos não hão de herdar o reino de Deus" (v. 9)</span><span class="lang-en">"the unrighteous will not inherit the kingdom of God" (v. 9)</span></li>
-        <li><span class="lang-pt">"que os vossos corpos são membros de Cristo" (v. 15)</span><span class="lang-en">"that your bodies are members of Christ" (v. 15)</span></li>
-        <li><span class="lang-pt">"que aquele que se une a uma prostituta é um corpo com ela" (v. 16)</span><span class="lang-en">"that one joined to a prostitute is one body with them" (v. 16)</span></li>
-        <li><span class="lang-pt">"que o corpo de vós todos é templo do Espírito Santo" (v. 19)</span><span class="lang-en">"that the body of you all is a temple of the Holy Spirit" (v. 19)</span></li>
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Quem Julga o Corpo?</span><span class="lang-en">Who Judges the Body?</span></h2>
+      <p><span class="lang-pt">Crentes coríntios estavam levando uns aos outros a um tribunal secular para julgamento. Isso era provavelmente mais como um litígio vexatório, fazendo de ganhar a causa uma questão de honra. Os tribunais eram notoriamente corruptos e favoreciam os poderosos.</span><span class="lang-en">Corinthian believers were taking one another to a secular court for judgment. This was probably more like vexatious litigation, making winning the case a matter of honor. Courts were notoriously corrupt and would favor the powerful.</span></p>
+      
+      <p><span class="lang-pt">Isso nos lembra dos ensinos de Jesus em Mateus.</span><span class="lang-en">This reminds us of Jesus’ teachings in Matthew.</span></p>
+
+      <div class="verse-block">
+        <p class="font-bold text-slate-900 mb-2">
+          <span class="lang-pt">Mateus 5:25-26 <span class="font-medium text-slate-500">NIV</span></span>
+          <span class="lang-en">Matthew 5:25-26 <span class="font-medium text-slate-500">NIV</span></span>
+        </p>
+        <p class="text-slate-800 leading-relaxed verse-text">
+          <span class="lang-pt"><sup class="vs">25</sup> Entra em acordo depressa com o teu adversário que te leva ao tribunal. Faze-o enquanto ainda estais juntos no caminho, ou o teu adversário poderá entregar-te ao juiz, e o juiz poderá entregar-te ao oficial, e poderás ser lançado na prisão. <sup class="vs">26</sup> Em verdade te digo, não sairás de lá até que tenhas pago o último centavo.</span>
+          <span class="lang-en"><sup class="vs">25</sup> Settle matters quickly with your adversary who is taking you to court. Do it while you are still together on the way, or your adversary may hand you over to the judge, and the judge may hand you over to the officer, and you may be thrown into prison. <sup class="vs">26</sup> Truly I tell you, you will not get out until you have paid the last penny.</span>
+        </p>
+      </div>
+
+      <p><span class="lang-pt">Paulo diz sarcasticamente: "Será possível que não haja entre vós ninguém sábio o suficiente para julgar uma disputa entre crentes?" (<span class="ref" data-reference="1 Coríntios 6:5b">1 Cor. 6:5b</span>)</span><span class="lang-en">Paul sarcastically says, “Is it possible that there is nobody among you wise enough to judge a dispute between believers?” (<span class="ref" data-reference="1 Corinthians 6:5b">1 Cor. 6:5b</span>)</span></p>
+
+      <p><span class="lang-pt">Paulo está realmente irritado aqui e está tendo um diálogo com eles. Vários comentaristas agora veem isso como uma diatribe — um argumento para persuadir um oponente. Isso é sinalizado pelo número de vezes que ele diz "Não sabeis?" (grego: ouk oidate/<span class="font-serif">οὐκ οἴδατε</span>) em <span class="ref" data-reference="1 Coríntios 6">1 Coríntios 6</span>.</span><span class="lang-en">Paul is really upset here and is having a dialogue with them. A number of commentators now see this as diatribal—an argument to persuade an opponent. This is signalled by the number of times he says “Do you not know?” (Greek: ouk oidate/<span class="font-serif">οὐκ οἴδατε</span>) in <span class="ref" data-reference="1 Corinthians 6">1 Corinthians 6</span>.</span></p>
+
+      <p class="font-bold text-slate-900 mt-8 mb-2">
+        <span class="lang-pt">"Não sabeis (<span class="font-serif">οὐκ οἴδατε</span>)?"</span>
+        <span class="lang-en">“Do you not know (<span class="font-serif">οὐκ οἴδατε</span>)?”</span>
+      </p>
+
+      <ul class="list-disc pl-10 text-slate-700">
+        <li><span class="lang-pt">"os santos julgarão o mundo" (<span class="ref" data-reference="1 Coríntios 6:2">v. 2</span>)</span><span class="lang-en">“the saints will judge the world” (<span class="ref" data-reference="1 Corinthians 6:2">v. 2</span>)</span></li>
+        <li><span class="lang-pt">"que julgaremos os anjos" (<span class="ref" data-reference="1 Coríntios 6:3">v. 3</span>)</span><span class="lang-en">“that we will judge angels” (<span class="ref" data-reference="1 Corinthians 6:3">v. 3</span>)</span></li>
+        <li><span class="lang-pt">"os injustos não herdarão o reino de Deus" (<span class="ref" data-reference="1 Coríntios 6:9">v. 9</span>)</span><span class="lang-en">“the unrighteous will not inherit the kingdom of God” (<span class="ref" data-reference="1 Corinthians 6:9">v. 9</span>)</span></li>
+        <li><span class="lang-pt">"que os vossos corpos são membros de Cristo" (<span class="ref" data-reference="1 Coríntios 6:15">v. 15</span>)</span><span class="lang-en">“that your bodies are members of Christ” (<span class="ref" data-reference="1 Corinthians 6:15">v. 15</span>)</span></li>
+        <li><span class="lang-pt">"que aquele que se une a uma prostituta é um só corpo com ela" (<span class="ref" data-reference="1 Coríntios 6:16">v. 16</span>)</span><span class="lang-en">“that one joined to a prostitute is one body with them” (<span class="ref" data-reference="1 Corinthians 6:16">v. 16</span>)</span></li>
+        <li><span class="lang-pt">"que o corpo de todos vós é templo do Espírito Santo" (<span class="ref" data-reference="1 Coríntios 6:19">v. 19</span>)</span><span class="lang-en">“that the body of you all is a temple of the Holy Spirit” (<span class="ref" data-reference="1 Corinthians 6:19">v. 19</span>)</span></li>
       </ul>
 
-      <h2 class="text-2xl font-bold text-slate-900">Corinthian Slogans</h2>
-      <p><span class="lang-pt">O primeiro slogam concordado surge neste capítulo. Isso nos dá algum insight sobre o pensamento coríntio. Contudo, há algum debate sobre onde os slogans começam e terminam.</span><span class="lang-en">The first agreed upon slogan comes in this chapter. This gives us some insight into Corinthian thought. However, there is some debate over where the slogans start and stop.</span></p>
-      <blockquote class="border-l-4 border-slate-400 pl-4 italic text-slate-600">
-        <p><span class="lang-pt">1 Coríntios 6:12-13 (NRSV): "Todas as coisas me são lícitas, mas nem todas as coisas convêm. Todas as coisas me são lícitas, mas eu não me deixarei dominar por nenhuma. Os alimentos são para o estômago, e o estômago para os alimentos; mas Deus destruirá tanto um como o outro." A NIV insere "vocês dizem", que não está no texto.</span><span class="lang-en">1 Corinthians 6:12-13 (NRSV): "All things are lawful for me," but not all things are beneficial. "All things are lawful for me," but I will not be dominated by anything. "Food is meant for the stomach and the stomach for food," and God will destroy both one and the other. NIV inserts "you say," which is not in the text.</span></p>
-      </blockquote>
-      <blockquote class="border-l-4 border-slate-400 pl-4 italic text-slate-600">
-        <p><span class="lang-pt">1 Coríntios 6:12-13 (NIV): "Tenho o direito de fazer qualquer coisa", vocês dizem — mas nem tudo é benéfico. "Tenho o direito de fazer qualquer coisa" — mas não serei dominado por nada. Vocês dizem: "O alimento para o estômago e o estômago para o alimento, e Deus destruirá ambos."</span><span class="lang-en">1 Corinthians 6:12-13 (NIV): "I have the right to do anything," you say—but not everything is beneficial. "I have the right to do anything"—but I will not be mastered by anything. "Food for the stomach and the stomach for food, and God will destroy them both."</span></p>
-      </blockquote>
-      <p><span class="lang-pt">Outro slogam coríntio proposto surge no versículo 18b. Os coríntios: "Todo pecado que o homem comete é fora do corpo." Paulo: "Pelo contrário, aquele que peca sexualmente peca contra o seu próprio corpo."</span><span class="lang-en">Another proposed Corinthian slogan comes in verse 18b. The Corinthians: "Every sin which a man may commit is outside the body." Paul: "On the contrary, the immoral man sins against his own body."</span></p>
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Slogans Coríntios</span><span class="lang-en">Corinthian Slogans</span></h2>
+      <p><span class="lang-pt">O primeiro slogan sobre o qual há consenso aparece neste capítulo. Isso nos dá algum discernimento sobre o pensamento coríntio. Contudo, há algum debate sobre onde os slogans começam e terminam.</span><span class="lang-en">The first agreed upon slogan comes in this chapter. This gives us some insight into Corinthian thought. However, there is some debate over where the slogans start and stop.</span></p>
 
-      <h2 class="text-2xl font-bold text-slate-900">The Debate over 1 Corinthians 6:9</h2>
-      <p><span class="lang-pt">Em 1 Coríntios 6:9-10, Paulo reitera a lista de vícios do capítulo 5 como aqueles que não herdarão o Reino de Deus. Ele repete os sexualmente imorais, idólatras, cobiçosos, bêbados, caluniadores e trapaceiros. Ele acrescenta adúlteros, homens que se deitam com homens, e ladrões. Há muito debate sobre os termos que Paulo usa aqui em 1 Coríntios 6:9.</span><span class="lang-en">In 1 Corinthians 6:9-10, Paul reiterates the vice list from chapter 5 as those who will not inherit the Kingdom of God. He repeats sexually immoral, idolaters, coveters, drunkards, verbal abusers, and swindlers. He adds adulterers, men who have sex with men, and thieves. There is much debate about the terms that Paul uses here in 1 Corinthians 6:9.</span></p>
-      <ul class="list-disc space-y-1 pl-6 text-slate-700">
-        <li><span class="lang-pt">μαλακοὶ (grego: malakoi)</span><span class="lang-en">μαλακοὶ (Greek: malakoi)</span></li>
-        <li><span class="lang-pt">ἀρσενοκοῖται (grego: arsenokoitai — deitar com um homem)</span><span class="lang-en">ἀρσενοκοῖται (Greek: arsenokoitai—lying with a man)</span></li>
+      <div class="verse-block">
+        <p class="font-bold text-slate-900 mb-2">
+          <span class="lang-pt">1 Coríntios 6:12-13 <span class="font-medium text-slate-500">NRSV</span></span>
+          <span class="lang-en">1 Corinthians 6:12-13 <span class="font-medium text-slate-500">NRSV</span></span>
+        </p>
+        <p class="text-slate-800 leading-relaxed verse-text">
+          <span class="lang-pt"><sup class="vs">12</sup> "Todas as coisas me são lícitas", mas nem todas as coisas convêm. "Todas as coisas me são lícitas", mas eu não me deixarei dominar por nenhuma. <sup class="vs">13</sup> "A comida é para o estômago e o estômago para a comida", mas Deus destruirá tanto um como o outro.</span>
+          <span class="lang-en"><sup class="vs">12</sup> “All things are lawful for me,” but not all things are beneficial. “All things are lawful for me,” but I will not be dominated by anything. <sup class="vs">13</sup> “Food is meant for the stomach and the stomach for food,” and God will destroy both one and the other.</span>
+        </p>
+      </div>
+
+      <p><span class="lang-pt">A NIV insere "vocês dizem", o que não está no texto.</span><span class="lang-en">NIV inserts “you say,” which is not in the text.</span></p>
+
+      <div class="verse-block">
+        <p class="font-bold text-slate-900 mb-2">
+          <span class="lang-pt">1 Coríntios 6:12-13 <span class="font-medium text-slate-500">NIV</span></span>
+          <span class="lang-en">1 Corinthians 6:12-13 <span class="font-medium text-slate-500">NIV</span></span>
+        </p>
+        <p class="text-slate-800 leading-relaxed verse-text">
+          <span class="lang-pt"><sup class="vs">12</sup> "Tenho o direito de fazer qualquer coisa", <strong>vocês dizem —</strong> mas nem tudo é benéfico. "Tenho o direito de fazer qualquer coisa" — mas não serei dominado por nada. <sup class="vs">13</sup> <strong>Vocês dizem,</strong> "O alimento para o estômago e o estômago para o alimento, e Deus destruirá ambos."</span>
+          <span class="lang-en"><sup class="vs">12</sup> “I have the right to do anything,” <strong>you say—</strong>but not everything is beneficial. “I have the right to do anything”—but I will not be mastered by anything. <sup class="vs">13</sup> <strong>You say,</strong> “Food for the stomach and the stomach for food, and God will destroy them both.”</span>
+        </p>
+      </div>
+
+      <p><span class="lang-pt">Outro slogan coríntio proposto aparece no <span class="ref" data-reference="1 Coríntios 6:18">versículo 18b</span>. Os coríntios: "Todo pecado que o homem comete é fora do corpo." Paulo: "Pelo contrário, o homem imoral peca contra o seu próprio corpo."</span><span class="lang-en">Another proposed Corinthian slogan comes in <span class="ref" data-reference="1 Corinthians 6:18">verse 18b</span>. The Corinthians: “Every sin which a man may commit is outside the body.” Paul: “On the contrary, the immoral man sins against his own body.”</span></p>
+
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">O Debate sobre 1 Coríntios 6:9</span><span class="lang-en">The Debate over 1 Corinthians 6:9</span></h2>
+      <p><span class="lang-pt">Em <span class="ref" data-reference="1 Coríntios 6:9-10">1 Coríntios 6:9-10</span>, Paulo reitera a lista de vícios do <span class="ref" data-reference="1 Coríntios 5">capítulo 5</span> como aqueles que não herdarão o Reino de Deus. Ele repete os imorais sexuais, idólatras, cobiçosos, bêbados, abusadores verbais e trapaceiros. Ele adiciona adúlteros, homens que têm relações sexuais com homens, e ladrões.</span><span class="lang-en">In <span class="ref" data-reference="1 Corinthians 6:9-10">1 Corinthians 6:9-10</span>, Paul reiterates the vice list from <span class="ref" data-reference="1 Corinthians 5">chapter 5</span> as those who will not inherit the Kingdom of God. He repeats sexually immoral, idolaters, coveters, drunkards, verbal abusers, and swindlers. He adds adulterers, men who have sex with men, and thieves.</span></p>
+
+      <p><span class="lang-pt">Há muito debate sobre os termos que Paulo usa aqui em <span class="ref" data-reference="1 Coríntios 6:9">1 Coríntios 6:9</span>.</span><span class="lang-en">There is much debate about the terms that Paul uses here in <span class="ref" data-reference="1 Corinthians 6:9">1 Corinthians 6:9</span>.</span></p>
+
+      <ul class="list-disc pl-10 text-slate-700">
+        <li><span class="lang-pt"><span class="font-serif">μαλακοὶ</span> (grego: malakoi)</span><span class="lang-en"><span class="font-serif">μαλακοὶ</span> (Greek: malakoi)</span></li>
+        <li><span class="lang-pt"><span class="font-serif">ἀρσενοκοῖται</span> (grego: arsenokoitai — deitar com um homem)</span><span class="lang-en"><span class="font-serif">ἀρσενοκοῖται</span> (Greek: arsenokoitai—lying with a man)</span></li>
       </ul>
-      <p><span class="lang-pt">Malakoi não é um termo usado exclusivamente para homossexual. É um termo pejorativo significando "molengas, efeminados". Assim, alguns veem isso como referência a um prostituto masculino ou parceiro passivo numa relação sexual masculina. Aresenokoitai é uma palavra composta e literalmente significa "os que se deitam com homem". Também é usada em 1 Timóteo 1:10-11 logo após uma referência a traficantes de escravos, então pode estar se referindo a relações homossexuais coercivas, mas não sabemos realmente. Wesley Hill nota que arsenokoites tem uma "forte conexão verbal com as renderizações da Septuaginta tanto de Levítico 18:22 quanto de 20:13, onde ambas as metades do composto são usadas" (Hill, 2016). Paulo pode ter cunhado o termo ele mesmo.</span><span class="lang-en">Malakoi is not a term that is used exclusively for homosexual. It's a pejorative term meaning "softies, effeminate." So some see this as a reference to a male prostitute or a passive partner in a male sexual relationship. Aresenokoitai is a compound word and literally means "male-bedders." It is also used in 1 Timothy 1:10-11 right after a reference to slave traders, so it might be referring to coercive homosexual relations, but we don't really know. Wesley Hill notes that arsenokoites has a "strong verbal connection to the Septuagint renderings of both Leviticus 18:22 and 20:13, where both halves of the compound are used" (Hill, 2016). Paul may have coined the term himself.</span></p>
-      <h3 class="text-xl font-semibold text-slate-800">Some Translation Options</h3>
-      <ul class="list-disc space-y-1 pl-6 text-slate-700">
+
+      <p><span class="lang-pt">Malakoi não é um termo usado exclusivamente para homossexual. É um termo pejorativo que significa "molengas, efeminados". Por isso, alguns veem isso como uma referência a um prostituto masculino ou a um parceiro passivo num relacionamento sexual masculino.</span><span class="lang-en">Malakoi is not a term that is used exclusively for homosexual. It’s a pejorative term meaning “softies, effeminate.” So some see this as a reference to a male prostitute or a passive partner in a male sexual relationship.</span></p>
+
+      <p><span class="lang-pt">Arsenokoitai é uma palavra composta e significa literalmente "os que se deitam com homens". Também é usada em <span class="ref" data-reference="1 Timóteo 1:10-11">1 Timóteo 1:10-11</span> logo após uma referência a traficantes de escravos, então pode estar se referindo a relações homossexuais coercitivas, mas nós realmente não sabemos.</span><span class="lang-en">Aresenokoitai is a compound word and literally means “male-bedders.” It is also used in <span class="ref" data-reference="1 Timothy 1:10-11">1 Timothy 1:10-11</span> right after a reference to slave traders, so it might be referring to coercive homosexual relations, but we don’t really know.</span></p>
+
+      <p><span class="lang-pt">Wesley Hill nota que arsenokoites tem uma "forte conexão verbal com as traduções da Septuaginta tanto de <span class="ref" data-reference="Levítico 18:22">Levítico 18:22</span> quanto de <span class="ref" data-reference="Levítico 20:13">20:13</span>, onde ambas as metades da palavra composta são usadas" (Hill, 2016). Paulo pode ter cunhado o termo ele mesmo.</span><span class="lang-en">Wesley Hill notes that arsenokoites has a “strong verbal connection to the Septuagint renderings of both <span class="ref" data-reference="Leviticus 18:22">Leviticus 18:22</span> and <span class="ref" data-reference="Leviticus 20:13">20:13</span>, where both halves of the compound are used” (Hill, 2016). Paul may have coined the term himself.</span></p>
+
+      <h3 class="text-xl font-bold text-slate-800"><span class="lang-pt">Algumas Opções de Tradução</span><span class="lang-en">Some Translation Options</span></h3>
+      <ul class="list-disc pl-10 text-slate-700">
         <li><span class="lang-pt">NIV: homens que têm relações sexuais com homens</span><span class="lang-en">NIV: men who have sex with men</span></li>
         <li><span class="lang-pt">NASB: homossexuais, provavelmente parceiros submissos e dominantes</span><span class="lang-en">NASB: homosexuals, probably submissive and dominant partners</span></li>
         <li><span class="lang-pt">NRSV: prostitutos masculinos e sodomitas</span><span class="lang-en">NRSV: male prostitutes and sodomites</span></li>
         <li><span class="lang-pt">The Message: foca em abuso</span><span class="lang-en">The Message: focuses on abuse</span></li>
       </ul>
-      <blockquote class="border-l-4 border-slate-400 pl-4 italic text-slate-600">
-        <p><span class="lang-pt">1 Coríntios 6:9-11 The Message: "Não percebeis que este não é o modo de viver? Pessoas injustas que não se importam com Deus não se juntarão ao seu reino. Aqueles que usam e abusam uns dos outros, usam e abusam do sexo, usam e abusam da terra e de tudo que nela há, não se qualificam como cidadãos do reino de Deus. Vários de vós sabem por experiência do que estou falando, pois não há muito tempo estáveis nessa lista. Desde então, fostes limpos e recebestes um novo começo por Jesus, nosso Mestre, nosso Messias, e por nosso Deus presente em nós, o Espírito."</span><span class="lang-en">1 Corinthians 6:9-11 The Message: "Don't you realize that this is not the way to live? Unjust people who don't care about God will not be joining in his kingdom. Those who use and abuse each other, use and abuse sex, use and abuse the earth and everything in it, don't qualify as citizens in God's kingdom. A number of you know from experience what I'm talking about, for not so long ago you were on that list. Since then, you've been cleaned up and given a fresh start by Jesus, our Master, our Messiah, and by our God present in us, the Spirit."</span></p>
+
+      <div class="verse-block">
+        <p class="font-bold text-slate-900 mb-2">
+          <span class="lang-pt">1 Coríntios 6:9-11 <span class="font-medium text-slate-500">The Message</span></span>
+          <span class="lang-en">1 Corinthians 6:9-11 <span class="font-medium text-slate-500">The Message</span></span>
+        </p>
+        <p class="text-slate-800 leading-relaxed verse-text">
+          <span class="lang-pt">"Não percebeis que este não é o modo de viver? Pessoas injustas que não se importam com Deus não se juntarão ao seu reino. Aqueles que usam e abusam uns dos outros, usam e abusam do sexo, usam e abusam da terra e de tudo que nela há, não se qualificam como cidadãos do reino de Deus. Vários de vós sabem por experiência do que estou falando, pois não há muito tempo estáveis nessa lista. Desde então, fostes limpos e recebestes um novo começo por Jesus, nosso Mestre, nosso Messias, e por nosso Deus presente em nós, o Espírito."</span>
+          <span class="lang-en">"Don’t you realize that this is not the way to live? Unjust people who don’t care about God will not be joining in his kingdom. Those who use and abuse each other, use and abuse sex, use and abuse the earth and everything in it, don’t qualify as citizens in God’s kingdom. A number of you know from experience what I’m talking about, for not so long ago you were on that list. Since then, you’ve been cleaned up and given a fresh start by Jesus, our Master, our Messiah, and by our God present in us, the Spirit."</span>
+        </p>
+      </div>
+
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Visões Divergentes</span><span class="lang-en">Diverging Views</span></h2>
+      <p><span class="lang-pt">O mundo antigo não era como o nosso mundo e as linhas limitrofes se encontram em lugares muito diferentes. Judeus, gregos e romanos tinham visões diferentes sobre relações homossexuais entre homens.</span><span class="lang-en">The ancient world was not like our world and lines fall in very different places. Jews, Greeks, and Romans had different views of homosexual relations between men.</span></p>
+
+      <blockquote class="academic-quote">
+        <p>
+          <span class="lang-pt">"Para os judeus, incluindo aqueles que formaram o movimento cristão, as relações entre pessoas do mesmo sexo eram indicações da depravação da sociedade não-judaica."</span>
+          <span class="lang-en">“For Jews, including those who formed the Christian movement, same-sex relations were indications of the depravity of non-Jewish society.”</span>
+        </p>
+        <p>
+          <span class="lang-pt">Loader, William (2016). "Homosexuality and the Bible." <span class="book-title">Two Views on Homosexuality, the Bible, and the Church</span>. Zondervan. 32.</span>
+          <span class="lang-en">Loader, William (2016). “Homosexuality and the Bible.” <span class="book-title">Two Views on Homosexuality, the Bible, and the Church</span>. Zondervan. 32.</span>
+        </p>
       </blockquote>
 
-      <h2 class="text-2xl font-bold text-slate-900">Diverging Views</h2>
-      <p><span class="lang-pt">O mundo antigo não era como o nosso mundo e as linhas caem em lugares muito diferentes. Judeus, gregos e romanos tinham visões diferentes de relações homossexuais entre homens.</span><span class="lang-en">The ancient world was not like our world and lines fall in very different places. Jews, Greeks, and Romans had different views of homosexual relations between men.</span></p>
-      <blockquote class="border-l-4 border-[#1b1b1b] pl-4 italic text-slate-600">
-        <p><span class="lang-pt">"Para judeus, incluindo aqueles que formaram o movimento cristão, relações entre pessoas do mesmo sexo eram indicações da depravação da sociedade não-judaica." Loader, William (2016). "Homosexuality and the Bible." Two Views on Homosexuality, the Bible, and the Church. Zondervan. 32.</span><span class="lang-en">"For Jews, including those who formed the Christian movement, same-sex relations were indications of the depravity of non-Jewish society." Loader, William (2016). "Homosexuality and the Bible." Two Views on Homosexuality, the Bible, and the Church. Zondervan. 32.</span></p>
+      <p><span class="lang-pt">Os gregos aprovavam relações homossexuais masculinas com menos de 30 anos. Eram vistas como algo que fortalecia os laços entre os homens e podiam ser parte de um relacionamento de mentoria.</span><span class="lang-en">Greeks approved of same-sex male relations under 30. They were seen to strengthen bonds between males and could be part of a mentoring relationship.</span></p>
+
+      <blockquote class="academic-quote">
+        <p>
+          <span class="lang-pt">"A lei romana tratava as relações entre cidadãos do mesmo sexo como um delito criminal, mas tolerava-as entre um cidadão romano e alguém inferior, como um escravo ou estrangeiro. Os romanos, por vezes, deploravam as relações entre pessoas do mesmo sexo como uma doença grega e tipicamente auto-indulgente, ao que os gregos respondiam deplorando o fato de que os romanos geralmente não esperavam que tais relações cessassem quando um jovem completava trinta anos."</span>
+          <span class="lang-en">“Roman law treated same-sex relations between citizens as a criminal offence, but tolerated it between a Roman citizen and someone inferior, like a slave or a foreigner. Romans sometimes deplored same-sex relations as a Greek disease and typically self-indulgent, to which Greeks responded by deploring the fact that Romans usually did not expect such relations to cease when a young man turned thirty.”</span>
+        </p>
+        <p>
+          <span class="lang-pt">Loader, William (2016). "Homosexuality and the Bible." <span class="book-title">Two Views on Homosexuality, The Bible, and the Church</span>. Zondervan. 31.</span>
+          <span class="lang-en">Loader, William (2016). “Homosexuality and the Bible.” <span class="book-title">Two Views on Homosexuality, The Bible, and the Church</span>. Zondervan. 31.</span>
+        </p>
       </blockquote>
-      <p><span class="lang-pt">Os gregos aprovavam relações sexuais entre homens com menos de 30 anos. Eram vistas como fortalecendo laços entre masculinos e poderiam ser parte de um relacionamento de mentoria.</span><span class="lang-en">Greeks approved of same-sex male relations under 30. They were seen to strengthen bonds between males and could be part of a mentoring relationship.</span></p>
-      <blockquote class="border-l-4 border-[#1b1b1b] pl-4 italic text-slate-600">
-        <p><span class="lang-pt">"A lei romana tratava relações entre cidadãos do mesmo sexo como ofensa criminal, mas tolerava entre um cidadão romano e alguém inferior, como um escravo ou estrangeiro. Romanos às vezes deploravam relações entre pessoas do mesmo sexo como uma doença grega e tipicamente auto-indulgente, à qual gregos respondiam deplorando o fato de que romanos geralmente não esperavam que tais relações cessassem quando um jovem completasse trinta." Loader, William (2016). 31.</span><span class="lang-en">"Roman law treated same-sex relations between citizens as a criminal offence, but tolerated it between a Roman citizen and someone inferior, like a slave or a foreigner. Romans sometimes deplored same-sex relations as a Greek disease and typically self-indulgent, to which Greeks responded by deploring the fact that Romans usually did not expect such relations to cease when a young man turned thirty." Loader, William (2016). "Homosexuality and the Bible." Two Views on Homosexuality, The Bible, and the Church. Zondervan. 31.</span></p>
-      </blockquote>
-      <p><span class="lang-pt">Hoje há muitas visões divergentes:</span><span class="lang-en">Today there are many divergent views.</span></p>
-      <ol class="list-decimal space-y-1 pl-6 text-slate-700">
-        <li><span class="lang-pt">aqueles que pensam que há uma proibição incondicional a relações sexuais entre pessoas do mesmo sexo então e agora;</span><span class="lang-en">Those who think that there is an unqualified ban on same-sex sexual relations then and now.</span></li>
-        <li><span class="lang-pt">aqueles que pensam que havia uma proibição incondicional a algumas relações e essas regras não se aplicam agora;</span><span class="lang-en">Those who think there was an unqualified ban on some same-sex relations and those rules do not apply now.</span></li>
-        <li><span class="lang-pt">aqueles que pensam que havia e ainda há uma proibição incondicional na Escritura em todas as relações entre pessoas do mesmo sexo mas é arcaico aplicá-la agora;</span><span class="lang-en">Those who think there was and still is an unqualified ban in Scripture in all same-sex relations but it's archaic to apply that now.</span></li>
-        <li><span class="lang-pt">aqueles que pensam que a Escritura proíbe relações abusivas entre pessoas do mesmo sexo e não julgaria o mesmo para casamento amoroso e monogâmico;</span><span class="lang-en">Those who think that Scripture bans abusive same-sex sexual relations and would not rule the same for loving, monogamous same-sex marriage.</span></li>
-        <li><span class="lang-pt">aqueles que pensam que a Escritura não condena relações amorosas entre pessoas do mesmo sexo.</span><span class="lang-en">Those who think that Scripture does not condemn same-sex loving relations.</span></li>
+
+      <p><span class="lang-pt">Hoje há muitas visões divergentes.</span><span class="lang-en">Today there are many divergent views.</span></p>
+
+      <ol class="list-decimal pl-10 text-slate-700">
+        <li><span class="lang-pt">Aqueles que pensam que há uma proibição irrestrita a relações sexuais entre pessoas do mesmo sexo, tanto antes quanto agora. Nada mudou.</span><span class="lang-en">Those who think that there is an unqualified ban on same-sex sexual relations then and now. Nothing has changed.</span></li>
+        <li><span class="lang-pt">Aqueles que pensam que havia uma proibição irrestrita a algumas relações entre pessoas do mesmo sexo e que essas regras não se aplicam agora.</span><span class="lang-en">Those who think there was an unqualified ban on some same-sex relations and those rules do not apply now.</span></li>
+        <li><span class="lang-pt">Aqueles que pensam que havia e ainda há uma proibição irrestrita nas Escrituras a todas as relações entre pessoas do mesmo sexo, mas é arcaico aplicá-la agora, então devemos escolher não fazê-lo.</span><span class="lang-en">Those who think there was and still is an unqualified ban in Scripture in all same-sex relations but it’s archaic to apply that now, so we should choose not to.</span></li>
+        <li><span class="lang-pt">Aqueles que pensam que a Escritura proíbe relações sexuais abusivas entre pessoas do mesmo sexo e não determinaria o mesmo para o casamento amoroso e monogâmico entre pessoas do mesmo sexo.</span><span class="lang-en">Those who think that Scripture bans abusive same-sex sexual relations and would not rule the same for loving, monogamous same-sex marriage.</span></li>
+        <li><span class="lang-pt">Aqueles que pensam que a Escritura não condena relações amorosas entre pessoas do mesmo sexo.</span><span class="lang-en">Those who think that Scripture does not condemn same-sex loving relations.</span></li>
       </ol>
-      <p><span class="lang-pt">Parece que, em geral, os coríntios estavam trabalhando com base de que as coisas deste mundo seriam destruídas. Enquanto o que Paulo está tentando impressionar neles é que o que fazemos no corpo ficará conosco porque seremos ressuscitados dos mortos (1 Cor. 6:14) e nossos corpos pertencem a Cristo (1 Cor. 6:15).</span><span class="lang-en">It seems as though, in general, the Corinthians were working on the basis that the things of this world would be destroyed. Whereas what Paul is trying to impress upon them is that what we do in the body will stay with us because we're going to be raised from the dead (1 Cor. 6:14) and our bodies belong to Christ (1 Cor. 6:15).</span></p>
-      <p><span class="lang-pt">Recurso Recomendado: Two Views on Homosexuality, the Bible, and the Church. Preston Sprinkle (ed.). Zondervan, 2016.</span><span class="lang-en">Recommended Resource: Two Views on Homosexuality, the Bible, and the Church. Preston Sprinkle (ed.). Zondervan, 2016.</span></p>
 
-      <h2 class="text-2xl font-bold text-slate-900">Reflection Question</h2>
-      <p><span class="lang-pt">Segundo Paulo, por que nossos corpos físicos importam? E qual é uma implicação disso para a vida diária?</span><span class="lang-en">According to Paul, why do our physical bodies matter? And what is one implication of this for daily life?</span></p>
+      <p><span class="lang-pt">Parece que, em geral, os coríntios estavam trabalhando com a base de que as coisas deste mundo seriam destruídas. Enquanto o que Paulo está tentando fixar neles é que o que fazemos no corpo permanecerá conosco porque seremos ressuscitados dos mortos (<span class="ref" data-reference="1 Coríntios 6:14">1 Cor. 6:14</span>) e nossos corpos pertencem a Cristo (<span class="ref" data-reference="1 Coríntios 6:15">1 Cor. 6:15</span>).</span><span class="lang-en">It seems as though, in general, the Corinthians were working on the basis that the things of this world would be destroyed. Whereas what Paul is trying to impress upon them is that what we do in the body will stay with us because we’re going to be raised from the dead (<span class="ref" data-reference="1 Corinthians 6:14">1 Cor. 6:14</span>) and our bodies belong to Christ (<span class="ref" data-reference="1 Corinthians 6:15">1 Cor. 6:15</span>).</span></p>
 
-      <div class="page-footer">
-        <span class="lang-pt">Anotações de Aula: 1 Coríntios</span><span class="lang-en">Class Notes: 1 Corinthians</span>
-        <span class="lang-pt">Sessão 6</span><span class="lang-en">Session 6</span>
-      
-  <!-- conteudo adicional do PDF -->
-  <p class="body reveal"><span class="lang-en">“Do you not know (οὐκ οἴδατε)?”</span></p>
-</div>
+      <h3 class="text-xl font-bold text-slate-800 mt-8 mb-4"><span class="lang-pt">Recurso Recomendado</span><span class="lang-en">Recommended Resource</span></h3>
+      <p class="text-slate-700">
+        <span class="lang-pt"><span class="book-title">Two Views on Homosexuality, the Bible, and the Church</span>. Preston Sprinkle (ed.). Zondervan, 2016.</span>
+        <span class="lang-en"><span class="book-title">Two Views on Homosexuality, the Bible, and the Church</span>. Preston Sprinkle (ed.). Zondervan, 2016.</span>
+      </p>
+
+      <h2 class="text-2xl font-bold text-slate-900 mt-10"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h2>
+      <p><span class="lang-pt">De acordo com Paulo, por que os nossos corpos físicos importam? E qual é uma implicação disso para a vida diária?</span><span class="lang-en">According to Paul, why do our physical bodies matter? And what is one implication of this for daily life?</span></p>
+
     </section>
   </main>
+  
+  <footer class="page-footer max-w-3xl mx-auto px-6 pb-20 md:pb-24">
+    <span class="lang-pt">Anotações de Aula: 1 Coríntios</span><span class="lang-en">Class Notes: 1 Corinthians</span>
+    <span class="lang-pt">Sessão 6</span><span class="lang-en">Session 6</span>
+  </footer>
+  
   <script src="../../js/reading-progress.js"></script>
   <script src="../../js/lang-toggle.js"></script>
-  <script>setLang(localStorage.getItem('bp_lang')||'pt');</script>
+  <script src="../../js/verse-modal.js"></script>
+  <script>
+    setLang(localStorage.getItem('bp_lang')||'pt');
+  </script>
 </body>
 </html>

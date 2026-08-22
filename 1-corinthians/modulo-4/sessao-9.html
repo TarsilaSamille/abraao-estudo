@@ -4,97 +4,156 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sessão 9: Remembrança como Participação</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     html[lang="pt"] .lang-en { display: none !important; }
     html[lang="en"] .lang-pt { display: none !important; }
     .verse-link { cursor: pointer; }
+    .ref { text-decoration: underline !important; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
     @media print { .nav-btn-fixed { display: none !important; } }
-  /* sess-visual-standard v1 */
-      /* Figure captions: centered, small, italic, muted — like the PDF */
-      section figure { margin: 1.75rem 0 !important; }
-      section figure figcaption {
-        margin-top: 0.5rem; text-align: center;
-        font-size: 0.8rem; font-style: italic; color: #64748b;
-      }
-      .ref { cursor: pointer; }
-    /* Consistent paragraph rhythm */
-      section > p { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
-      section > p:first-child { margin-top: 0; }
-      #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  @media print { #reading-progress { display: none !important; } }
-  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
-  
-</style>
+    
+    section figure { margin: 1.75rem 0 !important; }
+    section figure figcaption {
+      margin-top: 0.5rem; text-align: center;
+      font-size: 0.8rem; font-style: italic; color: #64748b;
+    }
+    
+    section > p { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
+    section > figure,
+    section > ul,
+    section > ol { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
+    /* Correção do espaçamento das listas para ficarem agrupadas como no PDF */
+    section ul li, section ol li { margin-bottom: 0.25rem !important; line-height: 1.6 !important; }
+
+    
+    #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+    @media print { #reading-progress { display: none !important; } }
+    
+    .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
+    
+    body { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important; font-size: 1.05rem !important; line-height: 1.78 !important; color: #24262a; }
+    section > p { margin: 1.1rem 0 1.1rem !important; line-height: 1.78 !important; }
+    section > h2 { margin: 3rem 0 1.25rem !important; font-size: 1.9rem !important; font-weight: 800 !important; letter-spacing: -0.015em; }
+    section > h3 { margin: 2rem 0 .75rem !important; font-size: 1.3rem !important; font-weight: 800 !important; }
+    
+    /* Citação Acadêmica (igual ao PDF: texto preto normal; referência cinza; título do livro azul) */
+    blockquote.academic-quote { border-left: 4px solid #475569 !important; padding-left: 1.25rem !important; margin: 2rem 0 !important; }
+    blockquote.academic-quote p { font-style: normal !important; color: #1a1a1a !important; line-height: 1.75 !important; margin-bottom: 1rem !important; }
+    blockquote.academic-quote p:last-child { color: #64748b !important; margin-bottom: 0 !important; }
+    .book-title { color: #2563eb; text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+    /* Bloco dos Versículos (linha mais fina e clara abraçando todo o conjunto) */
+    .verse-block { border-left: 3px solid #cbd5e1; padding-left: 1.25rem; margin: 2rem 0; }
+    .verse-text { margin-top: 0.5rem !important; margin-bottom: 0.5rem !important; }
+    
+    sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px; }
+  </style>
 </head>
+
 <body class="bg-white font-sans text-slate-800">
 <div id="reading-progress" aria-hidden="true"></div>
 
   <div class="nav-btn-fixed fixed left-4 top-4 z-50">
-    <a href="../index.html"
+    <a href="./index.html"
       class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
       <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
     </a>
   </div>
-  <div class="nav-btn-fixed fixed right-4 top-4 z-50 print:hidden">
+  <div class="nav-btn-fixed fixed right-8 top-4 z-50 print:hidden">
     <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white shadow-sm">
       <button id="lang-pt" onclick="setLang('pt')" class="px-4 py-1.5 text-sm font-semibold transition-colors">PT</button>
       <button id="lang-en" onclick="setLang('en')" class="px-4 py-1.5 text-sm font-semibold transition-colors">EN</button>
       <button onclick="window.print()" class="inline-flex items-center gap-2 px-4 py-1.5 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg><span class="lang-pt">Imprimir</span><span class="lang-en">Print</span></button>
     </div>
   
-  <!-- conteudo adicional do PDF -->
-  <p class="body reveal"><span class="lang-en">principle guiding their actions in difficult situations.</span></p>
-  <p class="body reveal"><span class="lang-en">The Story of Israel: A Type</span></p>
-  <p class="body reveal"><span class="lang-en">We “partake” (Greek: μετέχω) of one loaf (v. 17).</span></p>
-  <p class="body reveal"><span class="lang-en">Reflection Question</span></p>
-</div>
+  </div>
   <main class="mx-auto max-w-3xl px-6 py-20 md:py-24">
     <h1 class="text-4xl font-bold text-slate-900 md:text-5xl"><span class="lang-pt">Sessão 9: Remembrança como Participação</span><span class="lang-en">Session 9: Remembrance as Participation</span></h1>
     <hr class="my-8 border-t-2 border-slate-200" />
     <section>
-    <h2 class="text-2xl font-bold text-slate-900">Principais Lições</h2>
-    <ul class="list-disc space-y-2 pl-6 text-slate-700">
+    <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Principais Aprendizados</span><span class="lang-en">Key Takeaways</span></h2>
+    <ul class="list-disc pl-10 text-slate-700">
       <li><span class="lang-pt">Paulo tem liberdade e direitos como apóstolo, mas seu objetivo não é expressar sua liberdade de modo que prejudique ou ferre outros.</span><span class="lang-en">Paul has both freedom and rights as an apostle, but his goal is not to express his freedom in a way that thwarts or harms others.</span></li>
-      <li><span class="lang-pt">Os coríntios são livres para seguir sua consciência, com o amor como princípio qualificador.</span><span class="lang-en">The Corinthians are free to follow their consciences, with love as the qualifying principle.</span></li>
+      <li><span class="lang-pt">Os coríntios são livres para seguir suas consciências nesses assuntos, com o amor como o princípio que guia suas ações em situações difíceis.</span><span class="lang-en">The Corinthians are free to follow their consciences in these matters, with love as the qualifying principle guiding their actions in difficult situations.</span></li>
       <li><span class="lang-pt">Em contexto, <span class="ref" data-reference="1 Corinthians 10:13">1 Coríntios 10:13</span> descreve a tentação da idolatria.</span><span class="lang-en">Understood in context, 1 Corinthians 10:13 describes the temptation of idolatry.</span></li>
     </ul>
-    <h2 class="text-2xl font-bold text-slate-900">Liberdade e Direitos</h2>
-    <p class="text-slate-700"><span class="lang-pt"><span class="ref" data-reference="1 Corinthians 9">1 Coríntios 9</span> aparece entre a discussão sobre ídolos nos capítulos 8 e 10. Paulo deixa claro que tem tanto liberdade quanto direitos como apóstolo, mas não usa nenhum deles. Isso contrasta com os coríntios, que pensam ser livres para fazer o que querem e ter esse direito. <span class="ref" data-reference="1 Corinthians 9">1 Coríntios 9</span>:12b (NVI): “Nós, porém, não nos valemos desse direito; antes, suportamos tudo, para não pormos obstáculo algum ao evangelho de Cristo.” Ele faz tudo “pelo evangelho”. Ele se mantém livre de os coríntios exercerem qualquer domínio sobre ele por meio de sua patronagem.</span><span class="lang-en">1 Corinthians 9 comes in between the discussion on idols in chapters 8 and 10. Paul makes the point that he has both freedom and rights as an apostle, but he doesn't use any of them. This is in contrast to the Corinthians who think they are free to do what they want and are entitled. 1 Corinthians 9:12b NIV: "But we did not use this right. On the contrary, we put up with anything rather than hinder the gospel of Christ." Paul does everything "for the sake of the gospel." He keeps himself free from the Corinthians having any hold over him through their patronage.</span></p>
+    <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Liberdade e Direitos</span><span class="lang-en">Freedom and Rights</span></h2>
+    <p class="text-slate-700"><span class="lang-pt"><span class="ref" data-reference="1 Corinthians 9">1 Coríntios 9</span> aparece entre a discussão sobre ídolos nos capítulos 8 e 10. Paulo deixa claro que tem tanto liberdade quanto direitos como apóstolo, mas não usa nenhum deles. Isso contrasta com os coríntios, que pensam ser livres para fazer o que querem e ter esse direito.</span><span class="lang-en">1 Corinthians 9 comes in between the discussion on idols in chapters 8 and 10. Paul makes the point that he has both freedom and rights as an apostle, but he doesn't use any of them. This is in contrast to the Corinthians who think they are free to do what they want and are entitled.</span></p>
+    <div class="verse-block">
+      <p class="font-bold text-slate-900 mb-2"><span class="lang-pt">1 Coríntios 9:12b <span class="font-medium text-slate-500">NVI</span></span><span class="lang-en">1 Corinthians 9:12b <span class="font-medium text-slate-500">NIV</span></span></p>
+      <p class="text-slate-800 leading-relaxed verse-text"><span class="lang-pt">“Nós, porém, não nos valemos desse direito; antes, suportamos tudo, para não pormos obstáculo algum ao evangelho de Cristo.”</span><span class="lang-en">“But we did not use this right. On the contrary, we put up with anything rather than hinder the gospel of Christ.”</span></p>
+    </div>
+    <p class="text-slate-700"><span class="lang-pt">Ele faz tudo “pelo evangelho”. Ele se mantém livre de os coríntios exercerem qualquer domínio sobre ele por meio de sua patronagem.</span><span class="lang-en">Paul does everything "for the sake of the gospel." He keeps himself free from the Corinthians having any hold over him through their patronage.</span></p>
 
-    <h2 class="text-2xl font-bold text-slate-900">A História de Israel: Um Tipo</h2>
-    <p class="text-slate-700"><span class="lang-pt">Em <span class="ref" data-reference="1 Corinthians 10">1 Coríntios 10</span>, Paulo conecta idolatria, imoralidade sexual e abandono de Deus. Ele também conecta os coríntios de volta aos israelitas por meio dos temas de batismo, comida e bebida espirituais, e Cristo. Eles não são meros exemplos, mas "tipos" (grego: τύποι) — mais como precursores. São pessoas que vieram antes e às quais os cristãos em Corinto estão conectados por estarem em Cristo. Essas coisas foram escritas como “avisos” para nós. Mary Patton Baker desenvolve a leitura de Young de Israel como um <em>typos</em> para argumentar que os israelitas agem como uma parábola ou padrão que lembramos a fim de copiar. Tem uma “qualidade mimética” (Young, 1997).</span><span class="lang-en">In 1 Corinthians 10, Paul connects idolatry, sexual immorality, and forsaking God. He also connects the Corinthians back to the Israelites through the themes of baptism, spiritual food and drink, and Christ. They are not merely examples, but "types" (Greek: τύποι)—more like forerunners. They are people who have come before to whom the Christians in Corinth are connected by being in Christ. These things are written down as “warnings” for us. Mary Patton Baker builds on Frances Young’s reading of the reference to Israel as a typos to make the point that the Israelites act as a parable or pattern that we remember in order to copy. It has a “mimetic quality” (Young, 1997).</span></p>
-    <blockquote class="reveal" style="border-left:3px solid #111; padding:.25rem 0 .25rem 1.25rem; margin:1.1rem 0; font-style:normal; color:#111;"><span class="lang-pt">“À luz da explicação de Young sobre a mimese tipológica, emerge um padrão tipológico de adoração a partir da adoração sacrificial dos israelitas: arrependimento, oferta própria, remembrança e ação de graças pela expiação, resultando em comunhão. Pode-se começar a ver como a celebração da Eucaristia cumpre os múltiplos modos de adoração sacrificial de Israel.”</span><span class="lang-en">“In light of Young’s explanation of typological mimesis, a typological pattern for worship emerges from the Israelites’ sacrificial worship: repentance, self-offering, remembrance, and thanksgiving for atonement, resulting in communion. One can begin to see how the celebration of the Eucharist fulfils Israel’s multiple modes of sacrificial worship.”</span><span class="cite" style="display:block; margin-top:.4rem; font-style:normal; color:#6b7280;">Patton Baker, Mary (2014). “Participating in the Body and Blood of Christ.” “In Christ” in Paul: Explorations in Paul's Theology of Union and Participation. Eerdmans. 518.</span></blockquote>
+    <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">A História de Israel: Um Tipo</span><span class="lang-en">Israel’s History: A Type</span></h2>
+    <p class="text-slate-700"><span class="lang-pt">Em 1 Coríntios 10, Paulo conecta idolatria, imoralidade sexual e abandono de Deus. Ele também conecta os coríntios de volta aos israelitas por meio dos temas de batismo, comida e bebida espirituais, e Cristo. Eles não são meros exemplos, mas "tipos" (grego: <span class="font-serif">τύποι</span>) — mais como precursores. São pessoas que vieram antes e às quais os cristãos em Corinto estão conectados por estarem em Cristo.</span><span class="lang-en">In 1 Corinthians 10, Paul connects idolatry, sexual immorality, and forsaking God. He also connects the Corinthians back to the Israelites through the themes of baptism, spiritual food and drink, and Christ. They are not merely examples, but "types" (Greek: <span class="font-serif">τύποι</span>)—more like forerunners. They are people who have come before to whom the Christians in Corinth are connected by being in Christ.</span></p>
+    <p class="text-slate-700"><span class="lang-pt">Essas coisas foram escritas como "avisos" para nós.</span><span class="lang-en">These things are written down as "warnings" for us.</span></p>
+    <p class="text-slate-700"><span class="lang-pt">Mary Patton Baker desenvolve a leitura de Young de Israel como um <em>typos</em> para argumentar que os israelitas agem como uma parábola ou padrão que lembramos a fim de copiar. Tem uma "qualidade mimética" (Young, 1997).</span><span class="lang-en">Mary Patton Baker builds on Frances Young's reading of the reference to Israel as a typos to make the point that the Israelites act as a parable or pattern that we remember in order to copy. It has a "mimetic quality" (Young, 1997).</span></p>
+    <blockquote class="academic-quote">
+        <p>
+          <span class="lang-pt">“À luz da explicação de Young sobre a mimese tipológica, emerge um padrão tipológico de adoração a partir da adoração sacrificial dos israelitas: arrependimento, oferta própria, remembrança e ação de graças pela expiação, resultando em comunhão. Pode-se começar a ver como a celebração da Eucaristia cumpre os múltiplos modos de adoração sacrificial de Israel.”</span>
+          <span class="lang-en">“In light of Young’s explanation of typological mimesis, a typological pattern for worship emerges from the Israelites’ sacrificial worship: repentance, self-offering, remembrance, and thanksgiving for atonement, resulting in communion. One can begin to see how the celebration of the Eucharist fulfils Israel’s multiple modes of sacrificial worship.”</span>
+        </p>
+        <p>
+          <span class="lang-pt">Patton Baker, Mary (2014). <span class="book-title">“Participating in the Body and Blood of Christ.”</span> “In Christ” in Paul: Explorations in Paul's Theology of Union and Participation. Eerdmans. 518.</span>
+          <span class="lang-en">Patton Baker, Mary (2014). <span class="book-title">“Participating in the Body and Blood of Christ.”</span> “In Christ” in Paul: Explorations in Paul's Theology of Union and Participation. Eerdmans. 518.</span>
+        </p>
+      </blockquote>
     <p class="text-slate-700"><span class="lang-pt">Paulo vê a remembrança como participativa.</span><span class="lang-en">Paul sees remembrance as participatory.</span></p>
-    <blockquote class="reveal" style="border-left:3px solid #111; padding:.25rem 0 .25rem 1.25rem; margin:1.1rem 0; font-style:normal; color:#111;"><span class="lang-pt">“O povo judeu entendia a remembrança como um modo de apropriar histórias dos atos salvíficos de Deus no presente, para afirmar sua presença e poder em suas vidas.”</span><span class="lang-en">“The Jewish people understood remembrance as a way of appropriating stories of God’s salvific acts into the present to affirm his presence and power in their lives.”</span><span class="cite" style="display:block; margin-top:.4rem; font-style:normal; color:#6b7280;">Patton Baker, Mary (2014). “Participating in the Body and Blood of Christ.” “In Christ” in Paul: Explorations in Paul's Theology of Union and Participation. Eerdmans. 520.</span></blockquote>
+    <blockquote class="academic-quote">
+        <p>
+          <span class="lang-pt">“O povo judeu entendia a remembrança como um modo de apropriar histórias dos atos salvíficos de Deus no presente, para afirmar sua presença e poder em suas vidas.”</span>
+          <span class="lang-en">“The Jewish people understood remembrance as a way of appropriating stories of God’s salvific acts into the present to affirm his presence and power in their lives.”</span>
+        </p>
+        <p>
+          <span class="lang-pt">Patton Baker, Mary (2014). <span class="book-title">“Participating in the Body and Blood of Christ.”</span> “In Christ” in Paul: Explorations in Paul's Theology of Union and Participation. Eerdmans. 520.</span>
+          <span class="lang-en">Patton Baker, Mary (2014). <span class="book-title">“Participating in the Body and Blood of Christ.”</span> “In Christ” in Paul: Explorations in Paul's Theology of Union and Participation. Eerdmans. 520.</span>
+        </p>
+      </blockquote>
 
-    <h2 class="text-2xl font-bold text-slate-900">Paralelo entre Israelitas e Coríntios</h2>
-    <p class="text-slate-700"><span class="lang-pt">Neste contexto, Paulo escreve <span class="ref" data-reference="1 Corinthians 10:13">1 Coríntios 10:13</span> (NVI): “Nenhuma tentação vos sobreveio, senão a humana; e Deus é fiel e não permitirá que sejais tentados além das vossas forças; pelo contrário, com a tentação, vos dará também o escape, para que a possais suportar.” Então, em 1 Coríntios 10:14-22, Paulo volta-se para o que eles, os coríntios, “participam”. Ele usa dois termos: o verbo μετέχω (grego: <em>metechó</em> — tomar parte, compartilhar) e o substantivo κοινωνία (participantes, co-participantes).</span><span class="lang-en">In this context, Paul writes 1 Corinthians 10:13 (NIV): “No temptation has overtaken you except what is common to mankind. And God is faithful; he will not let you be tempted beyond what you can bear. But when you are tempted, he will also provide a way out so that you can endure it.” Then, in 1 Corinthians 10:14-22, Paul turns to the idea of what they, the Corinthians “participate” in. He uses two terms, the verb μετέχω (Greek: <em>metechó</em>—to partake of, share in) and the noun κοινωνία (participants, fellow partakers).</span></p>
-    <ul class="list-disc space-y-2 pl-6 text-slate-700">
+    <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Paralelo entre Israelitas e Coríntios</span><span class="lang-en">Parallel Between Israelites and Corinthians</span></h2>
+    <p class="text-slate-700"><span class="lang-pt">Neste contexto, Paulo escreve <span class="ref" data-reference="1 Corinthians 10:3">1 Coríntios 10:3</span>.</span><span class="lang-en">In this context, Paul writes 1 Corinthians 10:3.</span></p>
+    <div class="verse-block">
+      <p class="font-bold text-slate-900 mb-2"><span class="lang-pt">1 Coríntios 10:13 <span class="font-medium text-slate-500">NVI</span></span><span class="lang-en">1 Corinthians 10:13 <span class="font-medium text-slate-500">NIV</span></span></p>
+      <p class="text-slate-800 leading-relaxed verse-text"><span class="lang-pt">“Nenhuma tentação vos sobreveio, senão a humana; e Deus é fiel e não permitirá que sejais tentados além das vossas forças; pelo contrário, com a tentação, vos dará também o escape, para que a possais suportar.”</span><span class="lang-en">“No temptation has overtaken you except what is common to mankind. And God is faithful; he will not let you be tempted beyond what you can bear. But when you are tempted, he will also provide a way out so that you can endure it.”</span></p>
+    </div>
+    <p class="text-slate-700"><span class="lang-pt">Então, em <span class="ref" data-reference="1 Corinthians 10:14-22">1 Coríntios 10:14-22</span>, Paulo volta-se para o que eles, os coríntios, “participam”. Ele usa dois termos: o verbo <span class="font-serif">μετέχω</span> (grego: <em>metechó</em> — tomar parte, compartilhar) e o substantivo <span class="font-serif">κοινωνία</span> (participantes, co-participantes).</span><span class="lang-en">Then, in 1 Corinthians 10:14-22, Paul turns to the idea of what they, the Corinthians “participate” in. He uses two terms, the verb <span class="font-serif">μετέχω</span> (Greek: <em>metechó</em>—to partake of, share in) and the noun <span class="font-serif">κοινωνία</span> (participants, fellow partakers).</span></p>
+    <ul class="list-disc pl-10 text-slate-700">
       <li><span class="lang-pt">O cálice da bênção é uma participação no sangue de Cristo, e o pão, no seu corpo (v. 16).</span><span class="lang-en">The cup of blessing is a participation in the blood of Christ, and the bread a participation in his body (v. 16).</span></li>
-      <li><span class="lang-pt">Nós “participamos” (grego: μετέχω) de um só pão (v. 17).</span><span class="lang-en">We “partake” (Greek: μετέχω) of one loaf (v. 17).</span></li>
-      <li><span class="lang-pt">Os que comem os sacrifícios são “co-participantes” (grego: κοινωνοὶ) no altar (v. 18).</span><span class="lang-en">Those who eat the sacrifices are “fellow partakers” (Greek: κοινωνοὶ) in the altar (v. 18).</span></li>
+      <li><span class="lang-pt">Nós “participamos” (grego: <span class="font-serif">μετέχω</span>) de um só pão (v. 17).</span><span class="lang-en">We “partake” (Greek: <span class="font-serif">μετέχω</span>) of one loaf (v. 17).</span></li>
+      <li><span class="lang-pt">Os que comem os sacrifícios são “co-participantes” (grego: <span class="font-serif">κοινωνοὶ</span>) no altar (v. 18).</span><span class="lang-en">Those who eat the sacrifices are “fellow partakers” (Greek: <span class="font-serif">κοινωνοὶ</span>) in the altar (v. 18).</span></li>
       <li><span class="lang-pt">Paulo não quer que sejam “co-participantes” com demônios (v. 20).</span><span class="lang-en">Paul does not want them to be “fellow partakers” with demons (v. 20).</span></li>
       <li><span class="lang-pt">Não podeis beber o cálice do Senhor e o cálice de demônios, nem “participar” da mesa do Senhor e da mesa de demônios (v. 21).</span><span class="lang-en">You are not able to drink the cup of the Lord and the cup of demons, nor “partake” in the table of the Lord and the table of demons (v. 21).</span></li>
     </ul>
-    <h2 class="text-2xl font-bold text-slate-900">Outra Citação?</h2>
-    <p class="text-slate-700"><span class="lang-pt">Michael Gorman pensa que pode haver outra citação em 1 Coríntios 10:29b.</span><span class="lang-en">Michael Gorman thinks there may be another quotation in 1 Corinthians 10:29b.</span></p>
-    <blockquote class="reveal" style="border-left:3px solid #111; padding:.25rem 0 .25rem 1.25rem; margin:1.1rem 0; font-style:normal; color:#111;"><span class="lang-pt">“Por outro lado, 10:29b pode ser o início do (final) resumo de Paulo, e ele pode estar novamente citando a posição coríntia libertina, só finalmente para refutá-la com a série de máximas em 10:31-33.”</span><span class="lang-en">“On the other hand, 10:29b may be the beginning of Paul’s (final) summary, and he may again be quoting the libertine Corinthian position, only finally to refute it with the string of maxims in 10:31-33.”</span><span class="cite" style="display:block; margin-top:.4rem; font-style:normal; color:#6b7280;">Gorman, Michael (2004). Apostle of the Crucified Lord. Eerdmans. 40.</span></blockquote>
+    <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Outra Citação?</span><span class="lang-en">Another Citation?</span></h2>
+    <p class="text-slate-700"><span class="lang-pt">Michael Gorman pensa que pode haver outra citação em <span class="ref" data-reference="1 Corinthians 10:29">1 Coríntios 10:29</span>b.</span><span class="lang-en">Michael Gorman thinks there may be another quotation in 1 Corinthians 10:29b.</span></p>
+    <blockquote class="academic-quote">
+        <p>
+          <span class="lang-pt">“Por outro lado, 10:29b pode ser o início do (final) resumo de Paulo, e ele pode estar novamente citando a posição coríntia libertina, só finalmente para refutá-la com a série de máximas em 10:31-33.”</span>
+          <span class="lang-en">“On the other hand, 10:29b may be the beginning of Paul’s (final) summary, and he may again be quoting the libertine Corinthian position, only finally to refute it with the string of maxims in 10:31-33.”</span>
+        </p>
+        <p>
+          <span class="lang-pt">Gorman, Michael (2004). <span class="book-title">Apostle of the Crucified Lord.</span> Eerdmans. 40.</span>
+          <span class="lang-en">Gorman, Michael (2004). <span class="book-title">Apostle of the Crucified Lord.</span> Eerdmans. 40.</span>
+        </p>
+      </blockquote>
 
-    <h2 class="text-2xl font-bold text-slate-900">Pergunta de Reflexão</h2>
-    <p class="text-slate-700"><span class="lang-pt">1 Coríntios 10:13 é frequentemente isolado de seu contexto e lido como um comentário sobre tentação em geral. Como o contexto do argumento de Paulo adiciona nuance a esse versículo? Como você entende o versículo à luz de seu contexto?</span><span class="lang-en">1 Corinthians 10:13 is often lifted from its context and read as a comment on temptation in general. How does the context of Paul’s argument add nuance to this verse? How do you understand the verse in light of its context?</span></p>
+    <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h2>
+    <p class="text-slate-700"><span class="lang-pt"><span class="ref" data-reference="1 Corinthians 10:13">1 Coríntios 10:13</span> é frequentemente isolado de seu contexto e lido como um comentário sobre tentação em geral. Como o contexto do argumento de Paulo adiciona nuance a esse versículo? Como você entende o versículo à luz de seu contexto?</span><span class="lang-en">1 Corinthians 10:13 is often lifted from its context and read as a comment on temptation in general. How does the context of Paul’s argument add nuance to this verse? How do you understand the verse in light of its context?</span></p>
     </section>
   
-<footer class="page-footer">
+  </main>
+
+  <footer class="page-footer max-w-3xl mx-auto px-6 pb-20 md:pb-24">
     <span class="lang-pt">Anotações de Aula: 1 Coríntios</span><span class="lang-en">Class Notes: 1 Corinthians</span>
     <span class="lang-pt">Sessão 9</span><span class="lang-en">Session 9</span>
   </footer>
-</main>
-  <script src="../../js/verse-modal.js"></script>
 
   <script src="../../js/reading-progress.js"></script>
-<script src="../../js/lang-toggle.js"></script>
-  <script src="../../js/reveal.js"></script>
+  <script src="../../js/lang-toggle.js"></script>
+  <script src="../../js/verse-modal.js"></script>
   <script>
     setLang(localStorage.getItem('bp_lang')||'pt');
   </script>
