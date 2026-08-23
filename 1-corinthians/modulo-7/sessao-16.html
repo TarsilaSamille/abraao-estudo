@@ -4,26 +4,50 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sessão 16: Questionando o Texto</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     html[lang="pt"] .lang-en { display: none !important; }
     html[lang="en"] .lang-pt { display: none !important; }
     .verse-link { cursor: pointer; }
+    .ref { text-decoration: underline !important; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
     @media print { .nav-btn-fixed { display: none !important; } }
-      section figure { margin: 1.75rem 0 !important; }
-      section figure figcaption { margin-top: 0.5rem; text-align: center; font-size: 0.8rem; font-style: italic; color: #64748b; }
-      section > p { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
-      section > figure, section > ul, section > ol { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
-      section > h2 { margin: 1.75rem 0 0.75rem !important; }
-      #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  @media print { #reading-progress { display: none !important; } }
-  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
-</style>
+
+    section figure { margin: 1.75rem 0 !important; }
+    section figure figcaption { margin-top: 0.5rem; text-align: center; font-size: 0.8rem; font-style: italic; color: #64748b; }
+    section > p { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
+    section > figure, section > ul, section > ol { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
+
+    #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+    @media print { #reading-progress { display: none !important; } }
+
+    .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
+
+    body { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important; font-size: 1.05rem !important; line-height: 1.78 !important; color: #24262a; }
+    section > p { margin: 1.1rem 0 1.1rem !important; line-height: 1.78 !important; }
+    section > h2 { margin: 3rem 0 1.25rem !important; font-size: 1.9rem !important; font-weight: 800 !important; letter-spacing: -0.015em; }
+    section > h3 { margin: 2rem 0 .75rem !important; font-size: 1.4rem !important; font-weight: 700 !important; }
+
+    /* Citação Acadêmica */
+    blockquote.academic-quote { border-left: 4px solid #475569 !important; padding-left: 1.25rem !important; margin: 2rem 0 !important; }
+    blockquote.academic-quote p { font-style: normal !important; color: #334155 !important; line-height: 1.75 !important; margin-bottom: 1rem !important; }
+    blockquote.academic-quote p:last-child { margin-bottom: 0 !important; }
+    .book-title { color: #2563eb; text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+
+    /* Bloco dos Versículos */
+    .verse-block { border-left: 3px solid #cbd5e1; padding-left: 1.25rem; margin: 2rem 0; }
+    .verse-text { margin-top: 0.5rem !important; margin-bottom: 0.5rem !important; }
+
+    sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px; }
+    section ul li, section ol li { margin-bottom: 0.25rem !important; line-height: 1.6 !important; }
+  </style>
 </head>
 <body class="bg-white font-sans text-slate-800">
 <div id="reading-progress" aria-hidden="true"></div>
   <div class="nav-btn-fixed fixed left-4 top-4 z-50">
-    <a href="../index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <a href="./index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
       <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
     </a>
   </div>
@@ -34,33 +58,56 @@
       <button onclick="window.print()" class="inline-flex items-center gap-2 px-4 py-1.5 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg><span class="lang-pt">Imprimir</span><span class="lang-en">Print</span></button>
     </div>
   </div>
+
   <main class="mx-auto max-w-3xl px-6 py-20 md:py-24">
     <h1 class="text-4xl font-bold text-slate-900 md:text-5xl"><span class="lang-pt">Sessão 16: Questionando o Texto</span><span class="lang-en">Session 16: Questioning the Text</span></h1>
-    <hr class="my-8 border-t-2 border-[#e2e2e2]" />
+    <hr class="my-8 border-t-2 border-slate-200" />
+    
     <section>
-      <h2 class="text-2xl font-bold text-slate-900">Key Takeaways</h2>
-      <ul class="list-disc space-y-2 pl-6 text-slate-700">
-        <li><span class="lang-pt">1 Coríntios 11:2-16 é um texto complexo e controverso com uma variedade de leituras e interpretações de estudiosos do Novo Testamento.</span><span class="lang-en">1 Corinthians 11:2-16 is a complex and controversial text with a variety of readings and interpretations from New Testament scholars.</span></li>
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Principais Aprendizados</span><span class="lang-en">Key Takeaways</span></h2>
+      <ul class="list-disc pl-10 text-slate-700">
+        <li>
+          <span class="lang-pt">1 Coríntios 11:2-16 é um texto complexo e controverso com uma variedade de leituras e interpretações de estudiosos do Novo Testamento.</span>
+          <span class="lang-en">1 Corinthians 11:2-16 is a complex and controversial text with a variety of readings and interpretations from New Testament scholars.</span>
+        </li>
       </ul>
-      <div class="mx-auto my-8 max-w-md rounded-xl border border-[#e2e2e2] bg-[#f5f5f5] px-6 py-8 text-center">
-        <div class="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full" style="color:#6a6a6a;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-            <polyline points="14 2 14 8 20 8"/>
-            <circle cx="11.5" cy="15" r="1.2" fill="currentColor" stroke="none"/>
-            <line x1="11.5" y1="11" x2="11.5" y2="13.2"/>
-          </svg>
-        </div>
-        <p class="m-0 text-base font-medium" style="color:#6a6a6a;"><span class="lang-pt">Esta sessão não tem anotações.</span><span class="lang-en">This session has no notes</span></p>
+
+      <!-- CAIXA "THIS SESSION HAS NO NOTES" (Idêntica ao visual do PDF) -->
+      <div class="border border-slate-200 rounded-xl py-12 px-6 flex flex-col items-center justify-center my-10 shadow-sm bg-white">
+         <div class="relative text-slate-500 mb-4">
+             <!-- Ícone de Documento -->
+             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10">
+               <path fill-rule="evenodd" d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0016.5 9h-1.875a1.875 1.875 0 01-1.875-1.875V5.25A3.75 3.75 0 009 1.5H5.625zM7.5 15a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5A.75.75 0 017.5 15zm.75 2.25a.75.75 0 000 1.5H12a.75.75 0 000-1.5H8.25z" clip-rule="evenodd" />
+               <path d="M12.971 1.816A5.23 5.23 0 0114.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 013.434 1.279 9.768 9.768 0 00-6.963-6.963z" />
+             </svg>
+             <!-- Círculo com "i" de informação no canto inferior -->
+             <div class="absolute -bottom-1 -right-1 bg-white rounded-full">
+               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-slate-600">
+                 <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 01.67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 11-.671-1.34l.041-.022zM12 9a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd" />
+               </svg>
+             </div>
+         </div>
+         <p class="font-bold text-slate-600 m-0">
+            <span class="lang-pt">Esta sessão não possui anotações</span>
+            <span class="lang-en">This session has no notes</span>
+         </p>
       </div>
-      <h2 class="text-2xl font-bold text-slate-900">Reflection Question</h2>
-      <p><span class="lang-pt">Se Paulo estivesse diante de você, o que gostaria de perguntar a ele sobre esta passagem?</span><span class="lang-en">If Paul were standing before you, what would you like to ask him about this passage?</span></p>
-      <div class="page-footer">
-        <span class="lang-pt">Anotações de Aula: 1 Coríntios</span><span class="lang-en">Class Notes: 1 Corinthians</span>
-        <span class="lang-pt">Sessão 16</span><span class="lang-en">Session 16</span>
-      </div>
+
+      <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h2>
+      <p class="text-slate-700">
+        <span class="lang-pt">Se Paulo estivesse diante de você, o que você gostaria de lhe perguntar a respeito dessa passagem?</span>
+        <span class="lang-en">If Paul were standing before you, what would you like to ask him about this passage?</span>
+      </p>
+
     </section>
   </main>
+
+  <footer class="page-footer max-w-3xl mx-auto px-6 pb-20 md:pb-24">
+    <span class="lang-pt">Anotações de Aula: 1 Coríntios</span><span class="lang-en">Class Notes: 1 Corinthians</span>
+    <span class="lang-pt">Sessão 16</span><span class="lang-en">Session 16</span>
+  </footer>
+
+  <script src="../../js/verse-modal.js"></script>
   <script src="../../js/reading-progress.js"></script>
   <script src="../../js/lang-toggle.js"></script>
   <script>setLang(localStorage.getItem('bp_lang')||'pt');</script>

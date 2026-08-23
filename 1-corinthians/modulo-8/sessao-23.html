@@ -9,21 +9,42 @@
     html[lang="pt"] .lang-en { display: none !important; }
     html[lang="en"] .lang-pt { display: none !important; }
     .verse-link { cursor: pointer; }
+    .ref { text-decoration: underline !important; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s; }
     @media print { .nav-btn-fixed { display: none !important; } }
-      section figure { margin: 1.75rem 0 !important; }
-      section figure figcaption { margin-top: 0.5rem; text-align: center; font-size: 0.8rem; font-style: italic; color: #64748b; }
-      section > p { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
-      section > figure, section > ul, section > ol { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
-      section > h2 { margin: 1.75rem 0 0.75rem !important; }
-      #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
-  @media print { #reading-progress { display: none !important; } }
-  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
-</style>
+
+    section figure { margin: 1.75rem 0 !important; }
+    section figure figcaption { margin-top: 0.5rem; text-align: center; font-size: 0.8rem; font-style: italic; color: #64748b; }
+    section > p { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
+    section > figure, section > ul, section > ol { margin: 1.25rem 0 !important; line-height: 1.75 !important; }
+
+    #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
+    @media print { #reading-progress { display: none !important; } }
+
+    .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #8a93a3; font-weight: 600; border-top: 1px solid #e5e9f0; padding-top: 1rem; margin-top: 3.5rem; }
+
+    body { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important; font-size: 1.05rem !important; line-height: 1.78 !important; color: #24262a; }
+    section > p { margin: 1.1rem 0 1.1rem !important; line-height: 1.78 !important; }
+    section > h2 { margin: 3rem 0 1.25rem !important; font-size: 1.9rem !important; font-weight: 800 !important; letter-spacing: -0.015em; }
+    section > h3 { margin: 2rem 0 .75rem !important; font-size: 1.4rem !important; font-weight: 700 !important; }
+
+    /* Citação Acadêmica (texto preto normal; referência cinza; título do livro azul) */
+    blockquote.academic-quote { border-left: 4px solid #1b1b1b !important; padding-left: 1.25rem !important; margin: 2rem 0 !important; }
+    blockquote.academic-quote p { font-style: normal !important; color: #24262a !important; line-height: 1.75 !important; margin-bottom: 1rem !important; }
+    blockquote.academic-quote p:last-child { margin-bottom: 0 !important; }
+    .book-title { color: #2563eb; text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+
+    /* Bloco dos Versículos (linha mais fina e clara abraçando todo o conjunto) */
+    .verse-block { border-left: 3px solid #cbd5e1; padding-left: 1.25rem; margin: 2rem 0; }
+    .verse-text { margin-top: 0.5rem !important; margin-bottom: 0.5rem !important; }
+
+    sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px; }
+    section ul li, section ol li { margin-bottom: 0.25rem !important; line-height: 1.6 !important; }
+  </style>
 </head>
 <body class="bg-white font-sans text-slate-800">
 <div id="reading-progress" aria-hidden="true"></div>
   <div class="nav-btn-fixed fixed left-4 top-4 z-50">
-    <a href="../index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+    <a href="./index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
       <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
     </a>
   </div>
@@ -39,14 +60,24 @@
     <hr class="my-8 border-t-2 border-slate-200" />
     <section>
       <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Pontos-Chave</span><span class="lang-en">Key Takeaways</span></h2>
-      <ul class="list-disc space-y-2 pl-6 text-slate-700">
+      <ul class="list-disc space-y-2 pl-10 text-slate-700">
         <li><span class="lang-pt">Considerar perspectivas interpretativas de tradições diferentes das nossas pode nos ajudar a ver o texto de novas maneiras.</span><span class="lang-en">Considering interpretive perspectives from different traditions than our own can help us see the text in new ways.</span></li>
         <li><span class="lang-pt">1 Coríntios nos apresenta Paulo a pessoa e nos dá um vislumbre do coração de Paulo pelo povo que ministrava.</span><span class="lang-en">1 Corinthians introduces us to Paul the person and gives us a glimpse into Paul's heart for the people he ministered to.</span></li>
         <li><span class="lang-pt">Lutar com o texto em seus próprios termos pode iluminar maneiras que sua mensagem se aplica a nossas vidas hoje.</span><span class="lang-en">Wrestling with the text on its own terms can illuminate ways that its message applies to our lives today.</span></li>
       </ul>
-      <p class="text-slate-600 italic"><span class="lang-pt">Esta sessão não tem anotações.</span><span class="lang-en">This session has no notes</span></p>
+
+      <div class="border border-slate-200 rounded-xl py-12 px-6 flex flex-col items-center justify-center my-10 shadow-sm bg-white">
+         <div class="relative text-slate-500 mb-4">
+             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10"><path fill-rule="evenodd" d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0016.5 9h-1.875a1.875 1.875 0 01-1.875-1.875V5.25A3.75 3.75 0 009 1.5H5.625zM7.5 15a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5A.75.75 0 017.5 15zm.75 2.25a.75.75 0 000 1.5H12a.75.75 0 000-1.5H8.25z" clip-rule="evenodd"/><path d="M12.971 1.816A5.23 5.23 0 0114.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 013.434 1.279 9.768 9.768 0 00-6.963-6.963z"/></svg>
+             <div class="absolute -bottom-1 -right-1 bg-white rounded-full"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-slate-600"><path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 01.67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 11-.671-1.34l.041-.022zM12 9a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd"/></svg></div>
+         </div>
+         <p class="font-bold text-slate-600 m-0"><span class="lang-pt">Esta sessão não possui anotações</span><span class="lang-en">This session has no notes</span></p>
+      </div>
+
+
       <h2 class="text-2xl font-bold text-slate-900"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h2>
-      <p><span class="lang-pt">Qual é um aprendizado ou reflexão que você teve ao fazer esta classe? Como você vê a mensagem de 1 Coríntios como relevante em seu contexto?</span><span class="lang-en">What is one takeaway or reflection you have from taking this class? How do you see the message of 1 Corinthians as relevant in your context?</span></p>
+      <p class="text-slate-700"><span class="lang-pt">Qual é um aprendizado ou reflexão que você teve ao fazer esta classe? Como você vê a mensagem de 1 Coríntios como relevante em seu contexto?</span><span class="lang-en">What is one takeaway or reflection you have from taking this class? How do you see the message of 1 Corinthians as relevant in your context?</span></p>
+
       <div class="page-footer">
         <span class="lang-pt">Anotações de Aula: 1 Coríntios</span><span class="lang-en">Class Notes: 1 Corinthians</span>
         <span class="lang-pt">Sessão 23</span><span class="lang-en">Session 23</span>
