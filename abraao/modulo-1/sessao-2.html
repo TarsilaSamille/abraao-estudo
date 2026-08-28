@@ -176,10 +176,11 @@
 
   /* Legendas dos três diagramas */
   .diagram-caption {
-    color: #596176;
-    font-size: 29px;
-    line-height: 36px;
-    letter-spacing: -.6px;
+    color: #64748b;
+    font-size: 12px;
+    line-height: 1.4;
+    letter-spacing: 0;
+    font-style: italic;
   }
 
   @media print {
@@ -191,11 +192,45 @@
 
   @media (max-width: 767px) {
     .diagram-scroll {
-      padding: 0.75rem;
+      padding: 0.5rem;
+      overflow: visible;
     }
 
     .diagram-viewport {
       width: 100%;
+      overflow: visible;
+      height: auto !important;
+    }
+
+    .diagram-canvas {
+      position: relative !important;
+      left: 0 !important;
+      top: 0 !important;
+      width: 100% !important;
+      height: auto !important;
+      transform: none !important;
+    }
+
+    /* Libera TODAS as caixas absolutas → empilha em coluna (igual à sessão 3).
+       Cores e rótulos do PDF permanecem idênticos (só o posicionamento muda). */
+    .diagram-canvas [class*="absolute"] {
+      position: relative !important;
+      left: 0 !important;
+      top: 0 !important;
+      width: 100% !important;
+      height: auto !important;
+      margin: 0 0 0.75rem 0 !important;
+    }
+
+    .diagram-title {
+      font-size: 22px;
+      line-height: 28px;
+      letter-spacing: -1px;
+    }
+
+    .diagram-caption {
+      font-size: 12px;
+      line-height: 1.4;
     }
   }
 
@@ -572,7 +607,7 @@
         <div class="absolute left-[7px] top-[9px] rounded-[5px] bg-[#d8f3fc] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-[#3678b4]">Genesis<br>22:20-<br>24</div>
       </div>
 
-      <p class="absolute left-[36px] top-[421px] m-0 text-[29px] leading-[36px] tracking-[-0.6px] text-[#596176]">
+      <p class="diagram-caption absolute left-[36px] top-[421px] m-0">
         <span class="italic">Genesis 20:1-22:24.</span> <span class="lang-pt">Design Literário por Tim Mackie para BibleProject Classroom: Abraham (2021).</span><span class="lang-en">Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span>
       </p>
       </div>
@@ -630,7 +665,7 @@
         <div class="absolute left-[198px] top-[33px] h-[191px] w-[87px] rounded-[7px] border-[3px] border-[#a2a2ae]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#a2a2ae] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-white">25:12-18</div></div>
       </div>
 
-      <p class="absolute left-[36px] top-[329px] m-0 text-[29px] leading-[36px] tracking-[-0.6px] text-[#596176]">
+      <p class="diagram-caption absolute left-[36px] top-[329px] m-0">
         <span class="italic">Genesis 22:20-25:18.</span> <span class="lang-pt">Design Literário por Tim Mackie para BibleProject Classroom: Abraham (2021).</span><span class="lang-en">Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span>
       </p>
       </div>
@@ -711,9 +746,20 @@
   // caber integralmente na largura disponível da página.
   // ============================================================
   function fitDiagrams() {
+    const isMobile = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
     document.querySelectorAll('.diagram-viewport').forEach((viewport) => {
       const canvas = viewport.querySelector('.diagram-canvas');
       if (!canvas) return;
+
+      if (isMobile) {
+        // Mobile: CSS @media empilha as caixas em coluna (igual sessão 3).
+        // Só garantimos altura automática; o posicionamento é via CSS.
+        canvas.style.transform = 'none';
+        canvas.style.left = '0px';
+        canvas.style.top = '0px';
+        viewport.style.height = 'auto';
+        return;
+      }
 
       const naturalWidth = canvas.offsetWidth;
       const naturalHeight = canvas.offsetHeight;
