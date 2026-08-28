@@ -23,6 +23,7 @@
     color: #24262a;
     background: #fff;
     margin: 0;
+    overflow-x: hidden;
   }
 
   /* Idiomas */
@@ -119,10 +120,18 @@
      automaticamente para caber na largura disponível.
      ========================================================= */
   .diagram-scroll {
-    width: 100%;
+    position: relative;
+    left: 50%;
+    width: 100vw;
     margin: 2rem 0;
+    transform: translateX(-50%);
+    padding: 0.75rem;
     background: #fff;
     overflow: hidden;
+  }
+
+  .max-w-4xl > .diagram-scroll {
+    margin-left: 0;
   }
 
   .diagram-viewport {
@@ -177,6 +186,16 @@
     .diagram-scroll {
       overflow: visible;
       page-break-inside: avoid;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .diagram-scroll {
+      padding: 0.75rem;
+    }
+
+    .diagram-viewport {
+      width: 100%;
     }
   }
 
@@ -408,13 +427,13 @@
       <!-- PAINEL ESQUERDO -->
       <section class="absolute left-[23px] top-[169px] h-[492px] w-[938px] rounded-[11px] border-[3px] border-[#45495d] bg-white p-[11px]">
         <div class="absolute left-[11px] top-[11px] rounded-[6px] bg-[#464a5e] px-[7px] py-[3px] text-[18px] font-bold leading-[20px] text-white">
-          Genesis 11:27-14:24
+          <span class="lang-pt">Gênesis 11:27-14:24</span><span class="lang-en">Genesis 11:27-14:24</span>
         </div>
 
         <div class="absolute left-[11px] top-[45px] flex items-center gap-[4px]">
-          <span class="rounded-[6px] bg-[#367e60] px-[7px] py-[3px] text-[18px] font-bold leading-[20px] text-white">Promises</span>
+          <span class="rounded-[6px] bg-[#367e60] px-[7px] py-[3px] text-[18px] font-bold leading-[20px] text-white"><span class="lang-pt">Promessas</span><span class="lang-en">Promises</span></span>
           <span class="text-[18px] font-semibold text-[#242424]">&amp;</span>
-          <span class="rounded-[6px] bg-[#3678b4] px-[7px] py-[3px] text-[18px] font-bold leading-[20px] text-white">Lot Problems</span>
+          <span class="rounded-[6px] bg-[#3678b4] px-[7px] py-[3px] text-[18px] font-bold leading-[20px] text-white"><span class="lang-pt">Problemas com Ló</span><span class="lang-en">Lot Problems</span></span>
         </div>
 
         <div class="absolute left-[11px] top-[84px] h-[392px] w-[305px] rounded-[11px] border-[3px] border-[#367e60]">
@@ -447,34 +466,34 @@
 
       <!-- PAINEL CENTRAL -->
       <section class="absolute left-[972px] top-[201px] h-[460px] w-[611px] rounded-[11px] border-[3px] border-[#a2a2ae] bg-white p-[11px]">
-        <div class="absolute left-[11px] top-[11px] rounded-[6px] bg-[#a2a2ae] px-[7px] py-[3px] text-[18px] font-bold leading-[20px] text-white">Genesis 15:1-17:27</div>
+        <div class="absolute left-[11px] top-[11px] rounded-[6px] bg-[#a2a2ae] px-[7px] py-[3px] text-[18px] font-bold leading-[20px] text-white"><span class="lang-pt">Gênesis 15:1-17:27</span><span class="lang-en">Genesis 15:1-17:27</span></div>
         <h4 class="absolute left-[11px] top-[52px] m-0 text-[18px] font-bold text-[#242424]"><span class="lang-pt">Problemas da Promessa da Descendência</span><span class="lang-en">Problems of the Seed Promise</span></h4>
 
         <div class="absolute left-[11px] top-[85px] h-[360px] w-[189px] rounded-[11px] border-[3px] border-[#ba4866]">
           <div class="absolute left-[11px] top-[11px] rounded-[6px] bg-[#ba4866] px-[7px] py-[3px] text-[16px] font-bold leading-[18px] text-white">15:1-21</div>
-          <div class="absolute left-[11px] top-[49px] text-[18px] font-bold leading-[28px] text-[#242424]">Covenant Round<br>1</div>
+          <div class="absolute left-[11px] top-[49px] text-[18px] font-bold leading-[28px] text-[#242424]"><span class="lang-pt">Aliança<br>1</span><span class="lang-en">Covenant Round<br>1</span></div>
         </div>
 
         <div class="absolute left-[211px] top-[116px] h-[329px] w-[189px] rounded-[11px] border-[3px] border-[#367e60]">
           <div class="absolute left-[11px] top-[11px] rounded-[6px] bg-[#367e60] px-[7px] py-[3px] text-[16px] font-bold leading-[18px] text-white">16:1-16</div>
-          <div class="absolute left-[11px] top-[49px] text-[18px] font-bold leading-[28px] text-[#242424]">Failure with<br>Hagar</div>
+          <div class="absolute left-[11px] top-[49px] text-[18px] font-bold leading-[28px] text-[#242424]"><span class="lang-pt">Fracasso com<br>Hagar</span><span class="lang-en">Failure with<br>Hagar</span></div>
         </div>
 
         <div class="absolute left-[410px] top-[85px] h-[360px] w-[189px] rounded-[11px] border-[3px] border-[#ba4866]">
           <div class="absolute left-[11px] top-[11px] rounded-[6px] bg-[#ba4866] px-[7px] py-[3px] text-[16px] font-bold leading-[18px] text-white">17:1-27</div>
-          <div class="absolute left-[11px] top-[49px] text-[18px] font-bold leading-[28px] text-[#242424]">Covenant Round<br>2</div>
+          <div class="absolute left-[11px] top-[49px] text-[18px] font-bold leading-[28px] text-[#242424]"><span class="lang-pt">Aliança<br>2</span><span class="lang-en">Covenant Round<br>2</span></div>
         </div>
       </section>
 
       <!-- PAINEL DIREITO -->
       <section class="absolute left-[1594px] top-[169px] h-[492px] w-[448px] rounded-[11px] border-[3px] border-[#45495d] bg-white p-[11px]">
-        <div class="absolute left-[11px] top-[11px] rounded-[6px] bg-[#464a5e] px-[7px] py-[3px] text-[18px] font-bold leading-[20px] text-white">Genesis 18:1-19:38</div>
+        <div class="absolute left-[11px] top-[11px] rounded-[6px] bg-[#464a5e] px-[7px] py-[3px] text-[18px] font-bold leading-[20px] text-white"><span class="lang-pt">Gênesis 18:1-19:38</span><span class="lang-en">Genesis 18:1-19:38</span></div>
 
         <div class="absolute left-[11px] top-[45px] flex items-center gap-[4px]">
-          <span class="rounded-[6px] bg-[#367e60] px-[7px] py-[3px] text-[18px] font-bold leading-[20px] text-white">Promises</span>
+          <span class="rounded-[6px] bg-[#367e60] px-[7px] py-[3px] text-[18px] font-bold leading-[20px] text-white"><span class="lang-pt">Promessas</span><span class="lang-en">Promises</span></span>
           <span class="text-[18px] font-semibold">&amp;</span>
-          <span class="text-[18px] font-semibold">More</span>
-          <span class="rounded-[6px] bg-[#3678b4] px-[7px] py-[3px] text-[18px] font-bold leading-[20px] text-white">Lot Problems</span>
+          <span class="text-[18px] font-semibold"><span class="lang-pt">Mais</span><span class="lang-en">More</span></span>
+          <span class="rounded-[6px] bg-[#3678b4] px-[7px] py-[3px] text-[18px] font-bold leading-[20px] text-white"><span class="lang-pt">Problemas com Ló</span><span class="lang-en">Lot Problems</span></span>
         </div>
 
         <div class="absolute left-[11px] top-[84px] h-[392px] w-[135px] rounded-[11px] border-[3px] border-[#367e60]">
@@ -512,7 +531,7 @@
       </div>
 
       <div class="absolute left-[122px] top-[104px] h-[303px] w-[368px] rounded-[8px] border-[3px] border-[#367e60] bg-white p-[8px]">
-        <div class="absolute left-[8px] top-[8px] rounded-[5px] bg-[#367e60] px-[6px] py-[2px] text-[13px] font-bold leading-[17px] text-white">Genesis 20:1-18</div>
+          <div class="absolute left-[8px] top-[8px] rounded-[5px] bg-[#367e60] px-[6px] py-[2px] text-[13px] font-bold leading-[17px] text-white"><span class="lang-pt">Gênesis 20:1-18</span><span class="lang-en">Genesis 20:1-18</span></div>
         <div class="absolute left-[8px] top-[33px] h-[258px] w-[88px] rounded-[7px] border-[3px] border-[#e0e5eb]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#e9edf1] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-[#596176]">20:1-2</div></div>
         <div class="absolute left-[104px] top-[33px] h-[258px] w-[160px] rounded-[7px] border-[3px] border-[#e0e5eb]">
           <div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#e9edf1] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-[#596176]">20:3-13</div>
@@ -522,7 +541,7 @@
       </div>
 
       <div class="absolute left-[496px] top-[125px] h-[282px] w-[619px] rounded-[8px] border-[3px] border-[#474b60] bg-white">
-        <div class="absolute left-[8px] top-[8px] rounded-[5px] bg-[#474b60] px-[6px] py-[2px] text-[13px] font-bold leading-[17px] text-white">Genesis 21:1-34</div>
+          <div class="absolute left-[8px] top-[8px] rounded-[5px] bg-[#474b60] px-[6px] py-[2px] text-[13px] font-bold leading-[17px] text-white"><span class="lang-pt">Gênesis 21:1-34</span><span class="lang-en">Genesis 21:1-34</span></div>
 
         <div class="absolute left-[8px] top-[34px] h-[235px] w-[298px] rounded-[7px] border-[3px] border-[#d25243]">
           <div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#bd5947] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-white">21:1-21</div>
@@ -540,7 +559,7 @@
       </div>
 
       <div class="absolute left-[1123px] top-[104px] h-[303px] w-[368px] rounded-[8px] border-[3px] border-[#ca5b3e] bg-white">
-        <div class="absolute left-[8px] top-[8px] rounded-[5px] bg-[#bd5947] px-[6px] py-[2px] text-[13px] font-bold leading-[17px] text-white">Genesis 22:1-19</div>
+          <div class="absolute left-[8px] top-[8px] rounded-[5px] bg-[#bd5947] px-[6px] py-[2px] text-[13px] font-bold leading-[17px] text-white"><span class="lang-pt">Gênesis 22:1-19</span><span class="lang-en">Genesis 22:1-19</span></div>
         <div class="absolute left-[8px] top-[33px] h-[258px] w-[88px] rounded-[7px] border-[3px] border-[#e0e5eb]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#e9edf1] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-[#596176]">22:1-3</div></div>
         <div class="absolute left-[104px] top-[33px] h-[258px] w-[160px] rounded-[7px] border-[3px] border-[#e0e5eb]">
           <div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#e9edf1] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-[#596176]">22:4-14</div>
@@ -571,14 +590,14 @@
       </h3>
 
       <div class="absolute left-[43px] top-[87px] h-[234px] w-[291px] rounded-[8px] border-[3px] border-[#b9ebfa]">
-        <div class="absolute left-[7px] top-[9px] rounded-[5px] bg-[#d8f3fc] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-[#3678b4]">Genesis 22:20-24</div>
+          <div class="absolute left-[7px] top-[9px] rounded-[5px] bg-[#d8f3fc] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-[#3678b4]"><span class="lang-pt">Gênesis 22:20-24</span><span class="lang-en">Genesis 22:20-24</span></div>
         <div class="absolute left-[8px] top-[33px] h-[191px] w-[87px] rounded-[7px] border-[3px] border-[#a2a2ae]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#a2a2ae] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-white">22:20-22</div></div>
         <div class="absolute left-[103px] top-[33px] h-[191px] w-[87px] rounded-[7px] border-[3px] border-[#a2a2ae]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#a2a2ae] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-white">22:23</div></div>
         <div class="absolute left-[198px] top-[33px] h-[191px] w-[87px] rounded-[7px] border-[3px] border-[#a2a2ae]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#a2a2ae] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-white">22:24</div></div>
       </div>
 
       <div class="absolute left-[343px] top-[87px] h-[234px] w-[361px] rounded-[8px] border-[3px] border-[#ba4866]">
-        <div class="absolute left-[8px] top-[9px] rounded-[5px] bg-[#cf5366] px-[6px] py-[2px] text-[13px] font-bold leading-[17px] text-white">Genesis 23:1-20</div>
+          <div class="absolute left-[8px] top-[9px] rounded-[5px] bg-[#cf5366] px-[6px] py-[2px] text-[13px] font-bold leading-[17px] text-white"><span class="lang-pt">Gênesis 23:1-20</span><span class="lang-en">Genesis 23:1-20</span></div>
         <div class="absolute left-[8px] top-[33px] h-[191px] w-[87px] rounded-[7px] border-[3px] border-[#a2a2ae]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#a2a2ae] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-white">23:1-2</div></div>
         <div class="absolute left-[104px] top-[33px] h-[191px] w-[161px] rounded-[7px] border-[3px] border-[#a2a2ae]">
           <div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#a2a2ae] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-white">23:3-16</div>
@@ -588,7 +607,7 @@
       </div>
 
       <div class="absolute left-[710px] top-[87px] h-[234px] w-[594px] rounded-[8px] border-[3px] border-[#5369d9]">
-        <div class="absolute left-[8px] top-[9px] rounded-[5px] bg-[#586bd1] px-[6px] py-[2px] text-[13px] font-bold leading-[17px] text-white">Genesis 24:1-67</div>
+          <div class="absolute left-[8px] top-[9px] rounded-[5px] bg-[#586bd1] px-[6px] py-[2px] text-[13px] font-bold leading-[17px] text-white"><span class="lang-pt">Gênesis 24:1-67</span><span class="lang-en">Genesis 24:1-67</span></div>
         <div class="absolute left-[8px] top-[33px] h-[191px] w-[155px] rounded-[7px] border-[3px] border-[#a2a2ae]">
           <div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#a2a2ae] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-white">24:1-28</div>
           <ul class="absolute left-[12px] top-[43px] m-0 list-disc pl-[17px] text-[13px] font-bold leading-[21px]"><li>24:1-9</li><li>24:10-28</li></ul>
@@ -605,7 +624,7 @@
       </div>
 
       <div class="absolute left-[1311px] top-[87px] h-[234px] w-[291px] rounded-[8px] border-[3px] border-[#ba4866]">
-        <div class="absolute left-[8px] top-[9px] rounded-[5px] bg-[#cf5366] px-[6px] py-[2px] text-[13px] font-bold leading-[17px] text-white">Genesis 25:1-18</div>
+          <div class="absolute left-[8px] top-[9px] rounded-[5px] bg-[#cf5366] px-[6px] py-[2px] text-[13px] font-bold leading-[17px] text-white"><span class="lang-pt">Gênesis 25:1-18</span><span class="lang-en">Genesis 25:1-18</span></div>
         <div class="absolute left-[8px] top-[33px] h-[191px] w-[87px] rounded-[7px] border-[3px] border-[#a2a2ae]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#a2a2ae] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-white">25:1-6</div></div>
         <div class="absolute left-[103px] top-[33px] h-[191px] w-[87px] rounded-[7px] border-[3px] border-[#a2a2ae]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#a2a2ae] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-white">25:7-11</div></div>
         <div class="absolute left-[198px] top-[33px] h-[191px] w-[87px] rounded-[7px] border-[3px] border-[#a2a2ae]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#a2a2ae] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-white">25:12-18</div></div>
@@ -707,7 +726,7 @@
       const renderedHeight = naturalHeight * scale;
 
       canvas.style.transform = `scale(${scale})`;
-      canvas.style.left = `${Math.max(0, (availableWidth - renderedWidth) / 2)}px`;
+      canvas.style.left = '0px';
       canvas.style.top = '0px';
 
       viewport.style.height = `${renderedHeight}px`;
