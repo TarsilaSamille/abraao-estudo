@@ -104,6 +104,8 @@
     color: #1a1a1a;
   }
 
+  /* Badges com data-reference ficam clicáveis */
+  [data-reference] { cursor: pointer; }
   .page-footer {
     display: flex;
     justify-content: space-between;
@@ -115,9 +117,7 @@
   }
 
   /* =========================================================
-     DIAGRAMAS — responsivos e unificados
-     Cada arte mantém seu canvas original e é escalada
-     automaticamente para caber na largura disponível.
+     DIAGRAMAS — Responsivos e Unificados com Flexbox
      ========================================================= */
   .diagram-scroll {
     position: relative;
@@ -149,40 +149,6 @@
     will-change: transform;
   }
 
-  /* Tamanhos nativos das artes de referência */
-  .diagram-1 {
-    width: 2048px;
-    height: 741px;
-  }
-
-  .diagram-2 {
-    width: 1648px;
-    height: 475px;
-  }
-
-  .diagram-3 {
-    width: 1648px;
-    height: 405px;
-  }
-
-  /* Títulos dos três diagramas */
-  .diagram-title {
-    color: #202020;
-    font-size: 36px;
-    line-height: 42px;
-    font-weight: 800;
-    letter-spacing: -1.4px;
-  }
-
-  /* Legendas dos três diagramas */
-  .diagram-caption {
-    color: #64748b;
-    font-size: 12px;
-    line-height: 1.4;
-    letter-spacing: 0;
-    font-style: italic;
-  }
-
   @media print {
     .diagram-scroll {
       overflow: visible;
@@ -210,32 +176,12 @@
       height: auto !important;
       transform: none !important;
     }
-
-    /* Libera TODAS as caixas absolutas → empilha em coluna (igual à sessão 3).
-       Cores e rótulos do PDF permanecem idênticos (só o posicionamento muda). */
-    .diagram-canvas [class*="absolute"] {
-      position: relative !important;
-      left: 0 !important;
-      top: 0 !important;
-      width: 100% !important;
-      height: auto !important;
-      margin: 0 0 0.75rem 0 !important;
-    }
-
-    .diagram-title {
-      font-size: 22px;
-      line-height: 28px;
-      letter-spacing: -1px;
-    }
-
-    .diagram-caption {
-      font-size: 12px;
-      line-height: 1.4;
-    }
   }
 
 </style>
 </head>
+
+<body class="bg-white">
 
 <div class="max-w-4xl mx-auto px-6 md:px-10 py-14">
 
@@ -296,13 +242,13 @@
 
   <!-- PARTE 1 -->
   <h2 class="mb-6 text-2xl font-bold text-slate-900">
-    <span class="lang-pt">O Macro Design de Gênesis 11:27-25:18</span>
-    <span class="lang-en">The Macro Design of Genesis 11:27-25:18</span>
+    <span class="lang-pt">O Macro Design de <span class="ref" data-reference="Gênesis+11:27-25:18">Gênesis 11:27-25:18</span></span>
+    <span class="lang-en">The Macro Design of <span class="ref" data-reference="Genesis+11:27-25:18">Genesis 11:27-25:18</span></span>
   </h2>
 
   <!-- BOX 1 -->
   <div class="outline-box">
-    <span class="outline-badge">Genesis 11:27-19:38</span>
+    <span class="outline-badge" data-reference="Genesis+11:27-19:38">Genesis 11:27-19:38</span>
 
     <h3 class="mb-2 font-bold text-[1.1rem] text-slate-900">
       <span class="lang-pt">Da Babilônia a Hebrom e Sodoma</span>
@@ -310,36 +256,36 @@
     </h3>
 
     <div class="outline-inner">
-      <span class="outline-inner-badge">11:27-14:24</span>
+      <span class="outline-inner-badge" data-reference="Genesis+11:27-14:24">11:27-14:24</span>
       <ul class="text-bullets">
-        <li><strong>11:27-12:5</strong> <span class="lang-pt">Da Babilônia para Canaã</span><span class="lang-en">From Babylon to Canaan</span></li>
-        <li><strong>12:6-13:18</strong> <span class="lang-pt">De Canaã ao Egito e de volta a Canaã</span><span class="lang-en">From Canaan to Egypt back to Canaan</span></li>
-        <li><strong>14:1-24</strong> <span class="lang-pt">Abrão resgata Ló da aliança babilônica</span><span class="lang-en">Avram rescues Lot from Babylonian alliance</span></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+11:27-12:5" style="cursor:pointer">11:27-12:5</span></strong> <span class="lang-pt">Da Babilônia para Canaã</span><span class="lang-en">From Babylon to Canaan</span></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+12:6-13:18" style="cursor:pointer">12:6-13:18</span></strong> <span class="lang-pt">De Canaã ao Egito e de volta a Canaã</span><span class="lang-en">From Canaan to Egypt back to Canaan</span></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+14:1-24" style="cursor:pointer">14:1-24</span></strong> <span class="lang-pt">Abrão resgata Ló da aliança babilônica</span><span class="lang-en">Avram rescues Lot from Babylonian alliance</span></li>
       </ul>
     </div>
 
     <div class="outline-inner">
-      <span class="outline-inner-badge">15:1-17:27</span>
+      <span class="outline-inner-badge" data-reference="Genesis+15:1-17:27">15:1-17:27</span>
       <ul class="text-bullets">
-        <li><strong>15:1-21</strong> <span class="lang-pt">A fé de Abrão e a aliança</span><span class="lang-en">Avram’s faith and the covenant</span></li>
-        <li><strong>16:1-16</strong> <span class="lang-pt">A falha com Hagar</span><span class="lang-en">The failure with Hagar</span></li>
-        <li><strong>17:1-27</strong> <span class="lang-pt">Circuncisão e a aliança renovada</span><span class="lang-en">Circumcision and the covenant renewed</span></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+15:1-21" style="cursor:pointer">15:1-21</span></strong> <span class="lang-pt">A fé de Abrão e a aliança</span><span class="lang-en">Avram’s faith and the covenant</span></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+16:1-16" style="cursor:pointer">16:1-16</span></strong> <span class="lang-pt">A falha com Hagar</span><span class="lang-en">The failure with Hagar</span></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+17:1-27" style="cursor:pointer">17:1-27</span></strong> <span class="lang-pt">Circuncisão e a aliança renovada</span><span class="lang-en">Circumcision and the covenant renewed</span></li>
       </ul>
     </div>
 
     <div class="outline-inner">
-      <span class="outline-inner-badge">18:1-19:38</span>
+      <span class="outline-inner-badge" data-reference="Genesis+18:1-19:38">18:1-19:38</span>
       <ul class="text-bullets">
-        <li><strong>18:1-15</strong> <span class="lang-pt">Promessa de um filho a Abrão e Sara</span><span class="lang-en">Avram and Sarah promised a son</span></li>
-        <li><strong>18:16-33</strong> <span class="lang-pt">Abrão intercede por Ló em Sodoma</span><span class="lang-en">Avram intercedes for Lot in Sodom</span></li>
-        <li><strong>19:1-38</strong> <span class="lang-pt">Ló é resgatado da ruína de Sodoma</span><span class="lang-en">Lot is rescued out of Sodom’s ruin</span></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+18:1-15" style="cursor:pointer">18:1-15</span></strong> <span class="lang-pt">Promessa de um filho a Abrão e Sara</span><span class="lang-en">Avram and Sarah promised a son</span></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+18:16-33" style="cursor:pointer">18:16-33</span></strong> <span class="lang-pt">Abrão intercede por Ló em Sodoma</span><span class="lang-en">Avram intercedes for Lot in Sodom</span></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+19:1-38" style="cursor:pointer">19:1-38</span></strong> <span class="lang-pt">Ló é resgatado da ruína de Sodoma</span><span class="lang-en">Lot is rescued out of Sodom’s ruin</span></li>
       </ul>
     </div>
   </div>
 
   <!-- BOX 2 -->
   <div class="outline-box">
-    <span class="outline-badge">Genesis 20:1-22:19</span>
+    <span class="outline-badge" data-reference="Genesis+20:1-22:19">Genesis 20:1-22:19</span>
 
     <h3 class="mb-2 font-bold text-[1.1rem] text-slate-900">
       <span class="lang-pt">De Sodoma e Hebrom ao Monte Moriá</span>
@@ -347,43 +293,43 @@
     </h3>
 
     <div class="outline-inner">
-      <span class="outline-inner-badge">20:1-18</span>
+      <span class="outline-inner-badge" data-reference="Genesis+20:1-18">20:1-18</span>
       <p class="mb-1 mt-1 font-bold text-base text-slate-900">
         <span class="lang-pt">Abraão Engana Abimeleque Sobre Sara</span>
         <span class="lang-en">Avraham Deceives Avimelek About Sarah</span>
       </p>
       <ul class="text-bullets">
-        <li><strong>20:1-2</strong></li>
-        <li><strong>20:3-13</strong></li>
-        <li><strong>20:14-18</strong></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+20:1-2" style="cursor:pointer">20:1-2</span></strong></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+20:3-13" style="cursor:pointer">20:3-13</span></strong></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+20:14-18" style="cursor:pointer">20:14-18</span></strong></li>
       </ul>
     </div>
 
     <div class="outline-inner">
-      <span class="outline-inner-badge">21:1-34</span>
+      <span class="outline-inner-badge" data-reference="Genesis+21:1-34">21:1-34</span>
       <ul class="text-bullets">
-        <li><strong>21:1-21</strong> <span class="lang-pt">Isaque nasce e é separado de Hagar e Ismael</span><span class="lang-en">Yitskhaq born and separated from Hagar and Yishmael</span></li>
-        <li><strong>21:22-34</strong> <span class="lang-pt">Abraão e Abimeleque unidos por uma aliança</span><span class="lang-en">Avraham and Avimelek united through covenant</span></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+21:1-21" style="cursor:pointer">21:1-21</span></strong> <span class="lang-pt">Isaque nasce e é separado de Hagar e Ismael</span><span class="lang-en">Yitskhaq born and separated from Hagar and Yishmael</span></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+21:22-34" style="cursor:pointer">21:22-34</span></strong> <span class="lang-pt">Abraão e Abimeleque unidos por uma aliança</span><span class="lang-en">Avraham and Avimelek united through covenant</span></li>
       </ul>
     </div>
 
     <div class="outline-inner">
-      <span class="outline-inner-badge">22:1-19</span>
+      <span class="outline-inner-badge" data-reference="Genesis+22:1-19">22:1-19</span>
       <p class="mb-1 mt-1 font-bold text-base text-slate-900">
         <span class="lang-pt">Abraão Perde e Recupera Isaque</span>
         <span class="lang-en">Avraham Loses and Regains Yitskhaq</span>
       </p>
       <ul class="text-bullets">
-        <li><strong>22:1-3</strong></li>
-        <li><strong>22:4-14</strong></li>
-        <li><strong>22:15-19</strong></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+22:1-3" style="cursor:pointer">22:1-3</span></strong></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+22:4-14" style="cursor:pointer">22:4-14</span></strong></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+22:15-19" style="cursor:pointer">22:15-19</span></strong></li>
       </ul>
     </div>
   </div>
 
   <!-- BOX 3 -->
   <div class="outline-box">
-    <span class="outline-badge">Genesis 22:20-25:18</span>
+    <span class="outline-badge" data-reference="Genesis+22:20-25:18">Genesis 22:20-25:18</span>
 
     <h3 class="mb-2 font-bold text-[1.1rem] text-slate-900">
       <span class="lang-pt">Do Monte Moriá para a Mesopotâmia e de Volta</span>
@@ -391,54 +337,54 @@
     </h3>
 
     <div class="outline-inner">
-      <span class="outline-inner-badge">22:20-24</span>
+      <span class="outline-inner-badge" data-reference="Genesis+22:20-24">22:20-24</span>
       <p class="mb-1 mt-1 font-bold text-base text-slate-900">
         <span class="lang-pt">Rebeca Nasce na Mesopotâmia</span>
         <span class="lang-en">Rivqah Born in Mesopotamia</span>
       </p>
       <ul class="text-bullets">
-        <li><strong>22:20-22</strong></li>
-        <li><strong>22:23</strong></li>
-        <li><strong>22:24</strong></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+22:20-22" style="cursor:pointer">22:20-22</span></strong></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+22:23" style="cursor:pointer">22:23</span></strong></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+22:24" style="cursor:pointer">22:24</span></strong></li>
       </ul>
     </div>
 
     <div class="outline-inner">
-      <span class="outline-inner-badge">23:1-20</span>
+      <span class="outline-inner-badge" data-reference="Genesis+23:1-20">23:1-20</span>
       <p class="mb-1 mt-1 font-bold text-base text-slate-900">
         <span class="lang-pt">Sara Morre e é Sepultada</span>
         <span class="lang-en">Sarah Dies and Is Buried</span>
       </p>
       <ul class="text-bullets">
-        <li><strong>23:1-2</strong></li>
-        <li><strong>23:3-16</strong></li>
-        <li><strong>23:17-20</strong></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+23:1-2" style="cursor:pointer">23:1-2</span></strong></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+23:3-16" style="cursor:pointer">23:3-16</span></strong></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+23:17-20" style="cursor:pointer">23:17-20</span></strong></li>
       </ul>
     </div>
 
     <div class="outline-inner">
-      <span class="outline-inner-badge">24:1-67</span>
+      <span class="outline-inner-badge" data-reference="Genesis+24:1-67">24:1-67</span>
       <p class="mb-1 mt-1 font-bold text-base text-slate-900">
         <span class="lang-pt">A Jornada de Rebeca da Mesopotâmia a Canaã</span>
         <span class="lang-en">Rivqah’s Journey from Mesopotamia to Canaan</span>
       </p>
       <ul class="text-bullets">
-        <li><strong>24:1-28</strong></li>
-        <li><strong>24:29-51</strong></li>
-        <li><strong>24:52-67</strong></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+24:1-28" style="cursor:pointer">24:1-28</span></strong></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+24:29-51" style="cursor:pointer">24:29-51</span></strong></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+24:52-67" style="cursor:pointer">24:52-67</span></strong></li>
       </ul>
     </div>
 
     <div class="outline-inner">
-      <span class="outline-inner-badge">25:1-18</span>
+      <span class="outline-inner-badge" data-reference="Genesis+25:1-18">25:1-18</span>
       <p class="mb-1 mt-1 font-bold text-base text-slate-900">
         <span class="lang-pt">Abraão Morre e é Sepultado</span>
         <span class="lang-en">Avraham Dies and Is Buried</span>
       </p>
       <ul class="text-bullets">
-        <li><strong>25:1-6</strong></li>
-        <li><strong>25:7-11</strong></li>
-        <li><strong>25:12-18</strong></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+25:1-6" style="cursor:pointer">25:1-6</span></strong></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+25:7-11" style="cursor:pointer">25:7-11</span></strong></li>
+        <li><strong><span class="verse-link" data-reference="Genesis+25:12-18" style="cursor:pointer">25:12-18</span></strong></li>
       </ul>
     </div>
   </div>
@@ -451,223 +397,287 @@
 
   <!-- DIAGRAMA 1 -->
   <div class="diagram-scroll">
-    <div class="diagram-viewport" data-diagram="1">
-      <div class="diagram-canvas diagram-1">
+    <div class="diagram-viewport">
+      <div class="diagram-canvas" data-width="1600" data-height="450">
 
-      <h3 class="diagram-title absolute left-[14px] top-[50px]">
-        <span class="lang-pt">Da Mesopotâmia para Hebrom e Sodoma</span>
-        <span class="lang-en">From Mesopotamia to Hebron and Sodom</span>
-      </h3>
+        <h3 class="font-bold text-[#202020] text-3xl mb-6 tracking-tight">
+          <span class="lang-pt">Da Mesopotâmia para Hebrom e Sodoma</span>
+          <span class="lang-en">From Mesopotamia to Hebron and Sodom</span>
+        </h3>
 
-      <!-- PAINEL ESQUERDO -->
-      <section class="absolute left-[23px] top-[169px] h-[492px] w-[938px] rounded-[11px] border-[3px] border-[#45495d] bg-white p-[11px]">
-        <div class="absolute left-[11px] top-[11px] rounded-[6px] bg-[#464a5e] px-[7px] py-[3px] text-[18px] font-bold leading-[20px] text-white">
-          <span class="lang-pt">Gênesis 11:27-14:24</span><span class="lang-en">Genesis 11:27-14:24</span>
-        </div>
-
-        <div class="absolute left-[11px] top-[45px] flex items-center gap-[4px]">
-          <span class="rounded-[6px] bg-[#367e60] px-[7px] py-[3px] text-[18px] font-bold leading-[20px] text-white"><span class="lang-pt">Promessas</span><span class="lang-en">Promises</span></span>
-          <span class="text-[18px] font-semibold text-[#242424]">&amp;</span>
-          <span class="rounded-[6px] bg-[#3678b4] px-[7px] py-[3px] text-[18px] font-bold leading-[20px] text-white"><span class="lang-pt">Problemas com Ló</span><span class="lang-en">Lot Problems</span></span>
-        </div>
-
-        <div class="absolute left-[11px] top-[84px] h-[392px] w-[305px] rounded-[11px] border-[3px] border-[#367e60]">
-          <div class="absolute left-[11px] top-[11px] rounded-[6px] bg-[#367e60] px-[7px] py-[3px] text-[16px] font-bold leading-[18px] text-white">11:27-12:5</div>
-          <div class="absolute left-[11px] top-[49px] h-[330px] w-[135px] rounded-[11px] border-[3px] border-[#c9efc8]">
-            <div class="absolute left-[11px] top-[11px] rounded-[6px] bg-[#d7f1d5] px-[7px] py-[3px] text-[16px] font-bold leading-[18px] text-[#367e60]">11:27-32</div>
+        <div class="flex flex-col md:flex-row gap-4 w-full items-stretch h-auto md:h-[350px]">
+          <!-- PAINEL ESQUERDO -->
+          <div class="flex-[1.8] border-[3px] border-[#45495d] rounded-[11px] p-3 flex flex-col bg-white">
+            <span class="inline-block bg-[#464a5e] text-white text-[15px] font-bold px-2 py-1 rounded-[6px] self-start mb-4">
+              <span class="lang-pt">Gênesis 11:27-14:24</span><span class="lang-en">Genesis 11:27-14:24</span>
+            </span>
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <span class="bg-[#367e60] text-white text-[14px] font-bold px-2 py-1 rounded-[6px]"><span class="lang-pt">Promessas</span><span class="lang-en">Promises</span></span>
+              <span class="text-[14px] font-semibold text-[#242424]">&amp;</span>
+              <span class="bg-[#3678b4] text-white text-[14px] font-bold px-2 py-1 rounded-[6px]"><span class="lang-pt">Problemas com Ló</span><span class="lang-en">Lot Problems</span></span>
+            </div>
+            <div class="flex flex-col md:flex-row gap-2 flex-1 items-stretch">
+              <!-- Green Box -->
+              <div class="flex-[0.8] border-[3px] border-[#367e60] rounded-[11px] p-2 flex flex-col">
+                <span class="inline-block bg-[#367e60] text-white text-[12px] font-bold px-2 py-1 rounded-[6px] self-start mb-2" data-reference="Genesis+11:27-12:5">11:27-12:5</span>
+                <div class="flex flex-col md:flex-row gap-2 flex-1 items-stretch">
+                  <div class="flex-1 border-[3px] border-[#c9efc8] rounded-[8px] p-2">
+                    <span class="inline-block bg-[#d7f1d5] text-[#367e60] text-[12px] font-bold px-2 py-1 rounded-[5px] self-start" data-reference="Genesis+11:27-32">11:27-32</span>
+                  </div>
+                  <div class="flex-1 border-[3px] border-[#c9efc8] rounded-[8px] p-2">
+                    <span class="inline-block bg-[#d7f1d5] text-[#367e60] text-[12px] font-bold px-2 py-1 rounded-[5px] self-start" data-reference="Genesis+12:1-5">12:1-5</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Gray Box -->
+              <div class="flex-[1.2] border-[3px] border-[#a2a2ae] rounded-[11px] p-2 flex flex-col">
+                <span class="inline-block bg-[#a2a2ae] text-white text-[12px] font-bold px-2 py-1 rounded-[6px] self-start mb-2" data-reference="Genesis+12:10-13:18">12:10-13:18</span>
+                <div class="flex flex-col md:flex-row gap-2 flex-1 items-stretch">
+                  <div class="flex-1 border-[3px] border-[#e3e6eb] rounded-[8px] p-2">
+                    <span class="inline-block bg-[#e9ebef] text-[#596176] text-[12px] font-bold px-2 py-1 rounded-[5px] self-start" data-reference="Genesis+12:10-20">12:10-20</span>
+                  </div>
+                  <div class="flex-1 border-[3px] border-[#e3e6eb] rounded-[8px] p-2">
+                    <span class="inline-block bg-[#e9ebef] text-[#596176] text-[12px] font-bold px-2 py-1 rounded-[5px] self-start" data-reference="Genesis+13:1-11">13:1-11</span>
+                  </div>
+                  <div class="flex-1 border-[3px] border-[#e3e6eb] rounded-[8px] p-2">
+                    <span class="inline-block bg-[#e9ebef] text-[#596176] text-[12px] font-bold px-2 py-1 rounded-[5px] self-start" data-reference="Genesis+13:12-18">13:12-18</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Blue Box -->
+              <div class="flex-[0.4] border-[3px] border-[#3678b4] rounded-[11px] p-2 flex flex-col">
+                <span class="inline-block bg-[#3678b4] text-white text-[12px] font-bold px-2 py-1 rounded-[6px] self-start" data-reference="Genesis+14:1-24">14:1-24</span>
+              </div>
+            </div>
           </div>
-          <div class="absolute left-[156px] top-[49px] h-[330px] w-[135px] rounded-[11px] border-[3px] border-[#c9efc8]">
-            <div class="absolute left-[11px] top-[11px] rounded-[6px] bg-[#d7f1d5] px-[7px] py-[3px] text-[16px] font-bold leading-[18px] text-[#367e60]">12:1-5</div>
+
+          <!-- PAINEL CENTRAL -->
+          <div class="flex-1 border-[3px] border-[#a2a2ae] rounded-[11px] p-3 flex flex-col bg-white">
+            <span class="inline-block bg-[#a2a2ae] text-white text-[15px] font-bold px-2 py-1 rounded-[6px] self-start mb-2">
+              <span class="lang-pt">Gênesis 15:1-17:27</span><span class="lang-en">Genesis 15:1-17:27</span>
+            </span>
+            <h4 class="text-[15px] font-bold text-[#242424] mb-3"><span class="lang-pt">Problemas da Promessa da Descendência</span><span class="lang-en">Problems of the Seed Promise</span></h4>
+            <div class="flex flex-col md:flex-row gap-2 flex-1 items-stretch">
+              <!-- Red Box -->
+              <div class="flex-1 border-[3px] border-[#ba4866] rounded-[11px] p-2 flex flex-col">
+                <span class="inline-block bg-[#ba4866] text-white text-[12px] font-bold px-2 py-1 rounded-[6px] self-start mb-4" data-reference="Genesis+15:1-21">15:1-21</span>
+                <span class="text-[14px] font-bold text-[#242424] leading-tight"><span class="lang-pt">Aliança<br>1</span><span class="lang-en">Covenant Round<br>1</span></span>
+              </div>
+              <!-- Green Box -->
+              <div class="flex-1 border-[3px] border-[#367e60] rounded-[11px] p-2 flex flex-col mt-0 md:mt-8">
+                <span class="inline-block bg-[#367e60] text-white text-[12px] font-bold px-2 py-1 rounded-[6px] self-start mb-4" data-reference="Genesis+16:1-16">16:1-16</span>
+                <span class="text-[14px] font-bold text-[#242424] leading-tight"><span class="lang-pt">Fracasso com<br>Hagar</span><span class="lang-en">Failure with<br>Hagar</span></span>
+              </div>
+              <!-- Red Box -->
+              <div class="flex-1 border-[3px] border-[#ba4866] rounded-[11px] p-2 flex flex-col">
+                <span class="inline-block bg-[#ba4866] text-white text-[12px] font-bold px-2 py-1 rounded-[6px] self-start mb-4" data-reference="Genesis+17:1-27">17:1-27</span>
+                <span class="text-[14px] font-bold text-[#242424] leading-tight"><span class="lang-pt">Aliança<br>2</span><span class="lang-en">Covenant Round<br>2</span></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- PAINEL DIREITO -->
+          <div class="flex-1 border-[3px] border-[#45495d] rounded-[11px] p-3 flex flex-col bg-white">
+            <span class="inline-block bg-[#464a5e] text-white text-[15px] font-bold px-2 py-1 rounded-[6px] self-start mb-4">
+              <span class="lang-pt">Gênesis 18:1-19:38</span><span class="lang-en">Genesis 18:1-19:38</span>
+            </span>
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <span class="bg-[#367e60] text-white text-[14px] font-bold px-2 py-1 rounded-[6px]"><span class="lang-pt">Promessas</span><span class="lang-en">Promises</span></span>
+              <span class="text-[14px] font-semibold">&amp; <span class="lang-pt">Mais</span><span class="lang-en">More</span></span>
+              <span class="bg-[#3678b4] text-white text-[14px] font-bold px-2 py-1 rounded-[6px]"><span class="lang-pt">Problemas com Ló</span><span class="lang-en">Lot Problems</span></span>
+            </div>
+            <div class="flex flex-col md:flex-row gap-2 flex-1 items-stretch">
+              <!-- Green Box -->
+              <div class="flex-1 border-[3px] border-[#367e60] rounded-[11px] p-2 flex flex-col">
+                <span class="inline-block bg-[#367e60] text-white text-[12px] font-bold px-2 py-1 rounded-[6px] self-start" data-reference="Genesis+18:1-15">18:1-15</span>
+              </div>
+              <!-- Gray Box -->
+              <div class="flex-1 border-[3px] border-[#a2a2ae] rounded-[11px] p-2 flex flex-col mt-0 md:mt-8">
+                <span class="inline-block bg-[#a2a2ae] text-white text-[12px] font-bold px-2 py-1 rounded-[6px] self-start" data-reference="Genesis+18:16-33">18:16-33</span>
+              </div>
+              <!-- Blue Box -->
+              <div class="flex-1 border-[3px] border-[#3678b4] rounded-[11px] p-2 flex flex-col">
+                <span class="inline-block bg-[#3678b4] text-white text-[12px] font-bold px-2 py-1 rounded-[6px] self-start" data-reference="Genesis+19:1-38">19:1-38</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="absolute left-[328px] top-[116px] h-[360px] w-[452px] rounded-[11px] border-[3px] border-[#a2a2ae]">
-          <div class="absolute left-[11px] top-[11px] rounded-[6px] bg-[#a2a2ae] px-[7px] py-[3px] text-[16px] font-bold leading-[18px] text-white">12:10-13:18</div>
-          <div class="absolute left-[11px] top-[49px] h-[294px] w-[134px] rounded-[11px] border-[3px] border-[#e3e6eb]">
-            <div class="absolute left-[11px] top-[11px] rounded-[6px] bg-[#e9ebef] px-[7px] py-[3px] text-[16px] font-bold leading-[18px] text-[#596176]">12:10-20</div>
-          </div>
-          <div class="absolute left-[156px] top-[49px] h-[294px] w-[134px] rounded-[11px] border-[3px] border-[#e3e6eb]">
-            <div class="absolute left-[11px] top-[11px] rounded-[6px] bg-[#e9ebef] px-[7px] py-[3px] text-[16px] font-bold leading-[18px] text-[#596176]">13:1-11</div>
-          </div>
-          <div class="absolute left-[301px] top-[49px] h-[294px] w-[134px] rounded-[11px] border-[3px] border-[#e3e6eb]">
-            <div class="absolute left-[11px] top-[11px] rounded-[6px] bg-[#e9ebef] px-[7px] py-[3px] text-[16px] font-bold leading-[18px] text-[#596176]">13:12-18</div>
-          </div>
-        </div>
-
-        <div class="absolute left-[790px] top-[84px] h-[392px] w-[135px] rounded-[11px] border-[3px] border-[#3678b4]">
-          <div class="absolute left-[11px] top-[11px] rounded-[6px] bg-[#3678b4] px-[7px] py-[3px] text-[16px] font-bold leading-[18px] text-white">14:1-24</div>
-        </div>
-      </section>
-
-      <!-- PAINEL CENTRAL -->
-      <section class="absolute left-[972px] top-[201px] h-[460px] w-[611px] rounded-[11px] border-[3px] border-[#a2a2ae] bg-white p-[11px]">
-        <div class="absolute left-[11px] top-[11px] rounded-[6px] bg-[#a2a2ae] px-[7px] py-[3px] text-[18px] font-bold leading-[20px] text-white"><span class="lang-pt">Gênesis 15:1-17:27</span><span class="lang-en">Genesis 15:1-17:27</span></div>
-        <h4 class="absolute left-[11px] top-[52px] m-0 text-[18px] font-bold text-[#242424]"><span class="lang-pt">Problemas da Promessa da Descendência</span><span class="lang-en">Problems of the Seed Promise</span></h4>
-
-        <div class="absolute left-[11px] top-[85px] h-[360px] w-[189px] rounded-[11px] border-[3px] border-[#ba4866]">
-          <div class="absolute left-[11px] top-[11px] rounded-[6px] bg-[#ba4866] px-[7px] py-[3px] text-[16px] font-bold leading-[18px] text-white">15:1-21</div>
-          <div class="absolute left-[11px] top-[49px] text-[18px] font-bold leading-[28px] text-[#242424]"><span class="lang-pt">Aliança<br>1</span><span class="lang-en">Covenant Round<br>1</span></div>
-        </div>
-
-        <div class="absolute left-[211px] top-[116px] h-[329px] w-[189px] rounded-[11px] border-[3px] border-[#367e60]">
-          <div class="absolute left-[11px] top-[11px] rounded-[6px] bg-[#367e60] px-[7px] py-[3px] text-[16px] font-bold leading-[18px] text-white">16:1-16</div>
-          <div class="absolute left-[11px] top-[49px] text-[18px] font-bold leading-[28px] text-[#242424]"><span class="lang-pt">Fracasso com<br>Hagar</span><span class="lang-en">Failure with<br>Hagar</span></div>
-        </div>
-
-        <div class="absolute left-[410px] top-[85px] h-[360px] w-[189px] rounded-[11px] border-[3px] border-[#ba4866]">
-          <div class="absolute left-[11px] top-[11px] rounded-[6px] bg-[#ba4866] px-[7px] py-[3px] text-[16px] font-bold leading-[18px] text-white">17:1-27</div>
-          <div class="absolute left-[11px] top-[49px] text-[18px] font-bold leading-[28px] text-[#242424]"><span class="lang-pt">Aliança<br>2</span><span class="lang-en">Covenant Round<br>2</span></div>
-        </div>
-      </section>
-
-      <!-- PAINEL DIREITO -->
-      <section class="absolute left-[1594px] top-[169px] h-[492px] w-[448px] rounded-[11px] border-[3px] border-[#45495d] bg-white p-[11px]">
-        <div class="absolute left-[11px] top-[11px] rounded-[6px] bg-[#464a5e] px-[7px] py-[3px] text-[18px] font-bold leading-[20px] text-white"><span class="lang-pt">Gênesis 18:1-19:38</span><span class="lang-en">Genesis 18:1-19:38</span></div>
-
-        <div class="absolute left-[11px] top-[45px] flex items-center gap-[4px]">
-          <span class="rounded-[6px] bg-[#367e60] px-[7px] py-[3px] text-[18px] font-bold leading-[20px] text-white"><span class="lang-pt">Promessas</span><span class="lang-en">Promises</span></span>
-          <span class="text-[18px] font-semibold">&amp;</span>
-          <span class="text-[18px] font-semibold"><span class="lang-pt">Mais</span><span class="lang-en">More</span></span>
-          <span class="rounded-[6px] bg-[#3678b4] px-[7px] py-[3px] text-[18px] font-bold leading-[20px] text-white"><span class="lang-pt">Problemas com Ló</span><span class="lang-en">Lot Problems</span></span>
-        </div>
-
-        <div class="absolute left-[11px] top-[84px] h-[392px] w-[135px] rounded-[11px] border-[3px] border-[#367e60]">
-          <div class="absolute left-[11px] top-[11px] rounded-[6px] bg-[#367e60] px-[7px] py-[3px] text-[16px] font-bold leading-[18px] text-white">18:1-15</div>
-        </div>
-
-        <div class="absolute left-[156px] top-[116px] h-[360px] w-[135px] rounded-[11px] border-[3px] border-[#a2a2ae]">
-          <div class="absolute left-[11px] top-[11px] rounded-[6px] bg-[#a2a2ae] px-[7px] py-[3px] text-[16px] font-bold leading-[18px] text-white">18:16-33</div>
-        </div>
-
-        <div class="absolute left-[301px] top-[84px] h-[392px] w-[135px] rounded-[11px] border-[3px] border-[#3678b4]">
-          <div class="absolute left-[11px] top-[11px] rounded-[6px] bg-[#3678b4] px-[7px] py-[3px] text-[16px] font-bold leading-[18px] text-white">19:1-38</div>
-        </div>
-      </section>
-
-      <div class="diagram-caption absolute left-[14px] top-[682px]">
-        <span class="italic">Genesis 11:27-19:38.</span> <span class="lang-pt">Design Literário por Tim Mackie para BibleProject Classroom: Abraham (2021).</span><span class="lang-en">Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span>
-      </div>
+        <p class="text-sm text-slate-500 italic mt-6">
+          <span class="italic">Genesis 11:27-19:38.</span> <span class="lang-pt">Design Literário por Tim Mackie para BibleProject Classroom: Abraham (2021).</span><span class="lang-en">Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span>
+        </p>
       </div>
     </div>
   </div>
 
   <!-- DIAGRAMA 2 -->
   <div class="diagram-scroll">
-    <div class="diagram-viewport" data-diagram="2">
-      <div class="diagram-canvas diagram-2 px-[36px]">
+    <div class="diagram-viewport">
+      <div class="diagram-canvas" data-width="1400" data-height="250">
 
-      <h3 class="diagram-title absolute left-[36px] top-[14px] m-0">
-        <span class="lang-pt">De Sodoma e Hebrom para o Monte Moriá</span>
-        <span class="lang-en">From Sodom and Hebron to Mount Moriah</span>
-      </h3>
+        <h3 class="font-bold text-[#202020] text-3xl mb-6 tracking-tight">
+          <span class="lang-pt">De Sodoma e Hebrom para o Monte Moriá</span>
+          <span class="lang-en">From Sodom and Hebron to Mount Moriah</span>
+        </h3>
 
-      <div class="absolute left-[43px] top-[125px] h-[282px] w-[80px] rounded-[8px] border-[3px] border-[#b9ebfa] bg-white">
-        <div class="absolute left-[7px] top-[9px] rounded-[5px] bg-[#d8f3fc] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-[#3678b4]">Genesis<br>19:30-<br>38</div>
-      </div>
+        <div class="flex flex-col md:flex-row gap-4 w-full h-auto md:h-[180px] items-stretch">
+          
+          <!-- Box 19:30-38 (Light Blue) -->
+          <div class="border-[3px] border-[#b9ebfa] rounded-[8px] p-2 bg-white flex flex-col mt-0 md:mt-8">
+            <span class="inline-block bg-[#d8f3fc] text-[#3678b4] text-[12px] font-bold px-2 py-1 rounded-[5px] self-start">Genesis<br>19:30-38</span>
+          </div>
 
-      <div class="absolute left-[122px] top-[104px] h-[303px] w-[368px] rounded-[8px] border-[3px] border-[#367e60] bg-white p-[8px]">
-          <div class="absolute left-[8px] top-[8px] rounded-[5px] bg-[#367e60] px-[6px] py-[2px] text-[13px] font-bold leading-[17px] text-white"><span class="lang-pt">Gênesis 20:1-18</span><span class="lang-en">Genesis 20:1-18</span></div>
-        <div class="absolute left-[8px] top-[33px] h-[258px] w-[88px] rounded-[7px] border-[3px] border-[#e0e5eb]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#e9edf1] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-[#596176]">20:1-2</div></div>
-        <div class="absolute left-[104px] top-[33px] h-[258px] w-[160px] rounded-[7px] border-[3px] border-[#e0e5eb]">
-          <div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#e9edf1] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-[#596176]">20:3-13</div>
-          <ul class="absolute left-[12px] top-[43px] m-0 list-disc pl-[18px] text-[13px] font-bold leading-[21px] text-[#252525]"><li>20:3-7</li><li>20:8-13</li></ul>
+          <!-- Box 20:1-18 (Green) -->
+          <div class="flex-1 border-[3px] border-[#367e60] rounded-[8px] p-2 bg-white flex flex-col mt-0 md:mt-4">
+            <span class="inline-block bg-[#367e60] text-white text-[14px] font-bold px-2 py-1 rounded-[5px] self-start mb-2">
+              <span class="lang-pt"><span class="ref" data-reference="Gênesis+20:1-18">Gênesis 20:1-18</span></span><span class="lang-en"><span class="ref" data-reference="Genesis+20:1-18">Genesis 20:1-18</span></span>
+            </span>
+            <div class="flex flex-col md:flex-row gap-2 flex-1 items-stretch">
+              <div class="flex-[0.8] border-[3px] border-[#e0e5eb] rounded-[7px] p-1.5"><span class="inline-block bg-[#e9edf1] text-[#596176] text-[12px] font-bold px-1.5 py-0.5 rounded-[4px]" data-reference="Genesis+20:1-2">20:1-2</span></div>
+              <div class="flex-[1.2] border-[3px] border-[#e0e5eb] rounded-[7px] p-1.5">
+                <span class="inline-block bg-[#e9edf1] text-[#596176] text-[12px] font-bold px-1.5 py-0.5 rounded-[4px] mb-1" data-reference="Genesis+20:3-13">20:3-13</span>
+                <ul class="list-disc pl-4 m-0 text-[11px] font-bold text-[#252525]"><li><span class="verse-link" data-reference="Genesis+20:3-7" style="cursor:pointer">20:3-7</span></li><li><span class="verse-link" data-reference="Genesis+20:8-13" style="cursor:pointer">20:8-13</span></li></ul>
+              </div>
+              <div class="flex-[0.8] border-[3px] border-[#e0e5eb] rounded-[7px] p-1.5"><span class="inline-block bg-[#e9edf1] text-[#596176] text-[12px] font-bold px-1.5 py-0.5 rounded-[4px]" data-reference="Genesis+20:14-18">20:14-18</span></div>
+            </div>
+          </div>
+
+          <!-- Box 21:1-34 (Slate) -->
+          <div class="flex-[1.5] border-[3px] border-[#474b60] rounded-[8px] p-2 bg-white flex flex-col mt-0 md:mt-8">
+            <span class="inline-block bg-[#474b60] text-white text-[14px] font-bold px-2 py-1 rounded-[5px] self-start mb-2">
+              <span class="lang-pt"><span class="ref" data-reference="Gênesis+21:1-34">Gênesis 21:1-34</span></span><span class="lang-en"><span class="ref" data-reference="Genesis+21:1-34">Genesis 21:1-34</span></span>
+            </span>
+            <div class="flex flex-col md:flex-row gap-2 flex-1 items-stretch">
+              <!-- Red Subbox -->
+              <div class="flex-1 border-[3px] border-[#d25243] rounded-[7px] p-2 flex flex-col">
+                <span class="inline-block bg-[#bd5947] text-white text-[12px] font-bold px-1.5 py-0.5 rounded-[4px] self-start mb-2" data-reference="Genesis+21:1-21">21:1-21</span>
+                <div class="flex flex-col md:flex-row gap-2 flex-1 items-stretch">
+                  <div class="flex-1 border-[3px] border-[#e0e5eb] rounded-[7px] p-1.5"><span class="inline-block bg-[#e9edf1] text-[#596176] text-[11px] font-bold px-1 py-0.5 rounded-[4px]" data-reference="Genesis+21:1-7">21:1-7</span></div>
+                  <div class="flex-1 border-[3px] border-[#e0e5eb] rounded-[7px] p-1.5"><span class="inline-block bg-[#e9edf1] text-[#596176] text-[11px] font-bold px-1 py-0.5 rounded-[4px]" data-reference="Genesis+21:8-13">21:8-13</span></div>
+                  <div class="flex-1 border-[3px] border-[#e0e5eb] rounded-[7px] p-1.5"><span class="inline-block bg-[#e9edf1] text-[#596176] text-[11px] font-bold px-1 py-0.5 rounded-[4px]" data-reference="Genesis+21:14-21">21:14-21</span></div>
+                </div>
+              </div>
+              <!-- Green Subbox -->
+              <div class="flex-1 border-[3px] border-[#367e60] rounded-[7px] p-2 flex flex-col">
+                <span class="inline-block bg-[#367e60] text-white text-[12px] font-bold px-1.5 py-0.5 rounded-[4px] self-start mb-2" data-reference="Genesis+21:22-34">21:22-34</span>
+                <div class="flex flex-col md:flex-row gap-2 flex-1 items-stretch">
+                  <div class="flex-1 border-[3px] border-[#e0e5eb] rounded-[7px] p-1.5"><span class="inline-block bg-[#e9edf1] text-[#596176] text-[11px] font-bold px-1 py-0.5 rounded-[4px]" data-reference="Genesis+21:22-24">21:22-24</span></div>
+                  <div class="flex-1 border-[3px] border-[#e0e5eb] rounded-[7px] p-1.5"><span class="inline-block bg-[#e9edf1] text-[#596176] text-[11px] font-bold px-1 py-0.5 rounded-[4px]" data-reference="Genesis+21:25-30">21:25-30</span></div>
+                  <div class="flex-1 border-[3px] border-[#e0e5eb] rounded-[7px] p-1.5"><span class="inline-block bg-[#e9edf1] text-[#596176] text-[11px] font-bold px-1 py-0.5 rounded-[4px]" data-reference="Genesis+21:31-34">21:31-34</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Box 22:1-19 (Red) -->
+          <div class="flex-1 border-[3px] border-[#ca5b3e] rounded-[8px] p-2 bg-white flex flex-col mt-0 md:mt-4">
+            <span class="inline-block bg-[#bd5947] text-white text-[14px] font-bold px-2 py-1 rounded-[5px] self-start mb-2">
+              <span class="lang-pt"><span class="ref" data-reference="Gênesis+22:1-19">Gênesis 22:1-19</span></span><span class="lang-en"><span class="ref" data-reference="Genesis+22:1-19">Genesis 22:1-19</span></span>
+            </span>
+            <div class="flex flex-col md:flex-row gap-2 flex-1 items-stretch">
+              <div class="flex-[0.8] border-[3px] border-[#e0e5eb] rounded-[7px] p-1.5"><span class="inline-block bg-[#e9edf1] text-[#596176] text-[12px] font-bold px-1.5 py-0.5 rounded-[4px]" data-reference="Genesis+22:1-3">22:1-3</span></div>
+              <div class="flex-[1.2] border-[3px] border-[#e0e5eb] rounded-[7px] p-1.5">
+                <span class="inline-block bg-[#e9edf1] text-[#596176] text-[12px] font-bold px-1.5 py-0.5 rounded-[4px] mb-1" data-reference="Genesis+22:4-14">22:4-14</span>
+                <ul class="list-disc pl-4 m-0 text-[11px] font-bold text-[#252525]"><li><span class="verse-link" data-reference="Genesis+22:4-8" style="cursor:pointer">22:4-8</span></li><li><span class="verse-link" data-reference="Genesis+22:9-14" style="cursor:pointer">22:9-14</span></li></ul>
+              </div>
+              <div class="flex-[0.8] border-[3px] border-[#e0e5eb] rounded-[7px] p-1.5"><span class="inline-block bg-[#e9edf1] text-[#596176] text-[12px] font-bold px-1.5 py-0.5 rounded-[4px]" data-reference="Genesis+22:15-19">22:15-19</span></div>
+            </div>
+          </div>
+
+          <!-- Box 22:20-24 (Light Blue) -->
+          <div class="border-[3px] border-[#b9ebfa] rounded-[8px] p-2 bg-white flex flex-col mt-0 md:mt-8">
+            <span class="inline-block bg-[#d8f3fc] text-[#3678b4] text-[12px] font-bold px-2 py-1 rounded-[5px] self-start">Genesis<br>22:20-24</span>
+          </div>
+
         </div>
-        <div class="absolute left-[271px] top-[33px] h-[258px] w-[88px] rounded-[7px] border-[3px] border-[#e0e5eb]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#e9edf1] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-[#596176]">20:14-18</div></div>
-      </div>
 
-      <div class="absolute left-[496px] top-[125px] h-[282px] w-[619px] rounded-[8px] border-[3px] border-[#474b60] bg-white">
-          <div class="absolute left-[8px] top-[8px] rounded-[5px] bg-[#474b60] px-[6px] py-[2px] text-[13px] font-bold leading-[17px] text-white"><span class="lang-pt">Gênesis 21:1-34</span><span class="lang-en">Genesis 21:1-34</span></div>
+        <p class="text-sm text-slate-500 italic mt-6">
+          <span class="italic">Genesis 20:1-22:24.</span> <span class="lang-pt">Design Literário por Tim Mackie para BibleProject Classroom: Abraham (2021).</span><span class="lang-en">Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span>
+        </p>
 
-        <div class="absolute left-[8px] top-[34px] h-[235px] w-[298px] rounded-[7px] border-[3px] border-[#d25243]">
-          <div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#bd5947] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-white">21:1-21</div>
-          <div class="absolute left-[8px] top-[32px] h-[193px] w-[88px] rounded-[7px] border-[3px] border-[#e0e5eb]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#e9edf1] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-[#596176]">21:1-7</div></div>
-          <div class="absolute left-[104px] top-[32px] h-[193px] w-[88px] rounded-[7px] border-[3px] border-[#e0e5eb]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#e9edf1] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-[#596176]">21:8-13</div></div>
-          <div class="absolute left-[200px] top-[32px] h-[193px] w-[88px] rounded-[7px] border-[3px] border-[#e0e5eb]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#e9edf1] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-[#596176]">21:14-21</div></div>
-        </div>
-
-        <div class="absolute left-[312px] top-[34px] h-[235px] w-[298px] rounded-[7px] border-[3px] border-[#367e60]">
-          <div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#367e60] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-white">21:22-34</div>
-          <div class="absolute left-[8px] top-[32px] h-[193px] w-[88px] rounded-[7px] border-[3px] border-[#e0e5eb]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#e9edf1] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-[#596176]">21:22-24</div></div>
-          <div class="absolute left-[104px] top-[32px] h-[193px] w-[88px] rounded-[7px] border-[3px] border-[#e0e5eb]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#e9edf1] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-[#596176]">21:25-30</div></div>
-          <div class="absolute left-[200px] top-[32px] h-[193px] w-[88px] rounded-[7px] border-[3px] border-[#e0e5eb]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#e9edf1] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-[#596176]">21:31-34</div></div>
-        </div>
-      </div>
-
-      <div class="absolute left-[1123px] top-[104px] h-[303px] w-[368px] rounded-[8px] border-[3px] border-[#ca5b3e] bg-white">
-          <div class="absolute left-[8px] top-[8px] rounded-[5px] bg-[#bd5947] px-[6px] py-[2px] text-[13px] font-bold leading-[17px] text-white"><span class="lang-pt">Gênesis 22:1-19</span><span class="lang-en">Genesis 22:1-19</span></div>
-        <div class="absolute left-[8px] top-[33px] h-[258px] w-[88px] rounded-[7px] border-[3px] border-[#e0e5eb]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#e9edf1] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-[#596176]">22:1-3</div></div>
-        <div class="absolute left-[104px] top-[33px] h-[258px] w-[160px] rounded-[7px] border-[3px] border-[#e0e5eb]">
-          <div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#e9edf1] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-[#596176]">22:4-14</div>
-          <ul class="absolute left-[12px] top-[43px] m-0 list-disc pl-[18px] text-[13px] font-bold leading-[21px] text-[#252525]"><li>22:4-8</li><li>22:9-14</li></ul>
-        </div>
-        <div class="absolute left-[271px] top-[33px] h-[258px] w-[88px] rounded-[7px] border-[3px] border-[#e0e5eb]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#e9edf1] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-[#596176]">22:15-19</div></div>
-      </div>
-
-      <div class="absolute left-[1498px] top-[125px] h-[282px] w-[80px] rounded-[8px] border-[3px] border-[#b9ebfa] bg-white">
-        <div class="absolute left-[7px] top-[9px] rounded-[5px] bg-[#d8f3fc] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-[#3678b4]">Genesis<br>22:20-<br>24</div>
-      </div>
-
-      <p class="diagram-caption absolute left-[36px] top-[421px] m-0">
-        <span class="italic">Genesis 20:1-22:24.</span> <span class="lang-pt">Design Literário por Tim Mackie para BibleProject Classroom: Abraham (2021).</span><span class="lang-en">Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span>
-      </p>
       </div>
     </div>
   </div>
 
   <!-- DIAGRAMA 3 -->
   <div class="diagram-scroll">
-    <div class="diagram-viewport" data-diagram="3">
-      <div class="diagram-canvas diagram-3 px-[36px]">
+    <div class="diagram-viewport">
+      <div class="diagram-canvas" data-width="1500" data-height="250">
 
-      <h3 class="diagram-title absolute left-[36px] top-[5px] m-0">
-        <span class="lang-pt">Do Monte Moriá para a Mesopotâmia e de Volta</span>
-        <span class="lang-en">From Mount Moriah to Mesopotamia and Back Again</span>
-      </h3>
+        <h3 class="font-bold text-[#202020] text-3xl mb-6 tracking-tight">
+          <span class="lang-pt">Do Monte Moriá para a Mesopotâmia e de Volta</span>
+          <span class="lang-en">From Mount Moriah to Mesopotamia and Back Again</span>
+        </h3>
 
-      <div class="absolute left-[43px] top-[87px] h-[234px] w-[291px] rounded-[8px] border-[3px] border-[#b9ebfa]">
-          <div class="absolute left-[7px] top-[9px] rounded-[5px] bg-[#d8f3fc] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-[#3678b4]"><span class="lang-pt">Gênesis 22:20-24</span><span class="lang-en">Genesis 22:20-24</span></div>
-        <div class="absolute left-[8px] top-[33px] h-[191px] w-[87px] rounded-[7px] border-[3px] border-[#a2a2ae]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#a2a2ae] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-white">22:20-22</div></div>
-        <div class="absolute left-[103px] top-[33px] h-[191px] w-[87px] rounded-[7px] border-[3px] border-[#a2a2ae]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#a2a2ae] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-white">22:23</div></div>
-        <div class="absolute left-[198px] top-[33px] h-[191px] w-[87px] rounded-[7px] border-[3px] border-[#a2a2ae]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#a2a2ae] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-white">22:24</div></div>
-      </div>
+        <div class="flex flex-col md:flex-row gap-4 w-full h-auto md:h-[180px] items-stretch">
+          
+          <!-- Box 22:20-24 (Light Blue) -->
+          <div class="flex-[0.8] border-[3px] border-[#b9ebfa] rounded-[8px] p-2 bg-white flex flex-col">
+            <span class="inline-block bg-[#d8f3fc] text-[#3678b4] text-[14px] font-bold px-2 py-1 rounded-[5px] self-start mb-2">
+              <span class="lang-pt"><span class="ref" data-reference="Gênesis+22:20-24">Gênesis 22:20-24</span></span><span class="lang-en"><span class="ref" data-reference="Genesis+22:20-24">Genesis 22:20-24</span></span>
+            </span>
+            <div class="flex flex-col md:flex-row gap-2 flex-1 items-stretch">
+              <div class="flex-1 border-[3px] border-[#a2a2ae] rounded-[7px] p-1.5"><span class="inline-block bg-[#a2a2ae] text-white text-[12px] font-bold px-1.5 py-0.5 rounded-[4px]" data-reference="Genesis+22:20-22">22:20-22</span></div>
+              <div class="flex-1 border-[3px] border-[#a2a2ae] rounded-[7px] p-1.5"><span class="inline-block bg-[#a2a2ae] text-white text-[12px] font-bold px-1.5 py-0.5 rounded-[4px]" data-reference="Genesis+22:23">22:23</span></div>
+              <div class="flex-1 border-[3px] border-[#a2a2ae] rounded-[7px] p-1.5"><span class="inline-block bg-[#a2a2ae] text-white text-[12px] font-bold px-1.5 py-0.5 rounded-[4px]" data-reference="Genesis+22:24">22:24</span></div>
+            </div>
+          </div>
 
-      <div class="absolute left-[343px] top-[87px] h-[234px] w-[361px] rounded-[8px] border-[3px] border-[#ba4866]">
-          <div class="absolute left-[8px] top-[9px] rounded-[5px] bg-[#cf5366] px-[6px] py-[2px] text-[13px] font-bold leading-[17px] text-white"><span class="lang-pt">Gênesis 23:1-20</span><span class="lang-en">Genesis 23:1-20</span></div>
-        <div class="absolute left-[8px] top-[33px] h-[191px] w-[87px] rounded-[7px] border-[3px] border-[#a2a2ae]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#a2a2ae] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-white">23:1-2</div></div>
-        <div class="absolute left-[104px] top-[33px] h-[191px] w-[161px] rounded-[7px] border-[3px] border-[#a2a2ae]">
-          <div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#a2a2ae] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-white">23:3-16</div>
-          <ul class="absolute left-[12px] top-[43px] m-0 list-disc pl-[17px] text-[13px] font-bold leading-[21px] text-[#252525]"><li>23:3-6</li><li>23:7-11</li><li>23:12-16</li></ul>
+          <!-- Box 23:1-20 (Red) -->
+          <div class="flex-1 border-[3px] border-[#ba4866] rounded-[8px] p-2 bg-white flex flex-col">
+            <span class="inline-block bg-[#cf5366] text-white text-[14px] font-bold px-2 py-1 rounded-[5px] self-start mb-2">
+              <span class="lang-pt"><span class="ref" data-reference="Gênesis+23:1-20">Gênesis 23:1-20</span></span><span class="lang-en"><span class="ref" data-reference="Genesis+23:1-20">Genesis 23:1-20</span></span>
+            </span>
+            <div class="flex flex-col md:flex-row gap-2 flex-1 items-stretch">
+              <div class="flex-[0.8] border-[3px] border-[#a2a2ae] rounded-[7px] p-1.5"><span class="inline-block bg-[#a2a2ae] text-white text-[12px] font-bold px-1.5 py-0.5 rounded-[4px]" data-reference="Genesis+23:1-2">23:1-2</span></div>
+              <div class="flex-[1.2] border-[3px] border-[#a2a2ae] rounded-[7px] p-1.5">
+                <span class="inline-block bg-[#a2a2ae] text-white text-[12px] font-bold px-1.5 py-0.5 rounded-[4px] mb-1" data-reference="Genesis+23:3-16">23:3-16</span>
+                <ul class="list-disc pl-4 m-0 text-[11px] font-bold text-[#252525]"><li><span class="verse-link" data-reference="Genesis+23:3-6" style="cursor:pointer">23:3-6</span></li><li><span class="verse-link" data-reference="Genesis+23:7-11" style="cursor:pointer">23:7-11</span></li><li><span class="verse-link" data-reference="Genesis+23:12-16" style="cursor:pointer">23:12-16</span></li></ul>
+              </div>
+              <div class="flex-[0.8] border-[3px] border-[#a2a2ae] rounded-[7px] p-1.5"><span class="inline-block bg-[#a2a2ae] text-white text-[12px] font-bold px-1.5 py-0.5 rounded-[4px]" data-reference="Genesis+23:17-20">23:17-20</span></div>
+            </div>
+          </div>
+
+          <!-- Box 24:1-67 (Blue) -->
+          <div class="flex-[1.5] border-[3px] border-[#5369d9] rounded-[8px] p-2 bg-white flex flex-col">
+            <span class="inline-block bg-[#586bd1] text-white text-[14px] font-bold px-2 py-1 rounded-[5px] self-start mb-2">
+              <span class="lang-pt"><span class="ref" data-reference="Gênesis+24:1-67">Gênesis 24:1-67</span></span><span class="lang-en"><span class="ref" data-reference="Genesis+24:1-67">Genesis 24:1-67</span></span>
+            </span>
+            <div class="flex flex-col md:flex-row gap-2 flex-1 items-stretch">
+              <div class="flex-1 border-[3px] border-[#a2a2ae] rounded-[7px] p-1.5">
+                <span class="inline-block bg-[#a2a2ae] text-white text-[12px] font-bold px-1.5 py-0.5 rounded-[4px] mb-1" data-reference="Genesis+24:1-28">24:1-28</span>
+                <ul class="list-disc pl-4 m-0 text-[11px] font-bold text-[#252525]"><li><span class="verse-link" data-reference="Genesis+24:1-9" style="cursor:pointer">24:1-9</span></li><li><span class="verse-link" data-reference="Genesis+24:10-28" style="cursor:pointer">24:10-28</span></li></ul>
+              </div>
+              <div class="flex-1 border-[3px] border-[#a2a2ae] rounded-[7px] p-1.5">
+                <span class="inline-block bg-[#a2a2ae] text-white text-[12px] font-bold px-1.5 py-0.5 rounded-[4px] mb-1" data-reference="Genesis+24:29-51">24:29-51</span>
+                <ul class="list-disc pl-4 m-0 text-[11px] font-bold text-[#252525]"><li><span class="verse-link" data-reference="Genesis+24:29-33" style="cursor:pointer">24:29-33</span></li><li><span class="verse-link" data-reference="Genesis+24:34-49" style="cursor:pointer">24:34-49</span></li><li><span class="verse-link" data-reference="Genesis+24:50-51" style="cursor:pointer">24:50-51</span></li></ul>
+              </div>
+              <div class="flex-1 border-[3px] border-[#a2a2ae] rounded-[7px] p-1.5">
+                <span class="inline-block bg-[#a2a2ae] text-white text-[12px] font-bold px-1.5 py-0.5 rounded-[4px] mb-1" data-reference="Genesis+24:52-61">24:52-61</span>
+                <ul class="list-disc pl-4 m-0 text-[11px] font-bold text-[#252525]"><li><span class="verse-link" data-reference="Genesis+24:52-54a" style="cursor:pointer">24:52-54a</span></li><li><span class="verse-link" data-reference="Genesis+24:54b-58" style="cursor:pointer">24:54b-58</span></li><li><span class="verse-link" data-reference="Genesis+24:59-61" style="cursor:pointer">24:59-61</span></li></ul>
+              </div>
+              <div class="flex-[0.6] border-[3px] border-[#a2a2ae] rounded-[7px] p-1.5"><span class="inline-block bg-[#a2a2ae] text-white text-[12px] font-bold px-1.5 py-0.5 rounded-[4px]" data-reference="Genesis+24:62-67">24:62-67</span></div>
+            </div>
+          </div>
+
+          <!-- Box 25:1-18 (Red) -->
+          <div class="flex-[0.8] border-[3px] border-[#ba4866] rounded-[8px] p-2 bg-white flex flex-col">
+            <span class="inline-block bg-[#cf5366] text-white text-[14px] font-bold px-2 py-1 rounded-[5px] self-start mb-2">
+              <span class="lang-pt"><span class="ref" data-reference="Gênesis+25:1-18">Gênesis 25:1-18</span></span><span class="lang-en"><span class="ref" data-reference="Genesis+25:1-18">Genesis 25:1-18</span></span>
+            </span>
+            <div class="flex flex-col md:flex-row gap-2 flex-1 items-stretch">
+              <div class="flex-1 border-[3px] border-[#a2a2ae] rounded-[7px] p-1.5"><span class="inline-block bg-[#a2a2ae] text-white text-[12px] font-bold px-1.5 py-0.5 rounded-[4px]" data-reference="Genesis+25:1-6">25:1-6</span></div>
+              <div class="flex-1 border-[3px] border-[#a2a2ae] rounded-[7px] p-1.5"><span class="inline-block bg-[#a2a2ae] text-white text-[12px] font-bold px-1.5 py-0.5 rounded-[4px]" data-reference="Genesis+25:7-11">25:7-11</span></div>
+              <div class="flex-1 border-[3px] border-[#a2a2ae] rounded-[7px] p-1.5"><span class="inline-block bg-[#a2a2ae] text-white text-[12px] font-bold px-1.5 py-0.5 rounded-[4px]" data-reference="Genesis+25:12-18">25:12-18</span></div>
+            </div>
+          </div>
+
         </div>
-        <div class="absolute left-[271px] top-[33px] h-[191px] w-[82px] rounded-[7px] border-[3px] border-[#a2a2ae]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#a2a2ae] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-white">23:17-20</div></div>
-      </div>
 
-      <div class="absolute left-[710px] top-[87px] h-[234px] w-[594px] rounded-[8px] border-[3px] border-[#5369d9]">
-          <div class="absolute left-[8px] top-[9px] rounded-[5px] bg-[#586bd1] px-[6px] py-[2px] text-[13px] font-bold leading-[17px] text-white"><span class="lang-pt">Gênesis 24:1-67</span><span class="lang-en">Genesis 24:1-67</span></div>
-        <div class="absolute left-[8px] top-[33px] h-[191px] w-[155px] rounded-[7px] border-[3px] border-[#a2a2ae]">
-          <div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#a2a2ae] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-white">24:1-28</div>
-          <ul class="absolute left-[12px] top-[43px] m-0 list-disc pl-[17px] text-[13px] font-bold leading-[21px]"><li>24:1-9</li><li>24:10-28</li></ul>
-        </div>
-        <div class="absolute left-[171px] top-[33px] h-[191px] w-[155px] rounded-[7px] border-[3px] border-[#a2a2ae]">
-          <div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#a2a2ae] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-white">24:29-51</div>
-          <ul class="absolute left-[12px] top-[43px] m-0 list-disc pl-[17px] text-[13px] font-bold leading-[21px]"><li>24:29-33</li><li>24:34-49</li><li>24:50-51</li></ul>
-        </div>
-        <div class="absolute left-[334px] top-[33px] h-[191px] w-[155px] rounded-[7px] border-[3px] border-[#a2a2ae]">
-          <div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#a2a2ae] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-white">24:52-61</div>
-          <ul class="absolute left-[12px] top-[43px] m-0 list-disc pl-[17px] text-[13px] font-bold leading-[21px]"><li>24:52-54a</li><li>24:54b-58</li><li>24:59-61</li></ul>
-        </div>
-        <div class="absolute left-[497px] top-[33px] h-[191px] w-[87px] rounded-[7px] border-[3px] border-[#a2a2ae]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#a2a2ae] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-white">24:62-67</div></div>
-      </div>
+        <p class="text-sm text-slate-500 italic mt-6">
+          <span class="italic">Genesis 22:20-25:18.</span> <span class="lang-pt">Design Literário por Tim Mackie para BibleProject Classroom: Abraham (2021).</span><span class="lang-en">Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span>
+        </p>
 
-      <div class="absolute left-[1311px] top-[87px] h-[234px] w-[291px] rounded-[8px] border-[3px] border-[#ba4866]">
-          <div class="absolute left-[8px] top-[9px] rounded-[5px] bg-[#cf5366] px-[6px] py-[2px] text-[13px] font-bold leading-[17px] text-white"><span class="lang-pt">Gênesis 25:1-18</span><span class="lang-en">Genesis 25:1-18</span></div>
-        <div class="absolute left-[8px] top-[33px] h-[191px] w-[87px] rounded-[7px] border-[3px] border-[#a2a2ae]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#a2a2ae] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-white">25:1-6</div></div>
-        <div class="absolute left-[103px] top-[33px] h-[191px] w-[87px] rounded-[7px] border-[3px] border-[#a2a2ae]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#a2a2ae] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-white">25:7-11</div></div>
-        <div class="absolute left-[198px] top-[33px] h-[191px] w-[87px] rounded-[7px] border-[3px] border-[#a2a2ae]"><div class="absolute left-[7px] top-[7px] rounded-[5px] bg-[#a2a2ae] px-[5px] py-[2px] text-[13px] font-bold leading-[17px] text-white">25:12-18</div></div>
-      </div>
-
-      <p class="diagram-caption absolute left-[36px] top-[329px] m-0">
-        <span class="italic">Genesis 22:20-25:18.</span> <span class="lang-pt">Design Literário por Tim Mackie para BibleProject Classroom: Abraham (2021).</span><span class="lang-en">Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span>
-      </p>
       </div>
     </div>
   </div>
@@ -676,8 +686,8 @@
 
   <!-- CONCLUSÃO -->
   <p class="mb-10 text-[1.05rem] leading-relaxed text-slate-800">
-    <span class="lang-pt">Observe que cada um desses três movimentos não está alinhado com nossos números de capítulos contemporâneos, e por isso uma olhada no conteúdo dessas divisões literárias pode parecer contraintuitiva. Isso se deve principalmente ao fato de que a organização literária da história de Avraham é modelada após a organização literária de Gênesis 1:1-11:26, tanto em seu design quanto nos temas principais explorados nas narrativas. Portanto, para entender verdadeiramente do que trata a história de Avraham, precisamos recapitular a história até agora como ela é apresentada em Gênesis 1-11.</span>
-    <span class="lang-en">Notice that each of these three movements is not aligned with our contemporary chapter numbers, and so a glance at the content of these literary divisions may seem counterintuitive. This is primarily due to the fact that the literary organization of the Avraham story is patterned after the literary organization of Genesis 1:1-11:26, both in its design and in the main themes explored in the narratives. So to truly grasp what the Avraham story is about, we need to recap the story so far as it’s presented in Genesis 1-11.</span>
+    <span class="lang-pt">Observe que cada um desses três movimentos não está alinhado com nossos números de capítulos contemporâneos, e por isso uma olhada no conteúdo dessas divisões literárias pode parecer contraintuitiva. Isso se deve principalmente ao fato de que a organização literária da história de Avraham é modelada após a organização literária de <span class="ref" data-reference="Gênesis+1:1-11:26">Gênesis 1:1-11:26</span>, tanto em seu design quanto nos temas principais explorados nas narrativas. Portanto, para entender verdadeiramente do que trata a história de Avraham, precisamos recapitular a história até agora como ela é apresentada em Gênesis 1-11.</span>
+    <span class="lang-en">Notice that each of these three movements is not aligned with our contemporary chapter numbers, and so a glance at the content of these literary divisions may seem counterintuitive. This is primarily due to the fact that the literary organization of the Avraham story is patterned after the literary organization of <span class="ref" data-reference="Genesis+1:1-11:26">Genesis 1:1-11:26</span>, both in its design and in the main themes explored in the narratives. So to truly grasp what the Avraham story is about, we need to recap the story so far as it’s presented in Genesis 1-11.</span>
   </p>
 
   <h3 class="mb-3 text-[1.3rem] font-bold tracking-tight text-slate-900">
@@ -741,28 +751,34 @@
   window.setLang(savedLang === EN ? EN : PT);
 
   // ============================================================
-  // RESPONSIVIDADE DOS 3 DIAGRAMAS
-  // Mantém as coordenadas originais, mas escala cada arte para
-  // caber integralmente na largura disponível da página.
+  // AUTO-FIT RESPONSIVO DOS DIAGRAMAS
   // ============================================================
   function fitDiagrams() {
-    const isMobile = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
     document.querySelectorAll('.diagram-viewport').forEach((viewport) => {
       const canvas = viewport.querySelector('.diagram-canvas');
       if (!canvas) return;
 
-      if (isMobile) {
-        // Mobile: CSS @media empilha as caixas em coluna (igual sessão 3).
-        // Só garantimos altura automática; o posicionamento é via CSS.
+      if (window.innerWidth <= 767) {
+        // Mobile layout: Let Flexbox handle the stacking naturally
+        canvas.style.position = 'relative';
+        canvas.style.width = '100%';
+        canvas.style.height = 'auto';
         canvas.style.transform = 'none';
         canvas.style.left = '0px';
         canvas.style.top = '0px';
-        viewport.style.height = 'auto';
+        viewport.style.height = `${canvas.scrollHeight}px`;
         return;
       }
 
-      const naturalWidth = canvas.offsetWidth;
-      const naturalHeight = canvas.offsetHeight;
+      // Desktop layout: Apply scaling transform
+      const defWidth = canvas.getAttribute('data-width') || 1600;
+      const defHeight = canvas.getAttribute('data-height') || 400;
+      canvas.style.position = 'absolute';
+      canvas.style.width = `${defWidth}px`;
+      canvas.style.height = `${defHeight}px`;
+
+      const naturalWidth = parseFloat(defWidth);
+      const naturalHeight = parseFloat(defHeight);
       const availableWidth = viewport.clientWidth;
 
       if (!naturalWidth || !naturalHeight || !availableWidth) return;
@@ -772,7 +788,7 @@
       const renderedHeight = naturalHeight * scale;
 
       canvas.style.transform = `scale(${scale})`;
-      canvas.style.left = '0px';
+      canvas.style.left = `${Math.max(0, (availableWidth - renderedWidth) / 2)}px`;
       canvas.style.top = '0px';
 
       viewport.style.height = `${renderedHeight}px`;
