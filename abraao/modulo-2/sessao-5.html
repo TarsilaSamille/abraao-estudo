@@ -72,7 +72,26 @@
       border-radius:0 0 7px 0;padding:.2rem .5rem;font-size:.78rem;
     }
     
-    .design-card.accent-gold { border-left:4px solid #816f4d; }
+    /* Quadro do design literario (PDF pag. 2): traco uniforme de 1.5pt em
+       #e3e7ec, sem fundo, recuado 18.7pt da margem do texto (x 54.7 vs 36),
+       com o conteudo a 9.8pt da borda. Nao ha acento de 4pt na esquerda.
+       A faixa da etiqueta e 21.7pt e apoia SOBRE o topo do quadro
+       (faixa y 48.0..69.7, quadro comeca em y 69.0), por isso overflow:visible
+       e posicionamento absoluto. */
+    .design-card.accent-gold {
+      position:relative; overflow:visible;
+      margin:26px 18.7px 1.1rem;
+      border:2px solid #e3e7ec; border-left:3px solid #816f4d;
+      border-radius:5px; background:#fff;
+    }
+    .design-card.accent-gold .label {
+      position:absolute; left:-0.7px; bottom:100%;
+      height:21.7px; line-height:21.7px; padding:0 8px;
+      background:#e3e7ec; color:#1b1b1b;
+      border-radius:0 5px 5px 0; font-size:.8rem; font-weight:800;
+      display:inline-block; white-space:nowrap;
+    }
+    .design-card.accent-gold .body { padding:8px; }
     .design-card .body { padding:.75rem 1rem 1rem; }
     /* Caixa A/A' do macro: #6b7384 a fill_opacity 0.15 (content stream). */
     .design-card.emphasis { border:2px solid #6b7384; background:rgba(107,115,132,.15); }
@@ -112,7 +131,11 @@
     }
     .design-card.emphasis .body,
     .design-card.ml-8 .body { padding:0; }
+    /* O PDF usa DOIS niveis: a/a' a ~8pt do quadro e b/b' a ~25pt
+       (marcadores em x 63.7/61.9 e 80.9/79.2; quadro em 54.7). Com uma
+       coluna unica de 28px todos os marcadores alinhavam. */
     .literary-line { display:grid;grid-template-columns:28px 1fr;gap:.35rem; }
+    .literary-line.lvl2 { padding-left:17px; }
     .literary-line .mark { color: #4f5669;font-weight:700; }
 /* --- Tabelas: medidas tiradas do PDF (pagina 9, tabela Adam/Noah) --------
    Quadro   x 36.0..576.7 = 540.7pt, sobre texto de 576pt -> 93.9% da coluna,
@@ -139,7 +162,12 @@
       padding-top:1rem;margin-top:3.5rem;
     }
     /* --- literary-design marks: colours taken from sessao-5.pdf ------- */
-    .lit { font-weight:700;border-radius:.22rem;padding:0 .2rem; }
+    /* Chip inline: 15pt no PDF (altura medida, 1818 ocorrencias nos 30
+       teacher-notes). Sem altura explicita herdava o line-height do pai e
+       media 20px. */
+    .lit { display:inline-block;font-weight:700;border-radius:.22rem;
+           height:15px;line-height:15px;padding:0 .25rem;
+           box-decoration-break:clone;-webkit-box-decoration-break:clone;vertical-align:baseline; }
     .lit-move   { color:#91362e;background:#fae4c4; }  /* ויעבר / ויעתק / ויסע verbs  */
     .lit-land   { color:#ffffff;background:#816f4d; } /* the "in the land" chip     */
     .lit-appear { color:#713c92;background:#f7e1f5; } /* "Yahweh appeared to Avram"  */
@@ -229,21 +257,21 @@
       <div class="body space-y-2">
         <div><span class="lang-pt">12:1 E Yahweh disse a Avram,</span><span class="lang-en">12:1 And Yahweh said to Avram,</span></div>
         <div class="literary-line"><span class="mark">a</span><span><span class="lang-pt">“Vá você mesmo</span><span class="lang-en">“Get yourself going</span></span></div>
-        <div class="literary-line"><span class="mark">b</span><span><span class="lang-pt"><span class="lit lit-from">da</span> <span class="lit lit-nation">sua terra</span>,</span><span class="lang-en"><span class="lit lit-from">from</span> <span class="lit lit-nation">your land</span>,</span></span></div>
-        <div class="literary-line"><span class="mark">b'</span><span><span class="lang-pt">e <span class="lit lit-from">da</span> <span class="lit lit-nation">sua família</span>,</span><span class="lang-en">and <span class="lit lit-from">from</span> <span class="lit lit-nation">your family</span>,</span></span></div>
-        <div class="literary-line"><span class="mark">b'</span><span><span class="lang-pt">e <span class="lit lit-from">da</span> <span class="lit lit-house">casa de seu pai</span>,</span><span class="lang-en">and <span class="lit lit-from">from</span> <span class="lit lit-house">your father’s house</span>,</span></span></div>
+        <div class="literary-line lvl2"><span class="mark">b</span><span><span class="lang-pt"><span class="lit lit-from">da</span> <span class="lit lit-nation">sua terra</span>,</span><span class="lang-en"><span class="lit lit-from">from</span> <span class="lit lit-nation">your land</span>,</span></span></div>
+        <div class="literary-line lvl2"><span class="mark">b'</span><span><span class="lang-pt">e <span class="lit lit-from">da</span> <span class="lit lit-nation">sua família</span>,</span><span class="lang-en">and <span class="lit lit-from">from</span> <span class="lit lit-nation">your family</span>,</span></span></div>
+        <div class="literary-line lvl2"><span class="mark">b'</span><span><span class="lang-pt">e <span class="lit lit-from">da</span> <span class="lit lit-house">casa de seu pai</span>,</span><span class="lang-en">and <span class="lit lit-from">from</span> <span class="lit lit-house">your father’s house</span>,</span></span></div>
         <div class="literary-line"><span class="mark">a'</span><span><span class="lang-pt">para a terra que eu lhe mostrarei.</span><span class="lang-en">to the land which I will show you.</span></span></div>
         <hr class="my-3">
         <div class="literary-line"><span class="mark">a</span><span><span class="lang-pt">2 <span class="lit lit-great">E farei de você uma grande nação</span>,</span><span class="lang-en">2 <span class="lit lit-great">And I will make you a great nation</span>,</span></span></div>
-        <div class="literary-line"><span class="mark">b</span><span><span class="lang-pt">e eu o abençoarei,</span><span class="lang-en">and I will bless you,</span></span></div>
+        <div class="literary-line lvl2"><span class="mark">b</span><span><span class="lang-pt">e eu o abençoarei,</span><span class="lang-en">and I will bless you,</span></span></div>
         <div class="literary-line"><span class="mark">a'</span><span><span class="lang-pt">e farei grande o seu nome;</span><span class="lang-en">and I will make your name great;</span></span></div>
-        <div class="literary-line"><span class="mark">b'</span><span><span class="lang-pt">e assim você será uma bênção.</span><span class="lang-en">and so you shall be a blessing.</span></span></div>
+        <div class="literary-line lvl2"><span class="mark">b'</span><span><span class="lang-pt">e assim você será uma bênção.</span><span class="lang-en">and so you shall be a blessing.</span></span></div>
         <div class="literary-line"><span class="mark">a</span><span><span class="lang-pt">3 E eu <span class="lit lit-bless">abençoarei</span></span><span class="lang-en">3 And I will <span class="lit lit-bless">bless</span></span></span></div>
-        <div class="literary-line"><span class="mark">b</span><span><span class="lang-pt"><span class="lit lit-house">os que</span> <span class="lit lit-bless">abençoarem</span> você,</span><span class="lang-en"><span class="lit lit-house">those who</span> <span class="lit lit-bless">bless</span> you,</span></span></div>
-        <div class="literary-line"><span class="mark">b'</span><span><span class="lang-pt">e <span class="lit lit-house">aquele que</span> o tratar como <span class="lit lit-bless">amaldiçoado</span></span><span class="lang-en">and <span class="lit lit-house">the one who</span> treats you as <span class="lit lit-bless">cursed</span></span></span></div>
+        <div class="literary-line lvl2"><span class="mark">b</span><span><span class="lang-pt"><span class="lit lit-house">os que</span> <span class="lit lit-bless">abençoarem</span> você,</span><span class="lang-en"><span class="lit lit-house">those who</span> <span class="lit lit-bless">bless</span> you,</span></span></div>
+        <div class="literary-line lvl2"><span class="mark">b'</span><span><span class="lang-pt">e <span class="lit lit-house">aquele que</span> o tratar como <span class="lit lit-bless">amaldiçoado</span></span><span class="lang-en">and <span class="lit lit-house">the one who</span> treats you as <span class="lit lit-bless">cursed</span></span></span></div>
         <div class="literary-line"><span class="mark">a'</span><span><span class="lang-pt"><span class="lit lit-bless">amaldiçoarei</span>;</span><span class="lang-en">I will <span class="lit lit-bless">curse</span>;</span></span></div>
         <div class="literary-line"><span class="mark">a</span><span><span class="lang-pt">e em você todas as <span class="lit lit-nation">famílias da terra</span></span><span class="lang-en">and in you all the <span class="lit lit-nation">families of the land</span></span></span></div>
-        <div class="literary-line"><span class="mark">b</span><span><span class="lang-pt">encontrarão bênção.”</span><span class="lang-en">will find blessing.”</span></span></div>
+        <div class="literary-line lvl2"><span class="mark">b</span><span><span class="lang-pt">encontrarão bênção.”</span><span class="lang-en">will find blessing.”</span></span></div>
       </div>
     </div>
 
@@ -388,20 +416,20 @@
     <h2><span class="lang-pt">Tradução e Design Literário de Gênesis 12:6–9</span><span class="lang-en">Translation and Literary Design of Genesis 12:6–9</span></h2>
     <div class="design-card"><span class="label"><span class="lang-pt">Estada de Avram em Siquém</span><span class="lang-en">Avram’s Sojourn to Shechem</span></span><div class="body">
       <div class="literary-line"><span class="mark">a</span><span><span class="lang-pt">6 <span class="lit lit-move">E Avram passou (ויעבר)</span> <span class="lit lit-land">pela terra</span></span><span class="lang-en">6 <span class="lit lit-move">And Avram passed through (ויעבר)</span> <span class="lit lit-land">in the land</span></span></span></div>
-      <div class="literary-line"><span class="mark">b</span><span><span class="lang-pt"><span class="lit lit-call">até</span> o lugar de Siquém</span><span class="lang-en"><span class="lit lit-call">unto the</span> place of Shechem</span></span></div>
-      <div class="literary-line"><span class="mark">b'</span><span><span class="lang-pt"><span class="lit lit-call">até</span> o carvalho de Moré,</span><span class="lang-en"><span class="lit lit-call">unto the</span> oak of Moreh,</span></span></div>
+      <div class="literary-line lvl2"><span class="mark">b</span><span><span class="lang-pt"><span class="lit lit-call">até</span> o lugar de Siquém</span><span class="lang-en"><span class="lit lit-call">unto the</span> place of Shechem</span></span></div>
+      <div class="literary-line lvl2"><span class="mark">b'</span><span><span class="lang-pt"><span class="lit lit-call">até</span> o carvalho de Moré,</span><span class="lang-en"><span class="lit lit-call">unto the</span> oak of Moreh,</span></span></div>
       <div class="literary-line"><span class="mark">a'</span><span><span class="lang-pt">e o Cananeu estava então <span class="lit lit-land">na terra</span>.</span><span class="lang-en">and the Canaanite was then <span class="lit lit-land">in the land</span>.</span></span></div>
     </div></div>
     <div class="design-card"><span class="label"><span class="lang-pt">Adoração + Altar para Yahweh</span><span class="lang-en">Worship + Altar for Yahweh</span></span><div class="body">
       <div class="literary-line"><span class="mark">a</span><span><span class="lang-pt">7 E <span class="lit lit-appear">Yahweh apareceu a Avram</span> e disse,</span><span class="lang-en">7 And <span class="lit lit-appear">Yahweh appeared to Avram</span> and he said,</span></span></div>
-      <div class="literary-line"><span class="mark">b</span><span><span class="lang-pt">“À sua descendência darei esta terra.”</span><span class="lang-en">“To your seed I will give this land.”</span></span></div>
+      <div class="literary-line lvl2"><span class="mark">b</span><span><span class="lang-pt">“À sua descendência darei esta terra.”</span><span class="lang-en">“To your seed I will give this land.”</span></span></div>
       <div class="literary-line"><span class="mark">a'</span><span><span class="lang-pt">E <span class="lit lit-altar">construiu ali um altar a Yahweh</span> <span class="lit lit-appear">que lhe apareceu</span>.</span><span class="lang-en">And <span class="lit lit-altar">he built there an altar to Yahweh</span> <span class="lit lit-appear">who appeared to him</span>.</span></span></div>
     </div></div>
     <div class="design-card"><span class="label"><span class="lang-pt">Estada de Avram em Betel</span><span class="lang-en">Avram’s Sojourn to Bethel</span></span><div class="body">
       <div class="literary-line"><span class="mark">a</span><span><span class="lang-pt">8 <span class="lit lit-move">E partiu (ויעתק)</span> dali</span><span class="lang-en">8 <span class="lit lit-move">And he moved on (ויעתק)</span> from there</span></span></div>
-      <div class="literary-line"><span class="mark">b</span><span><span class="lang-pt">para a colina <span class="lit lit-east">a leste</span> de <span class="lit lit-east">Betel</span>,</span><span class="lang-en">to the hill <span class="lit lit-east">from the east</span> of <span class="lit lit-east">Bethel</span>,</span></span></div>
+      <div class="literary-line lvl2"><span class="mark">b</span><span><span class="lang-pt">para a colina <span class="lit lit-east">a leste</span> de <span class="lit lit-east">Betel</span>,</span><span class="lang-en">to the hill <span class="lit lit-east">from the east</span> of <span class="lit lit-east">Bethel</span>,</span></span></div>
       <div class="literary-line"><span class="mark">a'</span><span><span class="lang-pt">e estendeu sua tenda,</span><span class="lang-en">and he spread out his tent,</span></span></div>
-      <div class="literary-line"><span class="mark">b'</span><span><span class="lang-pt"><span class="lit lit-east">Betel</span> a oeste e Ai <span class="lit lit-east">a leste</span>;</span><span class="lang-en"><span class="lit lit-east">Bethel</span> on the west and Ai <span class="lit lit-east">from the east</span>;</span></span></div>
+      <div class="literary-line lvl2"><span class="mark">b'</span><span><span class="lang-pt"><span class="lit lit-east">Betel</span> a oeste e Ai <span class="lit lit-east">a leste</span>;</span><span class="lang-en"><span class="lit lit-east">Bethel</span> on the west and Ai <span class="lit lit-east">from the east</span>;</span></span></div>
       <div class="literary-line"><span class="mark">a</span><span><span class="lang-pt">e <span class="lit lit-altar">construiu ali um altar a Yahweh</span></span><span class="lang-en">and <span class="lit lit-altar">he built there an altar to Yahweh</span></span></span></div>
       <div class="literary-line"><span class="mark">a'</span><span><span class="lang-pt">e <span class="lit lit-call">chamou sobre o nome de Yahweh</span>.</span><span class="lang-en">and <span class="lit lit-call">he called upon the name of Yahweh</span>.</span></span></div>
     </div></div>
@@ -467,7 +495,7 @@
     <p><span class="lang-pt">Observe que no centro de 12:6–9 está a promessa da terra para a família de Avram.</span><span class="lang-en">Notice that at the center of 12:6–9 is the promise of land for Avram’s family.</span></p>
     <div class="design-card"><span class="label"><span class="lang-pt">Adoração + Altar para Yahweh</span><span class="lang-en">Worship + Altar for Yahweh</span></span><div class="body">
       <div class="literary-line"><span class="mark">a</span><span><span class="lang-pt">7 E <span class="lit lit-appear">Yahweh apareceu a Avram</span> e disse,</span><span class="lang-en">7 And <span class="lit lit-appear">Yahweh appeared to Avram</span> and he said,</span></span></div>
-      <div class="literary-line"><span class="mark">b</span><span><span class="lang-pt">“À sua descendência darei esta terra.”</span><span class="lang-en">“To your seed I will give this land.”</span></span></div>
+      <div class="literary-line lvl2"><span class="mark">b</span><span><span class="lang-pt">“À sua descendência darei esta terra.”</span><span class="lang-en">“To your seed I will give this land.”</span></span></div>
       <div class="literary-line"><span class="mark">a'</span><span><span class="lang-pt">E <span class="lit lit-altar">construiu ali um altar a Yahweh</span> <span class="lit lit-appear">que lhe apareceu</span>.</span><span class="lang-en">And <span class="lit lit-altar">he built there an altar to Yahweh</span> <span class="lit lit-appear">who appeared to him</span>.</span></span></div>
     </div></div>
     <p><span class="lang-pt">A promessa de Deus em 12:1–3 se concentrou na família que Deus construiria da linhagem de Avram e Sarai, e Avram recebeu apenas a ordem de “ir para a terra que eu lhe mostrarei”. Agora que Avram chegou àquela terra, a próxima parte da promessa de Deus é revelada: a própria terra se tornará parte da herança de Avram. Essa apresentação em duas etapas cria uma analogia importante entre os dois elementos da promessa.</span><span class="lang-en">God’s promise in 12:1–3 focused on the family that God would build from Avram and Sarai’s lineage, and Avram was simply told to “go to the land that I will show you.” Now that Avram has arrived in that land, the next part of God’s promise is revealed: the land itself will become part of Avram’s inheritance. This two-stage presentation of God’s promise creates an important analogy between the two elements of God’s promise.</span></p>
@@ -484,13 +512,13 @@
     <h2><span class="lang-pt">Bênção a Partir da Dispersão</span><span class="lang-en">Blessing Out of the Scattering</span></h2>
     <div class="design-card"><span class="label"><span class="lang-pt">Estada de Avram em Siquém</span><span class="lang-en">Avram’s Sojourn to Shechem</span></span><div class="body">
       <div class="literary-line"><span class="mark">a</span><span><span class="lang-pt">6 <span class="lit lit-move">E Avram passou (ויעבר)</span> <span class="lit lit-land">pela terra</span></span><span class="lang-en">6 <span class="lit lit-move">And Avram passed through (ויעבר)</span> <span class="lit lit-land">in the land</span></span></span></div>
-      <div class="literary-line"><span class="mark">b</span><span><span class="lang-pt"><span class="lit lit-call">até</span> o lugar de Siquém</span><span class="lang-en"><span class="lit lit-call">unto the</span> place of Shechem</span></span></div>
-      <div class="literary-line"><span class="mark">b'</span><span><span class="lang-pt"><span class="lit lit-call">até</span> o carvalho de Moré,</span><span class="lang-en"><span class="lit lit-call">unto the</span> oak of Moreh,</span></span></div>
+      <div class="literary-line lvl2"><span class="mark">b</span><span><span class="lang-pt"><span class="lit lit-call">até</span> o lugar de Siquém</span><span class="lang-en"><span class="lit lit-call">unto the</span> place of Shechem</span></span></div>
+      <div class="literary-line lvl2"><span class="mark">b'</span><span><span class="lang-pt"><span class="lit lit-call">até</span> o carvalho de Moré,</span><span class="lang-en"><span class="lit lit-call">unto the</span> oak of Moreh,</span></span></div>
       <div class="literary-line"><span class="mark">a'</span><span><span class="lang-pt">e o Cananeu estava então <span class="lit lit-land">na terra</span>.</span><span class="lang-en">and the Canaanite was then <span class="lit lit-land">in the land</span>.</span></span></div>
     </div></div>
     <div class="design-card"><span class="label"><span class="lang-pt">Adoração + Altar para Yahweh</span><span class="lang-en">Worship + Altar for Yahweh</span></span><div class="body">
       <div class="literary-line"><span class="mark">a</span><span><span class="lang-pt">7 E <span class="lit lit-appear">Yahweh apareceu a Avram</span> e disse,</span><span class="lang-en">7 And <span class="lit lit-appear">Yahweh appeared to Avram</span> and he said,</span></span></div>
-      <div class="literary-line"><span class="mark">b</span><span><span class="lang-pt">“À sua descendência darei esta terra.”</span><span class="lang-en">“To your seed I will give this land.”</span></span></div>
+      <div class="literary-line lvl2"><span class="mark">b</span><span><span class="lang-pt">“À sua descendência darei esta terra.”</span><span class="lang-en">“To your seed I will give this land.”</span></span></div>
       <div class="literary-line"><span class="mark">a'</span><span><span class="lang-pt">E <span class="lit lit-altar">construiu ali um altar a Yahweh</span> <span class="lit lit-appear">que lhe apareceu</span>.</span><span class="lang-en">And <span class="lit lit-altar">he built there an altar to Yahweh</span> <span class="lit lit-appear">who appeared to him</span>.</span></span></div>
     </div></div>
 
