@@ -129,7 +129,13 @@
     .design-card.emphasis .label,
     .design-card.ml-8 .label {
       display:block; width:max-content; margin:0 0 6px; padding:0 7px;
-      height:15px; line-height:15px; border-radius:0 5px 5px 0;
+      height:15px; line-height:15px;
+      /* Raio medido no PDF: os 4 cantos da pilula tem arco de 3.0pt
+         (16 curvas de Bezier = 4 segmentos por canto, arco completo 3pt).
+         Escala 816px/612pt = 1.333, logo 3pt = 4px. A sessao 6 usa 999px,
+         porem o PDF dela tambem pede 3pt — a pílula arredondada da s6 e escolha
+         de estilo local, nao vem do PDF. Aqui seguimos o PDF da s5. */
+      border-radius:4px;
       font-size:.72rem; font-weight:800;
     }
     .design-card.emphasis .body,
