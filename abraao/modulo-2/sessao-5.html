@@ -49,24 +49,30 @@
     }
     blockquote.academic-quote p:last-child { margin-bottom:0 !important; }
     .verse-block {
-      border-left: 4px solid #e4e8ed;padding-left:1.25rem;margin:2rem 0;
+      border-left: 4px solid #e3e7ec;padding-left:1.25rem;margin:2rem 0;
     }
     .verse-text { margin-top:.5rem !important;margin-bottom:.5rem !important; }
     sup.vs { font-size:.72em;color:#1b1b1b;font-weight:500;margin-right:2px; }
     .book-title {
       color:#0000ee;text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px;
     }
+    /* #e3e7ec e a cor de grade/cabeçalho/chip no PDF (2090 ocorrencias nos 30
+       teacher-notes). #e4e8ed nao existe em nenhum deles. */
     .design-card {
-      border: 1px solid #e4e8ed;border-radius:14px;background:#fff;
-      box-shadow:0 1px 2px rgba(15,23,42,.04);overflow:hidden;margin:1rem 0;
+      border: 1.5px solid #e3e7ec;border-radius:10px;background:#fff;
+      overflow:hidden;margin:1rem 0;
     }
     .design-card .label {
-      display:inline-block;background:#e4e8ed;color: #1b1b1b;font-weight:800;
-      border-radius:0 0 9px 0;padding:.28rem .65rem;font-size:.83rem;
+      display:inline-block;background:#e3e7ec;color: #1b1b1b;font-weight:800;
+      border-radius:0 0 7px 0;padding:.2rem .5rem;font-size:.78rem;
     }
+    /* Caixa B do macro: no PDF e #e3e7ec a fill_opacity 0.15 com traco de
+       1.5pt (medido no content stream da pagina 1). */
+    .design-card.ml-8 { border:1.5px solid #e3e7ec; background:rgba(227,231,236,.15); }
     .design-card.accent-gold { border-left:4px solid #816f4d; }
     .design-card .body { padding:.75rem 1rem 1rem; }
-    .design-card.emphasis { border:2px solid #6b7384; }
+    /* Caixa A/A' do macro: #6b7384 a fill_opacity 0.15 (content stream). */
+    .design-card.emphasis { border:1.5px solid #6b7384; background:rgba(107,115,132,.15); }
     .design-card.emphasis .label { background:#6b7384;color:#fff; }
     .design-card.emphasis.dark { border:2px solid #3e4054; }
     .design-card.emphasis.dark .label { background:#3e4054;color:#fff; }
@@ -74,16 +80,28 @@
     .design-card.subtle .label { background:#6b7384;color:#fff; }
     .literary-line { display:grid;grid-template-columns:28px 1fr;gap:.35rem; }
     .literary-line .mark { color: #4f5669;font-weight:700; }
-    .journey-table { width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border: 1px solid #e4e8ed;border-radius:14px; }
-    .journey-table th { background:#e4e8ed;color: #1b1b1b;text-align:left;padding:.8rem;font-weight:800; }
-    .journey-table td { vertical-align:top;border: 1px solid #e4e8ed;padding:.8rem; }
-    .journey-table td+td,.journey-table th+th { border: 1px solid #e4e8ed; }
-    .journey-table .stop { display:inline-block;background:#e4e8ed;color: #1b1b1b;border-radius:7px;padding:.18rem .45rem;font-weight:800;font-size:.78rem; }
-    .mini-tag { display:inline-block;border-radius:7px;padding:.15rem .4rem;background:#e4e8ed;color: #1b1b1b;font-size:.78rem;font-weight:800; }
+/* --- Tabelas: medidas tiradas do PDF (pagina 9, tabela Adam/Noah) --------
+   Quadro   x 36.0..576.7 = 540.7pt, sobre texto de 576pt -> 93.9% da coluna,
+            recuado 18pt de cada lado (o HTML usava 100%, sem recuo).
+   Grade / fundo do cabecalho / chips: #e3e7ec  (o HTML usava #e4e8ed).
+   Borda externa 1.5pt, linhas internas 0.7pt (o HTML usava 1px para tudo).
+   Legenda: ultima linha dentro do quadro, tambem #e3e7ec, texto #4f5669
+   a 10.5pt (mesmo corpo, nao menor), titulo em italico e o resto em romanino. */
+.journey-table { width:94%;margin-left:auto;margin-right:auto;border-collapse:separate;border-spacing:0;overflow:hidden;border: 1.5px solid #e3e7ec;border-radius:10px; }
+.journey-table th { background:#e3e7ec;color: #1b1b1b;text-align:left;padding:.7rem;font-weight:800; }
+.journey-table td { vertical-align:top;padding:.7rem; }
+.journey-table td + td, .journey-table th + th { border-left: 1px solid #e3e7ec; }
+.journey-table tbody tr + tr td { border-top: 1px solid #e3e7ec; }
+.journey-table .stop { display:inline-block;background:#e3e7ec;color: #1b1b1b;border-radius:5px;padding:0 .4rem;font-weight:800;font-size:.72rem;line-height:1.35; }
+/* legenda dentro do quadro */
+.journey-table tfoot td { background:#e3e7ec;color:#4f5669;text-align:left;font-size:1rem;padding:.55rem .7rem;border-top:1.5px solid #e3e7ec; }
+.journey-table tfoot em { font-style:italic; }
+
+    .mini-tag { display:inline-block;border-radius:7px;padding:.15rem .4rem;background:#e3e7ec;color: #1b1b1b;font-size:.78rem;font-weight:800; }
     .quote-source { color: #4f5669;font-size: .78rem; }
     .page-footer {
       display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
-      font-size: .78rem;color: #2c2c2c;font-weight:600;border: 1px solid #e4e8ed;
+      font-size: .78rem;color: #2c2c2c;font-weight:600;border: 1px solid #e3e7ec;
       padding-top:1rem;margin-top:3.5rem;
     }
     /* --- literary-design marks: colours taken from sessao-5.pdf ------- */
@@ -106,15 +124,19 @@
     .map-image,.scatter-image { display:block;margin:1rem auto;max-width:100%;border-radius:10px; }
     .scattering-panel {
       display:flex;justify-content:center;align-items:center;min-height:330px;
-      border: 1px solid #e4e8ed;border-radius:14px;background:#fff;
+      border: 1px solid #e3e7ec;border-radius:14px;background:#fff;
     }
+
+    /* A escala tipografica segue o DESIGN.md (rem absoluto), como nas outras
+       sessoes do curso. Nao usar container-query aqui: o tamanho das letras
+       deve ser o mesmo em todas as paginas. */
   </style>
 </head>
 <body class="bg-white font-sans text-[#1b1b1b]">
 <div id="reading-progress" aria-hidden="true"></div>
 
 <div class="nav-btn-fixed fixed left-4 top-4 z-50">
-  <a href="./index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]">
+  <a href="./index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e3e7ec]">
     <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
   </a>
 </div>
@@ -123,7 +145,7 @@
   <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
     <button id="lang-pt" onclick="setLang('pt')" class="px-4 py-1.5 text-sm font-semibold transition-colors">PT</button>
     <button id="lang-en" onclick="setLang('en')" class="px-4 py-1.5 text-sm font-semibold transition-colors">EN</button>
-    <button onclick="window.print()" class="inline-flex items-center gap-2 px-4 py-1.5 text-sm font-semibold text-slate-600 transition-colors hover:bg-[#e4e8ed]">
+    <button onclick="window.print()" class="inline-flex items-center gap-2 px-4 py-1.5 text-sm font-semibold text-slate-600 transition-colors hover:bg-[#e3e7ec]">
       <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
       <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
     </button>
@@ -169,62 +191,62 @@
 
     <h2><span class="lang-pt">Tradução e Design Literário de Gênesis 12:1–3</span><span class="lang-en">Translation and Literary Design of Genesis 12:1–3</span></h2>
     <div class="design-card accent-gold">
-      <span class="label">Blessing and Children in the Promised Land</span>
+      <span class="label"><span class="lang-pt">Bênção e Filhos na Terra Prometida</span><span class="lang-en">Blessing and Children in the Promised Land</span></span>
       <div class="body space-y-2">
-        <div>12:1 And Yahweh said to Avram,</div>
-        <div class="literary-line"><span class="mark">a</span><span>“Get yourself going</span></div>
-        <div class="literary-line"><span class="mark">b</span><span><span class="lit lit-from">from</span> <span class="lit lit-nation">your land</span>,</span></div>
-        <div class="literary-line"><span class="mark">b'</span><span>and <span class="lit lit-from">from</span> <span class="lit lit-nation">your family</span>,</span></div>
-        <div class="literary-line"><span class="mark">b'</span><span>and <span class="lit lit-from">from</span> <span class="lit lit-house">your father’s house</span>,</span></div>
-        <div class="literary-line"><span class="mark">a'</span><span>to the land which I will show you.</span></div>
+        <div><span class="lang-pt">12:1 E Yahweh disse a Avram,</span><span class="lang-en">12:1 And Yahweh said to Avram,</span></div>
+        <div class="literary-line"><span class="mark">a</span><span><span class="lang-pt">“Vá você mesmo</span><span class="lang-en">“Get yourself going</span></span></div>
+        <div class="literary-line"><span class="mark">b</span><span><span class="lang-pt"><span class="lit lit-from">da</span> <span class="lit lit-nation">sua terra</span>,</span><span class="lang-en"><span class="lit lit-from">from</span> <span class="lit lit-nation">your land</span>,</span></span></div>
+        <div class="literary-line"><span class="mark">b'</span><span><span class="lang-pt">e <span class="lit lit-from">da</span> <span class="lit lit-nation">sua família</span>,</span><span class="lang-en">and <span class="lit lit-from">from</span> <span class="lit lit-nation">your family</span>,</span></span></div>
+        <div class="literary-line"><span class="mark">b'</span><span><span class="lang-pt">e <span class="lit lit-from">da</span> <span class="lit lit-house">casa de seu pai</span>,</span><span class="lang-en">and <span class="lit lit-from">from</span> <span class="lit lit-house">your father’s house</span>,</span></span></div>
+        <div class="literary-line"><span class="mark">a'</span><span><span class="lang-pt">para a terra que eu lhe mostrarei.</span><span class="lang-en">to the land which I will show you.</span></span></div>
         <hr class="my-3">
-        <div class="literary-line"><span class="mark">a</span><span>2 <span class="lit lit-great">And I will make you a great nation</span>,</span></div>
-        <div class="literary-line"><span class="mark">b</span><span>and I will bless you,</span></div>
-        <div class="literary-line"><span class="mark">a'</span><span>and I will make your name great;</span></div>
-        <div class="literary-line"><span class="mark">b'</span><span>and so you shall be a blessing.</span></div>
-        <div class="literary-line"><span class="mark">a</span><span>3 And I will <span class="lit lit-bless">bless</span></span></div>
-        <div class="literary-line"><span class="mark">b</span><span><span class="lit lit-house">those who</span> <span class="lit lit-bless">bless</span> you,</span></div>
-        <div class="literary-line"><span class="mark">b'</span><span>and <span class="lit lit-house">the one who</span> treats you as <span class="lit lit-bless">cursed</span></span></div>
-        <div class="literary-line"><span class="mark">a'</span><span>I will <span class="lit lit-bless">curse</span>;</span></div>
-        <div class="literary-line"><span class="mark">a</span><span>and in you all the <span class="lit lit-nation">families of the land</span></span></div>
-        <div class="literary-line"><span class="mark">b</span><span>will find blessing.”</span></div>
+        <div class="literary-line"><span class="mark">a</span><span><span class="lang-pt">2 <span class="lit lit-great">E farei de você uma grande nação</span>,</span><span class="lang-en">2 <span class="lit lit-great">And I will make you a great nation</span>,</span></span></div>
+        <div class="literary-line"><span class="mark">b</span><span><span class="lang-pt">e eu o abençoarei,</span><span class="lang-en">and I will bless you,</span></span></div>
+        <div class="literary-line"><span class="mark">a'</span><span><span class="lang-pt">e farei grande o seu nome;</span><span class="lang-en">and I will make your name great;</span></span></div>
+        <div class="literary-line"><span class="mark">b'</span><span><span class="lang-pt">e assim você será uma bênção.</span><span class="lang-en">and so you shall be a blessing.</span></span></div>
+        <div class="literary-line"><span class="mark">a</span><span><span class="lang-pt">3 E eu <span class="lit lit-bless">abençoarei</span></span><span class="lang-en">3 And I will <span class="lit lit-bless">bless</span></span></span></div>
+        <div class="literary-line"><span class="mark">b</span><span><span class="lang-pt"><span class="lit lit-house">os que</span> <span class="lit lit-bless">abençoarem</span> você,</span><span class="lang-en"><span class="lit lit-house">those who</span> <span class="lit lit-bless">bless</span> you,</span></span></div>
+        <div class="literary-line"><span class="mark">b'</span><span><span class="lang-pt">e <span class="lit lit-house">aquele que</span> o tratar como <span class="lit lit-bless">amaldiçoado</span></span><span class="lang-en">and <span class="lit lit-house">the one who</span> treats you as <span class="lit lit-bless">cursed</span></span></span></div>
+        <div class="literary-line"><span class="mark">a'</span><span><span class="lang-pt"><span class="lit lit-bless">amaldiçoarei</span>;</span><span class="lang-en">I will <span class="lit lit-bless">curse</span>;</span></span></div>
+        <div class="literary-line"><span class="mark">a</span><span><span class="lang-pt">e em você todas as <span class="lit lit-nation">famílias da terra</span></span><span class="lang-en">and in you all the <span class="lit lit-nation">families of the land</span></span></span></div>
+        <div class="literary-line"><span class="mark">b</span><span><span class="lang-pt">encontrarão bênção.”</span><span class="lang-en">will find blessing.”</span></span></div>
       </div>
     </div>
 
     <h2><span class="lang-pt">“Vá Você Mesmo!”</span><span class="lang-en">Get Yourself Going!</span></h2>
     <p><span class="lang-pt">A expressão hebraica para “vá você mesmo” (<b>לך לך</b>) em 12:1 é única e volta a aparecer somente no ápice dos dez testes de Avram, em 22:2.</span><span class="lang-en">The Hebrew phrase for “get yourself going” (<b>לך לך</b>) in 12:1 is unique, and it’s repeated again only at the culmination of Avram’s 10 tests in 22:2.</span></p>
     <div class="verse-block">
-      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 12:1 <span class="font-medium text-[#4f5669]">Instructor’s Translation</span></p>
+      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 12:1 <span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor’s Translation</span></p>
       <p class="verse-text"><span class="lang-pt">Vá você mesmo da sua terra ... para a terra que eu lhe mostrarei.</span><span class="lang-en">Get yourself going from your land ... to the land that I will show you.</span></p>
     </div>
     <div class="verse-block">
-      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 22:2 <span class="font-medium text-[#4f5669]">Instructor’s Translation</span></p>
+      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 22:2 <span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor’s Translation</span></p>
       <p class="verse-text"><span class="lang-pt">Vá você mesmo para a terra de Moriá e ofereça [Yitskhaq] ali como oferta de subida, em um dos montes que eu lhe direi.</span><span class="lang-en">Get yourself going to the land of Moriah, and offer [Yitskhaq] there as a going-up offering on one of the mountains that I will tell you.</span></p>
     </div>
 
     <h2><span class="lang-pt">A Nova Família de Avram</span><span class="lang-en">Avram’s New Family</span></h2>
     <p><span class="lang-pt">Avram se separa de sua família e vai para um novo lugar onde Deus criará uma nova família. Isso repete o padrão do Éden, onde Deus dividiu o humano solitário em dois humanos para criar a primeira família escolhida. Segundo Gênesis 2, somente Deus pode fornecer a “ajuda” necessária (<b>עזר</b>) capaz de livrar seu escolhido da impotência.</span><span class="lang-en">Avram separates from his family and goes to a new place where God will create a new family. This is a repetition of the Eden pattern where God split the lone human into two humans to create the first chosen family. According to Genesis 2, only God can provide the necessary “help” (<b>עזר</b>) that can deliver his chosen one from helplessness.</span></p>
     <div class="verse-block">
-      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 2:18 <span class="font-medium text-[#4f5669]">Instructor’s Translation</span></p>
+      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 2:18 <span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor’s Translation</span></p>
       <p class="verse-text"><span class="lang-pt">Não é bom que o humano esteja sozinho. Farei uma fonte de ajuda libertadora (<b>עזר</b>) que corresponda ao humano.</span><span class="lang-en">It is not good for the human to be alone. I will make a source of delivering-help (<b>עזר</b>) that corresponds to the human.</span></p>
     </div>
     <div class="verse-block">
-      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 2:24 <span class="font-medium text-[#4f5669]">Instructor’s Translation</span></p>
+      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 2:24 <span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor’s Translation</span></p>
       <p class="verse-text"><span class="lang-pt">Por isso o homem deixará seu pai e sua mãe, unir-se-á à sua mulher, e os dois se tornarão uma só carne.</span><span class="lang-en">For this reason, a man will leave his father and mother, and he will be joined to his wife, and the two will become one flesh.</span></p>
     </div>
     <div class="verse-block">
-      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 12:1 <span class="font-medium text-[#4f5669]">Instructor’s Translation</span></p>
+      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 12:1 <span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor’s Translation</span></p>
       <p class="verse-text"><span class="lang-pt">Vá você mesmo ... da sua terra, da sua família de nascimento e da casa de seu pai...</span><span class="lang-en">Get yourself going … from your land, from your birth-family and from the house of your father ...</span></p>
     </div>
     <div class="verse-block">
-      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 12:7 <span class="font-medium text-[#4f5669]">Instructor’s Translation</span></p>
+      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 12:7 <span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor’s Translation</span></p>
       <p class="verse-text"><span class="lang-pt">À sua descendência (<b>זרע</b>) darei esta terra.</span><span class="lang-en">To your seed (<b>זרע</b>) I will give this land.</span></p>
     </div>
     <p><span class="lang-pt">Nas duas narrativas, a promessa de Deus é prover aquilo que os humanos não conseguem prover por si mesmos. Em Gênesis 2, é a “ajuda libertadora” (‘ezer, עזר), sem a qual o humano não pode florescer no Éden; em Gênesis 12, é a “descendência” (zera‘, זרע), sem a qual a família de Avram não pode se tornar bênção para as nações.</span><span class="lang-en">In both narratives, God’s promise is to provide what the humans cannot provide for themselves. In Genesis 2, it’s the “delivering help” (‘ezer, עזר) without which the human cannot flourish in Eden, and in Genesis 12, it’s the “seed” (zera‘, זרע) without which Avram’s family cannot become a blessing to the nations.</span></p>
 
     <h2><span class="lang-pt">Grandeza e Bênção</span><span class="lang-en">Greatness and Blessing</span></h2>
     <div class="verse-block">
-      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 12:2 <span class="font-medium text-[#4f5669]">Instructor’s Translation</span></p>
+      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 12:2 <span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor’s Translation</span></p>
       <p class="verse-text"><span class="lang-pt">E farei de você uma grande nação, e o abençoarei, e farei grande o seu nome; e assim você será uma bênção.</span><span class="lang-en">And I will make you a great nation, and I will bless you, and I will make your name great; and so you shall be a blessing.</span></p>
     </div>
     <p><span class="lang-pt">As duas linhas poéticas paralelas contêm duas promessas de grandeza e duas promessas de bênção.</span><span class="lang-en">The two parallel poetic lines contain two promises of greatness and two promises of blessing.</span></p>
@@ -239,7 +261,7 @@
     </ul>
     <p><span class="lang-pt">Essas linhas poéticas criam uma vocação para Avram. Ele é chamado para uma nova terra semelhante ao Éden, onde Deus o transformará em uma nova família escolhida, para que ele possa se tornar um canal da bênção divina para outros. Essa vocação é o foco das linhas finais do poema.</span><span class="lang-en">These poetic lines create a vocation for Avram. He is being summoned to a new Eden-like land where God will create him into a new chosen family where he can become a channel of divine blessing to others. This vocation is the focus of the final lines of the poem.</span></p>
     <div class="verse-block">
-      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 12:3 <span class="font-medium text-[#4f5669]">Instructor’s Translation</span></p>
+      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 12:3 <span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor’s Translation</span></p>
       <p class="verse-text"><span class="lang-pt">E eu abençoarei os que o abençoarem, e aquele que o tratar como amaldiçoado eu amaldiçoarei;</span><span class="lang-en">And I will bless those who bless you, and the one who treats you as cursed I will curse;</span></p>
     </div>
 
@@ -252,32 +274,32 @@
     <h2><span class="lang-pt">Avram como um Novo Adão e Noé</span><span class="lang-en">Avram as a New Adam and Noah</span></h2>
     <p><span class="lang-pt">A promessa divina de bênção corresponde à bênção divina dada primeiro à humanidade e depois a Noé após o dilúvio.</span><span class="lang-en">The divine promise of blessing corresponds to the divine blessing first given to humanity and then to Noah after the flood.</span></p>
     <div class="verse-block">
-      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 1:27-28 <span class="font-medium text-[#4f5669]">Instructor’s Translation</span></p>
+      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 1:27-28 <span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor’s Translation</span></p>
       <p class="verse-text"><span class="lang-pt"><sup class="vs">27</sup> Elohim criou a humanidade à sua imagem, à imagem de Elohim a criou; macho e fêmea os criou. <sup class="vs">28</sup> E Elohim os abençoou e lhes disse: “Sejam fecundos e multipliquem-se, encham a terra, submetam-na e dominem sobre os peixes do mar, as aves do céu e todo ser vivente que se move sobre a terra.”</span><span class="lang-en"><sup class="vs">27</sup> Elohim created humanity in his image, in the image of Elohim he created him; male and female he created them. <sup class="vs">28</sup> And Elohim blessed them; and Elohim said to them, “Be fruitful and multiply, and fill the earth, and subdue it; and rule over the fish of the sea and over the birds of the sky and over every living thing that moves on the earth.”</span></p>
     </div>
     <div class="verse-block">
-      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 9:1-2 <span class="font-medium text-[#4f5669]">Instructor’s Translation</span></p>
+      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 9:1-2 <span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor’s Translation</span></p>
       <p class="verse-text"><span class="lang-pt"><sup class="vs">1</sup> Elohim abençoou Noé e seus filhos e lhes disse: “Sejam fecundos e multipliquem-se e encham a terra. <sup class="vs">2</sup> O temor e o terror de vocês estarão sobre todo animal da terra e sobre toda ave do céu; tudo o que rasteja pelo chão e todos os peixes do mar foram entregues em suas mãos.”</span><span class="lang-en"><sup class="vs">1</sup> And Elohim blessed Noah and his sons and said to them, “Be fruitful and multiply, and fill the earth. <sup class="vs">2</sup> The fear of you and the terror of you will be on every beast of the earth and on every bird of the sky; with everything that creeps on the ground, and all the fish of the sea, into your hand they are given.”</span></p>
     </div>
     <div class="verse-block">
-      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 12:2-3 <span class="font-medium text-[#4f5669]">Instructor’s Translation</span></p>
+      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 12:2-3 <span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor’s Translation</span></p>
       <p class="verse-text"><span class="lang-pt">E farei de você uma grande nação, e o abençoarei, e farei grande o seu nome; e assim você será uma bênção; e abençoarei os que o abençoarem, e aquele que o tratar como amaldiçoado eu amaldiçoarei; e em você todas as famílias da terra encontrarão bênção.</span><span class="lang-en">And I will make you a great nation, and I will bless you, and I will make your name great; and so you shall be a blessing; and I will bless those who bless you, and the one who treats you as cursed I will curse; and in you all the clan-families of the land will find blessing.</span></p>
     </div>
     <p><span class="lang-pt">O poema de bênção de 12:2–3 tem cinco bênçãos que correspondem, de maneira interessante, às cinco maldições de Gênesis 1–11, e tem sete linhas poéticas que correspondem às bênçãos posteriores dadas aos patriarcas, que também consistem em sete partes (Cassuto, Umberto (2012). <i class="book-title">From Noah to Abraham</i>. Varda Books. 331).</span><span class="lang-en">The poem of blessing in 12:2–3 has five blessings that interestingly correspond to the five curses in Genesis 1–11, and it has seven poetic lines that correspond to the later blessings given to the patriarchs, which also consist of seven parts (Cassuto, Umberto (2012). <i class="book-title">From Noah to Abraham</i>. Varda Books. 331).</span></p>
     <div class="verse-block">
-      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 12:2-3 <span class="font-medium text-[#4f5669]">Instructor’s Translation</span></p>
+      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 12:2-3 <span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor’s Translation</span></p>
       <ol class="list-decimal pl-6">
-        <li>and I will make you a great nation</li><li>and I will <b>bless</b> you,</li><li>and I will make your name great;</li><li>and so you shall be a <b>blessing</b>;</li><li>and I will <b>bless</b> those who <b>bless</b> you,</li><li>and the one who treats you as cursed I will curse;</li><li>and in you all the clan-families of the land will find <b>blessing</b>.</li>
+        <li><span class="lang-pt">E farei de você uma grande nação</span><span class="lang-en">and I will make you a great nation</span></li><li><span class="lang-pt">e eu o <b>abençoarei</b>,</span><span class="lang-en">and I will <b>bless</b> you,</span></li><li><span class="lang-pt">e farei grande o seu nome;</span><span class="lang-en">and I will make your name great;</span></li><li><span class="lang-pt">e assim você será uma <b>bênção</b>;</span><span class="lang-en">and so you shall be a <b>blessing</b>;</span></li><li><span class="lang-pt">e <b>abençoarei</b> os que o <b>abençoarem</b>,</span><span class="lang-en">and I will <b>bless</b> those who <b>bless</b> you,</span></li><li><span class="lang-pt">e aquele que o tratar como amaldiçoado eu amaldiçoarei;</span><span class="lang-en">and the one who treats you as cursed I will curse;</span></li><li><span class="lang-pt">e em você todas as famílias da terra encontrarão <b>bênção</b>.</span><span class="lang-en">and in you all the clan-families of the land will find <b>blessing</b>.</span></li>
       </ol>
     </div>
 
     <h2><span class="lang-pt">As Cinco Maldições de Gênesis 3–11</span><span class="lang-en">The Five Curses of Genesis 3–11</span></h2>
     <ul class="list-disc space-y-2 pl-6 text-[#1b1b1b]">
-      <li>Gen. 3:14 “cursed! are you” (snake)</li>
-      <li>Gen. 3:17 “cursed! is the ground because of you” (man)</li>
-      <li>Gen. 3:14 “cursed! are you from the ground” (Cain)</li>
-      <li>Gen. 3:14 “the ground which Yahweh has cursed!”</li>
-      <li>Gen. 3:14 “cursed! is Canaan”</li>
+      <li><span class="lang-pt">Gn. 3:14 “amaldiçoado! é você” (serpente)</span><span class="lang-en">Gen. 3:14 “cursed! are you” (snake)</span></li>
+      <li><span class="lang-pt">Gn. 3:17 “amaldiçoado! é o solo por sua causa” (homem)</span><span class="lang-en">Gen. 3:17 “cursed! is the ground because of you” (man)</span></li>
+      <li><span class="lang-pt">Gn. 3:14 “amaldiçoado! é você, do solo” (Caim)</span><span class="lang-en">Gen. 3:14 “cursed! are you from the ground” (Cain)</span></li>
+      <li><span class="lang-pt">Gn. 3:14 “o solo que Yahweh amaldiçoou!”</span><span class="lang-en">Gen. 3:14 “the ground which Yahweh has cursed!”</span></li>
+      <li><span class="lang-pt">Gn. 3:14 “amaldiçoado! é Canaã”</span><span class="lang-en">Gen. 3:14 “cursed! is Canaan”</span></li>
     </ul>
     <blockquote class="academic-quote">
       <p><span class="lang-pt">“A Bíblia inteira pode ser retratada como uma resposta muito longa a uma pergunta muito simples: o que Deus pode fazer a respeito do pecado e da rebelião da raça humana? Gênesis 12–Apocalipse 22 é a resposta de Deus ao problema apresentado pelas narrativas sombrias de Gênesis 3–11. ... O chamado de Abrão é o início da resposta de Deus ao mal dos corações humanos, à luta entre as nações e ao gemido da criação inteira em sua condição quebrada.”</span><span class="lang-en">“The whole Bible can be portrayed as a very long answer to a very simple question: What can God do about the sin and rebellion of the human race? Genesis 12–Revelation 22 is God’s answer to the problem posed by the bleak narratives of Genesis 3–11. ... The call of Abram is the beginning of God’s answer to the evil of human hearts, the strife of nations, and the groaning brokenness of his whole creation.”</span></p>
@@ -287,72 +309,72 @@
     <h2><span class="lang-pt">As Bênçãos dos Patriarcas</span><span class="lang-en">The Patriarchal Blessings</span></h2>
     <h3><span class="lang-pt">Avram</span><span class="lang-en">Avram</span></h3>
     <div class="verse-block">
-      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 12:2-3 <span class="font-medium text-[#4f5669]">Instructor’s Translation</span></p>
+      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 12:2-3 <span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor’s Translation</span></p>
       <ol class="list-decimal pl-6">
-        <li>and I will make you a great nation</li>
-        <li>and I will <b>bless</b> you,</li>
-        <li>and I will make your name great;</li>
-        <li>and so you shall be a <b>blessing</b>;</li>
-        <li>and I will <b>bless</b> those who <b>bless</b> you,</li>
-        <li>and the one who treats you as cursed I will curse;</li>
-        <li>and in you all the clan-families of the land will find <b>blessing</b>.</li>
+        <li><span class="lang-pt">E farei de você uma grande nação</span><span class="lang-en">and I will make you a great nation</span></li>
+        <li><span class="lang-pt">e eu o <b>abençoarei</b>,</span><span class="lang-en">and I will <b>bless</b> you,</span></li>
+        <li><span class="lang-pt">e farei grande o seu nome;</span><span class="lang-en">and I will make your name great;</span></li>
+        <li><span class="lang-pt">e assim você será uma <b>bênção</b>;</span><span class="lang-en">and so you shall be a <b>blessing</b>;</span></li>
+        <li><span class="lang-pt">e <b>abençoarei</b> os que o <b>abençoarem</b>,</span><span class="lang-en">and I will <b>bless</b> those who <b>bless</b> you,</span></li>
+        <li><span class="lang-pt">e aquele que o tratar como amaldiçoado eu amaldiçoarei;</span><span class="lang-en">and the one who treats you as cursed I will curse;</span></li>
+        <li><span class="lang-pt">e em você todas as famílias da terra encontrarão <b>bênção</b>.</span><span class="lang-en">and in you all the clan-families of the land will find <b>blessing</b>.</span></li>
       </ol>
     </div>
     <h3><span class="lang-pt">Isaac</span><span class="lang-en">Isaac</span></h3>
     <div class="verse-block">
-      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 26:3-4 <span class="font-medium text-[#4f5669]">Instructor’s Translation</span></p>
+      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 26:3-4 <span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor’s Translation</span></p>
       <ol class="list-decimal pl-6">
-        <li>and I will be with you,</li>
-        <li>and I will bless you,</li>
-        <li>for to you and to your descendants I will give all these lands,</li>
-        <li>and I will fulfil the oath which I swore to Avraham your father.</li>
-        <li>I will multiply your descendants as the stars of heaven,</li>
-        <li>and will give to your descendants all these lands;</li>
-        <li>and by your descendants all the nations of the earth shall bless themselves.</li>
+        <li><span class="lang-pt">e eu estarei com você,</span><span class="lang-en">and I will be with you,</span></li>
+        <li><span class="lang-pt">e eu o abençoarei,</span><span class="lang-en">and I will bless you,</span></li>
+        <li><span class="lang-pt">pois a você e à sua descendência darei todas estas terras,</span><span class="lang-en">for to you and to your descendants I will give all these lands,</span></li>
+        <li><span class="lang-pt">e cumprirei o juramento que fiz ao seu pai Avram.</span><span class="lang-en">and I will fulfil the oath which I swore to Avraham your father.</span></li>
+        <li><span class="lang-pt">multiplicarei a sua descendência como as estrelas do céu,</span><span class="lang-en">I will multiply your descendants as the stars of heaven,</span></li>
+        <li><span class="lang-pt">e darei à sua descendência todas estas terras;</span><span class="lang-en">and will give to your descendants all these lands;</span></li>
+        <li><span class="lang-pt">e pela sua descendência todas as nações da terra se abençoarão.</span><span class="lang-en">and by your descendants all the nations of the earth shall bless themselves.</span></li>
       </ol>
     </div>
     <h3><span class="lang-pt">Jacó</span><span class="lang-en">Jacob</span></h3>
     <div class="verse-block">
-      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 27:28-29 <span class="font-medium text-[#4f5669]">Instructor’s Translation</span></p>
+      <p class="font-bold text-[#1b1b1b] mb-2">Genesis 27:28-29 <span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor’s Translation</span></p>
       <ol class="list-decimal pl-6">
-        <li>May God give you of the dew of heaven, etc.</li>
-        <li>Let peoples serve you,</li>
-        <li>and nations bow down to you.</li>
-        <li>Be lord over your brothers,</li>
-        <li>and may your mother’s sons bow down to you.</li>
-        <li>Cursed be every one who curses you,</li>
-        <li>and blessed be every one who blesses you!</li>
+        <li><span class="lang-pt">Que Deus lhe dê do orvalho do céu, etc.</span><span class="lang-en">May God give you of the dew of heaven, etc.</span></li>
+        <li><span class="lang-pt">Que os povos prestem serviço a você,</span><span class="lang-en">Let peoples serve you,</span></li>
+        <li><span class="lang-pt">e as nações se curvem diante de você.</span><span class="lang-en">and nations bow down to you.</span></li>
+        <li><span class="lang-pt">Seja senhor sobre seus irmãos,</span><span class="lang-en">Be lord over your brothers,</span></li>
+        <li><span class="lang-pt">e os filhos de sua mãe se curvem diante de você.</span><span class="lang-en">and may your mother’s sons bow down to you.</span></li>
+        <li><span class="lang-pt">Maldito seja todo aquele que o amaldiçoar,</span><span class="lang-en">Cursed be every one who curses you,</span></li>
+        <li><span class="lang-pt">e bendito seja todo aquele que o abençoar!</span><span class="lang-en">and blessed be every one who blesses you!</span></li>
       </ol>
     </div>
 
     <h2><span class="lang-pt">Relação com as Seções Justapostas</span><span class="lang-en">Relationship to Juxtaposed Sections</span></h2>
     <p><span class="lang-pt">A jornada de Avram para Canaã é, na verdade, a conclusão daquilo que seu pai Terakh deixou inacabado em 11:31. As ações de Avram são claramente colocadas em contraste com as de seu pai.</span><span class="lang-en">Avram’s journey to Canaan is actually a completion of what his father Terakh left undone back in 11:31. Avram’s actions are clearly set in contrast to his father.</span></p>
-    <div class="verse-block"><p class="font-bold">Genesis 11:31 <span class="font-medium text-[#4f5669]">NASB</span></p><p class="verse-text">Terah took Abram his son, and Lot the son of Haran, his grandson, and Sarai his daughter-in-law, his son Abram’s wife; and they went out together from Ur of the Chaldeans in order to enter the land of Canaan; and they went as far as Haran, and settled there.</p></div>
-    <div class="verse-block"><p class="font-bold">Genesis 12:5 <span class="font-medium text-[#4f5669]">NASB</span></p><p class="verse-text">Abram took Sarai his wife and Lot his nephew, and all their possessions which they had accumulated, and the persons which they had acquired in Haran, and they set out for the land of Canaan; thus they came to the land of Canaan.</p></div>
+    <div class="verse-block"><p class="font-bold">Genesis 11:31 <span class="font-medium text-[#4f5669]">NASB</span></p><p class="verse-text"><span class="lang-pt">Terakh tomou Abrão, seu filho, e Ló, filho de Harã, seu neto, e Sarai, sua nora, esposa de seu filho Abrão; e saíram juntos de Ur dos Caldeus para entrar na terra de Canaã; e foram até Harã e ali se estabeleceram.</span><span class="lang-en">Terah took Abram his son, and Lot the son of Haran, his grandson, and Sarai his daughter-in-law, his son Abram’s wife; and they went out together from Ur of the Chaldeans in order to enter the land of Canaan; and they went as far as Haran, and settled there.</span></p></div>
+    <div class="verse-block"><p class="font-bold">Genesis 12:5 <span class="font-medium text-[#4f5669]">NASB</span></p><p class="verse-text"><span class="lang-pt">Abrão levou Sarai, sua esposa, e Ló, seu sobrinho, e todos os bens que ajuntaram, e as pessoas que称作 em Harã, e partiram para a terra de Canaã; assim chegaram à terra de Canaã.</span><span class="lang-en">Abram took Sarai his wife and Lot his nephew, and all their possessions which they had accumulated, and the persons which they had acquired in Haran, and they set out for the land of Canaan; thus they came to the land of Canaan.</span></p></div>
 
     <h2><span class="lang-pt">Tradução e Design Literário de Gênesis 12:6–9</span><span class="lang-en">Translation and Literary Design of Genesis 12:6–9</span></h2>
-    <div class="design-card"><span class="label">Avram’s Sojourn to Shechem</span><div class="body">
-      <div class="literary-line"><span class="mark">a</span><span>6 <span class="lit lit-move">And Avram passed through (ויעבר)</span> <span class="lit lit-land">in the land</span></span></div>
-      <div class="literary-line"><span class="mark">b</span><span><span class="lit lit-call">unto the</span> place of Shechem</span></div>
-      <div class="literary-line"><span class="mark">b'</span><span><span class="lit lit-call">unto the</span> oak of Moreh,</span></div>
-      <div class="literary-line"><span class="mark">a'</span><span>and the Canaanite was then <span class="lit lit-land">in the land</span>.</span></div>
+    <div class="design-card"><span class="label"><span class="lang-pt">Estada de Avram em Siquém</span><span class="lang-en">Avram’s Sojourn to Shechem</span></span><div class="body">
+      <div class="literary-line"><span class="mark">a</span><span><span class="lang-pt">6 <span class="lit lit-move">E Avram passou (ויעבר)</span> <span class="lit lit-land">pela terra</span></span><span class="lang-en">6 <span class="lit lit-move">And Avram passed through (ויעבר)</span> <span class="lit lit-land">in the land</span></span></span></div>
+      <div class="literary-line"><span class="mark">b</span><span><span class="lang-pt"><span class="lit lit-call">até</span> o lugar de Siquém</span><span class="lang-en"><span class="lit lit-call">unto the</span> place of Shechem</span></span></div>
+      <div class="literary-line"><span class="mark">b'</span><span><span class="lang-pt"><span class="lit lit-call">até</span> o carvalho de Moré,</span><span class="lang-en"><span class="lit lit-call">unto the</span> oak of Moreh,</span></span></div>
+      <div class="literary-line"><span class="mark">a'</span><span><span class="lang-pt">e o Cananeu estava então <span class="lit lit-land">na terra</span>.</span><span class="lang-en">and the Canaanite was then <span class="lit lit-land">in the land</span>.</span></span></div>
     </div></div>
-    <div class="design-card"><span class="label">Worship + Altar for Yahweh</span><div class="body">
-      <div class="literary-line"><span class="mark">a</span><span>7 And <span class="lit lit-appear">Yahweh appeared to Avram</span> and he said,</span></div>
-      <div class="literary-line"><span class="mark">b</span><span>“To your seed I will give this land.”</span></div>
-      <div class="literary-line"><span class="mark">a'</span><span>And <span class="lit lit-altar">he built there an altar to Yahweh</span> <span class="lit lit-appear">who appeared to him</span>.</span></div>
+    <div class="design-card"><span class="label"><span class="lang-pt">Adoração + Altar para Yahweh</span><span class="lang-en">Worship + Altar for Yahweh</span></span><div class="body">
+      <div class="literary-line"><span class="mark">a</span><span><span class="lang-pt">7 E <span class="lit lit-appear">Yahweh apareceu a Avram</span> e disse,</span><span class="lang-en">7 And <span class="lit lit-appear">Yahweh appeared to Avram</span> and he said,</span></span></div>
+      <div class="literary-line"><span class="mark">b</span><span><span class="lang-pt">“À sua descendência darei esta terra.”</span><span class="lang-en">“To your seed I will give this land.”</span></span></div>
+      <div class="literary-line"><span class="mark">a'</span><span><span class="lang-pt">E <span class="lit lit-altar">construiu ali um altar a Yahweh</span> <span class="lit lit-appear">que lhe apareceu</span>.</span><span class="lang-en">And <span class="lit lit-altar">he built there an altar to Yahweh</span> <span class="lit lit-appear">who appeared to him</span>.</span></span></div>
     </div></div>
-    <div class="design-card"><span class="label">Avram’s Sojourn to Bethel</span><div class="body">
-      <div class="literary-line"><span class="mark">a</span><span>8 <span class="lit lit-move">And he moved on (ויעתק)</span> from there</span></div>
-      <div class="literary-line"><span class="mark">b</span><span>to the hill <span class="lit lit-east">from the east</span> of <span class="lit lit-east">Bethel</span>,</span></div>
-      <div class="literary-line"><span class="mark">a'</span><span>and he spread out his tent,</span></div>
-      <div class="literary-line"><span class="mark">b'</span><span><span class="lit lit-east">Bethel</span> on the west and Ai <span class="lit lit-east">from the east</span>;</span></div>
-      <div class="literary-line"><span class="mark">a</span><span>and <span class="lit lit-altar">he built there an altar to Yahweh</span></span></div>
-      <div class="literary-line"><span class="mark">a'</span><span>and <span class="lit lit-call">he called upon the name of Yahweh</span>.</span></div>
+    <div class="design-card"><span class="label"><span class="lang-pt">Estada de Avram em Betel</span><span class="lang-en">Avram’s Sojourn to Bethel</span></span><div class="body">
+      <div class="literary-line"><span class="mark">a</span><span><span class="lang-pt">8 <span class="lit lit-move">E partiu (ויעתק)</span> dali</span><span class="lang-en">8 <span class="lit lit-move">And he moved on (ויעתק)</span> from there</span></span></div>
+      <div class="literary-line"><span class="mark">b</span><span><span class="lang-pt">para a colina <span class="lit lit-east">a leste</span> de <span class="lit lit-east">Betel</span>,</span><span class="lang-en">to the hill <span class="lit lit-east">from the east</span> of <span class="lit lit-east">Bethel</span>,</span></span></div>
+      <div class="literary-line"><span class="mark">a'</span><span><span class="lang-pt">e estendeu sua tenda,</span><span class="lang-en">and he spread out his tent,</span></span></div>
+      <div class="literary-line"><span class="mark">b'</span><span><span class="lang-pt"><span class="lit lit-east">Betel</span> a oeste e Ai <span class="lit lit-east">a leste</span>;</span><span class="lang-en"><span class="lit lit-east">Bethel</span> on the west and Ai <span class="lit lit-east">from the east</span>;</span></span></div>
+      <div class="literary-line"><span class="mark">a</span><span><span class="lang-pt">e <span class="lit lit-altar">construiu ali um altar a Yahweh</span></span><span class="lang-en">and <span class="lit lit-altar">he built there an altar to Yahweh</span></span></span></div>
+      <div class="literary-line"><span class="mark">a'</span><span><span class="lang-pt">e <span class="lit lit-call">chamou sobre o nome de Yahweh</span>.</span><span class="lang-en">and <span class="lit lit-call">he called upon the name of Yahweh</span>.</span></span></div>
     </div></div>
-    <div class="design-card"><span class="label">Avram’s Sojourn to the Negev</span><div class="body">
-      <div class="literary-line"><span class="mark">a</span><span>9 <span class="lit lit-move">And Avram journeyed (ויסע)</span>,</span></div>
-      <div class="literary-line"><span class="mark">a'</span><span>continually <span class="lit lit-move">journeying (נסוע)</span> to the Negev.</span></div>
+    <div class="design-card"><span class="label"><span class="lang-pt">Estada de Avram no Negeve</span><span class="lang-en">Avram’s Sojourn to the Negev</span></span><div class="body">
+      <div class="literary-line"><span class="mark">a</span><span><span class="lang-pt">9 <span class="lit lit-move">E Avram viajou (ויסע)</span>,</span><span class="lang-en">9 <span class="lit lit-move">And Avram journeyed (ויסע)</span>,</span></span></div>
+      <div class="literary-line"><span class="mark">a'</span><span><span class="lang-pt">seguindo <span class="lit lit-move">em sua jornada (נסוע)</span> para o Negeve.</span><span class="lang-en">continually <span class="lit lit-move">journeying (נסוע)</span> to the Negev.</span></span></div>
     </div></div>
 
     <h2><span class="lang-pt">Mapa da Primeira Migração de Avram na Terra de Canaã</span><span class="lang-en">Map of Avram’s First Migration in the Land of Canaan</span></h2>
@@ -368,40 +390,40 @@
     <h2><span class="lang-pt">A Sociedade Alternativa de Avram</span><span class="lang-en">Avram’s Alternate Society</span></h2>
     <p><span class="lang-pt">A narrativa destaca que “o cananeu estava na terra naquele tempo” para mostrar que Avram não está se integrando à cultura cananeia. Em vez disso, ele estabelece sua própria residência alternativa com lugares singulares de adoração dedicados ao seu Elohim.</span><span class="lang-en">The narrative highlights how “the Canaanite was in the land at that time” to show us that Avram isn’t integrating into Canaanite culture. Instead, he sets up his own alternative residence with unique places of worship dedicated to his Elohim.</span></p>
     <table class="journey-table">
-      <thead><tr><th>Adam’s Sons in Genesis 4</th><th>Noah’s “Sons” in Genesis 12</th></tr></thead>
+      <thead><tr><th><span class="lang-pt">Filhos de Adão em Gênesis 4</span><span class="lang-en">Adam’s Sons in Genesis 4</span></th><th><span class="lang-pt">“Filhos” de Noé em Gênesis 12</span><span class="lang-en">Noah’s “Sons” in Genesis 12</span></th></tr></thead>
       <tbody>
-        <tr><td><b>Gen. 4:2-4</b> Abel was a “shepherd of the flock” and made offerings to Yahweh from his flock</td><td><b>Gen. 12:5, 16</b> Avram (from the line of Shem) leads a migrating shepherd caravan with many flocks</td></tr>
-        <tr><td><b>Gen. 4:26</b> Seth, the seed given in the place of Abel, has his first son, named Enosh (= “human”), when “it was begun, calling on the name of Yahweh.”</td><td><b>Gen. 12:6, 8</b> Avram builds altars in Canaan and “calls upon the name of Yahweh”</td></tr>
-        <tr><td>Cain was a farmer (Gen. 4:1-4), who, after his murder of Abel the shepherd, went on to build the first city in the Bible and named it after his first son, Khanok (= “dedicated,” Gen. 4:17)</td><td><b>Gen. 12:6</b> The Canaanites (from the line of Ham), in contrast to Avram, live in the cities</td></tr>
+        <tr><td><span class="lang-pt"><b>Gen. 4:2-4</b> Abel era um “pastor do rebanho” e fazia ofertas a Yahweh com seu rebanho</span><span class="lang-en"><b>Gen. 4:2-4</b> Abel was a “shepherd of the flock” and made offerings to Yahweh from his flock</span></td><td><span class="lang-pt"><b>Gen. 12:5, 16</b> Avram (da linhagem de Sem) conduz uma caravana migratória de pastores com muitos rebanhos</span><span class="lang-en"><b>Gen. 12:5, 16</b> Avram (from the line of Shem) leads a migrating shepherd caravan with many flocks</span></td></tr>
+        <tr><td><span class="lang-pt"><b>Gen. 4:26</b> Sete, a descendência dada no lugar de Abel, tem seu primeiro filho, chamado Enosh (= “humano”), quando “se começou a chamar sobre o nome de Yahweh”.</span><span class="lang-en"><b>Gen. 4:26</b> Seth, the seed given in the place of Abel, has his first son, named Enosh (= “human”), when “it was begun, calling on the name of Yahweh.”</span></td><td><span class="lang-pt"><b>Gen. 12:6, 8</b> Avram constrói altares em Canaã e “chama sobre o nome de Yahweh”</span><span class="lang-en"><b>Gen. 12:6, 8</b> Avram builds altars in Canaan and “calls upon the name of Yahweh”</span></td></tr>
+        <tr><td><span class="lang-pt">Caim era um agricultor (Gn. 4:1-4), que, depois de matar Abel, o pastor, passou a construir a primeira cidade da Bíblia e a lhe dar o nome de seu primeiro filho, Qanoc (= “dedicada”, Gn. 4:17)</span><span class="lang-en">Cain was a farmer (Gen. 4:1-4), who, after his murder of Abel the shepherd, went on to build the first city in the Bible and named it after his first son, Khanok (= “dedicated,” Gen. 4:17)</span></td><td><span class="lang-pt"><b>Gen. 12:6</b> Os Cananeus (da linhagem de Ham), em contraste com Avram, vivem nas cidades</span><span class="lang-en"><b>Gen. 12:6</b> The Canaanites (from the line of Ham), in contrast to Avram, live in the cities</span></td></tr>
       </tbody>
+        <tfoot><tr><td colspan="2"><span class="lang-pt"><em>Os Filhos de Adão e os Filhos de Noé.</em> Criado por Tim Mackie para BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Adam’s Sons and Noah’s Sons.</em> Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></td></tr></tfoot>
     </table>
-    <p class="italic text-[#4f5669] text-sm"><span class="lang-pt">Os Filhos de Adão e os Filhos de Noé. Criado por Tim Mackie para BibleProject Classroom: Abraham (2021).</span><span class="lang-en">Adam’s Sons and Noah’s Sons. Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
     <p><span class="lang-pt">Avram se torna a nova humanidade da linhagem dos adoradores de Yahweh que são escolhidos e separados de seus irmãos urbanos que adoram coisas feitas por mãos humanas (deuses ou cidades). Avram estabelecerá a adoração ao Deus criador e começa marcando a região montanhosa central como território de Yahweh.</span><span class="lang-en">Avram becomes the new humanity from the line of Yahweh worshippers who are chosen and set apart from their urban siblings who worship manmade things (gods or cities). Avram will establish the worship of the creator God, and he begins by marking the central hill country as the territory of Yahweh.</span></p>
 
     <h2><span class="lang-pt">A Jornada de Avram como Padrão Fundacional</span><span class="lang-en">Avram’s Journey as a Foundation Pattern</span></h2>
     <p><span class="lang-pt">A jornada de três paradas de Avram pela terra prometida inicia um padrão que é posteriormente espelhado por seu neto Yaaqov (Jacó) em Gênesis 33–35 e novamente por Josué e os israelitas em Josué 7–8.</span><span class="lang-en">Avram’s three-stop journey through the promised land begins a pattern that is later mirrored by his grandson Yaaqov (Jacob) in Gen. 33–35, and yet again by Joshua and the Israelites (Josh. 7–8).</span></p>
     <div class="overflow-x-auto">
       <table class="journey-table text-sm">
-        <thead><tr><th>Avram</th><th>Jacob</th><th>Joshua (After Stop #1: Jericho)</th></tr></thead>
+        <thead><tr><th>Avram</th><th>Jacob</th><th><span class="lang-pt">Josué (Depois da Parada #1: Jericó)</span><span class="lang-en">Joshua (After Stop #1: Jericho)</span></th></tr></thead>
         <tbody>
           <tr>
-            <td><span class="stop">Stop #1: Shechem</span><p><b>Gen. 12:6-7</b> And <span class="lit lit-shechem">Avram passed through in the land until the place of Shechem</span>, unto the Terebinth of Vision … And he built an altar there to Yahweh who appeared to him.</p></td>
-            <td><span class="stop">Stop #1: Shechem</span><p><b>Gen. 33:18, 20</b> And <span class="lit lit-shechem">Jacob came safely to the city of Shechem</span>, which is in the land of Canaan, when he returned from Paddan-Aram, and he camped in front of the city … And he set up a pillar there, and called it “El, the God of Israel.”</p></td>
-            <td><span class="stop">Stop #3: Shechem</span><p><b>Josh. 8:30</b> Then Joshua built an altar to the Lord, the God of Israel, on Mount Ebal [just outside Shechem, see Deut. 11:29-30].</p></td>
+            <td><span class="stop"><span class="lang-pt">Parada #1: Shechem</span><span class="lang-en">Stop #1: Shechem</span></span><p><span class="lang-pt"><b>Gen. 12:6-7</b> E <span class="lit lit-shechem">Avram passou pela terra até o lugar de Siquém</span>, até o Terebinto da Visão … E construiu ali um altar a Yahweh, que lhe apareceu.</span><span class="lang-en"><b>Gen. 12:6-7</b> And <span class="lit lit-shechem">Avram passed through in the land until the place of Shechem</span>, unto the Terebinth of Vision … And he built an altar there to Yahweh who appeared to him.</span></p></td>
+            <td><span class="stop"><span class="lang-pt">Parada #1: Shechem</span><span class="lang-en">Stop #1: Shechem</span></span><p><span class="lang-pt"><b>Gen. 33:18, 20</b> E <span class="lit lit-shechem">Jacó chegou em paz à cidade de Siquém</span>, que está na terra de Canaã, ao regressar de Padã-Arã, e acampou diante da cidade … E levantou ali um pilar e o chamou “El, o Deus de Israel”.</span><span class="lang-en"><b>Gen. 33:18, 20</b> And <span class="lit lit-shechem">Jacob came safely to the city of Shechem</span>, which is in the land of Canaan, when he returned from Paddan-Aram, and he camped in front of the city … And he set up a pillar there, and called it “El, the God of Israel.”</span></p></td>
+            <td><span class="stop"><span class="lang-pt">Parada #3: Shechem</span><span class="lang-en">Stop #3: Shechem</span></span><p><span class="lang-pt"><b>Jos. 8:30</b> Então Josué construiu um altar ao Senhor, Deus de Israel, no monte Ebal [logo fora de Siquém, veja Deut. 11:29-30].</span><span class="lang-en"><b>Josh. 8:30</b> Then Joshua built an altar to the Lord, the God of Israel, on Mount Ebal [just outside Shechem, see Deut. 11:29-30].</span></p></td>
           </tr>
           <tr>
-            <td><span class="stop">Stop #2: Bethel</span><p><b>Gen. 12:8</b> And he set out from there to the mountain east of Bethel and pitched his tent, with Bethel on the west and Ai on the east. And he <span class="lit lit-bethel">built there an altar</span> to Yahweh and called on the name of Yahweh.</p></td>
-            <td><span class="stop">Stop #2: Bethel</span><p><b>Gen. 35:1</b> God said to Jacob, “Get up, go up to Bethel and stay there and <span class="lit lit-bethel">make there an altar</span> to El who appeared to you when you fled from your brother Esau.”</p><p><b>Gen. 35:6-7</b> Jacob came to Luz (that is, Bethel), which is in the land of Canaan … And <span class="lit lit-bethel">he built an altar</span> there, and called the place El-bethel.</p></td>
-            <td><span class="stop">Stop #2: Bethel</span><p><b>Josh. 7:2</b> Joshua sent men from Jericho to Ai, which is near Beth-aven, east of Bethel, and said to them, “Go up and spy out the land.” So the men went up and spied out Ai.</p><p><b>Josh. 8:9</b> Joshua sent them away, and they went to the place of ambush and remained between Bethel and Ai, on the west side of Ai; but Joshua spent that night among the people.</p></td>
+            <td><span class="stop"><span class="lang-pt">Parada #2: Bethel</span><span class="lang-en">Stop #2: Bethel</span></span><p><span class="lang-pt"><b>Gen. 12:8</b> E partiu dali para a montanha a leste de Betel e armou sua tenda, com Betel a oeste e Ai a leste. E <span class="lit lit-bethel">construiu ali um altar</span> a Yahweh e chamou sobre o nome de Yahweh.</span><span class="lang-en"><b>Gen. 12:8</b> And he set out from there to the mountain east of Bethel and pitched his tent, with Bethel on the west and Ai on the east. And he <span class="lit lit-bethel">built there an altar</span> to Yahweh and called on the name of Yahweh.</span></p></td>
+            <td><span class="stop"><span class="lang-pt">Parada #2: Bethel</span><span class="lang-en">Stop #2: Bethel</span></span><p><span class="lang-pt"><b>Gen. 35:1</b> Deus disse a Jacó: “Levanta-te, sobe a Betel e fica ali e <span class="lit lit-bethel">faz ali um altar</span> ao El que te apareceu quando fugiste de teu irmão Esaú.”</span><span class="lang-en"><b>Gen. 35:1</b> God said to Jacob, “Get up, go up to Bethel and stay there and <span class="lit lit-bethel">make there an altar</span> to El who appeared to you when you fled from your brother Esau.”</span></p><p><span class="lang-pt"><b>Gen. 35:6-7</b> Jacó veio a Luz (isto é, Betel), que está na terra de Canaã … E <span class="lit lit-bethel">construiu um altar</span> ali, e chamou o lugar de El-betel.</span><span class="lang-en"><b>Gen. 35:6-7</b> Jacob came to Luz (that is, Bethel), which is in the land of Canaan … And <span class="lit lit-bethel">he built an altar</span> there, and called the place El-bethel.</span></p></td>
+            <td><span class="stop"><span class="lang-pt">Parada #2: Bethel</span><span class="lang-en">Stop #2: Bethel</span></span><p><span class="lang-pt"><b>Jos. 7:2</b> Josué enviou homens de Jericó para Ai, que está perto de Bet-áven, a leste de Betel, e disse-lhes: “Subi e espiona a terra.” Então os homens subiram e espionaram Ai.</span><span class="lang-en"><b>Josh. 7:2</b> Joshua sent men from Jericho to Ai, which is near Beth-aven, east of Bethel, and said to them, “Go up and spy out the land.” So the men went up and spied out Ai.</span></p><p><span class="lang-pt"><b>Jos. 8:9</b> Josué os enviou embora, e eles foram ao lugar da emboscada e permaneceram entre Betel e Ai, no lado oeste de Ai; mas Josué passou aquela noite entre o povo.</span><span class="lang-en"><b>Josh. 8:9</b> Joshua sent them away, and they went to the place of ambush and remained between Bethel and Ai, on the west side of Ai; but Joshua spent that night among the people.</span></p></td>
           </tr>
           <tr>
-            <td><span class="stop">Stop #3: The Negev</span><p><b>Gen. 12:9</b> And Avram set out, continuing and traveling to the Negev.</p></td>
-            <td><span class="stop">Stop #3: The Negev</span><p><b>Gen. 35:27</b> Jacob came home to his father Isaac in Mamre, near Kiriath Arba (that is, Hebron), where Avraham and Isaac had stayed.</p><p><b>Gen. 46:1</b> Israel set out with all that he had, and came to Beersheba, and offered sacrifices to the God of his father Isaac.</p></td>
-            <td><span class="stop">Stop #4: The Negev</span><p><b>Josh. 10:40</b> Joshua struck all the land, the hill country and the Negev and the lowland and the slopes and all their kings.</p><p><b>Josh. 11:16</b> Thus Joshua took all that land: the hill country and all the Negev, all that land of Goshen, the lowland, the Arabah, the hill country of Israel and its lowland.</p></td>
+            <td><span class="stop"><span class="lang-pt">Parada #3: The Negev</span><span class="lang-en">Stop #3: The Negev</span></span><p><span class="lang-pt"><b>Gen. 12:9</b> E Avram partiu, seguindo e viajando para o Negeve.</span><span class="lang-en"><b>Gen. 12:9</b> And Avram set out, continuing and traveling to the Negev.</span></p></td>
+            <td><span class="stop"><span class="lang-pt">Parada #3: The Negev</span><span class="lang-en">Stop #3: The Negev</span></span><p><span class="lang-pt"><b>Gen. 35:27</b> Jacó voltou para seu pai Isaque em Mamre, perto de Kiriat Arba (isto é, Hebrom), onde Avram e Isaque tinham permanecido.</span><span class="lang-en"><b>Gen. 35:27</b> Jacob came home to his father Isaac in Mamre, near Kiriath Arba (that is, Hebron), where Avraham and Isaac had stayed.</span></p><p><span class="lang-pt"><b>Gen. 46:1</b> Israel partiu com tudo o que tinha, e veio a Beer-Seba, e ofereceu sacrifícios ao Deus de seu pai Isaque.</span><span class="lang-en"><b>Gen. 46:1</b> Israel set out with all that he had, and came to Beersheba, and offered sacrifices to the God of his father Isaac.</span></p></td>
+            <td><span class="stop"><span class="lang-pt">Parada #4: The Negev</span><span class="lang-en">Stop #4: The Negev</span></span><p><span class="lang-pt"><b>Jos. 10:40</b> Josué feriu toda a terra, o regionamento montanhoso e o Negeve e a planície e os encostas e todos os seus reis.</span><span class="lang-en"><b>Josh. 10:40</b> Joshua struck all the land, the hill country and the Negev and the lowland and the slopes and all their kings.</span></p><p><span class="lang-pt"><b>Jos. 11:16</b> Assim Josué tomou toda aquela terra: o regionamento montanhoso e todo o Negeve, toda aquela terra de Gósen, a planície, o Arabá, o regionamento montanhoso de Israel e sua planície.</span><span class="lang-en"><b>Josh. 11:16</b> Thus Joshua took all that land: the hill country and all the Negev, all that land of Goshen, the lowland, the Arabah, the hill country of Israel and its lowland.</span></p></td>
           </tr>
         </tbody>
+        <tfoot><tr><td colspan="3"><span class="lang-pt"><em>O Padrão da Jornada de Avram.</em> Criado por Tim Mackie para BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Avram’s Journey Pattern.</em> Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></td></tr></tfoot>
       </table>
-      <p class="italic text-[#4f5669] text-sm text-center mt-2"><span class="lang-pt">O Padrão da Jornada de Avram. Criado por Tim Mackie para BibleProject Classroom: Abraham (2021).</span><span class="lang-en">Avram’s Journey Pattern. Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
     </div>
     <blockquote class="academic-quote">
       <p><span class="lang-pt">“Agora podemos entender por que a Torá enfatizou, em todos os seus detalhes, as jornadas de Abrão ao entrar na terra de Canaã, primeiro até Shekem e depois até Ai-Betel. A Escritura pretendia nos apresentar aqui, por meio da conquista simbólica de Abrão, uma espécie de previsão do que aconteceria com seus descendentes mais tarde.”</span><span class="lang-en">“Now we can understand why the Torah stressed, in all their detail, Abram’s journeys on entering the land of Canaan, at first as far as Shekem, and subsequently up to Ai-Bethel. Scripture intended to present us here, through the symbolic conquest of Abram, with a kind of forecast of what would happen to his descendants later.”</span></p>
@@ -410,16 +432,16 @@
 
     <h2><span class="lang-pt">A Promessa da Terra</span><span class="lang-en">The Promise of Land</span></h2>
     <p><span class="lang-pt">Observe que no centro de 12:6–9 está a promessa da terra para a família de Avram.</span><span class="lang-en">Notice that at the center of 12:6–9 is the promise of land for Avram’s family.</span></p>
-    <div class="design-card"><span class="label">Worship + Altar for Yahweh</span><div class="body">
-      <div class="literary-line"><span class="mark">a</span><span>7 And <span class="lit lit-appear">Yahweh appeared to Avram</span> and he said,</span></div>
-      <div class="literary-line"><span class="mark">b</span><span>“To your seed I will give this land.”</span></div>
-      <div class="literary-line"><span class="mark">a'</span><span>And <span class="lit lit-altar">he built there an altar to Yahweh</span> <span class="lit lit-appear">who appeared to him</span>.</span></div>
+    <div class="design-card"><span class="label"><span class="lang-pt">Adoração + Altar para Yahweh</span><span class="lang-en">Worship + Altar for Yahweh</span></span><div class="body">
+      <div class="literary-line"><span class="mark">a</span><span><span class="lang-pt">7 E <span class="lit lit-appear">Yahweh apareceu a Avram</span> e disse,</span><span class="lang-en">7 And <span class="lit lit-appear">Yahweh appeared to Avram</span> and he said,</span></span></div>
+      <div class="literary-line"><span class="mark">b</span><span><span class="lang-pt">“À sua descendência darei esta terra.”</span><span class="lang-en">“To your seed I will give this land.”</span></span></div>
+      <div class="literary-line"><span class="mark">a'</span><span><span class="lang-pt">E <span class="lit lit-altar">construiu ali um altar a Yahweh</span> <span class="lit lit-appear">que lhe apareceu</span>.</span><span class="lang-en">And <span class="lit lit-altar">he built there an altar to Yahweh</span> <span class="lit lit-appear">who appeared to him</span>.</span></span></div>
     </div></div>
     <p><span class="lang-pt">A promessa de Deus em 12:1–3 se concentrou na família que Deus construiria da linhagem de Avram e Sarai, e Avram recebeu apenas a ordem de “ir para a terra que eu lhe mostrarei”. Agora que Avram chegou àquela terra, a próxima parte da promessa de Deus é revelada: a própria terra se tornará parte da herança de Avram. Essa apresentação em duas etapas cria uma analogia importante entre os dois elementos da promessa.</span><span class="lang-en">God’s promise in 12:1–3 focused on the family that God would build from Avram and Sarai’s lineage, and Avram was simply told to “go to the land that I will show you.” Now that Avram has arrived in that land, the next part of God’s promise is revealed: the land itself will become part of Avram’s inheritance. This two-stage presentation of God’s promise creates an important analogy between the two elements of God’s promise.</span></p>
     <div class="space-y-3">
-      <div class="design-card emphasis dark"><span class="label">Genesis 12:1-3</span><div class="body"><b><span class="lang-pt">Promessa Divina #1</span><span class="lang-en">Divine Promise #1</span></b><p>“Go to <span class="lit lit-promise">the land</span> I will show you ... I will bless you and <span class="lit lit-seed">make you a great nation.</span>”</p></div></div>
+      <div class="design-card emphasis dark"><span class="label">Genesis 12:1-3</span><div class="body"><b><span class="lang-pt">Promessa Divina #1</span><span class="lang-en">Divine Promise #1</span></b><p><span class="lang-pt">“Vai para <span class="lit lit-promise">a terra</span> que eu te mostrarei ... eu te abençoarei e <span class="lit lit-seed">farei de ti uma grande nação.</span>”</span><span class="lang-en">“Go to <span class="lit lit-promise">the land</span> I will show you ... I will bless you and <span class="lit lit-seed">make you a great nation.</span>”</span></p></div></div>
       <div class="design-card subtle ml-8"><span class="label">Genesis 12:4-6</span><div class="body font-semibold"><span class="lang-pt">Avram viaja para a terra e estabelece altares a Yahweh</span><span class="lang-en">Avram Travels to the Land, Sets Up Altars to Yahweh</span></div></div>
-      <div class="design-card emphasis dark"><span class="label">Genesis 12:7</span><div class="body"><b><span class="lang-pt">Promessa Divina #2</span><span class="lang-en">Divine Promise #2</span></b><p>“To <span class="lit lit-seed">your seed</span> I will give <span class="lit lit-promise">this land.</span>”</p></div></div>
+      <div class="design-card emphasis dark"><span class="label">Genesis 12:7</span><div class="body"><b><span class="lang-pt">Promessa Divina #2</span><span class="lang-en">Divine Promise #2</span></b><p><span class="lang-pt">“À <span class="lit lit-seed">tua descendência</span> darei <span class="lit lit-promise">esta terra.</span>”</span><span class="lang-en">“To <span class="lit lit-seed">your seed</span> I will give <span class="lit lit-promise">this land.</span>”</span></p></div></div>
       <div class="design-card subtle ml-8"><span class="label">Genesis 12:8</span><div class="body font-semibold"><span class="lang-pt">Avram viaja pela terra e estabelece altares a Yahweh</span><span class="lang-en">Avram Travels to the Land, Sets Up Altars to Yahweh</span></div></div>
     </div>
 
@@ -428,16 +450,16 @@
     <p><span class="lang-pt">Todas essas palavras são construídas a partir da raiz hebraica <i>ra’ah</i> (ראה), “ver”. É uma alusão não muito sutil às árvores do Éden, onde os humanos “viram” e tiveram “seus olhos abertos” depois de uma grande falha em confiar na sabedoria de Yahweh. Aqui Avram tem seus olhos abertos para ver Yahweh depois de seu primeiro ato de confiança no chamado de Yahweh para deixar sua família e vir a Canaã.</span><span class="lang-en">All of these words are built from the Hebrew root <i>ra’ah</i> (ראה) “to see.” It’s a not-so-subtle allusion to the trees of Eden, where the humans “saw” and had “their eyes opened” after a great failure to trust Yahweh’s wisdom. Here Avram has his eyes opened to see Yahweh after his first act of trust in Yahweh’s summons to leave his family and come to Canaan.</span></p>
 
     <h2><span class="lang-pt">Bênção a Partir da Dispersão</span><span class="lang-en">Blessing Out of the Scattering</span></h2>
-    <div class="design-card"><span class="label">Avram’s Sojourn to Shechem</span><div class="body">
-      <div class="literary-line"><span class="mark">a</span><span>6 <span class="lit lit-move">And Avram passed through (ויעבר)</span> <span class="lit lit-land">in the land</span></span></div>
-      <div class="literary-line"><span class="mark">b</span><span><span class="lit lit-call">unto the</span> place of Shechem</span></div>
-      <div class="literary-line"><span class="mark">b'</span><span><span class="lit lit-call">unto the</span> oak of Moreh,</span></div>
-      <div class="literary-line"><span class="mark">a'</span><span>and the Canaanite was then <span class="lit lit-land">in the land</span>.</span></div>
+    <div class="design-card"><span class="label"><span class="lang-pt">Estada de Avram em Siquém</span><span class="lang-en">Avram’s Sojourn to Shechem</span></span><div class="body">
+      <div class="literary-line"><span class="mark">a</span><span><span class="lang-pt">6 <span class="lit lit-move">E Avram passou (ויעבר)</span> <span class="lit lit-land">pela terra</span></span><span class="lang-en">6 <span class="lit lit-move">And Avram passed through (ויעבר)</span> <span class="lit lit-land">in the land</span></span></span></div>
+      <div class="literary-line"><span class="mark">b</span><span><span class="lang-pt"><span class="lit lit-call">até</span> o lugar de Siquém</span><span class="lang-en"><span class="lit lit-call">unto the</span> place of Shechem</span></span></div>
+      <div class="literary-line"><span class="mark">b'</span><span><span class="lang-pt"><span class="lit lit-call">até</span> o carvalho de Moré,</span><span class="lang-en"><span class="lit lit-call">unto the</span> oak of Moreh,</span></span></div>
+      <div class="literary-line"><span class="mark">a'</span><span><span class="lang-pt">e o Cananeu estava então <span class="lit lit-land">na terra</span>.</span><span class="lang-en">and the Canaanite was then <span class="lit lit-land">in the land</span>.</span></span></div>
     </div></div>
-    <div class="design-card"><span class="label">Worship + Altar for Yahweh</span><div class="body">
-      <div class="literary-line"><span class="mark">a</span><span>7 And <span class="lit lit-appear">Yahweh appeared to Avram</span> and he said,</span></div>
-      <div class="literary-line"><span class="mark">b</span><span>“To your seed I will give this land.”</span></div>
-      <div class="literary-line"><span class="mark">a'</span><span>And <span class="lit lit-altar">he built there an altar to Yahweh</span> <span class="lit lit-appear">who appeared to him</span>.</span></div>
+    <div class="design-card"><span class="label"><span class="lang-pt">Adoração + Altar para Yahweh</span><span class="lang-en">Worship + Altar for Yahweh</span></span><div class="body">
+      <div class="literary-line"><span class="mark">a</span><span><span class="lang-pt">7 E <span class="lit lit-appear">Yahweh apareceu a Avram</span> e disse,</span><span class="lang-en">7 And <span class="lit lit-appear">Yahweh appeared to Avram</span> and he said,</span></span></div>
+      <div class="literary-line"><span class="mark">b</span><span><span class="lang-pt">“À sua descendência darei esta terra.”</span><span class="lang-en">“To your seed I will give this land.”</span></span></div>
+      <div class="literary-line"><span class="mark">a'</span><span><span class="lang-pt">E <span class="lit lit-altar">construiu ali um altar a Yahweh</span> <span class="lit lit-appear">que lhe apareceu</span>.</span><span class="lang-en">And <span class="lit lit-altar">he built there an altar to Yahweh</span> <span class="lit lit-appear">who appeared to him</span>.</span></span></div>
     </div></div>
 
     <figure class="mt-8">
