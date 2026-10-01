@@ -97,8 +97,14 @@ document.addEventListener("DOMContentLoaded", () => {
         for (const p of parts) {
             const m = p.match(/^(\d+):(\d+)(?:\s*-\s*(\d+):(\d+))?$/);
             if (!m) {
-                // fallback: single verse or bare, keep as-is
-                out.push({ book, chapter: lastChapter, fromVerse: null, toVerse: null, raw: p });
+                // bare verse number (e.g. "19" after "10:6, 19") -> same chapter as lastChapter
+                const mv = p.match(/^(\d+)$/);
+                if (mv && lastChapter !== null) {
+                    out.push({ book, chapter: lastChapter, fromVerse: parseInt(mv[1],10), toVerse: parseInt(mv[1],10) });
+                } else {
+                    // fallback: single verse or bare, keep as-is
+                    out.push({ book, chapter: lastChapter, fromVerse: null, toVerse: null, raw: p });
+                }
                 continue;
             }
             const ch = parseInt(m[1], 10);

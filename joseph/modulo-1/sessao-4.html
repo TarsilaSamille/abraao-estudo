@@ -15,28 +15,29 @@
   body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a1a; background: #fff; }
   html[lang="pt"] .lang-en { display: none !important; }
   html[lang="en"] .lang-pt { display: none !important; }
-  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
-  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 3rem; margin-bottom: 1.25rem; }
-  h3.sub { font-weight: 800; font-size: 1.3rem; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  h1.title { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; color: #17181a; }
+  h2.section { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.015em; line-height: 1.2; margin-top: 3rem; margin-bottom: 1.25rem; color: #17181a; }
+  h3.sub { font-weight: 800; font-size: 1.3rem; line-height: 1.25; margin-top: 2rem; margin-bottom: .75rem; letter-spacing: -0.01em; color: #17181a; }
   p.body { font-size: 1.05rem; line-height: 1.78; color: #24262a; margin-bottom: 1.1rem; }
-  .rule { border: 0; border-top: 2px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
+  .rule { border: 0; border-top: 1px solid #d7dde5; margin: 1.75rem 0 2.75rem; }
   .verse-link { color: inherit; cursor: pointer; }
-  ul.bullets { list-style: none; padding: 0; }
-  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.72; font-size: 1.05rem; }
-  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; }
+  ul.bullets { list-style: none; padding: 0; margin-left: 0; }
+  ul.bullets > li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; line-height: 1.75; font-size: 1.05rem; color: #24262a; }
+  ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; font-weight: bold; }
   .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .quote .cite { display:block; font-style: normal; color:#5b6472; font-size:.92rem; margin-top:.6rem; }
   .keylabel { font-weight: 700; color: #17181a; }
   .table-img { border: 1px solid #d7dde5; border-radius: 12px; overflow: hidden; margin: 1.5rem 0; }
   .table-img img { width: 100%; display: block; }
-  .takeaways-h { font-weight: 800; font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; }
+  .takeaways-h { font-weight: 800; font-size: 1.3rem; line-height: 1.25; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; color: #17181a; }
   .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
   .reveal.visible { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
-  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7dde5; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .9rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
+  .nav-btn { position: fixed; top: 1rem; z-index: 50; display: inline-flex; align-items: center; gap: .4rem; border: 1px solid #d7dde5; background: #fff; padding: .4rem 1rem; border-radius: 999px; font-size: .92rem; font-weight: 600; color: #475569; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: background .15s; }
   .nav-btn:hover { background: #f1f5f9; }
   .nav-back { left: 1rem; }
   .nav-lang { right: 1rem; }
-  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .82rem; color: #6b7280; font-weight: 600; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
+  .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .875rem; color: #5b6472; font-weight: 600; letter-spacing: .06em; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
   #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
   @media print { #reading-progress { display: none !important; } }
 </style>
@@ -44,16 +45,16 @@
 <body class="bg-white">
 <div id="reading-progress" aria-hidden="true"></div>
 <div class="fixed left-4 top-4 z-50 print:hidden">
-  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+  <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]">
     <span>&larr;</span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
   </a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
-  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:bg-slate-100">
+  <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]">
     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
     <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
   </button>
-  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-sm">
+  <div class="inline-flex overflow-hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
     <button id="lang-pt" onclick="setLang('pt')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">PT</button>
     <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
   </div>
@@ -61,7 +62,7 @@
 <div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
     <h1 class="title reveal"><span class="lang-pt">Sessão 4: Um Conto de Duas Sementes</span><span class="lang-en">Session 4: A Tale of Two Seeds</span></h1>
     <hr class="rule">
-    <h3 class="takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
+    <h3 class="sub takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
     <ul class="bullets reveal">
       <li><span class="lang-pt">A palavra hebraica <em>toledot</em> traduz-se como "gerações" e serve como um importante marcador estrutural por todo o Gênesis, à medida que a história traça as linhagens familiares escolhidas e não escolhidas.</span><span class="lang-en">The Hebrew word <em>toledot</em> translates to “generations,” and it serves as an important structural marker throughout Genesis as the story traces chosen and non-chosen family lines.</span></li>
       <li><span class="lang-pt">Desdobrando as implicações de Gênesis 3:15, o restante do livro prepara os leitores da Bíblia Hebraica para ficarem atentos à descendência escolhida da mulher, que finalmente triunfará sobre a serpente.</span><span class="lang-en">Working out the implications of Genesis 3:15, the rest of the book prepares readers of the Hebrew Bible to be on the lookout for the chosen seed of the woman who will ultimately triumph over the snake.</span></li>
@@ -71,8 +72,8 @@
     <h2 class="section reveal"><span class="lang-pt">O Design Literário da História de Yoseph: Gênesis 37:2-50:26</span><span class="lang-en">The Literary Design of the Yoseph Story: Genesis 37:2-50:26</span></h2>
 
     <h3 class="sub reveal"><span class="lang-pt">Parte 1: Gênesis 37:2-41:57</span><span class="lang-en">Part 1: Genesis 37:2-41:57</span></h3>
-    <div class="rounded-xl overflow-hidden border border-slate-300 shadow-sm">
-<table class="w-full text-left text-slate-800 md reveal">
+    <div class="rounded-xl overflow-hidden border border-slate-300">
+<table class="w-full text-left text-[#24262a] md reveal">
       <tr><th>Genesis 37:2-36<br>Beloved Yoseph Is Trapped by Rival Brothers</th><th>Genesis 38:1-30<br>Yehudah's Family Is Saved Through Deception</th><th>Genesis 39:1-41:57<br>Yoseph Imprisoned in Egypt and Elevated Over Egypt</th></tr>
       <tr><td>37:2-14 — Yoseph's two dreams about elevation, and given royal robe</td><td>38:1-11 — Two sons die, and Yehudah deceives Tamar</td><td>39:1-23 — Yoseph trapped and imprisoned in Egypt, and robe deception</td></tr>
       <tr><td>37:15-30 — Yoseph's brothers trap and sell him as a slave</td><td>38:12-23 — Tamar counter-deceives</td><td>40:1-23 — Yoseph interprets two dreams in prison</td></tr>
@@ -82,8 +83,8 @@
     <p class="caption reveal"><span class="lang-pt">Gênesis 37:2-41:57. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 37:2-41:57. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
 
     <h3 class="sub reveal"><span class="lang-pt">Parte 2: Gênesis 42:1-45:25a</span><span class="lang-en">Part 2: Genesis 42:1-45:25a</span></h3>
-    <div class="rounded-xl overflow-hidden border border-slate-300 shadow-sm">
-<table class="w-full text-left text-slate-800 md reveal">
+    <div class="rounded-xl overflow-hidden border border-slate-300">
+<table class="w-full text-left text-[#24262a] md reveal">
       <tr><th>Genesis 42:1-38<br>Yoseph Meets and Tests His Brothers</th><th>Genesis 43:1-44:34<br>Yoseph Tests His Brothers Again + Yehudah's Sacrifice</th><th>Genesis 45:1-25a<br>Yoseph Invites His Family To Live in Egypt</th></tr>
       <tr><td>42:1-5 — Brothers go down to Egypt + Binyamin cannot go</td><td>43:1-15 — Yehudah intercedes + Binyamin cannot go</td><td>45:1-3 — Yoseph reveals himself to his brothers</td></tr>
       <tr><td>42:6-28 — Brothers meet Yoseph, ruler of Egypt + Yoseph tests his brothers + Shimon is taken</td><td>43:15-44:13 — Yoseph tests his brothers again + Binyamin cannot go</td><td>45:4-13 — Yoseph's Speech: I am ruler of Egypt + Come live in Goshen</td></tr>
@@ -93,8 +94,8 @@
     <p class="caption reveal"><span class="lang-pt">Gênesis 42:1-45:25. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 42:1-45:25. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
 
     <h3 class="sub reveal"><span class="lang-pt">Parte 3: Gênesis 45:25b-50:26</span><span class="lang-en">Part 3: Genesis 45:25b-50:26</span></h3>
-    <div class="rounded-xl overflow-hidden border border-slate-300 shadow-sm">
-<table class="w-full text-left text-slate-800 md reveal">
+    <div class="rounded-xl overflow-hidden border border-slate-300">
+<table class="w-full text-left text-[#24262a] md reveal">
       <tr><th>Genesis 45:25b-47:31<br>The Remnant of Yaaqov Is Rescued in Egypt</th><th>Genesis 48:1-49:28<br>Yaaqov Blesses His Seed</th><th>Genesis 49:29-50:26<br>Death in Egypt, Forgiveness, and the Ascent to Canaan</th></tr>
       <tr><td>45:25b-46:30 — Yaaqov and 70 family go down to Egypt</td><td>48:1-22 — Yaaqov adopts and blesses Yoseph's 2 sons + Inversion of birth order</td><td>49:29-50:14 — Yaaqov requests burial in Canaan + 70 days of weeping + Yoseph "goes up" to bury Yaaqov in Canaan</td></tr>
       <tr><td>46:31-47:11 — Pharaoh and Yoseph settle Yaaqov's family in Goshen during the 7-year famine</td><td>49:1-28 — Yaaqov blesses or curses 12 sons + Inversion of birth order + Yehudah made ruler</td><td>50:15-21 — Yoseph forgives and reconciles with brothers</td></tr>
@@ -106,8 +107,8 @@
 
     <p class="body reveal"><span class="lang-pt">Quando afastamos o zoom para abranger Gênesis 37-50 como um todo, um novo conjunto de relações se apresenta.</span><span class="lang-en">When we zoom out to take in Genesis 37-50 as a whole, a new set of relationships present themselves.</span></p>
 
-    <div class="rounded-xl overflow-hidden border border-slate-300 shadow-sm">
-<table class="w-full text-left text-slate-800 md reveal">
+    <div class="rounded-xl overflow-hidden border border-slate-300">
+<table class="w-full text-left text-[#24262a] md reveal">
       <tr><th>Genesis 37:2-41:57</th><th>Genesis 42:1-45:25a</th><th>Genesis 45:25b-50:26</th></tr>
       <tr><td>37:2-36 — Yoseph and Yaaqov descend to Egypt/pit/grave because of brothers' deception</td><td>42:1-38 — Brothers descend to Egypt + Tested by Yoseph</td><td>45:25b-47:31 — Yoseph ruler of Egypt enacts plan to rescue from 7 years of famine + Divide land into fifths</td></tr>
       <tr><td>38:1-30 — Yehudah's 2 sons die, 2 sons born + Royal "staff"</td><td>43:1-44:34 — Brothers tested by Yoseph + Binyamin taken + Yehudah offers himself as a sacrifice</td><td>48:1-49:28 — Yaaqov adopts 2 sons + Blesses many</td></tr>
@@ -117,8 +118,8 @@
     <p class="caption reveal"><span class="lang-pt">Gênesis 37:2-50:26. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 37:2-50:26. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
 
     <h2 class="section reveal"><span class="lang-pt">Parte 1: A Descida e Ascensão de Yoseph</span><span class="lang-en">Part 1: Yoseph’s Descent and Ascent</span></h2>
-    <div class="rounded-xl overflow-hidden border border-slate-300 shadow-sm">
-<table class="w-full text-left text-slate-800 md reveal">
+    <div class="rounded-xl overflow-hidden border border-slate-300">
+<table class="w-full text-left text-[#24262a] md reveal">
       <tr><th>Genesis 37:2-36<br>Beloved Yoseph Is Trapped by Rival Brothers</th><th>Genesis 38:1-30<br>Yehudah's Family Is Saved Through Deception</th><th>Genesis 39:1-41:57<br>Yoseph Imprisoned in Egypt and Elevated Over Egypt</th></tr>
       <tr><td>37:2-14 — Yoseph's two dreams about elevation, and given royal robe</td><td>38:1-11 — Two sons die, and Yehudah deceives Tamar</td><td>39:1-23 — Yoseph trapped and imprisoned in Egypt, and robe deception</td></tr>
       <tr><td>37:15-30 — Yoseph's brothers trap and sell him as a slave</td><td>38:12-23 — Tamar counter-deceives</td><td>40:1-23 — Yoseph interprets two dreams in prison</td></tr>
@@ -141,8 +142,8 @@
     <p class="body reveal"><span class="lang-pt">Gênesis 37:2a NASB — "E estas são as gerações de nascimento de Yaaqov." "Gerações de nascimento" = hebraico <em>toledot</em> / תולדות, que é um substantivo formado da raiz "dar à luz", significando "as coisas que procederam de" ou "as coisas que nasceram de".</span><span class="lang-en">Genesis 37:2a NASB — "And these are the birth-generations of Yaaqov." "Birth-generations" = Hebrew <em>toledot</em> / תולדות, which is a noun built from the root "to birth," meaning "the things that issued from" or "the things that were birthed from"</span></p>
     <p class="body reveal"><span class="lang-pt">Com esta frase introdutória, o movimento literário final de Gênesis começa e amarra este bloco particular de narrativas aos temas mais amplos de todo o rolo. Este título "Estas são as gerações de nascimento de…" aparece 12 vezes no rolo de Gênesis, seis em Gênesis 1:1-11:26 e seis vezes em Gênesis 11:27-50:26. Em 10 desses 12 casos, a frase tem a mesma função, pois introduz os novos descendentes de cada geração, um dos quais será escolhido pela bênção e eleição de Deus.</span><span class="lang-en">With this introductory phrase, the final literary movement of Genesis begins and ties this particular block of narratives into the wider themes of the entire scroll. This heading "These are the birth-generations of …" appears 12 times in the Genesis scroll, six in Genesis 1:1-11:26, and six times in Genesis 11:27-50:26. In 10 of those 12 cases, the phrase has the same function, as it introduces the new descendants of each generation, one of whom will be singled out by God’s blessing and election.</span></p>
 
-    <div class="rounded-xl overflow-hidden border border-slate-300 shadow-sm">
-<table class="w-full text-left text-slate-800 md reveal">
+    <div class="rounded-xl overflow-hidden border border-slate-300">
+<table class="w-full text-left text-[#24262a] md reveal">
       <tr><th>Genesis 1:1-4:17<br>Adam and Eve Narratives</th><th>Genesis 6:1-9:27<br>Noah's Narrative</th><th>Genesis 11:10-26<br>Narrative of Shem's Sons</th></tr>
       <tr><td>• 2:4 "These are the birth-generations of the skies and land"</td><td>• 6:9 "These are the birth-generations of Noah"</td><td>• 11:10 "These are the birth-generations of Shem"</td></tr>
       <tr><td>Genesis 4:17-26 + 5:1-32<br>Separate Genealogies of Chosen and Non-Chosen: Cain &amp; Seth</td><td>Separate Genealogies of Chosen and Non-Chosen</td><td></td></tr>
@@ -152,8 +153,8 @@
 </div>
     <p class="caption reveal"><span class="lang-pt">Gênesis 1:1-11:26 (Gerações de Nascimento). Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 1:1-11:26 (Birth Generations). Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
 
-    <div class="rounded-xl overflow-hidden border border-slate-300 shadow-sm">
-<table class="w-full text-left text-slate-800 md reveal">
+    <div class="rounded-xl overflow-hidden border border-slate-300">
+<table class="w-full text-left text-[#24262a] md reveal">
       <tr><th>Genesis 11:27-22:19<br>Avraham Narratives</th><th>Genesis 22:20-25:18<br>Death &amp; Burial; Non-chosen Genealogy</th></tr>
       <tr><td>Genesis 25:19-35:15<br>Yaaqov Narratives</td><td>Genesis 35:16-36:43<br>Death &amp; Burial; Non-chosen Genealogy</td></tr>
       <tr><td>Genesis 37:1-50:20<br>Yaaqov's Sons' Narratives</td><td></td></tr>
@@ -161,7 +162,7 @@
 </div>
     <p class="caption reveal"><span class="lang-pt">Gênsis 11:27-50:20. Design Literário por Tim Mackie para BibleProject Classroom: Abraão (2021). Genealogias em Gênesis. Criado por Tim Mackie para BibleProject Classroom: Abraão (2021).</span><span class="lang-en">Genesis 11:27-50:20. Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021). Genealogies in Genesis. Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
 
-    <img src="img/sessao-4/illu-001-000.jpg" alt="Diagrama estrutural do livro de Gênesis mostrando suas seções principais e figuras-chave | Structural diagram of the book of Genesis showing its major sections and key figures" class="w-full rounded-lg border border-slate-200 my-4 reveal" />
+    <img src="img/sessao-4/illu-001-000.jpg" alt="Diagrama estrutural do livro de Gênesis mostrando suas seções principais e figuras-chave | Structural diagram of the book of Genesis showing its major sections and key figures" class="w-full rounded-[12px] border border-[#d7dde5] my-4 reveal" />
     <p class="caption reveal"><span class="lang-pt">Gênesis 1:1-50:20 — Design Literário por Tim Mackie para BibleProject Classroom.</span><span class="lang-en">Genesis 1:1-50:20 — Literary Design by Tim Mackie for BibleProject Classroom.</span></p>
     <p class="body reveal"><span class="lang-pt">Este padrão na verdade destaca um importante design composicional por todo o rolo de Gênesis. A narrativa principal traça a linhagem da descendência prometida a um conjunto de irmãos. Então, após a história de sua separação, a linhagem não escolhida sai de cena com uma genealogia que se estende muito além da perspectiva temporal da narrativa. Depois disso, a narrativa recua e foca na linhagem escolhida, retomando sua história.</span><span class="lang-en">This pattern actually highlights an important compositional design throughout the entire Genesis scroll. The main narrative traces the lineage of the promised seed to a set of siblings. Then, after the story of their separation, the non-chosen line is ushered off the stage with a genealogy that extends far past the narrative time perspective. After this, the narrative backtracks and focuses on the chosen line, picking up their story.</span></p>
     <p class="body reveal"><span class="lang-pt">"Esses cabeçalhos transitórios… dirigem progressivamente o foco do leitor do progenitor à prole e estreitam o foco do leitor de todo o mundo a Israel, através de quem todas as famílias da terra serão abençoadas." — DeRouchie, Jason (2013). "A Bênção-Comissão, a Descendência Prometida, e a Estrutura Toledot de Gênesis". JETS, Volume 56.2. 225.</span><span class="lang-en">"These transitional headings … progressively direct the reader’s focus from the progenitor to progeny and narrow the reader’s focus from all the world to Israel, through whom all the families of the earth will be blessed." — DeRouchie, Jason (2013). "The Blessing-Commission, the Promised Offspring, and the Toledot Structure of Genesis,". JETS, Volume 56.2. 225.</span></p>
