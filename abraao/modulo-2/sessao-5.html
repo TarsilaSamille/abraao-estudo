@@ -66,18 +66,47 @@
       display:inline-block;background:#e3e7ec;color: #1b1b1b;font-weight:800;
       border-radius:0 0 7px 0;padding:.2rem .5rem;font-size:.78rem;
     }
-    /* Caixa B do macro: no PDF e #e3e7ec a fill_opacity 0.15 com traco de
-       1.5pt (medido no content stream da pagina 1). */
-    .design-card.ml-8 { border:1.5px solid #e3e7ec; background:rgba(227,231,236,.15); }
+    
     .design-card.accent-gold { border-left:4px solid #816f4d; }
     .design-card .body { padding:.75rem 1rem 1rem; }
     /* Caixa A/A' do macro: #6b7384 a fill_opacity 0.15 (content stream). */
-    .design-card.emphasis { border:1.5px solid #6b7384; background:rgba(107,115,132,.15); }
+    .design-card.emphasis { border:2px solid #6b7384; background:rgba(107,115,132,.15); }
     .design-card.emphasis .label { background:#6b7384;color:#fff; }
     .design-card.emphasis.dark { border:2px solid #3e4054; }
     .design-card.emphasis.dark .label { background:#3e4054;color:#fff; }
     .design-card.subtle { border:2px solid #6b7384; }
     .design-card.subtle .label { background:#6b7384;color:#fff; }
+
+    /* --- Macro 12:1-9: geometria medida no PDF (pagina 1) --------------
+       caixa A/A'  x 42.7..570.0 = 527.2pt  (bloco a 6.7pt da margem x=36)
+       caixa B/B'  x 60.7..570.0 = 509.2pt  recuo de 18pt, mesma borda direita
+       altura 48pt · gap 7.5pt · borda 1.5pt
+       pilula 15pt, a 7.5pt do topo e 6.8pt da borda, solida na mesma cor
+       Sem isto o recuo nao aparecia: .design-card{margin:1rem 0} vencia o
+       .ml-8 do Tailwind, as quatro caixas ficavam alinhadas e a pilula media
+       29px. Este bloco vem DEPOIS das regras base por causa disso. */
+    .design-card.emphasis,
+    .design-card.ml-8 {
+      margin:0 0 7.5px; padding:7.5px 6.8px 7px;
+      /* o PDF usa 1.5pt; o Chrome arredonda 1.5px para 1px, que ficaria
+         visivelmente mais fino que o PDF. 2px e o valor renderizavel mais
+         proximo de 1.5pt. */
+      border-width:2px; border-radius:8px;
+    }
+    .design-card.ml-8 { margin-left:18px; border:2px solid #e3e7ec; background:rgba(227,231,236,.15); }
+    .design-card.ml-8 .label { background:#e3e7ec; }
+    .design-card.emphasis { border:2px solid #6b7384; background:rgba(107,115,132,.15); }
+    .design-card.emphasis .label { background:#6b7384; color:#fff; }
+    /* display:block tira o leading que o inline-block criava acima da pilula
+       (pillTop saia 18px em vez de 7.5px). */
+    .design-card.emphasis .label,
+    .design-card.ml-8 .label {
+      display:block; width:max-content; margin:0 0 6px; padding:0 7px;
+      height:15px; line-height:15px; border-radius:0 5px 5px 0;
+      font-size:.72rem; font-weight:800;
+    }
+    .design-card.emphasis .body,
+    .design-card.ml-8 .body { padding:0; }
     .literary-line { display:grid;grid-template-columns:28px 1fr;gap:.35rem; }
     .literary-line .mark { color: #4f5669;font-weight:700; }
 /* --- Tabelas: medidas tiradas do PDF (pagina 9, tabela Adam/Noah) --------
@@ -170,19 +199,19 @@
     <h2><span class="lang-pt">Estrutura Macro de Gênesis 12:1–9</span><span class="lang-en">Macro Design of Genesis 12:1–9</span></h2>
     <div class="design-card emphasis">
       <span class="label">Genesis 12:1-3</span>
-      <div class="body font-semibold"><span class="lang-pt">A — Primeira palavra de Yahweh a Avram: bênção e descendência</span><span class="lang-en">A — Yahweh's first word to Avram: Blessing and offspring</span></div>
+      <div class="body font-semibold"><span class="lang-pt">A - Primeira palavra de Yahweh a Avram: bênção e descendência</span><span class="lang-en">A - Yahweh's first word to Avram: Blessing and offspring</span></div>
     </div>
     <div class="design-card ml-8">
       <span class="label">Genesis 12:4-6</span>
-      <div class="body font-semibold"><span class="lang-pt">B — Resposta de Avram: viagem para Canaã</span><span class="lang-en">B — Avram's response: Travel to Canaan</span></div>
+      <div class="body font-semibold"><span class="lang-pt">B - Resposta de Avram: viagem para Canaã</span><span class="lang-en">B - Avram's response: Travel to Canaan</span></div>
     </div>
     <div class="design-card emphasis">
       <span class="label">Genesis 12:7</span>
-      <div class="body font-semibold"><span class="lang-pt">A' — Segunda palavra de Yahweh a Avram: promessa da terra para a descendência</span><span class="lang-en">A' — Yahweh's second word to Avram: Promise of land for offspring</span></div>
+      <div class="body font-semibold"><span class="lang-pt">A' - Segunda palavra de Yahweh a Avram: promessa da terra para a descendência</span><span class="lang-en">A' - Yahweh's second word to Avram: Promise of land for offspring</span></div>
     </div>
     <div class="design-card ml-8">
       <span class="label">Genesis 12:8-9</span>
-      <div class="body font-semibold"><span class="lang-pt">B' — Resposta de Avram: construir um altar e viajar para o Neguebe</span><span class="lang-en">B' — Avram's response: Build an altar and travel to the Negev</span></div>
+      <div class="body font-semibold"><span class="lang-pt">B' - Resposta de Avram: construir um altar e viajar para o Negeve</span><span class="lang-en">B' - Avram's response: Build an altar and travel to the Negev</span></div>
     </div>
     <p class="italic text-[#4f5669] text-sm"><span class="lang-pt">Gênesis 12:1–9. Tradução e design literário de Tim Mackie para BibleProject Classroom: Abraham (2021).</span><span class="lang-en">Genesis 12:1–9. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
 
