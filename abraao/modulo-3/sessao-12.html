@@ -12,17 +12,139 @@
 <link href="../../css/shared-tutorial.css" rel="stylesheet"/>
 <style>
 @import url('../css/session-base.css');
+/* PDF-authority overrides (sessao-12.pdf, pp. 79-87).
+   Page-local only: no .css or DESIGN.md edits.
+   Two jobs here:
+     1) palette — every hex below was read off the PDF with PyMuPDF, so the page
+        matches the teacher notes instead of the DESIGN.md tokens;
+     2) this page's own component set (.sumbox, .t-outer, .c-*, .tx-*) has no
+        definition in session-base.css, so those shapes are declared here. */
+
+/* ---- neutrals ------------------------------------------------------ */
+body { color: #1b1b1b; }
+h1.title, h2.section, h3.sub, h4.sub2, p.body,
+ul.bullets > li, ul.bullets ul > li,
+.doc-table th, .doc-table td, .t-h, .tline, .scripture-text { color: #1b1b1b; }
+h4.sub2 { font-size: 1.23rem; font-weight: 800; letter-spacing: -0.01em; margin: 1.6rem 0 .5rem; }
+/* the PDF marks list items with a small filled square, not a round bullet */
+ul.bullets > li:before, ul.bullets ul > li:before { content: "\25AA" !important; color: #1b1b1b !important; }
+ul.bullets ul { list-style: none; padding: 0; margin: .35rem 0 .2rem; }
+ul.bullets ul > li { padding-left: 1.2rem; position: relative; margin-bottom: .3rem; line-height: 1.7; font-size: 1.02rem; color: #1b1b1b; }
+ul.bullets ul > li:before { content: "\25AA" !important; position: absolute !important; left: .3rem !important; }
+.rule { border-top: 1px solid #c1c9d0 !important; }
+.ref { color: #1b1b1b; }
+sup.vs { color: #1b1b1b; }
+.caption { color: #4f5669; font-style: normal; font-size: .95rem; }
+.caption em { font-style: normal; }
+.page-footer { color: #2c2c2c; border-top: 0; font-weight: 400; letter-spacing: 0; }
+
+/* ---- scripture + academic quote ------------------------------------ */
+/* PDF p.79 left rule is 3px #e4e8ed; the Gossai quote (p.86-87) is 4px #1b1b1b */
+.scripture { border-left: 3px solid #e4e8ed; }
+.scripture-label { color: #1b1b1b; }
+.scripture-type { color: #4f5669; font-style: italic; font-size: .95rem; }
+.blockquote { border-left: 4px solid #1b1b1b; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; font-size: 1.05rem; line-height: 1.8; color: #1b1b1b; }
+
+/* ---- Macro Design of Genesis 15-17 (PDF p.79) ---------------------- */
+/* panels: 1pt #be4967 (covenant) / #3e4054 (Hagar), tags in the same colour;
+   inner boxes 1pt #6b7384 with #6b7384 badges; column 3 is wider (4 boxes) */
+.macro { grid-template-columns: 1fr 1fr 1.32fr; gap: .55rem; margin: 2rem 0 .6rem; }
+.mcol { border: 1.5px solid #be4967; border-radius: 6px; padding: .5rem .5rem .6rem; }
+.mcol.dark { border-color: #3e4054; margin-top: .8rem; }
+.mtag { font-size: .67rem; line-height: 1.55; padding: 2px 6px; border-radius: 3px; }
+.mtag .ref { color: #fff; }
+.mtag-rose { background: #be4967; }
+.mtag-slate { background: #3e4054; }
+.mcol-title { color: #1b1b1b; }
+.mboxes { gap: .3rem; align-items: flex-start; }
+.mbox { border: 1.5px solid #6b7384; border-radius: 5px; min-height: 11rem; }
+.mbox .mhdr { background: #6b7384; font-size: .67rem; line-height: 1.55; padding: 1px 4px; border-radius: 3px; top: .3rem; left: .3rem; right: .3rem; }
+/* in the four-box column the PDF drops boxes 2-4 by ~11pt */
+.mbox.b1, .mbox.b2, .mbox.b3 { margin-top: .7rem; }
+
+/* ---- Repeated-words summary boxes (PDF p.79-80) --------------------- */
+.sumbox { border: 1.5px solid #9855af; border-radius: 8px; padding: .75rem .9rem .85rem; margin: .9rem 0; }
+.sumbox.slate { border-color: #6b7384; }
+.sumtab { font-size: 1.05rem; font-weight: 400; line-height: 1.55; padding: .1rem .45rem; border-radius: 4px; margin-bottom: .45rem; }
+.sumtab-purple { background: #9855af; }
+.sumtab-slate { background: #6b7384; }
+.hl-pp { background: #f7e1f5; color: #713c92; padding: 1px 3px; border-radius: 3px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+
+/* ---- Literary design of Genesis 15:1-21 (PDF p.80-82) --------------- */
+/* outer panel 1.5pt #e4e8ed on a #e4e8ed field, white inner panels */
+.t-outer { border: 1.5px solid #e4e8ed; border-radius: 10px; padding: 1rem 1.1rem; margin: 1rem 0; background: #fff; }
+.t-outer.gray { background: #e4e8ed; }
+.t-inner { border: 1.5px solid #e4e8ed; border-radius: 8px; padding: .85rem 1rem; margin: .7rem 0; background: #fff; }
+.t-h { font-size: 1.05rem; font-weight: 800; line-height: 1.3; margin: 0 0 .5rem; }
+.tline { font-size: 1.05rem; line-height: 1.95; margin: 0; }
+.t-div { border: 0; border-top: 1.5px solid #e4e8ed; margin: .7rem 0; }
+.lbl { color: #4f5669; font-size: .95rem; }
+
+/* plain coloured text — the PDF leaves these on the white */
+.tx-indigo { color: #5869cd; }   /* Avram's own plan / "a son of Mesheq of my house" */
+.tx-blue { color: #3678b4; font-weight: 700; }   /* the animals, "all of these" */
+.tx-teal { color: #097d8d; }    /* "fell upon Avram", "count" */
+.tx-purple { color: #9855af; }  /* "serve them", "oppress them" */
+.tx-violet { color: #7e62bc; }  /* "Yahweh takes Avram outside at night" */
+.tx-brown { color: #816f4d; }   /* "birds", "birds of prey" */
+
+/* tinted chips — PDF paints a wash behind these words, so they are not plain
+   coloured text; the pairs below are (wash, ink) exactly as the PDF has them */
+.c-lav, .c-gray-i, .c-pink, .c-cyan, .c-tan, .c-tan-i, .c-orange,
+.c-bluesoft, .c-greensoft, .hl-pp {
+  padding: 1px 3px; border-radius: 3px;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+.c-lav { background: #e6e6fa; color: #5d4897; }   /* "the word of Yahweh was to Avram" */
+.c-gray-i { background: #e4e8ed; color: #4f5669; font-style: italic; }  /* Avram's paraphrase */
+.c-pink { background: #f9e3de; color: #972a4e; }  /* Avram's objection */
+.c-cyan { background: #b9eff7; color: #00626f; }  /* "seed" */
+.c-tan, .c-tan-i { background: #efe8db; color: #645537; }               /* "To your", "I have given" */
+.c-tan-i { font-style: italic; }              /* "with a sign: circumcision" */
+.c-orange { background: #fae4c4; color: #91362e; }   /* "Take", "took" */
+.c-bluesoft { background: #d9ecfd; color: #404ca6; }  /* "deep-stupor-sleep", "a terror, a darkness" */
+.c-greensoft { background: #d3f2cd; color: #2b6146; }  /* "righteous", "covenant", "four hundred years" */
+
+/* solid chips — white text on the PDF's own fill */
+.c-ind, .c-brown, .c-green, .c-purp, .c-pinksolid {
+  color: #fff; padding: 1px 4px; border-radius: 3px; font-weight: 400;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+.c-ind { background: #5869cd; }      /* "inherit" */
+.c-brown { background: #816f4d; }    /* "this land", "that nation", "Egypt" */
+.c-green { background: #3a8060; }    /* "Yahweh cut a covenant", "halved" */
+.c-purp { background: #9855af; }     /* "And as the sun was going" */
+.c-pinksolid { background: #be4967; }/* "Avram responds with doubt" */
+
+/* ---- document tables (PDF p.82-84): every rule is #e4e8ed --------- */
+.doc-table { border: 1.5px solid #e4e8ed; border-radius: 10px; }
+.doc-table th { background: #e4e8ed; }
+/* the PDF does not underline the reference inside a column heading */
+.doc-table th .ref { text-decoration: none; }
+.doc-table td { border-top: 1.5px solid #e4e8ed; }
+.doc-table td + td { border-left: 1.5px solid #e4e8ed; }
+.doc-table tfoot td { border-top: 1.5px solid #e4e8ed; background: #e4e8ed; color: #4f5669; font-style: normal; }
+.doc-table tfoot td em { font-style: normal; }
+/* "1. The first dialogue (Gen. 15:1-3)" is a bold #e4e8ed chip, and the
+   tan/violet summary lines are bold there but plain in the literary design */
+.doc-table .c-gray { background: #e4e8ed; padding: 1px 4px; border-radius: 3px; font-weight: 700; }
+.doc-table .c-gray .ref { text-decoration: none; }
+.doc-table .tx-brown, .doc-table .tx-violet { font-weight: 700; }
+
+@media print {
+  .sumbox, .t-outer, .t-inner, .blockquote, .scripture { break-inside: avoid; }
+}
 </style>
 </head>
 <body>
 <div aria-hidden="true" id="reading-progress"></div>
 <div class="fixed left-4 top-4 z-50 print:hidden">
-<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" href="index.html">
+<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" href="index.html">
 <span><span class="lang-pt">←</span><span class="lang-en">←</span></span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
 </a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
-<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" onclick="window.print()">
+<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" onclick="window.print()">
 <svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect height="8" width="12" x="6" y="14"></rect></svg>
 <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
 </button>
@@ -94,13 +216,13 @@
 <li><span class="lang-pt">A promessa renovada de Deus a Avram</span><span class="lang-en">God's renewed promise to Avram</span>
 <ul class="sub"><li><span class="lang-pt">“Anda diante de mim e sê íntegro!<br/>Farei a minha aliança contigo<br/>e te <span class="hl-pp">farei muitíssimo numeroso (<span class="heb">ארבה ... מאד</span>)</span></span><span class="lang-en">“Walk before me and be blameless!<br/>I will make my covenant with you<br/>and <span class="hl-pp">make you very numerous(<span class="heb">ארבה ... מאד</span>)</span></span></li></ul>
 </li>
-<li><span class="lang-pt">A fé e a incredulidade de Avram → Deus renova a aliança <span class="c c-tan">com um sinal: circuncisão</span></span><span class="lang-en">Avram’s belief and unbelief → God renews the covenant <span class="c c-tan">with a sign: circumcision</span></span></li>
+<li><span class="lang-pt">A fé e a incredulidade de Avram → Deus renova a aliança <span class="c c-tan-i">com um sinal: circuncisão</span></span><span class="lang-en">Avram’s belief and unbelief → God renews the covenant <span class="c c-tan">with a sign: circumcision</span></span></li>
 </ul>
 </div>
 <p class="caption reveal"><span class="lang-pt"><em><span class="ref" data-reference="Genesis 15:1-17:27">Gênesis 15:1-17:27</span> (Palavras Repetidas)</em>. Design Literário por Tim Mackie para o BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em><span class="ref" data-reference="Genesis 15:1-17:27">Genesis 15:1-17:27</span> (Repeated Words)</em>. Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
 <p class="body reveal" style="margin-top:1.75rem;"><span class="lang-pt">Nesta seção, o foco da narrativa se volta para a promessa de Deus acerca da semente e para a falha de Avram e Sarai em confiar na generosidade de Deus. Observe o desenho simétrico que destaca o papel da aliança de Deus com Avram. A sequência das três histórias é significativa.</span><span class="lang-en">In this section, the focus of the narrative turns to God’s promise of the seed and Avram and Sarai’s failure to trust God’s generosity. Notice the symmetrical design that highlights the role of God’s covenant with Avram. The sequence of the three stories is significant.</span></p>
 <h2 class="section reveal"><span class="lang-pt">Tradução e Design Literário de <span class="ref" data-reference="Genesis 15:1-21">Gênesis 15:1-21</span></span><span class="lang-en">Translation and Literary Design of <span class="ref" data-reference="Genesis 15:1-21">Genesis 15:1-21</span></span></h2>
-<div class="t-outer reveal">
+<div class="t-outer gray reveal">
 <div class="t-inner">
 <p class="t-h"><span class="lang-pt">Iavé Faz uma Primeira Promessa de Proteção e Recompensa</span><span class="lang-en">Yahweh Makes a First Promise of Protection and Reward</span></p>
 <p class="tline"><sup class="vs"><span class="lang-pt">1</span><span class="lang-en">1</span></sup> <span class="lang-pt">Depois destas coisas,</span><span class="lang-en">After these things,</span></p>
@@ -111,14 +233,14 @@
 <hr class="t-div"/>
 <p class="t-h"><span class="lang-pt">Avram Responde Com uma Pergunta Cheia de Dúvida</span><span class="lang-en">Avram Responds With a Doubt-Filled Question</span></p>
 <p class="tline"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><sup class="vs"><span class="lang-pt">2</span><span class="lang-en">2</span></sup> <span class="c c-lav"><span class="lang-pt">E disse Avram</span><span class="lang-en">And Avram said</span></span><span class="lang-pt"> ,</span><span class="lang-en"> ,</span></p>
-<p class="tline i1"><span class="lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></span><span class="lang-pt">“ <span class="c c-gray">Soberano Iavé, o que me</span> <span class="c c-pink">darás</span> ?</span><span class="lang-en">“ <span class="c c-gray">Master Yahweh, what will you</span> <span class="c c-pink">give to me</span> ?</span></p>
+<p class="tline i1"><span class="lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></span><span class="lang-pt">“ <span class="c c-gray-i">Soberano Iavé, o que me</span> <span class="c c-pink">darás</span> ?</span><span class="lang-en">“ <span class="c c-gray">Master Yahweh, what will you</span> <span class="c c-pink">give to me</span> ?</span></p>
 <p class="tline i1"><span class="c c-pink"><span class="lang-pt">Eis que vou nu/sem filhos</span><span class="lang-en">Now, I am going on naked/without children</span></span></p>
-<p class="tline i2"><span class="lbl"><span class="lang-pt">c</span><span class="lang-en">c</span></span><span class="tx-blue"><span class="lang-pt">e um filho de Meseque da minha casa</span><span class="lang-en">and a son of Mesheq of my house</span></span><span class="lang-pt"> [</span><span class="lang-en"> [</span><span class="lang-pt">este é Damasco</span><span class="lang-en">this is Damascus</span><span class="lang-pt">] </span><span class="lang-en">] </span><span class="tx-blue"><span class="lang-pt">é Eliezer</span><span class="lang-en">is Eliezer</span></span><span class="lang-pt">.</span><span class="lang-en">.</span></p>
+<p class="tline i2"><span class="lbl"><span class="lang-pt">c</span><span class="lang-en">c</span></span><span class="tx-indigo"><span class="lang-pt">e um filho de Meseque da minha casa</span><span class="lang-en">and a son of Mesheq of my house</span></span><span class="lang-pt"> [</span><span class="lang-en"> [</span><span class="lang-pt">este é Damasco</span><span class="lang-en">this is Damascus</span><span class="lang-pt">] </span><span class="lang-en">] </span><span class="tx-indigo"><span class="lang-pt">é Eliezer</span><span class="lang-en">is Eliezer</span></span><span class="lang-pt">.</span><span class="lang-en">.</span></p>
 <hr class="t-div"/>
 <p class="t-h"><span class="lang-pt">Avram Responde Com o Seu Próprio Plano</span><span class="lang-en">Avram Responds With His Own Plan</span></p>
 <p class="tline"><span class="lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><sup class="vs"><span class="lang-pt">3</span><span class="lang-en">3</span></sup> <span class="c c-lav"><span class="lang-pt">E disse Avram</span><span class="lang-en">And Avram said</span></span><span class="lang-pt"> ,</span><span class="lang-en"> ,</span></p>
 <p class="tline i1"><span class="lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></span><span class="lang-pt">“ <span class="c c-pink">Olha para mim! Não me deste</span> <span class="c c-cyan">semente</span> ,</span><span class="lang-en">“ <span class="c c-pink">Look at me! You have given to me no</span> <span class="c c-cyan">seed</span> ,</span></p>
-<p class="tline i2"><span class="lbl"><span class="lang-pt">c'</span><span class="lang-en">c'</span></span><span class="tx-blue"><span class="lang-pt">e eis que! um filho da minha casa me</span><span class="lang-en">and so look! A son of my house will</span></span> <span class="c c-ind"><span class="lang-pt">herdará</span><span class="lang-en">inherit</span></span> <span class="lang-pt">!”</span><span class="lang-en">me!”</span></p>
+<p class="tline i2"><span class="lbl"><span class="lang-pt">c'</span><span class="lang-en">c'</span></span><span class="tx-indigo"><span class="lang-pt">e eis que! um filho da minha casa me</span><span class="lang-en">and so look! A son of my house will</span></span> <span class="c c-ind"><span class="lang-pt">herdará</span><span class="lang-en">inherit</span></span> <span class="lang-pt">!”</span><span class="lang-en">me!”</span></p>
 </div>
 <div class="t-inner">
 <p class="t-h"><span class="lang-pt">Iavé Faz uma Segunda Promessa de um Filho</span><span class="lang-en">Yahweh Makes a Second Promise of a Son</span></p>
@@ -153,7 +275,7 @@
 <hr class="t-div"/>
 <p class="t-h"><span class="lang-pt">Avram Responde Com uma Pergunta Cheia de Dúvida</span><span class="lang-en">Avram Responds With a Doubt-Filled Question</span></p>
 <p class="tline"><span class="lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><sup class="vs"><span class="lang-pt">8</span><span class="lang-en">8</span></sup> <span class="c c-lav"><span class="lang-pt">E ele disse</span><span class="lang-en">And he said</span></span><span class="lang-pt"> ,</span><span class="lang-en"> ,</span></p>
-<p class="tline i1"><span class="lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></span><span class="lang-pt">“ <span class="c c-gray">Soberano Iavé, como poderei saber</span> que a <span class="c c-ind">herdarei</span>?”</span><span class="lang-en">“ <span class="c c-gray">Master Yahweh, with what can I know</span> that I will <span class="c c-ind">inherit</span> it?”</span></p>
+<p class="tline i1"><span class="lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></span><span class="lang-pt">“ <span class="c c-gray-i">Soberano Iavé, como poderei saber</span> que a <span class="c c-ind">herdarei</span>?”</span><span class="lang-en">“ <span class="c c-gray">Master Yahweh, with what can I know</span> that I will <span class="c c-ind">inherit</span> it?”</span></p>
 </div>
 <div class="t-inner">
 <p class="t-h"><span class="lang-pt">Iavé Ordena que Avram Traga Animais</span><span class="lang-en">Yahweh Orders Avram To Get Animals</span></p>
@@ -222,14 +344,14 @@
 <p style="margin-bottom:.5rem;"><span class="c c-gray"><span class="lang-pt">1. O primeiro diálogo (<span class="ref" data-reference="Genesis 15:7-11">Gên. 15:7-11</span>)</span><span class="lang-en">1. The first dialogue (Gen. 15:7-11)</span></span></p>
 <p style="margin-bottom:.4rem;"><span class="lang-pt">• </span><span class="lang-en">• </span><span class="tx-brown"><span class="lang-pt">Promessa de Iavé sobre terra</span><span class="lang-en">Yahweh’s promise about land</span></span></p>
 <p style="margin-bottom:.4rem;"><span class="lang-pt">• </span><span class="lang-en">• </span><span class="c c-pinksolid"><span class="lang-pt">Avram responde com dúvida</span><span class="lang-en">Avram responds with doubt</span></span></p>
-<p><span class="lang-pt">• </span><span class="lang-en">• </span><span class="tx-purple"><span class="lang-pt">Iavé leva Avram para fora à noite</span><span class="lang-en">Yahweh takes Avram outside at night</span></span></p>
+<p><span class="lang-pt">• </span><span class="lang-en">• </span><span class="tx-violet"><span class="lang-pt">Iavé leva Avram para fora à noite</span><span class="lang-en">Yahweh takes Avram outside at night</span></span></p>
 </td>
 </tr>
 <tr>
 <td>
 <p style="margin-bottom:.5rem;"><span class="c c-gray"><span class="lang-pt">2. O segundo diálogo (<span class="ref" data-reference="Genesis 15:4-6">Gên. 15:4-6</span>)</span><span class="lang-en">2. The second dialogue (Gen. 15:4-6)</span></span></p>
 <p style="margin-bottom:.4rem;"><span class="lang-pt">• </span><span class="lang-en">• </span><span class="tx-brown"><span class="lang-pt">Promessa de Iavé sobre semente</span><span class="lang-en">Yahweh’s promise about seed</span></span></p>
-<p style="margin-bottom:.4rem;"><span class="lang-pt">• </span><span class="lang-en">• </span><span class="tx-purple"><span class="lang-pt">Iavé leva Avram para fora à noite</span><span class="lang-en">Yahweh takes Avram outside at night</span></span></p>
+<p style="margin-bottom:.4rem;"><span class="lang-pt">• </span><span class="lang-en">• </span><span class="tx-violet"><span class="lang-pt">Iavé leva Avram para fora à noite</span><span class="lang-en">Yahweh takes Avram outside at night</span></span></p>
 <p style="margin-bottom:.4rem;"><span class="lang-pt">• Avram responde com confiança</span><span class="lang-en">• Avram responds with trust</span></p>
 <p><span class="lang-pt">• Iavé o considera <span class="c c-greensoft">justo</span></span><span class="lang-en">• Yahweh considers him <span class="c c-greensoft">righteous</span></span></p>
 </td>
@@ -373,11 +495,11 @@
 </div>
 <div class="scripture reveal">
 <div><span class="scripture-label" data-reference="Job+29:14"><span class="ref" data-reference="Job 29:14-17"><span class="lang-pt">Job 29:14-17</span><span class="lang-en">Job 29:14-17</span></span></span><span class="scripture-type"><span class="lang-pt">NIV*</span><span class="lang-en">NIV*</span></span></div>
-<p class="scripture-text"><span class="lang-pt"><sup class="vs">14</sup> Eu me vestia de justiça (<em>tsedeq</em>); o direito era a minha capa e o meu turbante. <sup class="vs">15</sup> Eu era olhos para o cego e pés para o coxo. <sup class="vs">16</sup> Era pai para o necessitado; tomava a causa do desconhecido. <sup class="vs">17</sup> Quebrava os dentes de presa do perverso e arrebatava a vítima dos seus dentes.</span><span class="lang-en"><sup class="vs">14</sup> I put on tsedeq as my clothing; justice was my robe and my turban. <sup class="vs">15</sup> I was eyes to the blind and feet to the lame. <sup class="vs">16</sup> I was a father to the needy; I took up the case of the stranger. <sup class="vs">17</sup> I broke the fangs of the wicked and snatched the victims from their teeth.</span><br/><span style="color:#5b7285; font-size: .92rem;"><span class="lang-pt">* Palavras-chave adaptadas pelo professor</span><span class="lang-en">* Key Words Adapted by Teacher</span></span></p>
+<p class="scripture-text"><span class="lang-pt"><sup class="vs">14</sup> Eu me vestia de justiça (<em>tsedeq</em>); o direito era a minha capa e o meu turbante. <sup class="vs">15</sup> Eu era olhos para o cego e pés para o coxo. <sup class="vs">16</sup> Era pai para o necessitado; tomava a causa do desconhecido. <sup class="vs">17</sup> Quebrava os dentes de presa do perverso e arrebatava a vítima dos seus dentes.</span><span class="lang-en"><sup class="vs">14</sup> I put on tsedeq as my clothing; justice was my robe and my turban. <sup class="vs">15</sup> I was eyes to the blind and feet to the lame. <sup class="vs">16</sup> I was a father to the needy; I took up the case of the stranger. <sup class="vs">17</sup> I broke the fangs of the wicked and snatched the victims from their teeth.</span><br/><span style="color: #4f5669; font-size: .92rem;"><span class="lang-pt">* Palavras-chave adaptadas pelo professor</span><span class="lang-en">* Key Words Adapted by Teacher</span></span></p>
 </div>
 <div class="blockquote reveal">
 <span class="lang-pt">“Para que um indivíduo seja justo, isso significa que necessariamente ele ou ela deve existir e viver de uma maneira que lhe permita responder corretamente nos valores do relacionamento (cônjuge, pai, juiz, vizinho, etc.) … Em essência, ‘justiça’ não é simplesmente uma norma objetiva presente dentro de uma sociedade e que deve ser mantida, mas sim um conceito que deriva o seu significado do relacionamento no qual se encontra. Julgar corretamente, governar corretamente, adorar corretamente e generosidade são todas atividades aliançais e, portanto, justas, apesar de sua diversidade.”</span><span class="lang-en">“In order for an individual to be righteous, it means that of necessity he or she must exist and live in a manner which allows him or her to respond correctly in the values of the relationship (spouse, parent, judge, neighbor, etc.) … In essence ‘righteousness’ is not simply an objective norm which is present within a society and which must be kept, but rather it is a concept which derives its meaning from the relationship in which it finds itself. Right judging, right governing, right worshipping, and generosity are all covenantal activities and so righteous, despite their diversity.”</span><br/>
-<span style="color:#5b6472;"><span class="lang-pt">Gossai, Hemchand (1993). </span><span class="lang-en">Gossai, Hemchand (1993). </span><em>\1</em><span class="lang-pt">. Peter Lang. 55-56.</span><span class="lang-en">. Peter Lang. 55-56.</span></span>
+<span style="color: #4f5669;"><span class="lang-pt">Gossai, Hemchand (1993). </span><span class="lang-en">Gossai, Hemchand (1993). </span><em style="color:#0000ee; text-decoration:underline;">Justice, Righteousness and the Social Critique of the Eighth-Century Prophets</em><span class="lang-pt">. Peter Lang. 55-56.</span><span class="lang-en">. Peter Lang. 55-56.</span></span>
 </div>
 <p class="body reveal"><span class="lang-pt">Nesta história, a confiança de Avram na promessa de Deus é considerada por Deus como um ato de “fazer o que é justo” para com ele.</span><span class="lang-en">In this story, Avram’s trust in God’s promise is considered by God to be an act of “doing right by” him.</span></p>
 <h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>

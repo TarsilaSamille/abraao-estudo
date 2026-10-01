@@ -12,17 +12,103 @@
 <link href="../../css/shared-tutorial.css" rel="stylesheet"/>
 <style>
 @import url('../css/session-base.css');
+
+/* ============================================================
+   PDF-authoritative palette — sessao-21.pdf
+   The PDF does not use the DESIGN.md accent tokens. Every colour
+   below was sampled from the PDF's own fills/strokes/text.
+   ============================================================ */
+:root {
+  --pdf-ink:      #1b1b1b;  /* base text, headings, verse numbers   */
+  --pdf-muted:    #4f5669;  /* labels, captions, footer, gray chips */
+  --pdf-line:     #e4e8ed;  /* every border / light fill            */
+  --pdf-rule:     #c1c9d0;  /* hr under the title                    */
+  --pdf-brown:    #816f4d;  /* divine-action text (Yahweh visited…) */
+  --pdf-green:    #3a8060;  /* "grew big" / "seed"                   */
+
+  --pdf-purple:   #9855af;  /* just as he said / spoke / commanded   */
+  --pdf-lblue-b:  #ccf1fa;  --pdf-lblue-f: #245791;  /* gave birth   */
+  --pdf-sky-b:    #d9ecfd;  --pdf-sky-f:   #404ca6;  /* flood/Sarah  */
+  --pdf-cyan-b:   #b9eff7;  --pdf-cyan-f:  #00626f;  /* into a nation*/
+  --pdf-blue:     #3678b4;  /* son / sons                            */
+  --pdf-navy:     #1b4575;  /* in his old age / one hundred years    */
+  --pdf-tan-b:    #fae4c4;  --pdf-tan-f:   #91362e;  /* Yitskhaq     */
+  --pdf-gray-b:   #e4e8ed;  --pdf-gray-f:  #4f5669;  /* circumcised  */
+  --pdf-rose-b:   #f9e3de;  --pdf-rose-f:  #972a4e;  /* Sarah saw    */
+  --pdf-lilac-b:  #e6e6fa;  --pdf-lilac-f: #5d4897;  /* slave woman  */
+  --pdf-mag-b:    #f7e1f5;  --pdf-mag-f:   #713c92;  /* as Elohim had*/
+  --pdf-grn2-b:   #d3f2cd;  --pdf-grn2-f:  #2b6146;  /* circumcise   */
+  --pdf-chip:     #404ca6;  /* table category chips                  */
+
+  --pdf-navy-box: #3e4054;  /* callout A / A' border + tag          */
+  --pdf-slate-box:#6b7384;  /* callout B border + tag                */
+}
+
+/* ---- ink & chrome ------------------------------------------------ */
+body { color: var(--pdf-ink); }
+h1.title, h2.section, h3.sub, h4.sub2, .cx h4 { color: var(--pdf-ink); }
+p.body, ul.bullets > li, ol.numbered > li, .doc-table td, .v-line,
+.scripture-text { color: var(--pdf-ink); }
+ul.bullets > li:before { color: var(--pdf-ink); }
+/* The PDF numbers these two items; session-base.css has no ol.numbered. */
+ol.numbered { list-style: decimal; padding-left: 2.2rem; margin: 0 0 1.1rem; }
+ol.numbered > li { padding-left: .3rem; margin-bottom: .65rem; line-height: 1.78; font-size: 1.05rem; }
+ol.numbered > li::marker { color: var(--pdf-ink); font-weight: 700; }
+.rule { border-top-color: var(--pdf-rule) !important; }
+.lbl, .caption, .page-footer, .scripture-type { color: var(--pdf-muted); }
+.page-footer { color: #2c2c2c; }
+sup.vs { color: var(--pdf-ink); }
+.ref { color: var(--pdf-ink); }
+#reading-progress { background: var(--pdf-ink); }
+h4.sub2 { font-weight: 800; font-size: 1.18rem; line-height: 1.25; margin: 1.6rem 0 .6rem; letter-spacing: -.01em; }
+
+/* ---- colour chips ------------------------------------------------ */
+.k-lav2   { background: var(--pdf-lilac-b); color: var(--pdf-lilac-f); }
+.k-lblue  { background: var(--pdf-lblue-b); color: var(--pdf-lblue-f); }
+.k-sky2   { background: var(--pdf-sky-b);   color: var(--pdf-sky-f); }
+.k-cyan2  { background: var(--pdf-cyan-b);  color: var(--pdf-cyan-f); }
+.k-navy   { background: var(--pdf-navy); }
+.k-tan    { background: var(--pdf-tan-b);   color: var(--pdf-tan-f); }
+.k-lilac  { background: var(--pdf-lilac-b); color: var(--pdf-lilac-f); }
+.k-lilac2 { background: var(--pdf-mag-b);   color: var(--pdf-mag-f); }
+.k-gray   { background: var(--pdf-gray-b);  color: var(--pdf-gray-f); }
+.k-rose   { background: var(--pdf-rose-b);  color: var(--pdf-rose-f); }
+.k-green2 { background: var(--pdf-grn2-b);  color: var(--pdf-grn2-f); }
+.k-green  { background: var(--pdf-green); }
+.k-purple { background: var(--pdf-purple); }
+.k-blue   { background: var(--pdf-blue); }
+.tx-brown { color: var(--pdf-brown); }
+.tx-green { color: var(--pdf-green); }
+.th-chip  { display: inline-block; background: var(--pdf-gray-b); color: var(--pdf-chip); font-weight: 700; font-size: .95rem; padding: 1px 9px; border-radius: 6px; margin-bottom: .55rem; }
+
+/* ---- containers -------------------------------------------------- */
+.v-outer, .v-light { border: 2px solid var(--pdf-line); }
+.v-black { border: 2px solid var(--pdf-ink); }
+.scripture { border-left-color: var(--pdf-line); }
+
+.cx { border-width: 2px; background: #fff; }
+.cx-navy  { border-color: var(--pdf-navy-box); }
+.cx-navy  .cx-tag { background: var(--pdf-navy-box); }
+.cx-slate { border-color: var(--pdf-slate-box); background: #fff; }
+.cx-slate .cx-tag { background: var(--pdf-slate-box); }
+.stair-1 { margin-left: 1.6rem; margin-right: 0; }
+
+.doc-table { border: 2px solid var(--pdf-line); }
+.doc-table th { background: var(--pdf-line); color: var(--pdf-ink); }
+.doc-table td { border-top-color: var(--pdf-line); }
+.doc-table td + td { border-left-color: var(--pdf-line); }
+.doc-table tfoot td { border-top-color: var(--pdf-line); background: #fff; color: var(--pdf-muted); }
 </style>
 </head>
 <body>
 <div aria-hidden="true" id="reading-progress"></div>
 <div class="fixed left-4 top-4 z-50 print:hidden">
-<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" href="index.html">
+<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" href="index.html">
 <span><span class="lang-pt">←</span><span class="lang-en">←</span></span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
 </a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
-<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" onclick="window.print()">
+<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" onclick="window.print()">
 <svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect height="8" width="12" x="6" y="14"></rect></svg>
 <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
 </button>
@@ -87,7 +173,7 @@
 <div style="margin-top:1.5rem;">
 <div class="cx cx-navy reveal">
 <span class="cx-tag"><span class="lang-pt">Genesis 21:1-2</span><span class="lang-en">Genesis 21:1-2</span></span>
-<h4><span class="lang-pt">A - </span><span class="lang-en">A - </span><span class="k k-lav2"><span class="lang-pt">Deus</span><span class="lang-en">God</span></span> <span class="lang-pt">Age Sobre</span><span class="lang-en">Acts Upon</span> <span class="k k-lblue">Sara</span><span class="lang-pt"> (</span><span class="lang-en"> (</span><span class="lang-pt">Seu Nome é Repetido 3x</span><span class="lang-en">Her Name is Repeated 3x</span><span class="lang-pt">)</span><span class="lang-en">)</span></h4>
+<h4><span class="lang-pt">A - </span><span class="lang-en">A - </span><span class="k k-lav2"><span class="lang-pt">Deus</span><span class="lang-en">God</span></span> <span class="lang-pt">Age Sobre</span><span class="lang-en">Acts Upon</span> <span class="k k-sky2">Sara</span><span class="lang-pt"> (</span><span class="lang-en"> (</span><span class="lang-pt">Seu Nome é Repetido 3x</span><span class="lang-en">Her Name is Repeated 3x</span><span class="lang-pt">)</span><span class="lang-en">)</span></h4>
 </div>
 <div class="cx cx-slate stair-1 reveal">
 <span class="cx-tag"><span class="lang-pt">Genesis 21:3-5</span><span class="lang-en">Genesis 21:3-5</span></span>
@@ -95,7 +181,7 @@
 </div>
 <div class="cx cx-navy reveal">
 <span class="cx-tag"><span class="lang-pt">Genesis 21:6-7</span><span class="lang-en">Genesis 21:6-7</span></span>
-<h4><span class="lang-pt">A' - </span><span class="lang-en">A' - </span><span class="k k-lblue">Sara</span> <span class="lang-pt">Fala Sobre</span><span class="lang-en">Speaks About</span> <span class="k k-lav2"><span class="lang-pt">Deus</span><span class="lang-en">God</span></span></h4>
+<h4><span class="lang-pt">A' - </span><span class="lang-en">A' - </span><span class="k k-sky2">Sara</span> <span class="lang-pt">Fala Sobre</span><span class="lang-en">Speaks About</span> <span class="k k-lav2"><span class="lang-pt">Deus</span><span class="lang-en">God</span></span></h4>
 </div>
 </div>
 <p class="caption reveal"><span class="lang-pt"><em>Gênesis 21:1-7</em>. Design Literário por Tim Mackie para o BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Genesis 21:1-7</em>. Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
@@ -123,19 +209,19 @@
 <tbody>
 <tr>
 <td><span class="th-chip"><span class="lang-pt">Promessa de Deus Falada a Noé</span><span class="lang-en">God’s Promise Spoken to Noah</span></span>
-<p style="margin-bottom:.7rem;"><strong>Gen. 6:17-18</strong> <span class="lang-pt">“Olha, eu vou trazer o <span class="k k-lblue">dilúvio (<span class="heb">המבול</span>)</span> de águas sobre a terra … para arruinar toda carne que tem em si o fôlego de vida, debaixo dos céus; tudo o que está na terra expirará, e estabelecerei a minha aliança contigo; e entrarás na arca.”</span><span class="lang-en">"Look, I am going to bring the <span class="k k-lblue">flood (<span class="heb">המבול</span>)</span> of water upon the land … to ruin all flesh, which has in it the breath of life, from under the skies, everything that is on the land will expire, and I will set up my covenant with you; and you will go into the ark."</span></p>
+<p style="margin-bottom:.7rem;"><strong>Gen. 6:17-18</strong> <span class="lang-pt">“Olha, eu vou trazer o <span class="k k-sky2">dilúvio (<span class="heb">המבול</span>)</span> de águas sobre a terra … para arruinar toda carne que tem em si o fôlego de vida, debaixo dos céus; tudo o que está na terra expirará, e estabelecerei a minha aliança contigo; e entrarás na arca.”</span><span class="lang-en">"Look, I am going to bring the <span class="k k-sky2">flood (<span class="heb">המבול</span>)</span> of water upon the land … to ruin all flesh, which has in it the breath of life, from under the skies, everything that is on the land will expire, and I will set up my covenant with you; and you will go into the ark."</span></p>
 <p><strong>Gen. 6:20</strong> <span class="lang-pt">“Das aves segundo a sua espécie, e dos animais segundo a sua espécie, de todo réptil do solo segundo a sua espécie, dois de cada espécie virão a ti …”</span><span class="lang-en">"Of the birds after their kind, and of the animals after their kind, of every creeping thing of the ground after its kind, two of every kind will go to you …"</span></p></td>
 <td><span class="th-chip"><span class="lang-pt">Promessa de Deus Cumprida</span><span class="lang-en">God’s Promise Fulfilled</span></span>
-<p style="margin-bottom:.7rem;"><strong>Gen. 7:6</strong> <span class="lang-pt">E Noé era de seiscentos anos, e o <span class="k k-lblue">dilúvio (<span class="heb">המבול</span>)</span> das águas veio sobre a terra.</span><span class="lang-en">And Noah was six hundred years old, and the <span class="k k-lblue">flood (<span class="heb">המבול</span>)</span> of waters came upon the land.</span></p>
-<p><strong>Gen. 7:15-16</strong> <span class="lang-pt">E foram a Noé, para a arca, dois a dois, de toda carne em que havia fôlego de vida, e os que entravam, macho e fêmea de toda carne, foram <span class="k k-lilac">como Elohim lhe havia ordenado</span>.</span><span class="lang-en">And they went to Noah, into the ark, two by two, from all flesh in which was the breath of life, and those going, male and female of all flesh, went <span class="k k-lilac">as Elohim had commanded him</span>.</span></p></td>
+<p style="margin-bottom:.7rem;"><strong>Gen. 7:6</strong> <span class="lang-pt">E Noé era de seiscentos anos, e o <span class="k k-sky2">dilúvio (<span class="heb">המבול</span>)</span> das águas veio sobre a terra.</span><span class="lang-en">And Noah was six hundred years old, and the <span class="k k-sky2">flood (<span class="heb">המבול</span>)</span> of waters came upon the land.</span></p>
+<p><strong>Gen. 7:15-16</strong> <span class="lang-pt">E foram a Noé, para a arca, dois a dois, de toda carne em que havia fôlego de vida, e os que entravam, macho e fêmea de toda carne, foram <span class="k k-lilac2">como Elohim lhe havia ordenado</span>.</span><span class="lang-en">And they went to Noah, into the ark, two by two, from all flesh in which was the breath of life, and those going, male and female of all flesh, went <span class="k k-lilac2">as Elohim had commanded him</span>.</span></p></td>
 </tr>
 <tr>
 <td><span class="th-chip"><span class="lang-pt">Comando de Deus Falado a Noé</span><span class="lang-en">God’s Command Spoken to Noah</span></span>
 <p style="margin-bottom:.7rem;"><strong>Gen. 6:14</strong> <span class="lang-pt">“Faze para ti uma arca de árvores de gofer …”</span><span class="lang-en">"Make for yourself an ark of gopher trees …"</span></p>
 <p><strong>Gen. 6:18-19</strong> <span class="lang-pt">“E estabelecerei a minha aliança contigo; e entrarás na arca, tu e teus filhos, e tua mulher, e as mulheres de teus filhos contigo. E de todo ser vivo de toda carne.”</span><span class="lang-en">"And I will set up my covenant with you; and you will go into the ark, you and your sons and your wife, and your sons’ wives with you. And of every living thing of all flesh."</span></p></td>
 <td><span class="th-chip"><span class="lang-pt">Comando de Deus Obedecido</span><span class="lang-en">God’s Command Obeyed</span></span>
-<p style="margin-bottom:.7rem;"><strong>Gen. 6:22</strong> <span class="lang-pt">E Noé fez conforme <span class="k k-lilac">tudo o que Elohim lhe ordenara</span>, assim ele fez.</span><span class="lang-en">And Noah did according to <span class="k k-lilac">all that Elohim had commanded him</span>, so he did.</span></p>
-<p><strong>Gen. 7:5</strong> <span class="lang-pt">E Noé fez conforme <span class="k k-lilac">tudo o que Iavé lhe ordenara</span>.</span><span class="lang-en">And Noah did according to <span class="k k-lilac">all that Yahweh had commanded him</span>.</span></p></td>
+<p style="margin-bottom:.7rem;"><strong>Gen. 6:22</strong> <span class="lang-pt">E Noé fez conforme <span class="k k-lilac2">tudo o que Elohim lhe ordenara</span>, assim ele fez.</span><span class="lang-en">And Noah did according to <span class="k k-lilac2">all that Elohim had commanded him</span>, so he did.</span></p>
+<p><strong>Gen. 7:5</strong> <span class="lang-pt">E Noé fez conforme <span class="k k-lilac2">tudo o que Iavé lhe ordenara</span>.</span><span class="lang-en">And Noah did according to <span class="k k-lilac2">all that Yahweh had commanded him</span>.</span></p></td>
 </tr>
 <tr>
 <td><span class="th-chip"><span class="lang-pt">Promessa de Deus Falada a Avraham</span><span class="lang-en">God’s Promise Spoken to Avraham</span></span>
@@ -149,7 +235,7 @@
 <p><strong>Gen. 17:10</strong> <span class="lang-pt">“Esta é a minha aliança que guardareis, entre mim e vós, e entre a tua semente depois de ti: <span class="k k-green2">circuncidai (<span class="heb">המול</span>)</span> para vós todo homem.”</span><span class="lang-en">"This is my covenant that y’all will keep, between me and between y’all, and between your seed after you: <span class="k k-green2">circumcise (<span class="heb">המול</span>)</span> for yourselves every male."</span></p></td>
 <td><span class="th-chip"><span class="lang-pt">Comando de Deus Obedecido</span><span class="lang-en">God’s Command Obeyed</span></span>
 <p style="margin-bottom:.7rem;"><strong>Gen. 21:3</strong> <span class="lang-pt">E <span class="k k-lilac">Avraham chamou o nome do seu filho</span>, aquele nascido para ele, que Sara nascera para ele, <span class="k k-lilac">Yitskhaq</span> (Riso).</span><span class="lang-en">And <span class="k k-lilac">Avraham called the name of his son</span>, the one born for him, whom Sarah had birthed for him, <span class="k k-lilac">Yitskhaq</span> (Laughter).</span></p>
-<p><strong>Gen. 21:4</strong> <span class="lang-pt"><span class="k k-green2">E Avraham circuncidou Yitskhaq</span> seu filho, filho de oito dias, <span class="k k-lilac">como Elohim lhe ordenara</span>.</span><span class="lang-en"><span class="k k-green2">And Avraham circumcised Yitskhaq</span> his son, a son of eight days, <span class="k k-lilac">just as Elohim commanded him</span>.</span></p></td>
+<p><strong>Gen. 21:4</strong> <span class="lang-pt"><span class="k k-green2">E Avraham circuncidou Yitskhaq</span> seu filho, filho de oito dias, <span class="k k-lilac2">como Elohim lhe ordenara</span>.</span><span class="lang-en"><span class="k k-green2">And Avraham circumcised Yitskhaq</span> his son, a son of eight days, <span class="k k-lilac2">just as Elohim commanded him</span>.</span></p></td>
 </tr>
 <tr>
 <td><strong>Gen. 17:19</strong> <span class="lang-pt">E Elohim disse: “Não obstante, Sara tua mulher dará à luz para ti um filho, e <span class="k k-lilac">chamarás o nome dele ‘Yitskhaq’</span> (Riso), e estabelecerei a minha aliança com ele.”</span><span class="lang-en">And Elohim said, "Nonetheless, Sarah your wife will birth for you a son, <span class="k k-lilac">and you will call his name ‘Yitskhaq’</span> (Laughter), and I will establish my covenant with him."</span></td>
@@ -202,7 +288,7 @@
 <p class="v-line i1"><span class="lang-pt">ouve a voz dela,</span><span class="lang-en">listen to her voice,</span></p>
 <p class="v-line i1"><span class="lang-pt">porque é por <span class="k k-tan">Yitskhaq (<span class="heb">יצחק</span>)</span> que a tua <span class="k k-green">semente</span> será chamada.</span><span class="lang-en">because it’s by <span class="k k-tan">Yitskhaq (<span class="heb">יצחק</span>)</span> that your <span class="k k-green">seed</span> will be called.</span></p>
 <p class="v-line i1"><sup class="vs"><span class="lang-pt">13</span><span class="lang-en">13</span></sup> <span class="lang-pt">E também, o <span class="k k-blue">filho</span> <span class="k k-lilac">da escrava</span>,</span><span class="lang-en">And also, the <span class="k k-blue">son</span> <span class="k k-lilac">of the slave woman</span> ,</span></p>
-<p class="v-line i1"><span class="k k-lblue"><span class="lang-pt">eu o farei uma nação</span><span class="lang-en">I will make him into a nation</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></p>
+<p class="v-line i1"><span class="k k-cyan2"><span class="lang-pt">eu o farei uma nação</span><span class="lang-en">I will make him into a nation</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></p>
 <p class="v-line i1"><span class="lang-pt">porque ele é a tua <span class="k k-green">semente</span>.”</span><span class="lang-en">because he is your <span class="k k-green">seed</span> .”</span></p>
 </div>
 </div>

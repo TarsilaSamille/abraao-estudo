@@ -12,17 +12,101 @@
 <link href="../../css/shared-tutorial.css" rel="stylesheet"/>
 <style>
 @import url('../css/session-base.css');
+
+/* ------------------------------------------------------------------
+   Paleta da sessao 16 — autoridade: PDF (teacher notes, pags 116-123).
+   O PDF usa uma paleta propria, diferente dos tokens do DESIGN.md.
+   Todos os valores abaixo foram extraidos dos preenchimentos/traços/
+   textos do PDF e medidos nos PNGs renderizados.
+   ------------------------------------------------------------------ */
+
+/* --- Tinta e texto --- */
+body { color: #1b1b1b; }
+h1.title, h2.section, h3.sub { color: #1b1b1b; }
+p.body, ul.bullets > li { color: #1b1b1b; }
+ul.bullets > li::before { color: #1b1b1b; }
+.scripture-text { color: #1b1b1b; }
+.cx h4 { color: #1b1b1b; }
+.v-line { color: #1b1b1b; }
+sup.vs { color: #1b1b1b; }
+.lbl { color: #4f5669; }
+.caption { color: #4f5669; }
+.label, .adapt, .scripture-type, .doc-table tfoot td { color: #4f5669; }
+.page-footer { color: #2c2c2c; border-top-color: #c1c9d0; }
+.rule { border-top-color: #c1c9d0 !important; }
+.scripture-label { color: #1b1b1b; }
+.mcol-title { color: #1b1b1b; }
+.ref { color: #1b1b1b; }
+
+/* --- Tracos e superficies --- */
+.scripture { border-left-color: #e4e8ed; }
+.scripture:hover { border-left-color: #e4e8ed; }
+.scripture .innerbox { background: #f9fafc; }
+.v-outer, .v-light { border-color: #e4e8ed; }
+.v-black { border-color: #1b1b1b; }
+.v-div { border-top-color: #e4e8ed; }
+.vbar-b { border-left-color: #5869cd; }
+
+/* --- Chips de realce (.k) — cores medidas no PDF, pag 119-120 --- */
+.k-blue   { background: #3678b4; }  /* "seen/saw" (ראה) */
+.k-indigo { background: #5869cd; }  /* verbos de acao: correu, apressou-se */
+.k-green  { background: #3a8060; }
+.k-rose   { background: #be4967; }
+.k-gray   { background: #6b7384; }
+.k-rust   { background: #b5543a; }
+.k-teal   { background: #097d8d; }
+.k-purple { background: #7e62bc; }
+.k-brown  { background: #816f4d; }
+.t-teal   { color: #097d8d; }
+.k { padding: 1px 8px; line-height: 1.5; }
+
+/* Destaques suaves dentro da tabela (PDF pag 121-122) */
+.kblue-soft { background: #d9ecfd; color: #404ca6; }
+.kgray-soft { background: #e4e8ed; color: #4f5669; padding: 2px 8px; border-radius: 6px; font-weight: 700; }
+
+/* --- Diagramas: Macro Design (PDF pag 116) --- */
+.mcol { border-color: #3a8060; }
+.mcol.dark { border-color: #3e4054; }
+.mtag-green { background: #3a8060; }
+.mtag-dark { background: #3e4054; }
+.mbox { border-color: #6b7384; }
+.mbox .mhdr { background: #6b7384; }
+.mcol, .mbox, .cx, .v-outer, .v-black, .v-light, .doc-table { border-width: 2px; }
+
+/* --- Quiasm (PDF pag 117-118): preenchimento = cor do traco a 15% --- */
+.cx-slate  { border-color: #6b7384; background: rgba(107,115,132,.15); }
+.cx-slate  .cx-tag { background: #6b7384; }
+.cx-rust   { border-color: #b5543a; background: rgba(181,84,58,.15); }
+.cx-rust   .cx-tag { background: #b5543a; }
+.cx-rose   { border-color: #be4967; background: rgba(190,73,103,.15); }
+.cx-rose   .cx-tag { background: #be4967; }
+.cx-blue   { border-color: #5869cd; background: rgba(88,105,205,.15); }
+.cx-blue   .cx-tag { background: #5869cd; }
+.cx-green  { border-color: #3a8060; background: rgba(58,128,96,.15); }
+.cx-green  .cx-tag { background: #3a8060; }
+.cx-purple { border-color: #9855af; background: rgba(152,85,175,.15); }
+.cx-purple .cx-tag { background: #9855af; }
+.cx-tan    { border-color: #816f4d; background: rgba(129,111,77,.15); }
+.cx-tan    .cx-tag { background: #816f4d; }
+.cx { border-radius: 12px; }
+
+/* --- Tabela de cotejo (PDF pag 121-122) --- */
+.doc-table { border-color: #e4e8ed; }
+.doc-table th { background: #e4e8ed; color: #1b1b1b; }
+.doc-table td { color: #1b1b1b; border-top-color: #e4e8ed; }
+.doc-table td + td { border-left-color: #e4e8ed; }
+.doc-table tfoot td { background: #e4e8ed; border-top-color: #e4e8ed; }
 </style>
 </head>
 <body>
 <div aria-hidden="true" id="reading-progress"></div>
 <div class="fixed left-4 top-4 z-50 print:hidden">
-<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" href="index.html">
+<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" href="index.html">
 <span><span class="lang-pt">←</span><span class="lang-en">←</span></span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
 </a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
-<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" onclick="window.print()">
+<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" onclick="window.print()">
 <svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect height="8" width="12" x="6" y="14"></rect></svg>
 <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
 </button>
@@ -189,7 +273,7 @@
 </ul>
 </div>
 </div>
-<p class="caption reveal"><span class="lang-pt"><em>Gênesis 18:1-19:38 (Wenham)</em>. Adaptado de Wenham, Gordon (2015). <a class="ref" href="#" style="color:#1d3fd8;">Gênesis 16-50, Volume 2 (Word Biblical Commentary)</a>. Zondervan Academic.</span><span class="lang-en"><em>Genesis 18:1-19:38 (Wenham)</em>. Adapted from Wenham, Gordon (2015). <a class="ref" href="#" style="color:#1d3fd8;">Genesis 16-50, Volume 2 (Word Biblical Commentary)</a>. Zondervan Academic.</span></p>
+<p class="caption reveal"><span class="lang-pt"><em>Gênesis 18:1-19:38 (Wenham)</em>. Adaptado de Wenham, Gordon (2015). <a class="ref" href="#" style="color:#0000ee;">Gênesis 16-50, Volume 2 (Word Biblical Commentary)</a>. Zondervan Academic.</span><span class="lang-en"><em>Genesis 18:1-19:38 (Wenham)</em>. Adapted from Wenham, Gordon (2015). <a class="ref" href="#" style="color:#0000ee;">Genesis 16-50, Volume 2 (Word Biblical Commentary)</a>. Zondervan Academic.</span></p>
 <!-- ============ TRANSLATION 18:1-15 ============ -->
 <h2 class="section reveal"><span class="lang-pt">Tradução e Design Literário de Gênesis 18:1-15</span><span class="lang-en">Translation and Literary Design of Genesis 18:1-15</span></h2>
 <div class="v-outer reveal">
@@ -215,7 +299,7 @@
 <div class="v-line vbar-b" style="display:flex; gap:.9rem;">
 <span class="lbl" style="padding-top:.35rem;"><span class="lang-pt">A</span><span class="lang-en">A</span></span>
 <div>
-<p><span class="lang-pt">e <span class="k k-blue">ele correu</span> da <span class="k k-rose">porta da tenda</span> ao encontro deles,</span><span class="lang-en">and <span class="k k-blue">he ran</span> from <span class="k k-rose">the door of the tent</span> to meet them,</span></p>
+<p><span class="lang-pt">e <span class="k k-indigo">ele correu</span> da <span class="k k-rose">porta da tenda</span> ao encontro deles,</span><span class="lang-en">and <span class="k k-indigo">he ran</span> from <span class="k k-rose">the door of the tent</span> to meet them,</span></p>
 <p><span class="lang-pt">e inclinou-se até a terra.</span><span class="lang-en">and he bowed to the ground.</span></p>
 </div>
 </div>
@@ -225,24 +309,24 @@
 <p class="v-line"><span class="lang-pt">“Meu senhor, por favor, se achei favor aos teus olhos,</span><span class="lang-en">“My master, please, if I have found favor in your eyes,</span></p>
 <p class="v-line i1"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><span class="lang-pt">por favor, não <span class="t-teal">passe (<span class="heb">עבר</span>)</span> adiante do <span class="k k-gray">teu servo</span>.</span><span class="lang-en">please don’t <span class="t-teal">pass on (<span class="heb">עבר</span>)</span> from <span class="k k-gray">your servant</span> .</span></p>
 <p class="v-line i2"><span class="lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></span><sup class="vs"><span class="lang-pt">4</span><span class="lang-en">4</span></sup> <span class="lang-pt">Que se tome, por favor, <span class="k k-rust">um pouco de água</span>,</span><span class="lang-en">Let him please <span class="k k-rust">take a little water</span> ,</span></p>
-<p class="v-line i3"><span class="lbl"><span class="lang-pt">c</span><span class="lang-en">c</span></span><span class="k k-blue"><span class="lang-pt">para que laveis os pés</span><span class="lang-en">so you can wash your feet</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></p>
+<p class="v-line i3"><span class="lbl"><span class="lang-pt">c</span><span class="lang-en">c</span></span><span class="k k-indigo"><span class="lang-pt">para que laveis os pés</span><span class="lang-en">so you can wash your feet</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></p>
 <p class="v-line i3"><span class="lbl"><span class="lang-pt">d</span><span class="lang-en">d</span></span><span class="lang-pt">e <span class="k k-green">reclinai-vos debaixo da árvore;</span></span><span class="lang-en">and <span class="k k-green">recline under the tree;</span></span></p>
 <p class="v-line i2"><span class="lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></span><sup class="vs"><span class="lang-pt">5</span><span class="lang-en">5</span></sup> <span class="lang-pt">para que eu tome <span class="k k-rust">um bocado de pão</span>,</span><span class="lang-en">that I may <span class="k k-rust">take a bit of bread</span> ,</span></p>
-<p class="v-line i3"><span class="lbl"><span class="lang-pt">c'</span><span class="lang-en">c'</span></span><span class="k k-blue"><span class="lang-pt">para que sustenteis o coração</span><span class="lang-en">so you can sustain your hearts</span></span><span class="lang-pt">.</span><span class="lang-en">.</span></p>
+<p class="v-line i3"><span class="lbl"><span class="lang-pt">c'</span><span class="lang-en">c'</span></span><span class="k k-indigo"><span class="lang-pt">para que sustenteis o coração</span><span class="lang-en">so you can sustain your hearts</span></span><span class="lang-pt">.</span><span class="lang-en">.</span></p>
 <p class="v-line i1"><span class="lang-pt">Então podereis <span class="t-teal">passar (<span class="heb">עבר</span>)</span>,</span><span class="lang-en">Then you can <span class="t-teal">pass on (<span class="heb">עבר</span>)</span> ,</span></p>
 <p class="v-line i1"><span class="lang-pt">pois por isso <span class="t-teal">passastes (<span class="heb">עבר</span>)</span> pelo vosso servo!”</span><span class="lang-en">for this reason you have <span class="t-teal">passed by (<span class="heb">עבר</span>)</span> your servant!”</span></p>
 <hr class="v-div"/>
 <p class="v-line"><span class="lang-pt">E eles disseram:</span><span class="lang-en">And they said,</span></p>
 <p class="v-line i1"><span class="lang-pt">“Faze como disseste.”</span><span class="lang-en">“So do as you have spoken.”</span></p>
 <hr class="v-div"/>
-<p class="v-line"><sup class="vs"><span class="lang-pt">6</span><span class="lang-en">6</span></sup> <span class="lang-pt">E Avraham <span class="k k-blue">apressou-se</span> <span class="k k-rose">para dentro da tenda</span> a Sara,</span><span class="lang-en">And Avraham <span class="k k-blue">hurried</span> <span class="k k-rose">into the tent</span> to Sarah,</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">6</span><span class="lang-en">6</span></sup> <span class="lang-pt">E Avraham <span class="k k-indigo">apressou-se</span> <span class="k k-rose">para dentro da tenda</span> a Sara,</span><span class="lang-en">And Avraham <span class="k k-indigo">hurried</span> <span class="k k-rose">into the tent</span> to Sarah,</span></p>
 <p class="v-line"><span class="lang-pt">e ele disse:</span><span class="lang-en">and he said,</span></p>
-<p class="v-line i1"><span class="lang-pt">“<span class="k k-blue">Depressa</span>! Três medidas de flor de farinha!</span><span class="lang-en">“<span class="k k-blue">Hurry</span> ! Three measures of wheat flour!</span></p>
+<p class="v-line i1"><span class="lang-pt">“<span class="k k-indigo">Depressa</span>! Três medidas de flor de farinha!</span><span class="lang-en">“<span class="k k-indigo">Hurry</span> ! Three measures of wheat flour!</span></p>
 <p class="v-line i1"><span class="lang-pt">Amassa-a e faze bolos!”</span><span class="lang-en">Knead it and make cakes!”</span></p>
-<p class="v-line"><sup class="vs"><span class="lang-pt">7</span><span class="lang-en">7</span></sup> <span class="lang-pt">Então Avraham <span class="k k-blue">correu</span> ao gado,</span><span class="lang-en">Then Avraham <span class="k k-blue">ran</span> to the cattle,</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">7</span><span class="lang-en">7</span></sup> <span class="lang-pt">Então Avraham <span class="k k-indigo">correu</span> ao gado,</span><span class="lang-en">Then Avraham <span class="k k-indigo">ran</span> to the cattle,</span></p>
 <p class="v-line i1"><span class="k k-gray"><span class="lang-pt">e tomou</span><span class="lang-en">and he took</span></span> <span class="k k-rose"><span class="lang-pt">um bezerro</span><span class="lang-en">a calf</span></span><span class="lang-pt">, </span><span class="lang-en">, </span><span class="lang-pt">bom e tenro,</span><span class="lang-en">good and tender,</span></p>
 <p class="v-line i1"><span class="k k-gray"><span class="lang-pt">e deu-o</span><span class="lang-en">and he gave</span></span> <span class="lang-pt">ao moço,</span><span class="lang-en">it to the young man,</span></p>
-<p class="v-line"><span class="lang-pt">e <span class="k k-blue">apressou-se</span> <span class="k k-rose">em prepará-lo</span>.</span><span class="lang-en">and <span class="k k-blue">he hurried</span> <span class="k k-rose">to make it</span> .</span></p>
+<p class="v-line"><span class="lang-pt">e <span class="k k-indigo">apressou-se</span> <span class="k k-rose">em prepará-lo</span>.</span><span class="lang-en">and <span class="k k-indigo">he hurried</span> <span class="k k-rose">to make it</span> .</span></p>
 <p class="v-line i1"><sup class="vs"><span class="lang-pt">8</span><span class="lang-en">8</span></sup> <span class="k k-gray"><span class="lang-pt">E tomou</span><span class="lang-en">And he took</span></span> <span class="lang-pt">coalhada e leite e</span><span class="lang-en">curds and milk and</span> <span class="k k-rose"><span class="lang-pt">o bezerro que fizera</span><span class="lang-en">the calf he made</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></p>
 <p class="v-line i1"><span class="k k-gray"><span class="lang-pt">e pô-lo</span><span class="lang-en">and he gave</span></span> <span class="lang-pt">diante deles.</span><span class="lang-en">it before them.</span></p>
 <p class="v-line"><span class="lang-pt">Ora, <span class="k k-green">ele estava de pé junto a eles debaixo da árvore</span>,</span><span class="lang-en">Now, <span class="k k-green">he was standing by them under the tree</span> ,</span></p>
@@ -328,23 +412,23 @@
 <td><strong>Gen. 2:9</strong> <span class="lang-pt">“E da terra Iavé Elohim fez brotar toda árvore desejável de se ver e boa para comer; a <span class="kblue-soft">árvore da vida</span> também <span class="kblue-soft">no meio do jardim</span>, e <span class="kblue-soft">a árvore</span> do conhecimento do bem e do mal.”</span><span class="lang-en">“Out of the ground Yahweh Elohim caused to grow every tree that is desirable to see, and good for eating; the <span class="kblue-soft">tree of life</span> also in <span class="kblue-soft">the middle of the garden</span> , and <span class="kblue-soft">the tree</span> of knowing good and bad.”</span></td>
 </tr>
 <tr>
-<td><strong>Gen. 18:2</strong> <span class="lang-pt">“E Avraham <span class="kblue-soft">viu</span> (<span class="heb">וירא</span>) …”</span><span class="lang-en">“And Avraham <span class="kblue-soft">saw</span> (<span class="heb">וירא</span>) …”</span></td>
-<td><strong>Gen. 3:6</strong> <span class="lang-pt">“E a mulher <span class="kblue-soft">viu</span> (<span class="heb">ותרא</span>) …”</span><span class="lang-en">“And the woman <span class="kblue-soft">saw</span> (<span class="heb">ותרא</span>) …"</span></td>
+<td><strong>Gen. 18:2</strong> <span class="lang-pt">“E Avraham <span class="kgray-soft">viu</span> (<span class="heb">וירא</span>) …”</span><span class="lang-en">“And Avraham <span class="kgray-soft">saw</span> (<span class="heb">וירא</span>) …”</span></td>
+<td><strong>Gen. 3:6</strong> <span class="lang-pt">“E a mulher <span class="kgray-soft">viu</span> (<span class="heb">ותרא</span>) …”</span><span class="lang-en">“And the woman <span class="kgray-soft">saw</span> (<span class="heb">ותרא</span>) …"</span></td>
 </tr>
 <tr>
-<td><strong>Gen. 18:4</strong> <span class="lang-pt">“Refrescai-vos <span class="kblue-soft">debaixo da árvore</span> (<span class="heb">תחת העץ</span>)”</span><span class="lang-en">“Be refreshed <span class="kblue-soft">under the tree</span> (<span class="heb">תחת העץ</span>)”</span></td>
-<td><strong>Gen. 3:6</strong> <span class="lang-pt">“… que a <span class="kblue-soft">árvore era boa</span>” (<span class="heb">טוב העץ</span>)</span><span class="lang-en">“… that the <span class="kblue-soft">tree was good</span> ” (<span class="heb">טוב העץ</span>)</span></td>
+<td><strong>Gen. 18:4</strong> <span class="lang-pt">“Refrescai-vos <span class="kgray-soft">debaixo da árvore</span> (<span class="heb">תחת העץ</span>)”</span><span class="lang-en">“Be refreshed <span class="kgray-soft">under the tree</span> (<span class="heb">תחת העץ</span>)”</span></td>
+<td><strong>Gen. 3:6</strong> <span class="lang-pt">“… que a <span class="kgray-soft">árvore era boa</span>” (<span class="heb">טוב העץ</span>)</span><span class="lang-en">“… that the <span class="kgray-soft">tree was good</span> ” (<span class="heb">טוב העץ</span>)</span></td>
 </tr>
 <tr>
-<td><strong>Gen. 18:7-8</strong> <span class="lang-pt">“E [Avraham] <span class="kblue-soft">tomou</span> (<span class="heb">ויקח</span>) um filho do gado, <span class="kblue-soft">tenro e bom</span> (<span class="heb">רך וטוב</span>) e <span class="kblue-soft">deu-o</span> (<span class="heb">ויתן</span>) a eles … <span class="kblue-soft">debaixo da árvore</span> (<span class="heb">תחת העץ</span>), <span class="kblue-soft">e comeram</span> (<span class="heb">ויאכלו</span>)”</span><span class="lang-en">“And [Avraham] <span class="kblue-soft">took</span> (<span class="heb">ויקח</span>) a son of a cow, <span class="kblue-soft">tender and good</span> (<span class="heb">רך וטוב</span>) and <span class="kblue-soft">he gave</span> (<span class="heb">ויתן</span>) to them … <span class="kblue-soft">under the tree</span> (<span class="heb">תחת העץ</span>), <span class="kblue-soft">and they ate</span> (<span class="heb">ויאכלו</span>)”</span></td>
-<td><strong>Gen. 3:6-7</strong> <span class="lang-pt">“E a mulher <span class="kblue-soft">tomou</span> (<span class="heb">ותקח</span>) do fruto [da árvore do conhecimento <span class="kblue-soft">do bem e do mal</span> (<span class="heb">טוב ורע</span>)] <span class="kblue-soft">e comeu</span> (<span class="heb">ותאכל</span>) e <span class="kblue-soft">deu</span> (<span class="heb">ותתן</span>) a seu marido <span class="kblue-soft">e ele comeu</span> (<span class="heb">ויאכל</span>)”</span><span class="lang-en">“And the woman <span class="kblue-soft">took</span> (<span class="heb">ותקח</span>) from the fruit [of the tree of knowing <span class="kblue-soft">good and bad</span> (<span class="heb">טוב ורע</span>)] <span class="kblue-soft">and she ate</span> (<span class="heb">ותאכל</span>) and <span class="kblue-soft">she gave</span> (<span class="heb">ותתן</span>) to her husband <span class="kblue-soft">and he ate</span> (<span class="heb">ויאכל</span>)”</span></td>
+<td><strong>Gen. 18:7-8</strong> <span class="lang-pt">“E [Avraham] <span class="kgray-soft">tomou</span> (<span class="heb">ויקח</span>) um filho do gado, <span class="kgray-soft">tenro e bom</span> (<span class="heb">רך וטוב</span>) e <span class="kgray-soft">deu-o</span> (<span class="heb">ויתן</span>) a eles … <span class="kgray-soft">debaixo da árvore</span> (<span class="heb">תחת העץ</span>), <span class="kgray-soft">e comeram</span> (<span class="heb">ויאכלו</span>)”</span><span class="lang-en">“And [Avraham] <span class="kgray-soft">took</span> (<span class="heb">ויקח</span>) a son of a cow, <span class="kgray-soft">tender and good</span> (<span class="heb">רך וטוב</span>) and <span class="kgray-soft">he gave</span> (<span class="heb">ויתן</span>) to them … <span class="kgray-soft">under the tree</span> (<span class="heb">תחת העץ</span>), <span class="kgray-soft">and they ate</span> (<span class="heb">ויאכלו</span>)”</span></td>
+<td><strong>Gen. 3:6-7</strong> <span class="lang-pt">“E a mulher <span class="kgray-soft">tomou</span> (<span class="heb">ותקח</span>) do fruto [da árvore do conhecimento <span class="kgray-soft">do bem e do mal</span> (<span class="heb">טוב ורע</span>)] <span class="kgray-soft">e comeu</span> (<span class="heb">ותאכל</span>) e <span class="kgray-soft">deu</span> (<span class="heb">ותתן</span>) a seu marido <span class="kgray-soft">e ele comeu</span> (<span class="heb">ויאכל</span>)”</span><span class="lang-en">“And the woman <span class="kgray-soft">took</span> (<span class="heb">ותקח</span>) from the fruit [of the tree of knowing <span class="kgray-soft">good and bad</span> (<span class="heb">טוב ורע</span>)] <span class="kgray-soft">and she ate</span> (<span class="heb">ותאכל</span>) and <span class="kgray-soft">she gave</span> (<span class="heb">ותתן</span>) to her husband <span class="kgray-soft">and he ate</span> (<span class="heb">ויאכל</span>)”</span></td>
 </tr>
 <tr>
 <td><strong>Gen. 18:9</strong> <span class="lang-pt">“Onde (<span class="heb">איה</span>) está Sara, tua mulher?” + “Ela está no meio da tenda (<span class="heb">באהל</span>)”</span><span class="lang-en">“Where (<span class="heb">איה</span>) is Sarah your wife?” + “She’s in the midst of the tent (<span class="heb">באהל</span>)”</span></td>
 <td><strong>Gen. 3:9</strong> <span class="lang-pt">“E Iavé chamou o humano: ‘Onde estás (<span class="heb">איכה</span>)?’”</span><span class="lang-en">“And Yahweh called to the human, 'Where are you (<span class="heb">איכה</span>)?'”</span></td>
 </tr>
 <tr>
-<td><strong>Gen. 18:10-12</strong> <span class="lang-pt">“E Sara escutava (<span class="heb">שמע</span>) atrás da entrada da tenda … e ela riu, dizendo: ‘Depois de gasta, terei eu <span class="kblue-soft">Éden</span> (<span class="heb">עדנה</span>)?’”</span><span class="lang-en">“And Sarah was listening (<span class="heb">שמע</span>) behind the entrance of the tent … and she laughed, saying, 'After I’m worn out, shall I have <span class="kblue-soft">Eden</span> (<span class="heb">עדנה</span>)?'”</span></td>
+<td><strong>Gen. 18:10-12</strong> <span class="lang-pt">“E Sara escutava (<span class="heb">שמע</span>) atrás da entrada da tenda … e ela riu, dizendo: ‘Depois de gasta, terei eu <span class="kgray-soft">Éden</span> (<span class="heb">עדנה</span>)?’”</span><span class="lang-en">“And Sarah was listening (<span class="heb">שמע</span>) behind the entrance of the tent … and she laughed, saying, 'After I’m worn out, shall I have <span class="kgray-soft">Eden</span> (<span class="heb">עדנה</span>)?'”</span></td>
 <td><strong>Gen. 3:10</strong> <span class="lang-pt">“Eu ouvi (<span class="heb">שמע</span>) a tua voz no jardim (<span class="heb">גן</span>) [do Éden (<span class="heb">עדן</span>)].”</span><span class="lang-en">“I heard (<span class="heb">שמע</span>) your voice in the garden (<span class="heb">גן</span>) [of Eden (<span class="heb">עדן</span>)].”</span></td>
 </tr>
 <tr>
@@ -353,7 +437,7 @@
 </tr>
 <tr>
 <td><strong>Gen. 18:15</strong> <span class="lang-pt">“Mas Sara mentiu (<span class="heb">כחש</span>), dizendo ‘Eu não ri.’ Porque ela teve medo (<span class="heb">ירא</span>).”</span><span class="lang-en">“But Sarah lied (<span class="heb">כחש</span>), saying 'I did not laugh.' Because she was afraid (<span class="heb">ירא</span>).”</span></td>
-<td><p style="margin-bottom:.7rem;"><strong>Gen. 3:10</strong> <span class="lang-pt">“Eu ouvi (<span class="heb">שמע</span>) a tua voz no jardim, <span class="kblue-soft">e tive medo</span> (<span class="heb">ירא</span>), então me escondi.”</span><span class="lang-en">“I heard (<span class="heb">שמע</span>) your voice in the garden, <span class="kblue-soft">and I was afraid</span> (<span class="heb">ירא</span>), so I hid.”</span></p>
+<td><p style="margin-bottom:.7rem;"><strong>Gen. 3:10</strong> <span class="lang-pt">“Eu ouvi (<span class="heb">שמע</span>) a tua voz no jardim, <span class="kgray-soft">e tive medo</span> (<span class="heb">ירא</span>), então me escondi.”</span><span class="lang-en">“I heard (<span class="heb">שמע</span>) your voice in the garden, <span class="kgray-soft">and I was afraid</span> (<span class="heb">ירא</span>), so I hid.”</span></p>
 <p><strong>Gen. 3:1-2:</strong> <span class="lang-pt">A serpente (<span class="heb">נחש</span>) mente à mulher.</span><span class="lang-en">The snake (<span class="heb">נחש</span>) lies to the woman.</span></p></td>
 </tr>
 </tbody>
@@ -383,10 +467,7 @@
 <span class="lang-pt">Anotações de Aula: Abraão</span><span class="lang-en">Class Notes: Abraham</span>
 <span class="lang-pt">Sessão 16</span><span class="lang-en">Session 16</span>
 </footer>
-<!-- conteudo adicional do PDF -->
-<p class="body reveal"><span class="lang-en">ate (‫”)ויאכלו‬</span></p>
-<p class="body reveal"><span class="lang-en">‫[ )גן‬of Eden (‫])עדן‬.”</span></p>
-<p class="body reveal"><span class="lang-en">Eden (‫”'?)עדנה‬</span></p>
+
 </div>
 <script src="../../js/verse-modal.js"></script>
 <script src="../../js/reading-progress.js"></script>

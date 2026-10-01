@@ -12,17 +12,109 @@
 <link href="../../css/shared-tutorial.css" rel="stylesheet"/>
 <style>
 @import url('../css/session-base.css');
+
+/* ==========================================================================
+   Sessão 26 — paleta e componentes tirados do PDF (sessao-26.pdf).
+   O PDF é a autoridade: ink #1b1b1b, caption #4f5669, hairline #e4e8ed,
+   regra do título #c1c9d0, rodapé #2c2c2c.
+   ========================================================================== */
+body { color: #1b1b1b; }
+h1.title, h2.section, h3.sub, .scripture-label { color: #1b1b1b; }
+p.body, ul.bullets > li, .doc-table td, .scripture-text { color: #1b1b1b; }
+.label, .caption, .scripture-type, .adapt { color: #4f5669; }
+.ref { color: #1b1b1b; }
+.page-header { border-bottom: 1px solid #c1c9d0; padding-bottom: .7rem; }
+.page-footer { color: #2c2c2c; border-top: 1px solid #e4e8ed; }
+.scripture { border-left: 4px solid #e4e8ed; }
+.doc-table { border: 1px solid #e4e8ed; border-radius: 12px; }
+.doc-table th { background: #e4e8ed; color: #1b1b1b; }
+.doc-table td { border-top: 1px solid #e4e8ed; }
+.doc-table td + td { border-left: 1px solid #e4e8ed; }
+.doc-table tfoot td { border-top: 1px solid #e4e8ed; background: #fff; color: #4f5669; }
+
+/* --- 1. Literary-design diagram (Genesis 23:1-20) ---------------------- */
+.diagram-box { position: relative; border: 1px solid #3e4054; border-radius: 10px; background: #fff; padding: 1.5rem 1.1rem .8rem; margin: .65rem 0; }
+.diagram-box .bullets > li { font-size: .85rem; line-height: 1.6; margin-bottom: .3rem; color: #1b1b1b; }
+.diagram-box .bullets > li::before { color: #1b1b1b; }
+.tag { display: inline-block; background: #3e4054; color: #fff; font-size: .78rem; font-weight: 700; padding: .18rem .5rem; border-radius: 4px; }
+.tag-dark { background: #3e4054; }
+.tag-slate { background: #6b7384; }
+
+/* --- 2. Bloco de tradução (cartões de Gênesis 23) ---------------------- */
+.gen-block { border: 1px solid #e4e8ed; border-radius: 14px; background: #fff; padding: 1.5rem 1.4rem; margin: 1.75rem 0; }
+.gen-row + .gen-row { margin-top: 1rem; }
+.gen-cardwrap { position: relative; }
+/* v.1-2 (com tab) e v.3-16 pertencem ao mesmo cartão do PDF: sem borda própria */
+.gen-row:nth-child(2) > .gen-cardwrap > .gen-card { border: 0; padding: 0; margin-top: 0; }
+.gen-card { border: 1px solid #e4e8ed; border-radius: 12px; background: #fff; padding: .85rem 1.05rem; margin-top: .9rem; }
+.gen-card + .gen-card { margin-top: .7rem; }
+.gen-card.black-border { border-color: #1b1b1b; }
+.gen-card-tab { padding-bottom: .3rem; }
+.gen-tab { display: inline-block; background: #3e4054; color: #fff; font-size: .78rem; font-weight: 700; padding: .18rem .55rem; border-radius: 4px; margin-bottom: .7rem; }
+.tline { font-size: 1.02rem; line-height: 1.85; color: #1b1b1b; }
+.tline.indent-1 { padding-left: 1.1rem; }
+.tline.indent-2 { padding-left: 2.5rem; }
+.tline.mt-2 { margin-top: .5rem; }
+sup.vs { font-size: .7em; color: #1b1b1b; font-weight: 500; margin-right: .28em; }
+hr.my-3 { border: 0; border-top: 1px solid #e4e8ed; margin: .85rem 0; }
+
+/* --- 3. Death by the Sacred Tree --------------------------------------- */
+.tree-grid { display: grid; grid-template-columns: 1fr 46px 1fr; align-items: stretch; gap: .35rem; margin: 1.75rem 0 .75rem; }
+.tree-col { display: flex; flex-direction: column; gap: .55rem; }
+.tree-box { border: 1px solid #080808; border-radius: 4px; background: #fff; padding: .85rem .95rem; }
+.tree-txt { font-size: .8rem; line-height: 1.7; color: #1b1b1b; }
+.tree-ref { font-size: .8rem; line-height: 1.7; color: #1b1b1b; margin-bottom: .1rem; }
+.tree-box .tree-box + .tree-box { margin-top: .55rem; }
+.tree-arrows { position: relative; }
+.tree-arrows svg { position: absolute; left: 0; width: 46px; height: 26px; overflow: visible; }
+.tree-arrows svg:nth-child(1) { top: 22%; }
+.tree-arrows svg:nth-child(2) { top: 62%; }
+.tree-arrows svg:first-child { transform: rotate(13deg); }
+.tree-arrows svg:last-child { transform: rotate(-13deg); }
+
+/* --- 4. Realces de palavras-chave (cores do PDF) ----------------------- */
+.hl-life, .hl-immigrant, .word-burial, .hl-possession, .hl-teal,
+.hl-transfer, .hl-place, .hl-silver, .hl-dead, .hl-slate, .hl-gate {
+  padding: .05em .28em; border-radius: 3px; font-weight: 700;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+.hl-sarah, .hl-years, .hl-bow, .hl-heth {
+  padding: .05em .3em; border-radius: 3px; color: #fff; font-weight: 700;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+.word-blue { color: #5869cd; font-weight: 400; }
+.hl-life      { background: #ccf1fa; color: #245791; }
+.hl-immigrant { background: #f7e1f5; color: #713c92; }
+.word-burial  { background: #fae4c4; color: #b5543a; }
+.hl-possession{ background: #d3f2cd; color: #2b6146; }
+.hl-teal      { background: #b9eff7; color: #00626f; }
+.hl-transfer  { background: #d9ecfd; color: #404ca6; }
+.hl-place     { background: #fae4c4; color: #91362e; }
+.hl-silver    { background: #f9e3de; color: #972a4e; }
+.hl-sarah     { background: #3678b4; }
+.hl-years     { background: #9855af; }
+.hl-bow       { background: #9855af; }
+.hl-heth      { background: #313c86; }
+.hl-dead      { background: #e4e8ed; color: #4f5669; font-weight: 400; }
+.hl-slate     { background: #e4e8ed; color: #4f5669; }
+.hl-gate      { background: #efe8db; color: #645537; }
+.hl-bless     { background: #f7e1f5; color: #713c92; }
+
+@media (max-width: 860px) {
+  .tree-grid { grid-template-columns: 1fr; }
+  .tree-arrows { display: none; }
+}
 </style>
 </head>
 <body>
 <div aria-hidden="true" id="reading-progress"></div>
 <div class="fixed left-4 top-4 z-50 print:hidden">
-<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" href="index.html">
+<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" href="index.html">
 <span><span class="lang-pt">←</span><span class="lang-en">←</span></span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
 </a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
-<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" onclick="window.print()">
+<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" onclick="window.print()">
 <svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect height="8" width="12" x="6" y="14"></rect></svg>
 <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
 </button>
@@ -73,7 +165,7 @@
 </li>
 </ul>
 </div>
-<div class="diagram-box" style="margin-left: 1.5rem; border-color: #6b7280;">
+<div class="diagram-box" style="margin-left: 1.5rem; border-color: #4f5669;">
 <span class="tag tag-slate" style="margin-bottom: 0.5rem;"><span class="lang-pt">Genesis 23:3-16</span><span class="lang-en">Genesis 23:3-16</span></span>
 <ul class="bullets" style="margin-top: 0.5rem; margin-bottom: 0;">
 <li><strong>23:3-6</strong> <span class="lang-pt">Negociações com os Heteus: Parte 1</span><span class="lang-en">Negotiations with the Hittites: Part 1</span></li>
@@ -92,7 +184,7 @@
 </ul>
 </div>
 </div>
-<p style="font-style: italic; color: #6b7280; font-size: 0.875rem; margin-bottom: 1.5rem;">
+<p style="font-style: italic; color: #4f5669; font-size: 0.875rem; margin-bottom: 1.5rem;">
 <span class="lang-pt">Gênesis 23:1-20. Design Literário por Tim Mackie para o BibleProject Classroom: Abraham (2021).</span>
 <span class="lang-en">Genesis 23:1-20. Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span>
 </p>
@@ -124,13 +216,13 @@
 <span class="lang-pt">os <span class="hl-years">anos</span> da <span class="hl-life">vida de</span> <span class="hl-sarah">Sara</span>.</span>
 <span class="lang-en">the <span class="hl-years">years</span> of <span class="hl-life">the life of</span> <span class="hl-sarah">Sarah</span>.</span>
 </div>
-<hr class="my-3 border-[#d7dde5]"/>
+<hr class="my-3 border-[#e4e8ed]"/>
 <div class="tline">
 <sup class="vs"><span class="lang-pt">2</span><span class="lang-en">2</span></sup>
 <span class="lang-pt">E <span class="hl-dead">morreu</span> <span class="hl-sarah">Sara</span> em Quiriate-Arba (esta é Hebrom) na terra de Canaã,</span>
 <span class="lang-en">And <span class="hl-sarah">Sarah</span> <span class="hl-dead">died</span> in Qiryat-Arba (this is Hebron) in the land of Canaan,</span>
 </div>
-<hr class="my-3 border-[#d7dde5]"/>
+<hr class="my-3 border-[#e4e8ed]"/>
 <div class="tline">
 <span class="lang-pt">e veio Avraão lamentar por <span class="hl-sarah">Sara</span> e chorar por ela.</span>
 <span class="lang-en">and Avraham went to grieve for <span class="hl-sarah">Sarah</span> and to weep.</span>
@@ -190,7 +282,7 @@
 <span class="lang-pt">para impedir-te de <span class="word-burial">sepultar</span> a <span class="hl-dead">tua morta</span>.”</span>
 <span class="lang-en">to keep you from <span class="word-burial">burying</span> <span class="hl-dead">your dead one</span>.”</span>
 </div>
-<hr class="my-3 border-[#d7dde5]"/>
+<hr class="my-3 border-[#e4e8ed]"/>
 <div class="tline">
 <sup class="vs"><span class="lang-pt">7</span><span class="lang-en">7</span></sup>
 <span class="lang-pt">E levantou-se Avraão e <span class="hl-bow">inclinou-se</span> diante do <span class="word-blue">povo da terra</span>, diante dos <span class="hl-heth">filhos de Hete</span>,</span>
@@ -240,7 +332,7 @@
 <span class="lang-pt">aos olhos dos filhos do meu povo te a dou; <span class="word-burial">sepulta</span> a <span class="hl-dead">tua morta</span>.”</span>
 <span class="lang-en">in the eyes of the sons of my people I give it you, bury <span class="hl-dead">your dead one</span>.”</span>
 </div>
-<hr class="my-3 border-[#d7dde5]"/>
+<hr class="my-3 border-[#e4e8ed]"/>
 <div class="tline">
 <sup class="vs"><span class="lang-pt">12</span><span class="lang-en">12</span></sup>
 <span class="lang-pt">E <span class="hl-bow">Avraão se inclinou diante do</span> <span class="word-blue">povo da terra</span>,</span>
@@ -349,7 +441,7 @@
 </div>
 </div>
 </div>
-<p style="font-style: italic; color: #6b7280; font-size: 0.875rem; margin-bottom: 2.5rem;">
+<p style="font-style: italic; color: #4f5669; font-size: 0.875rem; margin-bottom: 2.5rem;">
 <span class="lang-pt">Gênesis 23:1-20. Tradução e Design Literário por Tim Mackie para o BibleProject Classroom: Abraham (2021).</span>
 <span class="lang-en">Genesis 23:1-20. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span>
 </p>
@@ -404,20 +496,20 @@
 </tr>
 <tr>
 <td>
-<strong>Gen. 22:17</strong> <span class="lang-pt">"Deveras te <span class="hl-teal">abençoarei</span> e multiplicarei a tua descendência... e ela <span class="hl-gate">possuirá a porta dos seus inimigos</span>."</span><span class="lang-en">"I will <span class="hl-teal">bless</span> you and multiply your seed... and <span class="hl-gate">it will possess the gate of its enemies</span>."</span>
+<strong>Gen. 22:17</strong> <span class="lang-pt">"Deveras te <span class="hl-bless">abençoarei</span> e multiplicarei a tua descendência... e ela <span class="hl-gate">possuirá a porta dos seus inimigos</span>."</span><span class="lang-en">"I will <span class="hl-bless">bless</span> you and multiply your seed... and <span class="hl-gate">it will possess the gate of its enemies</span>."</span>
 </td>
 <td>
-<strong>Gen. 22:23</strong> <span class="lang-pt">"E Betuel gerou <span class="hl-teal">Rebeca</span>."</span><span class="lang-en">"And Bethuel caused the birth of <span class="hl-teal">Rivqah</span>."</span>
+<strong>Gen. 22:23</strong> <span class="lang-pt">"E Betuel gerou <span class="hl-bless">Rebeca</span>."</span><span class="lang-en">"And Bethuel caused the birth of <span class="hl-bless">Rivqah</span>."</span>
 </td>
 <td>
-<strong>Gen. 23:19</strong> <span class="lang-pt">"Avraão <span class="hl-teal">sepultou</span> Sara na caverna de Macpela."</span><span class="lang-en">"Avraham <span class="hl-teal">buried</span> Sarah in the cave of Machpelah."</span><br/><br/>
-<span class="text-[0.72rem] text-gray-600"><span class="lang-pt">Nota: A cena da negociação ocorre "na <span class="hl-gate">porta da cidade</span>." (Gen. 23:10, 18)</span><span class="lang-en">Note: The bartering scene takes place "in <span class="hl-gate">the gate of the city</span>." (Gen. 23:10, 18)</span></span>
+<strong>Gen. 23:19</strong> <span class="lang-pt">"Avraão <span class="hl-bless">sepultou</span> Sara na caverna de Macpela."</span><span class="lang-en">"Avraham <span class="hl-bless">buried</span> Sarah in the cave of Machpelah."</span><br/><br/>
+<span class="text-[0.72rem] text-[#4f5669]"><span class="lang-pt">Nota: A cena da negociação ocorre "na <span class="hl-gate">porta da cidade</span>." (Gen. 23:10, 18)</span><span class="lang-en">Note: The bartering scene takes place "in <span class="hl-gate">the gate of the city</span>." (Gen. 23:10, 18)</span></span>
 </td>
 <td>
-<strong>Gen. 24:60</strong> <span class="lang-pt">"E <span class="hl-teal">abençoaram a Rebeca</span> (<span class="heb">ויברכו ... רבקה</span>): 'Nossa irmã, sejas tu em milhares de milhões, e <span class="hl-gate">possua a tua descendência a porta dos seus inimigos</span>!'"</span><span class="lang-en">"And they <span class="hl-teal">blessed Rivqah</span> (<span class="heb">ויברכו ... רבקה</span>), 'You are our sister, may you become ten thousand! <span class="hl-gate">And may your seed possess the gate of its enemies</span>.'"</span>
+<strong>Gen. 24:60</strong> <span class="lang-pt">"E <span class="hl-bless">abençoaram a Rebeca</span> (<span class="heb">ויברכו ... רבקה</span>): 'Nossa irmã, sejas tu em milhares de milhões, e <span class="hl-gate">possua a tua descendência a porta dos seus inimigos</span>!'"</span><span class="lang-en">"And they <span class="hl-bless">blessed Rivqah</span> (<span class="heb">ויברכו ... רבקה</span>), 'You are our sister, may you become ten thousand! <span class="hl-gate">And may your seed possess the gate of its enemies</span>.'"</span>
 </td>
 <td>
-<strong>Gen. 25:10-11</strong> <span class="lang-pt">"E seus filhos <span class="hl-teal">sepultaram-no</span> na caverna de Macpela... E depois da morte de Avraão, Elohim <span class="hl-teal">abençoou</span> a Isaque seu filho."</span><span class="lang-en">"And Avraham’s sons <span class="hl-teal">buried</span> him in the cave of Machpelah... And after the death of Avraham, Elohim <span class="hl-teal">blessed</span> Yitskhaq his son."</span>
+<strong>Gen. 25:10-11</strong> <span class="lang-pt">"E seus filhos <span class="hl-bless">sepultaram-no</span> na caverna de Macpela... E depois da morte de Avraão, Elohim <span class="hl-bless">abençoou</span> a Isaque seu filho."</span><span class="lang-en">"And Avraham’s sons <span class="hl-bless">buried</span> him in the cave of Machpelah... And after the death of Avraham, Elohim <span class="hl-bless">blessed</span> Yitskhaq his son."</span>
 </td>
 </tr>
 </tbody>
@@ -458,39 +550,52 @@
 </p>
 <!-- SACRED TREE DIAGRAM BOX -->
 <div class="tree-grid my-6">
-<div>
-<div class="p-2 border-b border-gray-200 mb-2 font-bold text-sm text-[#17181a]">
-<span class="lang-pt">Estrutura em Gênesis 23</span>
-<span class="lang-en">Structure in Genesis 23</span>
-</div>
-<p class="text-[0.72rem] leading-relaxed">
+<div class="tree-col">
+<div class="tree-box">
+<p class="tree-txt">
 <strong>23:1-3:</strong> <span class="lang-pt">E morreu Sara em Quiriate-Arba (<strong>esta é Hebrom</strong>), <em><strong>na terra de Canaã</strong></em>...</span><span class="lang-en">And Sarah died in Qiryath-’Arba’ (<strong>this is Hebron</strong>), <em><strong>in the land of Canaan</strong></em> ...</span>
 </p>
-<p class="text-[0.72rem] leading-relaxed my-2 text-gray-600">
+</div>
+<div class="tree-box">
+<p class="tree-txt">
 <strong>23:4-16:</strong> <span class="lang-pt">Avraão negocia a compra do lote de sepultamento</span><span class="lang-en">Avraham negotiates the purchase of the burial plot</span>
 </p>
-<p class="text-[0.72rem] leading-relaxed">
+</div>
+<div class="tree-box">
+<p class="tree-txt">
 <strong>23:17, 19:</strong> <span class="lang-pt">O qual estava em <strong>Macpela</strong>, defronte de <strong>Manre</strong>, <strong>o campo e a caverna</strong> que nele estava, <strong>e todas as árvores que estavam no campo</strong>... E depois sepultou Avraão a Sara na <strong>caverna do campo de Macpela</strong>, defronte de <strong>Manre (esta é Hebrom)</strong>, <em><strong>na terra de Canaã.</strong></em></span>
 <span class="lang-en">Which was in <strong>Makpelah</strong>, facing <strong>Mamre</strong>, <strong>the field and the cave</strong> which is in it, <strong>and all the trees which are in the field</strong>... Now, after this, Avraham <strong>buried</strong> Sarah his wife, in <strong>the cave of the field of Makpelah</strong>, facing <strong>Mamre (this is Hebron)</strong>, <em><strong>in the land of Canaan.</strong></em></span>
 </p>
 </div>
-<div class="border-l border-gray-200 pl-4">
-<div class="p-2 border-b border-gray-200 mb-2 font-bold text-sm text-[#17181a]">
-<span class="lang-pt">Conexões Anteriores</span>
-<span class="lang-en">Earlier Connections</span>
 </div>
-<p class="text-[0.72rem] leading-relaxed mb-2">
-<strong>Genesis 13:18:</strong> <span class="lang-pt">Então mudou Abrão as suas tendas, e foi habitar junto aos <strong>carvalhais de Manre, que estão em Hebrom</strong>; e edificou ali um altar ao Senhor.</span><span class="lang-en">Then Abram moved his tent and came and dwelt by <strong>the oaks of Mamre, which are in Hebron</strong>, and there he built an altar to the Lord.</span>
+<div class="tree-arrows" aria-hidden="true">
+<svg viewBox="0 0 46 26"><g stroke="#080808" stroke-width="1.6" fill="none"><path d="M2 13 H38"/></g><path d="M44 13 L36 9.5 V16.5 Z" fill="#080808"/></svg>
+<svg viewBox="0 0 46 26"><g stroke="#080808" stroke-width="1.6" fill="none"><path d="M2 13 H38"/></g><path d="M44 13 L36 9.5 V16.5 Z" fill="#080808"/></svg>
+</div>
+<div class="tree-col">
+<div class="tree-box">
+<p class="tree-ref">
+<span class="lang-pt">Gênesis 13:18</span><span class="lang-en">Genesis 13:18</span>
 </p>
-<p class="text-[0.72rem] leading-relaxed mb-2">
-<strong>Genesis 14:13:</strong> <span class="lang-pt">Ele habitava junto aos <strong>carvalhais de Manre</strong>, o amorreu, irmão de Escol e de Aner; estes eram aliados de Abrão.</span><span class="lang-en">Now he was living by <strong>the oaks of Mamre</strong> the Amorite, brother of Eshcol and brother of Aner, and these were allies with Abram.</span>
+<p class="tree-txt">
+<span class="lang-pt">Então mudou Abrão as suas tendas, e foi habitar junto aos <strong>carvalhais de Manre, que estão em Hebrom</strong>; e edificou ali um altar ao Senhor.</span><span class="lang-en">Then Abram moved his tent and came and dwelt by <strong>the oaks of Mamre, which are in Hebron</strong>, and there he built an altar to the Lord.</span>
 </p>
-<p class="text-[0.72rem] leading-relaxed">
-<strong>Genesis 18:1:</strong> <span class="lang-pt">Depois apareceu-lhe o Senhor junto aos <strong>carvalhais de Manre</strong>, estando ele assentado à porta da tenda, no calor do dia.</span><span class="lang-en">Now the Lord appeared to him by <strong>the oaks of Mamre</strong>, while he was sitting at the tent door in the heat of the day.</span>
+<p class="tree-ref" style="margin-top:.9rem;">
+<span class="lang-pt">Gênesis 14:13</span><span class="lang-en">Genesis 14:13</span>
+</p>
+<p class="tree-txt">
+<span class="lang-pt">Ele habitava junto aos <strong>carvalhais de Manre</strong>, o amorreu, irmão de Escol e de Aner; estes eram aliados de Abrão.</span><span class="lang-en">Now he was living by <strong>the oaks of Mamre</strong> the Amorite, brother of Eshcol and brother of Aner, and these were allies with Abram.</span>
+</p>
+<p class="tree-ref" style="margin-top:.9rem;">
+<span class="lang-pt">Gênesis 18:1</span><span class="lang-en">Genesis 18:1</span>
+</p>
+<p class="tree-txt">
+<span class="lang-pt">Depois apareceu-lhe o Senhor junto aos <strong>carvalhais de Manre</strong>, estando ele assentado à porta da tenda, no calor do dia.</span><span class="lang-en">Now the Lord appeared to him by <strong>the oaks of Mamre</strong>, while he was sitting at the tent door in the heat of the day.</span>
 </p>
 </div>
 </div>
-<p style="font-style: italic; color: #6b7280; font-size: 0.875rem; margin-bottom: 1.5rem; text-align: center;">
+</div>
+<p style="font-style: italic; color: #4f5669; font-size: 0.875rem; margin-bottom: 1.5rem; text-align: center;">
 <span class="lang-pt">Morte junto à Árvore Sagrada. Criado por Tim Mackie para o BibleProject Classroom: Abraham (2021).</span>
 <span class="lang-en">Death by the Sacred Tree. Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</span>
 </p>
@@ -606,7 +711,7 @@
 <td>
 <strong>Gen. 13:10-11</strong> <span class="lang-pt">"Levantou Ló os olhos e viu toda a planície do Jordão... <span class="hl-slate">toda bem regada... como o jardim do Senhor, antes de ter o Senhor destruído Sodoma e Gomorra</span>. Escolheu pois Ló para si toda a planície do Jordão... e <span class="hl-slate">apartaram-se</span> (<span class="heb">יפרדו</span>)."</span><span class="lang-en">"Lot lifted up his eyes and saw all the valley of the Jordan, <span class="hl-slate">all watered ... like the garden of God, before Yahweh destroyed Sodom and Gomorrah</span>. And Lot chose for himself all the valley of the Jordan ... and they <span class="hl-slate">separated</span> (<span class="heb">יפרדו</span>)."</span><br/><br/>
 <strong>Gen. 13:14-15, 18</strong> <span class="lang-pt">"Disse o Senhor a Abrão, depois que Ló se <span class="hl-slate">apartou</span> (<span class="heb">הפרד</span>) dele: 'Ergue os olhos e olha... norte, sul, oriente, ocidente... toda a terra que ves te hei de dar a ti e à tua descendência para sempre, e farei a tua descendência como o pó (<span class="heb">עפר</span>) da terra.' Então mudou Abrão as suas tendas e foi habitar junto aos <span class="hl-slate">carvalhais de Manre</span>."</span><span class="lang-en">"Yahweh said to Avram after Lot <span class="hl-slate">separated</span> (<span class="heb">הפרד</span>) from him, 'Lift up your eyes and see ... north, south, east, west ... I give it to you and your seed forever, and I will make your seed like the dust (<span class="heb">עפר</span>) of the earth.' And Avram tented and dwelt among the <span class="hl-slate">oaks of Mamre</span>."</span><br/><br/>
-<span class="text-[0.72rem] text-gray-600 font-italic"><span class="lang-pt">*Em Gênesis 13, a escolha de Ló por Sodoma como um falso Éden foi colocada em contraste com a escolha de Avraão da terra prometida, especificamente "os carvalhais de Manre", que é o presente do Éden concedido por Deus a Avraão.</span><span class="lang-en">*In Genesis 13, Lot’s choices of Sodom as a false-Eden was set in contrast to Avraham’s choice of the promised land, specifically "the oaks of Mamre" which is God’s gift of Eden to Avraham.</span></span>
+<span class="text-[0.72rem] text-[#4f5669] font-italic"><span class="lang-pt">*Em Gênesis 13, a escolha de Ló por Sodoma como um falso Éden foi colocada em contraste com a escolha de Avraão da terra prometida, especificamente "os carvalhais de Manre", que é o presente do Éden concedido por Deus a Avraão.</span><span class="lang-en">*In Genesis 13, Lot’s choices of Sodom as a false-Eden was set in contrast to Avraham’s choice of the promised land, specifically "the oaks of Mamre" which is God’s gift of Eden to Avraham.</span></span>
 </td>
 </tr>
 <tr>
@@ -761,57 +866,7 @@
 <span class="lang-pt">De que maneira a compra da caverna por Avraão a Efron é um ato de sacrifício, entrega e esperança? Como a história nos mostra isso?</span>
 <span class="lang-en">In what way is Avraham’s purchase of the cave from Ephron an act of sacrifice, surrender, and hope? How does the story show us this?</span>
 </p>
-</div><span class="lang-pt">
-
-    // Scroll reveal
-    (function () {
-        var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var targets = document.querySelectorAll(
-            '.scripture, .doc-table, .diagram-box, .gen-card, .tree-grid, h2.section, h3.sub, ul.bullets, p.body, .page-header'
-        );
-        if (prefersReduced || !('IntersectionObserver' in window)) {
-            targets.forEach(function (el) { el.classList.add('visible'); });
-            return;
-        }
-        var io = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    io.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
-        targets.forEach(function (el) {
-            el.classList.add('reveal');
-            io.observe(el);
-        });
-    })();
-</span><span class="lang-en">
-
-    // Scroll reveal
-    (function () {
-        var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var targets = document.querySelectorAll(
-            '.scripture, .doc-table, .diagram-box, .gen-card, .tree-grid, h2.section, h3.sub, ul.bullets, p.body, .page-header'
-        );
-        if (prefersReduced || !('IntersectionObserver' in window)) {
-            targets.forEach(function (el) { el.classList.add('visible'); });
-            return;
-        }
-        var io = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    io.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
-        targets.forEach(function (el) {
-            el.classList.add('reveal');
-            io.observe(el);
-        });
-    })();
-</span>
+</div>
 <script src="../../js/verse-modal.js"></script>
 <script src="../../js/reading-progress.js"></script>
 <script src="../../js/lang-toggle.js"></script>
@@ -845,6 +900,23 @@ window.addEventListener('scroll', () => {
   const bar = document.getElementById('reading-progress');
   if (bar) bar.style.transform = `scaleX(${p})`;
 });
+
+// Scroll reveal for the session-26 components (was inline markup before)
+(function () {
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var sel = '.scripture, .doc-table, .diagram-box, .gen-block, .gen-card, .tree-grid, h2.section, h3.sub, ul.bullets, p.body, .page-header';
+  var targets = document.querySelectorAll(sel);
+  if (reduced || !('IntersectionObserver' in window)) {
+    targets.forEach(function (el) { el.classList.add('reveal', 'visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -36px 0px' });
+  targets.forEach(function (el) { el.classList.add('reveal'); io.observe(el); });
+})();
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {

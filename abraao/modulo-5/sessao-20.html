@@ -12,17 +12,154 @@
 <link href="../../css/shared-tutorial.css" rel="stylesheet"/>
 <style>
 @import url('../css/session-base.css');
+
+/* ===================================================================
+   Sessão 20 — sobreposições locais.
+   A paleta foi extraída do PDF da sessão (abraao/pdf-sessoes/sessao-20.pdf)
+   com PyMuPDF e é a autoridade: o HTML reproduz as cores do PDF.
+   =================================================================== */
+:root{
+  --ink:#1b1b1b;      /* 1677 spans — todo corpo/título/bullet */
+  --cap:#4f5669;      /* legendas, rótulos, versículos */
+  --hair:#e4e8ed;     /* bordas e cromo de tabela */
+  --rule:#c1c9d0;     /* fio sob o título */
+  --gray:#6b7384;     /* painel neutro / badge cinza */
+  --foot:#2c2c2c;     /* rodapé de página */
+  --blue:#3678b4;     /* tags e painéis azuis */
+  --rose:#be4967;     /* tags e painéis rosa */
+  --navy:#3e4054;     /* painéis macro escuros */
+}
+
+/* --- tipografia e chrome: tinta do PDF ------------------------------- */
+body{color:var(--ink)}
+h1.title,h2.section,h3.sub,h4.sub2{color:var(--ink)}
+p.body{color:var(--ink)}
+ul.bullets>li,.cx ul.bullets>li,.doc-table td,.doc-table th{color:var(--ink)}
+.cx h4,.icx-box h4{color:var(--ink)}
+.v-line{color:var(--ink)}
+sup.vs{color:var(--ink)}
+.caption,.lbl{color:var(--cap)}
+.page-footer{color:var(--foot);border-top:1px solid var(--hair)}
+.ref{color:var(--ink)}
+.rule{border-top:1px solid var(--rule)!important}
+.v-outer,.v-light{border:1px solid var(--hair);border-radius:14px}
+.v-black{border:2px solid var(--ink);border-radius:12px}
+.v-div{border-top:1px solid var(--hair)}
+.doc-table{border:1px solid var(--hair);border-radius:12px}
+.doc-table th{background:var(--hair);color:var(--ink);border:0}
+.doc-table td{border-top:1px solid var(--hair);color:var(--ink)}
+.doc-table td+td{border-left:1px solid var(--hair)}
+.doc-table tbody tr:hover td{background:#fff}
+.doc-table tfoot td{background:transparent;border-top:1px solid var(--hair);color:var(--cap)}
+
+/* --- chips de destaque ----------------------------------------------
+   PDF p5-p9: cada familia de palavra-chave tem um par proprio
+   (fundo lavado + texto saturado) ou um chip solido.               */
+.k.k-wgray  {background:#e4e8ed;color:#4f5669}  /* morrer / tomar / ver   */
+.k.k-wperi  {background:#d9ecfd;color:#404ca6}  /* irmao / irma           */
+.k.k-wgreen {background:#d3f2cd;color:#2b6146}  /* "eu fiz isso"          */
+.k.k-wtan   {background:#efe8db;color:#645537}  /* temor / ver / ter medo */
+.k.k-wrust  {background:#fae4c4;color:#91362e}  /* matar / cobertura      */
+.k.k-wrose  {background:#f9e3de;color:#972a4e}  /* falha moral            */
+.k.k-wpink  {background:#f7e1f5;color:#713c92}  /* sonho / "o que fizeste" */
+.k.k-wpurple{background:#e6e6fa;color:#5d4897}  /* "para que ele"         */
+.k.k-sgreen {background:#3a8060}
+.k.k-sdgreen{background:#204b3c}
+.k.k-spurple{background:#552d7d}
+.k.k-sviolet{background:#7e62bc}
+.k.k-steal  {background:#097d8d}
+.k.k-srose  {background:#be4967}
+.k.k        {font-weight:700}
+
+/* --- texto-only (sem fundo), como no PDF ---------------------------- */
+.tx-teal {color:#097d8d;font-weight:700}
+.tx-brown{color:#816f4d;font-weight:700}
+.tx-rust {color:#b5543a;font-weight:700}
+.tx-rose {color:#be4967;font-weight:700}
+.tx-blue {color:#5869cd;font-weight:700}
+.tx-violet{color:#7e62bc;font-weight:700}
+.tx-bold {color:var(--ink);font-weight:700}
+
+/* --- macro4: design literario de 4 colunas (PDF p1) ------------------ */
+.macro4{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;align-items:start;margin:1.6rem 0 .55rem}
+.m4col{border:2px solid var(--blue);border-radius:10px;padding:.45rem .45rem .5rem;background:#fff}
+.m4col.rose{border-color:var(--rose)}
+.m4tag{display:inline-block;background:var(--blue);color:#fff;font-size:.7rem;font-weight:700;
+       padding:2px 8px;border-radius:5px;line-height:1.5}
+.m4col.rose .m4tag{background:var(--rose)}
+.m4title{font-size:.76rem;font-weight:800;color:var(--ink);line-height:1.3;margin:.3rem 0 .45rem}
+.m4boxes{display:flex;gap:.28rem;align-items:flex-end}
+.m4box{flex:1 1 0;border:1px solid var(--rule);border-radius:7px;background:#fff;
+       min-height:6.4rem;position:relative}
+.m4box.w2{flex-grow:1.1}.m4box.w3{flex-grow:1.15}.m4box.w4{flex-grow:1.3}
+.m4box:not(:first-child):not(:last-child){margin-top:.85rem;min-height:5.5rem}
+.m4box .mhdr{position:absolute;top:.3rem;left:.25rem;right:.25rem;background:var(--gray);color:#fff;
+             font-size:.55rem;font-weight:700;line-height:1.6;text-align:center;white-space:nowrap;
+             padding:1px 2px;border-radius:4px;overflow:hidden}
+@media (max-width:820px){.macro4{grid-template-columns:1fr}}
+
+/* --- paineis .cx das Units III (PDF p2 e p4) ------------------------- */
+.cx{border-width:2px;border-radius:10px;padding:.85rem 1rem .8rem;margin:.9rem 0;background:#fff}
+.cx-tag{font-size:.76rem;padding:2px 9px;border-radius:5px;margin-bottom:.4rem}
+.cx h4{font-size:1rem;margin-bottom:.35rem}
+.cx ul.bullets>li{font-size:.95rem;margin-bottom:.3rem}
+/* PDF p4: os paineis sem titulo (20:1-2, 20:14-18) listam a/b/c sem marcador */
+.cx ul.bullets.plainlist>li{padding-left:0}
+.cx ul.bullets.plainlist>li:before{content:none!important}
+.cx-blue2{border-color:var(--blue)}  .cx-blue2 .cx-tag{background:var(--blue)}
+.cx-rose2{border-color:var(--rose)}  .cx-rose2 .cx-tag{background:var(--rose)}
+.cx-navy {border-color:var(--navy)}  .cx-navy  .cx-tag{background:var(--navy)}
+.cx-slate{border-color:var(--gray);background:#fff} .cx-slate .cx-tag{background:var(--gray)}
+.stair-1{margin-left:1.1rem}
+.stair-2{margin-left:2.2rem}
+
+h4.sub2{font-size:1.12rem;font-weight:800;letter-spacing:-.01em;margin:1.7rem 0 .6rem;line-height:1.25}
+
+/* --- tabela de colocacao (PDF p3) ------------------------------------ */
+.plc{width:100%;border-collapse:collapse;background:#fff;margin:1.5rem 0;table-layout:fixed}
+.plc td{border:1.5px solid var(--ink);padding:.5rem .55rem;text-align:center;
+        vertical-align:middle;font-size:.9rem;line-height:1.5;color:var(--ink)}
+.plc td.hd{font-weight:700;font-size:.88rem}
+.plc td.graycell,.plc tr td.graycell{background:#d9d9d9}
+.plc td.refs{border:0;padding:.2rem .15rem;font-size:.82rem;line-height:1.9}
+.plc td.refs>span{display:inline-block;border:1px solid var(--ink);padding:0 .5rem;margin:.1rem .05rem}
+.plc td.bodycell{font-size:.92rem}
+.plc .plc-arrows td{border:0;padding:.05rem 0;font-size:1.15rem;line-height:1}
+.plc tr.plc-arrows td{background:#fff}
+
+/* --- callout da Traducao do Instrutor (PDF p10) ---------------------- */
+.callout{border:0;border-left:3px solid var(--gray);padding:.1rem 0 .1rem 1.05rem;margin:1.3rem 0}
+.callout .co-h{font-size:1rem;font-weight:800;color:var(--ink);margin-bottom:.45rem}
+.callout .co-h em{font-style:normal;font-weight:700;color:var(--cap)}
+.callout .v-line{line-height:1.75}
+.callout .co-gap{color:var(--ink);margin:.5rem 0 .5rem .2rem}
+
+/* --- diagrama intercessor (PDF p10): 1 caixa + 2 caixas com setas ----- */
+.icx-title{font-size:.92rem;font-weight:700;color:var(--cap);margin:0 0 .5rem}
+.icx{display:grid;grid-template-columns:1fr 1.9fr;gap:1.3rem;margin:.3rem 0 .8rem;align-items:stretch}
+.icx-col{display:flex;flex-direction:column;gap:1.1rem}
+.icx-box{border:1.5px solid var(--ink);border-radius:4px;padding:.85rem 1rem;background:#fff}
+.icx-box h4{font-size:.98rem;font-weight:800;color:var(--ink);margin-bottom:.35rem}
+.icx-box p{font-size:.95rem;line-height:1.65;color:var(--ink);margin:0 0 .5rem}
+.icx-box p:last-child{margin-bottom:0}
+.icx-arrow{position:absolute;left:-1.5rem;top:50%;transform:translateY(-50%);
+           font-size:1.35rem;color:var(--ink);line-height:1}
+.icx-arm{position:relative}
+@media (max-width:820px){
+  .icx{grid-template-columns:1fr}
+  .icx-arrow{display:none}
+}
 </style>
 </head>
 <body>
 <div aria-hidden="true" id="reading-progress"></div>
 <div class="fixed left-4 top-4 z-50 print:hidden">
-<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" href="index.html">
+<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" href="index.html">
 <span><span class="lang-pt">←</span><span class="lang-en">←</span></span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
 </a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
-<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" onclick="window.print()">
+<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" onclick="window.print()">
 <svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect height="8" width="12" x="6" y="14"></rect></svg>
 <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
 </button>
@@ -181,7 +318,7 @@
 <div style="margin-top:1.5rem;">
 <div class="cx cx-navy reveal">
 <span class="cx-tag"><span class="lang-pt">Genesis 20:1-2</span><span class="lang-en">Genesis 20:1-2</span></span>
-<ul class="bullets" style="margin-top:.2rem;">
+<ul class="bullets plainlist" style="margin-top:.2rem;">
 <li><span class="lang-pt">a - </span><span class="lang-en">a - </span><span class="lang-pt">Avraham viaja para Gerar</span><span class="lang-en">Avraham journeys to Gerar</span></li>
 <li><span class="lang-pt">b - </span><span class="lang-en">b - </span><span class="lang-pt">Ele mente sobre Sara</span><span class="lang-en">He lies about Sarah</span></li>
 <li><span class="lang-pt">c - </span><span class="lang-en">c - </span><span class="lang-pt">Ela é tomada pelo rei Avimelek</span><span class="lang-en">She is taken by King Avimelek</span></li>
@@ -191,7 +328,7 @@
 <span class="cx-tag"><span class="lang-pt">Genesis 20:3-7</span><span class="lang-en">Genesis 20:3-7</span></span>
 <h4><span class="lang-pt">Diálogo Duplo entre Elohim e Avimelek</span><span class="lang-en">Double Dialogue Between Elohim and Avimelek</span></h4>
 <ul class="bullets">
-<li><strong>20:3, 5</strong> <span class="lang-pt">“E Elohim veio a Avimelek em um sonho da noite e disse … Na integridade do meu coração <span class="k k-pink2">eu fiz esta coisa</span> (<span class="heb">עשיתי זאת</span>).”</span><span class="lang-en">“And Elohim came to Avimelek in a dream of the night and said … In the blamelessness of my heart <span class="k k-pink2">I have done this thing</span> (<span class="heb">עשיתי זאת</span>).”</span></li>
+<li><strong>20:3, 5</strong> <span class="lang-pt">“E Elohim veio a Avimelek em um sonho da noite e disse … Na integridade do meu coração <span class="k k-wrose">eu fiz esta coisa</span> (<span class="heb">עשיתי זאת</span>).”</span><span class="lang-en">“And Elohim came to Avimelek in a dream of the night and said … In the blamelessness of my heart <span class="k k-wrose">I have done this thing</span> (<span class="heb">עשיתי זאת</span>).”</span></li>
 <li><strong>20:6</strong> <span class="lang-pt">“E Elohim disse a ele em um sonho …”</span><span class="lang-en">“And Elohim said to him in a dream …”</span></li>
 </ul>
 </div>
@@ -199,13 +336,13 @@
 <span class="cx-tag"><span class="lang-pt">Genesis 20:8-13</span><span class="lang-en">Genesis 20:8-13</span></span>
 <h4><span class="lang-pt">Diálogo Duplo entre Avimelek e Avraham</span><span class="lang-en">Double Dialogue Between Avimelek and Avraham</span></h4>
 <ul class="bullets">
-<li><strong>20:9</strong> <span class="lang-pt">“E Avimelek chamou Avraham e disse … O que é que <span class="k k-pink2">você fez conosco</span>?! (<span class="heb">מה עשית לנו</span>)”</span><span class="lang-en">“And Avimelek called to Avraham and said … What is it that <span class="k k-pink2">you have done to us</span>?! (<span class="heb">מה עשית לנו</span>)”</span></li>
+<li><strong>20:9</strong> <span class="lang-pt">“E Avimelek chamou Avraham e disse … O que é que <span class="k k-wrose">você fez conosco</span>?! (<span class="heb">מה עשית לנו</span>)”</span><span class="lang-en">“And Avimelek called to Avraham and said … What is it that <span class="k k-wrose">you have done to us</span>?! (<span class="heb">מה עשית לנו</span>)”</span></li>
 <li><strong>20:10</strong> <span class="lang-pt">“E Avimelek disse a Avraham …”</span><span class="lang-en">“And Avimelek said to Avraham …”</span></li>
 </ul>
 </div>
 <div class="cx cx-navy reveal">
 <span class="cx-tag"><span class="lang-pt">Genesis 20:14-18</span><span class="lang-en">Genesis 20:14-18</span></span>
-<ul class="bullets" style="margin-top:.2rem;">
+<ul class="bullets plainlist" style="margin-top:.2rem;">
 <li><span class="lang-pt">c - </span><span class="lang-en">c - </span><span class="lang-pt">Avimelek devolve Sara a Avraham</span><span class="lang-en">Avimelek returns Sarah to Avraham</span></li>
 <li><span class="lang-pt">b - </span><span class="lang-en">b - </span><span class="lang-pt">Avimelek os compensa pelos danos</span><span class="lang-en">Avimelek compensates them for any damages</span></li>
 <li><span class="lang-pt">a - </span><span class="lang-en">a - </span><span class="lang-pt">Avraham deixa Gerar</span><span class="lang-en">Avraham leaves Gerar</span></li>
@@ -222,57 +359,57 @@
 <p class="v-line"><span class="lang-pt">e ele estava migrando em <span class="tx-rust">Gerar</span>.</span><span class="lang-en">and he was migrating in <span class="tx-rust">Gerar</span>.</span></p>
 <hr class="v-div"/>
 <p class="v-line"><sup class="vs"><span class="lang-pt">2</span><span class="lang-en">2</span></sup> <span class="lang-pt">E Avraham disse sobre Sara, sua esposa:</span><span class="lang-en">And Avraham said about Sarah his wife,</span></p>
-<p class="v-line i1"><span class="lang-pt">“</span><span class="lang-en">“</span><span class="k k-peri"><span class="lang-pt">Ela é minha irmã</span><span class="lang-en">She is my sister</span></span><span class="lang-pt">.”</span><span class="lang-en">.”</span></p>
+<p class="v-line i1"><span class="lang-pt">“</span><span class="lang-en">“</span><span class="k k-wperi"><span class="lang-pt">Ela é minha irmã</span><span class="lang-en">She is my sister</span></span><span class="lang-pt">.”</span><span class="lang-en">.”</span></p>
 <p class="v-line"><span class="lang-pt">E Avimelek, rei de <span class="tx-rust">Gerar</span>, enviou</span><span class="lang-en">And Avimelek king of <span class="tx-rust">Gerar</span> sent</span></p>
-<p class="v-line"><span class="k k-rose"><span class="lang-pt">e ele tomou</span><span class="lang-en">and he took</span></span> <span class="lang-pt">Sara.</span><span class="lang-en">Sarah.</span></p>
+<p class="v-line"><span class="k k-srose"><span class="lang-pt">e ele tomou</span><span class="lang-en">and he took</span></span> <span class="lang-pt">Sara.</span><span class="lang-en">Sarah.</span></p>
 </div>
 <p class="caption reveal"><span class="lang-pt"><em>Gênesis 20:1-18</em>. Tradução e Design Literário por Tim Mackie para o BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Genesis 20:1-18</em>. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
 <p class="body reveal"><span class="lang-pt">A breve introdução em <span class="ref" data-reference="Gênesis+20:1-2">Gênesis 20:1-2</span> assume o conhecimento do leitor da história em <span class="ref" data-reference="Gênesis+12:10-20">Gênesis 12:10-20</span>, então abrevia detalhes que podem ser inferidos do episódio anterior. Os motivos de Avraham e as razões de sua estadia podem ser omitidos porque o narrador assume que o leitor preencherá as lacunas com o conhecimento da história paralela. Isso também permite ao narrador dar mais espaço ao foco principal desta história, que é o contraste entre a integridade de Avimelek e o engano autoprotetor de Avraham.</span><span class="lang-en">The short introduction in <span class="ref" data-reference="Genesis+20:1-2">Genesis 20:1-2</span> assumes the reader’s knowledge of the story in <span class="ref" data-reference="Genesis+12:10-20">Genesis 12:10-20</span>, so it abbreviates details that can be inferred from the earlier episode. Avraham’s motives and the reasons for his sojourn can be omitted because the narrator assumes the reader will fill in the gaps with knowledge from the parallel story. This also allows the narrator to give more space to the main focus of this story, which is the contrast between Avimelek’s integrity and Avraham’s self-protective deception.</span></p>
 <div class="v-outer reveal">
 <div class="v-black">
-<p class="v-line"><sup class="vs"><span class="lang-pt">3</span><span class="lang-en">3</span></sup> <span class="lang-pt">E <span class="k k-dream">Elohim veio a Avimelek em um sonho</span> da noite,</span><span class="lang-en">And <span class="k k-dream">Elohim came to Avimelek in a dream</span> of the night,</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">3</span><span class="lang-en">3</span></sup> <span class="lang-pt">E <span class="k k-wpink">Elohim veio a Avimelek em um sonho</span> da noite,</span><span class="lang-en">And <span class="k k-wpink">Elohim came to Avimelek in a dream</span> of the night,</span></p>
 <p class="v-line"><span class="lang-pt">e ele disse a ele:</span><span class="lang-en">and he said to him,</span></p>
-<p class="v-line i1"><span class="lang-pt">“Olha, <span class="k k-gray2">você está prestes a morrer</span>,</span><span class="lang-en">“Look, <span class="k k-gray2">you are about to die</span> ,</span></p>
-<p class="v-line i1"><span class="lang-pt">por causa da <span class="tx-teal">esposa</span> que <span class="k k-rose">você tomou</span>,</span><span class="lang-en">on account of <span class="tx-teal">the wife</span> whom <span class="k k-rose">you took</span> ,</span></p>
+<p class="v-line i1"><span class="lang-pt">“Olha, <span class="k k-wgray">você está prestes a morrer</span>,</span><span class="lang-en">“Look, <span class="k k-wgray">you are about to die</span> ,</span></p>
+<p class="v-line i1"><span class="lang-pt">por causa da <span class="tx-teal">esposa</span> que <span class="k k-srose">você tomou</span>,</span><span class="lang-en">on account of <span class="tx-teal">the wife</span> whom <span class="k k-srose">you took</span> ,</span></p>
 <p class="v-line i1"><span class="lang-pt">pois ela é casada com um marido.”</span><span class="lang-en">as she is married to a husband.”</span></p>
 </div>
 <div class="v-line" style="margin-top:1rem;"><sup class="vs"><span class="lang-pt">4</span><span class="lang-en">4</span></sup> <span class="lang-pt">Ora, Avimelek não havia se aproximado dela, e ele disse:</span><span class="lang-en">Now, Avimelek had not gone near to her, and he said,</span>
-<p class="v-line"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><span class="lang-pt">“Meu senhor, matarias <span class="k k-dgreen">uma nação</span> que também é <span class="k k-green">justa</span>?</span><span class="lang-en">“My master, would you <span class="k k-dgreen">murder</span> a nation that is also <span class="k k-green">righteous</span>?</span></p>
+<p class="v-line"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><span class="lang-pt">“Meu senhor, <span class="k k-sdgreen">matarias</span> uma nação que também é <span class="k k-sgreen">justa</span>?</span><span class="lang-en">“My master, would you <span class="k k-sdgreen">murder</span> a nation that is also <span class="k k-sgreen">righteous</span>?</span></p>
 <p class="v-line i1"><sup class="vs"><span class="lang-pt">5</span><span class="lang-en">5</span></sup> <span class="lang-pt">Não me disse ele:</span><span class="lang-en">Didn’t he say to me,</span></p>
-<p class="v-line i1"><span class="lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></span><span class="lang-pt">‘</span><span class="lang-en">‘</span><span class="k k-peri"><span class="lang-pt">Ela é minha irmã</span><span class="lang-en">She is my sister</span></span><span class="lang-pt">’.</span><span class="lang-en">’.</span></p>
+<p class="v-line i1"><span class="lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></span><span class="lang-pt">‘</span><span class="lang-en">‘</span><span class="k k-wperi"><span class="lang-pt">Ela é minha irmã</span><span class="lang-en">She is my sister</span></span><span class="lang-pt">’.</span><span class="lang-en">’.</span></p>
 <p class="v-line i1"><span class="lang-pt">E ela também disse:</span><span class="lang-en">And she also said,</span></p>
-<p class="v-line i1"><span class="lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></span><span class="lang-pt">‘</span><span class="lang-en">‘</span><span class="k k-peri"><span class="lang-pt">Ele é meu irmão</span><span class="lang-en">He is my brother</span></span><span class="lang-pt">’.</span><span class="lang-en">’.</span></p>
-<p class="v-line"><span class="lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><span class="lang-pt">Na <span class="k k-green">integridade do meu coração</span> e pela <span class="k k-green">inocência</span> das minhas mãos <span class="k k-lgreen">eu fiz isso</span>!”</span><span class="lang-en">In the <span class="k k-green">blamelessness of my heart</span> and by the <span class="k k-green">innocence</span> of my hands <span class="k k-lgreen">I have done this</span> !”</span></p>
+<p class="v-line i1"><span class="lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></span><span class="lang-pt">‘</span><span class="lang-en">‘</span><span class="k k-wperi"><span class="lang-pt">Ele é meu irmão</span><span class="lang-en">He is my brother</span></span><span class="lang-pt">’.</span><span class="lang-en">’.</span></p>
+<p class="v-line"><span class="lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><span class="lang-pt">Na <span class="k k-sgreen">integridade do meu coração</span> e pela <span class="k k-sgreen">inocência</span> das minhas mãos <span class="k k-wgreen">eu fiz isso</span>!”</span><span class="lang-en">In the <span class="k k-sgreen">blamelessness of my heart</span> and by the <span class="k k-sgreen">innocence</span> of my hands <span class="k k-wgreen">I have done this</span> !”</span></p>
 <div class="v-black" style="margin-top:1.1rem;">
-<p class="v-line"><sup class="vs"><span class="lang-pt">6</span><span class="lang-en">6</span></sup> <span class="lang-pt">E <span class="k k-dream">Elohim disse a ele em um sonho</span>:</span><span class="lang-en">And <span class="k k-dream">Elohim said to him in a dream</span> ,</span></p>
-<p class="v-line i1"><span class="lang-pt">“Eu sei que na <span class="k k-green">integridade do teu coração</span> <span class="k k-lgreen">você fez isso</span>,</span><span class="lang-en">“I do know that in the <span class="k k-green">blamelessness of your heart</span> <span class="k k-lgreen">you have done this</span> ,</span></p>
-<p class="v-line i1"><span class="lang-pt">então eu, sim eu, te impedi de cometer <span class="k k-purple2">falha moral</span> contra mim.</span><span class="lang-en">so I, yes I, withheld you from committing <span class="k k-purple2">moral failure</span> against me.</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">6</span><span class="lang-en">6</span></sup> <span class="lang-pt">E <span class="k k-wpink">Elohim disse a ele em um sonho</span>:</span><span class="lang-en">And <span class="k k-wpink">Elohim said to him in a dream</span> ,</span></p>
+<p class="v-line i1"><span class="lang-pt">“Eu sei que na <span class="k k-sgreen">integridade do teu coração</span> <span class="k k-wgreen">você fez isso</span>,</span><span class="lang-en">“I do know that in the <span class="k k-sgreen">blamelessness of your heart</span> <span class="k k-wgreen">you have done this</span> ,</span></p>
+<p class="v-line i1"><span class="lang-pt">então eu, sim eu, te impedi de cometer <span class="k k-spurple">falha moral</span> contra mim.</span><span class="lang-en">so I, yes I, withheld you from committing <span class="k k-spurple">moral failure</span> against me.</span></p>
 <p class="v-line i1"><span class="lang-pt">É por isso que não permiti que você a tocasse.</span><span class="lang-en">This is why I did not allow you to touch her.</span></p>
-<p class="v-line i1"><sup class="vs"><span class="lang-pt">7</span><span class="lang-en">7</span></sup> <span class="k k-gray2"><span class="lang-pt">E agora</span><span class="lang-en">And now</span></span><span class="lang-pt">, </span><span class="lang-en">, </span><span class="k k-rose"><span class="lang-pt">devolva</span><span class="lang-en">return</span></span> <span class="tx-teal"><span class="lang-pt">a esposa do homem</span><span class="lang-en">the wife of the man</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></p>
+<p class="v-line i1"><sup class="vs"><span class="lang-pt">7</span><span class="lang-en">7</span></sup> <span class="k k-wgray"><span class="lang-pt">E agora</span><span class="lang-en">And now</span></span><span class="lang-pt">, </span><span class="lang-en">, </span><span class="k k-srose"><span class="lang-pt">devolva</span><span class="lang-en">return</span></span> <span class="tx-teal"><span class="lang-pt">a esposa do homem</span><span class="lang-en">the wife of the man</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></p>
 <p class="v-line i1"><span class="lang-pt">porque ele é um profeta,</span><span class="lang-en">because he is a prophet,</span></p>
-<p class="v-line i1"><span class="lang-pt">e <span class="k k-purple2">ele pode orar</span> em teu favor para que <span class="k k-gray2">possas ter vida</span>.</span><span class="lang-en">and <span class="k k-purple2">he can pray</span> on your behalf so that <span class="k k-gray2">you can have life</span> .</span></p>
-<p class="v-line i1"><span class="lang-pt">E se não a <span class="k k-rose">devolveres</span>,</span><span class="lang-en">And if you don’t <span class="k k-rose">return</span> her,</span></p>
-<p class="v-line i1"><span class="lang-pt">sabe que <span class="k k-gray2">certamente morrerás</span>, tu e tudo o que te pertence.”</span><span class="lang-en">know that <span class="k k-gray2">you will certainly die</span> , you and all that belongs to you.”</span></p>
+<p class="v-line i1"><span class="lang-pt">e <span class="k k-sviolet">ele pode orar</span> em teu favor para que <span class="k k-wgray">possas ter vida</span>.</span><span class="lang-en">and <span class="k k-sviolet">he can pray</span> on your behalf so that <span class="k k-wgray">you can have life</span> .</span></p>
+<p class="v-line i1"><span class="lang-pt">E se não a <span class="k k-srose">devolveres</span>,</span><span class="lang-en">And if you don’t <span class="k k-srose">return</span> her,</span></p>
+<p class="v-line i1"><span class="lang-pt">sabe que <span class="k k-wgray">certamente morrerás</span>, tu e tudo o que te pertence.”</span><span class="lang-en">know that <span class="k k-wgray">you will certainly die</span> , you and all that belongs to you.”</span></p>
 </div>
 <hr class="v-div"/>
 <p class="v-line"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><sup class="vs"><span class="lang-pt">8</span><span class="lang-en">8</span></sup> <span class="lang-pt">E Avimelek levantou-se cedo de manhã,</span><span class="lang-en">And Avimelek rose early in the morning,</span></p>
-<p class="v-line i1"><span class="lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></span><span class="lang-pt">e chamou todos os seus <span class="k k-teal2">servos</span>,</span><span class="lang-en">and he called to all his <span class="k k-teal2">servants</span> ,</span></p>
+<p class="v-line i1"><span class="lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></span><span class="lang-pt">e chamou todos os seus <span class="k k-steal">servos</span>,</span><span class="lang-en">and he called to all his <span class="k k-steal">servants</span> ,</span></p>
 <p class="v-line i1"><span class="lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></span><span class="lang-pt">e falou todas estas palavras aos ouvidos deles,</span><span class="lang-en">and he spoke all these words in their ears,</span></p>
-<p class="v-line i2"><span class="lang-pt">e os <span class="k k-teal2">homens</span> ficaram <span class="k k-tan2">com medo (<span class="heb">יראו</span>)</span>, muitíssimo.</span><span class="lang-en">and the <span class="k k-teal2">men</span> were <span class="k k-tan2">afraid (<span class="heb">יראו</span>)</span> , very much.</span></p>
+<p class="v-line i2"><span class="lang-pt">e os <span class="k k-steal">homens</span> ficaram <span class="k k-wtan">com medo (<span class="heb">יראו</span>)</span>, muitíssimo.</span><span class="lang-en">and the <span class="k k-steal">men</span> were <span class="k k-wtan">afraid (<span class="heb">יראו</span>)</span> , very much.</span></p>
 <hr class="v-div"/>
 <p class="v-line"><sup class="vs"><span class="lang-pt">9</span><span class="lang-en">9</span></sup> <span class="lang-pt">E Avimelek chamou Avraham e lhe disse:</span><span class="lang-en">And Avimelek called to Avraham, and said to him,</span></p>
-<p class="v-line"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><span class="lang-pt">“</span><span class="lang-en">“</span><span class="k k-lgreen"><span class="lang-pt">O que é que você fez conosco</span><span class="lang-en">What is it you have done to us</span></span><span class="lang-pt"> ?!</span><span class="lang-en"> ?!</span></p>
-<p class="v-line i1"><span class="lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></span><span class="lang-pt">Que <span class="k k-purple2">falha moral</span> cometi contra ti,</span><span class="lang-en">What <span class="k k-purple2">moral failure</span> have I committed against you,</span></p>
-<p class="v-line i1"><span class="lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></span><span class="lang-pt">que trouxeste sobre mim e sobre meu reino esta grande <span class="k k-purple2">falha moral</span>?!</span><span class="lang-en">that you have brought upon me and upon my kingdom this great <span class="k k-purple2">moral failure</span>?!</span></p>
-<p class="v-line"><span class="lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><span class="k k-lgreen"><span class="lang-pt">Ações que não deveriam ser feitas, é isso que você fez comigo</span><span class="lang-en">Doings that should not be done, that’s what you’ve done to me</span></span><span class="lang-pt"> !”</span><span class="lang-en"> !”</span></p>
+<p class="v-line"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><span class="lang-pt">“</span><span class="lang-en">“</span><span class="k k-wgreen"><span class="lang-pt">O que é que você fez conosco</span><span class="lang-en">What is it you have done to us</span></span><span class="lang-pt"> ?!</span><span class="lang-en"> ?!</span></p>
+<p class="v-line i1"><span class="lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></span><span class="lang-pt">Que <span class="k k-spurple">falha moral</span> cometi contra ti,</span><span class="lang-en">What <span class="k k-spurple">moral failure</span> have I committed against you,</span></p>
+<p class="v-line i1"><span class="lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></span><span class="lang-pt">que trouxeste sobre mim e sobre meu reino esta grande <span class="k k-spurple">falha moral</span>?!</span><span class="lang-en">that you have brought upon me and upon my kingdom this great <span class="k k-spurple">moral failure</span>?!</span></p>
+<p class="v-line"><span class="lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><span class="k k-wgreen"><span class="lang-pt">Ações que não deveriam ser feitas, é isso que você fez comigo</span><span class="lang-en">Doings that should not be done, that’s what you’ve done to me</span></span><span class="lang-pt"> !”</span><span class="lang-en"> !”</span></p>
 <hr class="v-div"/>
 <p class="v-line"><sup class="vs"><span class="lang-pt">10</span><span class="lang-en">10</span></sup> <span class="lang-pt">E Avimelek disse a Avraham:</span><span class="lang-en">And Avimelek said to Avraham,</span></p>
-<p class="v-line i1"><span class="lang-pt">“</span><span class="lang-en">“</span><span class="k k-lgreen"><span class="lang-pt">O que</span><span class="lang-en">What</span></span> <span class="lang-pt">você</span><span class="lang-en">did you</span> <span class="k k-tan2"><span class="lang-pt">viu (<span class="heb">ראה</span>)</span><span class="lang-en">see (<span class="heb">ראה</span>)</span></span><span class="lang-pt">, </span><span class="lang-en">, </span><span class="lang-pt">que <span class="k k-lgreen">fizeste esta coisa</span>?”</span><span class="lang-en">, that <span class="k k-lgreen">you have done this thing</span>?”</span></p>
+<p class="v-line i1"><span class="lang-pt">“</span><span class="lang-en">“</span><span class="k k-wgreen"><span class="lang-pt">O que</span><span class="lang-en">What</span></span> <span class="lang-pt">você</span><span class="lang-en">did you</span> <span class="k k-wtan"><span class="lang-pt">viu (<span class="heb">ראה</span>)</span><span class="lang-en">see (<span class="heb">ראה</span>)</span></span><span class="lang-pt">, </span><span class="lang-en">, </span><span class="lang-pt">que <span class="k k-wgreen">fizeste esta coisa</span>?”</span><span class="lang-en">, that <span class="k k-wgreen">you have done this thing</span>?”</span></p>
 <p class="v-line"><sup class="vs"><span class="lang-pt">11</span><span class="lang-en">11</span></sup> <span class="lang-pt">E Avraham disse:</span><span class="lang-en">And Avraham said,</span></p>
 <p class="v-line i1"><span class="lang-pt">“É porque eu disse:</span><span class="lang-en">“It’s because I said,</span></p>
-<p class="v-line i2"><span class="lang-pt">‘Certamente não há <span class="k k-tan2">temor (<span class="heb">יראה</span>)</span> de Elohim neste lugar,</span><span class="lang-en">‘Surely there is no <span class="k k-tan2">fear (<span class="heb">יראה</span>)</span> of Elohim in this place,</span></p>
-<p class="v-line i2"><span class="lang-pt">então me <span class="k k-dgreen">matarão</span> por causa da <span class="tx-teal">minha esposa</span>.’</span><span class="lang-en">so they will <span class="k k-dgreen">murder</span> me on account of <span class="tx-teal">my wife</span>.’</span></p>
-<p class="v-line i1"><sup class="vs"><span class="lang-pt">12</span><span class="lang-en">12</span></sup> <span class="lang-pt">E também, <span class="k k-peri">ela verdadeiramente é minha irmã</span>;</span><span class="lang-en">And also, <span class="k k-peri">she truly is my sister</span> ;</span></p>
+<p class="v-line i2"><span class="lang-pt">‘Certamente não há <span class="k k-wtan">temor (<span class="heb">יראה</span>)</span> de Elohim neste lugar,</span><span class="lang-en">‘Surely there is no <span class="k k-wtan">fear (<span class="heb">יראה</span>)</span> of Elohim in this place,</span></p>
+<p class="v-line i2"><span class="lang-pt">então me <span class="k k-sdgreen">matarão</span> por causa da <span class="tx-teal">minha esposa</span>.’</span><span class="lang-en">so they will <span class="k k-sdgreen">murder</span> me on account of <span class="tx-teal">my wife</span>.’</span></p>
+<p class="v-line i1"><sup class="vs"><span class="lang-pt">12</span><span class="lang-en">12</span></sup> <span class="lang-pt">E também, <span class="k k-wperi">ela verdadeiramente é minha irmã</span>;</span><span class="lang-en">And also, <span class="k k-wperi">she truly is my sister</span> ;</span></p>
 <p class="v-line i1"><span class="lang-pt">ela é filha do meu pai,</span><span class="lang-en">she’s the daughter of my father,</span></p>
 <p class="v-line i1"><span class="lang-pt">apenas não filha da minha mãe,</span><span class="lang-en">just not the daughter of my mother,</span></p>
 <p class="v-line i1"><span class="lang-pt">então ela se tornou <span class="tx-teal">minha esposa</span>.</span><span class="lang-en">so she became <span class="tx-teal">my wife</span>.</span></p>
@@ -280,21 +417,24 @@
 <p class="v-line i1"><span class="lang-pt">então eu disse a ela:</span><span class="lang-en">then I said to her,</span></p>
 <p class="v-line i2"><span class="lang-pt">‘Este pode ser o amor leal que tu fazes por mim:</span><span class="lang-en">‘This can be the loyal love that you do for me:</span></p>
 <p class="v-line i2"><span class="lang-pt">em qualquer lugar para onde formos, dize de mim:</span><span class="lang-en">in whatever place to which we go, say of me,</span></p>
-<p class="v-line i2"><span class="lang-pt">“</span><span class="lang-en">“</span><span class="k k-peri"><span class="lang-pt">Ele é meu irmão</span><span class="lang-en">He is my brother</span></span><span class="lang-pt">.”’”</span><span class="lang-en">.”’”</span></p>
-<hr class="v-div"/>
-<p class="v-line"><sup class="vs"><span class="lang-pt">14</span><span class="lang-en">14</span></sup> <span class="k k-rose"><span class="lang-pt">E Avimelek tomou</span><span class="lang-en">And Avimelek took</span></span> <span class="lang-pt">rebanhos e gado e escravos e <span class="tx-brown">escravas</span>,</span><span class="lang-en">flocks and cattle and slaves and <span class="tx-brown">female slaves</span>,</span></p>
-<p class="v-line"><span class="lang-pt">e <span class="k k-rose">os deu</span> a Avraham,</span><span class="lang-en">and <span class="k k-rose">he gave</span> them to Avraham,</span></p>
-<p class="v-line"><span class="lang-pt">e <span class="k k-rose">devolveu</span> a ele <span class="tx-teal">Sara, sua esposa</span>.</span><span class="lang-en">and <span class="k k-rose">he returned</span> to him <span class="tx-teal">Sarah his wife</span>.</span></p>
-<hr class="v-div"/>
+<p class="v-line i2"><span class="lang-pt">“</span><span class="lang-en">“</span><span class="k k-wperi"><span class="lang-pt">Ele é meu irmão</span><span class="lang-en">He is my brother</span></span><span class="lang-pt">.”’”</span><span class="lang-en">.”’”</span></p>
+</div>
+<div class="v-outer reveal" style="margin:1rem 0;">
+<p class="v-line"><sup class="vs"><span class="lang-pt">14</span><span class="lang-en">14</span></sup> <span class="k k-srose"><span class="lang-pt">E Avimelek tomou</span><span class="lang-en">And Avimelek took</span></span> <span class="lang-pt">rebanhos e gado e escravos e <span class="tx-brown">escravas</span>,</span><span class="lang-en">flocks and cattle and slaves and <span class="tx-brown">female slaves</span>,</span></p>
+<p class="v-line"><span class="lang-pt">e <span class="k k-srose">os deu</span> a Avraham,</span><span class="lang-en">and <span class="k k-srose">he gave</span> them to Avraham,</span></p>
+<p class="v-line"><span class="lang-pt">e <span class="k k-srose">devolveu</span> a ele <span class="tx-teal">Sara, sua esposa</span>.</span><span class="lang-en">and <span class="k k-srose">he returned</span> to him <span class="tx-teal">Sarah his wife</span>.</span></p>
+</div>
+<div class="v-outer reveal" style="margin:1rem 0;">
 <p class="v-line"><sup class="vs"><span class="lang-pt">15</span><span class="lang-en">15</span></sup> <span class="lang-pt">E Avimelek disse:</span><span class="lang-en">And Avimelek said,</span></p>
 <p class="v-line i1"><span class="lang-pt">“Olha, minha terra está diante de ti.</span><span class="lang-en">“Look, my land is before you.</span></p>
-<p class="v-line i1"><span class="lang-pt">Habita onde for <span class="k k-tan2">bom aos teus olhos</span>.”</span><span class="lang-en">Dwell where it is <span class="k k-tan2">good in your eyes</span>.”</span></p>
+<p class="v-line i1"><span class="lang-pt">Habita onde for <span class="k k-wrust">bom aos teus olhos</span>.”</span><span class="lang-en">Dwell where it is <span class="k k-wrust">good in your eyes</span>.”</span></p>
 <p class="v-line"><sup class="vs"><span class="lang-pt">16</span><span class="lang-en">16</span></sup> <span class="lang-pt">E a Sara ele disse:</span><span class="lang-en">And to Sarah he said,</span></p>
 <p class="v-line i1"><span class="lang-pt">“Olha, dou mil peças de prata ao teu irmão.</span><span class="lang-en">“Look, I give one thousand silver to your brother.</span></p>
-<p class="v-line i1"><span class="lang-pt">Olha, é para ti <span class="k k-tan2">uma cobertura dos olhos</span> por todos os que estão contigo,</span><span class="lang-en">Look, it is for you <span class="k k-tan2">a covering of the eyes</span> for all who are with you,</span></p>
+<p class="v-line i1"><span class="lang-pt">Olha, é para ti <span class="k k-wrust">uma cobertura dos olhos</span> por todos os que estão contigo,</span><span class="lang-en">Look, it is for you <span class="k k-wrust">a covering of the eyes</span> for all who are with you,</span></p>
 <p class="v-line i1"><span class="lang-pt">e quanto a tudo, estás assim além de disputa.”</span><span class="lang-en">and as for everything, you are thus beyond dispute.”</span></p>
-<hr class="v-div"/>
-<p class="v-line"><sup class="vs"><span class="lang-pt">17</span><span class="lang-en">17</span></sup> <span class="lang-pt">E <span class="k k-purple2">Avraham orou</span> a Elohim,</span><span class="lang-en">And <span class="k k-purple2">Avraham prayed</span> to Elohim,</span></p>
+</div>
+<div class="v-outer reveal" style="margin:1rem 0;">
+<p class="v-line"><sup class="vs"><span class="lang-pt">17</span><span class="lang-en">17</span></sup> <span class="lang-pt">E <span class="k k-sviolet">Avraham orou</span> a Elohim,</span><span class="lang-en">And <span class="k k-sviolet">Avraham prayed</span> to Elohim,</span></p>
 <p class="v-line i1"><span class="lang-pt">e Elohim curou Avimelek,</span><span class="lang-en">and Elohim healed Avimelek,</span></p>
 <p class="v-line i2"><span class="lang-pt">e <span class="tx-teal">sua esposa</span>, e <span class="tx-brown">suas escravas</span>,</span><span class="lang-en">and <span class="tx-teal">his wife</span>, <span class="tx-brown">and his female slaves</span>,</span></p>
 <p class="v-line i1"><span class="lang-pt">e elas deram à luz,</span><span class="lang-en">and they gave birth,</span></p>
@@ -316,21 +456,21 @@
 <thead><tr><th style="width:50%;"><span class="lang-pt">Gênesis 20: Avimelek</span><span class="lang-en">Genesis 20: Avimelek</span></th><th style="width:50%;"><span class="lang-pt">Gênesis 2-3: Adão e Eva</span><span class="lang-en">Genesis 2-3: Adam &amp; Eve</span></th></tr></thead>
 <tbody>
 <tr>
-<td><strong>Gen. 20:2</strong> <span class="lang-pt">Avraham disse de Sara: “Ela é minha irmã.” E Avimelek, rei de Gerar, enviou e <span class="k k-gray2">tomou</span> (<span class="heb">לקח</span>) Sara.</span><span class="lang-en">Avraham said of Sarah, "She is my sister." And Avimelek king of Gerar sent <span class="k k-gray2">and took</span> (<span class="heb">לקח</span>) Sarah.</span></td>
-<td><strong>Gen. 3:6</strong> <span class="lang-pt">E <span class="k k-gray2">a mulher</span> (<span class="heb">האשה</span>) <span class="k k-gray2">viu</span> (<span class="heb">ראה</span>) que <span class="k k-gray2">boa</span> (<span class="heb">טוב</span>) era a árvore para comer, e desejável <span class="k k-gray2">aos olhos</span> … e <span class="k k-gray2">ela tomou</span> (<span class="heb">לקח</span>).</span><span class="lang-en">And <span class="k k-gray2">the woman</span> (<span class="heb">האשה</span>) <span class="k k-gray2">saw</span> (<span class="heb">ראה</span>) that <span class="k k-gray2">good</span> (<span class="heb">טוב</span>) was the tree for eating, and desirable <span class="k k-gray2">to the eyes</span> … and <span class="k k-gray2">she took</span> (<span class="heb">לקח</span>).</span></td>
+<td><strong>Gen. 20:2</strong> <span class="lang-pt">Avraham disse de Sara: “Ela é minha irmã.” E Avimelek, rei de Gerar, enviou e <span class="k k-wgray">tomou</span> (<span class="heb">לקח</span>) Sara.</span><span class="lang-en">Avraham said of Sarah, "She is my sister." And Avimelek king of Gerar sent <span class="k k-wgray">and took</span> (<span class="heb">לקח</span>) Sarah.</span></td>
+<td><strong>Gen. 3:6</strong> <span class="lang-pt">E <span class="k k-wgray">a mulher</span> (<span class="heb">האשה</span>) <span class="k k-wgray">viu</span> (<span class="heb">ראה</span>) que <span class="k k-wgray">boa</span> (<span class="heb">טוב</span>) era a árvore para comer, e desejável <span class="k k-wgray">aos olhos</span> … e <span class="k k-wgray">ela tomou</span> (<span class="heb">לקח</span>).</span><span class="lang-en">And <span class="k k-wgray">the woman</span> (<span class="heb">האשה</span>) <span class="k k-wgray">saw</span> (<span class="heb">ראה</span>) that <span class="k k-wgray">good</span> (<span class="heb">טוב</span>) was the tree for eating, and desirable <span class="k k-wgray">to the eyes</span> … and <span class="k k-wgray">she took</span> (<span class="heb">לקח</span>).</span></td>
 </tr>
 <tr>
-<td><p style="margin-bottom:.6rem;"><strong>Gen. 20:3</strong> <span class="lang-pt">“Olha, <span class="k k-gray2">estás morto</span> (<span class="heb">מת</span>), por causa da mulher que tomaste.”</span><span class="lang-en">"Look, <span class="k k-gray2">you are dead</span> (<span class="heb">מת</span>), on account of the woman whom you took."</span></p>
-<p><strong>Gen. 20:7</strong> <span class="lang-pt">“… E se não a devolveres, faça que <span class="k k-gray2">certamente morrerás</span> (<span class="heb">מות תמות</span>) …”</span><span class="lang-en">"… And if you don’t return her, do that <span class="k k-gray2">you will certainly die</span> (<span class="heb">מות תמות</span>) …"</span></p></td>
-<td><strong>Gen. 2:17</strong> <span class="lang-pt">“Da árvore do conhecimento do bem e do mal não deves comer, porque no dia em que dela comeres, <span class="k k-gray2">certamente morrerás</span> (<span class="heb">מות תמות</span>).”</span><span class="lang-en">"From the tree of knowing good and bad you must not eat, because in the day you eat from it, <span class="k k-gray2">you will certainly die</span> (<span class="heb">מות תמות</span>)."</span></td>
+<td><p style="margin-bottom:.6rem;"><strong>Gen. 20:3</strong> <span class="lang-pt">“Olha, <span class="k k-wgray">estás morto</span> (<span class="heb">מת</span>), por causa da mulher que tomaste.”</span><span class="lang-en">"Look, <span class="k k-wgray">you are dead</span> (<span class="heb">מת</span>), on account of the woman whom you took."</span></p>
+<p><strong>Gen. 20:7</strong> <span class="lang-pt">“… E se não a devolveres, faça que <span class="k k-wgray">certamente morrerás</span> (<span class="heb">מות תמות</span>) …”</span><span class="lang-en">"… And if you don’t return her, do that <span class="k k-wgray">you will certainly die</span> (<span class="heb">מות תמות</span>) …"</span></p></td>
+<td><strong>Gen. 2:17</strong> <span class="lang-pt">“Da árvore do conhecimento do bem e do mal não deves comer, porque no dia em que dela comeres, <span class="k k-wgray">certamente morrerás</span> (<span class="heb">מות תמות</span>).”</span><span class="lang-en">"From the tree of knowing good and bad you must not eat, because in the day you eat from it, <span class="k k-wgray">you will certainly die</span> (<span class="heb">מות תמות</span>)."</span></td>
 </tr>
 <tr>
-<td><strong>Gen. 20:6</strong> <span class="lang-pt">Deus disse a ele … “Eu não permiti que a <span class="k k-gray2">tocasses/ferisses</span> (<span class="heb">נגע</span>).”</span><span class="lang-en">God said to him … "I did not allow you <span class="k k-gray2">to touch/strike</span> (<span class="heb">נגע</span>)."</span></td>
-<td><strong>Gen. 3:3</strong> <span class="lang-pt">“Da árvore que está no meio do jardim não podemos comer dela nem <span class="k k-gray2">tocá-la</span> (<span class="heb">נגע</span>).”</span><span class="lang-en">"From the tree that is in the middle of the garden we cannot eat from it <span class="k k-gray2">or touch it</span> (<span class="heb">נגע</span>)."</span></td>
+<td><strong>Gen. 20:6</strong> <span class="lang-pt">Deus disse a ele … “Eu não permiti que a <span class="k k-wgray">tocasses/ferisses</span> (<span class="heb">נגע</span>).”</span><span class="lang-en">God said to him … "I did not allow you <span class="k k-wgray">to touch/strike</span> (<span class="heb">נגע</span>)."</span></td>
+<td><strong>Gen. 3:3</strong> <span class="lang-pt">“Da árvore que está no meio do jardim não podemos comer dela nem <span class="k k-wgray">tocá-la</span> (<span class="heb">נגע</span>).”</span><span class="lang-en">"From the tree that is in the middle of the garden we cannot eat from it <span class="k k-wgray">or touch it</span> (<span class="heb">נגע</span>)."</span></td>
 </tr>
 <tr>
-<td><strong>Gen. 20:9</strong><span class="lang-pt">: </span><span class="lang-en">: </span><span class="lang-pt">Avimelek <span class="k k-gray2">chamou</span> (<span class="heb">ויקרא … ל</span>) Avraham e disse “<span class="k k-gray2">O que nos fizeste</span> (<span class="heb">מה עשית לנו</span>)?”</span><span class="lang-en">Avimelek <span class="k k-gray2">called out to</span> (<span class="heb">ויקרא … ל</span>) Avraham and said "<span class="k k-gray2">What have you done to us</span> (<span class="heb">מה עשית לנו</span>)?"</span></td>
-<td><strong>Gen. 3:9</strong> <span class="lang-pt">E Iavé <span class="k k-gray2">chamou</span> (<span class="heb">ויקרא … אל</span>) o homem …</span><span class="lang-en">And Yahweh <span class="k k-gray2">called out to</span> (<span class="heb">ויקרא … אל</span>) the man …</span></td>
+<td><strong>Gen. 20:9</strong><span class="lang-pt">: </span><span class="lang-en">: </span><span class="lang-pt">Avimelek <span class="k k-wgray">chamou</span> (<span class="heb">ויקרא … ל</span>) Avraham e disse “<span class="k k-wgray">O que nos fizeste</span> (<span class="heb">מה עשית לנו</span>)?”</span><span class="lang-en">Avimelek <span class="k k-wgray">called out to</span> (<span class="heb">ויקרא … ל</span>) Avraham and said "<span class="k k-wgray">What have you done to us</span> (<span class="heb">מה עשית לנו</span>)?"</span></td>
+<td><strong>Gen. 3:9</strong> <span class="lang-pt">E Iavé <span class="k k-wgray">chamou</span> (<span class="heb">ויקרא … אל</span>) o homem …</span><span class="lang-en">And Yahweh <span class="k k-wgray">called out to</span> (<span class="heb">ויקרא … אל</span>) the man …</span></td>
 </tr>
 <tr>
 <td><strong>Gen. 20:15</strong> <span class="lang-pt">Avimelek disse: “Eis que a minha terra está diante de ti, habita (<span class="heb">ישב</span>) no que é bom aos teus olhos (<span class="heb">טוב בעיניך</span>).”</span><span class="lang-en">Avimelek said, "Behold, my land is before you, dwell (<span class="heb">ישב</span>) in the good in your eyes (<span class="heb">טוב בעיניך</span>)."</span></td>
@@ -353,43 +493,51 @@
 <p class="body reveal"><span class="lang-pt">Observe o contraste em como as duas histórias terminam: em Gênesis 3, os humanos quebram o mandamento divino, tomam o fruto, e são exilados. Em Gênesis 20, Avimelek age mal, mas não por quebrar o mandamento divino. E depois que o assunto é resolvido, Avraham, o verdadeiro culpado, tem permissão para ficar na terra como se fosse um novo Éden.</span><span class="lang-en">Notice the contrast in how the two stories end: In Genesis 3, the humans break the divine command, take the fruit, and they are exiled. In Genesis 20, Avimelek does wrong, but not by breaking the divine command. And after the matter is addressed, Avraham, the real wrongdoer, is allowed to stay in the land as if it’s a new Eden.</span></p>
 <!-- ============ CAIN ============ -->
 <h2 class="section reveal"><span class="lang-pt">Avraham é Como Caim e Deus é Como Deus</span><span class="lang-en">Avraham is Like Cain and God is Like God</span></h2>
-<p class="body reveal"><span class="lang-pt">Deus vem confrontar Avimelek sobre a “irmã” de Avraham, assim como confrontou Caim sobre seu “irmão”. Mas os motivos inocentes de Avimelek estão do seu lado, então ele apela a Deus com um coração puro.</span><span class="lang-en">God comes to confront Avimelek about Avraham’s “sister,” just as he confronted Cain about his “brother.” But Avimelek’s innocent motives are on his side, so he appeals to God with a pure heart.</span></p>
-<p class="body reveal"><span class="lang-pt">Avimelek acusa Avraham de agir como um Caim descuidado, cuja “falha moral” em relação à sua chamada “irmã” (escrita com as mesmas letras que “irmão” em hebraico) quase levou ao “assassinato” do inocente.</span><span class="lang-en">Avimelek accuses Avraham of acting like a careless Cain, whose “moral failure” toward his so-called “sister” (spelled with the same letters as “brother” in Hebrew) almost led to the “murder” of the innocent.</span></p>
 <div class="overflow-x-auto reveal" style="margin:1.2rem 0;">
 <table class="doc-table md reveal" style="min-width:600px;">
 <thead><tr><th style="width:50%;"><span class="lang-pt">Avraham</span><span class="lang-en">Avraham</span></th><th style="width:50%;"><span class="lang-pt">Cain</span><span class="lang-en">Cain</span></th></tr></thead>
 <tbody>
 <tr>
-<td><p style="margin-bottom:.6rem;"><strong>Gen. 20:4</strong> <span class="lang-pt">“Meu senhor, <span class="k k-gray2">matarias</span> (<span class="heb">הרג</span>) uma nação justa?! Não me disse ele: ‘Ela é minha <span class="k k-tan2">irmã</span> (<span class="heb">אחות</span>)’? E não disse ela: ‘Ele é meu <span class="k k-tan2">irmão</span> (<span class="heb">אח</span>)?’”</span><span class="lang-en">"My master, would you <span class="k k-gray2">murder</span> (<span class="heb">הרג</span>) a righteous nation?! Didn’t he say to me: ‘She is my <span class="k k-tan2">sister</span> (<span class="heb">אחות</span>)’? And didn’t she say: ‘He is my <span class="k k-tan2">brother</span> (<span class="heb">אח</span>)?’"</span></p>
-<p><strong>Gen. 20:9</strong> <span class="lang-pt">“<span class="k k-gray2">O que nos fizeste</span> (<span class="heb">מה עשית</span>)?! Que <span class="k k-purple2">falha moral</span> (<span class="heb">חטא</span>) cometi contra ti!”</span><span class="lang-en">"<span class="k k-gray2">What have you done</span> (<span class="heb">מה עשית</span>) to us?! What <span class="k k-purple2">moral failure</span> (<span class="heb">חטא</span>) have I committed against you!"</span></p>
-<p><span class="lang-pt">“Ações que não deveriam ser feitas, é isso que tu me fizeste (<span class="heb">עשית</span>)! Grande <span class="k k-purple2">falha moral</span> (<span class="heb">חטאה</span>)!”</span><span class="lang-en">"Doings that should not be done, that’s what you’ve done (<span class="heb">עשית</span>) to me! Great <span class="k k-purple2">moral failure</span> (<span class="heb">חטאה</span>)!"</span></p>
-<p style="margin-top:.6rem;"><strong>Gen. 20:11-12</strong> <span class="lang-pt">E Avraham disse: “É porque eu disse: ‘Na verdade não há <span class="k k-tan2">temor (<span class="heb">יראה</span>)</span> de Elohim neste lugar, e me <span class="k k-gray2">matarão (<span class="heb">הרג</span>)</span> por causa da minha esposa.’ E também, ela verdadeiramente é minha <span class="k k-tan2">irmã (<span class="heb">אחות</span>)</span> …”</span><span class="lang-en">And Avraham said, "It’s because I said, 'Indeed there’s no <span class="k k-tan2">fear (<span class="heb">יראה</span>)</span> of Elohim in this place, and they will <span class="k k-gray2">murder (<span class="heb">הרג</span>)</span> me on behalf of my wife. And also, she really is my <span class="k k-tan2">sister (<span class="heb">אחות</span>)</span> ...'"</span></p></td>
-<td><p style="margin-bottom:.6rem;"><strong>Gen. 4:6-7</strong> <span class="lang-pt">E Iavé disse a Caim: “Por que há ira ardente em ti? E por que caiu o teu rosto? Se fizeres o bem, não haverá elevação? E se não fizeres o bem, à porta a <span class="k k-purple2">falha moral</span> (<span class="heb">חטאת</span>) é um agachante, e o seu desejo é por ti, mas tu podes dominá-lo.”</span><span class="lang-en">And Yahweh said to Cain, “Why is there hot anger to you? And why has your face fallen? If you do good, won’t there be lifting up? And if you do not do good, at the door, <span class="k k-purple2">moral failure</span> (<span class="heb">חטאת</span>) is a croucher, and its desire is for you, but you can rule it.”</span></p><p style="margin-bottom:.6rem;"><strong>Gen. 4:8</strong> <span class="lang-pt">“E Caim falou com Abel, seu <span class="k k-tan2">irmão</span> (<span class="heb">אח</span>) … e o <span class="k k-gray2">matou</span> (<span class="heb">הרג</span>).”</span><span class="lang-en">"And Cain spoke with Abel, his <span class="k k-tan2">brother</span> (<span class="heb">אח</span>) … and <span class="k k-gray2">murdered</span> (<span class="heb">הרג</span>) him."</span></p>
-<p><strong>Gen. 4:9-10</strong> <span class="lang-pt">“E Iavé disse a Caim: ‘Onde está Abel, teu <span class="k k-tan2">irmão</span> (<span class="heb">אח</span>)?’ … ‘<span class="k k-gray2">O que fizeste</span> (<span class="heb">מה עשית</span>)?!’”</span><span class="lang-en">"And Yahweh said to Cain: ‘Where is Abel, your <span class="k k-tan2">brother</span> (<span class="heb">אח</span>)?’ … ‘<span class="k k-gray2">What have you done</span> (<span class="heb">מה עשית</span>)?!’"</span></p></td>
+<td><p style="margin-bottom:.6rem;"><strong>Gen. 20:4</strong> <span class="lang-pt">“Meu senhor, <span class="k k-wrust">matarias</span> (<span class="heb">הרג</span>) uma nação justa?! Não me disse ele: ‘Ela é minha <span class="k k-wperi">irmã</span> (<span class="heb">אחות</span>)’? E não disse ela: ‘Ele é meu <span class="k k-wperi">irmão</span> (<span class="heb">אח</span>)?’”</span><span class="lang-en">"My master, would you <span class="k k-wrust">murder</span> (<span class="heb">הרג</span>) a righteous nation?! Didn’t he say to me: ‘She is my <span class="k k-wperi">sister</span> (<span class="heb">אחות</span>)’? And didn’t she say: ‘He is my <span class="k k-wperi">brother</span> (<span class="heb">אח</span>)?’"</span></p>
+<p><strong>Gen. 20:9</strong> <span class="lang-pt">“<span class="k k-wpink">O que nos fizeste</span> (<span class="heb">מה עשית</span>)?! Que <span class="k k-wrose">falha moral</span> (<span class="heb">חטא</span>) cometi contra ti!”</span><span class="lang-en">"<span class="k k-wpink">What have you done</span> (<span class="heb">מה עשית</span>) to us?! What <span class="k k-wrose">moral failure</span> (<span class="heb">חטא</span>) have I committed against you!"</span></p>
+<p><span class="lang-pt">“Ações que não deveriam ser feitas, é isso que tu me fizeste (<span class="heb">עשית</span>)! Grande <span class="k k-wrose">falha moral</span> (<span class="heb">חטאה</span>)!”</span><span class="lang-en">"Doings that should not be done, that’s what you’ve done (<span class="heb">עשית</span>) to me! Great <span class="k k-wrose">moral failure</span> (<span class="heb">חטאה</span>)!"</span></p>
+<p style="margin-top:.6rem;"><strong>Gen. 20:11-12</strong> <span class="lang-pt">E Avraham disse: “É porque eu disse: ‘Na verdade não há <span class="k k-wgray">temor (<span class="heb">יראה</span>)</span> de Elohim neste lugar, e me <span class="k k-wrust">matarão (<span class="heb">הרג</span>)</span> por causa da minha esposa.’ E também, ela verdadeiramente é minha <span class="k k-wperi">irmã (<span class="heb">אחות</span>)</span> …”</span><span class="lang-en">And Avraham said, "It’s because I said, 'Indeed there’s no <span class="k k-wgray">fear (<span class="heb">יראה</span>)</span> of Elohim in this place, and they will <span class="k k-wrust">murder (<span class="heb">הרג</span>)</span> me on behalf of my wife. And also, she really is my <span class="k k-wperi">sister (<span class="heb">אחות</span>)</span> ...'"</span></p></td>
+<td><p style="margin-bottom:.6rem;"><strong>Gen. 4:6-7</strong> <span class="lang-pt">E Iavé disse a Caim: “Por que há ira ardente em ti? E por que caiu o teu rosto? Se fizeres o bem, não haverá elevação? E se não fizeres o bem, à porta a <span class="k k-wrose">falha moral</span> (<span class="heb">חטאת</span>) é um agachante, e o seu desejo é por ti, mas tu podes dominá-lo.”</span><span class="lang-en">And Yahweh said to Cain, “Why is there hot anger to you? And why has your face fallen? If you do good, won’t there be lifting up? And if you do not do good, at the door, <span class="k k-wrose">moral failure</span> (<span class="heb">חטאת</span>) is a croucher, and its desire is for you, but you can rule it.”</span></p><p style="margin-bottom:.6rem;"><strong>Gen. 4:8</strong> <span class="lang-pt">“E Caim falou com Abel, seu <span class="k k-wperi">irmão</span> (<span class="heb">אח</span>) … e o <span class="k k-wrust">matou</span> (<span class="heb">הרג</span>).”</span><span class="lang-en">"And Cain spoke with Abel, his <span class="k k-wperi">brother</span> (<span class="heb">אח</span>) … and <span class="k k-wrust">murdered</span> (<span class="heb">הרג</span>) him."</span></p>
+<p><strong>Gen. 4:9-10</strong> <span class="lang-pt">“E Iavé disse a Caim: ‘Onde está Abel, teu <span class="k k-wperi">irmão</span> (<span class="heb">אח</span>)?’ e ele disse: ‘Não sei. Sou eu o guardião do meu <span class="k k-wperi">irmão</span> (<span class="heb">אח</span>)?’ <strong>10</strong> E ele disse: ‘<span class="k k-wpink">O que fizeste</span> (<span class="heb">מה עשית</span>)?!’”</span><span class="lang-en">"And Yahweh said to Cain, ‘Where is Abel your <span class="k k-wperi">brother</span> (<span class="heb">אח</span>)?’ and he said, ‘I do not know. Am I the keeper of my <span class="k k-wperi">brother</span> (<span class="heb">אח</span>)?’ <strong>10</strong> And he said, ‘<span class="k k-wpink">What have you done</span> (<span class="heb">מה עשית</span>)?!’"</span></p></td>
 </tr>
 </tbody>
 <tfoot><tr><td colspan="2"><span class="lang-pt"><em>Avraham Como Caim.</em> Criado por Tim Mackie para o BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Avraham Like Cain.</em> Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></td></tr></tfoot>
 </table>
 </div>
+<p class="body reveal"><span class="lang-pt">Deus vem confrontar Avimelek sobre a “irmã” de Avraham, assim como confrontou Caim sobre seu “irmão”. Mas os motivos inocentes de Avimelek estão do seu lado, então ele apela a Deus com um coração puro.</span><span class="lang-en">God comes to confront Avimelek about Avraham’s “sister,” just as he confronted Cain about his “brother.” But Avimelek’s innocent motives are on his side, so he appeals to God with a pure heart.</span></p>
+<p class="body reveal"><span class="lang-pt">Avimelek acusa Avraham de agir como um Caim descuidado, cuja “falha moral” em relação à sua chamada “irmã” (escrita com as mesmas letras que “irmão” em hebraico) quase levou ao “assassinato” do inocente.</span><span class="lang-en">Avimelek accuses Avraham of acting like a careless Cain, whose “moral failure” toward his so-called “sister” (spelled with the same letters as “brother” in Hebrew) almost led to the “murder” of the innocent.</span></p>
 <p class="body reveal"><span class="lang-pt">O pecado de Caim contra seu irmão foi o primeiro passo que levou ao dilúvio. O pecado de Avraham contra Avimelek também leva a um julgamento semelhante ao dilúvio, com a escassez de ventres em vez da abundância de água (<span class="ref" data-reference="Gn+20:18">Gn 20:18</span>).</span><span class="lang-en">Cain’s sin against his brother was the first step that led to the flood. Avraham’s sin against Avimelek also leads to a flood-like judgment, with the scarcity of wombs instead of the abundance of water (<span class="ref" data-reference="Gen.+20:18">Gen. 20:18</span>).</span></p>
 <!-- ============ INTERCESSOR ============ -->
 <h2 class="section reveal"><span class="lang-pt">Avimelek Torna-se Seu Próprio Intercessor</span><span class="lang-en">Avimelek Becomes His Own Intercessor</span></h2>
-<div class="overflow-x-auto reveal" style="margin:1.2rem 0;">
-<table class="doc-table md reveal" style="min-width:720px;">
-<thead><tr><th style="width:33.3%;"><span class="lang-pt">Avimelek (Gn 20)</span><span class="lang-en">Avimelek (Gn 20)</span></th><th style="width:33.3%;"><span class="lang-pt">Noakh (Gn 6:5, 8-9)</span><span class="lang-en">Noakh (Gn 6:5, 8-9)</span></th><th style="width:33.4%;"><span class="lang-pt">Avraham (Gn 18:23-25)</span><span class="lang-en">Avraham (Gn 18:23-25)</span></th></tr></thead>
-<tbody><tr>
-<td><p style="margin-bottom:.6rem;"><strong>20:4</strong> <span class="lang-pt">“Meu senhor, matarias uma nação <span class="tx-brown">justa</span> (<span class="heb">צדיק</span>)?!”</span><span class="lang-en">"My master, would you murder a <span class="tx-brown">righteous</span> (<span class="heb">צדיק</span>) nation?!"</span></p>
-<p style="margin-bottom:.6rem;"><strong>20:5</strong> <span class="lang-pt">“Na <span class="tx-brown">inteireza</span> (<span class="heb">תם</span>) do meu <span class="tx-brown">coração</span> (<span class="heb">לבבי</span>) e na inocência das minhas mãos eu fiz isso!”</span><span class="lang-en">"In the <span class="tx-brown">blamelessness</span> (<span class="heb">תם</span>) of my <span class="tx-brown">heart</span> (<span class="heb">לבבי</span>) and the innocence of my hands I have done this!"</span></p>
-<p><strong>20:6</strong> <span class="lang-pt">“Eu sei que fizeste isto na <span class="tx-brown">inteireza</span> (<span class="heb">תם</span>) do teu <span class="tx-brown">coração</span> (<span class="heb">לבבך</span>) …”</span><span class="lang-en">"I know that you did this in the <span class="tx-brown">blamelessness</span> (<span class="heb">תם</span>) of your <span class="tx-brown">heart</span> (<span class="heb">לבבך</span>) …"</span></p></td>
-<td><p style="margin-bottom:.6rem;"><span class="lang-pt">“E Iavé viu que a maldade do humano se multiplicara na terra, e todo desígnio dos planos do seu <span class="tx-brown">coração</span> (<span class="heb">לבו</span>) era somente mal todo dia …”</span><span class="lang-en">"And Yahweh saw that the evil of the human had multiplied in the land, and every design of the plans of his <span class="tx-brown">heart</span> (<span class="heb">לבו</span>) was only evil all day …"</span></p>
-<p><span class="lang-pt">“Mas Noakh achou graça aos olhos de Iavé … Noakh era <span class="tx-brown">justo</span> (<span class="heb">צדיק</span>), <span class="tx-brown">íntegro</span> (<span class="heb">תם</span>) em sua geração; Noakh andou com Elohim …”</span><span class="lang-en">"But Noakh found favor in the eyes of Yahweh … Noakh was <span class="tx-brown">righteous</span> (<span class="heb">צדיק</span>), <span class="tx-brown">blameless</span> (<span class="heb">תם</span>) in his generation; Noakh walked with Elohim …"</span></p></td>
-<td><p style="margin-bottom:.6rem;"><span class="lang-pt">“E Avraham se aproximou e disse: ‘Certamente não destruirás o <span class="tx-brown">justo</span> (<span class="heb">צדיק</span>) com o ímpio? …</span><span class="lang-en">"And Avraham drew near and said: ‘Surely you will not destroy the <span class="tx-brown">righteous</span> (<span class="heb">צדיק</span>) with the wicked? …</span></p>
-<p style="margin-bottom:.6rem;"><span class="lang-pt">“Longe de ti fazer tal coisa, <span class="k k-pink2">matar</span> (<span class="heb">מות</span>) o <span class="tx-brown">justo</span> (<span class="heb">צדיק</span>) com o ímpio …</span><span class="lang-en">"Far be it from you to do such a thing, <span class="k k-pink2">to slay</span> (<span class="heb">מות</span>) the <span class="tx-brown">righteous</span> (<span class="heb">צדיק</span>) with the wicked …</span></p>
-<p><span class="lang-pt">“Longe de ti! Não fará justiça o Juiz de toda a terra?’”</span><span class="lang-en">"Far be it from you! Shall not the Judge of all the earth do justice?’"</span></p></td>
-</tr></tbody>
-<tfoot><tr><td colspan="3"><span class="lang-pt"><em>Avimelek, Seu Próprio Intercessor.</em> Criado por Tim Mackie para o BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Avimelek, His Own Intercessor.</em> Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></td></tr></tfoot>
-</table>
+<div class="icx-wrap reveal">
+<p class="icx-title"><span class="lang-pt">Avimelek Torna-se Seu Próprio Intercessor, Como Noakh e Avraham</span><span class="lang-en">Avimelek Becomes His Own Intercessor, Like Noah and Avraham</span></p>
+<div class="icx">
+<div class="icx-box">
+<h4><span class="lang-pt">Avimelek em Gênesis 20</span><span class="lang-en">Avimelek in Genesis 20</span></h4>
+<p><span class="lang-pt"><strong>20:4:</strong> “Meu senhor, <span class="tx-bold">matarias</span> uma nação <span class="tx-bold">justa</span> (<span class="heb">צדיק</span>)?!”</span><span class="lang-en"><strong>20:4:</strong> “My master, would you really <span class="tx-bold">murder</span> a <span class="tx-bold">righteous</span> (<span class="heb">צדיק</span>) nation?!”</span></p>
+<p><span class="lang-pt"><strong>20:5:</strong> “Na <span class="tx-bold">inteireza</span> (<span class="heb">תם</span>) do meu <span class="tx-bold">coração</span> (<span class="heb">לבבי</span>) e na inocência das minhas mãos eu fiz isso!”</span><span class="lang-en"><strong>20:5:</strong> “In the <span class="tx-bold">blamelessness</span> (<span class="heb">תם</span>) of my <span class="tx-bold">heart</span> (<span class="heb">לבבי</span>) and the innocence of my hands I have done this!”</span></p>
+<p><span class="lang-pt"><strong>20:6:</strong> “Eu sei que você fez isto na <span class="tx-bold">inteireza</span> (<span class="heb">תם</span>) do seu <span class="tx-bold">coração</span> (<span class="heb">לבבך</span>) …”</span><span class="lang-en"><strong>20:6:</strong> “I know that you did this in the <span class="tx-bold">blamelessness</span> (<span class="heb">תם</span>) of your <span class="tx-bold">heart</span> (<span class="heb">לבבך</span>) …”</span></p>
 </div>
+<div class="icx-col">
+<div class="icx-box icx-arm"><span class="icx-arrow">&#8594;</span>
+<h4><span class="lang-pt">Noakh em Gênesis 6:5, 8-9</span><span class="lang-en">Noakh in Genesis 6:5, 8-9</span></h4>
+<p><span class="lang-pt">“E Iavé viu que a maldade do humano se multiplicara na terra, e todo desígnio dos planos do seu <span class="tx-bold">coração</span> (<span class="heb">לבו</span>) era somente mal todo dia …”</span><span class="lang-en">“And Yahweh saw that multiplied was the badness of humanity in the land, and every purpose of the plans of <span class="tx-bold">his heart</span> (<span class="heb">לבו</span>) was only bad all day …”</span></p>
+<p><span class="lang-pt">“Mas Noakh achou graça aos olhos de Iavé … Noakh era <span class="tx-bold">justo</span> (<span class="heb">צדיק</span>), <span class="tx-bold">íntegro</span> (<span class="heb">תם</span>) em sua geração; Noakh andou com Elohim …”</span><span class="lang-en">“But Noakh found favor in the eyes of Yahweh … Noakh was a <span class="tx-bold">righteous</span> one (<span class="heb">צדיק</span>), <span class="tx-bold">blameless</span> (<span class="heb">תם</span>) in his generation; Noakh walked with Elohim …”</span></p>
+</div>
+<div class="icx-box icx-arm"><span class="icx-arrow">&#8594;</span>
+<h4><span class="lang-pt">Avraham em 18:23-25</span><span class="lang-en">Avraham in 18:23-25</span></h4>
+<p><span class="lang-pt">“E Avraham se aproximou e disse: ‘Certamente você está mesmo prestes a varrer o <span class="tx-bold">justo</span> (<span class="heb">צדיק</span>) junto com o ímpio?’ …</span><span class="lang-en">“And Avraham drew near, and said, ‘Are you really about to sweep away the <span class="tx-bold">righteous</span> (<span class="heb">צדיק</span>) along with the wicked?’ …</span></p>
+<p><span class="lang-pt">“Longe de ti fazer tal coisa, <span class="tx-bold">matar</span> (<span class="heb">מות</span>) o <span class="tx-bold">justo</span> (<span class="heb">צדיק</span>) junto com o ímpio, para que o <span class="tx-bold">justo</span> (<span class="heb">צדיק</span>) e o ímpio se tornem iguais!</span><span class="lang-en">“Far be it from you to do such a thing, to put to <span class="tx-bold">death</span> (<span class="heb">מות</span>) the <span class="tx-bold">righteous</span> (<span class="heb">צדיק</span>) along with the wicked, so that the <span class="tx-bold">righteous</span> (<span class="heb">צדיק</span>) and wicked become alike!</span></p>
+<p><span class="lang-pt">Longe de ti! Não fará justiça o <span class="tx-bold">justice-bringer</span> de toda a terra?”</span><span class="lang-en">Far be it from you! Shouldn’t the <span class="tx-bold">justice-bringer</span> of all the land do justice?”</span></p>
+</div>
+</div>
+</div>
+<p class="caption reveal" style="text-align:center;"><span class="lang-pt"><em>Avimelek, Seu Próprio Intercessor.</em> Criado por Tim Mackie para o BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Avimelek, His Own Intercessor.</em> Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
 <p class="body reveal"><span class="lang-pt">Avimelek faz o mesmo apelo a Deus que Avraham fez quando intercedeu pelos justos em Sodoma. Ele apela à justiça de Deus, pedindo-lhe que leve em conta o fato de que Avraham o enganou. Seu “coração” era “íntegro”, ao contrário da geração do dilúvio cujo “coração” era “somente mal todo dia” (<span class="ref" data-reference="Gn+6:5">Gn 6:5</span>).</span><span class="lang-en">Avimelek makes the same appeal to God that Avraham made when he interceded for the righteous in Sodom. He appeals to God’s justice, asking him to take into account that Avraham deceived him. His “heart” was “blameless,” unlike the flood generation whose “heart” was “only evil all day” (<span class="ref" data-reference="Gen.+6:5">Gen. 6:5</span>).</span></p>
 <p class="body reveal"><span class="lang-pt">E assim como Deus aceitou a intercessão tanto de Noé quanto de Avraham, Deus reconhece a inocência de Avimelek e lhe dá um novo comando que testará o seu caráter: ele deve devolver Sara a Avraham.</span><span class="lang-en">And just as God accepted the intercession of both Noah and Avraham, God recognizes Avimelek’s innocence and gives him a new command that will test his character: he must return Sarah to Avraham.</span></p>
 <!-- ============ PROPHETIC ============ -->
@@ -397,48 +545,42 @@
 <p class="body reveal"><span class="lang-pt">Mesmo que Avraham seja um enganador, ele é o enganador de Deus, aquele a quem Deus fez muitas promessas. Observe que Deus não abandona Avraham, mas intervém para consertar o que Avraham fez de errado, e então direciona Avimelek a ir a Avraham para oração e cura.</span><span class="lang-en">Even though Avraham is a deceiver, he is God’s deceiver, the one to whom God made many promises. Notice that God does not abandon Avraham, but intervenes to fix what Avraham did wrong, and then directs Avimelek to go to Avraham for prayer and healing.</span></p>
 <p class="body reveal"><span class="lang-pt">Esta é a primeira história de “cura” (<span class="heb">רפואה</span>) na Bíblia. Observe a conexão entre as palavras-chave e ideias aqui.</span><span class="lang-en">This is the first story of “healing” (<span class="heb">רפואה</span>) in the Bible. Notice the connection between the key words and ideas here.</span></p>
 <div class="callout reveal">
+<p class="co-h"><span class="lang-pt">Gênesis 20:7, 17<em> Tradução do Instrutor</em></span><span class="lang-en">Genesis 20:7, 17<em> Instructor’s Translation</em></span></p>
 <p class="v-line"><sup class="vs"><span class="lang-pt">7</span><span class="lang-en">7</span></sup> <span class="lang-pt">E agora, devolve a esposa do homem, porque ele é um profeta, e ele pode orar em teu favor para que possas ter vida. E se não a devolveres, sabe que certamente morrerás, tu e tudo o que te pertence.</span><span class="lang-en">And now, return the wife of the man, because he is a prophet, and he can pray on your behalf so that you can have life. And if you don’t return her, know that you will certainly die, you and all that belongs to you.</span></p>
-<p class="v-line"><sup class="vs"><span class="lang-pt">17</span><span class="lang-en">17</span></sup> <span class="lang-pt">E Avraham orou a Elohim, e Elohim curou Avimelek, e sua esposa, e suas escravas, e elas deram à luz. <em>(Tradução do Instrutor)</em></span><span class="lang-en">And Avraham prayed to Elohim, and Elohim healed Avimelek, and his wife, and his female slaves, and they gave birth. <em>(Instructor’s Translation)</em></span></p>
+<p class="co-gap">...</p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">17</span><span class="lang-en">17</span></sup> <span class="lang-pt">E Avraham orou a Elohim, e Elohim curou Avimelek, e sua esposa, e suas escravas, e elas deram à luz.</span><span class="lang-en">And Avraham prayed to Elohim, and Elohim healed Avimelek, and his wife, and his female slaves, and they gave birth.</span></p>
 </div>
 <p class="body reveal"><span class="lang-pt">Observe as sequências paralelas de verbos.</span><span class="lang-en">Notice the parallel sequences of verbs.</span></p>
 <ul class="bullets reveal">
-<li><span class="lang-pt">20:7: devolve a esposa &gt; ora &gt; tem vida</span><span class="lang-en">20:7: return the wife &gt; pray &gt; have life</span></li>
-<li><span class="lang-pt">20:17: devolve a esposa &gt; ora &gt; cura e nascimento</span><span class="lang-en">20:17: return the wife &gt; pray &gt; healing and birth</span></li>
+<li><span class="lang-pt">20:7: <span class="tx-rose">devolve</span> <strong>a esposa</strong> &gt; ora &gt; <span class="tx-blue">tem vida</span></span><span class="lang-en">20:7: <span class="tx-rose">return</span> <strong>the wife</strong> &gt; pray &gt; <span class="tx-blue">have life</span></span></li>
+<li><span class="lang-pt">20:17: <span class="tx-rose">devolve</span> <strong>a esposa</strong> &gt; ora &gt; <span class="tx-blue">cura e nascimento</span></span><span class="lang-en">20:17: <span class="tx-rose">return</span> <strong>the wife</strong> &gt; pray &gt; <span class="tx-blue">healing and birth</span></span></li>
 </ul>
+<p class="body reveal"><span class="lang-pt">A história faz uma conexão próxima entre o papel profético de Avraham entre as nações — o tratamento delas a ele trará vida ou morte, fertilidade ou infertilidade, cura ou doença. E Avraham recebe um papel privilegiado entre as nações, apesar de seu comportamento enganoso. Toda essa história explora o papel complicado do povo escolhido de Deus entre as nações; o tratamento das nações a Avraham determina seu destino.</span><span class="lang-en">The story makes a close connection between Avraham’s prophetic role among the nations — their treatment of him will bring life or death, fertility or infertility, healing or sickness. And Avraham receives a privileged role among the nations, despite his deceptive behavior. This whole story explores the complicated role of God’s chosen people among the nations; the nations’ treatment of Avraham determines their fate.</span></p>
 <div class="v-outer reveal">
 <div class="v-black">
-<p class="v-line"><sup class="vs"><span class="lang-pt">17</span><span class="lang-en">17</span></sup> <span class="lang-pt">E Iavé disse:</span><span class="lang-en">And Yahweh said,</span></p>
-<p class="v-line i1"><span class="lang-pt">“Devoi eu esconder de Avraham o que estou prestes a fazer?</span><span class="lang-en">“Should I hide from Avraham what I am about to do?</span></p>
-<p class="v-line i1"><sup class="vs"><span class="lang-pt">18</span><span class="lang-en">18</span></sup> <span class="lang-pt">Pois Avraham certamente se tornará uma nação grande e poderosa,</span><span class="lang-en">For Avraham will certainly become a nation great and powerful,</span></p>
-<p class="v-line i1"><span class="lang-pt">e todas as nações da terra descobrirão bênção por meio dele;</span><span class="lang-en">and all nations of the land will discover blessing through him;</span></p>
-<p class="v-line i1"><sup class="vs"><span class="lang-pt">19</span><span class="lang-en">19</span></sup> <span class="lang-pt">Com certeza, eu o conheci,</span><span class="lang-en">Indeed, I have known him,</span></p>
-<p class="v-line i1"><span class="lang-pt">para que ele ordenasse a seus filhos e sua casa depois dele,</span><span class="lang-en">so that he would command his sons and his house after him,</span></p>
-<p class="v-line i2"><span class="lang-pt">que guardassem o caminho de Iavé,</span><span class="lang-en">that they should keep the way of Yahweh,</span></p>
-<p class="v-line i2"><span class="lang-pt">fazendo o que é reto e justo,</span><span class="lang-en">by doing what is right and just,</span></p>
-<p class="v-line i1"><span class="lang-pt">para que Iavé traga sobre Avraham o que falou a seu respeito.”</span><span class="lang-en">so that Yahweh will bring upon Avraham what he has spoken about him.”</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">17</span><span class="lang-en">17</span></sup> <span class="lang-pt">E <span class="tx-violet">Iavé disse</span>:</span><span class="lang-en">And <span class="tx-violet">Yahweh said</span>,</span></p>
+<p class="v-line i1"><span class="lang-pt">“Devoi eu esconder de Avraham <span class="k k-srose">o que estou prestes a fazer</span>?</span><span class="lang-en">“Should I hide from Avraham <span class="k k-srose">what I am about to do</span>?</span></p>
+<p class="v-line i1"><sup class="vs"><span class="lang-pt">18</span><span class="lang-en">18</span></sup> <span class="lang-pt">Pois Avraham certamente se tornará <span class="k k-sviolet">uma nação grande</span> e poderosa,</span><span class="lang-en">For Avraham will certainly become <span class="k k-sviolet">a nation great</span> and powerful,</span></p>
+<p class="v-line i1"><span class="lang-pt">e <span class="k k-sviolet">todas as nações</span> da terra descobrirão <span class="k k-sviolet">bênção</span> por meio dele;</span><span class="lang-en">and <span class="k k-sviolet">all nations</span> of the land will discover <span class="k k-sviolet">blessing</span> through him;</span></p>
+<p class="v-line i1"><sup class="vs"><span class="lang-pt">19</span><span class="lang-en">19</span></sup> <span class="lang-pt">Com certeza, <span class="k k-wrust">eu o conheci</span>,</span><span class="lang-en">Indeed, <span class="k k-wrust">I have known</span> him,</span></p>
+<p class="v-line i1"><span class="lang-pt"><span class="k k-wpurple">para que ele</span> ordenasse a seus filhos e sua casa depois dele,</span><span class="lang-en"><span class="k k-wpurple">so that he would</span> command his sons and his house after him,</span></p>
+<p class="v-line i2"><span class="lang-pt">que guardassem <span class="tx-brown">o caminho de Iavé</span>,</span><span class="lang-en">that they should <span class="tx-brown">keep the way of Yahweh</span>,</span></p>
+<p class="v-line i2"><span class="lang-pt">fazendo o que é <span class="k k-wperi">reto e justo</span>,</span><span class="lang-en">by doing what is <span class="k k-wperi">right and just</span>,</span></p>
+<p class="v-line i1"><span class="lang-pt"><span class="k k-wpurple">para que Iavé</span> traga sobre Avraham o que falou a seu respeito.”</span><span class="lang-en"><span class="k k-wpurple">so that Yahweh will</span> bring upon Avraham what he has spoken about him.”</span></p>
 </div>
 </div>
 <p class="caption reveal"><span class="lang-pt"><em>Gênesis 18:16-33</em>. Tradução e Design Literário por Tim Mackie para o BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Genesis 18:16-33</em>. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
+<h2 class="section reveal"><span class="lang-pt">Intercessão Profética e a Vida do Éden</span><span class="lang-en">Prophetic Intercession and the Life of Eden</span></h2>
 <p class="body reveal"><span class="lang-pt">Avraham recebe um papel privilegiado como representante profético de Deus entre as nações. Isso estabelece o paradigma para o papel do profeta que continuará a se desenvolver por todo o decorrer da Bíblia Hebraica.</span><span class="lang-en">Avraham is given a privileged role as God’s prophetic-representative among the nations. This sets the paradigm for the role of the prophet that will continue to develop throughout the Hebrew Bible.</span></p>
 <p class="body reveal"><span class="lang-pt">Essa linha conclusiva também cria ironia: Avraham foi capaz de interceder pelos ventres inférteis de outras pessoas, mas ele nunca fez isso em favor de sua própria esposa. Mas agora que o fez, Sara instantaneamente engravida e dá à luz (Gn 20:1). Isso nos leva diretamente para a próxima história.</span><span class="lang-en">This concluding line also creates irony: Avraham was able to intercede for the infertile wombs of other people, but he never did this on behalf of his own wife. But now that he has done so, Sarah instantly becomes pregnant and gives birth (Gen. 20:1). This leads us directly into the next story.</span></p>
-<p class="body reveal"><span class="lang-pt">A história faz uma conexão próxima entre o papel profético de Avraham entre as nações — o tratamento delas a ele trará vida ou morte, fertilidade ou infertilidade, cura ou doença. E Avraham recebe um papel privilegiado entre as nações, apesar de seu comportamento enganoso. Toda essa história explora o papel complicado do povo escolhido de Deus entre as nações; o tratamento das nações a Avraham determina seu destino.</span><span class="lang-en">The story makes a close connection between Avraham’s prophetic role among the nations — their treatment of him will bring life or death, fertility or infertility, healing or sickness. And Avraham receives a privileged role among the nations, despite his deceptive behavior. This whole story explores the complicated role of God’s chosen people among the nations; the nations’ treatment of Avraham determines their fate.</span></p>
-<h3 class="sub reveal" style="margin-top:3rem;"><span class="lang-pt">Questão para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+<h2 class="section reveal"><span class="lang-pt">Questão para Reflexão</span><span class="lang-en">Reflection Question</span></h2>
 <p class="body reveal"><span class="lang-pt">Como você reconcilia o desconforto que surge quando Deus continua a abençoar Avraham, mesmo quando Avraham engana e usa mal os outros ao seu redor?</span><span class="lang-en">How do you reconcile the discomfort that arises when God continues to bless Avraham even when Avraham deceives and misuses others around him?</span></p>
 <script src="../../js/verse-modal.js"></script>
 <footer class="page-footer">
 <span class="lang-pt">Anotações de Aula: Abraão</span><span class="lang-en">Class Notes: Abraham</span>
 <span class="lang-pt">Sessão 20</span><span class="lang-en">Session 20</span>
 </footer>
-<!-- conteudo adicional do PDF -->
-<p class="body reveal"><span class="lang-en">)‫”(מה עשית לנו‬</span></p>
-<p class="body reveal"><span class="lang-en">“ He is my brother .”’”</span></p>
-<p class="body reveal"><span class="lang-en">it, you will certainly die )‫(מות תמות‬."</span></p>
-<p class="body reveal"><span class="lang-en">to touch/strike )‫(נגע‬."</span></p>
-<p class="body reveal"><span class="lang-en">)‫"?(מה עשית לנו‬</span></p>
-<p class="body reveal"><span class="lang-en">is this you have done )‫"?(מה זאת עשית‬</span></p>
-<p class="body reveal"><span class="lang-en">)‫(טוב בעיניך‬.“</span></p>
-<p class="body reveal"><span class="lang-en">she say, ‘He is my brother )‫"'? (אח‬</span></p>
-<p class="body reveal"><span class="lang-en">“What have you done )‫"?! (מה עשית‬</span></p>
+</div>
 </div>
 <script src="../../js/reading-progress.js"></script>
 <script src="../../js/lang-toggle.js"></script>

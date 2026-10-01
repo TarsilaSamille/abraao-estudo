@@ -12,17 +12,100 @@
 <link href="../../css/shared-tutorial.css" rel="stylesheet"/>
 <style>
 @import url('../css/session-base.css');
+
+/* ------------------------------------------------------------------
+   PDF is the authority. Every value below is measured off
+   abraao/pdf-sessoes/sessao-25.pdf (612x792pt page, body 10.5pt,
+   1pt ~= 1.6px at this page's body size), not off DESIGN.md tokens.
+   Colours are the PDF's own fills/strokes:
+     panel stroke gray #6b7384 · orange #b5543a · hairline #e4e8ed
+     ink #1b1b1b · caption #4f5669 · footer #2c2c2c · title rule #c1c9d0
+   --------------------------------------------------------------- */
+
+/* --- ink: the PDF paints one single text colour, #1b1b1b ---------- */
+body, h1.title, h2.section, h3.sub, p.body, ul.bullets > li,
+.box-title, .v-line, sup.vs, a.ref { color: #1b1b1b; }
+a.ref:hover { color: #4f5669; }
+.caption, .lbl { color: #4f5669; }
+.page-footer { color: #2c2c2c; border-top-color: #e4e8ed; }
+.rule { border-top: 1px solid #c1c9d0 !important; }
+
+/* --- the missing-diagram stand-in (p.2 of the PDF carries only the
+       alt text + caption; no artwork is embedded) ------------------ */
+.diagram-missing {
+  border: 1px solid #e4e8ed;
+  border-radius: 10px;
+  background: #fff;
+  color: #4f5669;
+}
+
+/* --- literary-design panels (PDF p.1-2) ---------------------------
+   1.5pt stroke, 6.8pt inner inset, pill 15pt tall, stair indent 18pt  */
+.box-gray, .box-orange {
+  border: 2px solid #6b7384;
+  border-radius: 10px;
+  background: #fff;
+  padding: 10px 11px 11px;
+  margin: 0 0 9px;
+}
+.box-orange { border-color: #b5543a; }
+.stair-1 { margin-left: 1.8rem; }
+.pill-gray, .pill-orange {
+  display: inline-block;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #fff;
+  padding: 0 5px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+.pill-gray { background: #6b7384; }
+.pill-orange { background: #b5543a; }
+.box-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.35;
+  margin: 0 0 14px;
+}
+.box-title:last-child { margin-bottom: 0; }
+.box-gray > ul.bullets > li, .box-orange > ul.bullets > li { margin-bottom: 0; }
+
+/* --- stanza box (PDF p.2-3): 1.5pt #e4e8ed frame, 10pt inset ------ */
+.stanza-box {
+  border: 2px solid #e4e8ed;
+  border-radius: 10px;
+  background: #fff;
+  padding: 12px 16px 14px;
+  margin: 1.4rem 0 .7rem;
+}
+.stanza-box .v-line { line-height: 1.8; }
+.stanza-box .v-div { border-top: 2px solid #e4e8ed; margin: 1rem 0; }
+
+/* --- highlight chips: PDF fill + PDF text colour, per chip ---------
+   lt = tinted fill with deep text; dk = saturated fill with white   */
+.k { padding: 3px 6px; }
+.k-rose-lt  { background: #f9e3de; color: #972a4e; }
+.k-rose-dk  { background: #be4967; color: #fff; }
+.k-blue-lt  { background: #d9ecfd; color: #404ca6; }
+.k-blue-dk  { background: #5869cd; color: #fff; }
+.k-tan-lt   { background: #efe8db; color: #645537; }
+.k-rust-dk  { background: #b5543a; color: #fff; }
+.k-purple-lt{ background: #e6e6fa; color: #5d4897; }
+.k-purple-dk{ background: #7e62bc; color: #fff; }
+/* Gen 22:1-19 c/c' lines carry no fill in the PDF: bold blue text only */
+.k-blue-txt { background: none; color: #3678b4; padding: 0; border-radius: 0; }
 </style>
 </head>
 <body>
 <div aria-hidden="true" id="reading-progress"></div>
 <div class="fixed left-4 top-4 z-50 print:hidden">
-<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" href="index.html">
+<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" href="index.html">
 <span><span class="lang-pt">←</span><span class="lang-en">←</span></span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
 </a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
-<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" onclick="window.print()">
+<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" onclick="window.print()">
 <svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect height="8" width="12" x="6" y="14"></rect></svg>
 <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
 </button>
@@ -99,7 +182,7 @@
 <p class="body reveal"><span class="lang-pt">As seções de transição entre as narrativas de Avraham e Yaaqov e entre as narrativas de Yaaqov e José estão alinhadas. Esse alinhamento é importante porque nos permite ver as analogias composicionais entre as principais partes de Gênesis.</span><span class="lang-en">The transition sections between the Avraham and Yaaqov narratives and between the Yaaqov and Joseph narratives are alligned. This allignment is important because it allows us to see the compositional analogies between the major parts of Genesis.</span></p>
 <!-- Placeholder for Diagram -->
 <div class="my-8 text-center reveal">
-<div class="border border-gray-300 rounded-[9px] p-8 bg-gray-50 text-gray-500 italic flex items-center justify-center min-h-[120px]">
+<div class="diagram-missing border p-8 italic flex items-center justify-center min-h-[120px]">
 <span class="lang-pt">[Diagrama mostrando onde as genealogias em Gênesis se ramificam entre linhagens escolhidas e não escolhidas]</span>
 <span class="lang-en">[Diagram showing where genealogies in Genesis branch between chosen and non-chosen lines]</span>
 </div>
@@ -112,10 +195,10 @@
 <p class="v-line"><sup class="vs"><span class="lang-pt">20</span><span class="lang-en">20</span></sup> <span class="lang-pt">E aconteceu depois destas coisas,</span><span class="lang-en">And it came about after these things,</span></p>
 <p class="v-line"><span class="lang-pt">que foi relatado a <span class="k k-rose-lt">Avraham</span>, dizendo,</span><span class="lang-en">then it was reported to <span class="k k-rose-lt">Avraham</span>, saying,</span></p>
 <p class="v-line i1"><span class="lang-pt">“</span><span class="lang-en">“</span><span class="lang-pt">Olha, <span class="k k-rose-lt">Milkah</span>, <span class="k k-blue-dk">ela também</span> <span class="k k-blue-lt">deu à luz</span> filhos para <span class="k k-rose-lt">Nakhor, seu irmão</span>:</span><span class="lang-en">“Look, <span class="k k-rose-lt">Milkah</span>, <span class="k k-blue-dk">she also</span> <span class="k k-blue-lt">has given birth</span> to sons for <span class="k k-rose-lt">Nakhor your brother</span>:</span></p>
-<p class="v-line"><sup class="vs"><span class="lang-pt">21</span><span class="lang-en">21</span></sup> <span class="lang-pt">Uts, seu primogênito,</span><span class="lang-en">Uts his firstborn,</span></p>
-<p class="v-line"><span class="lang-pt">e Buz, seu irmão,</span><span class="lang-en">and Buz his brother,</span></p>
-<p class="v-line"><span class="lang-pt">e Qemuel, o pai de Arã</span><span class="lang-en">and Qemuel the father of Aram</span></p>
-<p class="v-line"><sup class="vs"><span class="lang-pt">22</span><span class="lang-en">22</span></sup> <span class="lang-pt">e Kesed e Khazo e Pildash e Yidlaph e <span class="k k-tan-lt">Betuel</span>.”</span><span class="lang-en">and Kesed and Khazo and Pildash and Yidlaph and <span class="k k-tan-lt">Betuel</span>.”</span></p>
+<p class="v-line i1"><sup class="vs"><span class="lang-pt">21</span><span class="lang-en">21</span></sup> <span class="lang-pt">Uts, seu primogênito,</span><span class="lang-en">Uts his firstborn,</span></p>
+<p class="v-line i1"><span class="lang-pt">e Buz, seu irmão,</span><span class="lang-en">and Buz his brother,</span></p>
+<p class="v-line i1"><span class="lang-pt">e Qemuel, o pai de Arã</span><span class="lang-en">and Qemuel the father of Aram</span></p>
+<p class="v-line i1"><sup class="vs"><span class="lang-pt">22</span><span class="lang-en">22</span></sup> <span class="lang-pt">e Kesed e Khazo e Pildash e Yidlaph e <span class="k k-tan-lt">Betuel</span>.”</span><span class="lang-en">and Kesed and Khazo and Pildash and Yidlaph and <span class="k k-tan-lt">Betuel</span>.”</span></p>
 <hr class="v-div"/>
 <p class="v-line"><sup class="vs"><span class="lang-pt">23</span><span class="lang-en">23</span></sup> <span class="lang-pt">Ora, <span class="k k-tan-lt">Betuel</span>, <span class="k k-blue-lt">ele gerou</span> <span class="k k-rose-dk">Rivqah</span>.</span><span class="lang-en">Now, <span class="k k-tan-lt">Betuel</span>, <span class="k k-blue-lt">he caused the birth</span> <span class="k k-rose-dk">Rivqah</span>.</span></p>
 <p class="v-line"><span class="lang-pt">Estes oito <span class="k k-rose-lt">Milkah</span> deu à luz para <span class="k k-rose-lt">Nakhor, irmão de Avraham</span>.</span><span class="lang-en">These eight <span class="k k-rose-lt">Milkah</span> birthed for <span class="k k-rose-lt">Nakhor the brother of Avraham</span>.</span></p>
@@ -131,8 +214,8 @@
 <div class="stanza-box reveal">
 <p class="v-line"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><sup class="vs"><span class="lang-pt">17</span><span class="lang-en">17</span></sup> <span class="lang-pt">que eu certamente te <span class="k k-purple-lt">abençoarei</span>,</span><span class="lang-en">that I will certainly <span class="k k-purple-lt">bless</span> you,</span></p>
 <p class="v-line i1"><span class="lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></span><span class="lang-pt">e eu certamente <span class="k k-purple-lt">multiplicarei</span> <span class="k k-rust-dk">a tua semente</span>,</span><span class="lang-en">and I will certainly <span class="k k-purple-lt">multiply</span> <span class="k k-rust-dk">your seed</span>,</span></p>
-<p class="v-line i2"><span class="lbl"><span class="lang-pt">c</span><span class="lang-en">c</span></span><span class="lang-pt"><span class="k k-blue-lt">como as estrelas dos céus</span>,</span><span class="lang-en"><span class="k k-blue-lt">like the stars of the skies</span>,</span></p>
-<p class="v-line i2"><span class="lbl"><span class="lang-pt">c'</span><span class="lang-en">c'</span></span><span class="lang-pt">e <span class="k k-blue-lt">como a areia à beira do mar</span>,</span><span class="lang-en">and <span class="k k-blue-lt">like the sand upon the edge of the sea</span>,</span></p>
+<p class="v-line i2"><span class="lbl"><span class="lang-pt">c</span><span class="lang-en">c</span></span><span class="lang-pt"><span class="k k-blue-txt">como as estrelas dos céus</span>,</span><span class="lang-en"><span class="k k-blue-txt">like the stars of the skies</span>,</span></p>
+<p class="v-line i2"><span class="lbl"><span class="lang-pt">c'</span><span class="lang-en">c'</span></span><span class="lang-pt">e <span class="k k-blue-txt">como a areia à beira do mar</span>,</span><span class="lang-en">and <span class="k k-blue-txt">like the sand upon the edge of the sea</span>,</span></p>
 <p class="v-line i1"><span class="lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></span><span class="lang-pt">e <span class="k k-rust-dk">a tua semente</span> herdará o portão de seus inimigos,</span><span class="lang-en">and <span class="k k-rust-dk">your seed</span> will inherit the gate of their enemies,</span></p>
 <p class="v-line"><span class="lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><sup class="vs"><span class="lang-pt">18</span><span class="lang-en">18</span></sup> <span class="lang-pt">e todas as nações da terra encontrarão <span class="k k-purple-lt">bênção</span> na tua semente,</span><span class="lang-en">and all the nations of the land will find <span class="k k-purple-lt">blessing</span> in your seed,</span></p>
 <p class="v-line"><span class="lang-pt"><span class="k k-purple-dk">por causa do fato de que você ouviu a minha voz</span>.”</span><span class="lang-en"><span class="k k-purple-dk">on the heel of the fact that you listened to my voice</span>.”</span></p>

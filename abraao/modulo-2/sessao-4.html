@@ -13,35 +13,84 @@
 <style> @import url('../css/session-base.css');  .diagram-viewport { position: relative; width: 100%; overflow: hidden; } .diagram-canvas { width: max-content; max-width: none; transform-origin: top left; will-change: transform; }  @media (min-width: 768px) { .diagram-viewport { overflow-x: auto; } } @media (max-width: 767px) { .diagram-viewport { width: 100%; overflow: visible; height: auto !important; } .diagram-canvas { position: relative !important; left: 0 !important; top: 0 !important; width: 100% !important; max-width: 100% !important; height: auto !important; transform: none !important; flex-direction: column !important; flex-wrap: nowrap !important; } .diagram-canvas > div { flex: 1 1 auto !important; width: 100% !important; min-width: 0 !important; } }
 
 
-.k-tan    { background: #8a6d3b; }                 
-.k-lblue  { background: #cddcf5; color: #2b5fb0; } 
-.k-lgreen { background: #dfeee2; color: #2e6b4e; } 
-.k-lorange{ background: #f7e6dd; color: #c0562f; } 
-.tx-tan   { color: #8a6d3b; font-weight: 700; }
-.tx-blue  { color: #5468d4; font-weight: 700; }
+.k-tan    { background: #efe8db; color: #645537; }                 
+.k-lblue  { background: #d9ecfd; color: #404ca6; }
+.k-lav    { background: #e6e6fa; color: #5d4897; } 
+.k-lgreen { background: #d3f2cd; color: #2b6146; } 
+.k-lorange{ background: #fae4c4; color: #91362e; } 
+.tx-tan   { color: #b5543a; font-weight: 700; }
+.tx-blue  { color: #3678b4; font-weight: 700; }
 
 
-.quote { border-left: 4px solid #17181a; padding: 1.5rem; margin: 2rem 0;
-         background: #f6f8fa; color: #3a3f47; font-size: 1.05rem; line-height: 1.85; }
-.quote .cite { display: block; margin-top: 1rem; font-weight: 700; font-style: normal; color: #17181a; }
+.quote { border-left: 4px solid #4f5669; padding: .25rem 0 .25rem 1.25rem; margin: 2rem 0;
+         background: none; color: #1b1b1b; font-size: 1.05rem; line-height: 1.85; }
+.quote .cite { display: block; margin-top: 1rem; font-weight: 400; font-style: normal; color: #4f5669; }
 
 
 .diagram-row { display: flex; align-items: flex-start; gap: 1rem; width: max-content; max-width: none; }
+
+
+/* Overrides locais: as cores abaixo vêm do PDF da sessão (fonte de autoridade),
+   não do DESIGN.md. Não edite ../css/session-base.css. */
+body { color: #1b1b1b; }
+h1.title, h2.section, h3.sub { color: #1b1b1b; }
+p.body, ul.bullets > li { color: #1b1b1b; }
+ul.bullets > li:before { color: #1b1b1b; }
+
+.scripture { border-left: 4px solid #e4e8ed; }
+.scripture:hover { border-left-color: #e4e8ed; }
+.scripture-label { color: #1b1b1b; }
+.scripture-type { color: #4f5669; }
+.scripture-text { color: #1b1b1b; }
+.adapt { color: #4f5669; }
+
+.doc-table { border-color: #e4e8ed; }
+.doc-table th { background: #e4e8ed; color: #1b1b1b; }
+.doc-table td { border-top-color: #e4e8ed; color: #1b1b1b; }
+.doc-table td + td { border-left-color: #e4e8ed; }
+.doc-table tbody tr:hover td { background: transparent; }
+
+.caption { color: #4f5669; }
+.page-footer { color: #2c2c2c; border-top-color: #e4e8ed; }
+.v-line { color: #1b1b1b; }
+.v-div { border-top-color: #e4e8ed; }
+.label, .meta { color: #4f5669; }
+.rule { border-top-color: #c1c9d0 !important; }
+.ref { color: #1b1b1b; }
+ul.bullets > li:before { color: #1b1b1b !important; }
+
+
+/* Destaques de palavra-chave dentro das tabelas (PDF p.24: "name", "went out from") */
+.hi { padding: 2px 7px; border-radius: 5px; font-weight: 700;
+      -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.hi-name { background: #d9ecfd; color: #404ca6; }
+.hi-go   { background: #e6e6fa; color: #5d4897; }
+
+
+/* Legenda da tabela é a última linha, dentro da moldura (PDF p.24, 25, 26) */
+.doc-table tfoot td { background: #fff; border-top: 1px solid #e4e8ed;
+                      color: #4f5669; font-size: .92rem; font-style: italic;
+                      font-weight: 400; }
+.doc-table cite { color: #0000ee; font-style: italic; }
+
+/* filete sob o título + tom do texto underlined — ambos vindos do PDF */
+h1.title { border-bottom: 2px solid #c1c9d0; padding-bottom: .45rem; }
+.ref { color: #1b1b1b; }
 </style>
 </head>
-<body class="bg-white font-sans text-[#24262a]">
+<body class="bg-white font-sans text-[#1b1b1b]">
 <div aria-hidden="true" id="reading-progress"></div>
 <div class="fixed left-4 top-4 z-50 print:hidden">
-<a class="inline-flex items-center gap-2 rounded-full border border-[#6b7280] bg-white/90 backdrop-blur-xs px-4 py-1.5 text-[0.95rem] font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" href="index.html">
+<a class="inline-flex items-center gap-2 rounded-full border border-[#6b7384] bg-white/90 backdrop-blur-xs px-4 py-1.5 text-[0.95rem] font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" href="index.html">
 <span><span class="lang-pt">←</span><span class="lang-en">←</span></span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
 </a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
-<button class="inline-flex items-center gap-2 rounded-full border border-[#6b7280] bg-white/90 backdrop-blur-xs px-4 py-1.5 text-[0.95rem] font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" onclick="window.print()">
+<button class="inline-flex items-center gap-2 rounded-full border border-[#6b7384] bg-white/90 backdrop-blur-xs px-4 py-1.5 text-[0.95rem] font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" onclick="window.print()">
 <svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect height="8" width="12" x="6" y="14"></rect></svg>
 <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
 </button>
-<div class="inline-flex overflow-hidden rounded-full border border-[#6b7280] bg-white/90 backdrop-blur-xs shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
+<div class="inline-flex overflow-hidden rounded-full border border-[#6b7384] bg-white/90 backdrop-blur-xs shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
 <button class="px-3.5 py-1.5 text-[0.95rem] font-semibold transition-colors" id="lang-pt" onclick="setLang('pt')">PT</button>
 <button class="px-3.5 py-1.5 text-[0.95rem] font-semibold transition-colors" id="lang-en" onclick="setLang('en')">EN</button>
 </div>
@@ -52,8 +101,9 @@
 <div>
 <h1 class="title"><span class="lang-pt">Sessão 4: Uma História de Duas Jornadas</span><span class="lang-en">Session 4: A Tale of Two Journeys</span>
 </h1>
+<hr class="rule"/>
 <h2 class="section mb-3"><span class="lang-pt">Pontos-Chave</span><span class="lang-en">Key Takeaways</span></h2>
-<ul class="bullets mb-10 text-[#17181a]">
+<ul class="bullets mb-10 text-[#1b1b1b]">
 <li><span class="lang-pt">As histórias de Terá e Avram são colocadas lado a lado para comparação e contraste: Terá é marcado pela morte e Avram é marcado pela bênção.</span><span class="lang-en">The two stories of Terakh (Terah) and Avram are set alongside each other to compare and contrast: Terakh is marked by death and Avram is marked by blessing.</span></li>
 <li><span class="lang-pt">Avram é retratado como um novo Noé. Ele deixa o forno de fogo da Babilônia após a dispersão, assim como Noé deixou a arca após o dilúvio.</span><span class="lang-en">Avram is depicted as a new Noah. He leaves the fire oven of Babylon after the scattering, like Noah left the ark after the flood.</span></li>
 <li><span class="lang-pt">Quando Deus chama Avram, o foco da história bíblica se estreita do drama de Deus e as nações para a obra de Deus através de uma família.</span><span class="lang-en">When God calls Avram, the focus of the biblical story narrows from the drama of God and the nations to God's work through one family.</span></li>
@@ -66,105 +116,91 @@
 <div class="mx-auto w-full max-w-7xl">
 <div class="diagram-viewport">
 <div class="diagram-canvas flex items-start gap-4">
-<div class="w-full flex-1 rounded-2xl border-[3px] border-[#6b7280] p-3">
-<div class="inline-block whitespace-nowrap rounded-md bg-[#3d4453] px-3 py-1 text-[0.72rem] font-bold text-white">
+<div class="w-full flex-1 rounded-2xl border-[3px] border-[#3e4054] p-3">
+<div class="inline-block whitespace-nowrap rounded-md bg-[#3e4054] px-3 py-1 text-[0.72rem] font-bold text-white">
 <a class="verse-link hover:underline" data-reference="Gênesis+11:27-14:24" href="#"><span class="lang-pt">Gênesis 11:27-14:24</span><span class="lang-en">Genesis 11:27-14:24</span> </a>
 </div>
-<div class="mt-2 flex items-center gap-2"><span class="rounded-md bg-[#2e7d4e] px-3 py-1 text-[0.72rem] font-bold text-white"><span class="lang-pt">Promessas</span><span class="lang-en">Promises</span></span><span class="font-bold text-[#5b6472]"><span class="lang-pt">&amp;</span><span class="lang-en">&amp;</span></span><span class="rounded-md bg-[#5468d4] px-3 py-1 text-[0.72rem] font-bold text-white"><span class="lang-pt">Problemas com Ló</span><span class="lang-en">Problems with Lot</span></span></div>
-<div class="min-h-[16rem] mt-2 flex min-w-max items-stretch gap-2">
-<div class="flex-1 rounded-xl border-[3px] border-[#2e7d4e] p-2">
-<div class="inline-block whitespace-nowrap rounded-md bg-[#2e7d4e] px-2 py-1 text-[0.72rem] font-bold text-white">
+<div class="mt-2 text-[0.95rem] font-bold text-[#1b1b1b]"><span class="lang-pt">Promessas &amp; Problemas com Ló</span><span class="lang-en">Promises &amp; Lot Problems</span></div>
+<div class="min-h-[15.5rem] mt-2 flex min-w-max items-stretch gap-2">
+<div class="flex-1 rounded-xl border-[3px] border-[#3a8060] p-2">
+<div class="inline-block whitespace-nowrap rounded-md bg-[#3a8060] px-2 py-1 text-[0.72rem] font-bold text-white">
 <a class="verse-link hover:underline" data-reference="Gênesis+11:27-12:5" href="#"><span class="lang-pt"> 11:27-12:5 </span><span class="lang-en"> 11:27-12:5 </span></a>
 </div>
-<div class="mt-2 flex h-full gap-2 pb-9">
-<div class="flex-1 rounded-[9px] border border-[#2e7d4e] bg-[#2e7d4e]/50 p-1.5">
-<div class="inline-block whitespace-nowrap rounded-md bg-[#dfeee2] px-1.5 py-0.5 text-[0.72rem] font-semibold text-[#2e7d4e]">
-<a class="verse-link" data-reference="Gênesis+11:27-32" href="#"><span class="lang-pt"> 11:27-32
-                                                    </span><span class="lang-en"> 11:27-32
-                                                    </span></a>
 </div>
-</div>
-<div class="flex-1 rounded-[9px] border border-[#2e7d4e] bg-[#2e7d4e]/50 p-1.5">
-<div class="inline-block whitespace-nowrap rounded-md bg-[#dfeee2] px-1.5 py-0.5 text-[0.72rem] font-semibold text-[#2e7d4e]">
-<a class="verse-link" data-reference="Gênesis+12:1-5" href="#"><span class="lang-pt"> 12:1-5</span><span class="lang-en"> 12:1-5</span></a>
-</div>
-</div>
-</div>
-</div>
-<div class="min-h-[16rem] min-w-max flex-1 rounded-xl border-[3px] border-[#6b7280] p-2">
-<div class="inline-block whitespace-nowrap rounded-md bg-[#7d8697] px-2 py-1 text-[0.72rem] font-bold text-white">
+<div class="min-h-[16rem] min-w-max flex-1 rounded-xl border-[3px] border-[#6b7384] p-2">
+<div class="inline-block whitespace-nowrap rounded-md bg-[#6b7384] px-2 py-1 text-[0.72rem] font-bold text-white">
 <a class="verse-link" data-reference="Gênesis+12:6-13:18" href="#"><span class="lang-pt"> 12:6-13:18 </span><span class="lang-en"> 12:6-13:18 </span></a>
 </div>
 <div class="mt-2 flex h-full items-stretch gap-2 pb-9">
-<div class="flex-1 rounded-[9px] border border-[#6b7280] bg-[#f8fafc]/50 p-1.5">
-<div class="inline-block whitespace-nowrap rounded-md bg-[#e2e6eb] px-1.5 py-0.5 text-[0.72rem] font-semibold text-[#17181a]">
+<div class="flex-1 rounded-[9px] border border-[#e4e8ed] bg-white p-1.5">
+<div class="inline-block whitespace-nowrap rounded-md bg-[#e4e8ed] px-1.5 py-0.5 text-[0.72rem] font-semibold text-[#4f5669]">
 <a class="verse-link" data-reference="Gênesis+12:10-20" href="#"><span class="lang-pt"> 12:10-20</span><span class="lang-en"> 12:10-20</span></a>
 </div>
 </div>
-<div class="flex-1 rounded-[9px] border border-[#6b7280] bg-[#f8fafc]/50 p-1.5">
-<div class="inline-block whitespace-nowrap rounded-md bg-[#e2e6eb] px-1.5 py-0.5 text-[0.72rem] font-semibold text-[#17181a]">
+<div class="flex-1 rounded-[9px] border border-[#e4e8ed] bg-white p-1.5">
+<div class="inline-block whitespace-nowrap rounded-md bg-[#e4e8ed] px-1.5 py-0.5 text-[0.72rem] font-semibold text-[#4f5669]">
 <a class="verse-link" data-reference="Gênesis+13:1-11" href="#"><span class="lang-pt"> 13:1-11</span><span class="lang-en"> 13:1-11</span></a>
 </div>
 </div>
-<div class="flex-1 rounded-[9px] border border-[#6b7280] bg-[#f8fafc]/50 p-1.5">
-<div class="inline-block whitespace-nowrap rounded-md bg-[#e2e6eb] px-1.5 py-0.5 text-[0.72rem] font-semibold text-[#17181a]">
+<div class="flex-1 rounded-[9px] border border-[#e4e8ed] bg-white p-1.5">
+<div class="inline-block whitespace-nowrap rounded-md bg-[#e4e8ed] px-1.5 py-0.5 text-[0.72rem] font-semibold text-[#4f5669]">
 <a class="verse-link" data-reference="Gênesis+13:12-18" href="#"><span class="lang-pt"> 13:12-18</span><span class="lang-en"> 13:12-18</span></a>
 </div>
 </div>
 </div>
 </div>
-<div class="min-h-[16rem] min-w-max rounded-xl border-[3px] border-[#5468d4] p-2">
-<div class="inline-block whitespace-nowrap rounded-md bg-[#5468d4] px-2 py-1 text-[0.72rem] font-bold text-white">
+<div class="min-h-[16rem] min-w-max rounded-xl border-[3px] border-[#3678b4] p-2">
+<div class="inline-block whitespace-nowrap rounded-md bg-[#3678b4] px-2 py-1 text-[0.72rem] font-bold text-white">
 <a class="verse-link" data-reference="Gênesis+14:1-24" href="#"><span class="lang-pt"> 14:1-24 </span><span class="lang-en"> 14:1-24 </span></a>
 </div>
 </div>
 </div>
 </div>
-<div class="w-full rounded-2xl border-[3px] border-[#6b7280] p-3 lg:w-auto">
-<div class="inline-block whitespace-nowrap rounded-md bg-[#6b7280] px-3 py-1 text-[0.72rem] font-bold text-white">
+<div class="w-full rounded-2xl border-[3px] border-[#3e4054] p-3 lg:w-auto">
+<div class="inline-block whitespace-nowrap rounded-md bg-[#3e4054] px-3 py-1 text-[0.72rem] font-bold text-white">
 <a class="verse-link hover:underline" data-reference="Gênesis+15:1-17:27" href="#"><span class="lang-pt">Gênesis 15:1-17:27</span><span class="lang-en">Genesis 15:1-17:27</span></a>
 </div>
-<div class="mt-2 text-[0.95rem] font-semibold text-[#17181a]"><span class="lang-pt">Problemas da Promessa da Semente</span><span class="lang-en">Problems of the Seed Promise</span>
+<div class="mt-2 text-[0.95rem] font-semibold text-[#1b1b1b]"><span class="lang-pt">Problemas da Promessa da Semente</span><span class="lang-en">Problems of the Seed Promise</span>
 </div>
 <div class="mt-2 flex min-w-max items-stretch gap-2">
-<div class="min-h-[16rem] flex-1 rounded-xl border-[3px] border-[#c04a63] p-2">
-<div class="inline-block whitespace-nowrap rounded-md bg-[#c04a63] px-2 py-1 text-[0.72rem] font-bold text-white">
+<div class="min-h-[16rem] flex-1 rounded-xl border-[3px] border-[#be4967] p-2">
+<div class="inline-block whitespace-nowrap rounded-md bg-[#be4967] px-2 py-1 text-[0.72rem] font-bold text-white">
 <a class="verse-link" data-reference="Gênesis+15:1-21" href="#"><span class="lang-pt"> 15:1-21 </span><span class="lang-en"> 15:1-21 </span></a>
 </div>
-<div class="mt-2 text-[0.95rem] font-bold text-[#24262a]"><span class="lang-pt">Aliança</span><span class="lang-en">Covenant</span> <span class="lang-pt">Rodada 1</span><span class="lang-en">Round 1</span></div>
+<div class="mt-2 text-[0.95rem] font-bold text-[#1b1b1b]"><span class="lang-pt">Aliança</span><span class="lang-en">Covenant</span> <span class="lang-pt">Rodada 1</span><span class="lang-en">Round 1</span></div>
 </div>
-<div class="min-h-[16rem] flex-1 rounded-xl border-[3px] border-[#0d7d8c] p-2">
-<div class="inline-block whitespace-nowrap rounded-md bg-[#0d7d8c] px-2 py-1 text-[0.72rem] font-bold text-white">
+<div class="min-h-[16rem] flex-1 rounded-xl border-[3px] border-[#6b7384] p-2">
+<div class="inline-block whitespace-nowrap rounded-md bg-[#6b7384] px-2 py-1 text-[0.72rem] font-bold text-white">
 <a class="verse-link" data-reference="Gênesis+16:1-16" href="#"><span class="lang-pt"> 16:1-16 </span><span class="lang-en"> 16:1-16 </span></a>
 </div>
-<div class="mt-2 text-[0.95rem] font-bold text-[#24262a]"><span class="lang-pt">Falha com Hagar</span><span class="lang-en">Failure with Hagar</span></div>
+<div class="mt-2 text-[0.95rem] font-bold text-[#1b1b1b]"><span class="lang-pt">Falha com Hagar</span><span class="lang-en">Failure with Hagar</span></div>
 </div>
-<div class="min-h-[16rem] flex-1 rounded-xl border-[3px] border-[#c04a63] p-2">
-<div class="inline-block whitespace-nowrap rounded-md bg-[#c04a63] px-2 py-1 text-[0.72rem] font-bold text-white">
+<div class="min-h-[16rem] flex-1 rounded-xl border-[3px] border-[#be4967] p-2">
+<div class="inline-block whitespace-nowrap rounded-md bg-[#be4967] px-2 py-1 text-[0.72rem] font-bold text-white">
 <a class="verse-link" data-reference="Gênesis+17:1-27" href="#"><span class="lang-pt"> 17:1-27 </span><span class="lang-en"> 17:1-27 </span></a>
 </div>
-<div class="mt-2 text-[0.95rem] font-bold text-[#24262a]"><span class="lang-pt">Aliança</span><span class="lang-en">Covenant</span> <span class="lang-pt">Rodada 2</span><span class="lang-en">Round 2</span></div>
+<div class="mt-2 text-[0.95rem] font-bold text-[#1b1b1b]"><span class="lang-pt">Aliança</span><span class="lang-en">Covenant</span> <span class="lang-pt">Rodada 2</span><span class="lang-en">Round 2</span></div>
 </div>
 </div>
 </div>
-<div class="w-full rounded-2xl border-[3px] border-[#6b7280] p-3 lg:w-auto">
-<div class="inline-block whitespace-nowrap rounded-md bg-[#3d4453] px-3 py-1 text-[0.72rem] font-bold text-white">
+<div class="w-full rounded-2xl border-[3px] border-[#3e4054] p-3 lg:w-auto">
+<div class="inline-block whitespace-nowrap rounded-md bg-[#3e4054] px-3 py-1 text-[0.72rem] font-bold text-white">
 <a class="verse-link hover:underline" data-reference="Gênesis+18:1-19:38" href="#"><span class="lang-pt">Gênesis 18:1-19:38</span><span class="lang-en">Genesis 18:1-19:38</span> </a>
 </div>
-<div class="mt-2 flex items-center gap-2"><span class="rounded-md bg-[#2e7d4e] px-3 py-1 text-[0.72rem] font-bold text-white"><span class="lang-pt">Promessas</span><span class="lang-en">Promises</span></span><span class="font-bold text-[#5b6472]"><span class="lang-pt">&amp; Mais</span><span class="lang-en">&amp; More</span></span><span class="rounded-md bg-[#5468d4] px-3 py-1 text-[0.72rem] font-bold text-white"><span class="lang-pt">Problemas com Ló</span><span class="lang-en">Problems with Lot</span></span></div>
+<div class="mt-2 text-[0.95rem] font-bold text-[#1b1b1b]"><span class="lang-pt">Promessas &amp; Mais Problemas com Ló</span><span class="lang-en">Promises &amp; More Lot Problems</span></div>
 <div class="mt-2 flex min-w-max items-stretch gap-2">
-<div class="min-h-[16rem] w-24 rounded-xl border-[3px] border-[#2e7d4e] p-2">
-<div class="inline-block whitespace-nowrap rounded-md bg-[#2e7d4e] px-2 py-1 text-[0.72rem] font-bold text-white">
+<div class="min-h-[16rem] w-24 rounded-xl border-[3px] border-[#3a8060] p-2">
+<div class="inline-block whitespace-nowrap rounded-md bg-[#3a8060] px-2 py-1 text-[0.72rem] font-bold text-white">
 <a class="verse-link" data-reference="Gênesis+18:1-15" href="#"><span class="lang-pt"> 18:1-15 </span><span class="lang-en"> 18:1-15 </span></a>
 </div>
 </div>
-<div class="min-h-[16rem] w-24 rounded-xl border-[3px] border-[#6b7280] p-2">
-<div class="inline-block whitespace-nowrap rounded-md bg-[#6b7280] px-2 py-1 text-[0.72rem] font-bold text-white">
+<div class="min-h-[16rem] w-24 rounded-xl border-[3px] border-[#6b7384] p-2">
+<div class="inline-block whitespace-nowrap rounded-md bg-[#6b7384] px-2 py-1 text-[0.72rem] font-bold text-white">
 <a class="verse-link" data-reference="Gênesis+18:16-33" href="#"><span class="lang-pt"> 18:16-33 </span><span class="lang-en"> 18:16-33 </span></a>
 </div>
 </div>
-<div class="min-h-[16rem] w-24 rounded-xl border-[3px] border-[#5468d4] p-2">
-<div class="inline-block whitespace-nowrap rounded-md bg-[#5468d4] px-2 py-1 text-[0.72rem] font-bold text-white">
+<div class="min-h-[16rem] w-24 rounded-xl border-[3px] border-[#3678b4] p-2">
+<div class="inline-block whitespace-nowrap rounded-md bg-[#3678b4] px-2 py-1 text-[0.72rem] font-bold text-white">
 <a class="verse-link" data-reference="Gênesis+19:1-38" href="#"><span class="lang-pt"> 19:1-38 </span><span class="lang-en"> 19:1-38 </span></a>
 </div>
 </div>
@@ -172,7 +208,7 @@
 </div>
 </div>
 </div>
-<p class="caption mt-8"><span class="lang-pt">Gênesis 11:27-19:38. Design Literário por Tim Mackie para BibleProject Classroom: Abraham (2021).</span><span class="lang-en">Genesis 11:27-19:38. Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
+<p class="caption mt-8"><span class="lang-pt">Gênesis 11:27-19:38 (simplificado). Design Literário por Tim Mackie para BibleProject Classroom: Abraham (2021).</span><span class="lang-en">Genesis 11:27-19:38 (Simplified). Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
 </div>
 </div>
 </div>
@@ -180,7 +216,7 @@
 <p class="body"><span class="lang-pt">Este primeiro grande trecho da história de Avraham foi organizado em três movimentos, cada um consistindo de três unidades literárias. Essas tríades são simetricamente projetadas em cada nível, convidando o leitor a fazer comparações e contrastes vitais que informam a contribuição de cada cena para o todo.</span><span class="lang-en">This first large stretch of the Avraham story has been organized into three movements that each consist of three literary units. These triads are symmetrically designed at each level, inviting the reader to make vital comparisons and contrasts that inform each scene’s contribution to the whole.</span></p>
 <h3 class="sub mt-6"><span class="lang-pt">11:27-14:24 e 18:1-19:38</span><span class="lang-en">11:27-14:24 and 18:1-19:38</span></h3>
 <p class="body"><span class="lang-pt">Estes são dois grandes blocos onde Ló, o sobrinho de Avraham, aparece como personagem principal. Em ambos os casos, o desrespeito de Avraham ao mandamento de Deus para deixar sua família para trás resulta em enormes problemas, primeiro na captura de Ló pela aliança babilônica (Gn. 14), e segundo quando ele precisa ser resgatado de Sodoma (Gn. 19). Em ambas as histórias Deus liberta o sobrinho não escolhido por meio do status de Avraham como o intercessor escolhido, abençoado e justo.</span><span class="lang-en">These are two large blocks where Avraham’s nephew Lot features as a main character. In both cases, Avraham’s disregard for God’s command to leave his family behind results in huge trouble, first in Lot’s capture by the Babylonian alliance (Gen. 14), and second when he needs to be rescued from Sodom (Gen. 19). In both stories God delivers the non-chosen nephew through Avraham’s status as the chosen, blessed, and righteous intercessor.</span></p>
-<p class="body"><span class="lang-pt">As primeiras promessas de uma grande família para Avraham e Sara são feitas em</span><span class="lang-en">The first promises of a large family for Avraham and Sarah are made in</span> <a class="text-[#5468d4] underline" href="#"><span class="lang-pt">12:1-9</span><span class="lang-en">12:1-9</span></a><span class="lang-pt">, mas não são cumpridas até</span><span class="lang-en">, but they are not fulfilled until</span> <a class="text-[#5468d4] underline" href="#"><span class="lang-pt">18:1-15</span><span class="lang-en">18:1-15</span></a><span class="lang-pt">.</span><span class="lang-en">.</span></p>
+<p class="body"><span class="lang-pt">As primeiras promessas de uma grande família para Avraham e Sara são feitas em</span><span class="lang-en">The first promises of a large family for Avraham and Sarah are made in</span> <a class="text-[#1b1b1b] underline" href="#"><span class="lang-pt">12:1-9</span><span class="lang-en">12:1-9</span></a><span class="lang-pt">, mas não são cumpridas até</span><span class="lang-en">, but they are not fulfilled until</span> <a class="text-[#1b1b1b] underline" href="#"><span class="lang-pt">18:1-15</span><span class="lang-en">18:1-15</span></a><span class="lang-pt">.</span><span class="lang-en">.</span></p>
 <h3 class="sub mt-6"><span class="lang-pt">15:1-17:27</span><span class="lang-en">15:1-17:27</span></h3>
 <p class="body mb-8"><span class="lang-pt">Esta tríade de histórias estreitamente organizadas está conectada de maneiras importantes. Todas giram em torno da luta de Avraham para confiar na promessa de Deus de que ele e Sara produzirão uma criança.</span><span class="lang-en">This triad of tightly organized stories is connected in important ways. They all revolve around Avraham’s struggle to trust God’s promise that he and Sarah will produce a child.</span></p>
 <p class="body mb-8"><span class="lang-pt">Nos capítulos 15 e 17, Avraham tanto acredita quanto não acredita na promessa de Deus, levando à segunda grande aliança na história bíblica.</span><span class="lang-en">In chapters 15 and 17, Avraham both believes and doesn’t believe in God’s promise, leading to the second major covenant in the biblical story.</span></p>
@@ -190,48 +226,48 @@
 <div class="diagram-viewport w-full">
 <div class="diagram-canvas diagram-row">
 <!-- Seção 1: <span class="lang-pt">Da Babilônia para Canaã</span><span class="lang-en">From Babylon to Canaan</span> -->
-<div class="rounded-xl border-[3px] border-[#c04a63] p-3">
-<div class="inline-block whitespace-nowrap rounded-md bg-[#c04a63] px-2 py-1 text-[0.72rem] font-bold text-white">
+<div class="rounded-xl border-[3px] border-[#be4967] p-3">
+<div class="inline-block whitespace-nowrap rounded-md bg-[#be4967] px-2 py-1 text-[0.72rem] font-bold text-white">
 <span class="lang-pt">Gênesis 11:27-12:5</span><span class="lang-en">Genesis 11:27-12:5</span></div>
-<p class="mt-2 font-semibold text-[#17181a]"><span class="lang-pt">Da Babilônia para Canaã</span><span class="lang-en">From Babylon to Canaan</span></p>
+<p class="mt-2 font-semibold text-[#1b1b1b]"><span class="lang-pt">Da Babilônia para Canaã</span><span class="lang-en">From Babylon to Canaan</span></p>
 <div class="mt-2 flex items-stretch gap-2">
-<div class="w-40 rounded-[9px] border-[3px] border-[#6b7280] p-2">
-<div class="inline-block rounded-[5px] bg-[#6b7280] px-1.5 py-0.5 text-[0.72rem] font-bold text-white"><span class="lang-pt"> 11:27-32</span><span class="lang-en"> 11:27-32</span></div>
+<div class="w-40 rounded-[9px] border-[3px] border-[#6b7384] p-2">
+<div class="inline-block rounded-[5px] bg-[#6b7384] px-1.5 py-0.5 text-[0.72rem] font-bold text-white"><span class="lang-pt"> 11:27-32</span><span class="lang-en"> 11:27-32</span></div>
 <p class="mt-1 text-[0.95rem] font-semibold"><span class="lang-pt">A Jornada de Terá, o Pai</span><span class="lang-en">The Journey of Terah, the Father</span></p>
 </div>
-<div class="w-40 rounded-[9px] border-[3px] border-[#6b7280] p-2">
-<div class="inline-block rounded-[5px] bg-[#6b7280] px-1.5 py-0.5 text-[0.72rem] font-bold text-white"><span class="lang-pt"> 12:1-5</span><span class="lang-en"> 12:1-5</span></div>
+<div class="w-40 rounded-[9px] border-[3px] border-[#6b7384] p-2">
+<div class="inline-block rounded-[5px] bg-[#6b7384] px-1.5 py-0.5 text-[0.72rem] font-bold text-white"><span class="lang-pt"> 12:1-5</span><span class="lang-en"> 12:1-5</span></div>
 <p class="mt-1 text-[0.95rem] font-semibold">
 <span class="lang-pt">A Jornada de Abrão, o Filho +</span><span class="lang-en">The Journey of Abram, the Son +</span>
-<span class="ml-1 inline-block rounded-[5px] bg-[#f7e0e5] px-2 py-0.5 text-[0.72rem] font-bold text-[#c04a63]"><span class="lang-pt">Ló</span><span class="lang-en">Ló</span></span>
+<span class="ml-1 inline-block rounded-[5px] bg-[#fae4c4] px-2 py-0.5 text-[0.72rem] font-bold text-[#91362e]"><span class="lang-pt">Ló</span><span class="lang-en">Ló</span></span>
 </p>
 </div>
 </div>
 </div>
 <!-- Seção 2: De Canaã ao <span class="lang-pt">Egito</span><span class="lang-en">Egypt</span> e volta -->
-<div class="rounded-xl border-[3px] border-[#6b7280] p-3">
-<div class="inline-block rounded-md bg-[#3d4453] px-2 py-1 text-[0.72rem] font-bold text-white">
+<div class="rounded-xl border-[3px] border-[#6b7384] p-3">
+<div class="inline-block rounded-md bg-[#6b7384] px-2 py-1 text-[0.72rem] font-bold text-white">
 <span class="lang-pt">Gênesis 12:6-13:18</span><span class="lang-en">Genesis 12:6-13:18</span>
 </div>
-<p class="mt-2 font-semibold text-[#17181a]"><span class="lang-pt">De Canaã para o Egito e de Volta para Canaã</span><span class="lang-en">From Canaan to Egypt and Back to Canaan</span></p>
+<p class="mt-2 font-semibold text-[#1b1b1b]"><span class="lang-pt">De Canaã para o Egito e de Volta para Canaã</span><span class="lang-en">From Canaan to Egypt and Back to Canaan</span></p>
 <div class="mt-2 flex items-end gap-2">
-<div class="h-32 w-32 rounded-[9px] border-[3px] border-[#8b5cf6] p-2">
-<div class="inline-block rounded-[5px] bg-[#8b5cf6] px-1.5 py-0.5 text-[0.72rem] font-bold text-white"><span class="lang-pt"> 12:6-9</span><span class="lang-en"> 12:6-9</span></div>
+<div class="h-32 w-32 rounded-[9px] border-[3px] border-[#7e62bc] p-2">
+<div class="inline-block rounded-[5px] bg-[#7e62bc] px-1.5 py-0.5 text-[0.72rem] font-bold text-white"><span class="lang-pt"> 12:6-9</span><span class="lang-en"> 12:6-9</span></div>
 <p class="mt-1 text-[0.95rem] font-semibold"><span class="lang-pt">Promessa da Semente e da Terra</span><span class="lang-en">Seed and Land Promise</span></p>
 </div>
-<div class="h-24 w-32 rounded-[9px] border-[3px] border-[#6b7280] p-2">
-<div class="inline-block rounded-[5px] bg-[#6b7280] px-1.5 py-0.5 text-[0.72rem] font-bold text-white"><span class="lang-pt"> 12:10-20</span><span class="lang-en"> 12:10-20</span></div>
+<div class="h-24 w-32 rounded-[9px] border-[3px] border-[#6b7384] p-2">
+<div class="inline-block rounded-[5px] bg-[#6b7384] px-1.5 py-0.5 text-[0.72rem] font-bold text-white"><span class="lang-pt"> 12:10-20</span><span class="lang-en"> 12:10-20</span></div>
 <p class="mt-1 text-[0.95rem] font-semibold"><span class="lang-pt">Engano com a Irmã</span><span class="lang-en">Deception with the Sister</span></p>
 </div>
-<div class="h-24 w-20 rounded-[9px] border-[3px] border-[#6b7280] p-2">
-<div class="inline-block rounded-[5px] bg-[#6b7280] px-1.5 py-0.5 text-[0.72rem] font-bold text-white"><span class="lang-pt"> 13:1-4</span><span class="lang-en"> 13:1-4</span></div>
+<div class="h-24 w-20 rounded-[9px] border-[3px] border-[#6b7384] p-2">
+<div class="inline-block rounded-[5px] bg-[#6b7384] px-1.5 py-0.5 text-[0.72rem] font-bold text-white"><span class="lang-pt"> 13:1-4</span><span class="lang-en"> 13:1-4</span></div>
 </div>
-<div class="h-24 w-32 rounded-[9px] border-[3px] border-[#6b7280] p-2">
-<div class="inline-block rounded-[5px] bg-[#6b7280] px-1.5 py-0.5 text-[0.72rem] font-bold text-white"><span class="lang-pt"> 13:5-11</span><span class="lang-en"> 13:5-11</span></div>
+<div class="h-24 w-32 rounded-[9px] border-[3px] border-[#6b7384] p-2">
+<div class="inline-block rounded-[5px] bg-[#6b7384] px-1.5 py-0.5 text-[0.72rem] font-bold text-white"><span class="lang-pt"> 13:5-11</span><span class="lang-en"> 13:5-11</span></div>
 <p class="mt-1 text-[0.95rem] font-semibold"><span class="lang-pt">Divisão com o Irmão</span><span class="lang-en">Division with the Brother</span></p>
 </div>
-<div class="h-32 w-32 rounded-[9px] border-[3px] border-[#8b5cf6] p-2">
-<div class="inline-block rounded-[5px] bg-[#8b5cf6] px-1.5 py-0.5 text-[0.72rem] font-bold text-white"><span class="lang-pt"> 13:12-18
+<div class="h-32 w-32 rounded-[9px] border-[3px] border-[#7e62bc] p-2">
+<div class="inline-block rounded-[5px] bg-[#7e62bc] px-1.5 py-0.5 text-[0.72rem] font-bold text-white"><span class="lang-pt"> 13:12-18
                                 </span><span class="lang-en"> 13:12-18
                                 </span></div>
 <p class="mt-1 text-[0.95rem] font-semibold"><span class="lang-pt">Promessa da Semente e da Terra</span><span class="lang-en">Seed and Land Promise</span></p>
@@ -239,29 +275,29 @@
 </div>
 </div>
 <!-- Seção 3: <span class="lang-pt">Da Babilônia para Canaã</span><span class="lang-en">From Babylon to Canaan</span> -->
-<div class="rounded-xl border-[3px] border-[#c04a63] p-3">
-<div class="inline-block whitespace-nowrap rounded-md bg-[#c04a63] px-2 py-1 text-[0.72rem] font-bold text-white">
+<div class="rounded-xl border-[3px] border-[#be4967] p-3">
+<div class="inline-block whitespace-nowrap rounded-md bg-[#be4967] px-2 py-1 text-[0.72rem] font-bold text-white">
 <span class="lang-pt">Gênesis 14:1-24</span><span class="lang-en">Genesis 14:1-24</span></div>
-<p class="mt-2 font-semibold text-[#17181a]"><span class="lang-pt">Da Babilônia para Canaã</span><span class="lang-en">From Babylon to Canaan</span></p>
+<p class="mt-2 font-semibold text-[#1b1b1b]"><span class="lang-pt">Da Babilônia para Canaã</span><span class="lang-en">From Babylon to Canaan</span></p>
 <div class="mt-2 flex items-stretch gap-2">
-<div class="w-36 rounded-[9px] border-[3px] border-[#6b7280] p-2">
-<div class="inline-block rounded-[5px] bg-[#6b7280] px-1.5 py-0.5 text-[0.72rem] font-bold text-white"><span class="lang-pt"> 14:1-10</span><span class="lang-en"> 14:1-10</span></div>
+<div class="w-36 rounded-[9px] border-[3px] border-[#6b7384] p-2">
+<div class="inline-block rounded-[5px] bg-[#6b7384] px-1.5 py-0.5 text-[0.72rem] font-bold text-white"><span class="lang-pt"> 14:1-10</span><span class="lang-en"> 14:1-10</span></div>
 <ul class="mt-1 list-inside list-disc text-[0.95rem] font-semibold">
 <li><span class="lang-pt">Guerra de 9 reis</span><span class="lang-en">War of 9 Kings</span></li>
-<li><span class="rounded-[5px] bg-[#f7e0e5] px-2 py-0.5 text-[0.72rem] font-bold text-[#c04a63]"><span class="lang-pt">Ló</span><span class="lang-en">Ló</span></span>
+<li><span class="rounded-[5px] bg-[#fae4c4] px-2 py-0.5 text-[0.72rem] font-bold text-[#91362e]"><span class="lang-pt">Ló</span><span class="lang-en">Ló</span></span>
 <span class="lang-pt">cativo</span><span class="lang-en">captive</span></li>
 </ul>
 </div>
-<div class="w-36 rounded-[9px] border-[3px] border-[#6b7280] p-2">
-<div class="inline-block rounded-[5px] bg-[#6b7280] px-1.5 py-0.5 text-[0.72rem] font-bold text-white"><span class="lang-pt"> 14:11-16</span><span class="lang-en"> 14:11-16</span></div>
+<div class="w-36 rounded-[9px] border-[3px] border-[#6b7384] p-2">
+<div class="inline-block rounded-[5px] bg-[#6b7384] px-1.5 py-0.5 text-[0.72rem] font-bold text-white"><span class="lang-pt"> 14:11-16</span><span class="lang-en"> 14:11-16</span></div>
 <ul class="mt-1 list-inside list-disc text-[0.95rem] font-semibold">
 <li><span class="lang-pt">Reis derrotados</span><span class="lang-en">Defeated kings</span></li>
-<li><span class="rounded-[5px] bg-[#f7e0e5] px-2 py-0.5 text-[0.72rem] font-bold text-[#c04a63]"><span class="lang-pt">Ló</span><span class="lang-en">Ló</span></span>
+<li><span class="rounded-[5px] bg-[#fae4c4] px-2 py-0.5 text-[0.72rem] font-bold text-[#91362e]"><span class="lang-pt">Ló</span><span class="lang-en">Ló</span></span>
 <span class="lang-pt">liberto</span><span class="lang-en">free</span></li>
 </ul>
 </div>
-<div class="w-36 rounded-[9px] border-[3px] border-[#6b7280] p-2">
-<div class="inline-block rounded-[5px] bg-[#6b7280] px-1.5 py-0.5 text-[0.72rem] font-bold text-white"><span class="lang-pt"> 14:17-24</span><span class="lang-en"> 14:17-24</span></div>
+<div class="w-36 rounded-[9px] border-[3px] border-[#6b7384] p-2">
+<div class="inline-block rounded-[5px] bg-[#6b7384] px-1.5 py-0.5 text-[0.72rem] font-bold text-white"><span class="lang-pt"> 14:17-24</span><span class="lang-en"> 14:17-24</span></div>
 <ul class="mt-1 list-inside list-disc text-[0.95rem] font-semibold">
 <li><span class="lang-pt">Bênção do 10º rei</span><span class="lang-en">Blessing of the 10th king</span></li>
 </ul>
@@ -273,8 +309,8 @@
 <p class="body mb-4"><span class="lang-pt">Neste primeiro grande movimento da história de Avraham, as unidades literárias são determinadas por movimentos de e para locais (Babilônia, Canaã e Egito) e pelos personagens principais em foco.</span><span class="lang-en">In this first large movement of the Avraham story, the literary units are determined by movements to and from locations (Babylon, Canaan, and Egypt) and by the main characters in focus.</span></p>
 <p class="body"><span class="lang-pt">Note o design simétrico dos locais.</span><span class="lang-en">Note the symmetrical design of the locations.</span></p>
 <div class="space-y-4">
-<div class="rounded-xl border-[3px] border-[#c04a63] p-4">
-<div class="inline-block rounded-md bg-[#c04a63] px-3 py-1 text-[0.95rem] font-bold text-white">
+<div class="rounded-xl border-[3px] border-[#be4967] p-4">
+<div class="inline-block rounded-md bg-[#be4967] px-3 py-1 text-[0.95rem] font-bold text-white">
 <span class="lang-pt">Gênesis 11:27-12:5</span><span class="lang-en">Genesis 11:27-12:5</span>
 </div>
 <h2 class="sub mt-2"><span class="lang-pt">Da Babilônia para Canaã</span><span class="lang-en">From Babylon to Canaan</span></h2>
@@ -282,8 +318,8 @@
 <li><span class="lang-pt">Avram traz Ló (não era para fazer!)</span><span class="lang-en">Avram brings Lot (a no-no!)</span></li>
 </ul>
 </div>
-<div class="ml-10 rounded-xl border-[3px] border-[#c04a63] p-4">
-<div class="inline-block rounded-md bg-[#c04a63] px-3 py-1 text-[0.95rem] font-bold text-white">
+<div class="ml-10 rounded-xl border-[3px] border-[#b5543a] p-4">
+<div class="inline-block rounded-md bg-[#b5543a] px-3 py-1 text-[0.95rem] font-bold text-white">
 <span class="lang-pt">Gênesis 12:6-7</span><span class="lang-en">Genesis 12:6-7</span>
 </div>
 <h2 class="sub mt-2"><span class="lang-pt">Canaã: Carvalho de Moré</span><span class="lang-en">Canaan: Oak of Moreh</span></h2>
@@ -291,8 +327,8 @@
 <li><span class="lang-pt">Revelação Divina: “À tua semente darei esta terra”</span><span class="lang-en">Divine Revelation: “To your seed I will give this land”</span></li>
 </ul>
 </div>
-<div class="ml-20 rounded-xl border-[3px] border-[#6b7280] p-4">
-<div class="inline-block rounded-md bg-[#6b7280] px-3 py-1 text-[0.95rem] font-bold text-white">
+<div class="ml-20 rounded-xl border-[3px] border-[#6b7384] p-4">
+<div class="inline-block rounded-md bg-[#6b7384] px-3 py-1 text-[0.95rem] font-bold text-white">
 <span class="lang-pt">Gênesis 12:8-9</span><span class="lang-en">Genesis 12:8-9</span>
 </div>
 <h2 class="sub mt-2"><span class="lang-pt">Entre Betel e Ai até o Negueve</span><span class="lang-en">Between Bethel and Ai to the Negev</span></h2>
@@ -300,15 +336,15 @@
 <li><span class="lang-pt">Altar construído para adoração</span><span class="lang-en">Altar built for worship</span></li>
 </ul>
 </div>
-<div class="ml-[8rem] rounded-xl border-[3px] border-[#2e7d4e] p-4">
-<div class="inline-block rounded-md bg-[#2e7d4e] px-3 py-1 text-[0.95rem] font-bold text-white">
+<div class="ml-[8rem] rounded-xl border-[3px] border-[#3a8060] p-4">
+<div class="inline-block rounded-md bg-[#3a8060] px-3 py-1 text-[0.95rem] font-bold text-white">
 <span class="lang-pt">Gênesis 12:10-20</span><span class="lang-en">Genesis 12:10-20</span>
 </div>
 <h2 class="sub mt-2 ml-4"><span class="lang-pt">Egito</span><span class="lang-en">Egypt</span></h2>
 </div>
 <div class="space-y-4 mb-8">
-<div class="ml-20 rounded-xl border-[3px] border-[#6b7280] p-4">
-<div class="inline-block rounded-md bg-[#6b7280] px-3 py-1 text-[0.95rem] font-bold text-white">
+<div class="ml-20 rounded-xl border-[3px] border-[#6b7384] p-4">
+<div class="inline-block rounded-md bg-[#6b7384] px-3 py-1 text-[0.95rem] font-bold text-white">
 <span class="lang-pt">Gênesis 13:1-11</span><span class="lang-en">Genesis 13:1-11</span>
 </div>
 <h2 class="sub mt-2"><span class="lang-pt">Para o Negueve, entre Betel e Ai</span><span class="lang-en">To the Negev, to between Bethel and Ai</span></h2>
@@ -316,8 +352,8 @@
 <li><span class="lang-pt">Altar construído para adoração</span><span class="lang-en">Altar built for worship</span></li>
 </ul>
 </div>
-<div class="ml-10 rounded-xl border-[3px] border-[#c04a63] p-4">
-<div class="inline-block rounded-md bg-[#c04a63] px-3 py-1 text-[0.95rem] font-bold text-white">
+<div class="ml-10 rounded-xl border-[3px] border-[#b5543a] p-4">
+<div class="inline-block rounded-md bg-[#b5543a] px-3 py-1 text-[0.95rem] font-bold text-white">
 <span class="lang-pt">Gênesis 13:12-28</span><span class="lang-en">Genesis 13:12-28</span>
 </div>
 <h2 class="sub mt-2"><span class="lang-pt">Canaã: Carvalhos de Manre</span><span class="lang-en">Canaan: Oaks of Mamre</span></h2>
@@ -325,8 +361,8 @@
 <li><span class="lang-pt">Revelação divina: “toda a terra ... eu a dou a ti e à tua semente”</span><span class="lang-en">Divine revelation: “all the land ... I give to you and your seed”</span></li>
 </ul>
 </div>
-<div class="rounded-xl border-[3px] border-[#c04a63] p-4">
-<div class="inline-block rounded-md bg-[#c04a63] px-3 py-1 text-[0.95rem] font-bold text-white">
+<div class="rounded-xl border-[3px] border-[#be4967] p-4">
+<div class="inline-block rounded-md bg-[#be4967] px-3 py-1 text-[0.95rem] font-bold text-white">
 <span class="lang-pt">Gênesis 14:</span><span class="lang-en">Genesis 14:</span>
 </div>
 <h2 class="sub mt-2"><span class="lang-pt">Invasão Babilônica de Canaã</span><span class="lang-en">Babylonian Invasion of Canaan</span></h2>
@@ -339,7 +375,7 @@
 </div>
 <div class="mx-auto max-w-4xl">
 <p class="caption mt-1"><span class="lang-pt">Gênesis 11:27-14:24. Design Literário por Tim Mackie para a BibleProject Classroom: Abraham (2021).</span><span class="lang-en">Genesis 11:27-14:24. Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
-<div class="text-[1.05rem] text-[#17181a] space-y-4 mt-8 leading-relaxed">
+<div class="text-[1.05rem] text-[#1b1b1b] space-y-4 mt-8 leading-relaxed">
 <p class="body"><span class="lang-pt">Este design encoraja o leitor a comparar as duas histórias que apresentam a Babilônia e a presença de Ló na família de Avram. Nos capítulos 11-12, Avram traz Ló, mesmo que Deus lhe tenha dito para deixar sua família para trás. Essa decisão assombra Avram na história da disputa entre Ló e Avram, que leva à sua migração para Sodoma. E, claro, a presença de Ló em Sodoma causa enormes dores de cabeça para Avram no capítulo 14.</span><span class="lang-en">This design encourages the reader to compare the two stories that feature Babylon and the presence of Lot in Avram’s family. In chapters 11-12, Avram brings Lot even though God told him to leave his family behind. This decision comes to haunt Avram in the story of the dispute between Lot and Avram that leads to his migration to Sodom. And, of course, Lot’s presence in Sodom causes huge headaches for Avram in chapter 14.</span></p>
 <p class="body"><span class="lang-pt">Aninhadas dentro das histórias de Babilônia/Ló estão duas histórias onde Avram constrói altares junto a árvores sagradas e recebe uma revelação divina sobre sua futura herança da terra. Na primeira história, é um dom de Deus. Na segunda história em Manre (13:12-18), o dom da terra reverte o perigo que a disputa de Avram e Ló representava para a promessa.</span><span class="lang-en">Nested inside of the Babylon/Lot stories are two stories where Avram builds altars by sacred trees and receives a divine revelation about his future inheritance of the land. In the first story, it’s a gift from God. In the second story at Mamre (13:12-18), the gift of the land reverses the danger Avram and Lot’s dispute posed to the promise.</span></p>
 <p class="body"><span class="lang-pt">Dentro disso, há duas histórias sobre Avraham encontrando a presença de Deus na terra e construindo altares para adoração; ele está demarcando a terra como um lugar de adoração sagrada.</span><span class="lang-en">Inside of that are two stories about Avraham meeting God’s presence in the land and building altars for worship; he is staking out the land as a place of sacred worship.</span></p>
@@ -351,10 +387,10 @@
 <h2 class="section"><span class="lang-pt">Tradução e Design Literário de Gênesis 11:27-12:5</span><span class="lang-en">Translation and Literary Design of Genesis 11:27-12:5</span>
 </h2>
 <div>
-<div class="inline-block min-w-max rounded-t-lg bg-[#3d4453] px-2 py-0.5 text-white pt-1">
+<div class="inline-block min-w-max rounded-t-lg bg-[#1b1b1b] px-2 py-0.5 text-white pt-1">
 <span class="lang-pt">Introdução</span><span class="lang-en">Introduction</span> </div>
-<div class="rounded-b-lg p-1 bg-[#3d4453]">
-<div class="border border-[#6b7280] rounded-b-lg p-4 bg-white">
+<div class="rounded-b-lg p-1 bg-[#1b1b1b]">
+<div class="border border-[#1b1b1b] rounded-b-lg p-4 bg-white">
 <div class="v-line">
 <sup><span class="lang-pt">27</span><span class="lang-en">27</span></sup> <span class="lang-pt">Agora estas são as gerações de Terá.</span><span class="lang-en">Now these are the generations of Terakh.</span>
 </div>
@@ -362,11 +398,11 @@
 </div>
 </div>
 <h3 class="sub pt-8"><span class="lang-pt">Parte 1: A Jornada de Terá</span><span class="lang-en">Part 1: The Journey of Terah</span></h3>
-<div class="border-[#8a6d3b] border-l-4 p-3">
-<div class="inline-block min-w-max rounded-t-lg px-2 py-0.5 bg-[#e2e6eb] p-3 font-semibold text-[#17181a] pt-1">
+<div class="border-[#816f4d] border-l-4 p-3">
+<div class="inline-block min-w-max rounded-t-lg px-2 py-0.5 bg-[#e4e8ed] p-3 font-semibold text-[#1b1b1b] pt-1">
 <span class="lang-pt">Morte e Esterilidade em Ur-Kasdim</span><span class="lang-en">Death and Sterility in Ur-Kasdim</span> </div>
-<div class="rounded-b-lg p-1 bg-[#e2e6eb] text-[0.95rem]">
-<div class="border border-[#6b7280] rounded-b-lg p-4 bg-white">
+<div class="rounded-b-lg p-1 bg-[#e4e8ed] text-[0.95rem]">
+<div class="border border-[#e4e8ed] rounded-b-lg p-4 bg-white">
 <div class="v-line">
 <p class="body"><span class="lang-pt">a. Terá gerou</span><span class="lang-en">a. Terakh caused the birth of</span> <span class="k k-tan"><span class="lang-pt">Avram</span><span class="lang-en">Avram</span></span><span class="lang-pt">,
                                         </span><span class="lang-en">,
@@ -396,11 +432,11 @@
 </div>
 </div>
 </div>
-<div class="border-[#8b5cf6] border-l-4 p-3 ml-10">
-<div class="inline-block min-w-max rounded-t-lg px-2 py-0.5 bg-[#e2e6eb] p-3 font-semibold text-[#17181a] pt-1">
+<div class="border-[#7e62bc] border-l-4 p-3 ml-10">
+<div class="inline-block min-w-max rounded-t-lg px-2 py-0.5 bg-[#e4e8ed] p-3 font-semibold text-[#1b1b1b] pt-1">
 <span class="lang-pt">Terá Leva Sua Família</span><span class="lang-en">Terah Takes His Family</span></div>
-<div class="rounded-b-lg p-1 bg-[#e2e6eb] text-[0.95rem]">
-<div class="border border-[#6b7280] rounded-b-lg p-4 bg-white text-[1.05rem]">
+<div class="rounded-b-lg p-1 bg-[#e4e8ed] text-[0.95rem]">
+<div class="border border-[#e4e8ed] rounded-b-lg p-4 bg-white text-[1.05rem]">
 <p>
 <sup><span class="lang-pt">31</span><span class="lang-en">31</span></sup> <span class="k k-tan"> <span class="lang-pt">Terá tomou (...ויקח תרח)</span><span class="lang-en">Terah took (...ויקח תרח)</span></span>
 </p>
@@ -414,11 +450,11 @@
 </div>
 </div>
 </div>
-<div class="border-[#c04a63] border-l-4 p-3 ml-20">
-<div class="inline-block min-w-max rounded-t-lg px-2 py-0.5 bg-[#e2e6eb] p-3 font-semibold text-[#17181a] pt-1">
+<div class="border-[#be4967] border-l-4 p-3 ml-20">
+<div class="inline-block min-w-max rounded-t-lg px-2 py-0.5 bg-[#e4e8ed] p-3 font-semibold text-[#1b1b1b] pt-1">
 <span class="lang-pt">Eles Saem de Ur para Entrar em Canaã, mas Não Chegam</span><span class="lang-en">They Go Out of Ur To Enter Canaan but Don’t Reach It</span></div>
-<div class="rounded-b-lg p-1 bg-[#e2e6eb] text-[0.95rem]">
-<div class="border border-[#6b7280] rounded-b-lg p-4 bg-white text-[1.05rem]">
+<div class="rounded-b-lg p-1 bg-[#e4e8ed] text-[0.95rem]">
+<div class="border border-[#e4e8ed] rounded-b-lg p-4 bg-white text-[1.05rem]">
 <p class="body"><span class="lang-pt">e </span><span class="lang-en">and </span><span class="k k-tan"><span class="lang-pt">e eles saíram com eles de</span><span class="lang-en">and they went out with them from</span>
 </span> <span class="lang-pt"></span><span class="lang-en"></span> <span class="k k-lorange"><span class="lang-pt">Ur dos Caldeus</span><span class="lang-en">Ur of the Chaldeans</span></span>
 </p>
@@ -428,13 +464,13 @@
 </div>
 </div>
 </div>
-<div class="border-[#8b5cf6] border-l-4 p-3 ml-[8rem]">
-<div class="inline-block min-w-max rounded-t-lg px-2 py-0.5 bg-[#e2e6eb] p-3 font-semibold text-[#17181a] pt-1">
+<div class="border-[#3678b4] border-l-4 p-3 ml-[8rem]">
+<div class="inline-block min-w-max rounded-t-lg px-2 py-0.5 bg-[#e4e8ed] p-3 font-semibold text-[#1b1b1b] pt-1">
 <span class="lang-pt">Idade de Terá + Morte em Harã</span><span class="lang-en">Age of Terah + Death in Haran</span></div>
-<div class="rounded-b-lg p-1 bg-[#e2e6eb] text-[0.95rem]">
-<div class="border border-[#6b7280] rounded-b-lg p-4 bg-white text-[1.05rem]">
+<div class="rounded-b-lg p-1 bg-[#e4e8ed] text-[0.95rem]">
+<div class="border border-[#e4e8ed] rounded-b-lg p-4 bg-white text-[1.05rem]">
 <p>
-<sup><span class="lang-pt">32</span><span class="lang-en">32</span></sup><span class="lang-pt"> E </span><span class="lang-en"> And </span><span class="font-semibold text-[#8a6d3b]"><span class="lang-pt">os dias de Terá foram duzentos e cinco anos</span><span class="lang-en">the days of Terah were two hundred and five years</span></span><span class="lang-pt">;
+<sup><span class="lang-pt">32</span><span class="lang-en">32</span></sup><span class="lang-pt"> E </span><span class="lang-en"> And </span><span class="font-semibold text-[#816f4d]"><span class="lang-pt">os dias de Terá foram duzentos e cinco anos</span><span class="lang-en">the days of Terah were two hundred and five years</span></span><span class="lang-pt">;
                                 </span><span class="lang-en">;
                                 </span></p>
 <p><span class="k k-lblue"><span class="lang-pt">e Terá morreu em Harã</span><span class="lang-en">and Terah died in Haran</span></span><span class="lang-pt">. </span><span class="lang-en">. </span></p>
@@ -442,20 +478,20 @@
 </div>
 </div>
 <h3 class="sub pt-8"><span class="lang-pt">Parte 2: A Jornada de Avram</span><span class="lang-en">Part 2: Avram's Journey</span></h3>
-<div class="border-[#8a6d3b] border-l-4 p-3">
-<div class="inline-block min-w-max rounded-t-lg px-2 py-0.5 bg-[#e2e6eb] p-3 font-semibold text-[#17181a] pt-1">
+<div class="border-[#816f4d] border-l-4 p-3">
+<div class="inline-block min-w-max rounded-t-lg px-2 py-0.5 bg-[#e4e8ed] p-3 font-semibold text-[#1b1b1b] pt-1">
 <span class="lang-pt">Bênção e Filhos na Terra Prometida</span><span class="lang-en">Blessing and Children in the Promised Land</span> </div>
-<div class="rounded-b-lg p-1 bg-[#e2e6eb] text-[0.95rem]">
-<div class="border border-[#6b7280] rounded-b-lg p-4 bg-white">
+<div class="rounded-b-lg p-1 bg-[#e4e8ed] text-[0.95rem]">
+<div class="border border-[#e4e8ed] rounded-b-lg p-4 bg-white">
 <div class="v-line">
 <p>
 <sup><span class="lang-pt">12:1</span><span class="lang-en">12:1</span></sup> <span class="lang-pt">E Yahweh disse a Avram,</span><span class="lang-en">And Yahweh said to Avram,</span>
 </p>
 <p class="body"><span class="lang-pt">a. “Vá você mesmo</span><span class="lang-en">a. “Get yourself going</span></p>
-<p class="i1"><span class="lang-pt">b. da</span><span class="lang-en">b. from</span> <span class="font-semibold text-[#8a6d3b]"><span class="lang-pt">sua terra</span><span class="lang-en">your land</span></span><span class="lang-pt">,
+<p class="i1"><span class="lang-pt">b. da</span><span class="lang-en">b. from</span> <span class="font-semibold text-[#b5543a]"><span class="lang-pt">sua terra</span><span class="lang-en">your land</span></span><span class="lang-pt">,
                                     </span><span class="lang-en">,
                                     </span></p>
-<p class="i1"><span class="lang-pt">b’. e da</span><span class="lang-en">b’. and from</span> <span class="font-semibold text-[#8a6d3b]"><span class="lang-pt">sua família</span><span class="lang-en">your family</span></span><span class="lang-pt">, </span><span class="lang-en">, </span></p>
+<p class="i1"><span class="lang-pt">b’. e da</span><span class="lang-en">b’. and from</span> <span class="font-semibold text-[#b5543a]"><span class="lang-pt">sua família</span><span class="lang-en">your family</span></span><span class="lang-pt">, </span><span class="lang-en">, </span></p>
 <p class="i1"><span class="lang-pt">b’. e da</span><span class="lang-en">b’. and from</span> <span class="k k-tan"><span class="lang-pt">casa de seu pai</span><span class="lang-en">your father’s house</span></span><span class="lang-pt">, </span><span class="lang-en">, </span></p>
 <p class="body"><span class="lang-pt">a’. para a terra que eu lhe mostrarei.</span><span class="lang-en">a’. to the land which I will show you.</span></p>
 <hr class="v-div"/>
@@ -463,36 +499,36 @@
 <p class="i1"><span class="lang-pt">b. e eu o abençoarei,</span><span class="lang-en">b. and I will bless you,</span></p>
 <p class="body"><span class="lang-pt">a’. e farei grande o seu nome;</span><span class="lang-en">a’. and I will make your name great;</span></p>
 <p class="i1"><span class="lang-pt">b'. e assim você será uma bênção.</span><span class="lang-en">b'. and so you will be a blessing.</span></p>
-<p class="body"><span class="lang-pt">a. </span><span class="lang-en">a. </span><sup><span class="lang-pt">3</span><span class="lang-en">3</span></sup> <span class="lang-pt">E eu</span><span class="lang-en">And I</span> <span class="font-semibold text-[#c04a63]"><span class="lang-pt">abençoarei</span><span class="lang-en">I will bless</span></span>
+<p class="body"><span class="lang-pt">a. </span><span class="lang-en">a. </span><sup><span class="lang-pt">3</span><span class="lang-en">3</span></sup> <span class="lang-pt">E eu</span><span class="lang-en">And I</span> <span class="font-semibold text-[#7e62bc]"><span class="lang-pt">abençoarei</span><span class="lang-en">I will bless</span></span>
 </p>
-<p class="i1"><span class="lang-pt">b. aqueles que o</span><span class="lang-en">b. those who</span> <span class="font-semibold text-[#c04a63]"><span class="lang-pt">abençoarem</span><span class="lang-en">bless</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></p>
-<p class="i1"><span class="lang-pt">b’. e aquele que o trata como</span><span class="lang-en">b’. and the one who treats you as</span> <span class="font-semibold text-[#c04a63]"><span class="lang-pt">amaldiçoado</span><span class="lang-en">cursed</span></span>
+<p class="i1"><span class="lang-pt">b. aqueles que o</span><span class="lang-en">b. those who</span> <span class="font-semibold text-[#7e62bc]"><span class="lang-pt">abençoarem</span><span class="lang-en">bless</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></p>
+<p class="i1"><span class="lang-pt">b’. e aquele que o trata como</span><span class="lang-en">b’. and the one who treats you as</span> <span class="font-semibold text-[#7e62bc]"><span class="lang-pt">amaldiçoado</span><span class="lang-en">cursed</span></span>
 </p>
-<p class="body"><span class="lang-pt">a'. eu</span><span class="lang-en">a'. I</span> <span class="font-semibold text-[#c04a63]"><span class="lang-pt">amaldiçoarei</span><span class="lang-en">I will curse</span></span><span class="lang-pt">; </span><span class="lang-en">; </span></p>
-<p class="body"><span class="lang-pt">a. e em você todas as</span><span class="lang-en">a. and in you all the</span> <span class="font-semibold text-[#8a6d3b]"><span class="lang-pt">famílias da terra</span><span class="lang-en">families of the land</span></span>
+<p class="body"><span class="lang-pt">a'. eu</span><span class="lang-en">a'. I</span> <span class="font-semibold text-[#7e62bc]"><span class="lang-pt">amaldiçoarei</span><span class="lang-en">I will curse</span></span><span class="lang-pt">; </span><span class="lang-en">; </span></p>
+<p class="body"><span class="lang-pt">a. e em você todas as</span><span class="lang-en">a. and in you all the</span> <span class="font-semibold text-[#b5543a]"><span class="lang-pt">famílias da terra</span><span class="lang-en">families of the land</span></span>
 </p>
 <p class="i1"><span class="lang-pt">b. encontrarão bênção.”</span><span class="lang-en">b. will find blessing.”</span></p>
 </div>
 </div>
 </div>
 </div>
-<div class="border-[#8b5cf6] border-l-4 p-3 ml-[8rem]">
-<div class="inline-block min-w-max rounded-t-lg px-2 py-0.5 bg-[#e2e6eb] p-3 font-semibold text-[#17181a] pt-1">
+<div class="border-[#3678b4] border-l-4 p-3 ml-[8rem]">
+<div class="inline-block min-w-max rounded-t-lg px-2 py-0.5 bg-[#e4e8ed] p-3 font-semibold text-[#1b1b1b] pt-1">
 <span class="lang-pt">Idade de Avram + Saída de Harã</span><span class="lang-en">Age of Avram + Departure from Haran</span></div>
-<div class="rounded-b-lg p-1 bg-[#e2e6eb] text-[0.95rem]">
-<div class="border border-[#6b7280] rounded-b-lg p-4 bg-white text-[1.05rem]">
+<div class="rounded-b-lg p-1 bg-[#e4e8ed] text-[0.95rem]">
+<div class="border border-[#e4e8ed] rounded-b-lg p-4 bg-white text-[1.05rem]">
 <p>
 <sup><span class="lang-pt">4</span><span class="lang-en">4</span></sup> <span class="lang-pt">E Avram foi, assim como Yahweh lhe havia falado, e Ló foi com ele,</span><span class="lang-en">And Avram went just as Yahweh spoke to him, and Lot went with him,</span>
 </p>
-<p class="body"><span class="lang-pt">e </span><span class="lang-en">and </span><span class="font-semibold text-[#8a6d3b]"><span class="lang-pt">e Avram tinha setenta e cinco anos</span><span class="lang-en">and Avram was five and seventy years</span></span> <span class="k k-lblue"><span class="lang-pt">quando saiu de Harã</span><span class="lang-en">when he left Haran</span></span><span class="lang-pt">. </span><span class="lang-en">. </span></p>
+<p class="body"><span class="lang-pt">e </span><span class="lang-en">and </span><span class="font-semibold text-[#816f4d]"><span class="lang-pt">e Avram tinha setenta e cinco anos</span><span class="lang-en">and Avram was five and seventy years</span></span> <span class="k k-lblue"><span class="lang-pt">quando saiu de Harã</span><span class="lang-en">when he left Haran</span></span><span class="lang-pt">. </span><span class="lang-en">. </span></p>
 </div>
 </div>
 </div>
-<div class="border-[#8b5cf6] border-l-4 p-3 ml-10">
-<div class="inline-block min-w-max rounded-t-lg px-2 py-0.5 bg-[#e2e6eb] p-3 font-semibold text-[#17181a] pt-1">
+<div class="border-[#9855af] border-l-4 p-3 ml-10">
+<div class="inline-block min-w-max rounded-t-lg px-2 py-0.5 bg-[#e4e8ed] p-3 font-semibold text-[#1b1b1b] pt-1">
 <span class="lang-pt">Avram Leva Sua Família</span><span class="lang-en">Avram Takes His Family</span></div>
-<div class="rounded-b-lg p-1 bg-[#e2e6eb] text-[0.95rem]">
-<div class="border border-[#6b7280] rounded-b-lg p-4 bg-white text-[1.05rem]">
+<div class="rounded-b-lg p-1 bg-[#e4e8ed] text-[0.95rem]">
+<div class="border border-[#e4e8ed] rounded-b-lg p-4 bg-white text-[1.05rem]">
 <p>
 <sup><span class="lang-pt">5</span><span class="lang-en">5</span></sup> <span class="k k-tan"><span class="lang-pt">E Avram tomou (…ויקח אברם)</span><span class="lang-en">And Avram took (…ויקח אברם)</span></span>
 </p>
@@ -502,11 +538,11 @@
 </div>
 </div>
 </div>
-<div class="border-[#c04a63] border-l-4 p-3 ml-20">
-<div class="inline-block min-w-max rounded-t-lg px-2 py-0.5 bg-[#e2e6eb] p-3 font-semibold text-[#17181a] pt-1">
+<div class="border-[#be4967] border-l-4 p-3 ml-20">
+<div class="inline-block min-w-max rounded-t-lg px-2 py-0.5 bg-[#e4e8ed] p-3 font-semibold text-[#1b1b1b] pt-1">
 <span class="lang-pt">Eles Saem de Harã para Entrar em Canaã e Chegam</span><span class="lang-en">They Go Out of Haran To Enter Canaan and Do Reach It</span></div>
-<div class="rounded-b-lg p-1 bg-[#e2e6eb] text-[0.95rem]">
-<div class="border border-[#6b7280] rounded-b-lg p-4 bg-white text-[1.05rem]">
+<div class="rounded-b-lg p-1 bg-[#e4e8ed] text-[0.95rem]">
+<div class="border border-[#e4e8ed] rounded-b-lg p-4 bg-white text-[1.05rem]">
 <p> <span class="k k-tan"><span class="lang-pt">e eles saíram</span><span class="lang-en">and they went out</span></span></p>
 <p> <span class="k k-tan"><span class="lang-pt">para ir para a terra de Canaã</span><span class="lang-en">in order to go to the land of Canaan</span></span></p>
 <p> <span class="k k-tan"><span class="lang-pt">e foram</span><span class="lang-en">and they went</span>
@@ -520,18 +556,20 @@
 <div class="mx-auto max-w-4xl">
 <h2 class="section"><span class="lang-pt">Mapas das Jornadas de Terá e Avram</span><span class="lang-en">Maps of the Journeys of Terah and Avram</span></h2>
 <div class="mx-auto max-w-4xl">
+<img alt="" class="mx-auto my-6 block w-[80%] rounded-[12px]" src="img/sessao-4/mapa-1.jpeg" style="max-width:100%;"/>
 <div class="mb-8 text-center">
-<a class="text-[0.95rem] text-[#5468d4] underline" href="#"><span class="lang-pt">Openstreetmap.org</span><span class="lang-en">Openstreetmap.org</span></a>
+<a class="text-[0.95rem] text-[#4f5669] underline" href="#"><span class="lang-pt">Openstreetmap.org</span><span class="lang-en">Openstreetmap.org</span></a>
 </div>
-<div class="text-[1.05rem] text-[#17181a] space-y-4 leading-relaxed">
+<div class="text-[1.05rem] text-[#1b1b1b] space-y-4 leading-relaxed">
 <p class="body"><span class="lang-pt">Note como esta jornada de dois passos é também uma jornada de duas gerações. O que Terá começa, Avram completa, mas apenas por causa da palavra de Deus que vem a Avram.</span><span class="lang-en">Notice how this two-step journey is also a two-generation journey. What Terakh begins, Avram completes, but only because of the word of God that comes to Avram.</span></p>
 <p class="body"><span class="lang-pt">A jornada de Terá começa com duas notas trágicas: a morte de Harã e a esterilidade de Sarai, sua nora. A infertilidade de Sarai também destaca o contraste entre ela e sua cunhada Milkah. Ambas têm nomes reais (“Princesa” e “Rainha”), mas a identidade de Milkah é descrita em termos de suas relações familiares, enquanto a identidade de Sarai é descrita apenas em relação à sua incapacidade de ter filhos.</span><span class="lang-en">Terakh’s journey begins with two tragic notes: Haran’s death and the barrenness of Sarai his daughter-in-law. Sarai’s infertility also highlights the contrast between her and her sister-in-law Milkah. They both have royal names (“Princess” and “Queen”), but Milkah’s identity is described in terms of her family relations, while Sarai’s identity is described only in relation to her inability to have children.</span></p>
 <p class="body"><span class="lang-pt">A jornada de Terá começa com essas notas trágicas e então se develope em um processo de três estágios: (1) “tomar”, (2) “sair” e então (3) chegar em Harã, onde Terá morre. A jornada de Terá começa com a morte de Harã e termina com sua própria morte em outro Harã.</span><span class="lang-en">Terakh’s journey begins with these tragic notes and then issues in a three-stage process from (1) “taking,” to (2) “going out,” and then (3) arriving in Haran where Terakh dies. Terakh’s journey begins with Haran’s death and ends with his own death in another Haran.</span></p>
 </div>
+<img alt="" class="mx-auto my-6 block w-[52%] rounded-[12px]" src="img/sessao-4/mapa-2.jpeg" style="max-width:100%;"/>
 <div class="my-8 text-center">
-<a class="text-[0.95rem] text-[#5468d4] underline" href="#"><span class="lang-pt">Openstreetmap.org</span><span class="lang-en">Openstreetmap.org</span></a>
+<a class="text-[0.95rem] text-[#4f5669] underline" href="#"><span class="lang-pt">Openstreetmap.org</span><span class="lang-en">Openstreetmap.org</span></a>
 </div>
-<div class="text-[1.05rem] text-[#17181a] space-y-4 leading-relaxed">
+<div class="text-[1.05rem] text-[#1b1b1b] space-y-4 leading-relaxed">
 <p class="body"><span class="lang-pt">A jornada de Avram começa com uma lembrança das duas notas trágicas que iniciaram a jornada de Terá. Ele deve deixar sua família e a casa de seu pai (marcadas pela morte), e Deus fará dele uma grande nação (revertendo assim a infertilidade de Sarai).</span><span class="lang-en">Avram’s journey begins with a recall to the two tragic notes that began Terakh’s journey. He is to leave his family and father’s house (marked by death), and God will make him a great nation (thus reversing Sarai’s infertility).</span></p>
 <p class="body"><span class="lang-pt">Não só Deus reverterá as tragédias de sua família, mas ele trará uma bênção de Gênesis 1 que produzirá uma abundância de bênção que fluirá dele para as outras famílias das nações.</span><span class="lang-en">Not only will God reverse the tragedies of his family, but he will bring about a Genesis 1 blessing that will produce an overabundance of blessing that will flow out from him to the other families of the nations.</span></p>
 </div>
@@ -555,12 +593,12 @@
 </tr>
 <tr>
 <td>
-<b> <a class="verse-link hover:underline" data-reference="Gênesis+6:1-4" href="#"><span class="lang-pt">Gn. 6:1-4</span><span class="lang-en">Gn. 6:1-4</span></a></b> <span class="lang-pt">A história do dilúvio começa com violência e derramamento de sangue perpetrados por guerreiros e “homens de nome”.</span><span class="lang-en">The flood story begins with violence and bloodshed perpetrated by warriors and “men of the name”</span>
+<b> <a class="verse-link hover:underline" data-reference="Gênesis+6:1-4" href="#"><span class="lang-pt">Gn. 6:1-4</span><span class="lang-en">Gn. 6:1-4</span></a></b> <span class="lang-pt">A história do dilúvio começa com violência e derramamento de sangue perpetrados por guerreiros e “homens de <span class="k k-lblue">nome</span>”.</span><span class="lang-en">The flood story begins with violence and bloodshed perpetrated by warriors and “men of the <span class="k k-lblue">name</span>”</span>
 </td>
 <td>
-<b> <a class="verse-link hover:underline" data-reference="Gênesis+10:8-12" href="#"><span class="lang-pt">Gn. 10:8-12</span><span class="lang-en">Gn. 10:8-12</span></a></b> <span class="lang-pt">Babilônia é fundada por um guerreiro violento, um homem de nome.</span><span class="lang-en">Babylon is founded by a violent warrior, a man of name.</span>
+<b> <a class="verse-link hover:underline" data-reference="Gênesis+10:8-12" href="#"><span class="lang-pt">Gn. 10:8-12</span><span class="lang-en">Gn. 10:8-12</span></a></b> <span class="lang-pt">Babilônia é fundada por um guerreiro violento, um homem de <span class="k k-lblue">nome</span>.</span><span class="lang-en">Babylon is founded by a violent warrior, a man of <span class="k k-lblue">name</span>.</span>
 <br/>
-<b> <a class="verse-link hover:underline" data-reference="Gênesis+11:1-9" href="#"><span class="lang-pt">Gn. 11:1-9</span><span class="lang-en">Gn. 11:1-9</span></a></b> <span class="lang-pt">Babilônia é construída por pessoas que buscam fazer um nome para si mesmas.</span><span class="lang-en">Babylon is built by people who seek to make a name for themselves</span>
+<b> <a class="verse-link hover:underline" data-reference="Gênesis+11:1-9" href="#"><span class="lang-pt">Gn. 11:1-9</span><span class="lang-en">Gn. 11:1-9</span></a></b> <span class="lang-pt">Babilônia é construída por pessoas que buscam fazer um <span class="k k-lblue">nome</span> para si mesmas.</span><span class="lang-en">Babylon is built by people who seek to make a <span class="k k-lblue">name</span> for themselves</span>
 </td>
 </tr>
 <tr>
@@ -568,10 +606,10 @@
 <td><span class="lang-pt">Terá e aqueles com ele se refugiam em Harã após a dispersão da Babilônia.</span><span class="lang-en">Terakh and those with him take refuge in Haran after the scattering of Babylon</span></td>
 </tr>
 <tr>
-<td><span class="lang-pt">Noé “sai” da arca com sua família (יצא repetido 4x em Gn.</span><span class="lang-en">Noah “goes out” from the ark with his family (יצא repeated 4x in Gen.</span> <a class="verse-link hover:underline" data-reference="Gênesis+8:16-19" href="#"><span class="lang-pt">8:16-19</span><span class="lang-en">8:16-19</span></a><span class="lang-pt">): “e Noé saiu da arca, e seus filhos, sua esposa e as esposas de seus filhos”</span><span class="lang-en">): “and Noah went out from the ark, and his sons and his wife and his sons’ wives”</span></td>
+<td><span class="lang-pt">Noé “sai” da arca com sua família (יצא repetido 4x em Gn.</span><span class="lang-en">Noah “goes out” from the ark with his family (יצא repeated 4x in Gen.</span> <a class="verse-link hover:underline" data-reference="Gênesis+8:16-19" href="#"><span class="lang-pt">8:16-19</span><span class="lang-en">8:16-19</span></a><span class="lang-pt">): “e Noé <span class="k k-lav">saiu</span> <span class="k k-lav">da</span> arca, e seus filhos, sua esposa e as esposas de seus filhos”</span><span class="lang-en">): “and Noah <span class="k k-lav">went out</span> <span class="k k-lav">from</span> the ark, and his sons and his wife and his sons’ wives”</span></td>
 <td>
-<b> <a class="verse-link hover:underline" data-reference="Gênesis+11:31" href="#"><span class="lang-pt">Gn. 11:31</span><span class="lang-en">Gen. 11:31</span></a></b> <span class="lang-pt">Terá “saiu” da Babilônia com sua família: “e Terá tomou Avram seu filho … e eles saíram com eles de Ur dos Caldeus”.</span><span class="lang-en">Terakh “went out” from Babylon with his family: “and Terakh took Avram his son … and they went out with them from Ur of Chaldeans”</span> <br/>
-<b> <a class="verse-link hover:underline" data-reference="Gênesis+12:5" href="#"><span class="lang-pt">Gn. 12:5</span><span class="lang-en">Gen. 12:5</span></a></b> <span class="lang-pt">Avram “saiu” de Harã com sua família “e Avram tomou sua esposa e o filho de seu irmão … e eles saíram para ir para a terra de Canaã”.</span><span class="lang-en">Avram “went out” from Haran with his family “and Avram took his wife and the son of his brother … and they went out to go to the land of Canaan”</span>
+<b> <a class="verse-link hover:underline" data-reference="Gênesis+11:31" href="#"><span class="lang-pt">Gn. 11:31</span><span class="lang-en">Gen. 11:31</span></a></b> <span class="lang-pt">Terá “saiu” da Babilônia com sua família: “e Terá tomou Avram seu filho … <span class="k k-lav">e eles saíram</span> com eles <span class="k k-lav">de</span> Ur dos Caldeus”.</span><span class="lang-en">Terakh “went out” from Babylon with his family: “and Terakh took Avram his son … <span class="k k-lav">and they went out</span> with them <span class="k k-lav">from</span> Ur of Chaldeans”</span> <br/>
+<b> <a class="verse-link hover:underline" data-reference="Gênesis+12:5" href="#"><span class="lang-pt">Gn. 12:5</span><span class="lang-en">Gen. 12:5</span></a></b> <span class="lang-pt">Avram “saiu” de Harã com sua família “e Avram tomou sua esposa e o filho de seu irmão … <span class="k k-lav">e eles saíram para ir para a terra de Canaã</span>”.</span><span class="lang-en">Avram “went out” from Haran with his family “and Avram took his wife and the son of his brother … <span class="k k-lav">and they went out to go to the land of Canaan</span>”</span>
 </td>
 </tr>
 <tr>
@@ -601,42 +639,38 @@
 </thead>
 <tbody>
 <tr>
-<td> <span class="lang-pt">Começa com “toda a terra … viajando (נסע) do leste (מקדם)”</span><span class="lang-en">Begins with “all the land … journeying (נסע) from the east (מקדם) [11:1-2]”</span> <a class="verse-link hover:underline" data-reference="Gênesis+11:1-2" href="#"><span class="lang-pt">[11:1-2]</span><span class="lang-en">[11:1-2]</span></a>
-<br/><span class="lang-pt">Conclui com “toda a terra” sendo “espalhada” (הפיץ / נפוץ)</span><span class="lang-en">Concludes with “all the land” being “scattered” (הפיץ / נפוץ) [11:9]”</span> <a class="verse-link hover:underline" data-reference="Gênesis+11:9" href="#"><span class="lang-pt">[11:9]</span><span class="lang-en">[11:9]</span></a>
+<td> <span class="lang-pt">Começa com “toda a terra … viajando (נסע) do leste (מקדם)”</span><span class="lang-en">Begins with “all the land … journeying (נסע) from the east (מקדם)”</span> <a class="verse-link hover:underline" data-reference="Gênesis+11:1-2" href="#"><span class="lang-pt">[11:1-2]</span><span class="lang-en">[11:1-2]</span></a>
+<br/><span class="lang-pt">Conclui com “toda a terra” sendo “espalhada” (הפיץ / נפוץ)</span><span class="lang-en">Concludes with “all the land” being “scattered” (הפיץ / נפוץ)”</span> <a class="verse-link hover:underline" data-reference="Gênesis+11:9" href="#"><span class="lang-pt">[11:9]</span><span class="lang-en">[11:9]</span></a>
 </td>
 <td><span class="lang-pt">Começa com uma família saindo (ויצאו) do lugar da dispersão, Ur dos Caldeus</span><span class="lang-en">It begins with a family leaving (ויצאו) the place of dispersion, Ur of the Chaldeans</span>
 <a class="verse-link hover:underline" data-reference="Gênesis+11:31" href="#"><span class="lang-pt">[11:31]</span><span class="lang-en">[11:31]</span></a>
-<br/><span class="lang-pt">Conclui com Avram “viajando” (נסע) para Canaã em lugares “do leste” (מקדם)</span><span class="lang-en">Concludes with Avram “journeying” (נסע) into Canaan in places “from the east” (מקדם) [12:8-9]”</span>
+<br/><span class="lang-pt">Conclui com Avram “viajando” (נסע) para Canaã em lugares “do leste” (מקדם)</span><span class="lang-en">Concludes with Avram “journeying” (נסע) into Canaan in places “from the east” (מקדם)”</span>
 <a class="verse-link hover:underline" data-reference="Gênesis+12:8-9" href="#"><span class="lang-pt">[12:8-9]</span><span class="lang-en">[12:8-9]</span></a>
 </td>
 </tr>
 <tr>
-<td><span class="lang-pt">Eles encontram uma “planície em Sinar” e “ali se estabeleceram” (וישבו שם)</span><span class="lang-en">They find a “plain in Shinar” and “they settled there” (וישבו שם) [11:2]”</span>
+<td><span class="lang-pt">Eles encontram uma “planície em Sinar” e “ali se estabeleceram” (וישבו שם)</span><span class="lang-en">They find a “plain in Shinar” and “they settled there” (וישבו שם)”</span>
 <a class="verse-link hover:underline" data-reference="Gênesis+11:2" href="#"><span class="lang-pt">[11:2]</span><span class="lang-en">[11:2]</span></a>
 </td>
-<td><span class="lang-pt">Eles chegam a Harã e “ali se estabeleceram” (וישבו שם)</span><span class="lang-en">They come to Haran and “they settled there” (וישבו שם) [11:31]”</span> <a class="verse-link hover:underline" data-reference="Gênesis+11:31" href="#"><span class="lang-pt">[11:31]</span><span class="lang-en">[11:31]</span></a></td>
+<td><span class="lang-pt">Eles chegam a Harã e “ali se estabeleceram” (וישבו שם)</span><span class="lang-en">They come to Haran and “they settled there” (וישבו שם)”</span> <a class="verse-link hover:underline" data-reference="Gênesis+11:31" href="#"><span class="lang-pt">[11:31]</span><span class="lang-en">[11:31]</span></a></td>
 </tr>
 <tr>
-<td><span class="lang-pt">“Vamos construir (בנה) para nós uma cidade e uma torre”</span><span class="lang-en">“Let us build (בנה) for ourselves a city and tower” [11:4]”</span> <a class="verse-link hover:underline" data-reference="Gênesis+11:4" href="#"><span class="lang-pt">[11:4]</span><span class="lang-en">[11:4]</span></a>
-<br/><span class="lang-pt">“… a cidade e a torre que os filhos de Adão construíram (בנה) para si mesmos”</span><span class="lang-en">“… the city and tower which the sons of ’adam built (בנה) for themselves” [11:5]”</span> <a class="verse-link hover:underline" data-reference="Gênesis+11:5" href="#"><span class="lang-pt">[11:5]</span><span class="lang-en">[11:5]</span></a>
+<td><span class="lang-pt">“Vamos construir (בנה) para nós uma cidade e uma torre”</span><span class="lang-en">“Let us build (בנה) for ourselves a city and tower”</span> <a class="verse-link hover:underline" data-reference="Gênesis+11:4" href="#"><span class="lang-pt">[11:4]</span><span class="lang-en">[11:4]</span></a>
+<br/><span class="lang-pt">“… a cidade e a torre que os filhos de Adão construíram (בנה) para si mesmos”</span><span class="lang-en">“… the city and tower which the sons of ’adam built (בנה) for themselves”</span> <a class="verse-link hover:underline" data-reference="Gênesis+11:5" href="#"><span class="lang-pt">[11:5]</span><span class="lang-en">[11:5]</span></a>
 </td>
-<td><span class="lang-pt">“e Yahweh disse” (ויאמר יהוה) seguido por uma reversão de circunstâncias — da esterilidade ao nascimento</span><span class="lang-en">“and Yahweh said” (ויאמר יהוה) [12:1] followed by a reversal of circumstances — from barrenness to birth</span> <a class="verse-link hover:underline" data-reference="Gênesis+12:1" href="#"><span class="lang-pt">[12:1]</span><span class="lang-en">[12:1]</span></a>
+<td><span class="lang-pt">“e Yahweh disse” (ויאמר יהוה) seguido por uma reversão de circunstâncias — da esterilidade ao nascimento</span><span class="lang-en">“and Yahweh said” (ויאמר יהוה) followed by a reversal of circumstances — from barrenness to birth</span> <a class="verse-link hover:underline" data-reference="Gênesis+12:1" href="#"><span class="lang-pt">[12:1]</span><span class="lang-en">[12:1]</span></a>
 <span class="lang-pt"></span><span class="lang-en"></span></td>
 </tr>
 <tr>
 <td><span class="lang-pt">“Façamos para nós um nome (שם)”</span><span class="lang-en">“Let us make a name for ourselves (שם)”</span> <a class="verse-link hover:underline" data-reference="Gênesis+11:4" href="#"><span class="lang-pt">[11:4]</span><span class="lang-en">[11:4]</span></a></td>
-<td><span class="lang-pt">“Eu farei grande o seu nome (שם)”</span><span class="lang-en">“I will make great your name (שם) [12:2]”</span> <a class="verse-link hover:underline" data-reference="Gênesis+12:2" href="#"><span class="lang-pt">[12:2]</span><span class="lang-en">[12:2]</span></a>
+<td><span class="lang-pt">“Eu farei grande o seu nome (שם)”</span><span class="lang-en">“I will make great your name (שם)”</span> <a class="verse-link hover:underline" data-reference="Gênesis+12:2" href="#"><span class="lang-pt">[12:2]</span><span class="lang-en">[12:2]</span></a>
 </td>
 </tr>
 <tr>
-<td><span class="lang-pt">“e Yahweh disse” (ויאמר יהוה) seguido por uma reversão de circunstâncias — da construção à dispersão</span><span class="lang-en">“and Yahweh said” (ויאמר יהוה) [11:6] followed by a reversal of circumstances — from construction to dispersion</span><a class="verse-link hover:underline" data-reference="Gênesis+11:6" href="#"><span class="lang-pt">11:6</span><span class="lang-en">11:6</span></a><span class="lang-pt"></span><span class="lang-en"></span></td>
-<td><span class="lang-pt">“e [Avram] construiu (בנה) ali um altar a Yahweh” [12:7] / “e [Avram] construiu (בנה) ali um altar a Yahweh e invocou o nome (שם) de Yahweh” [12:8]”</span><span class="lang-en">“[Avram] built (בנה) there an altar to Yahweh” [12:7] / “and [Avram] built (בנה) there an altar to Yahweh and he called upon the name (שם) of Yahweh” [12:8]”</span><a class="verse-link hover:underline" data-reference="Gênesis+12:7" href="#"><span class="lang-pt">12:7</span><span class="lang-en">12:7</span></a><span class="lang-pt"> ]
-                                        </span><span class="lang-en"> ]
-                                        </span><br/><span class="lang-pt"></span><span class="lang-en"></span><a class="verse-link hover:underline" data-reference="Gênesis+12:8" href="#"><span class="lang-pt">12:8</span><span class="lang-en">12:8</span></a><span class="lang-pt">]
-                                    </span><span class="lang-en">]
-                                    </span></td>
+<td><span class="lang-pt">“e Yahweh disse” (ויאמר יהוה) seguido por uma reversão de circunstâncias — da construção à dispersão</span><span class="lang-en">“and Yahweh said” (ויאמר יהוה) followed by a reversal of circumstances — from construction to dispersion</span> <a class="verse-link hover:underline" data-reference="Gênesis+11:6" href="#"><span class="lang-pt">[11:6]</span><span class="lang-en">[11:6]</span></a></td>
+<td><span class="lang-pt">“e [Avram] construiu (בנה) ali um altar a Yahweh”</span> <a class="verse-link hover:underline" data-reference="Gênesis+12:7" href="#"><span class="lang-pt">[12:7]</span><span class="lang-en">[12:7]</span></a><span class="lang-pt"> / “e [Avram] construiu (בנה) ali um altar a Yahweh e invocou o nome (שם) de Yahweh”</span> <a class="verse-link hover:underline" data-reference="Gênesis+12:8" href="#"><span class="lang-pt">[12:8]</span><span class="lang-en">[12:8]</span></a><span class="lang-en">“[Avram] built (בנה) there an altar to Yahweh”</span> <a class="verse-link hover:underline" data-reference="Gênesis+12:7" href="#"><span class="lang-en">[12:7]</span></a><span class="lang-en"> / “and [Avram] built (בנה) there an altar to Yahweh and he called upon the name (שם) of Yahweh.”</span> <a class="verse-link hover:underline" data-reference="Gênesis+12:8" href="#"><span class="lang-en">[12:8]</span></a></td>
 </tr>
-<tr class="align-top text-[0.95rem] bg-[#f8fafc]">
+<tr class="align-top text-[0.95rem]">
 <td><span class="lang-pt">Uma jornada para o oeste que termina com o assentamento de humanos que usam seu potencial para seu próprio nome, de modo que Yahweh se torna o antagonista e reverte as circunstâncias deles.</span><span class="lang-en">A westward sojourn that ends with settlement by humans who use their potential for their own name, so that Yahweh becomes the antagonist and reverses their circumstances</span></td>
 <td><span class="lang-pt">Uma jornada para o oeste que termina com o assentamento de humanos que não têm potencial para fazer um nome para si mesmos, de modo que Yahweh se torna o protagonista e reverte as circunstâncias deles.</span><span class="lang-en">A westward sojourn that ends with settlement by humans who have no potential to make a name for themselves, so that Yahweh becomes the protagonist and reverses their circumstances</span></td>
 </tr>
@@ -646,7 +680,7 @@
 </div>
 </div>
 <div class="mx-auto max-w-4xl">
-<div class="text-[1.05rem] text-[#17181a] space-y-4 leading-relaxed">
+<div class="text-[1.05rem] text-[#1b1b1b] space-y-4 leading-relaxed">
 <p>
 <span class="lang-pt">Note como a jornada de “toda a terra” em Gênesis 6:1-11:26 aprofunda o retrato temático da natureza humana expresso em Gênesis 6:5 e 8:21: “os humanos são maus desde a sua juventude”. Eles tomam o potencial e a unidade dados por Deus e os usam para fins egoístas e (que se tornarão) imperiais: a deificação e a exaltação do seu próprio nome.</span>
 <span class="lang-en">Notice how the sojourn of “all the land” in Genesis 6:1-11:26 furthers the thematic portrait of human nature expressed in Genesis 6:5 and 8:21, “humans are bad from their youth.” They take their God-given potential and unity and use it for selfish and (what will become) imperial ends: the deification and exaltation of their name.</span>
@@ -663,10 +697,7 @@
                     </span><span class="lang-en">?
                     </span></p>
 <h3 class="sub"><span class="lang-pt">Opção 1: Em Harã</span><span class="lang-en">Option 1: In Haran</span></h3>
-<p class="body mb-4"><span class="lang-pt">A sequência literária das duas unidades narrativas (11:27-32 e 12:1-9)</span><span class="lang-en">The literary sequence of the two narrative units (11:27-32 and 12:1-9)</span>
-<a class="verse-link hover:underline" data-reference="Gênesis+11:27-32" href="#"><span class="lang-pt">11:27-32</span><span class="lang-en">11:27-32</span></a><span class="lang-pt"> e
-                        </span><span class="lang-en"> and
-                        </span><a class="verse-link hover:underline" data-reference="Gênesis+12:1-9" href="#"><span class="lang-pt">12:1-9</span><span class="lang-en">12:1-9</span></a>
+<p class="body mb-4"><span class="lang-pt">A sequência literária das duas unidades narrativas (</span><a class="verse-link hover:underline" data-reference="Gênesis+11:27-32" href="#"><span class="lang-pt">11:27-32</span><span class="lang-en">11:27-32</span></a><span class="lang-pt"> e </span><span class="lang-en"> and </span><a class="verse-link hover:underline" data-reference="Gênesis+12:1-9" href="#"><span class="lang-pt">12:1-9</span><span class="lang-en">12:1-9</span></a><span class="lang-pt">)</span><span class="lang-en">)</span>
 <span class="lang-pt">poderia ser interpretada como uma sequência temporal onde a jornada de Avram com seu pai para Harã precedeu o discurso de Deus a ele para sair e ir para Canaã.</span><span class="lang-en">could be interpreted as a time sequence where Avram’s journey with his father to Haran preceded God’s speech to him to leave and go to Canaan.</span>
 </p>
 <p class="body mb-6"><span class="lang-pt">Há um problema nesta interpretação direta, no entanto. A única outra vez que a jornada de Avram para Canaã é referenciada na Bíblia Hebraica, diz-se que ele foi convoocado por Deus para deixar Ur dos Caldeus, não Harã.</span><span class="lang-en">There is a wrinkle in this straightforward interpretation, however. The only other time Avram’s journey to Canaan is referenced in the Hebrew Bible, he is said to have been summoned by God to leave Ur of the Chaldeans, not Haran.</span></p>
@@ -676,9 +707,7 @@
 <p class="adapt"><span class="lang-pt">*Palavras-chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
 </div>
 <h3 class="sub mt-8"><span class="lang-pt">Opção 2: Em Ur dos Caldeus</span><span class="lang-en">Option 2: In Ur of the Chaldeans</span></h3>
-<p class="body mb-4"><span class="lang-pt">A sequência literária de Gênesis 11:27-32 e 12:1-5</span><span class="lang-en">The literary sequence of Genesis 11:27-32 and 12:1-5</span> <a class="verse-link hover:underline" data-reference="Gênesis+11:27-32" href="#"><span class="lang-pt">11:27-32</span><span class="lang-en">11:27-32</span></a><span class="lang-pt"> e
-                        </span><span class="lang-en"> and
-                        </span><a class="verse-link hover:underline" data-reference="Gênesis+12:1-5" href="#"><span class="lang-pt">12:1-5</span><span class="lang-en">12:1-5</span></a>
+<p class="body mb-4"><span class="lang-pt">A sequência literária de Gênesis </span><a class="verse-link hover:underline" data-reference="Gênesis+11:27-32" href="#"><span class="lang-pt">11:27-32</span><span class="lang-en">11:27-32</span></a><span class="lang-pt"> e </span><span class="lang-en"> and </span><a class="verse-link hover:underline" data-reference="Gênesis+12:1-5" href="#"><span class="lang-pt">12:1-5</span><span class="lang-en">12:1-5</span></a>
 <span class="lang-pt">não indica necessariamente a sequência de eventos referenciados pela narrativa. Não é incomum na narrativa bíblica que duas unidades narrativas consecutivas sejam colocadas fora de ordem cronológica para que o autor possa alcançar o efeito literário da justaposição, forçando o leitor a comparar e contrastar as duas versões de eventos semelhantes. Isso já aconteceu em momentos cruciais em Gênesis 1-11.</span><span class="lang-en">does not necessarily indicate the sequence of events referenced by the narrative. It is not uncommon in biblical narrative for two consecutive narrative units to be placed out of chronological order so that the author can achieve the literary effect of juxtaposition, forcing the reader to compare and contrast the two versions of similar events. This has already happened at crucial junctures in Genesis 1-11.</span>
 </p>
 <table class="doc-table md reveal">
@@ -774,28 +803,7 @@
 <span class="lang-pt">Foco Narrativo da Bíblia Hebraica</span>
 <span class="lang-en">Narrative Focus of the Hebrew Bible</span>
 </h2>
-<div class="rounded-xl border border-[#6b7280] p-6">
-<div class="flex items-center justify-between text-[0.72rem] font-bold uppercase tracking-wider text-[#5b6472] mb-4">
-<span><span class="lang-pt">GEN 1—11</span><span class="lang-en">GEN 1—11</span></span><span><span class="lang-pt">GEN 12 ——— OT</span><span class="lang-en">GEN 12 ——— OT</span></span><span><span class="lang-pt">NT</span><span class="lang-en">NT</span></span>
-</div>
-<div class="flex items-stretch gap-3">
-<div class="flex-1 border-t-[3px] border-[#6b7280] pt-2 text-center text-[0.95rem] font-bold text-[#24262a]">
-<span class="lang-pt">DEUS &amp; HUMANIDADE</span><span class="lang-en">GOD &amp; HUMANITY</span>
-</div>
-<div class="flex-[2] space-y-3">
-<div class="border-t-[3px] border-dashed border-[#6b7280] pt-2 text-center text-[0.95rem] font-bold text-[#17181a]">
-<span class="lang-pt">DEUS &amp; NAÇÕES</span><span class="lang-en">GOD &amp; NATIONS</span>
-</div>
-<div class="border-t-[3px] border-[#6b7280] pt-2 text-center text-[0.95rem] font-bold text-[#24262a]">
-<div><span class="lang-pt">AVRAHAM</span><span class="lang-en">ABRAHAM</span></div>
-<div><span class="lang-pt">DEUS &amp; ISRAEL</span><span class="lang-en">GOD &amp; ISRAEL</span></div>
-</div>
-</div>
-<div class="flex items-center text-[1.05rem] font-extrabold text-[#17181a]">
-<span class="mr-1"><span class="lang-pt">&gt;</span><span class="lang-en">&gt;</span></span><span class="lang-pt">JESUS</span><span class="lang-en">JESUS</span>
-</div>
-</div>
-</div>
+<img alt="" class="mx-auto my-6 block w-[86%] lang-pt" src="img/sessao-4/foco-narrativo.jpeg" style="max-width:100%;"/>
 <p class="caption mt-2">
 <span class="lang-pt">Foco Narrativo da Bíblia Hebraica. Ilustração criada por Tim Mackie para BibleProject Classroom: Abraham (2021).</span>
 <span class="lang-en">Narrative Focus of the Hebrew Bible. Illustration created by Tim Mackie for BibleProject Classroom: Abraham (2021).</span>
@@ -811,7 +819,7 @@
 </div>
 </div>
 </div>
-<script> function setLang(lang) { document.documentElement.setAttribute("lang", lang); try { localStorage.setItem('bp_lang', lang); } catch(e) {} var pt = document.getElementById("lang-pt"), en = document.getElementById("lang-en"); if (lang === "pt") { pt.className = "px-4 py-1.5 text-[0.95rem] font-semibold transition-colors bg-[#5468d4] text-white rounded-l-full"; en.className = "px-4 py-1.5 text-[0.95rem] font-semibold transition-colors bg-white text-slate-600 hover:bg-[#f8fafc] rounded-r-full"; } else { en.className = "px-4 py-1.5 text-[0.95rem] font-semibold transition-colors bg-[#5468d4] text-white rounded-r-full"; pt.className = "px-4 py-1.5 text-[0.95rem] font-semibold transition-colors bg-white text-slate-600 hover:bg-[#f8fafc] rounded-l-full"; } } var saved = "pt"; try { saved = localStorage.getItem('bp_lang') || "pt"; } catch(e) {} setLang(saved); (function () { var bar = document.getElementById('reading-progress'); if (!bar) return; function update() { var h = document.documentElement; var max = h.scrollHeight - h.clientHeight; bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; } window.addEventListener('scroll', update, { passive: true }); window.addEventListener('resize', update); update(); })();
+<script> function setLang(lang) { document.documentElement.setAttribute("lang", lang); try { localStorage.setItem('bp_lang', lang); } catch(e) {} var pt = document.getElementById("lang-pt"), en = document.getElementById("lang-en"); if (lang === "pt") { pt.className = "px-4 py-1.5 text-[0.95rem] font-semibold transition-colors bg-[#3678b4] text-white rounded-l-full"; en.className = "px-4 py-1.5 text-[0.95rem] font-semibold transition-colors bg-white text-slate-600 hover:bg-[#f8fafc] rounded-r-full"; } else { en.className = "px-4 py-1.5 text-[0.95rem] font-semibold transition-colors bg-[#3678b4] text-white rounded-r-full"; pt.className = "px-4 py-1.5 text-[0.95rem] font-semibold transition-colors bg-white text-slate-600 hover:bg-[#f8fafc] rounded-l-full"; } } var saved = "pt"; try { saved = localStorage.getItem('bp_lang') || "pt"; } catch(e) {} setLang(saved); (function () { var bar = document.getElementById('reading-progress'); if (!bar) return; function update() { var h = document.documentElement; var max = h.scrollHeight - h.clientHeight; bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')'; } window.addEventListener('scroll', update, { passive: true }); window.addEventListener('resize', update); update(); })();
 </script>
 <script src="../../js/lang-toggle.js"></script>
 <script src="../../js/reveal.js"></script>

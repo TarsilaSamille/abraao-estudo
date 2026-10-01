@@ -12,17 +12,108 @@
 <link href="../../css/shared-tutorial.css" rel="stylesheet"/>
 <style>
 @import url('../css/session-base.css');
+
+/* ============================================================
+   Paleta e componentes extraídos do PDF da Sessão 9
+   (abraao/pdf-sessoes/sessao-9.pdf). O PDF é a autoridade.
+   ============================================================ */
+
+/* --- Tinta e superfícies --- */
+.t-wrap { border: 1.5px solid #e4e8ed; border-radius: 10px; padding: 10px; margin: 1.4rem 0; background: #fff; }
+.t-box { border: 1.5px solid #e4e8ed; border-radius: 10px; padding: .55rem .9rem .75rem; margin: 0 0 10px; background: #fff; }
+.t-box.black { border-color: #1b1b1b; }
+.t-box:last-child { margin-bottom: 0; }
+
+/* --- Versículos / letreiros --- */
+.v-line { display: flex; align-items: baseline; gap: .5rem; font-size: 1.05rem; line-height: 1.55; color: #1b1b1b; }
+.v-lbl { flex: 0 0 2.6rem; text-align: right; font-size: .93rem; color: #4f5669; }
+.v-txt { flex: 1 1 auto; }
+.v-txt.i1 { padding-left: 1.15rem; }
+.v-txt.i2 { padding-left: 2.3rem; }
+.v-txt.i3 { padding-left: 3.45rem; }
+sup.vs { font-size: .74em; color: #1b1b1b; font-weight: 500; margin-right: .15rem; }
+
+/* --- Chips de cor (fundo + texto, exatamente como no PDF) --- */
+.k { display: inline; padding: 2px 6px; border-radius: 4px; font-weight: 700; line-height: 1.5; color: #fff; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.k-lpurp  { background: #e6e6fa; color: #5d4897; }
+.k-dpurp  { background: #7e62bc; color: #fff; }
+.k-red    { background: #be4967; color: #fff; }
+.k-lorange{ background: #fae4c4; color: #91362e; }
+.k-lblue  { background: #ccf1fa; color: #245791; }
+.k-teal   { background: #097d8d; color: #fff; }
+.k-gray   { background: #6b7384; color: #fff; }
+.k-lgreen { background: #d3f2cd; color: #2b6146; }
+.k-tan    { background: #efe8db; color: #645537; }
+.k-orange { background: #b5543a; color: #fff; }
+
+/* --- Destaques só de texto (sem chip) --- */
+.tx-blue  { color: #5869cd; font-weight: 700; }
+.tx-lblue { color: #3678b4; font-weight: 700; }
+.tx-tan   { color: #645537; font-weight: 700; }
+.tx-green { color: #3a8060; font-weight: 700; }
+.tx-red   { color: #be4967; font-weight: 700; }
+
+/* --- Tabela das duas listas de reis --- */
+.cross-table { border-collapse: collapse; width: 100%; margin: 1.6rem 0; background: #fff; }
+.cross-row { display: grid; grid-template-columns: 1fr 1fr; }
+.cross-head { border: 2px solid #080808; background: #fff; padding: .7rem .9rem; margin-right: -2px; font-weight: 800; font-size: 1.05rem; color: #181d36; }
+.cross-head.left { margin-right: 0; }
+.cross-body { display: grid; grid-template-columns: 1fr 1fr; position: relative; }
+.cross-col { border: 2px solid #080808; padding: .8rem .9rem; line-height: 1.7; color: #1b1b1b; position: relative; background: #fff; }
+.cross-col.left { margin-right: -2px; }
+.cross-col b { color: #181d36; margin-right: .35rem; }
+.cross-svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.cross-col .hl { background: #6b7384; color: #fff; padding: 0 3px; border-radius: 3px; }
+.cross-col .brk { background: none; border: 0; }
+
+/* --- Blocos do padrão simétrico ( literary design ) --- */
+.m-block { border: 1.5px solid #6b7384; border-radius: 8px; padding: .7rem 1rem; margin: 0 0 .55rem; line-height: 1.6; color: #1b1b1b; background: #fff; }
+.m-block.ml-6 { margin-left: 1.1rem; }
+.m-block.ml-12 { margin-left: 2.2rem; }
+.m-block.bg1 { background: #fafbfc; border-color: #e4e8ed; }
+.m-block.bg2 { background: #e8eaec; border-color: #4f5669; }
+.m-block.highlight { background: #f3e5e1; border-color: #b5543a; }
+.m-block.highlight strong { color: #1b1b1b; }
+.m-block ul.bullets { margin: .5rem 0 0; }
+.m-block ul.bullets > li { font-size: 1.02rem; }
+
+/* --- Flood table (Gen 6-8 x Gen 14) --- */
+.flood-table { border: 1.5px solid #e4e8ed; border-radius: 10px; }
+.flood-table th { background: #e4e8ed; border: 1.5px solid #e4e8ed; color: #1b1b1b; font-weight: 800; }
+.flood-table td { background: #fff; border: 1.5px solid #e4e8ed; color: #1b1b1b; }
+.flood-table tfoot td { background: #e4e8ed; border: 1.5px solid #e4e8ed; color: #4f5669; font-style: italic; }
+.flood-table tbody tr:hover td { background: #fff; }
+
+.hl-f-tan  { background: #efe8db; color: #645537; border-radius: 4px; padding: 1px 4px; }
+.hl-f-blue { background: #d9ecfd; color: #404ca6; border-radius: 4px; padding: 1px 4px; }
+.hl-f-org  { background: #fae4c4; color: #91362e; border-radius: 4px; padding: 1px 4px; font-weight: 700; }
+.hl-f-grn  { background: #d3f2cd; color: #2b6146; border-radius: 4px; padding: 1px 4px; }
+
+/* --- Scripture: barra lateral e rótulos --- */
+.scripture { border-left: 3px solid #e4e8ed; }
+.scripture-label { color: #1b1b1b; }
+.scripture-type { color: #4f5669; }
+.scripture-text { color: #1b1b1b; }
+
+/* --- Legendas e corpo de texto --- */
+h1.title, h2.section, h3.sub { color: #1b1b1b; }
+p.body { color: #1b1b1b; }
+ul.bullets > li { color: #1b1b1b; }
+ul.bullets > li:before { color: #1b1b1b; }
+.ref { color: #1b1b1b; }
+.caption { color: #4f5669; }
+.page-footer { color: #4f5669; border-top-color: #e4e8ed; }
 </style>
 </head>
 <body>
 <div aria-hidden="true" id="reading-progress"></div>
 <div class="fixed left-4 top-4 z-50 print:hidden">
-<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" href="index.html">
+<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" href="index.html">
 <span><span class="lang-pt">←</span><span class="lang-en">←</span></span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
 </a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
-<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" onclick="window.print()">
+<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" onclick="window.print()">
 <svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect height="8" width="12" x="6" y="14"></rect></svg>
 <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
 </button>
@@ -144,7 +235,7 @@
 <div class="v-line"><div class="v-lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></div><div class="v-txt i1"><span class="lang-pt">e também as mulheres e o povo.</span><span class="lang-en">and also the women and the people.</span></div></div>
 </div>
 </div>
-<p style="font-style: italic; color: #6b7280; font-size: 0.875rem; margin-top: -1.2rem; margin-bottom: 2.5rem; text-align: center;">
+<p style="font-style: italic; color: #4f5669; font-size: 0.875rem; margin-top: -1.2rem; margin-bottom: 2.5rem; text-align: center;">
 <span class="lang-pt">Gênesis 14:1-24. Tradução e Design Literário por Tim Mackie para o BibleProject Classroom: Abraham (2021).</span>
 <span class="lang-en">Genesis 14:1-24. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span>
 </p>
@@ -171,12 +262,12 @@
 </div>
 <div class="cross-body">
 <svg class="cross-svg" preserveaspectratio="none">
-<line stroke="#111827" stroke-width="2" x1="0" x2="100%" y1="25%" y2="75%"></line>
-<line stroke="#111827" stroke-width="2" x1="0" x2="100%" y1="75%" y2="25%"></line>
+<line stroke="#080808" stroke-width="2" x1="0" x2="100%" y1="25%" y2="75%"></line>
+<line stroke="#080808" stroke-width="2" x1="0" x2="100%" y1="75%" y2="25%"></line>
 </svg>
 <div class="cross-col left relative z-10">
-<div class="absolute right-0 top-[10%] w-3 h-[30%] border-t border-r-2 border-b-2 border-slate-900"></div>
-<div class="absolute right-0 bottom-[10%] w-3 h-[30%] border-t border-r-2 border-b-2 border-slate-900"></div>
+<div class="absolute right-0 top-[10%] w-3 h-[30%] border-t border-r-2 border-b-2 border-black"></div>
+<div class="absolute right-0 bottom-[10%] w-3 h-[30%] border-t border-r-2 border-b-2 border-black"></div>
 <b><span class="lang-pt">A</span><span class="lang-en">A</span></b><span class="lang-pt"> Amraphel, king of Shinar</span><span class="lang-en"> Amraphel, king of Shinar</span><br/>
 <b><span class="lang-pt">B</span><span class="lang-en">B</span></b><span class="lang-pt"> Aryok, king of Elasar</span><span class="lang-en"> Aryok, king of Elasar</span><br/><br/>
 <b><span class="lang-pt">C</span><span class="lang-en">C</span></b><span class="lang-pt"> Kedorlaomer, king of Elam</span><span class="lang-en"> Kedorlaomer, king of Elam</span><br/>
@@ -184,8 +275,8 @@
             </span><span class="lang-en"> Tidal, king of Goyyim
             </span></div>
 <div class="cross-col relative z-10">
-<div class="absolute left-0 top-[10%] w-3 h-[30%] border-t border-b-2 border-l-2 border-slate-900"></div>
-<div class="absolute left-0 bottom-[10%] w-3 h-[30%] border-t border-b-2 border-l-2 border-slate-900"></div>
+<div class="absolute left-0 top-[10%] w-3 h-[30%] border-t border-b-2 border-l-2 border-black"></div>
+<div class="absolute left-0 bottom-[10%] w-3 h-[30%] border-t border-b-2 border-l-2 border-black"></div>
 <b><span class="lang-pt">C</span><span class="lang-en">C</span></b><span class="lang-pt"> Kedorlaomer, king of Elam</span><span class="lang-en"> Kedorlaomer, king of Elam</span><br/>
 <b><span class="lang-pt">D</span><span class="lang-en">D</span></b><span class="lang-pt"> Tidal, king of Goyyim</span><span class="lang-en"> Tidal, king of Goyyim</span><br/><br/>
 <b><span class="lang-pt">A</span><span class="lang-en">A</span></b><span class="lang-pt"> Amraphel, king of Shinar</span><span class="lang-en"> Amraphel, king of Shinar</span><br/>
@@ -193,7 +284,7 @@
             </span><span class="lang-en"> Aryok, king of Elasar
             </span></div>
 </div>
-<div class="cross-row" style="border-top: 1px solid #111827;">
+<div class="cross-row" style="border-top: 2px solid #080808;">
 <div class="cross-head left">
 <span class="lang-pt">Reis Cananeus: 1ª Lista</span>
 <span class="lang-en">Canaanite Kings: 1st List</span>
@@ -222,7 +313,7 @@
             </span></div>
 </div>
 </div>
-<p style="font-style: italic; color: #6b7280; font-size: 0.875rem; margin-top: -1rem; margin-bottom: 2.5rem; text-align: center;">
+<p style="font-style: italic; color: #4f5669; font-size: 0.875rem; margin-top: -1rem; margin-bottom: 2.5rem; text-align: center;">
 <span class="lang-pt">Listas de Reis Mesopotâmicos e Cananeus. Criado por Tim Mackie para BibleProject Classroom: Abraham (2021).</span>
 <span class="lang-en">Mesopotamian and Canaanite Kings Lists. Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</span>
 </p>
@@ -274,7 +365,7 @@
         </span><span class="lang-en">B - Aryok, king of Elasar
         </span></div>
 </div>
-<p style="font-style: italic; color: #6b7280; font-size: 0.875rem; margin-top: -1rem; margin-bottom: 2.5rem;">
+<p style="font-style: italic; color: #4f5669; font-size: 0.875rem; margin-top: -1rem; margin-bottom: 2.5rem;">
 <span class="lang-pt">Gênesis 14:1-10 Reis. Design Literário por Tim Mackie para BibleProject Classroom: Abraham (2021).</span>
 <span class="lang-en">Genesis 14:1-10 Kings. Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span>
 </p>
@@ -589,84 +680,10 @@
 <span class="lang-en">A Flood of Warrior Kings</span>
 </h2>
 <div class="reveal my-10 flex flex-col items-center">
-<svg aria-label="A Flood of Warrior Kings Diagram" role="img" style="width: 100%; max-width: 640px; height: auto;" viewbox="0 0 640 280">
-<g fill="none" stroke="#17181a" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-<!-- Main Hill Curve -->
-<path d="M 40 180 Q 220 110 400 180"></path>
-<path d="M 400 180 L 415 185"></path>
-<!-- Tree -->
-<path d="M 260 146 L 260 60"></path>
-<path d="M 256 60 L 264 60"></path>
-<path d="M 230 50 C 220 40 225 20 245 20 C 250 5 275 0 285 15 C 300 10 315 25 310 40 C 320 50 310 65 295 60 C 290 70 270 70 265 60 C 255 65 240 65 230 50 Z"></path>
-<!-- Tent -->
-<path d="M 215 156 L 245 115 L 275 156 Z"></path>
-<path d="M 230 156 L 245 130 L 260 156"></path>
-<!-- Avram Figure -->
-<circle cx="185" cy="85" r="9"></circle>
-<path d="M 185 94 L 185 138"></path>
-<path d="M 185 105 C 175 105 170 120 170 135"></path>
-<path d="M 185 105 C 195 105 200 120 200 135"></path>
-<!-- Lot Figure -->
-<circle cx="95" cy="105" r="8"></circle>
-<path d="M 95 113 L 95 150"></path>
-<path d="M 95 120 C 85 120 80 135 80 150"></path>
-<path d="M 95 120 C 105 120 110 135 110 150"></path>
-<!-- Stuff Bubble -->
-<ellipse cx="140" cy="120" rx="22" ry="14"></ellipse>
-<path d="M 125 128 Q 115 133 110 128"></path>
-<!-- Box/Sodom -->
-<path d="M 390 190 L 390 158 L 405 158 L 405 168 L 420 168 L 420 158 L 435 158 L 435 168 L 450 168 L 450 158 L 465 158 L 465 190 Z"></path>
-<circle cx="427" cy="135" r="8"></circle>
-<path d="M 427 143 L 427 170"></path>
-<path d="M 427 150 L 415 165"></path>
-<path d="M 427 150 L 439 165"></path>
-<!-- Water Waves -->
-<path d="M 450 185 Q 460 175 470 185 T 490 185 T 510 185 T 530 185 T 550 185 T 570 185 T 590 185 T 610 185"></path>
-<path d="M 460 205 Q 470 195 480 205 T 500 205 T 520 205 T 540 205 T 560 205 T 580 205 T 600 205 T 620 205"></path>
-<!-- Warrior 1 -->
-<path d="M 500 115 L 490 100 L 495 105 L 500 95 L 505 105 L 510 100 L 500 115 Z"></path> <!-- Crown -->
-<circle cx="500" cy="122" r="8"></circle>
-<path d="M 500 130 L 500 185"></path> <!-- Body in water -->
-<path d="M 500 140 L 485 155"></path> <!-- Arm L -->
-<path d="M 500 140 L 515 155"></path> <!-- Arm R -->
-<path d="M 480 140 L 490 170"></path> <!-- Axe Handle -->
-<path d="M 480 140 Q 470 150 480 160 Z"></path> <!-- Axe Blade -->
-<!-- Warrior 2 -->
-<path d="M 540 115 L 530 100 L 535 105 L 540 95 L 545 105 L 550 100 L 540 115 Z"></path> <!-- Crown -->
-<circle cx="540" cy="122" r="8"></circle>
-<path d="M 540 130 L 540 185"></path> <!-- Body in water -->
-<path d="M 540 140 L 525 155"></path> <!-- Arm L -->
-<path d="M 540 140 L 555 155"></path> <!-- Arm R -->
-<path d="M 520 140 L 530 170"></path> <!-- Axe Handle -->
-<path d="M 520 140 Q 510 150 520 160 Z"></path> <!-- Axe Blade -->
-<!-- Warrior 3 -->
-<path d="M 580 115 L 570 100 L 575 105 L 580 95 L 585 105 L 590 100 L 580 115 Z"></path> <!-- Crown -->
-<circle cx="580" cy="122" r="8"></circle>
-<path d="M 580 130 L 580 185"></path> <!-- Body in water -->
-<path d="M 580 140 L 565 155"></path> <!-- Arm L -->
-<path d="M 580 140 L 595 155"></path> <!-- Arm R -->
-<path d="M 560 140 L 570 170"></path> <!-- Axe Handle -->
-<path d="M 560 140 Q 550 150 560 160 Z"></path> <!-- Axe Blade -->
-</g>
-<!-- Text elements -->
-<text fill="#1f2937" font-family="Inter" font-size="11" font-weight="700" text-anchor="middle" x="185" y="65"><span class="lang-pt">AVRAM</span><span class="lang-en">AVRAM</span></text>
-<text class="lang-pt" fill="#1f2937" font-family="Inter" font-size="16" font-weight="700" text-anchor="middle" x="110" y="60">PÓ</text>
-<text class="lang-en" fill="#1f2937" font-family="Inter" font-size="16" font-weight="700" text-anchor="middle" x="110" y="60">DUST</text>
-<text fill="#1f2937" font-family="Inter" font-size="10" font-weight="700" text-anchor="middle" x="95" y="85"><span class="lang-pt">LOT</span><span class="lang-en">LOT</span></text>
-<text class="lang-pt" fill="#1f2937" font-family="Inter" font-size="10" font-weight="700" text-anchor="middle" x="140" y="124">BENS</text>
-<text class="lang-en" fill="#1f2937" font-family="Inter" font-size="10" font-weight="700" text-anchor="middle" x="140" y="124">STUFF</text>
-<text class="lang-pt" fill="#1f2937" font-family="Inter" font-size="14" font-weight="700" text-anchor="middle" x="427" y="85">MAU</text>
-<text class="lang-en" fill="#1f2937" font-family="Inter" font-size="14" font-weight="700" text-anchor="middle" x="427" y="85">BAD</text>
-<text class="lang-pt" fill="#1f2937" font-family="Inter" font-size="14" font-weight="700" text-anchor="middle" x="427" y="102">PECADO</text>
-<text class="lang-en" fill="#1f2937" font-family="Inter" font-size="14" font-weight="700" text-anchor="middle" x="427" y="102">SIN</text>
-<text class="lang-pt" fill="#1f2937" font-family="Inter" font-size="13" font-weight="700" text-anchor="middle" x="427" y="119">PARA O LESTE</text>
-<text class="lang-en" fill="#1f2937" font-family="Inter" font-size="13" font-weight="700" text-anchor="middle" x="427" y="119">EASTWARD</text>
-<text class="lang-pt" fill="#1f2937" font-family="Inter" font-size="12" font-weight="700" text-anchor="middle" x="427" y="184">SODOMA</text>
-<text class="lang-en" fill="#1f2937" font-family="Inter" font-size="12" font-weight="700" text-anchor="middle" x="427" y="184">SODOM</text>
-<text fill="#1f2937" font-family="Inter" font-size="24" font-weight="800" x="95" y="210"><span class="lang-pt">GEN 13</span><span class="lang-en">GEN 13</span></text>
-<text fill="#1f2937" font-family="Inter" font-size="22" font-weight="800" x="93" y="235"><span class="lang-pt">//GEN 4</span><span class="lang-en">//GEN 4</span></text>
-</svg>
-<p style="font-style: italic; color: #6b7280; font-size: 0.875rem; margin-top: 1.5rem; text-align: center;">
+<figure style="margin:0; max-width: 900px; width:100%;">
+<img alt="A Flood of Warrior Kings: Avram and Lot on the hill with tent, tree and STUFF; Sodom eastward with BAD SIN; three crowned warrior kings with axes advancing through the flood" class="block mx-auto" src="img/sessao-9/page-1.jpg" style="width:100%; height:auto;"/>
+</figure>
+<p style="font-style: italic; color: #4f5669; font-size: 0.875rem; margin-top: 1.5rem; text-align: center;">
 <span class="lang-pt">Um Dilúvio de Reis Guerreiros. Criado por Tim Mackie para o BibleProject Classroom: Abraham (2021).</span>
 <span class="lang-en">Flood of Warrior Kings. Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</span>
 </p>
@@ -676,10 +693,6 @@
 <span class="lang-pt">Pergunta para Reflexão</span>
 <span class="lang-en">Reflection Question</span>
 </h3>
-<figure class="reveal" style="margin:2rem 0;">
-<img alt="" class="block mx-auto my-4 rounded-[12px]" src="img/sessao-9/page-1.jpg" style="max-width:100%;"/>
-</figure>
-<figcaption class="caption" style="text-align:center;"><span class="lang-en">nations themselves, chasing them all the way “unto Dan” )‫(עד דן‬, which sounds like the Hebrew for “unto</span></figcaption>
 <p class="body reveal">
 <span class="lang-pt">Como os reis violentos de Gênesis 14 reproduzem o tema do dilúvio? Como isso nos ajuda a entender a importância deste episódio na história de Avram?</span>
 <span class="lang-en">How do the violent kings of Genesis 14 replay the flood theme? How does this help us understand the importance of this episode in Avram’s story?</span>
@@ -688,59 +701,7 @@
 <span class="lang-pt">Anotações de Aula: Abraão</span><span class="lang-en">Class Notes: Abraham</span>
 <span><span class="lang-pt">Sessão 9</span><span class="lang-en">Session 9</span></span>
 </footer>
-<!-- conteudo adicional do PDF -->
-<p class="body reveal"><span class="lang-en">(‫ )בארת בארת‬of tar (‫)חמר‬.</span></p>
-<p class="body reveal"><span class="lang-en">mountains (‫)הר‬.</span></p>
-<p class="body reveal"><span class="lang-en">‫ )י נח מנו‬us"</span></p>
-</div><span class="lang-pt">
-
-    (function () {
-        var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var targets = document.querySelectorAll(
-            '.scripture, .doc-table, .t-box, .cross-table, .m-block, h2.section, h3.sub, ul.bullets, p.body, .page-header, .flex-col &gt; svg'
-        );
-        if (prefersReduced || !('IntersectionObserver' in window)) {
-            targets.forEach(function (el) { el.classList.add('visible'); });
-            return;
-        }
-        var io = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    io.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
-        targets.forEach(function (el) {
-            el.classList.add('reveal');
-            io.observe(el);
-        });
-    })();
-</span><span class="lang-en">
-
-    (function () {
-        var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var targets = document.querySelectorAll(
-            '.scripture, .doc-table, .t-box, .cross-table, .m-block, h2.section, h3.sub, ul.bullets, p.body, .page-header, .flex-col &gt; svg'
-        );
-        if (prefersReduced || !('IntersectionObserver' in window)) {
-            targets.forEach(function (el) { el.classList.add('visible'); });
-            return;
-        }
-        var io = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    io.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
-        targets.forEach(function (el) {
-            el.classList.add('reveal');
-            io.observe(el);
-        });
-    })();
-</span>
+</div>
 <script src="../../js/verse-modal.js"></script>
 <script src="../../js/reading-progress.js"></script>
 <script src="../../js/lang-toggle.js"></script>

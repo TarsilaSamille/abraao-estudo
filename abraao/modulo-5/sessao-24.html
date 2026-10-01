@@ -12,17 +12,61 @@
 <link href="../../css/shared-tutorial.css" rel="stylesheet"/>
 <style>
 @import url('../css/session-base.css');
+
+/* The teacher-notes PDF is the authority for colour and box geometry.
+   Values extracted from abraao/pdf-sessoes/sessao-24.pdf:
+   ink #1b1b1b · caption #4f5669 · footer #2c2c2c · hairline/header #e4e8ed
+   · rule #c1c9d0 · chip gray #e4e8ed/#4f5669 · chip blue #ccf1fa/#245791
+   · chip purple #e6e6fa/#5d4897 · chip orange #fae4c4/#91362e
+   · blue panel #3678b4 · red panel #be4967 (borders 1.5pt, radius ~9pt) */
+body { color: #1b1b1b; }
+h1.title, h2.section, h3.sub, p.body,
+ul.bullets > li, ul.bullets > li:before, .ref,
+.doc-table th, .doc-table td, .box-title { color: #1b1b1b; }
+hr.rule { border-top: 1px solid #c1c9d0 !important; }
+.caption, .doc-table tfoot td { color: #4f5669; }
+.page-footer { color: #2c2c2c; border-top: 1px solid #e4e8ed; }
+
+/* Document tables: 1.5pt #e4e8ed chrome, #e4e8ed header band, white body */
+.doc-table { border: 2px solid #e4e8ed; border-radius: 10px; }
+.doc-table th { background: #e4e8ed; }
+.doc-table td { border-top: 1px solid #e4e8ed; }
+.doc-table td + td { border-left: 1px solid #e4e8ed; }
+.doc-table tfoot td { background: #fff; border-top: 1px solid #e4e8ed; }
+
+/* Highlight chips: PDF paints a light wash with a deep ink on top */
+.k-gray-lt   { background: #e4e8ed; color: #4f5669; }
+.k-blue-lt   { background: #ccf1fa; color: #245791; }
+.k-purple-lt { background: #e6e6fa; color: #5d4897; }
+.k-orange-lt { background: #fae4c4; color: #91362e; }
+
+/* Literary-design panels: white field, 1.5pt coloured rule, badge top-left */
+.box-blue, .box-red { border: 2px solid; border-radius: 10px; background: #fff; padding: .55rem .8rem .8rem; margin: 1.25rem 0; }
+.box-blue { border-color: #3678b4; }
+.box-red { border-color: #be4967; }
+.box-blue.stair-1, .box-red.stair-1 { margin-left: 1.5rem; }
+.pill-blue, .pill-red { display: inline-block; color: #fff; font-size: .95rem; font-weight: 700; line-height: 1.5; padding: 0 .45rem; border-radius: 5px; }
+.pill-blue { background: #3678b4; }
+.pill-red { background: #be4967; }
+.box-title { font-size: 1.05rem; font-weight: 800; line-height: 1.3; margin: .5rem 0 .6rem; }
+.box-blue ul.bullets, .box-red ul.bullets { margin: 0; }
+.box-blue ul.bullets > li, .box-red ul.bullets > li { font-size: .99rem; margin-bottom: .45rem; }
+
+/* Pull quote: 2.4pt ink bar on the left, attribution in caption grey */
+.quote-block { border-left: 3px solid #1b1b1b; padding: .2rem 0 .2rem 1.1rem; margin: 1.6rem 0; color: #1b1b1b; }
+.quote-attr { display: block; margin-top: .5rem; font-size: .95rem; color: #4f5669; }
+.table-note { display: block; margin-top: .6rem; font-size: .95rem; color: #4f5669; }
 </style>
 </head>
 <body>
 <div aria-hidden="true" id="reading-progress"></div>
 <div class="fixed left-4 top-4 z-50 print:hidden">
-<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" href="index.html">
+<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" href="index.html">
 <span><span class="lang-pt">←</span><span class="lang-en">←</span></span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
 </a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
-<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" onclick="window.print()">
+<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" onclick="window.print()">
 <svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect height="8" width="12" x="6" y="14"></rect></svg>
 <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
 </button>
@@ -110,8 +154,8 @@
 <li><span class="lang-pt">O fracasso de Adão e Eva resulta na perda da verdadeira vida e no exílio para a morte (<a class="ref underline" href="#" data-reference="Gen.+3:22-23">Gen. 3:22-23</a>). A fidelidade de Avraham em entregar Yitskhaq à morte resulta em ele recuperar o seu filho com uma nova vida (<a class="ref underline" href="#" data-reference="Gen.+22:13-18">Gen. 22:13-18</a>).</span><span class="lang-en">Adam and Eve’s failure results in the loss of true life and exile unto death (<a class="ref underline" href="#" data-reference="Gen.+3:22-23">Gen. 3:22-23</a>). Avraham’s faithfulness in surrendering Yitskhaq over to death results in him regaining his son with a new life (<a class="ref underline" href="#" data-reference="Gen.+22:13-18">Gen. 22:13-18</a>).</span></li>
 </ul>
 <div class="quote-block reveal">
-<span class="lang-pt">“Mas não é simplesmente que um ato extraordinário de obediência por um homem justo [Avraham] leva a uma bênção extraordinária. É que a obediência de um homem culmina em um ato de sacrifício e assim leva à bênção extraordinária ... A obediência fiel de Noé culminando em seus sacrifícios após o dilúvio mudou a disposição de Deus para com a humanidade pecadora. Da mesma forma, a obediência de Avraham garantiu o futuro de seus descendentes e que, através deles, a bênção deveria vir a todas as nações.”<br/><span class="text-[0.95rem] text-gray-500 mt-2 block">Wenham, Gordon (2001). “The Akedah: A Paradigm of Sacrifice.” <em>Journal of Biblical Literature</em>, vol. 116, no. 3. 102.</span></span>
-<span class="lang-en">“But it is not simply that an extraordinary act of obedience by a righteous man [Abraham] leads to extraordinary blessing ... The faithful obedience of Noah culminating in his sacrifices after the flood changed God’s disposition toward sinful humanity. Similarly Abraham’s obedience guaranteed the future of his descendants and that through them blessing should come to all nations.”<br/><span class="text-[0.95rem] text-gray-500 mt-2 block">Wenham, Gordon (2001). “The Akedah: A Paradigm of Sacrifice.” <em>Journal of Biblical Literature</em>, vol. 116, no. 3. 102.</span></span>
+<span class="lang-pt">“Mas não é simplesmente que um ato extraordinário de obediência por um homem justo [Avraham] leva a uma bênção extraordinária. É que a obediência de um homem culmina em um ato de sacrifício e assim leva à bênção extraordinária ... A obediência fiel de Noé culminando em seus sacrifícios após o dilúvio mudou a disposição de Deus para com a humanidade pecadora. Da mesma forma, a obediência de Avraham garantiu o futuro de seus descendentes e que, através deles, a bênção deveria vir a todas as nações.”<br/><span class="quote-attr">Wenham, Gordon (2001). “The Akedah: A Paradigm of Sacrifice.” <em>Journal of Biblical Literature</em>, vol. 116, no. 3. 102.</span></span>
+<span class="lang-en">“But it is not simply that an extraordinary act of obedience by a righteous man [Abraham] leads to extraordinary blessing ... The faithful obedience of Noah culminating in his sacrifices after the flood changed God’s disposition toward sinful humanity. Similarly Abraham’s obedience guaranteed the future of his descendants and that through them blessing should come to all nations.”<br/><span class="quote-attr">Wenham, Gordon (2001). “The Akedah: A Paradigm of Sacrifice.” <em>Journal of Biblical Literature</em>, vol. 116, no. 3. 102.</span></span>
 </div>
 <!-- ================= A BLESSINGS REMIX ================= -->
 <h2 class="section reveal"><span class="lang-pt">A Resposta de Deus a Avraham: Um Remix de Bênçãos</span><span class="lang-en">God’s Response to Avraham: A Blessings Remix</span></h2>
@@ -185,7 +229,7 @@
 <span class="lang-pt"><strong>Gen. 21:12</strong> "Tudo o que Sara lhe disser, <span class="k k-gray-lt">ouça a voz dela</span> (<span class="heb">שמע + בקול</span>)"</span><span class="lang-en"><strong>Gen. 21:12</strong> "Everything which Sarah tells you, <span class="k k-gray-lt">listen to her voice</span> (<span class="heb">שמע + בקול</span>)"</span><br/><br/>
 <span class="lang-pt"><strong>Gen. 26:5</strong> "No fato de que (<span class="heb">עקב</span>) <span class="k k-gray-lt">Avraham ouviu minha voz</span> (<span class="heb">שמע + בקול</span>)"</span><span class="lang-en"><strong>Gen. 26:5</strong> "On account of the fact that (<span class="heb">עקב</span>) <span class="k k-gray-lt">Avraham listened to my voice</span> (<span class="heb">שמע + בקול</span>)"</span>
 <br/><br/>
-<span class="lang-pt text-sm text-slate-600">*Note o contraste nos momentos de "ouvir": (1) As pessoas podem ouvir a voz humana (Adão e Eva, Abe a Sara) resultando em desastre e "ouvir" a voz de Yahweh vindo em julgamento; ou (2) As pessoas podem ouvir a voz de Deus na primeira vez (Avraham em Gen. 22), resultando em bênção.</span><span class="lang-en text-sm text-slate-600">*Notice the contrast "listening" moments: (1) People can listen to the human voice (Adam &amp; Eve, Abe to Sarah) resulting in disaster and "listening" to Yahweh's voice coming in judgment; or (2) People can listen to God's voice the first time (Avraham in Gen. 22), resulting in blessing.</span>
+<span class="lang-pt table-note">*Note o contraste nos momentos de "ouvir": (1) As pessoas podem ouvir a voz humana (Adão e Eva, Abe a Sara) resultando em desastre e "ouvir" a voz de Yahweh vindo em julgamento; ou (2) As pessoas podem ouvir a voz de Deus na primeira vez (Avraham em Gen. 22), resultando em bênção.</span><span class="lang-en table-note">*Notice the contrast "listening" moments: (1) People can listen to the human voice (Adam &amp; Eve, Abe to Sarah) resulting in disaster and "listening" to Yahweh's voice coming in judgment; or (2) People can listen to God's voice the first time (Avraham in Gen. 22), resulting in blessing.</span>
 </td>
 </tr>
 </tbody>
@@ -265,27 +309,8 @@
 </ul>
 <!-- ================= SURRENDER AS FEAR OF THE LORD ================= -->
 <h2 class="section reveal"><span class="lang-pt">A Rendição de Avraham como o Temor do Senhor</span><span class="lang-en">Avraham’s Surrender as Fear of the Lord</span></h2>
-<div class="my-10 text-center reveal">
-<h3 class="text-[2.5rem] font-light tracking-widest text-[#17181a] mb-8 font-sans"><span class="lang-pt">"TEST"</span><span class="lang-en">"TEST"</span></h3>
-<div class="border border-gray-300 rounded-[9px] p-12 bg-white flex flex-col items-center justify-center min-h-[300px] relative overflow-hidden">
-<svg class="w-full max-w-2xl stroke-gray-800 fill-none" stroke-width="2" viewbox="0 0 500 200">
-<!-- Curve representing the journey to the mountain -->
-<path d="M 20 120 Q 150 160 250 80 T 480 120"></path>
-<!-- Minimalist tree structure on the left -->
-<path d="M 30 120 L 30 40 M 10 40 C 10 20, 50 20, 50 40 C 60 40, 60 60, 40 60 C 40 70, 20 70, 20 50 C 10 50, 10 40, 10 40 Z" fill="white" stroke-width="1.5"></path>
-<!-- Minimalist altar structure on the mountain peak -->
-<path d="M 330 65 L 360 65 L 360 75 L 330 75 Z"></path>
-<path d="M 330 65 L 325 55 M 360 65 L 365 55"></path>
-<!-- Text elements -->
-<text class="text-[1.2rem] font-sans tracking-widest uppercase" fill="#111827" stroke="none" x="130" y="110"><span class="lang-pt">3 DAYS</span><span class="lang-en">3 DAYS</span></text>
-<text class="text-[1.4rem] font-sans tracking-widest uppercase text-center" fill="#111827" stroke="none" text-anchor="middle" x="280" y="70"><span class="lang-pt">MORYAH</span><span class="lang-en">MORYAH</span></text>
-<text class="text-[2.2rem] font-sans tracking-widest uppercase text-center" fill="#111827" stroke="none" text-anchor="middle" x="280" y="105"><span class="lang-pt">GEN 22</span><span class="lang-en">GEN 22</span></text>
-<!-- Bottom left graphic representing Gen 21 -->
-<path d="M 20 150 A 15 15 0 0 1 40 170" fill="none" stroke="#1e40af" stroke-width="6"></path>
-<path d="M 20 165 A 5 5 0 0 1 25 170" fill="none" stroke="#1e40af" stroke-width="6"></path>
-<text class="text-[2rem] font-sans" fill="#111827" stroke="none" text-anchor="middle" x="30" y="195"><span class="lang-pt">21</span><span class="lang-en">21</span></text>
-</svg>
-</div>
+<div class="my-8 reveal">
+<img alt="" class="block mx-auto" src="img/sessao-24/page-1.jpg" style="max-width:100%;"/>
 <p class="caption mt-4"><span class="lang-pt"><em>O Padrão de Sacrifício no Topo da Colina de Avraham</em>. Criado por Tim Mackie para a BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Avraham’s Hilltop Sacrifice Pattern</em>. Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
 </div>
 <h3 class="sub reveal" style="margin-top:3.5rem;"><span class="lang-pt">Questão para Reflexão</span><span class="lang-en">Reflection Question</span></h3>

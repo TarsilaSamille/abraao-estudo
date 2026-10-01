@@ -12,17 +12,69 @@
 <link href="../../css/shared-tutorial.css" rel="stylesheet"/>
 <style>
 @import url('../css/session-base.css');
+
+/* --- Palette + geometry taken from abraao/pdf-sessoes/sessao-14.pdf ---------
+   The PDF is the authority. Overrides the DESIGN.md token colours used by
+   session-base.css, which drifted away from the teacher notes.               */
+body            { color: #1b1b1b; }
+h1.title, h2.section, h3.sub { color: #1b1b1b; }
+p.body, ul.bullets > li      { color: #1b1b1b; }
+.rule           { border-top-color: #c1c9d0 !important; }
+.lbl            { color: #4f5669; }
+sup.vs          { color: #1b1b1b; }
+.caption        { color: #4f5669; }
+.page-footer    { color: #2c2c2c; border-top: 1px solid #e4e8ed; }
+.ref            { color: #1b1b1b; }
+
+/* Literary-design panels (PDF: white ground, 1.5pt #e4e8ed round rule,
+   ~10pt inset; the v7-8 and v13-16 inner boxes take a #1b1b1b rule). */
+.g-outer { border: 2px solid #e4e8ed; border-radius: 14px; background: #fff;
+           padding: 1.05rem; margin: 1.15rem 0; }
+.g-black { border: 2px solid #1b1b1b; border-radius: 13px; background: #fff;
+           padding: 1rem; margin: 1.15rem 0; }
+.g-line  { font-size: 1.05rem; line-height: 1.55; color: #1b1b1b; }
+.g-div   { border: 0; border-top: 1px solid #e4e8ed; margin: .6rem 0; }
+
+/* Highlight chips: PDF draws them 15pt tall at a 10.5pt body, ~3pt round. */
+.c { display: inline; padding: 1px 5px; border-radius: 5px; font-weight: 700;
+     line-height: 1.4; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.c-lblue   { background: #ccf1fa; color: #245791; }  /* giving birth, built up  */
+.c-lblue2  { background: #d9ecfd; color: #404ca6; }  /* spring, the well       */
+.c-rust    { background: #b5543a; color: #ffffff; }  /* slave-girl, Hagar      */
+.c-lorange { background: #fae4c4; color: #91362e; }  /* took, gave             */
+.c-lgreen  { background: #d3f2cd; color: #2b6146; }  /* cursed, good in eyes   */
+.c-lpurple { background: #f7e1f5; color: #713c92; }  /* Multiplying            */
+.c-dindigo { background: #3678b4; color: #ffffff; }  /* seed                   */
+.c-teal-s  { background: #097d8d; color: #ffffff; }  /* called the name        */
+.c-rose-s  { background: #be4967; color: #ffffff; }  /* Yishmael, El-Roi      */
+.c-lpink   { background: #f9e3de; color: #972a4e; }  /* (=El Who Sees Me)      */
+.c-gray2   { color: #4f5669; }                       /* go into, oppressed     */
+
+.t-teal2   { color: #097d8d; }
+.t-purple2 { color: #7e62bc; }
+.t-green2  { color: #3a8060; }
+.t-brown2  { color: #816f4d; }
+
+/* Document tables: white cells, #e4e8ed hairlines and header band, and the
+   only chip the PDF uses inside them (grey ground, #4f5669 text). */
+.doc-table          { border: 2px solid #e4e8ed; border-radius: 12px; }
+.doc-table th       { background: #e4e8ed; color: #1b1b1b; }
+.doc-table td       { border-top: 1px solid #e4e8ed; color: #1b1b1b; }
+.doc-table td + td  { border-left: 1px solid #e4e8ed; }
+.doc-table tfoot td { border-top: 1px solid #e4e8ed; background: #fff; color: #4f5669; }
+.kgray { background: #e4e8ed; color: #4f5669; padding: 1px 5px;
+         border-radius: 4px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 </style>
 </head>
 <body>
 <div aria-hidden="true" id="reading-progress"></div>
 <div class="fixed left-4 top-4 z-50 print:hidden">
-<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" href="index.html">
+<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" href="index.html">
 <span><span class="lang-pt">←</span><span class="lang-en">←</span></span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
 </a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
-<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" onclick="window.print()">
+<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" onclick="window.print()">
 <svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect height="8" width="12" x="6" y="14"></rect></svg>
 <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
 </button>
@@ -75,15 +127,15 @@
 <div class="g-outer reveal">
 <div class="g-black">
 <p class="g-line"><sup class="vs"><span class="lang-pt">7</span><span class="lang-en">7</span></sup> <span class="t-purple2"><span class="lang-pt">E o mensageiro de Iavé</span><span class="lang-en">And the messenger of Yahweh</span></span> <span class="lang-pt">a encontrou</span><span class="lang-en">found her</span><span class="lang-pt">,</span><span class="lang-en">,</span></p>
-<p class="g-line"><span class="lang-pt">junto a <span class="c c-lblue">uma fonte de águas</span> no deserto,</span><span class="lang-en">at <span class="c c-lblue">a spring of waters</span> in the wilderness,</span></p>
-<p class="g-line"><span class="lang-pt">junto à <span class="c c-lblue">fonte</span> no caminho de Sur.</span><span class="lang-en">at <span class="c c-lblue">a spring</span> on the way to Shur,</span></p>
+<p class="g-line"><span class="lang-pt">junto a <span class="c c-lblue2">uma fonte de águas</span> no deserto,</span><span class="lang-en">at <span class="c c-lblue2">a spring of waters</span> in the wilderness,</span></p>
+<p class="g-line"><span class="lang-pt">junto à <span class="c c-lblue2">fonte</span> no caminho de Sur.</span><span class="lang-en">at <span class="c c-lblue2">a spring</span> on the way to Shur,</span></p>
 <p class="g-line"><sup class="vs"><span class="lang-pt">8</span><span class="lang-en">8</span></sup> <span class="t-purple2"><span class="lang-pt">e ele disse</span><span class="lang-en">and he said</span></span><span class="lang-pt">:</span><span class="lang-en">:</span></p>
 <p class="g-line"><span class="lang-pt">“<span class="c c-rust">Hagar, escrava</span> de <span class="t-teal2">Sarai</span>,</span><span class="lang-en">“<span class="c c-rust">Hagar, slave-girl</span> of <span class="t-teal2">Sarai</span>,</span></p>
 <p class="g-line"><span class="lang-pt">de onde vens? e para onde vais?”</span><span class="lang-en">Where is it you come from? And to where are you going?”</span></p>
 <p class="g-line t-purple2"><span class="lang-pt">E ela disse:</span><span class="lang-en">And she said,</span></p>
 <p class="g-line"><span class="lang-pt">“Fujo da face de <span class="t-teal2">Sarai, minha senhora</span>.”</span><span class="lang-en">“From before the face of <span class="t-teal2">Sarai my mistress</span> I am fleeing.”</span></p>
 </div>
-<div class="g-black" style="border-color:#dfe3ea;">
+<div class="g-black" style="border-color:#e4e8ed;">
 <p class="g-line"><sup class="vs"><span class="lang-pt">9</span><span class="lang-en">9</span></sup> <span class="t-purple2"><span class="lang-pt">Então lhe disse o mensageiro de Iavé</span><span class="lang-en">And the messenger of Yahweh said to her</span></span><span class="lang-pt">:</span><span class="lang-en">:</span></p>
 <p class="g-line"><span class="lang-pt">“Volta para <span class="t-teal2">tua senhora</span></span><span class="lang-en">“Return to <span class="t-teal2">your mistress</span>,</span></p>
 <p class="g-line"><span class="lang-pt">e <span class="c c-gray2">opprime-te</span> debaixo de suas mãos.”</span><span class="lang-en">and <span class="c c-gray2">oppress</span> yourself under her hand.”</span></p>
@@ -107,7 +159,7 @@
 <p class="g-line"><span class="lang-pt">porque disse: ‘Será que também vi aqui <span class="c c-lpink">as costas daquele que me vê</span>?’”</span><span class="lang-en">because she said, “Have I also seen here <span class="c c-lpink">the back of the one who sees me</span>?”</span></p>
 <hr class="g-div"/>
 <p class="g-line"><sup class="vs"><span class="lang-pt">14</span><span class="lang-en">14</span></sup> <span class="lang-pt">Por isso <span class="c c-teal-s">se chama</span> <span class="c c-lblue">o poço</span></span><span class="lang-en">Therefore, <span class="c c-teal-s">she called</span> <span class="c c-lblue">the well</span> ,</span></p>
-<p class="g-line"><span class="c c-lblue"><span class="lang-pt">Beer</span><span class="lang-en">Beer</span></span><span class="lang-pt">-Lakhai-</span><span class="lang-en">-Lakhai-</span><span class="c c-rose-s"><span class="lang-pt">Roi</span><span class="lang-en">Roi</span></span> <span class="lang-pt">(= “<span class="c c-lblue">Poço</span> do Vivente <span class="c c-lpink">Que Me Vê</span>.”)</span><span class="lang-en">(= “<span class="c c-lblue">Well</span> of the Living <span class="c c-lpink">One Who Sees Me.</span>”)</span></p>
+<p class="g-line"><span class="c c-lblue2"><span class="lang-pt">Beer</span><span class="lang-en">Beer</span></span><span class="lang-pt">-Lakhai-</span><span class="lang-en">-Lakhai-</span><span class="c c-rose-s"><span class="lang-pt">Roi</span><span class="lang-en">Roi</span></span> <span class="lang-pt">(= “<span class="c c-lblue2">Poço</span> do Vivente <span class="c c-lpink">Que Me Vê</span>.”)</span><span class="lang-en">(= “<span class="c c-lblue2">Well</span> of the Living <span class="c c-lpink">One Who Sees Me.</span>”)</span></p>
 <p class="g-line"><span class="lang-pt">olha, está entre Cades e Berede.</span><span class="lang-en">Look, it’s between Qadesh and between Bered.</span></p>
 <hr class="g-div"/>
 <p class="g-line"><sup class="vs"><span class="lang-pt">15</span><span class="lang-en">15</span></sup> <span class="lang-pt">E Hagar <span class="c c-lblue">gerou um filho</span> para Abrão;</span><span class="lang-en">And Hagar <span class="c c-lblue">gave birth to a son</span> for Avram,</span></p>
@@ -133,33 +185,33 @@
 <td><strong>Gen. 2:18-25</strong> <span class="lang-pt">Iavé provê uma mulher para o humano como socorro-libertador (<span class="heb">עזר</span>), para que possam se reproduzir.</span><span class="lang-en">Yahweh provides a woman for the human as a delivering-help (<span class="heb">עזר</span>), so that they can reproduce.</span></td>
 </tr>
 <tr>
-<td><strong>Gen. 16:2</strong> <span class="lang-pt">“Entra à minha escrava; talvez por meio dela eu possa ser <span class="ksky">edificada</span> (<span class="heb">בנה</span>).”</span><span class="lang-en">“Go into my slave-girl, perhaps I can be <span class="ksky">built</span> (<span class="heb">בנה</span>) from her.”</span></td>
-<td><strong>Gen. 2:22</strong> <span class="lang-pt">“e Iavé <span class="ksky">edificou</span> (<span class="heb">בנה</span>) o lado que tomara do humano em uma mulher.”</span><span class="lang-en">“and Yahweh <span class="ksky">built</span> (<span class="heb">בנה</span>) the side which he had taken from the human into a woman.”</span></td>
+<td><strong>Gen. 16:2</strong> <span class="lang-pt">“Entra à minha escrava; talvez por meio dela eu possa ser edificada</span> (<span class="heb">בנה</span>).”</span><span class="lang-en">“Go into my slave-girl, perhaps I can be built</span> (<span class="heb">בנה</span>) from her.”</span></td>
+<td><strong>Gen. 2:22</strong> <span class="lang-pt">“e Iavé edificou</span> (<span class="heb">בנה</span>) o lado que tomara do humano em uma mulher.”</span><span class="lang-en">“and Yahweh built</span> (<span class="heb">בנה</span>) the side which he had taken from the human into a woman.”</span></td>
 </tr>
 <tr>
 <td><strong>Gen. 16:2b</strong> <span class="lang-pt">“e Abrão <em>ouviu a voz</em> de Sarai” (<span class="heb">שמע + לקול</span>)</span><span class="lang-en">“and Avram listened to the voice of Sarai” (<span class="heb">שמע + לקול</span>)</span></td>
 <td><strong>Gen. 3:17</strong> <span class="lang-pt">“porque <em>ouviste a voz</em> de tua mulher” (<span class="heb">שמע + לקול</span>)</span><span class="lang-en">“because you listened to the voice of your wife” (<span class="heb">שמע + לקול</span>)</span></td>
 </tr>
 <tr>
-<td><strong>Gen. 16:3</strong> <span class="lang-pt">“e Sarai <span class="korange">tomou</span> (<span class="heb">ותקח</span>) Hagar … e a <span class="korange">deu</span> (<span class="heb">ותתן</span>) a Abrão, seu marido (<span class="heb">לאישה</span>), por mulher … E ele entrou a ela.”</span><span class="lang-en">“and Sarai <span class="korange">took</span> (<span class="heb">ותקח</span>) Hagar … and she <span class="korange">gave</span> (<span class="heb">ותתן</span>) her to Avram her husband (<span class="heb">לאישה</span>) as a wife … And he went into her.”</span></td>
-<td><strong>Gen. 3:6</strong> <span class="lang-pt">“e a mulher (<span class="heb">האשה</span>) … <span class="korange">tomou</span> (<span class="heb">ותקח</span>) do fruto … e <span class="korange">deu</span> (<span class="heb">ותתן</span>) também a seu marido (<span class="heb">לאישה</span>), e ele comeu.”</span><span class="lang-en">“and the woman (<span class="heb">האשה</span>) … <span class="korange">took</span> (<span class="heb">ותקח</span>) the fruit … and she <span class="korange">gave</span> (<span class="heb">ותתן</span>) also to her husband (<span class="heb">לאישה</span>), and he ate.”</span></td>
+<td><strong>Gen. 16:3</strong> <span class="lang-pt">“e Sarai tomou</span> (<span class="heb">ותקח</span>) Hagar … e a deu</span> (<span class="heb">ותתן</span>) a Abrão, seu marido (<span class="heb">לאישה</span>), por mulher … E ele entrou a ela.”</span><span class="lang-en">“and Sarai took</span> (<span class="heb">ותקח</span>) Hagar … and she gave</span> (<span class="heb">ותתן</span>) her to Avram her husband (<span class="heb">לאישה</span>) as a wife … And he went into her.”</span></td>
+<td><strong>Gen. 3:6</strong> <span class="lang-pt">“e a mulher (<span class="heb">האשה</span>) … tomou</span> (<span class="heb">ותקח</span>) do fruto … e deu</span> (<span class="heb">ותתן</span>) também a seu marido (<span class="heb">לאישה</span>), e ele comeu.”</span><span class="lang-en">“and the woman (<span class="heb">האשה</span>) … took</span> (<span class="heb">ותקח</span>) the fruit … and she gave</span> (<span class="heb">ותתן</span>) also to her husband (<span class="heb">לאישה</span>), and he ate.”</span></td>
 </tr>
 <tr>
-<td><p style="margin-bottom:.7rem;"><strong>Gen. 16:4</strong> <span class="lang-pt">“e ela [Hagar] <span class="kgray">viu que</span> (<span class="heb">ותרא כי</span>) concebera, e sua senhora tornou-se <span class="kgray">maldita</span> aos seus olhos (<span class="heb">בעיניה</span>).”</span><span class="lang-en">“and she [Hagar] <span class="kgray">saw that</span> (<span class="heb">ותרא כי</span>) she was pregnant, and her master was <span class="kgray">cursed</span> in her eyes (<span class="heb">בעיניה</span>).”</span></p>
+<td><p style="margin-bottom:.7rem;"><strong>Gen. 16:4</strong> <span class="lang-pt">“e ela [Hagar] viu que (<span class="heb">ותרא כי</span>) concebera, e sua senhora tornou-se <span class="kgray">maldita</span> aos seus olhos (<span class="heb">בעיניה</span>).”</span><span class="lang-en">“and she [Hagar] saw that (<span class="heb">ותרא כי</span>) she was pregnant, and her master was <span class="kgray">cursed</span> in her eyes (<span class="heb">בעיניה</span>).”</span></p>
 <p><strong>Gen. 16:6</strong> <span class="lang-pt">“Abrão disse a Sarai: ‘Eis que tua escrava está <span class="kgray">na tua mão</span>; faze-lhe o que <span class="kgray">é bom</span> (<span class="heb">טוב</span>) <span class="kgray">aos teus olhos</span> (<span class="heb">בעיניך</span>).’”</span><span class="lang-en">“Avram said to Sarai, ‘Behold, your slave-girl is <span class="kgray">in your hand</span>, do to her <span class="kgray">what is good</span> (<span class="heb">טוב</span>) <span class="kgray">in your eyes</span> (<span class="heb">בעיניך</span>).’”</span></p></td>
-<td><strong>Gen. 3:6</strong> <span class="lang-pt">“e a mulher <span class="kgray">viu que</span> (<span class="heb">ותרא כי</span>) a árvore era <span class="kgray">boa</span> (<span class="heb">טוב</span>) para comer, e desejável <span class="kgray">aos olhos</span> (<span class="heb">לעינים</span>)”</span><span class="lang-en">“and the woman <span class="kgray">saw that</span> (<span class="heb">ותרא כי</span>) the tree was <span class="kgray">good</span> (<span class="heb">טוב</span>) for food, and desirable <span class="kgray">to the eyes</span> (<span class="heb">לעינים</span>)”</span></td>
+<td><strong>Gen. 3:6</strong> <span class="lang-pt">“e a mulher viu que (<span class="heb">ותרא כי</span>) a árvore era <span class="kgray">boa</span> (<span class="heb">טוב</span>) para comer, e desejável <span class="kgray">aos olhos</span> (<span class="heb">לעינים</span>)”</span><span class="lang-en">“and the woman saw that (<span class="heb">ותרא כי</span>) the tree was <span class="kgray">good</span> (<span class="heb">טוב</span>) for food, and desirable <span class="kgray">to the eyes</span> (<span class="heb">לעינים</span>)”</span></td>
 </tr>
 <tr>
 <td><strong>Gen. 16:7</strong> <span class="lang-pt">Deus visita Hagar junto a uma fonte de águas no deserto</span><span class="lang-en">God visits Hagar by a spring of water in the wilderness</span></td>
 <td><strong>Gen. 3:8</strong> <span class="lang-pt">Deus visita Adão e Eva junto à árvore no meio do jardim (de onde o rio tem sua fonte, veja <span class="ref" data-reference="Gênesis 2:10-14">Gn 2:10-14</span>)</span><span class="lang-en">God visits Adam and Eve by the tree in the middle of the garden (from which the river is sourced, see Gen. 2:10-14)</span></td>
 </tr>
 <tr>
-<td><strong>Gen. 16:8</strong> <span class="lang-pt">“E [o anjo] disse a Hagar … ‘<span class="kgray">De onde</span> (<span class="heb">אי מזה</span>) vens, e para onde vais?’”</span><span class="lang-en">“And [the angel] said to Hagar … ‘From <span class="kgray">where</span> (<span class="heb">אי מזה</span>) have you come, and to where do you go?’”</span></td>
-<td><strong>Gen. 3:9</strong> <span class="lang-pt">“E Iavé Deus chamou o humano e disse: ‘<span class="kgray">Onde</span> estás (<span class="heb">איכה</span>)?’”</span><span class="lang-en">“And Yahweh God called to the human and said, ‘<span class="kgray">Where</span> are you (<span class="heb">איכה</span>)?’”</span></td>
+<td><strong>Gen. 16:8</strong> <span class="lang-pt">“E [o anjo] disse a Hagar … ‘De onde (<span class="heb">אי מזה</span>) vens, e para onde vais?’”</span><span class="lang-en">“And [the angel] said to Hagar … ‘From where (<span class="heb">אי מזה</span>) have you come, and to where do you go?’”</span></td>
+<td><strong>Gen. 3:9</strong> <span class="lang-pt">“E Iavé Deus chamou o humano e disse: ‘Onde estás (<span class="heb">איכה</span>)?’”</span><span class="lang-en">“And Yahweh God called to the human and said, ‘Where are you (<span class="heb">איכה</span>)?’”</span></td>
 </tr>
 <tr>
-<td><strong>Gen. 16:10-11</strong> <span class="lang-pt">“E o anjo de Iavé lhe disse [Hagar]: ‘<span class="kpurple">Multiplicando, multiplicarei</span> (<span class="heb">הרבה ארבה</span>) a tua semente … Estás grávida (<span class="heb">הרה</span>), e darás à luz (<span class="heb">ילד</span>) um filho.’”</span><span class="lang-en">“And the angel of Yahweh said to her [Hagar]: ‘<span class="kpurple">I will great multiply</span> (<span class="heb">הרבה ארבה</span>) your seed … You are pregnant (<span class="heb">הרה</span>), will give birth (<span class="heb">ילד</span>) to a son.’”</span></td>
-<td><strong>Gen. 3:16</strong> <span class="lang-pt">“À mulher ele disse: ‘<span class="kpurple">Multiplicando, multiplicarei</span> (<span class="heb">הרבה ארבה</span>) a tua dor e a tua gravidez (<span class="heb">הריונך</span>), e com dor darás à luz (<span class="heb">ילד</span>).’”</span><span class="lang-en">“To the woman he said, ‘<span class="kpurple">I will greatly multiply</span> (<span class="heb">הרבה ארבה</span>) your grief and pregnancy (<span class="heb">הריונך</span>), and in grief you will give birth (<span class="heb">ילד</span>).’”</span></td>
+<td><strong>Gen. 16:10-11</strong> <span class="lang-pt">“E o anjo de Iavé lhe disse [Hagar]: ‘<span class="kgray">Multiplicando, multiplicarei</span> (<span class="heb">הרבה ארבה</span>) a tua semente … Estás grávida (<span class="heb">הרה</span>), e darás à luz (<span class="heb">ילד</span>) um filho.’”</span><span class="lang-en">“And the angel of Yahweh said to her [Hagar]: ‘<span class="kgray">I will great multiply</span> (<span class="heb">הרבה ארבה</span>) your seed … You are pregnant (<span class="heb">הרה</span>), will give birth (<span class="heb">ילד</span>) to a son.’”</span></td>
+<td><strong>Gen. 3:16</strong> <span class="lang-pt">“À mulher ele disse: ‘<span class="kgray">Multiplicando, multiplicarei</span> (<span class="heb">הרבה ארבה</span>) a tua dor e a tua gravidez (<span class="heb">הריונך</span>), e com dor darás à luz (<span class="heb">ילד</span>).’”</span><span class="lang-en">“To the woman he said, ‘<span class="kgray">I will greatly multiply</span> (<span class="heb">הרבה ארבה</span>) your grief and pregnancy (<span class="heb">הריונך</span>), and in grief you will give birth (<span class="heb">ילד</span>).’”</span></td>
 </tr>
 </tbody>
 <tfoot><tr><td colspan="2"><span class="lang-pt"><em>Links entre Gênesis 2-3 e 16.</em> Criado por Tim Mackie para o BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Links Between Genesis 2-3 and 16.</em> Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></td></tr></tfoot>
@@ -197,8 +249,8 @@
 <p><strong>Gen. 4:16</strong> <span class="lang-pt">“e Caim saiu de diante da face de Iavé”</span><span class="lang-en">“and Cain went out from before the face of Yahweh”</span></p></td>
 </tr>
 <tr>
-<td><strong>Gen. 16:8</strong> <span class="lang-pt">“<span class="kgray">De onde</span> (<span class="heb">אי</span>) vens, e para onde vais?”</span><span class="lang-en">“From <span class="kgray">where</span> (<span class="heb">אי</span>) are you coming, and to where do you go?”</span></td>
-<td><strong>Gen. 4:9</strong> <span class="lang-pt">“<span class="kgray">Onde</span> (<span class="heb">אי</span>) está Abel, teu irmão?”</span><span class="lang-en">“<span class="kgray">Where</span> (<span class="heb">אי</span>) is Abel your brother?”</span></td>
+<td><strong>Gen. 16:8</strong> <span class="lang-pt">“De onde (<span class="heb">אי</span>) vens, e para onde vais?”</span><span class="lang-en">“From where (<span class="heb">אי</span>) are you coming, and to where do you go?”</span></td>
+<td><strong>Gen. 4:9</strong> <span class="lang-pt">“Onde (<span class="heb">אי</span>) está Abel, teu irmão?”</span><span class="lang-en">“Where (<span class="heb">אי</span>) is Abel your brother?”</span></td>
 </tr>
 <tr>
 <td><strong>Gen. 16:11</strong> <span class="lang-pt">“Estás grávida e darás à luz um filho, e chamarás o seu nome Ismael porque Iavé ouviu a tua opressão.”</span><span class="lang-en">“You are pregnant and will give birth to a son and you will call his name Yishmael because Yahweh heard your oppression.”</span></td>
@@ -220,12 +272,12 @@
 <thead><tr><th style="width:50%;"><span class="lang-pt">Genesis 16</span><span class="lang-en">Genesis 16</span></th><th style="width:50%;"><span class="lang-pt">Genesis 6</span><span class="lang-en">Genesis 6</span></th></tr></thead>
 <tbody>
 <tr>
-<td><strong>Gen. 16:3-4</strong> <span class="lang-pt">Das parceiras de aliança de Elohim, Sarai trama produzir semente, então ela “<span class="korange">toma</span>” (<span class="heb">לקח</span>) uma mulher (<span class="heb">אשה</span>) de sua escolha para Abrão.</span><span class="lang-en">Of the covenant partners of Elohim, Sarai schemes to produce seed, so she “<span class="korange">takes</span>” (<span class="heb">לקח</span>) a wife (<span class="heb">אשה</span>) of her choosing for Avram.</span></td>
-<td><strong>Gen. 6:2</strong> <span class="lang-pt">Os filhos de Elohim “<span class="kgray">veem</span>” (<span class="heb">ראה</span>) as filhas dos humanos e “<span class="korange">tomam</span>” (<span class="heb">לקח</span>) para si por mulheres (<span class="heb">אשה</span>) as que escolhem.</span><span class="lang-en">The sons of Elohim “<span class="kgray">see</span>” (<span class="heb">ראה</span>) the daughters of humanity and “<span class="korange">take</span>” (<span class="heb">לקח</span>) for themselves whatever wives (<span class="heb">אשה</span>) they choose.</span></td>
+<td><strong>Gen. 16:3-4</strong> <span class="lang-pt">Das parceiras de aliança de Elohim, Sarai trama produzir semente, então ela “toma” (<span class="heb">לקח</span>) uma mulher (<span class="heb">אשה</span>) de sua escolha para Abrão.</span><span class="lang-en">Of the covenant partners of Elohim, Sarai schemes to produce seed, so she “takes” (<span class="heb">לקח</span>) a wife (<span class="heb">אשה</span>) of her choosing for Avram.</span></td>
+<td><strong>Gen. 6:2</strong> <span class="lang-pt">Os filhos de Elohim “veem” (<span class="heb">ראה</span>) as filhas dos humanos e “tomam” (<span class="heb">לקח</span>) para si por mulheres (<span class="heb">אשה</span>) as que escolhem.</span><span class="lang-en">The sons of Elohim “see” (<span class="heb">ראה</span>) the daughters of humanity and “take” (<span class="heb">לקח</span>) for themselves whatever wives (<span class="heb">אשה</span>) they choose.</span></td>
 </tr>
 <tr>
 <td><strong>Gen. 16:4, 8-9</strong> <span class="lang-pt">Sarai é chamada de “senhora” (<span class="heb">גבירה</span>, <em>gevirah</em>), forma feminina de <em>gibbor</em> (<span class="heb">גבור</span>).</span><span class="lang-en">Sarai is called the “mistress” (<span class="heb">גבירה</span>, <em>gevirah</em>), feminine form of <em>gibbor</em> (<span class="heb">גבור</span>).</span></td>
-<td><strong>Gen. 6:4</strong> <span class="lang-pt">“Havia nefilins na terra naqueles dias … estes foram os valentes (<span class="heb">גבור</span>, <em>gibbor</em>) da antiguidade, homens de nome.”</span><span class="lang-en">“The Nephilim were in the land in those days … these are the mighty warriors (<span class="heb">גבור</span>, <em>gibbor</em>) who are from ancient time, men of the name.”</span></td>
+<td><strong>Gen. 6:4</strong> <span class="lang-pt">“Havia nefilins na terra naqueles dias, e também depois, quando os filhos de Elohim entraram às filhas dos humanos, e lhes geraram filhos; estes foram os valentes (<span class="heb">גבור</span>, <em>gibbor</em>) da antiguidade, homens de nome.”</span><span class="lang-en">“The Nephilim were in the land in those days, and also afterward, when the sons of Elohim went into the daughters of humanity, and they bore children for them; these are the mighty warriors (<span class="heb">גבור</span>, <em>gibbor</em>) who are from ancient time, men of the name.”</span></td>
 </tr>
 <tr>
 <td><p><strong>Gen. 16:5</strong> <span class="lang-pt">“Que a violência (<span class="heb">חמס</span>) feita a mim recaia sobre ti!”</span><span class="lang-en">“May the violence (<span class="heb">חמס</span>) done to me be upon you!”</span><br/>
@@ -250,10 +302,6 @@
 <span class="lang-pt">Anotações de Aula: Abraão</span><span class="lang-en">Class Notes: Abraham</span>
 <span class="lang-pt">Sessão 14</span><span class="lang-en">Session 14</span>
 </footer>
-<!-- conteudo adicional do PDF -->
-<p class="body reveal"><span class="lang-en">Sarai“ (‫ לקול‬+ ‫)שמע‬</span></p>
-<p class="body reveal"><span class="lang-en">your wife” (‫ לקול‬+ ‫)שמע‬</span></p>
-<p class="body reveal"><span class="lang-en">eyes (‫)בעיניה‬.”</span></p>
 </div>
 <script src="../../js/verse-modal.js"></script>
 <script src="../../js/reading-progress.js"></script>

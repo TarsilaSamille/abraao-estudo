@@ -12,17 +12,116 @@
 <link href="../../css/shared-tutorial.css" rel="stylesheet"/>
 <style>
 @import url('../css/session-base.css');
+
+/* ------------------------------------------------------------------
+   Session 19 local overrides. Every colour below was sampled from
+   abraao/pdf-sessoes/sessao-19.pdf — the PDF is the authority.
+   The chip / t-* / card / grid-3 classes used by this session have no
+   rules in session-base.css, so the whole colour-coding layer of the
+   Literary Design blocks, the macro diagram and the two
+   Diverging Genealogies grids had to be written here.
+   ------------------------------------------------------------------ */
+
+/* PDF ink / neutrals */
+body, h1.title, h2.section, h3.sub, p.body, .v-line,
+ul.bullets > li, .scripture-text, sup.vs, .lbl, .scripture-label,
+.card li, .card-title, .card-text { color: #1b1b1b; }
+.caption, .scripture-type, .page-footer, .chiastic { color: #4f5669; }
+.page-footer { color: #2c2c2c; border-top: 0; }
+.rule { border-top: 1px solid #c1c9d0 !important; }
+.scripture { border-left: 4px solid #e4e8ed; }
+ul.bullets > li:before { color: #1b1b1b !important; }
+
+/* Panels — PDF strokes them at 1.5pt, radius ~8pt */
+.v-outer { border: 1.5px solid #e4e8ed; border-radius: 14px; background: #fff; }
+.v-outer.dark { border: 1.5px solid #1b1b1b; border-radius: 14px; }
+.v-outer.light { border: 1.5px solid #e4e8ed; border-radius: 14px; }
+.v-div { border-top: 1px solid #e4e8ed; }
+.speech-label { font-weight: 800; color: #1b1b1b; font-size: 1.05rem; margin: .15rem 0 .35rem; }
+.chiastic { font-size: .82em; font-weight: 400; }
+
+/* ---- colour chips (Literary Design) ----
+   15pt tall box, ~3pt radius, ~3pt side padding, bold text. */
+.chip { display: inline; padding: 1px 5px; border-radius: 4px; font-weight: 700;
+        line-height: 1.55; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.c-maroon       { background: #b5543a; color: #fff; }
+.c-beige        { background: #fae4c4; color: #91362e; }
+.c-blue         { background: #d9ecfd; color: #404ca6; }
+.c-blue2        { background: #ccf1fa; color: #245791; }
+.c-teal         { background: #b9eff7; color: #00626f; }
+.c-gray-solid   { background: #6b7384; color: #fff; }
+.c-gray-wash    { background: #e4e8ed; color: #4f5669; }
+.c-green        { background: #d3f2cd; color: #2b6146; }
+.c-mint         { background: #d3f2cd; color: #2b6146; }
+.c-green-solid  { background: #3a8060; color: #fff; }
+.c-rose         { background: #f7e1f5; color: #713c92; }
+.c-beige2       { background: #efe8db; color: #645537; }
+.c-tan          { background: #efe8db; color: #645537; }
+.c-life         { background: #3678b4; color: #fff; }
+.c-smoke        { background: #f9e3de; color: #972a4e; }
+.c-brown-solid  { background: #504329; color: #fff; }
+.c-purple-solid { background: #552d7d; color: #fff; }
+.c-magenta      { background: #9855af; color: #fff; }
+
+/* bare emphasis runs (no box) */
+.t-red     { color: #be4967; }
+.t-purple  { color: #7e62bc; }
+.t-magenta { color: #9855af; }
+.t-green   { color: #3a8060; }
+.t-brown   { color: #816f4d; }
+
+/* ---- document table ---- */
+.doc-table { border: 1.5px solid #e4e8ed; }
+.doc-table th { background: #e4e8ed; color: #1b1b1b; font-size: 1.05rem; }
+.doc-table td { border-top: 1px solid #e4e8ed; font-size: 1.05rem; color: #1b1b1b; }
+.doc-table td + td { border-left: 1px solid #e4e8ed; }
+.doc-table tfoot td { border-top: 1.5px solid #e4e8ed; background: #fff; color: #4f5669; }
+.doc-table tbody tr:hover td { background: #fff; }
+
+/* ---- Macro Design of Genesis 18-19: FOUR columns, outer boxes green ---- */
+.macro { grid-template-columns: repeat(4, 1fr); gap: .55rem; }
+.macro .card { border: 2px solid #6b7384; border-radius: 10px; padding: .7rem .8rem .8rem;
+               background: #fff; font-size: 1rem; }
+.macro .card:first-child, .macro .card:last-child { border-color: #3a8060; }
+.macro .card:nth-child(2), .macro .card:nth-child(3) { margin-top: 1.7rem; }
+.macro .mtag { font-size: .82rem; padding: 2px 7px; border-radius: 4px; }
+.macro ul.bullets { margin-top: .5rem; }
+.macro ul.bullets > li { font-size: 1rem; margin-bottom: .3rem; line-height: 1.5; }
+.macro ul.bullets > li:before { left: 0 !important; }
+
+.mtag-green  { background: #3a8060; }
+.mtag-dark   { background: #6b7384; }
+.mtag-gray   { background: #e4e8ed; color: #4f5669; }
+.mtag-brown  { background: #816f4d; }
+
+/* ---- Diverging Genealogies grids ---- */
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin: 2rem 0 .75rem; }
+.grid-3 .card { border: 1px solid #e4e8ed; border-radius: 8px; padding: .7rem .85rem .8rem;
+                background: #fff; min-height: 8.2rem; }
+.grid-3 .card:nth-child(3) li { color: #816f4d; }
+.grid-3 .card:nth-child(3) li:before { color: #816f4d !important; }
+.grid-3 ul.bullets { margin-top: .5rem; }
+.grid-3 ul.bullets > li { font-size: 1.05rem; margin-bottom: .3rem; line-height: 1.55; }
+.grid-3 ul.bullets > li:before { left: 0 !important; }
+.grid-3 + .caption { border: 1px solid #e4e8ed; border-radius: 8px; padding: .7rem .85rem;
+                     font-size: .92rem; }
+
+@media (max-width: 860px) {
+  .macro, .grid-3 { grid-template-columns: 1fr; }
+  .macro .card:nth-child(2), .macro .card:nth-child(3) { margin-top: 0; }
+  .grid-3 .card { min-height: 0; }
+}
 </style>
 </head>
 <body>
 <div aria-hidden="true" id="reading-progress"></div>
 <div class="fixed left-4 top-4 z-50 print:hidden">
-<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" href="index.html">
+<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" href="index.html">
 <span><span class="lang-pt">←</span><span class="lang-en">←</span></span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
 </a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
-<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" onclick="window.print()">
+<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" onclick="window.print()">
 <svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect height="8" width="12" x="6" y="14"></rect></svg>
 <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
 </button>
@@ -122,7 +221,7 @@
 <tr>
 <td><strong>Gen. 19:19</strong> <span class="lang-pt">“achei graça aos teus olhos … mantiveste viva a minha vida (<span class="heb">להחיות את נפש</span>)”</span><span class="lang-en">“I have found favor in your eyes … you have kept my very being alive (<span class="heb">להחיות את נפש</span>)”</span></td>
 <td><strong>Gen. 6:8</strong> <span class="lang-pt">Noé (<span class="heb">נח</span>) achou graça (<span class="heb">חן</span>) aos olhos de Iavé</span><span class="lang-en">Noah (<span class="heb">נח</span>) found favor (<span class="heb">חן</span>) in the eyes of Yahweh</span>
-<ul class="bullets" style="margin:.4rem 0 0;"><li><span class="lang-pt"><strong>Gn 6:19-20</strong> Os animais na arca são “mantidos vivos” (<span class="heb">להחיות</span>)</span><span class="lang-en"><strong>Gen. 6:19-20</strong> The animals on the ark are “kept alive” (<span class="heb">להחיות</span>)</span></li></ul>
+<ul class="bullets" style="margin:.4rem 0 0;"><li><span class="lang-pt"><strong>Gen. 6:19-20</strong> Os animais na arca são “mantidos vivos” (<span class="heb">להחיות</span>)</span><span class="lang-en"><strong>Gen. 6:19-20</strong> The animals on the ark are “kept alive” (<span class="heb">להחיות</span>)</span></li><li><span class="lang-pt"><strong>Gen. 7:3</strong> A “semente” será “mantida viva” (<span class="heb">להחיות זרע</span>) sobre a face da terra</span><span class="lang-en"><strong>Gen. 7:3</strong> “seed will be kept alive” (<span class="heb">להחיות זרע</span>) on the face of the land</span></li></ul>
 </td>
 </tr>
 <tr>
@@ -259,7 +358,7 @@
 <div class="scripture reveal">
 <div class="scripture-label" data-reference="Genesis+8:1"><a class="verse-link hover:underline" data-reference="Gênesis+8:1" href="#"><span class="lang-pt">Gênesis 8:1 — Tradução do Instrutor</span><span class="lang-en">Genesis 8:1 Instructor’s Translation</span></a></div>
 <div class="scripture-text">
-<p><span class="lang-pt">E Elohim se lembrou de Noé e de todos os seres vivos e de todas as criaturas que estavam com ele na arca …</span><span class="lang-en">And Elohim remembered Noah and all the living things and all the creatures who were with him in the ark ...</span></p>
+<p><span class="lang-pt">E Elohim se lembrou de Noé e de todos os seres vivos e de todas as criaturas que estavam <strong>com ele</strong> na arca …</span><span class="lang-en">And Elohim remembered Noah and all the living things and all the creatures who were <strong>with him</strong> in the ark ...</span></p>
 </div>
 </div>
 <p class="body reveal"><span class="lang-pt">A narrativa destaca claramente o status de Noé como a pessoa com quem Deus lida e a quem livra do dilúvio. Mas a família de Noé e as criaturas com ele beneficiam do seu status de justo perante Deus, de modo que também são salvos do dilúvio.</span><span class="lang-en">The narrative clearly highlights Noah’s status as the person God deals with and delivers from the flood. But Noah’s family and the creatures with him benefit from his righteous status before God, so they too are saved from the flood.</span></p>
@@ -269,91 +368,91 @@
 <div class="scripture reveal">
 <div class="scripture-label" data-reference="Deuteronomy+29:23"><span class="lang-pt">Deuteronômio 29:23-28 (NVI)</span><span class="lang-en">Deuteronomy 29:23-28 NIV</span></div>
 <div class="scripture-text">
-<p><sup class="vs"><span class="lang-pt">23</span><span class="lang-en">23</span></sup> <span class="lang-pt">Toda a terra será uma devastação abrasada de sal e enxofre — nada plantado, nada brotando, nenhuma vegetação nela. Será como a destruição de Sodoma e Gomorra, Admá e Zeboim,</span><span class="lang-en">The whole land will be a burning waste of salt and sulfur—nothing planted, nothing sprouting, no vegetation growing on it. It will be like the destruction of Sodom and Gomorrah, Admah and Zeboyim,</span></p>
+<p><sup class="vs"><span class="lang-pt">23</span><span class="lang-en">23</span></sup> <span class="lang-pt">Toda a terra será uma <strong>devastação abrasada de sal e enxofre</strong> — nada plantado, nada brotando, <strong>nenhuma vegetação</strong> nela. Será como a <strong>destruição de Sodoma e Gomorra</strong>, Admá e Zeboim,</span><span class="lang-en">The whole land will be a <strong>burning waste of salt and sulfur</strong>—nothing planted, nothing sprouting, <strong>no vegetation</strong> growing on it. It will be like the <strong>destruction of Sodom and Gomorrah</strong>, Admah and Zeboyim,</span></p>
 <p><sup class="vs"><span class="lang-pt">24</span><span class="lang-en">24</span></sup> <span class="lang-pt">que o SENHOR subverteu na sua ira fervente. “Todas as nações perguntarão: Por que o SENHOR fez isso a esta terra? Por que tamanha ira ardente?”</span><span class="lang-en">which the LORD overthrew in fierce anger. “All the nations will ask: ‘Why has the LORD done this to this land? Why this fierce, burning anger?’”</span></p>
 <p><sup class="vs"><span class="lang-pt">25</span><span class="lang-en">25</span></sup> <span class="lang-pt">E a resposta será: “Porque este povo abandonou o pacto do SENHOR, o Deus dos seus antepassados, que ele fizera com eles quando os tirou do Egito.</span><span class="lang-en">And the answer will be: “It is because this people abandoned the covenant of the LORD, the God of their ancestors, the covenant he made with them when he brought them out of Egypt.</span></p>
 <p><sup class="vs"><span class="lang-pt">26</span><span class="lang-en">26</span></sup> <span class="lang-pt">Foram e serviram a outros deuses, e se prostraram diante deles, deuses que não conheciam, que ele não lhes dera.</span><span class="lang-en">They went off and worshiped other gods and bowed down to them, gods they did not know, gods he had not given them.</span></p>
-<p><sup class="vs"><span class="lang-pt">27</span><span class="lang-en">27</span></sup> <span class="lang-pt">Por isso a ira do SENHOR se acendeu contra esta terra, trazendo sobre ela todas as maldições escritas neste livro.</span><span class="lang-en">Therefore the LORD’s anger burned against this land, so that he brought on it all the curses written in this book.</span></p>
+<p><sup class="vs"><span class="lang-pt">27</span><span class="lang-en">27</span></sup> <span class="lang-pt">Por isso a ira do SENHOR se acendeu contra esta terra, trazendo sobre ela <strong>todas as maldições escritas neste livro</strong>.</span><span class="lang-en">Therefore the LORD’s anger burned against this land, so that <strong>he brought on it all the curses written in this book</strong>.</span></p>
 <p><sup class="vs"><span class="lang-pt">28</span><span class="lang-en">28</span></sup> <span class="lang-pt">Em fúria ardente e grande indignação, o SENHOR os upou da sua terra e os lançou noutra terra, como agora se vê.”</span><span class="lang-en">In furious anger and in great wrath the LORD uprooted them from their land and thrust them into another land, as it is now.”</span></p>
 </div>
 </div>
 <div class="scripture reveal">
 <div class="scripture-label" data-reference="Deuteronomy+32:32"><span class="lang-pt">Deuteronômio 32:32-33 (NVI)</span><span class="lang-en">Deuteronomy 32:32-33 NIV</span></div>
 <div class="scripture-text">
-<p><sup class="vs"><span class="lang-pt">32</span><span class="lang-en">32</span></sup> <span class="lang-pt">A sua videira provém da vide de Sodoma e dos campos de Gomorra. Suas uvas são cheias de veneno, e seus cachos, de amargura.</span><span class="lang-en">Their vine comes from the vine of Sodom and from the fields of Gomorrah. Their grapes are filled with poison, and their clusters with bitterness.</span></p>
-<p><sup class="vs"><span class="lang-pt">33</span><span class="lang-en">33</span></sup> <span class="lang-pt">O seu vinho é o veneno de serpentes, o mortal veneno de cobras.</span><span class="lang-en">Their wine is the venom of serpents, the deadly poison of cobras.</span></p>
+<p><sup class="vs"><span class="lang-pt">32</span><span class="lang-en">32</span></sup> <span class="lang-pt">A sua videira provém da <strong>vide de Sodoma e dos campos de Gomorra</strong>. Suas uvas são cheias de veneno, e seus cachos, de amargura.</span><span class="lang-en">Their vine comes from <strong>the vine of Sodom and from the fields of Gomorrah</strong>. Their grapes are filled with poison, and their clusters with bitterness.</span></p>
+<p><sup class="vs"><span class="lang-pt">33</span><span class="lang-en">33</span></sup> <span class="lang-pt">O seu vinho é o veneno de <strong>serpentes</strong>, o mortal veneno de cobras.</span><span class="lang-en">Their wine is the venom of <strong>serpents</strong>, the deadly poison of cobras.</span></p>
 </div>
 </div>
 <div class="scripture reveal">
 <div class="scripture-label" data-reference="Isaiah+1:9"><span class="lang-pt">Isaías 1:9-10 (NVI)</span><span class="lang-en">Isaiah 1:9-10 NIV</span></div>
 <div class="scripture-text">
-<p><sup class="vs"><span class="lang-pt">9</span><span class="lang-en">9</span></sup> <span class="lang-pt">Se o SENHOR dos Exércitos não nos tivesse deixado alguns sobreviventes, teríamos sido como Sodoma, teríamos sido como Gomorra.</span><span class="lang-en">Unless the LORD Almighty had left us some survivors, we would have become like Sodom, we would have been like Gomorrah.</span></p>
-<p><sup class="vs"><span class="lang-pt">10</span><span class="lang-en">10</span></sup> <span class="lang-pt">Ouvi a palavra do SENHOR, governantes de Sodoma; prestei ouvidos à instrução do nosso Deus, povo de Gomorra!</span><span class="lang-en">Hear the word of the LORD, you rulers of Sodom; listen to the instruction of our God, you people of Gomorrah!</span></p>
+<p><sup class="vs"><span class="lang-pt">9</span><span class="lang-en">9</span></sup> <span class="lang-pt">Se o SENHOR dos Exércitos não nos tivesse deixado alguns <strong>sobreviventes</strong>, teríamos sido como <strong>Sodoma</strong>, teríamos sido como <strong>Gomorra</strong>.</span><span class="lang-en">Unless the LORD Almighty had left us some <strong>survivors</strong>, we would have become like <strong>Sodom</strong>, we would have been like <strong>Gomorrah</strong>.</span></p>
+<p><sup class="vs"><span class="lang-pt">10</span><span class="lang-en">10</span></sup> <span class="lang-pt">Ouvi a palavra do SENHOR, governantes de <strong>Sodoma</strong>; prestei ouvidos à instrução do nosso Deus, povo de <strong>Gomorra</strong>!</span><span class="lang-en">Hear the word of the LORD, you rulers of <strong>Sodom</strong>; listen to the instruction of our God, you people of <strong>Gomorrah</strong>!</span></p>
 </div>
 </div>
 <div class="scripture reveal">
 <div class="scripture-label" data-reference="Isaiah+3:8"><span class="lang-pt">Isaías 3:8-9 (NVI)</span><span class="lang-en">Isaiah 3:8-9 NIV</span></div>
 <div class="scripture-text">
 <p><sup class="vs"><span class="lang-pt">8</span><span class="lang-en">8</span></sup> <span class="lang-pt">Jerusalém cambaleia, Judá está caindo; suas palavras e obras são contra o SENHOR, desafiando a sua gloriosa presença.</span><span class="lang-en">Jerusalem staggers, Judah is falling; their words and deeds are against the LORD, defying his glorious presence.</span></p>
-<p><sup class="vs"><span class="lang-pt">9</span><span class="lang-en">9</span></sup> <span class="lang-pt">O semblante de seus rostos testemunha contra eles; eles exibem o seu pecado como Sodoma; não o ocultam. Ai deles! Tragaram sobre si mesmos a desgraça.</span><span class="lang-en">The look on their faces testifies against them; they parade their sin like Sodom; they do not hide it. Woe to them! They have brought disaster upon themselves.</span></p>
+<p><sup class="vs"><span class="lang-pt">9</span><span class="lang-en">9</span></sup> <span class="lang-pt">O semblante de seus rostos testemunha contra eles; <strong>eles exibem o seu pecado como Sodoma</strong>; não o ocultam. Ai deles! Tragaram sobre si mesmos a desgraça.</span><span class="lang-en">The look on their faces testifies against them; <strong>they parade their sin like Sodom</strong>; they do not hide it. Woe to them! They have brought disaster upon themselves.</span></p>
 </div>
 </div>
 <div class="scripture reveal">
 <div class="scripture-label" data-reference="Isaiah+13:19"><span class="lang-pt">Isaías 13:19-20 (NVI)</span><span class="lang-en">Isaiah 13:19-20 NIV</span></div>
 <div class="scripture-text">
-<p><sup class="vs"><span class="lang-pt">19</span><span class="lang-en">19</span></sup> <span class="lang-pt">Babilônia, a jóia dos reinos, a glória e o orgulho dos caldeus, será derrubada por Deus como Sodoma e Gomorra.</span><span class="lang-en">Babylon, the jewel of kingdoms, the pride and glory of the Babylonians, will be overthrown by God like Sodom and Gomorrah.</span></p>
+<p><sup class="vs"><span class="lang-pt">19</span><span class="lang-en">19</span></sup> <span class="lang-pt">Babilônia, a jóia dos reinos, a glória e o orgulho dos caldeus, <strong>será derrubada por Deus como Sodoma e Gomorra</strong>.</span><span class="lang-en">Babylon, the jewel of kingdoms, the pride and glory of the Babylonians, <strong>will be overthrown by God like Sodom and Gomorrah</strong>.</span></p>
 <p><sup class="vs"><span class="lang-pt">20</span><span class="lang-en">20</span></sup> <span class="lang-pt">Nunca mais será habitada, nem nela morada em geração alguma; nem nómades armarão ali suas tendas, nem pastores farão descansar seus rebanhos.</span><span class="lang-en">She will never be inhabited or lived in through all generations; there no nomads will pitch their tents, there no shepherds will rest their flocks.</span></p>
 </div>
 </div>
 <div class="scripture reveal">
 <div class="scripture-label" data-reference="Jeremiah+23:14"><span class="lang-pt">Jeremias 23:14 (NVI)</span><span class="lang-en">Jeremiah 23:14 NIV</span></div>
 <div class="scripture-text">
-<p><span class="lang-pt">E entre os profetas de Jerusalém tenho visto coisas horríveis: eles cometem adultério e vivem a mentira. Fortalecem as mãos dos malvados, para que nenhum se converta da sua maldade. Todos eles se tornaram para mim como Sodoma; o povo de Jerusalém é como Gomorra.</span><span class="lang-en">And among the prophets of Jerusalem I have seen something horrible: They commit adultery and live a lie. They strengthen the hands of evildoers, so that not one of them turns from their wickedness. They are all like Sodom to me; the people of Jerusalem are like Gomorrah.</span></p>
+<p><span class="lang-pt">E entre os profetas de Jerusalém tenho visto coisas horríveis: eles cometem adultério e vivem a mentira. Fortalecem as mãos dos malvados, para que nenhum se converta da sua maldade. <strong>Todos eles se tornaram para mim como Sodoma</strong>; <strong>o povo de Jerusalém é como Gomorra</strong>.</span><span class="lang-en">And among the prophets of Jerusalem I have seen something horrible: They commit adultery and live a lie. They strengthen the hands of evildoers, so that not one of them turns from their wickedness. <strong>They are all like Sodom to me</strong>; <strong>the people of Jerusalem are like Gomorrah</strong>.</span></p>
 </div>
 </div>
 <div class="scripture reveal">
 <div class="scripture-label" data-reference="Jeremiah+49:17"><span class="lang-pt">Jeremias 49:17-18 (NVI)</span><span class="lang-en">Jeremiah 49:17-18 NIV</span></div>
 <div class="scripture-text">
-<p><sup class="vs"><span class="lang-pt">17</span><span class="lang-en">17</span></sup> <span class="lang-pt">“Edom será objeto de horror; todos os que por ela passarem ficarão apavorados e zombarão de todas as suas feridas.</span><span class="lang-en">“Edom will become an object of horror; all who pass by will be appalled and will scoff because of all its wounds.</span></p>
-<p><sup class="vs"><span class="lang-pt">18</span><span class="lang-en">18</span></sup> <span class="lang-pt">Como Sodoma e Gomorra e suas cidades vizinhas foram subvertidas”, diz o SENHOR, “assim ninguém habitará nela; nenhum povo nela morará.”</span><span class="lang-en">As Sodom and Gomorrah were overthrown, along with their neighboring towns,” says the LORD, “so no one will live there; no people will dwell in it.”</span></p>
+<p><sup class="vs"><span class="lang-pt">17</span><span class="lang-en">17</span></sup> <span class="lang-pt">“<strong>Edom</strong> será objeto de horror; todos os que por ela passarem ficarão apavorados e zombarão de todas as suas feridas.</span><span class="lang-en">“<strong>Edom</strong> will become an object of horror; all who pass by will be appalled and will scoff because of all its wounds.</span></p>
+<p><sup class="vs"><span class="lang-pt">18</span><span class="lang-en">18</span></sup> <span class="lang-pt">Como <strong>Sodoma e Gomorra e suas cidades vizinhas foram subvertidas</strong>”, diz o SENHOR, “assim ninguém habitará nela; nenhum povo nela morará.”</span><span class="lang-en">As <strong>Sodom and Gomorrah were overthrown</strong>, along with their neighboring towns,” says the LORD, “so no one will live there; no people will dwell in it.”</span></p>
 </div>
 </div>
 <div class="scripture reveal">
 <div class="scripture-label" data-reference="Amos+4:11"><span class="lang-pt">Amós 4:11-12 (NVI)</span><span class="lang-en">Amos 4:11-12 NIV</span></div>
 <div class="scripture-text">
-<p><sup class="vs"><span class="lang-pt">11</span><span class="lang-en">11</span></sup> <span class="lang-pt">“Subverti alguns de vós, como subverti Sodoma e Gomorra. Vocês eram como um tição arrancado do fogo, mas não se converteram a mim”, diz o SENHOR.</span><span class="lang-en">“I overthrew some of you as I overthrew Sodom and Gomorrah. You were like a burning stick snatched from the fire, yet you have not returned to me,” declares the LORD.</span></p>
+<p><sup class="vs"><span class="lang-pt">11</span><span class="lang-en">11</span></sup> <span class="lang-pt">“Subverti alguns de vós, como <strong>subverti Sodoma e Gomorra</strong>. Vocês eram como um tição arrancado do fogo, mas não se converteram a mim”, diz o SENHOR.</span><span class="lang-en">“I overthrew some of you as <strong>I overthrew Sodom and Gomorrah</strong>. You were like a burning stick snatched from the fire, yet you have not returned to me,” declares the LORD.</span></p>
 <p><sup class="vs"><span class="lang-pt">12</span><span class="lang-en">12</span></sup> <span class="lang-pt">“Portanto, é isto que farei a vós, ó Israel, e porque farei isto a vós, ó Israel, preparai-vos para encontrar o vosso Deus.”</span><span class="lang-en">“Therefore this is what I will do to you, Israel, and because I will do this to you, Israel, prepare to meet your God.”</span></p>
 </div>
 </div>
 <div class="scripture reveal">
 <div class="scripture-label" data-reference="Zephaniah+2:9"><span class="lang-pt">Sofonias 2:9 (NVI)</span><span class="lang-en">Zephaniah 2:9 NIV</span></div>
 <div class="scripture-text">
-<p><span class="lang-pt">“Por isso, tão certamente como eu vivo”, declara o SENHOR dos Exércitos, o Deus de Israel, “certamente Moabe será como Sodoma, os amonitas como Gomorra — um lugar de ervas daninhas e covas de sal, uma desolação para sempre. O remanescente do meu povo os saqueará; os sobreviventes da minha nação herdarão a sua terra.”</span><span class="lang-en">“Therefore, as surely as I live,” declares the LORD Almighty, the God of Israel, “surely Moab will become like Sodom, the Ammonites like Gomorrah—a place of weeds and salt pits, a wasteland forever. The remnant of my people will plunder them; the survivors of my nation will inherit their land.”</span></p>
+<p><span class="lang-pt">“Por isso, tão certamente como eu vivo”, declara o SENHOR dos Exércitos, o Deus de Israel, “<strong>certamente Moabe será como Sodoma, os amonitas como Gomorra</strong> — um lugar de ervas daninhas e covas de sal, uma desolação para sempre. O remanescente do meu povo os saqueará; os sobreviventes da minha nação herdarão a sua terra.”</span><span class="lang-en">“Therefore, as surely as I live,” declares the LORD Almighty, the God of Israel, “<strong>surely Moab will become like Sodom, the Ammonites like Gomorrah</strong>—a place of weeds and salt pits, a wasteland forever. The remnant of my people will plunder them; the survivors of my nation will inherit their land.”</span></p>
 </div>
 </div>
 <div class="scripture reveal">
 <div class="scripture-label" data-reference="Lamentations+4:6"><span class="lang-pt">Lamentações 4:6 (NVI)</span><span class="lang-en">Lamentations 4:6 NIV</span></div>
 <div class="scripture-text">
-<p><span class="lang-pt">O castigo do meu povo é maior do que o de Sodoma, que foi subvertida num momento, sem que mão alguma a socorresse.</span><span class="lang-en">The punishment of my people is greater than that of Sodom, which was overthrown in a moment without a hand turned to help her.</span></p>
+<p><span class="lang-pt"><strong>O castigo do meu povo é maior do que o de Sodoma</strong>, que foi subvertida num momento, sem que mão alguma a socorresse.</span><span class="lang-en"><strong>The punishment of my people is greater than that of Sodom</strong>, which was overthrown in a moment without a hand turned to help her.</span></p>
 </div>
 </div>
 <div class="scripture reveal">
 <div class="scripture-label" data-reference="Jude+1:5"><span class="lang-pt">Judas 1:5-7 (NVI)</span><span class="lang-en">Jude 1:5-7 NIV</span></div>
 <div class="scripture-text">
 <p><sup class="vs"><span class="lang-pt">5</span><span class="lang-en">5</span></sup> <span class="lang-pt">Embora vocês já saibam de tudo isso, quero lembrar-lhes que o Senhor libertou o seu povo do Egito, mas depois destruiu os que não creram.</span><span class="lang-en">Though you already know all this, I want to remind you that the Lord at one time delivered his people out of Egypt, but later destroyed those who did not believe.</span></p>
-<p><sup class="vs"><span class="lang-pt">6</span><span class="lang-en">6</span></sup> <span class="lang-pt">E aos anjos que não conservaram as suas posições de autoridade, mas abandonaram a sua própria habitação, estes ele tem guardado em trevas, presos com cadeias eternas para o juízo do grande Dia.</span><span class="lang-en">And the angels who did not keep their positions of authority but abandoned their proper dwelling—these he has kept in darkness, bound with everlasting chains for judgment on the great Day.</span></p>
-<p><sup class="vs"><span class="lang-pt">7</span><span class="lang-en">7</span></sup> <span class="lang-pt">Da mesma forma, Sodoma e Gomorra e as cidades vizinhas, dando-se à imoralidade sexual e a perversões, servem de exemplo do fogo eterno que sofrerão como punição.</span><span class="lang-en">In a similar way, Sodom and Gomorrah and the surrounding towns gave themselves up to sexual immorality and perversion. They serve as an example of those who suffer the punishment of eternal fire.</span></p>
+<p><sup class="vs"><span class="lang-pt">6</span><span class="lang-en">6</span></sup> <span class="lang-pt"><strong>E aos anjos que não conservaram as suas posições de autoridade, mas abandonaram a sua própria habitação</strong>, estes ele tem guardado em trevas, presos com cadeias eternas para o juízo do grande Dia.</span><span class="lang-en"><strong>And the angels who did not keep their positions of authority but abandoned their proper dwelling</strong>—these he has kept in darkness, bound with everlasting chains for judgment on the great Day.</span></p>
+<p><sup class="vs"><span class="lang-pt">7</span><span class="lang-en">7</span></sup> <span class="lang-pt"><strong>Da mesma forma, Sodoma e Gomorra e as cidades vizinhas, dando-se à imoralidade sexual e a perversões</strong>, servem de exemplo do fogo eterno que sofrerão como punição.</span><span class="lang-en"><strong>In a similar way, Sodom and Gomorrah and the surrounding towns gave themselves up to sexual immorality and perversion</strong>. They serve as an example of those who suffer the punishment of eternal fire.</span></p>
 </div>
 </div>
 <div class="scripture reveal">
 <div class="scripture-label" data-reference="Pedro+2:4"><span class="lang-pt">2 Pedro 2:4-9 (NVI)</span><span class="lang-en">2 Peter 2:4-9 NIV</span></div>
 <div class="scripture-text">
-<p><sup class="vs"><span class="lang-pt">4</span><span class="lang-en">4</span></sup> <span class="lang-pt">Pois se Deus não poupou os anjos quando pecaram, mas os lançou no inferno, entregando-os a abismos de trevas para serem guardados para juízo;</span><span class="lang-en">For if God did not spare angels when they sinned, but sent them to hell, putting them in chains of darkness to be held for judgment;</span></p>
-<p><sup class="vs"><span class="lang-pt">5</span><span class="lang-en">5</span></sup> <span class="lang-pt">se não poupou o mundo antigo, mas trouxe o dilúvio sobre os ímpios, tendo protegido Noé, pregador da justiça, e mais sete;</span><span class="lang-en">if he did not spare the ancient world when he brought the flood on its ungodly people, but protected Noah, a preacher of righteousness, and seven others;</span></p>
-<p><sup class="vs"><span class="lang-pt">6</span><span class="lang-en">6</span></sup> <span class="lang-pt">se condenou as cidades de Sodoma e Gomorra, reduzindo-as a cinzas, tornando-as exemplo do que há de acontecer aos ímpios;</span><span class="lang-en">if he condemned the cities of Sodom and Gomorrah by burning them to ashes, and made them an example of what is going to happen to the ungodly;</span></p>
+<p><sup class="vs"><span class="lang-pt">4</span><span class="lang-en">4</span></sup> <span class="lang-pt">Pois <strong>se Deus não poupou os anjos quando pecaram</strong>, mas os lançou no inferno, entregando-os a abismos de trevas para serem guardados para juízo;</span><span class="lang-en">For <strong>if God did not spare angels when they sinned</strong>, but sent them to hell, putting them in chains of darkness to be held for judgment;</span></p>
+<p><sup class="vs"><span class="lang-pt">5</span><span class="lang-en">5</span></sup> <span class="lang-pt"><strong>se não poupou o mundo antigo, mas trouxe o dilúvio sobre os ímpios</strong>, tendo protegido Noé, pregador da justiça, e mais sete;</span><span class="lang-en"><strong>if he did not spare the ancient world when he brought the flood</strong> on its ungodly people, but protected Noah, a preacher of righteousness, and seven others;</span></p>
+<p><sup class="vs"><span class="lang-pt">6</span><span class="lang-en">6</span></sup> <span class="lang-pt"><strong>se condenou as cidades de Sodoma e Gomorra, reduzindo-as a cinzas</strong>, tornando-as exemplo do que há de acontecer aos ímpios;</span><span class="lang-en"><strong>if he condemned the cities of Sodom and Gomorrah by burning them to ashes</strong>, and made them an example of what is going to happen to the ungodly;</span></p>
 <p><sup class="vs"><span class="lang-pt">7</span><span class="lang-en">7</span></sup> <span class="lang-pt">e se livrou Ló, homem justo, atormentado pela conduta depravada dos libertinos</span><span class="lang-en">and if he rescued Lot, a righteous man, who was distressed by the depraved conduct of the lawless</span></p>
 <p><sup class="vs"><span class="lang-pt">8</span><span class="lang-en">8</span></sup> <span class="lang-pt">(pois aquele justo, vivendo entre eles dia após dia, atormentava a sua alma justa com as obras leis que via e ouvia)—</span><span class="lang-en">(for that righteous man, living among them day after day, was tormented in his righteous soul by the lawless deeds he saw and heard)—</span></p>
-<p><sup class="vs"><span class="lang-pt">9</span><span class="lang-en">9</span></sup> <span class="lang-pt">então o Senhor sabe livrar os piedosos da provação e reter os ímpios para o castigo no dia do juízo.</span><span class="lang-en">then the Lord knows how to rescue the godly from trials and to hold the unrighteous for punishment on the day of judgment.</span></p>
+<p><sup class="vs"><span class="lang-pt">9</span><span class="lang-en">9</span></sup> <span class="lang-pt">Se assim for, então o Senhor sabe livrar os piedosos da provação e reter os ímpios para o castigo no dia do juízo.</span><span class="lang-en">if this is so, then the Lord knows how to rescue the godly from trials and to hold the unrighteous for punishment on the day of judgment.</span></p>
 </div>
 </div>
 <h2 class="section reveal"><span class="lang-pt">Corrupção, Julgamento e o Remanescente Justo</span><span class="lang-en">Corruption, Judgment, and the Righteous Remnant</span></h2>
@@ -389,10 +488,10 @@
 <span class="lbl" style="padding-top:.35rem;"><span class="lang-pt">30</span><span class="lang-en">30</span></span>
 <div>
 <p><span class="lang-pt"><span class="chiastic">a</span> E Ló subiu de <span class="chip c-beige">Zoar</span> (<span class="heb">צוער</span>),</span><span class="lang-en"><span class="chiastic">a</span> And Lot went up from <span class="chip c-beige">Zoar</span> (<span class="heb">צוער</span>),</span></p>
-<p class="i1"><span class="lang-pt"><span class="chiastic">b</span> e habitou na montanha,</span><span class="lang-en"><span class="chiastic">b</span> and he dwelt on the mountain,</span></p>
+<p class="i1"><span class="lang-pt"><span class="chiastic">b</span> <span class="chip c-gray-wash">e habitou</span> na montanha,</span><span class="lang-en"><span class="chiastic">b</span> <span class="chip c-gray-wash">dwelt</span> on the mountain,</span></p>
 <p class="i2"><span class="lang-pt"><span class="chiastic">c</span> e <span class="chip c-rose">as suas duas filhas</span> com ele,</span><span class="lang-en"><span class="chiastic">c</span> and <span class="chip c-rose">his two daughters</span> with him,</span></p>
-<p><span class="lang-pt"><span class="chiastic">a'</span> porque temia habitar em <span class="chip c-beige">Zoar</span> (<span class="heb">צוער</span>),</span><span class="lang-en"><span class="chiastic">a'</span> because he was afraid of dwelling in <span class="chip c-beige">Zoar</span> (<span class="heb">צוער</span>),</span></p>
-<p class="i1"><span class="lang-pt"><span class="chiastic">b'</span> e habitou numa <span class="chip c-beige">caverna</span> (<span class="heb">מערה</span>),</span><span class="lang-en"><span class="chiastic">b'</span> and he dwelt in a <span class="chip c-beige">cave</span> (<span class="heb">מערה</span>),</span></p>
+<p><span class="lang-pt"><span class="chiastic">a'</span> porque temia <span class="chip c-gray-wash">habitar</span> em <span class="chip c-beige">Zoar</span> (<span class="heb">צוער</span>),</span><span class="lang-en"><span class="chiastic">a'</span> because he was afraid of <span class="chip c-gray-wash">dwelling</span> in <span class="chip c-beige">Zoar</span> (<span class="heb">צוער</span>),</span></p>
+<p class="i1"><span class="lang-pt"><span class="chiastic">b'</span> <span class="chip c-gray-wash">e habitou</span> numa <span class="chip c-beige">caverna</span> (<span class="heb">מערה</span>),</span><span class="lang-en"><span class="chiastic">b'</span> <span class="chip c-gray-wash">dwelt</span> in a <span class="chip c-beige">cave</span> (<span class="heb">מערה</span>),</span></p>
 <p class="i2"><span class="lang-pt"><span class="chiastic">c'</span> ele e <span class="chip c-rose">as suas duas filhas</span>.</span><span class="lang-en"><span class="chiastic">c'</span> he and <span class="chip c-rose">his two daughters</span>.</span></p>
 </div>
 </div>
@@ -434,7 +533,7 @@
 <div class="v-outer light reveal">
 <div class="v-line" style="display:flex; gap:.9rem;">
 <div style="flex:1;">
-<p class="i1"><sup class="vs"><span class="lang-pt">36</span><span class="lang-en">36</span></sup> <span class="lang-pt">E <span class="chip c-rose">as duas filhas de Ló</span> engravidaram de <span class="chip c-tan">seu pai</span>.</span><span class="lang-en">36 And <span class="chip c-rose">the two daughters of Lot</span> became pregnant by <span class="chip c-tan">their father</span>.</span></p>
+<p><sup class="vs"><span class="lang-pt">36</span><span class="lang-en">36</span></sup> <span class="lang-pt">E <span class="chip c-rose">as duas filhas de Ló</span> engravidaram de <span class="chip c-tan">seu pai</span>.</span><span class="lang-en">36 And <span class="chip c-rose">the two daughters of Lot</span> became pregnant by <span class="chip c-tan">their father</span>.</span></p>
 <p class="i1"><span class="lang-pt"><span class="chiastic">a</span> <sup class="vs">37</sup> E a <span class="chip c-purple-solid">primogênita</span> deu à luz um filho,</span><span class="lang-en"><span class="chiastic">a</span> <sup class="vs">37</sup> And the <span class="chip c-purple-solid">firstborn</span> gave birth to a son,</span></p>
 <p class="i2"><span class="lang-pt"><span class="chiastic">b</span> e chamou o seu nome de “Moabe”,</span><span class="lang-en"><span class="chiastic">b</span> and she called his name “Moab”,</span></p>
 <p class="i2"><span class="lang-pt"><span class="chiastic">c</span> ele é o pai de Moabe até o dia de hoje.</span><span class="lang-en"><span class="chiastic">c</span> he is the father of Moab until this day.</span></p>
@@ -451,21 +550,31 @@
 <div class="macro reveal">
 <div class="card">
 <span class="mtag mtag-green"><span class="lang-pt">Genesis 18:1-15</span><span class="lang-en">Genesis 18:1-15</span></span>
-<div class="card-title"><span class="lang-pt">Avraham e Sara recebem a promessa de um “filho/semente” no “tempo determinado da vida”</span><span class="lang-en">Avraham and Sarah receive a promise of “son/seed” at the “appointed time of life”</span></div>
-<p class="card-text"><span class="lang-pt">Inversão de Gênesis 3. Imagens do Éden: Avraham debaixo de uma árvore e Sara dentro de uma tenda.</span><span class="lang-en">Inversion of Genesis 3. Eden images: Avraham under a tree and Sarah inside a tent.</span></p>
+<ul class="bullets">
+<li><span class="lang-pt">Avraham e Sara recebem a promessa de um “filho/semente” no “tempo determinado da vida”</span><span class="lang-en">Avraham and Sarah receive a promise of “son/seed” at the “appointed time of life”</span></li>
+<li><span class="lang-pt">Inversão de Gênesis 3</span><span class="lang-en">Inversion of Genesis 3</span></li>
+<li><span class="chip c-mint"><span class="lang-pt">Imagens do Éden</span><span class="lang-en">Eden images</span></span><span class="lang-pt">: Avraham debaixo de uma árvore e Sara dentro de uma tenda</span><span class="lang-en">: Avraham under a tree and Sarah inside a tent</span></li>
+</ul>
 </div>
 <div class="card">
 <span class="mtag mtag-dark"><span class="lang-pt">Genesis 18:16-33</span><span class="lang-en">Genesis 18:16-33</span></span>
-<div class="card-title"><span class="lang-pt">A intercessão de Avraham pelo livramento de Ló</span><span class="lang-en">Avraham’s intercession for Lot’s deliverance</span></div>
+<ul class="bullets">
+<li><span class="lang-pt">A intercessão de Avraham pelo livramento de Ló</span><span class="lang-en">Avraham’s intercession for Lot’s deliverance</span></li>
+</ul>
 </div>
 <div class="card">
 <span class="mtag mtag-dark"><span class="lang-pt">Genesis 19:1-26</span><span class="lang-en">Genesis 19:1-26</span></span>
-<div class="card-title"><span class="lang-pt">O livramento de Ló por causa da intercessão de Avraham</span><span class="lang-en">Lot’s deliverance because of Avraham’s intercession</span></div>
+<ul class="bullets">
+<li><span class="lang-pt">O livramento de Ló por causa da intercessão de Avraham</span><span class="lang-en">Lot’s deliverance because of Avraham’s intercession</span></li>
+</ul>
 </div>
 <div class="card">
 <span class="mtag mtag-green"><span class="lang-pt">Genesis 19:30-38</span><span class="lang-en">Genesis 19:30-38</span></span>
-<div class="card-title"><span class="lang-pt">As filhas de Ló arquitetam um plano para “manter vivo” seu “semente” e ter “filhos”</span><span class="lang-en">Lot’s daughters scheme a plan to “keep alive” their “seed” and have “sons”</span></div>
-<p class="card-text"><span class="lang-pt">Releitura de Gênesis 3. Imagens do Éden: numa montanha e dentro de uma caverna.</span><span class="lang-en">Replay of Genesis 3. Eden images: on a mountain and inside a cave.</span></p>
+<ul class="bullets">
+<li><span class="lang-pt">As filhas de Ló arquitetam um plano para “manter vivo” seu “semente” e ter “filhos”</span><span class="lang-en">Lot’s daughters scheme a plan to “keep alive” their “seed” and have “sons”</span></li>
+<li><span class="lang-pt">Releitura de Gênesis 3</span><span class="lang-en">Replay of Genesis 3</span></li>
+<li><span class="chip c-mint"><span class="lang-pt">Imagens do Éden</span><span class="lang-en">Eden images</span></span><span class="lang-pt">: numa montanha e dentro de uma caverna</span><span class="lang-en">: on a mountain and inside a cave</span></li>
+</ul>
 </div>
 </div>
 <p class="caption reveal"><span class="lang-pt"><em>Gênesis 18:1-19:38 (Detalhado)</em>. Design Literário por Tim Mackie para a BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Genesis 18:1-19:38 (Detailed)</em>. Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>

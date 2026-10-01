@@ -12,17 +12,98 @@
 <link href="../../css/shared-tutorial.css" rel="stylesheet"/>
 <style>
 @import url('../css/session-base.css');
+
+/* ---------------------------------------------------------------
+   PDF palette override — sessao 18.
+   The PDF (teacher notes) is the authority for colour and box size.
+   Values below were read straight out of abraao/pdf-sessoes/sessao-18.pdf
+   with PyMuPDF (fill + text colour of every highlight chip, every stroke,
+   every panel background). Nothing here invents a colour.
+   --------------------------------------------------------------- */
+
+/* --- neutrals: the PDF is almost monochrome --- */
+body, h1.title, h2.section, h3.sub, p.body,
+.v-line, .v-line i1, .v-line i2, .scripture-text, .scripture-label, .ref { color: #1b1b1b; }
+ul.bullets > li, ul.bullets > li:before { color: #1b1b1b; }
+.caption, .scripture-type, .doc-table tfoot td { color: #4f5669; }
+.page-footer { color: #2c2c2c; border-top: 1px solid #e4e8ed; }
+hr.rule { border-top: 1px solid #c1c9d0 !important; }
+sup.vs, .v-line sup.vs { color: #1b1b1b; }
+
+/* --- panels: 1.5pt stroke, ~4.6pt radius in the PDF --- */
+.v-outer { border: 1.5px solid #e4e8ed; border-radius: 8px; }
+.v-black { border: 1.5px solid #1b1b1b; border-radius: 8px; }
+.v-div { border-top: 1.5px solid #e4e8ed; }
+.scripture { border-left: 4px solid #e4e8ed; }
+.scripture:hover { border-left-color: #e4e8ed; }
+
+/* --- document table: 1.5pt #e4e8ed grid, #e4e8ed header band --- */
+.doc-table { border: 1.5px solid #e4e8ed; border-radius: 10px; }
+.doc-table th { background: #e4e8ed; color: #1b1b1b; }
+.doc-table td { border-top: 1.5px solid #e4e8ed; color: #1b1b1b; }
+.doc-table td + td { border-left: 1.5px solid #e4e8ed; }
+.doc-table tfoot td { border-top: 1.5px solid #e4e8ed; background: #fff; }
+
+/* --- section heads inside a Literary Design box --- */
+.vsec-h { font-weight: 800; font-size: 1.05rem; line-height: 1.6; color: #1b1b1b; margin: 0 0 .25rem; }
+.v-black .vsec-h { margin-top: .2rem; }
+
+/* --- highlight chips -------------------------------------------------
+   Geometry from the PDF: every chip is 15pt tall around 10.49pt text
+   (≈1.43 line-height), ~3pt horizontal padding, ~3pt corner radius.
+   Colours are the exact (fill, text) pairs the PDF paints.          */
+.k { display: inline; padding: .1em .3em; border-radius: .22em; font-weight: 700;
+     line-height: 1.45; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+
+.k-cyan    { background: #b9eff7; color: #00626f; }  /* the men of the city / Sodom, from young to old */
+.k-maroon  { background: #be4967; color: #ffffff; }  /* in the gate, turn aside…, into his house, the house */
+.k-wine    { background: #751f40; color: #ffffff; }  /* the entrance, the door, the shelter of my beamed-roof */
+.k-peri    { background: #e6e6fa; color: #5d4897; }  /* stay the night */
+.k-sky     { background: #d9ecfd; color: #404ca6; }  /* make them go out */
+.k-gray3   { background: #e4e8ed; color: #4f5669; }  /* “And they called out to Lot”, “And he said” */
+.k-brown3  { background: #816f4d; color: #ffffff; }  /* we can know (נדעה) them */
+.k-tan4    { background: #fae4c4; color: #91362e; }  /* don’t do this evil, what is good in your eyes */
+.k-lilac   { background: #f7e1f5; color: #713c92; }  /* sons-in-law … */
+.k-green4  { background: #d3f2cd; color: #2b6146; }  /* we are about to cause the ruin, the city */
+.k-indigo  { background: #5869cd; color: #ffffff; }  /* this place */
+.k-tanhead { display: inline; padding: .1em .3em; border-radius: .22em; font-weight: 700;
+             background: #efe8db; color: #645537; line-height: 1.45;
+             -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+
+/* --- text-only highlights (no chip behind them in the PDF) --- */
+.tx-teal2   { color: #097d8d; font-weight: 700; }  /* Sodom */
+.tx-purple3 { color: #9855af; font-weight: 700; }  /* and he said / And they said */
+.tx-orange2 { color: #b5543a; font-weight: 700; }  /* please / Please */
+.tx-rose    { color: #be4967; font-weight: 700; }  /* he closed it / they closed */
+.tx-indigo  { color: #5869cd; font-weight: 700; }  /* Lot went out / make them go out from */
+
+/* --- the Flood / Sodom crossing diagram -----------------------------
+   PDF page 6: a 3x3 grid, 1px black rules, square corners, a #d9d9d9
+   band behind the two gray cell pairs, and two double-headed arrows
+   crossing between the Flood and Sodom columns.                     */
+.xwrap { position: relative; margin: 1.5rem 0; }
+.xtable { position: relative; width: 100%; border-collapse: collapse; background: #fff;
+          font-size: 1.05rem; line-height: 1.6; color: #1b1b1b; }
+.xtable th, .xtable td { border: 1.5px solid #1b1b1b; padding: .5rem .8rem;
+                        text-align: left; vertical-align: top; }
+.xtable th { font-weight: 800; }
+.xtable em { font-style: italic; font-weight: 400; }
+.xpair { display: flex; justify-content: space-between; gap: 1rem; margin-top: .3rem; }
+.xpair em { font-style: italic; }
+.xgray { background: #d9d9d9; }
+.xarrows { position: absolute; left: 0; top: 0; width: 100%; height: 100%;
+           pointer-events: none; overflow: visible; }
 </style>
 </head>
 <body>
 <div aria-hidden="true" id="reading-progress"></div>
 <div class="fixed left-4 top-4 z-50 print:hidden">
-<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" href="index.html">
+<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" href="index.html">
 <span><span class="lang-pt">←</span><span class="lang-en">←</span></span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
 </a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
-<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" onclick="window.print()">
+<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" onclick="window.print()">
 <svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect height="8" width="12" x="6" y="14"></rect></svg>
 <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
 </button>
@@ -112,19 +193,19 @@
 <p class="v-line"><sup class="vs"><span class="lang-pt">5</span><span class="lang-en">5</span></sup> <span class="k k-gray3"><span class="lang-pt">E chamaram por Ló</span><span class="lang-en">And they called out to Lot</span></span></p>
 <p class="v-line"><span class="k k-gray3"><span class="lang-pt">e lhe disseram</span><span class="lang-en">and they said to him</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></p>
 <p class="v-line i1"><span class="lang-pt">“Onde estão <span class="k k-cyan">os homens</span> que vieram a ti à noite?</span><span class="lang-en">“Where are <span class="k k-cyan">the men</span> who came to you at night?</span></p>
-<p class="v-line i1"><span class="k k-peri"><span class="lang-pt">Fazei-os sair</span><span class="lang-en">Make them go out</span></span> <span class="lang-pt">para nós,</span><span class="lang-en">to us,</span></p>
+<p class="v-line i1"><span class="k k-sky"><span class="lang-pt">Fazei-os sair</span><span class="lang-en">Make them go out</span></span> <span class="lang-pt">para nós,</span><span class="lang-en">to us,</span></p>
 <p class="v-line i1"><span class="lang-pt">para que <span class="k k-brown3">os conheçamos (<span class="heb">נדעה</span>)</span> <span class="k k-brown3">a eles</span>!”</span><span class="lang-en">so that <span class="k k-brown3">we can know (<span class="heb">נדעה</span>)</span> <span class="k k-brown3">them</span> !”</span></p>
 <hr class="v-div"/>
 <p class="vsec-h"><span class="lang-pt">Discurso de Ló</span><span class="lang-en">Lot’s Speech</span></p>
-<p class="v-line"><sup class="vs"><span class="lang-pt">6</span><span class="lang-en">6</span></sup> <span class="k k-gray3"><span class="lang-pt">E Ló saiu</span><span class="lang-en">And Lot went out</span></span> <span class="lang-pt">para eles à <span class="k k-maroon">entrada</span>,</span><span class="lang-en">to them at <span class="k k-maroon">the entrance</span> ,</span></p>
-<p class="v-line"><span class="lang-pt">e quanto à <span class="k k-maroon">porta</span>, <span class="tx-rose">ele a fechou</span> atrás de si.</span><span class="lang-en">and as for <span class="k k-maroon">the door</span> , <span class="tx-rose">he closed it</span> behind him.</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">6</span><span class="lang-en">6</span></sup> <span class="k k-gray3"><span class="lang-pt">E Ló saiu</span><span class="lang-en">And Lot went out</span></span> <span class="lang-pt">para eles à <span class="k k-wine">entrada</span>,</span><span class="lang-en">to them at <span class="k k-wine">the entrance</span> ,</span></p>
+<p class="v-line"><span class="lang-pt">e quanto à <span class="k k-wine">porta</span>, <span class="tx-rose">ele a fechou</span> atrás de si.</span><span class="lang-en">and as for <span class="k k-wine">the door</span> , <span class="tx-rose">he closed it</span> behind him.</span></p>
 <p class="v-line"><sup class="vs"><span class="lang-pt">7</span><span class="lang-en">7</span></sup> <span class="k k-gray3"><span class="lang-pt">E ele disse</span><span class="lang-en">And he said</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></p>
 <p class="v-line i1"><span class="lang-pt">“Por favor, meus irmãos, <span class="k k-tan4">não façais este mal (<span class="heb">תרעו</span>)</span>!</span><span class="lang-en">“Please, my brothers, <span class="k k-tan4">don’t do this evil (<span class="heb">תרעו</span>)</span> !</span></p>
 <p class="v-line i1"><sup class="vs"><span class="lang-pt">8</span><span class="lang-en">8</span></sup> <span class="lang-pt">Olha, por favor, tenho duas filhas que <span class="k k-tan4">não conheceram (<span class="heb">ידעו</span>)</span> homem;</span><span class="lang-en">Look, please, I have two daughters who <span class="k k-tan4">have not known (<span class="heb">ידעו</span>)</span> a man,</span></p>
-<p class="v-line i1"><span class="lang-pt">deixai-me, por favor, <span class="k k-peri">fazê-las sair</span> a vós,</span><span class="lang-en">let me please <span class="k k-peri">make them go out</span> to you all,</span></p>
+<p class="v-line i1"><span class="lang-pt">deixai-me, por favor, <span class="k k-sky">fazê-las sair</span> a vós,</span><span class="lang-en">let me please <span class="k k-sky">make them go out</span> to you all,</span></p>
 <p class="v-line i1"><span class="lang-pt">e <span class="k k-tan4">fazei</span> a elas <span class="k k-tan4">o que é bom aos vossos olhos</span>.</span><span class="lang-en">and <span class="k k-tan4">do</span> to them <span class="k k-tan4">what is good in your eyes</span> .</span></p>
 <p class="v-line i1"><span class="lang-pt">Apenas <span class="k k-tan4">não façais</span> nada a estes homens,</span><span class="lang-en">Just <span class="k k-tan4">don’t do</span> anything to these men,</span></p>
-<p class="v-line i1"><span class="lang-pt">porque este é o motivo pelo qual vieram ao <span class="k k-maroon">abrigo do meu telhado</span>!”</span><span class="lang-en">because this is the reason they came into <span class="k k-maroon">the shelter of my beamed-roof</span> !”</span></p>
+<p class="v-line i1"><span class="lang-pt">porque este é o motivo pelo qual vieram ao <span class="k k-wine">abrigo do meu telhado</span>!”</span><span class="lang-en">because this is the reason they came into <span class="k k-wine">the shelter of my beamed-roof</span> !”</span></p>
 <hr class="v-div"/>
 <p class="vsec-h"><span class="lang-pt">Discurso dos Homens de Sodoma</span><span class="lang-en">Men of Sodom’s Speech</span></p>
 <p class="v-line"><sup class="vs"><span class="lang-pt">9</span><span class="lang-en">9</span></sup> <span class="k k-gray3"><span class="lang-pt">E eles disseram</span><span class="lang-en">And they said</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></p>
@@ -137,13 +218,13 @@
 <div class="v-outer reveal">
 <p class="vsec-h"><span class="lang-pt">Os Homens de Sodoma Feridos “Do Menor ao Maior”</span><span class="lang-en">Men of Sodom Struck “From Little to Big”</span></p>
 <p class="v-line"><span class="lang-pt">E trouxeram pressão contra <span class="k k-cyan">o homem</span>, contra Ló, muitíssimo,</span><span class="lang-en">And they brought pressure against <span class="k k-cyan">the man</span> , against Lot, very much,</span></p>
-<p class="v-line"><span class="lang-pt">e se aproximaram para arrombar <span class="k k-maroon">a porta</span>.</span><span class="lang-en">and they drew near, to break down <span class="k k-maroon">the door</span> .</span></p>
+<p class="v-line"><span class="lang-pt">e se aproximaram para arrombar <span class="k k-wine">a porta</span>.</span><span class="lang-en">and they drew near, to break down <span class="k k-wine">the door</span> .</span></p>
 <p class="v-line"><sup class="vs"><span class="lang-pt">10</span><span class="lang-en">10</span></sup> <span class="lang-pt">E <span class="k k-cyan">os homens</span> estenderam a mão,</span><span class="lang-en">And <span class="k k-cyan">the men</span> sent out their hand,</span></p>
 <p class="v-line"><span class="lang-pt">e trouxeram Ló para junto deles, para dentro <span class="k k-maroon">da casa</span>,</span><span class="lang-en">and they brought Lot in to them, into <span class="k k-maroon">the house</span> ,</span></p>
-<p class="v-line"><span class="lang-pt">e <span class="tx-rose">fecharam</span> <span class="k k-maroon">a porta</span>.</span><span class="lang-en">and <span class="tx-rose">they closed</span> <span class="k k-maroon">the door</span> .</span></p>
+<p class="v-line"><span class="lang-pt">e <span class="tx-rose">fecharam</span> <span class="k k-wine">a porta</span>.</span><span class="lang-en">and <span class="tx-rose">they closed</span> <span class="k k-wine">the door</span> .</span></p>
 <p class="v-line"><sup class="vs"><span class="lang-pt">11</span><span class="lang-en">11</span></sup> <span class="lang-pt">E quanto a <span class="k k-cyan">os homens</span> à <span class="k k-maroon">entrada</span> <span class="k k-maroon">da casa</span>, eles os feriram com cegueira,</span><span class="lang-en">And as for <span class="k k-cyan">the men</span> at <span class="k k-maroon">the entrance</span> of <span class="k k-maroon">the house</span> , they struck them with blindness,</span></p>
 <p class="v-line"><span class="k k-cyan"><span class="lang-pt">do menor ao maior</span><span class="lang-en">from the littlest to the biggest</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></p>
-<p class="v-line"><span class="lang-pt">e eles se esforçaram para achar <span class="k k-maroon">a entrada</span>.</span><span class="lang-en">and they struggled to find <span class="k k-maroon">the entrance</span> .</span></p>
+<p class="v-line"><span class="lang-pt">e eles se esforçaram para achar <span class="k k-wine">a entrada</span>.</span><span class="lang-en">and they struggled to find <span class="k k-wine">the entrance</span> .</span></p>
 </div>
 <div class="v-outer reveal">
 <p class="v-line"><sup class="vs"><span class="lang-pt">12</span><span class="lang-en">12</span></sup> <span class="lang-pt">E os homens disseram a Ló,</span><span class="lang-en">And the men said to Lot,</span></p>
@@ -197,21 +278,23 @@
 </tr>
 <tr>
 <td><strong>Before:</strong></td>
-<td><span class="lang-pt">Angels (</span><span class="lang-en">Angels (</span><span class="heb">בני אלהים</span><span class="lang-pt">) → Humans (</span><span class="lang-en">) → Humans (</span><span class="heb">בנות האדם</span><span class="lang-pt">)</span><span class="lang-en">)</span><br/><em>\1</em>                   <em>\1</em></td>
-<td><span class="lang-pt">Humans (</span><span class="lang-en">Humans (</span><span class="heb">אנשי סדם</span><span class="lang-pt">) → Angels (</span><span class="lang-en">) → Angels (</span><span class="heb">המלאכים</span><span class="lang-pt">)</span><span class="lang-en">)</span><br/><span class="xgray"><span class="lang-pt">Males</span><span class="lang-en">Males</span></span>                   <span class="xgray"><span class="lang-pt">Males</span><span class="lang-en">Males</span></span></td>
+<td><span class="lang-pt">Angels (</span><span class="lang-en">Angels (</span><span class="heb">בני אלהים</span><span class="lang-pt">) → Humans (</span><span class="lang-en">) → Humans (</span><span class="heb">בנות האדם</span><span class="lang-pt">)</span><span class="lang-en">)</span><br/><span class="xpair"><em><span class="lang-pt">Macho</span><span class="lang-en">Males</span></em><em><span class="lang-pt">Fêmea</span><span class="lang-en">Females</span></em></span></td>
+<td><span class="lang-pt">Humans (</span><span class="lang-en">Humans (</span><span class="heb">אנשי סדם</span><span class="lang-pt">) → Angels (</span><span class="lang-en">) → Angels (</span><span class="heb">המלאכים</span><span class="lang-pt">)</span><span class="lang-en">)</span><br/><span class="xpair xgray"><em><span class="lang-pt">Macho</span><span class="lang-en">Males</span></em><em><span class="lang-pt">Macho</span><span class="lang-en">Males</span></em></span></td>
 </tr>
 <tr>
 <td><strong>After:</strong></td>
-<td><span class="lang-pt">Son (</span><span class="lang-en">Son (</span><span class="heb">חם</span><span class="lang-pt">) → Father (</span><span class="lang-en">) → Father (</span><span class="heb">נח</span><span class="lang-pt">)</span><span class="lang-en">)</span><br/><span class="xgray"><span class="lang-pt">Male</span><span class="lang-en">Male</span></span>                   <span class="xgray"><span class="lang-pt">Male</span><span class="lang-en">Male</span></span></td>
-<td><span class="lang-pt">Daughters (</span><span class="lang-en">Daughters (</span><span class="heb">בנות לוט</span><span class="lang-pt">) → Father (</span><span class="lang-en">) → Father (</span><span class="heb">לוט</span><span class="lang-pt">)</span><span class="lang-en">)</span><br/><em>\1</em>                 <em>\1</em></td>
+<td><span class="lang-pt">Son (</span><span class="lang-en">Son (</span><span class="heb">חם</span><span class="lang-pt">) → Father (</span><span class="lang-en">) → Father (</span><span class="heb">נח</span><span class="lang-pt">)</span><span class="lang-en">)</span><br/><span class="xpair xgray"><em><span class="lang-pt">Macho</span><span class="lang-en">Male</span></em><em><span class="lang-pt">Macho</span><span class="lang-en">Male</span></em></span></td>
+<td><span class="lang-pt">Daughters (</span><span class="lang-en">Daughters (</span><span class="heb">בנות לוט</span><span class="lang-pt">) → Father (</span><span class="lang-en">) → Father (</span><span class="heb">לוט</span><span class="lang-pt">)</span><span class="lang-en">)</span><br/><span class="xpair"><em><span class="lang-pt">Fêmeas</span><span class="lang-en">Females</span></em><em><span class="lang-pt">Macho</span><span class="lang-en">Male</span></em></span></td>
 </tr>
 </table>
-<svg aria-hidden="true" class="xarrows" preserveaspectratio="none" viewbox="0 0 100 100">
-<g fill="none" stroke="#17181a" stroke-width="0.45" vector-effect="non-scaling-stroke">
-<path d="M48,62 L57,40"></path>
-<path d="M57,40 l-2.4,1.2 M57,40 l-0.4,-2.6"></path>
-<path d="M57,62 L48,40"></path>
-<path d="M48,40 l2.4,1.2 M48,40 l0.4,-2.6"></path>
+<svg aria-hidden="true" class="xarrows" preserveAspectRatio="none" viewBox="57 127.7 498.4 121.9">
+<g fill="none" stroke="#000000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke">
+<path d="M338.06,233.96 L274.48,185.32"></path>
+<path d="M338.06,233.96 L340.34,238.52 M338.06,233.96 L343.06,234.97"></path>
+<path d="M274.48,185.32 L272.20,180.76 M274.48,185.32 L269.48,184.31"></path>
+<path d="M338.06,184.50 L274.48,233.14"></path>
+<path d="M338.06,184.50 L343.06,183.49 M338.06,184.50 L340.34,179.94"></path>
+<path d="M274.48,233.14 L269.48,234.15 M274.48,233.14 L272.20,237.70"></path>
 </g>
 </svg>
 </div>
@@ -251,8 +334,6 @@
 <span class="lang-pt">Anotações de Aula: Abraão</span><span class="lang-en">Class Notes: Abraham</span>
 <span class="lang-pt">Sessão 18</span><span class="lang-en">Session 18</span>
 </footer>
-<!-- conteudo adicional do PDF -->
-<p class="body reveal"><span class="lang-en">Genesis 2-4 &amp; 6-9</span></p>
 </div>
 <script src="../../js/verse-modal.js"></script>
 <script src="../../js/reading-progress.js"></script>

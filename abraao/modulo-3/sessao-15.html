@@ -12,17 +12,159 @@
 <link href="../../css/shared-tutorial.css" rel="stylesheet"/>
 <style>
 @import url('../css/session-base.css');
+
+/* ==========================================================================
+   PDF-fidelity layer — sessao 15.
+   Every colour/measure below was sampled from abraao/pdf-sessoes/sessao-15.pdf
+   (fills, strokes, char colours and rendered pixels). The PDF is the authority
+   for colour, box size and diagram shape; session-base.css still governs
+   structure and the type scale. Nothing here touches PT/EN text.
+   ========================================================================== */
+
+/* --- ink ---------------------------------------------------------------- */
+body { color: #1b1b1b; }
+h1.title, h2.section, h3.sub { color: #1b1b1b; }
+p.body, ul.bullets > li, .scripture-text, .doc-table td { color: #1b1b1b; }
+.ref { color: #1b1b1b; }
+.page-footer { color: #2c2c2c; border-top: 1px solid #e4e8ed; }
+.caption { color: #4f5669; }
+.page-header { border-bottom: 1px solid #c1c9d0; padding-bottom: .7rem; margin-bottom: 1.5rem; }
+.scripture { border-left-color: #e4e8ed; }
+.scripture:hover { border-left-color: #e4e8ed; }
+.scripture-label { color: #1b1b1b; }
+.scripture-label .ref { text-decoration: none; }
+.scripture-type { color: #4f5669; }
+
+/* --- doc tables: 2px #e4e8ed grid, #e4e8ed header band ------------------ */
+.doc-table { border: 2px solid #e4e8ed; border-radius: 12px; }
+.doc-table th { background: #e4e8ed; color: #1b1b1b; }
+.doc-table td { border-top: 2px solid #e4e8ed; }
+.doc-table td + td { border-left: 2px solid #e4e8ed; }
+.doc-table tfoot td { background: #fff; color: #4f5669; border-top: 2px solid #e4e8ed; }
+
+/* --- replay table (Genesis 15-16 As a Replay) --------------------------- */
+table.rt { width: 100%; border-collapse: separate; border-spacing: 0; }
+table.rt td { vertical-align: top; padding: .8rem .85rem; border: 1px solid #e4e8ed; font-size: .95rem; line-height: 1.7; }
+table.rt ul { margin: .55rem 0 0; }
+table.rt li { margin: 0 0 .3rem; }
+
+.pill { display: block; width: fit-content; font-size: .78rem; font-weight: 700; line-height: 1.75; padding: 2px 9px; border-radius: 5px; }
+.pill .ref { color: inherit; text-decoration: none; }
+.pill-gray { background: #e4e8ed; color: #4f5669; }
+.pill-slate { background: #6b7384; color: #fff; }
+.pill-brown { background: #816f4d; color: #fff; }
+.pill-blue, .pill-indigo { background: #d9ecfd; color: #404ca6; margin-bottom: 2px; }
+
+/* --- literary-design boxes ---------------------------------------------- */
+.diagram-box { border: 2px solid #6b7384; border-radius: 8px; padding: .7rem .9rem .8rem; background: #fff; }
+.diagram-box-red { border: 2px solid #be4967; border-radius: 8px; padding: .7rem .9rem .8rem; background: #fff; }
+.diagram-box-outer { border-left: 3px solid #3e4054; padding-left: .9rem; }
+.diagram-box-inner { border: 1px solid #6b7384; border-radius: 8px; padding: .65rem .8rem .75rem; background: #fff; }
+.diagram-box p, .diagram-box-outer p, .diagram-box-inner p { font-size: 1.02rem; line-height: 1.7; color: #1b1b1b; }
+.diagram-box ul.bullets > li, .diagram-box-inner ul.bullets > li { font-size: 1.02rem; margin-bottom: .3rem; }
+
+/* --- reference tags ----------------------------------------------------- */
+.tag { display: inline-block; font-size: .78rem; font-weight: 700; line-height: 1.75; padding: 2px 9px; border-radius: 5px; color: #fff; }
+.tag .ref { color: inherit; text-decoration: none; }
+.tag-dark, .tag-slate { background: #6b7384; }
+.tag-deep { background: #3e4054; }
+/* the a/b/c/d/e structure letters in the design diagrams */
+.lbl-a { font-size: .72rem; color: #2c2c2c; }
+.tag-red { background: #be4967; }
+.tag-light-gray { background: #e4e8ed; color: #4f5669; }
+
+/* --- light highlight chips (design diagrams) ---------------------------- */
+.hl-covenant, .hl-name, .hl-multiply, .hl-multiply-solid, .hl-kings, .hl-circumcise,
+.hl-divine, .hl-gray, .hl-slate, .hl-blue-head {
+  display: inline; font-weight: 700; line-height: 1.75; padding: 1px 7px; border-radius: 5px;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+.hl-covenant { background: #d3f2cd; color: #2b6146; }
+.hl-name { background: #efe8db; color: #645537; }
+.hl-multiply { background: #f7e1f5; color: #713c92; }
+/* the PDF paints these two "multitude of nations" chips as solid violet */
+.hl-multiply-solid { background: #9855af; color: #fff; }
+.hl-kings { background: #b9eff7; color: #00626f; }
+.hl-circumcise { background: #fae4c4; color: #91362e; }
+.hl-divine { background: #5869cd; color: #fff; }
+.hl-gray, .hl-slate { background: #e4e8ed; color: #4f5669; }
+.hl-blue-head { background: #d9ecfd; color: #404ca6; }
+
+/* --- Genesis 17 translation: solid chips + A/B/A' gutter --------------- */
+.gen-block { margin-bottom: 0; }
+.gen-row { display: flex; align-items: stretch; }
+.gen-gutter { flex: 0 0 2.5rem; }
+.gen-letter { flex: 0 0 1.7rem; padding-right: .55rem; padding-top: .15rem; text-align: right; font-size: .72rem; color: #4f5669; }
+.gen-bar { flex: 0 0 3px; border-radius: 2px; }
+.gen-bar-purple { background: #7e62bc; }
+.gen-bar-green { background: #3a8060; }
+.gen-cardwrap { flex: 1 1 auto; min-width: 0; position: relative; padding-top: .95rem; }
+.gen-tab { position: absolute; top: 0; left: 0; display: inline-block; font-size: .78rem; font-weight: 700; line-height: 1.75; padding: 2px 9px; border-radius: 5px; background: #e4e8ed; color: #1b1b1b; }
+.gen-tab .ref { color: inherit; text-decoration: none; }
+.gen-card, .gen-card-tab { border: 1px solid #e4e8ed; border-radius: 10px; background: #fff; padding: .9rem 1.1rem 1rem; }
+.gen-card p, .gen-card-tab p { font-size: 1.02rem; line-height: 1.68; margin: 0 0 .22rem; color: #1b1b1b; }
+.gen-card p.indent-1, .gen-card-tab p.indent-1 { padding-left: 1.7rem; }
+.indent-2 { padding-left: 3.2rem; }
+.indent-3 { padding-left: 4.7rem; }
+.abc-label { font-size: .72rem; color: #2c2c2c; margin-right: .5rem; }
+
+.hl-covenant-strong, .hl-multiply-strong, .hl-name-strong, .hl-bless-strong,
+.hl-kings-pink, .hl-divine-teal, .hl-elohim, .hl-land, .hl-seed, .hl-circumcise-strong {
+  display: inline; font-weight: 700; line-height: 1.75; padding: 1px 7px; border-radius: 5px; color: #fff;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+.hl-covenant-strong { background: #2b6146; }
+.hl-multiply-strong, .hl-bless-strong { background: #7e62bc; }
+.hl-name-strong { background: #6b7384; }
+.hl-kings-pink { background: #be4967; }
+.hl-divine-teal { background: #097d8d; }
+.hl-elohim, .hl-seed { background: #3678b4; }
+.hl-land { background: #816f4d; }
+.hl-circumcise-strong { background: #91362e; }
+.hl-yishmael { color: #be4967; font-weight: 700; }
+.hl-birth { color: #097d8d; font-weight: 700; }
+.green-text { color: #3a8060; font-weight: 700; }
+.t-rustbold { color: #b5543a; font-weight: 700; }
+.t-brownbold { color: #816f4d; font-weight: 700; }
+sup.vs { color: #1b1b1b; }
+/* the bold ink inside the Genesis 17 translation is the PDF's own navy */
+.gen-card strong, .gen-card-tab strong { color: #181d36; }
+/* replay-table wrapper: the PDF frames it with the same 2px #e4e8ed */
+.min-w-\[720px\] { border-width: 2px; border-color: #e4e8ed; }
+/* the two doc-tables quote the covenant line as plain ink in the PDF */
+.doc-table .green-text { color: inherit; font-weight: 400; }
+
+/* --- Genesis 9:8-17 flood boxes ---------------------------------------- */
+.flood-box { border: 2px solid #1b1b1b; border-radius: 12px; padding: 1rem 1.15rem; background: #fff; margin-bottom: 1.1rem; }
+.flood-box-light { border: 2px solid #e4e8ed; border-radius: 12px; padding: 1rem 1.15rem; background: #fff; margin-bottom: 1.1rem; }
+.flood-box p, .flood-box-light p { font-size: 1.02rem; line-height: 1.7; margin: 0 0 .28rem; color: #1b1b1b; }
+.box-divider { border: 0; border-top: 1px solid #e4e8ed; margin: .75rem 0; }
+
+.chip { display: inline-block; font-size: .95rem; font-weight: 700; line-height: 1.75; padding: 1px 7px; border-radius: 5px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.chip-brown { background: #816f4d; color: #fff; }
+.chip-beige { background: #fae4c4; color: #91362e; }
+.chip-greenseed { background: #d3f2cd; color: #2b6146; }
+.chip-teal { background: #b9eff7; color: #00626f; }
+.chip-pink { background: #f9e3de; color: #972a4e; }
+.chip-red { background: #be4967; color: #fff; }
+.chip-flood { background: #3678b4; color: #fff; }
+.t-orange { color: #b5543a; font-weight: 700; }
+.t-green { color: #204b3c; font-weight: 700; }
+
+@media print {
+  .diagram-box, .diagram-box-red, .diagram-box-inner, .flood-box, .flood-box-light { break-inside: avoid; }
+}
 </style>
 </head>
 <body>
 <div aria-hidden="true" id="reading-progress"></div>
 <div class="fixed left-4 top-4 z-50 print:hidden">
-<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" href="index.html">
+<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" href="index.html">
 <span><span class="lang-pt">←</span><span class="lang-en">←</span></span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
 </a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
-<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" onclick="window.print()">
+<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" onclick="window.print()">
 <svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect height="8" width="12" x="6" y="14"></rect></svg>
 <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
 </button>
@@ -463,7 +605,7 @@
 </td>
 </tr>
 <tr>
-<td class="text-[#5b6472]" colspan="4">
+<td class="text-[#4f5669]" colspan="4">
 <span class="lang-pt"><em>Gênesis 15-16 como uma Repetição</em>. Criado por Tim Mackie para o BibleProject Classroom: Abraham (2021).</span>
 <span class="lang-en"><em>Genesis 15-16 As a Replay</em>. Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</span>
 </td>
@@ -516,7 +658,7 @@
 </p>
 </div>
 </div>
-<p style="font-style: italic; color: #6b7280; font-size: 0.875rem; margin-top: 0.75rem; margin-bottom: 2rem;">
+<p style="font-style: italic; color: #4f5669; font-size: 0.875rem; margin-top: 0.75rem; margin-bottom: 2rem;">
 <span class="lang-pt"><em><span class="ref" data-reference="Genesis 17:1-27">Gênesis 17:1-27</span> (3 etapas)</em>. Design Literário por Tim Mackie para o BibleProject Classroom: Abraham (2021).</span>
 <span class="lang-en"><em><span class="ref" data-reference="Genesis 17:1-27">Genesis 17:1-27</span> (3-Step)</em>. Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span>
 </p>
@@ -531,30 +673,30 @@
 </p>
 <div style="padding-left: 1rem; line-height: 2;">
 <p>
-<span class="lang-pt"><span style="color:#6b7280;">a</span> - Quando Avram tinha noventa e nove anos,</span>
-<span class="lang-en"><span style="color:#6b7280;">a</span> - When Avram was a son of ninety-nine years,</span>
+<span class="lang-pt"><span class="lbl-a">a</span> - Quando Avram tinha noventa e nove anos,</span>
+<span class="lang-en"><span class="lbl-a">a</span> - When Avram was a son of ninety-nine years,</span>
 </p>
 <p>
-<span class="lang-pt"><span style="color:#6b7280;">b</span> - e Iavé tornou-se visível a Avram, e disse-lhe:</span>
-<span class="lang-en"><span style="color:#6b7280;">b</span> - and Yahweh became visible to Avram, and said to him</span>
+<span class="lang-pt"><span class="lbl-a">b</span> - e Iavé tornou-se visível a Avram, e disse-lhe:</span>
+<span class="lang-en"><span class="lbl-a">b</span> - and Yahweh became visible to Avram, and said to him</span>
 </p>
 <p>
-<span class="lang-pt"><span style="color:#6b7280;">c</span> - "Eu darei a <span class="hl-covenant">minha aliança</span> entre mim e entre ti,</span>
-<span class="lang-en"><span style="color:#6b7280;">c</span> - "I will give <span class="hl-covenant">my covenant</span> between me and between you</span>
+<span class="lang-pt"><span class="lbl-a">c</span> - "Eu darei a <span class="hl-covenant">minha aliança</span> entre mim e entre ti,</span>
+<span class="lang-en"><span class="lbl-a">c</span> - "I will give <span class="hl-covenant">my covenant</span> between me and between you</span>
 </p>
 <p>
-<span class="lang-pt"><span style="color:#6b7280;">d</span> - <span class="hl-multiply">multiplicar-te-ei extraordinariamente</span>"</span>
-<span class="lang-en"><span style="color:#6b7280;">d</span> - <span class="hl-multiply">I will multiply you very very much</span>"</span>
+<span class="lang-pt"><span class="lbl-a">d</span> - <span class="hl-multiply">multiplicar-te-ei extraordinariamente</span>"</span>
+<span class="lang-en"><span class="lbl-a">d</span> - <span class="hl-multiply">I will multiply you very very much</span>"</span>
 </p>
 <p>
-<span class="lang-pt"><span style="color:#6b7280;">e</span> - <span class="hl-gray">E prostrou-se Avram com o rosto em terra</span></span>
-<span class="lang-en"><span style="color:#6b7280;">e</span> - <span class="hl-gray">And Avram fell upon his face</span></span>
+<span class="lang-pt"><span class="lbl-a">e</span> - <span class="hl-gray">E prostrou-se Avram com o rosto em terra</span></span>
+<span class="lang-en"><span class="lbl-a">e</span> - <span class="hl-gray">And Avram fell upon his face</span></span>
 </p>
 </div>
 </div>
 <!-- <span class="ref" data-reference="Genesis 17:4-16">Genesis 17:4-16</span> outer -->
 <div class="diagram-box-outer" style="margin-left: 2rem; margin-bottom: 1rem;">
-<span class="tag tag-dark" style="display: inline-block; margin-bottom: 0.75rem;"><span class="ref" data-reference="Genesis 17:4-16"><span class="lang-pt">Genesis 17:4-16</span><span class="lang-en">Genesis 17:4-16</span></span></span>
+<span class="tag tag-deep" style="display: inline-block; margin-bottom: 0.75rem;"><span class="ref" data-reference="Genesis 17:4-16"><span class="lang-pt">Genesis 17:4-16</span><span class="lang-en">Genesis 17:4-16</span></span></span>
 <!-- 17:4-8 -->
 <div class="diagram-box-inner">
 <span class="tag tag-light-gray" style="display: inline-block; margin-bottom: 0.5rem;"><span class="lang-pt">17:4-8</span><span class="lang-en">17:4-8</span></span>
@@ -577,7 +719,7 @@
 <span class="lang-pt">Não mais se chamará o teu nome Avram, mas "Avraham" será o teu nome</span>
 <span class="lang-en">No longer will your name be called Avram, but "Avraham" will be your name</span>
 </span></p>
-<p><span class="hl-multiply">
+<p><span class="hl-multiply-solid">
 <span class="lang-pt">Far-te-ei pai de uma multidão de nações</span>
 <span class="lang-en">I will make you a multitude of nations</span>
 </span></p>
@@ -643,7 +785,7 @@
 <span class="lang-pt">E eu a abençoarei</span>
 <span class="lang-en">And I will bless her</span>
 </span></p>
-<p><span class="hl-multiply">
+<p><span class="hl-multiply-solid">
 <span class="lang-pt">e ela se tornará nações</span>
 <span class="lang-en">and she will become nations</span>
 </span></p>
@@ -664,24 +806,24 @@
 </p>
 <div style="padding-left: 1rem; line-height: 2;">
 <p>
-<span class="lang-pt"><span style="color:#6b7280;">e</span> - <span class="hl-gray">E prostrou-se Avram com o rosto em terra</span></span>
-<span class="lang-en"><span style="color:#6b7280;">e</span> - <span class="hl-gray">And Avram fell upon his face</span></span>
+<span class="lang-pt"><span class="lbl-a">e</span> - <span class="hl-gray">E prostrou-se Avram com o rosto em terra</span></span>
+<span class="lang-en"><span class="lbl-a">e</span> - <span class="hl-gray">And Avram fell upon his face</span></span>
 </p>
 <p>
-<span class="lang-pt"><span style="color:#6b7280;">d</span> - "Nascerá um filho a um homem de cem anos?!"</span>
-<span class="lang-en"><span style="color:#6b7280;">d</span> - "Will there be a birth for a son of one-hundred years?!"</span>
+<span class="lang-pt"><span class="lbl-a">d</span> - "Nascerá um filho a um homem de cem anos?!"</span>
+<span class="lang-en"><span class="lbl-a">d</span> - "Will there be a birth for a son of one-hundred years?!"</span>
 </p>
 <p>
-<span class="lang-pt"><span style="color:#6b7280;">c</span> - "Eu estabelecerei a <span class="hl-covenant">minha aliança</span> com Yitskhaq ..."</span>
-<span class="lang-en"><span style="color:#6b7280;">c</span> - "I will establish <span class="hl-covenant">my covenant</span> with Yitskhaq ..."</span>
+<span class="lang-pt"><span class="lbl-a">c</span> - "Eu estabelecerei a <span class="hl-covenant">minha aliança</span> com Yitskhaq ..."</span>
+<span class="lang-en"><span class="lbl-a">c</span> - "I will establish <span class="hl-covenant">my covenant</span> with Yitskhaq ..."</span>
 </p>
 <p>
-<span class="lang-pt"><span style="color:#6b7280;">b</span> - <span class="hl-multiply">"Eu o multiplicarei [Yishmael] extraordinariamente"</span></span>
-<span class="lang-en"><span style="color:#6b7280;">b</span> - <span class="hl-multiply">"I will multiply [Yishmael] very very much"</span></span>
+<span class="lang-pt"><span class="lbl-a">b</span> - <span class="hl-multiply">"Eu o multiplicarei [Yishmael] extraordinariamente"</span></span>
+<span class="lang-en"><span class="lbl-a">b</span> - <span class="hl-multiply">"I will multiply [Yishmael] very very much"</span></span>
 </p>
 <p>
-<span class="lang-pt"><span style="color:#6b7280;">a</span> - E acabou de falar com ele, e subiu Elohim de diante de Avraham</span>
-<span class="lang-en"><span style="color:#6b7280;">a</span> - And he finished speaking to him, and Elohim went up from Avraham</span>
+<span class="lang-pt"><span class="lbl-a">a</span> - E acabou de falar com ele, e subiu Elohim de diante de Avraham</span>
+<span class="lang-en"><span class="lbl-a">a</span> - And he finished speaking to him, and Elohim went up from Avraham</span>
 </p>
 </div>
 </div>
@@ -704,7 +846,7 @@
 </div>
 </div>
 </div>
-<p style="font-style: italic; color: #6b7280; font-size: 0.875rem; margin-top: 0.75rem;">
+<p style="font-style: italic; color: #4f5669; font-size: 0.875rem; margin-top: 0.75rem;">
 <span class="lang-pt"><em><span class="ref" data-reference="Genesis 17:1-27">Gênesis 17:1-27</span> (Detalhado)</em>. Design Literário por Tim Mackie para o BibleProject Classroom: Abraham (2021).</span>
 <span class="lang-en"><em><span class="ref" data-reference="Genesis 17:1-27">Genesis 17:1-27</span> (Detailed)</em>. Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span>
 </p>
@@ -756,7 +898,7 @@
 </li>
 </ul>
 </div>
-<div class="diagram-box" style="margin-left: 4rem; margin-bottom: 1rem; border-color: #9ca3af;">
+<div class="diagram-box" style="margin-left: 4rem; margin-bottom: 1rem; border-color: #e4e8ed;">
 <span class="tag tag-light-gray" style="display: inline-block; margin-bottom: 0.5rem;"><span class="lang-pt">B- </span><span class="lang-en">B- </span><span class="ref" data-reference="Genesis 17:9-14"><span class="lang-pt">Genesis 17:9-14</span><span class="lang-en">Genesis 17:9-14</span></span></span>
 <p style="font-weight: 700; margin: 0.5rem 0;">
 <span class="lang-pt">Discurso 3</span>
@@ -800,7 +942,7 @@
 </ul>
 </div>
 </div>
-<p style="font-style: italic; color: #6b7280; font-size: 0.875rem; margin-top: 0.75rem;">
+<p style="font-style: italic; color: #4f5669; font-size: 0.875rem; margin-top: 0.75rem;">
 <span class="lang-pt"><em><span class="ref" data-reference="Genesis 17:1-22">Gênesis 17:1-22</span></em>. Design Literário por Tim Mackie para o BibleProject Classroom: Abraham (2021).</span>
 <span class="lang-en"><em><span class="ref" data-reference="Genesis 17:1-22">Genesis 17:1-22</span></em>. Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span>
 </p>
@@ -1295,7 +1437,7 @@
 </div>
 </div>
 </div>
-<p style="font-style: italic; color: #6b7280; font-size: 0.875rem; margin-top:1rem;">
+<p style="font-style: italic; color: #4f5669; font-size: 0.875rem; margin-top:1rem;">
 <span class="lang-pt"><em><span class="ref" data-reference="Genesis 17:1-27">Gênesis 17:1-27</span></em>. Tradução e Design Literário por Tim Mackie para o BibleProject Classroom: Abraham (2021).</span>
 <span class="lang-en"><em><span class="ref" data-reference="Genesis 17:1-27">Genesis 17:1-27</span></em>. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span>
 </p>
@@ -1411,7 +1553,7 @@
 <span class="lang-en">This linking of Noah and Avraham creates a clear set of similarities and contrasts between the two characters and God's covenant with them.</span>
 </p>
 <p class="body">
-<span class="lang-pt">Na história de Adão e Eva, ela é nomeada antes de sua tolice, e seu nome simboliza a união 'dois em um' de homem/mulher. Após a tolice, ela é nomeada com base em sua função reprodutiva na relação, 'Mãe de Todos os Viventes'.</span>
+<span class="lang-pt">Enquanto Noé era simplesmente "íntegro" quando Deus iniciou a conversa, Avram, por outro lado, acabou de participar de um grande pecado contra Hagar (por analogia com <span class="ref" data-reference="Genesis 3">Gên. 3</span> e <span class="ref" data-reference="Genesis 6">6</span>), resultando na opressão do imigrante, e por isso agora ele precisa ser ordenado: "seja íntegro".</span>
 <span class="lang-en">While Noah simply was "blameless" when God initiated the conversation, Avram, on the other hand, has just participated in a great sin against Hagar (on analogy with <span class="ref" data-reference="Genesis 3">Gen. 3</span> and <span class="ref" data-reference="Genesis 6">6</span>), resulting in the oppression of the immigrant, so he now has to be commanded: "be blameless."</span>
 </p>
 <p class="body">
@@ -1665,7 +1807,7 @@
 <span class="lang-en">all flesh</span>
 </span><span class="lang-pt"> que está sobre a terra.”</span><span class="lang-en"> que está sobre a terra.”</span></p>
 </div>
-<p style="font-style: italic; color: #6b7280; font-size: 0.875rem;">
+<p style="font-style: italic; color: #4f5669; font-size: 0.875rem;">
 <span class="lang-pt"><em><span class="ref" data-reference="Genesis 9:8-17">Gênesis 9:8-17</span></em>. Tradução e Design Literário por Tim Mackie para o BibleProject Classroom: Adam to Noah (2020).</span>
 <span class="lang-en"><em><span class="ref" data-reference="Genesis 9:8-17">Genesis 9:8-17</span></em>. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Adam to Noah (2020).</span>
 </p>
@@ -1884,78 +2026,15 @@
 <span class="lang-en">How is circumcision both an act of God's judgment and and act of grace?</span>
 </p>
 <!-- Footer -->
-<!-- conteudo adicional do PDF -->
-<p class="body reveal"><span class="lang-en">delivering-help (‫)עזר‬</span></p>
-<p class="body reveal"><span class="lang-en">blameless (‫”)תמים‬</span></p>
-<p class="body reveal"><span class="lang-en">multitude of nations (‫ גוים‬... ‫”)אב‬</span></p>
-<p class="body reveal"><span class="lang-en">you (‫”)את זרעכם אחריכם‬</span></p>
-<p class="body reveal"><span class="lang-en">‫ זרע‬+ ‫ ברית‬+ ‫)הקים‬</span></p>
-<p class="body reveal"><span class="lang-en">‫ זרע‬+ ‫ ברית‬+ ‫)הקים‬</span></p>
-<p class="body reveal"><span class="lang-en">covenant” (‫)אות הברית‬</span></p>
-<p class="body reveal"><span class="lang-en">covenant” (‫)אות ברית‬</span></p>
-</div><span class="lang-pt">
-
-    // Scroll reveal — observe existing and newly added content blocks
-    (function () {
-        var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var targets = document.querySelectorAll(
-            '.scripture, .doc-table, .diagram-box, .diagram-box-red, .diagram-box-outer, ' +
-            '.speech-box, .flood-box, .flood-box-light, h2.section, h3.sub, ul.bullets, ' +
-            'p.body, .page-header'
-        );
-        if (prefersReduced || !('IntersectionObserver' in window)) {
-            targets.forEach(function (el) { el.classList.add('visible'); });
-            return;
-        }
-        var io = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    io.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
-        targets.forEach(function (el) {
-            el.classList.add('reveal');
-            io.observe(el);
-        });
-    })();
-</span><span class="lang-en">
-
-    // Scroll reveal — observe existing and newly added content blocks
-    (function () {
-        var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var targets = document.querySelectorAll(
-            '.scripture, .doc-table, .diagram-box, .diagram-box-red, .diagram-box-outer, ' +
-            '.speech-box, .flood-box, .flood-box-light, h2.section, h3.sub, ul.bullets, ' +
-            'p.body, .page-header'
-        );
-        if (prefersReduced || !('IntersectionObserver' in window)) {
-            targets.forEach(function (el) { el.classList.add('visible'); });
-            return;
-        }
-        var io = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    io.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
-        targets.forEach(function (el) {
-            el.classList.add('reveal');
-            io.observe(el);
-        });
-    })();
-</span>
-<script src="../../js/verse-modal.js"></script>
-<script src="../../js/reading-progress.js"></script>
-<script src="../../js/lang-toggle.js"></script>
-<script src="../../js/reveal.js"></script>
 <footer class="page-footer">
 <span class="lang-pt">Anotações de Aula: Abraão</span><span class="lang-en">Class Notes: Abraham</span>
 <span class="lang-pt">Sessão 15</span><span class="lang-en">Session 15</span>
 </footer>
+</div>
+<script src="../../js/verse-modal.js"></script>
+<script src="../../js/reading-progress.js"></script>
+<script src="../../js/lang-toggle.js"></script>
+<script src="../../js/reveal.js"></script>
 <script>
 function setLang(lang) {
   document.documentElement.lang = lang;

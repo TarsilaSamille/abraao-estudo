@@ -12,17 +12,82 @@
 <link href="../../css/shared-tutorial.css" rel="stylesheet"/>
 <style>
 @import url('../css/session-base.css');
+
+/* ------------------------------------------------------------------
+   Session 17 local overrides. Colours are sampled from
+   abraao/pdf-sessoes/sessao-17.pdf — the PDF is the authority.
+   The whole <style> block below was lost in f67bbf2f, which left
+   the two diagrams (literary design + Sodom/Cain motif) unstyled.
+   ------------------------------------------------------------------ */
+
+/* PDF ink / neutrals */
+body, h1.title, h2.section, h3.sub, p.body, .scripture-text,
+ul.bullets > li, .t17-line, .blockq { color: #1b1b1b; }
+.caption, .cite, .scripture-type, .adapt, .lbl { color: #4f5669; }
+.page-footer { color: #2c2c2c; }
+.rule { border-top: 1px solid #c1c9d0 !important; }
+.scripture { border-left-color: #e4e8ed; }
+.scripture-label, sup.vs, .ref { color: #1b1b1b; }
+.page-footer { border-top: 0; }
+.innerbox { background: #f9fafc; color: #4f5669; }
+
+/* ---- Translation & Literary Design (Genesis 18:16-33) ---- */
+.t17-outer { border: 1.5px solid #e4e8ed; border-radius: 22px; padding: 1.4rem 1.5rem; margin: 1.8rem 0 .4rem; background: #fff; }
+.t17-black { border: 2.5px solid #1b1b1b; border-radius: 16px; padding: 1.05rem 1.4rem; margin: 1rem 0; background: #fff; }
+.t17-mid { padding: 1.1rem .4rem; }
+.t17-line { font-size: 1.08rem; line-height: 2.05; color: #1b1b1b; }
+.t17-div { border: 0; border-top: 1px solid #e4e8ed; margin: 1rem 0; }
+
+/* emphasised phrases — PDF text colours */
+.tx-rust2   { color: #b5543a; font-weight: 700; }
+.tx-purple2 { color: #7e62bc; font-weight: 700; }
+.tx-brown2  { color: #816f4d; font-weight: 700; }
+.tx-green2  { color: #3a8060; font-weight: 700; }
+.tx-rose2   { color: #be4967; font-weight: 700; }
+
+/* highlight chips — PDF fills + chip text colours */
+.k-rose   { background: #be4967; color: #fff; }
+.k-purple { background: #7e62bc; color: #fff; }
+.k-green2 { background: #3a8060; color: #fff; }
+.k-tan2   { background: #fae4c4; color: #91362e; }
+.k-lav2   { background: #e6e6fa; color: #5d4897; }
+.k-lblue  { background: #d9ecfd; color: #404ca6; }
+.k-cyan2  { background: #b9eff7; color: #00626f; }
+.k-lgreen { background: #d3f2cd; color: #2b6146; }
+.k-gray2  { background: #e4e8ed; color: #4f5669; }
+.k-tan3   { background: #efe8db; color: #645537; }
+.k-pink2  { background: #f9e3de; color: #972a4e; }
+
+/* ---- Sodom / Cain / Flood / Babylon motif diagram ---- */
+.motif { display: grid; grid-template-columns: 1fr 56px 1fr; gap: .4rem; align-items: center; margin: 2.4rem 0 1rem; }
+.motif .col { display: flex; flex-direction: column; gap: .9rem; }
+.motif .arrows { display: flex; flex-direction: column; justify-content: center; gap: 2.2rem; color: #1b1b1b; }
+.motif .arrows svg { width: 100%; height: 22px; }
+.mbox2 { border: 2px solid #1b1b1b; border-radius: 4px; padding: 1rem 1.1rem; font-size: .98rem; line-height: 1.7; color: #1b1b1b; background: #fff; }
+
+/* ---- academic quote (MacDonald) ---- */
+.blockquote { border-left: 5px solid #1b1b1b; padding: .5rem 1rem .5rem 1.25rem; margin: 1.75rem 0; color: #1b1b1b; line-height: 1.78; font-size: 1.02rem; }
+.blockquote .cite { color: #4f5669; }
+
+@media (max-width: 760px) {
+  .motif { grid-template-columns: 1fr; }
+  .motif .arrows { display: none; }
+}
+
+@media print {
+  .t17-outer, .t17-black, .scripture, .blockquote, .mbox2 { break-inside: avoid; }
+}
 </style>
 </head>
 <body>
 <div aria-hidden="true" id="reading-progress"></div>
 <div class="fixed left-4 top-4 z-50 print:hidden">
-<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" href="index.html">
+<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" href="index.html">
 <span><span class="lang-pt">←</span><span class="lang-en">←</span></span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
 </a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
-<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" onclick="window.print()">
+<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" onclick="window.print()">
 <svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect height="8" width="12" x="6" y="14"></rect></svg>
 <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
 </button>
@@ -72,7 +137,7 @@
 <p class="t17-line i2"><span class="lbl"><span class="lang-pt">c</span><span class="lang-en">c</span></span><span class="tx-purple2"><span class="lang-pt">Now, Avraham was still standing before Yahweh</span><span class="lang-en">Now, Avraham was still standing before Yahweh</span></span><span class="lang-pt">.</span><span class="lang-en">.</span></p>
 </div>
 </div>
-<p class="caption reveal"><em>\1</em><span class="lang-pt">. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span><span class="lang-en">. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
+<p class="caption reveal"><em>\1</em><span class="lang-pt">Gênesis 18:16-33</span><span class="lang-en">Genesis 18:16-33</span><span class="lang-pt">. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: Abraão (2021).</span><span class="lang-en">. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
 <!-- ================= NOAH-LIKE REMNANT ================= -->
 <h2 class="section reveal"><span class="lang-pt">Avraham, o Remanescente Semelhante a Noé</span><span class="lang-en">Avraham, the Noah-Like Remnant</span></h2>
 <p class="body reveal"><span class="lang-pt">O discurso interno de Deus em <span class="ref" data-reference="Gênesis+18:17-21">Gênesis 18:17-21</span> é semelhante aos discursos divinos de <span class="ref" data-reference="Gênesis+6:5-7">Gênesis 6:5-7</span> e <span class="ref" data-reference="Gênesis+11:5-7">Gênesis 11:5-7</span>, onde Deus delibera sobre o que deve fazer dado o surgimento da violência humana arruinando a terra.</span><span class="lang-en">God's internal speech in <span class="ref" data-reference="Genesis+18:17-21">Genesis 18:17-21</span> is similar to the divine speeches of <span class="ref" data-reference="Genesis+6:5-7">Genesis 6:5-7</span> and <span class="ref" data-reference="Genesis+11:5-7">Genesis 11:5-7</span>, where God deliberates about what he should do given the outbreak of human violence ruining the land.</span></p>
@@ -116,7 +181,7 @@
 <div class="mbox2"><span class="lang-pt">18:20-21: And Yahweh said,</span><span class="lang-en">18:20-21: And Yahweh said,</span><br/><span class="lang-pt">"</span><span class="lang-en">"</span><strong>The outcry</strong><span class="lang-pt"> (</span><span class="lang-en"> (</span><span class="heb">זעקה</span><span class="lang-pt">) against Sodom and Gomorrah, it is huge, and their failure, it is heavy, very much. </span><span class="lang-en">) against Sodom and Gomorrah, it is huge, and their failure, it is heavy, very much. </span><strong>I should go down</strong><span class="lang-pt"> (</span><span class="lang-en"> (</span><span class="heb">ארדה</span><span class="lang-pt">), so I can see if the outcry (</span><span class="lang-en">), so I can see if the outcry (</span><span class="heb">צעקה</span><span class="lang-pt">) that has come before me (</span><span class="lang-en">) that has come before me (</span><span class="heb">בא + לפני</span><span class="lang-pt">), is </span><span class="lang-en">), is </span><strong>what they have completely done</strong><span class="lang-pt">,</span><span class="lang-en">,</span><br/><span class="lang-pt">and if not, then I will know."</span><span class="lang-en">and if not, then I will know."</span></div>
 </div>
 </div>
-<p class="caption reveal" style="text-align:center;"><em>\1</em><span class="lang-pt">. Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</span><span class="lang-en">. Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
+<p class="caption reveal" style="text-align:center;"><em>\1</em><span class="lang-pt">Sodoma, Qaim, o Dilúvio e Babilônia</span><span class="lang-en">Sodom, Qayin, the Flood, and Babylon</span><span class="lang-pt">. Criado por Tim Mackie para BibleProject Classroom: Abraão (2021).</span><span class="lang-en">. Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
 <p class="body reveal" style="margin-top:2rem;"><span class="lang-pt">O resultado dessas analogias é que Sodoma e Gomorra se tornam uma amálgama da cidade de sangue de Caim, da geração do dilúvio e da arrogância de Babilônia. É um ícone da cidade humana de idolatria e violência, onde os inocentes sofrem e clamam a Deus.</span><span class="lang-en">The result of these analogies is that Sodom and Gomorrah become an amalgamation of Cain's city of blood, the generation of the flood, and the hubris of Babylon. It's an icon of the human city of idolatry and violence, where the innocent suffer and cry out to God.</span></p>
 <p class="body reveal"><span class="lang-pt">O retrato de Sodoma feito por Ezequiel parece basear-se em toda essa rede de analogias, não apenas na história de Gênesis 19.</span><span class="lang-en">Ezekiel's portrait of Sodom seems to be based on this entire network of analogies, not just the story in Genesis 19.</span></p>
 <div class="scripture reveal">
@@ -140,7 +205,7 @@
 <p class="t17-line"><span class="k k-lav2">so that Yahweh will</span><span class="lang-pt"> bring upon Avraham what he has spoken about him."</span><span class="lang-en"> bring upon Avraham what he has spoken about him."</span></p>
 </div>
 </div>
-<p class="caption reveal"><em>\1</em><span class="lang-pt">. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span><span class="lang-en">. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
+<p class="caption reveal"><em>\1</em><span class="lang-pt">Gênesis 18:16-33</span><span class="lang-en">Genesis 18:16-33</span><span class="lang-pt">. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: Abraão (2021).</span><span class="lang-en">. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
 <p class="body reveal"><span class="lang-pt">Iavé não está escondendo o propósito divino de Avraham, mesmo enquanto faz a pergunta. Ele claramente pretende incluir Avraham nas deliberações do propósito divino, e assim Avraham se torna aqui uma verdadeira "imagem de Deus", um humano que é convidado ao conselho divino e que pode influenciar o governo de Iavé sobre o cosmos.</span><span class="lang-en">Yahweh is not hiding the divine purpose from Avraham, even as he asks the question. He clearly means to include Avraham in the deliberations of the divine purpose, and so Avraham becomes here a true "image of God," a human who's invited into the divine council and who can influence Yahweh's governance of the cosmos.</span></p>
 <p class="body reveal"><span class="lang-pt">Iavé remete às suas palavras em <span class="ref" data-reference="Gênesis+12:3">Gênesis 12:3</span>, onde escolheu Avraham e sua família para se tornarem um canal de bênção divina para as nações. Esta própria história dá uma aplicação concreta do que essa vocação realmente implica. Avraham estará em pé diante de Iavé e intercederá em favor dos inocentes.</span><span class="lang-en">Yahweh refers back to his words in <span class="ref" data-reference="Genesis+12:3">Genesis 12:3</span> where he chose Avraham and his family to become a conduit of divine blessing to the nations. This very story gives a concrete application of what that vocation truly entails. Avraham will stand before Yahweh and intercede on behalf of the innocent.</span></p>
 <p class="body reveal"><span class="lang-pt">A sintaxe hebraica de <span class="ref" data-reference="Gênesis+18:19">Gênesis 18:19</span> é intencionalmente complexa, revelando o duplo propósito de Deus.</span><span class="lang-en">The Hebrew syntax of <span class="ref" data-reference="Genesis+18:19">Genesis 18:19</span> is intentionally complex, revealing God's dual purpose.</span></p>
@@ -155,7 +220,7 @@
 <p class="t17-line"><sup class="vs"><span class="lang-pt">23</span><span class="lang-en">23</span></sup> <span class="tx-purple2"><span class="lang-pt">And Avraham drew near, and he said</span><span class="lang-en">And Avraham drew near, and he said</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></p>
 <p class="t17-line i1"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><span class="lang-pt">"Are you really about to </span><span class="lang-en">"Are you really about to </span><span class="k k-green2">sweep away</span><span class="lang-pt"> the </span><span class="lang-en"> the </span><span class="k k-lblue">righteous</span><span class="lang-pt"> along with the </span><span class="lang-en"> along with the </span><span class="k k-cyan2">wicked</span><span class="lang-pt">?</span><span class="lang-en">?</span></p>
 </div>
-<div class="t17-black t17-greenbar">
+<div class="t17-black">
 <p class="t17-line i1"><span class="lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></span><span class="lang-pt">What if there are </span><span class="lang-en">What if there are </span><span class="tx-green2"><span class="lang-pt">fifty</span><span class="lang-en">fifty</span></span> <span class="k k-lblue">righteous</span> <span class="tx-green2"><span class="lang-pt">people</span><span class="lang-en">people</span></span> <span class="k k-gray2">in the middle of the city</span><span class="lang-pt">?</span><span class="lang-en">?</span></p>
 <p class="t17-line"><span class="lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><span class="lang-pt">Would you really </span><span class="lang-en">Would you really </span><span class="k k-green2">sweep away</span><span class="lang-pt">?</span><span class="lang-en">?</span></p>
 <p class="t17-line i1"><span class="lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></span><span class="k k-lgreen">Wouldn't you forgive</span> <span class="k k-gray2">that place, on account of</span><span class="lang-pt"> the </span><span class="lang-en"> the </span><span class="tx-green2"><span class="lang-pt">fifty</span><span class="lang-en">fifty</span></span> <span class="k k-lblue">righteous</span><span class="lang-pt"> which are </span><span class="lang-en"> which are </span><span class="k k-gray2">within it</span><span class="lang-pt">?</span><span class="lang-en">?</span></p>
@@ -201,13 +266,13 @@
 <p class="t17-line i1"><span class="tx-purple2"><span class="lang-pt">And he said</span><span class="lang-en">And he said</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></p>
 <p class="t17-line i2"><span class="lbl"><span class="lang-pt">C</span><span class="lang-en">C</span></span><span class="lang-pt">"</span><span class="lang-en">"</span><span class="k k-lgreen">I would not</span> <span class="k k-green2">cause ruin</span><span class="lang-pt"> on account of the </span><span class="lang-en"> on account of the </span><span class="tx-green2"><span class="lang-pt">ten</span><span class="lang-en">ten</span></span><span class="lang-pt">."</span><span class="lang-en">."</span></p>
 </div>
-<div class="t17-black" style="border-color:#dfe3e9;">
+<div class="t17-black" style="border-color:#e4e8ed;">
 <p class="t17-line"><sup class="vs"><span class="lang-pt">33</span><span class="lang-en">33</span></sup><span class="lang-pt"> And Yahweh went away,</span><span class="lang-en"> And Yahweh went away,</span></p>
 <p class="t17-line"><span class="lang-pt">when he finished speaking to Avraham,</span><span class="lang-en">when he finished speaking to Avraham,</span></p>
 <p class="t17-line"><span class="lang-pt">and Avraham, he returned to his place.</span><span class="lang-en">and Avraham, he returned to his place.</span></p>
 </div>
 </div>
-<p class="caption reveal"><em>\1</em><span class="lang-pt">. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span><span class="lang-en">. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
+<p class="caption reveal"><em>\1</em><span class="lang-pt">Gênesis 18:16-33</span><span class="lang-en">Genesis 18:16-33</span><span class="lang-pt">. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: Abraão (2021).</span><span class="lang-en">. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
 <!-- ================= HAGGLE ================= -->
 <h2 class="section reveal"><span class="lang-pt">Avraham Pechincha com Deus?</span><span class="lang-en">Does Avraham Haggle With God?</span></h2>
 <p class="body reveal"><span class="lang-pt">Esta história é habilmente desenhada para subverter as expectativas do leitor, e uma segunda leitura mais cuidadosa revira várias impressões feitas numa primeira leitura.</span><span class="lang-en">This story is cleverly designed to subvert the reader's expectations, and a second, more careful reading overturns a number of impressions made upon a first reading.</span></p>
@@ -233,7 +298,7 @@
 <div><span class="scripture-label" data-reference="Genesis+18:19"><span class="lang-pt">Genesis 18:19</span><span class="lang-en">Genesis 18:19</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
 <p class="scripture-text"><span class="lang-pt">Indeed, I have known him, </span><span class="lang-en">Indeed, I have known him, </span><strong>so that he would</strong><span class="lang-pt"> command his sons and his house after him, that they should </span><span class="lang-en"> command his sons and his house after him, that they should </span><strong>keep the way of Yahweh</strong><span class="lang-pt">, by </span><span class="lang-en">, by </span><strong>doing righteousness and justice so that Yahweh will</strong><span class="lang-pt"> bring upon Avraham what he has spoken about him.</span><span class="lang-en"> bring upon Avraham what he has spoken about him.</span></p>
 </div>
-<p class="body reveal"><span class="lang-pt">Isto é o que Avraham assume sobre o "caminho" de Iavé.</span><span class="lang-en">This is what Avraham amassumes about Yahweh's "way."</span></p>
+<p class="body reveal"><span class="lang-pt">Isto é o que Avraham assume sobre o "caminho" de Iavé.</span><span class="lang-en">This is what Avraham assumes about Yahweh's "way."</span></p>
 <div class="scripture reveal">
 <div><span class="scripture-label" data-reference="Genesis+18:25"><span class="lang-pt">Genesis 18:25</span><span class="lang-en">Genesis 18:25</span></span><span class="scripture-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor's Translation</span></span></div>
 <p class="scripture-text"><strong>Far be it from you</strong><span class="lang-pt"> to do such a thing, to put to death the </span><span class="lang-en"> to do such a thing, to put to death the </span><strong>righteous</strong><span class="lang-pt"> along with the wicked, so that the </span><span class="lang-en"> along with the wicked, so that the </span><strong>righteous</strong><span class="lang-pt"> and wicked become alike! </span><span class="lang-en"> and wicked become alike! </span><strong>Far be it from you!</strong><span class="lang-pt"> Shouldn't the </span><span class="lang-en"> Shouldn't the </span><strong>justice-bringer</strong><span class="lang-pt"> of all the land do </span><span class="lang-en"> of all the land do </span><strong>justice</strong><span class="lang-pt">?</span><span class="lang-en">?</span></p>
@@ -250,7 +315,7 @@
 <p class="adapt"><span class="lang-pt">Palavras-chave adaptadas pelo professor</span><span class="lang-en">Key Words Adapted by Teacher</span></p></div>
 <div class="scripture reveal"><div><span class="scripture-label" data-reference="Ezekiel+18:5"><span class="lang-pt">Ezekiel 18:5-8</span><span class="lang-en">Ezekiel 18:5-8</span></span><span class="scripture-type"><span class="lang-pt">NIV*</span><span class="lang-en">NIV*</span></span></div>
 <p class="scripture-text"><sup class="vs"><span class="lang-pt">5</span><span class="lang-en">5</span></sup><span class="lang-pt"> Suppose there is a righteous man who </span><span class="lang-en"> Suppose there is a righteous man who </span><strong>does justice and righteousness</strong><span class="lang-pt"> … </span><span class="lang-en"> … </span><sup class="vs"><span class="lang-pt">7</span><span class="lang-en">7</span></sup><span class="lang-pt"> He does not oppress anyone, but returns what he took in pledge for a loan. He does not commit robbery but gives his food to the hungry and provides clothing for the naked. </span><span class="lang-en"> He does not oppress anyone, but returns what he took in pledge for a loan. He does not commit robbery but gives his food to the hungry and provides clothing for the naked. </span><sup class="vs"><span class="lang-pt">8</span><span class="lang-en">8</span></sup><span class="lang-pt"> He does not lend to them at interest or take a profit from them.</span><span class="lang-en"> He does not lend to them at interest or take a profit from them.</span></p>
-<p class="adapt"><span class="lang-pt">Palavras-chave adaptadas pelo professor</span><span class="lang-en">Key Words Adapted by Teacher</span></p>
+<p class="adapt"><span class="lang-pt">Palavras-chave adaptadas pelo professor</span><span class="lang-en">Key Words Adapted by Teacher</span></p></div>
 <div class="innerbox"><span class="lang-pt">Para mais exemplos: <span class="ref" data-reference="1+Reis+10:9">1 Reis 10:9</span>; <span class="ref" data-reference="Isa.+32:16-18">Isa. 32:16-18</span>, <span class="ref" data-reference="58:24">58:24</span>; <span class="ref" data-reference="Jer.+23:5">Jer. 23:5</span>, <span class="ref" data-reference="33:15">33:15</span>; <span class="ref" data-reference="Amós+5:10-12,+24">Amós 5:10-12, 24</span>; <span class="ref" data-reference="Sl+72:2-4">Sl 72:2-4</span>.</span><span class="lang-en">For more examples of people doing this for other people, see: <span class="ref" data-reference="1+Kings+10:9">1 Kings 10:9</span>; <span class="ref" data-reference="Isaiah+32:16-18">Isaiah 32:16-18</span>, <span class="ref" data-reference="58:24">58:24</span>; <span class="ref" data-reference="Jeremiah+23:5">Jeremiah 23:5</span>, <span class="ref" data-reference="33:15">33:15</span>; <span class="ref" data-reference="Amos+5:10-12,+24">Amos 5:10-12, 24</span>; <span class="ref" data-reference="Psalm+72:2-4">Psalm 72:2-4</span>.</span></div></div>
 <p class="body reveal"><span class="lang-pt">Se o acima é o que significa para os humanos fazerem justiça e retidão, o que significa dizer que justiça e retidão caracterizam "o caminho de Iavé" (<span class="ref" data-reference="Gênesis+18:19">Gênesis 18:19</span>)?</span><span class="lang-en">If the above is what it means for humans to do justice and righteousness, what does it means to say that righteousness and justice characterize "the way of Yahweh" (<span class="ref" data-reference="Genesis+18:19">Genesis 18:19</span>)?</span></p>
 <div class="scripture reveal"><div><span class="scripture-label" data-reference="Psalm+103:6"><span class="lang-pt">Psalm 103:6-12</span><span class="lang-en">Psalm 103:6-12</span></span><span class="scripture-type"><span class="lang-pt">NIV</span><span class="lang-en">NIV</span></span></div>
@@ -294,18 +359,16 @@
 </div>
 <!-- ================= PLEADS ILLUSTRATION ================= -->
 <h2 class="section reveal"><span class="lang-pt">Avraham Suplica por Sodoma</span><span class="lang-en">Avraham Pleads for Sodom</span></h2>
-<h2 class="section reveal" style="margin-top:4rem;"><span class="lang-pt">Questão para Reflexão</span><span class="lang-en">Reflection Question</span></h2>
 <figure class="reveal" style="margin:2rem 0;">
 <img alt="" class="block mx-auto my-4 rounded-[12px]" src="img/sessao-17/page-1.jpg" style="max-width:100%;"/>
+<figcaption class="caption" style="text-align:center;"><em><span class="lang-pt">Avraham Suplica por Sodoma</span><span class="lang-en">Avraham Pleads for Sodom</span></em><span class="lang-pt">. Criado por Tim Mackie para BibleProject Classroom: Abraão (2021).</span><span class="lang-en">. Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></figcaption>
 </figure>
-<figcaption class="caption" style="text-align:center;"><span class="lang-en">decisions and may have a role in shaping them. The tragedy is that, in comparison with the intercessions of</span></figcaption>
+<h2 class="section reveal" style="margin-top:4rem;"><span class="lang-pt">Questão para Reflexão</span><span class="lang-en">Reflection Question</span></h2>
 <p class="body reveal" style="font-size:1.05rem;"><span class="lang-pt">Como esta passagem nos mostra que Sodoma e Gomorra são emblemáticas de violência e injustiça?</span><span class="lang-en">How does this passage show us that Sodom and Gomorrah are emblematic of violence and injustice?</span></p>
 <footer class="page-footer">
 <span class="lang-pt">Anotações de Aula: Abraão</span><span class="lang-en">Class Notes: Abraham</span>
 <span class="lang-pt">Sessão 17</span><span class="lang-en">Session 17</span>
 </footer>
-<!-- conteudo adicional do PDF -->
-<p class="body reveal"><span class="lang-en">Ezekiel 5:8 NASB*</span></p>
 </div>
 <script src="../../js/verse-modal.js"></script>
 <script src="../../js/reading-progress.js"></script>

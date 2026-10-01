@@ -13,17 +13,139 @@
 <link href="../../css/shared-tutorial.css" rel="stylesheet"/>
 <style>
 @import url('../css/session-base.css');
+
+/* ===================================================================
+   sessao-27 — palette and diagram chrome taken from
+   abraao/pdf-sessoes/sessao-27.pdf (the authority for colour).
+   Measured from the PDF with PyMuPDF:
+     fills  #3e4054 #6b7384 #e4e8ed #7e62bc #f9e3de #d9ecfd #5869cd
+            #fae4c4 #816f4d #b9eff7 #f7e1f5 #e6e6fa #097d8d #d3f2cd
+            #ccf1fa #3a8060 #742626 #504329 #1b4577(#1b4575)
+     text   #1b1b1b body · #4f5669 caption/label · #2c2c2c footer
+            #c1c9d0 title rule · #e4e8ed hairlines
+   =================================================================== */
+
+/* ---------- highlight chips: (bg, fg) exactly as the PDF paints them ---- */
+.k-lilac     { background: #e6e6fa; color: #5d4897; } /* macro quotes      */
+.k-plum-lt   { background: #f7e1f5; color: #713c92; } /* kinship terms      */
+.k-rose-lt   { background: #f9e3de; color: #972a4e; } /* "a wife for…"     */
+.k-rose-dk   { background: #be4967; color: #ffffff; }
+.k-sky-lt    { background: #ccf1fa; color: #245791; } /* v10/v16/v21/v62    */
+.k-sky-dk    { background: #5869cd; color: #ffffff; } /* drink/woman       */
+.k-stay-dk   { background: #1b4575; color: #ffffff; } /* "a place to stay" */
+.k-azure-lt  { background: #d9ecfd; color: #404ca6; } /* well / water      */
+.k-cyan-lt   { background: #b9eff7; color: #00626f; } /* spring / water    */
+.k-slate-dk  { background: #3e4054; color: #ffffff; } /* "the house"       */
+.k-teal-dk   { background: #097d8d; color: #ffffff; } /* Nakhor / my oath  */
+.k-mint-lt   { background: #d3f2cd; color: #2b6146; } /* swear an oath     */
+.k-moss-dk   { background: #3a8060; color: #ffffff; } /* under the thigh   */
+.k-umber-dk  { background: #742626; color: #ffffff; } /* "her jar"         */
+.k-bark-dk   { background: #504329; color: #ffffff; } /* "so he could know"*/
+.k-purple-dk { background: #7e62bc; color: #ffffff; }
+.k-purple-lt { background: #7e62bc; color: #ffffff; }
+.k-peach-lt  { background: #fae4c4; color: #91362e; } /* camels / "Words"  */
+.k-umber-lt  { background: #efe8db; color: #645537; } /* "my family"       */
+.k-bark-dk2  { background: #816f4d; color: #ffffff; } /* "O Yahweh"        */
+.k-mist-lt   { background: #e4e8ed; color: #4f5669; } /* neutral emphasis  */
+.k-slate-pill{ background: #6b7384; color: #ffffff; }
+
+/* plain text tints (PDF paints no chip, only coloured text) */
+.t-purple    { color: #7e62bc; font-weight: 700; }
+.t-rust      { color: #b5543a; font-weight: 700; }
+.t-green     { color: #3a8060; font-weight: 700; }
+.t-cyan      { color: #00626f; font-weight: 700; }
+.t-teal      { color: #097d8d; font-weight: 700; }
+.t-blue      { color: #3678b4; font-weight: 700; }
+.t-rose      { color: #be4967; font-weight: 700; }
+.t-plum      { color: #9855af; font-weight: 700; }
+.t-bark      { color: #816f4d; font-weight: 700; }
+.t-indigo    { color: #404ca6; font-weight: 700; }
+.t-maroon    { color: #972a4e; font-weight: 700; }
+.t-tan       { color: #645537; font-weight: 700; }
+.t-steel     { color: #245791; font-weight: 700; }
+
+/* ---------- macro-design diagram (PDF pp. 1-2) ------------------------- */
+.macro-outer-black,
+.macro-outer-gray {
+  border: 1.5px solid; border-radius: 10px;
+  padding: .7rem .8rem .8rem; margin: 0 0 .55rem;
+  background: #fff;
+}
+.macro-outer-black { border-color: #3e4054; }
+.macro-outer-gray  { border-color: #6b7384; }
+
+.macro-pill-dark, .macro-pill-light {
+  display: inline-block; font-size: .78rem; font-weight: 700;
+  color: #fff; padding: 2px 9px; border-radius: 4px; margin-bottom: .5rem;
+}
+.macro-pill-dark  { background: #3e4054; }
+.macro-pill-light { background: #6b7384; }
+.macro-outer-gray > .macro-pill-dark,
+.macro-outer-gray > .macro-pill-light { background: #6b7384; }
+.macro-inner > .macro-pill-light { background: #e4e8ed; color: #4f5669; }
+
+.macro-inner {
+  border: 1.5px solid #6b7384; border-radius: 7px;
+  padding: .55rem .7rem .6rem; margin: 0 0 .5rem;
+  background: #fff;
+}
+.macro-outer-gray > .macro-inner { border-color: #e4e8ed; }
+.macro-outer-black > .macro-inner { border-color: #6b7384; }
+
+.macro-outer-black h4, .macro-outer-gray h4 {
+  font-size: .95rem; font-weight: 700; color: #1b1b1b;
+  margin: 0 0 .5rem; line-height: 1.35;
+}
+.macro-inner h5 {
+  font-size: .95rem; font-weight: 700; color: #1b1b1b;
+  margin: 0 0 .35rem; line-height: 1.35;
+}
+.macro-inner ul.bullets > li { font-size: .95rem; margin-bottom: .35rem; }
+.macro-inner ul.bullets > li:before { color: #1b1b1b !important; }
+
+/* ---------- literary-design stanzas (PDF pp. 2-10) --------------------- */
+.stanza-box {
+  background: #e4e8ed; border-radius: 10px;
+  padding: .9rem 1rem 1rem; margin: 0 0 .9rem;
+}
+.speaker-box-black,
+.speaker-box-gray {
+  background: #fff; border: 1.5px solid; border-radius: 8px;
+  padding: .5rem .7rem .55rem; margin: .55rem 0;
+}
+.speaker-box-black { border-color: #1b1b1b; }
+.speaker-box-gray  { border-color: #e4e8ed; }
+.stanza-box .v-div { border-top: 1px solid #e4e8ed; }
+.v-line { color: #1b1b1b; }
+.lbl    { color: #4f5669; }
+sup.vs  { color: #1b1b1b; }
+.v-div  { border-top-color: #e4e8ed; }
+
+/* ---------- typography / chrome colours (PDF) -------------------------- */
+body   { color: #1b1b1b; }
+h1.title, h2.section, h3.sub { color: #1b1b1b; }
+p.body, ul.bullets > li, .doc-table td { color: #1b1b1b; }
+.caption { color: #4f5669; }
+.page-footer { color: #2c2c2c; border-top-color: #e4e8ed; }
+.rule { border-top-color: #c1c9d0 !important; }
+#reading-progress { background: #1b1b1b; }
+.doc-table { border-color: #e4e8ed; }
+.doc-table th { background: #e4e8ed; color: #1b1b1b; }
+.doc-table td, .doc-table td + td { border-color: #e4e8ed; }
+.doc-table tfoot td { background: #e4e8ed; border-top-color: #e4e8ed; color: #4f5669; }
+.ref { color: #1b1b1b; }
+.text-\[\#1b1b1b\] { color: #1b1b1b; }
 </style>
 </head>
 <body>
 <div aria-hidden="true" id="reading-progress"></div>
 <div class="fixed left-4 top-4 z-50 print:hidden">
-<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" href="index.html">
+<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" href="index.html">
 <span><span class="lang-pt">←</span><span class="lang-en">←</span></span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
 </a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
-<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" onclick="window.print()">
+<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" onclick="window.print()">
 <svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect height="8" width="12" x="6" y="14"></rect></svg>
 <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
 </button>
@@ -50,16 +172,16 @@
 <span class="macro-pill-light"><span class="lang-pt">Genesis 24:1-9</span><span class="lang-en">Genesis 24:1-9</span></span>
 <h5><span class="lang-pt">Avraham Faz o Servo Jurar um Juramento para Tomar uma Esposa para Yitskhaq de Sua Família</span><span class="lang-en">Avraham Makes Servant Swear an Oath to Take a Wife for Yitskhaq From His Family</span></h5>
 <ul class="bullets">
-<li><b><span class="lang-pt">24:1</span><span class="lang-en">24:1</span></b> <span class="lang-pt"><span class="k k-purple-lt">“Yahweh havia abençoado Avraham em tudo”</span></span><span class="lang-en"><span class="k k-purple-lt">“Yahweh had blessed Avraham in everything”</span></span></li>
-<li><b><span class="lang-pt">24:4</span><span class="lang-en">24:4</span></b> <span class="lang-pt"><span class="k k-rose-lt">“Vá para a minha terra e para a minha família e tome uma esposa para o meu filho”</span></span><span class="lang-en"><span class="k k-rose-lt">“Go to my land and my family and take a wife for my son”</span></span></li>
-<li><b><span class="lang-pt">24:5</span><span class="lang-en">24:5</span></b> <span class="lang-pt"><span class="k k-rose-lt">“E se ela não vier atrás de mim?”</span></span><span class="lang-en"><span class="k k-rose-lt">“What if she will not come after me?”</span></span></li>
+<li><b><span class="lang-pt">24:1</span><span class="lang-en">24:1</span></b> <span class="lang-pt"><span class="k-lilac">“Yahweh havia abençoado Avraham em tudo”</span></span><span class="lang-en"><span class="k-lilac">“Yahweh had blessed Avraham in everything”</span></span></li>
+<li><b><span class="lang-pt">24:4</span><span class="lang-en">24:4</span></b> <span class="lang-pt"><span class="k-rose-lt">“Vá para a minha terra e para a minha família e tome uma esposa para o meu filho”</span></span><span class="lang-en"><span class="k-rose-lt">“Go to my land and my family and take a wife for my son”</span></span></li>
+<li><b><span class="lang-pt">24:5</span><span class="lang-en">24:5</span></b> <span class="lang-pt"><span class="k-rose-lt">“E se ela não vier atrás de mim?”</span></span><span class="lang-en"><span class="k-rose-lt">“What if she will not come after me?”</span></span></li>
 </ul>
 </div>
 <div class="macro-inner">
 <span class="macro-pill-light"><span class="lang-pt">Genesis 24:10-28</span><span class="lang-en">Genesis 24:10-28</span></span>
 <h5><span class="lang-pt">A Jornada do Servo até a Cidade de Nakhor</span><span class="lang-en">The Servant’s Journey to the City of Nakhor</span></h5>
 <ul class="bullets">
-<li><b><span class="lang-pt">24:10</span><span class="lang-en">24:10</span></b> <span class="lang-pt">“E o servo tomou dez <span class="k k-blue-lt">camelos</span> e ele foi ... e os fez ajoelhar <span class="k k-blue-lt">junto a um poço</span>”</span><span class="lang-en">“And the servant took ten <span class="k k-blue-lt">camels</span> and he went ... and kneeled them <span class="k k-blue-lt">by a well</span>”</span></li>
+<li><b><span class="lang-pt">24:10</span><span class="lang-en">24:10</span></b> <span class="lang-pt">“E o servo tomou dez <span class="k-sky-lt">camelos</span> e ele foi ... e os fez ajoelhar <span class="k-sky-lt">junto a um poço</span>”</span><span class="lang-en">“And the servant took ten <span class="k-sky-lt">camels</span> and he went ... and kneeled them <span class="k-sky-lt">by a well</span>”</span></li>
 <li><b><span class="lang-pt">24:10-14</span><span class="lang-en">24:10-14</span></b> <span class="lang-pt">O servo ora a Deus sobre um teste: “Oh Yahweh, Elohim do meu mestre Avraham”</span><span class="lang-en">The servant prays to God about a test: “Oh Yahweh, Elohim of my master Avraham”</span></li>
 <li><b><span class="lang-pt">24:15-21</span><span class="lang-en">24:15-21</span></b> <span class="lang-pt">A oração é concedida: teste cumprido</span><span class="lang-en">The prayer is granted: test fulfilled</span></li>
 <li><b><span class="lang-pt">24:22-28</span><span class="lang-en">24:22-28</span></b> <span class="lang-pt">O servo louva a Deus: “Bendito seja Yahweh, Elohim do meu mestre Avraham”</span><span class="lang-en">The servant praises God: “Blessed be Yahweh, Elohim of my master Avraham”</span></li>
@@ -71,11 +193,11 @@
 <h4><span class="lang-pt">O Servo Reconta a História da Fidelidade de Yahweh</span><span class="lang-en">The Servant Retells the Story of Yahweh’s Faithfulness</span></h4>
 <div class="macro-inner">
 <span class="macro-pill-light"><span class="lang-pt">Genesis 24:29-33</span><span class="lang-en">Genesis 24:29-33</span></span>
-<h5><span class="lang-pt">Lavan Ouve <span class="k k-tan-lt">as Palavras</span> que Rivqah Diz Sobre <span class="k k-tan-lt">as Palavras</span> do Servo</span><span class="lang-en">Lavan Hears <span class="k k-tan-lt">the Words</span> that Rivqah Says About <span class="k k-tan-lt">the Words</span> of the Servant</span></h5>
+<h5><span class="lang-pt">Lavan Ouve <span class="k-peach-lt">as Palavras</span> que Rivqah Diz Sobre <span class="k-peach-lt">as Palavras</span> do Servo</span><span class="lang-en">Lavan Hears <span class="k-peach-lt">the Words</span> that Rivqah Says About <span class="k-peach-lt">the Words</span> of the Servant</span></h5>
 </div>
 <div class="macro-inner">
 <span class="macro-pill-light"><span class="lang-pt">Genesis 24:34-49</span><span class="lang-en">Genesis 24:34-49</span></span>
-<h5><span class="lang-pt">O Servo <span class="k k-tan-lt">Fala Suas Palavras</span></span><span class="lang-en">The Servant <span class="k k-tan-lt">Speaks His Words</span></span></h5>
+<h5><span class="lang-pt">O Servo <span class="k-peach-lt">Fala Suas Palavras</span></span><span class="lang-en">The Servant <span class="k-peach-lt">Speaks His Words</span></span></h5>
 <ul class="bullets">
 <li><b><span class="lang-pt">24:34-41</span><span class="lang-en">24:34-41</span></b> <span class="lang-pt">O servo reconta sua conversa com Avraham (veja v. 1-9)</span><span class="lang-en">The servant recounts his conversation with Avraham (see v. 1-9)</span></li>
 <li><b><span class="lang-pt">24:42-28</span><span class="lang-en">24:42-28</span></b> <span class="lang-pt">O servo reconta seu encontro com Rivqah (veja v. 10-14)</span><span class="lang-en">The servant recounts his meeting with Rivqah (see v. 10-14)</span></li>
@@ -84,7 +206,7 @@
 </div>
 <div class="macro-inner">
 <span class="macro-pill-light"><span class="lang-pt">Genesis 24:50-51</span><span class="lang-en">Genesis 24:50-51</span></span>
-<h5><span class="lang-pt">Lavan: “<span class="k k-tan-lt">A palavra</span> saiu de Yahweh ... que seja como ele <span class="k k-tan-lt">falou</span>.”</span><span class="lang-en">Lavan: “<span class="k k-tan-lt">The word</span> has come out from Yahweh ... let it be as he has <span class="k k-tan-lt">spoken</span>.”</span></h5>
+<h5><span class="lang-pt">Lavan: “<span class="k-peach-lt">A palavra</span> saiu de Yahweh ... que seja como ele <span class="k-peach-lt">falou</span>.”</span><span class="lang-en">Lavan: “<span class="k-peach-lt">The word</span> has come out from Yahweh ... let it be as he has <span class="k-peach-lt">spoken</span>.”</span></h5>
 </div>
 </div>
 <div class="macro-outer-gray reveal">
@@ -92,12 +214,12 @@
 <h4><span class="lang-pt">Rivqah, a Bênção, e a Jornada de Volta a Canaã</span><span class="lang-en">Rivqah, the Blessing, and the Journey Back to Canaan</span></h4>
 <div class="macro-inner">
 <span class="macro-pill-light"><span class="lang-pt">Genesis 24:52-61</span><span class="lang-en">Genesis 24:52-61</span></span>
-<h5><span class="lang-pt">O Servo Pergunta a Rivqah, Juntos Eles Jornadeiam de Volta a Canaã</span><span class="lang-en">The Servant Asks Rivqah, Together They Journey Back to Canaan</span></h5>
+<h5><span class="lang-pt">O Servo Pergunta a Rivqah, Juntos Eles Viajam de Volta a Canaã</span><span class="lang-en">The Servant Asks Rivqah, Together They Journey Back to Canaan</span></h5>
 <ul class="bullets">
 <li><b><span class="lang-pt">24:52-54a</span><span class="lang-en">24:52-54a</span></b> <span class="lang-pt">O servo dá muitos tesouros a Rivqah</span><span class="lang-en">The servant gives Rivqah many treasures</span></li>
 <li><b><span class="lang-pt">24:54b-58</span><span class="lang-en">24:54b-58</span></b> <span class="lang-pt">Rivqah concorda em ir com o servo</span><span class="lang-en">Rivqah agrees to go with the servant</span></li>
-<li><b><span class="lang-pt">24:59-61</span><span class="lang-en">24:59-61</span></b> <span class="lang-pt"><span class="k k-purple-lt">“E eles abençoaram Rivqah: 'Que você se torne milhares de multidões!'”</span></span><span class="lang-en"><span class="k k-purple-lt">“And they blessed Rivqah: 'May you become thousands of multitudes!'”</span></span></li>
-<li><b><span class="lang-pt">24:61</span><span class="lang-en">24:61</span></b> <span class="lang-pt"><span class="k k-rose-lt">“E Rivqah se levantou ... e ela foi atrás do homem ... e ele a tomou e ele foi.”</span></span><span class="lang-en"><span class="k k-rose-lt">“And Rivqah arose ... and she went after the man ... and he took her and he went.”</span></span></li>
+<li><b><span class="lang-pt">24:59-61</span><span class="lang-en">24:59-61</span></b> <span class="lang-pt"><span class="k-lilac">“E eles abençoaram Rivqah: 'Que você se torne milhares de multidões!'”</span></span><span class="lang-en"><span class="k-lilac">“And they blessed Rivqah: 'May you become thousands of multitudes!'”</span></span></li>
+<li><b><span class="lang-pt">24:61</span><span class="lang-en">24:61</span></b> <span class="lang-pt"><span class="k-rose-lt">“E Rivqah se levantou ... e ela foi atrás do homem ... e ele a tomou e ele foi.”</span></span><span class="lang-en"><span class="k-rose-lt">“And Rivqah arose ... and she went after the man ... and he took her and he went.”</span></span></li>
 </ul>
 </div>
 <div class="macro-inner">
@@ -105,7 +227,7 @@
 <h5><span class="lang-pt">O Servo e Rivqah Chegam em Canaã e Encontram Yitskhaq</span><span class="lang-en">The Servant and Rivqah Arrive in Canaan and Meet Yitskhaq</span></h5>
 <ul class="bullets">
 <li><b><span class="lang-pt">24:62-64</span><span class="lang-en">24:62-64</span></b> <span class="lang-pt">O retorno do servo a Yitskhaq junto a um poço</span><span class="lang-en">The servant’s return to Yitskhaq at a well</span></li>
-<li><b><span class="lang-pt">24:63</span><span class="lang-en">24:63</span></b> <span class="lang-pt">“E Yitskhaq veio do <span class="k k-blue-lt">‘Poço</span> da Vida de Ver’ ... e <span class="k k-blue-lt">camelos</span> estavam vindo”</span><span class="lang-en">“And Yitskhaq came from <span class="k k-blue-lt">the 'Well</span> of Life of Seeing' ... and <span class="k k-blue-lt">camels</span> were coming”</span></li>
+<li><b><span class="lang-pt">24:63</span><span class="lang-en">24:63</span></b> <span class="lang-pt">“E Yitskhaq veio do <span class="k-sky-lt">‘Poço</span> da Vida de Ver’ ... e <span class="k-sky-lt">camelos</span> estavam vindo”</span><span class="lang-en">“And Yitskhaq came from <span class="k-sky-lt">the 'Well</span> of Life of Seeing' ... and <span class="k-sky-lt">camels</span> were coming”</span></li>
 <li><b><span class="lang-pt">24:65</span><span class="lang-en">24:65</span></b> <span class="lang-pt">Diálogo</span><span class="lang-en">Dialogue</span></li>
 <li><b><span class="lang-pt">24:66-67</span><span class="lang-en">24:66-67</span></b> <span class="lang-pt">Yitskhaq se casa com Rivqah e encontra conforto</span><span class="lang-en">Yitskhaq marries Rivqah and finds comfort</span></li>
 </ul>
@@ -115,41 +237,41 @@
 <!-- ================= TRANSLATION GEN 24:1-9 ================= -->
 <h2 class="section reveal"><span class="lang-pt">Tradução e Design Literário de Gênesis 24:1-9</span><span class="lang-en">Translation and Literary Design of Genesis 24:1-9</span></h2>
 <div class="stanza-box reveal">
-<p class="v-line"><sup class="vs"><span class="lang-pt">1</span><span class="lang-en">1</span></sup> <span class="lang-pt">Agora, <span class="k k-blue-lt">Avraham</span> era velho,</span><span class="lang-en">Now, <span class="k k-blue-lt">Avraham</span> was old,</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">1</span><span class="lang-en">1</span></sup> <span class="lang-pt">Agora, <span class="t-blue">Avraham</span> era velho,</span><span class="lang-en">Now, <span class="t-blue">Avraham</span> was old,</span></p>
 <p class="v-line"><span class="lang-pt">avançando em dias,</span><span class="lang-en">going on in days,</span></p>
-<p class="v-line"><span class="lang-pt">e Yahweh havia <span class="k k-purple-lt">abençoado (<span class="heb">בָּרַךְ</span>)</span> <span class="k k-blue-lt">Avraham</span> em tudo.</span><span class="lang-en">and Yahweh had <span class="k k-purple-lt">blessed (<span class="heb">בָּרַךְ</span>)</span> <span class="k k-blue-lt">Avraham</span> in everything.</span></p>
+<p class="v-line"><span class="lang-pt">e Yahweh havia <span class="k-lilac">abençoado (<span class="heb">בָּרַךְ</span>)</span> <span class="k-lilac">Avraham</span> em tudo.</span><span class="lang-en">and Yahweh had <span class="k-lilac">blessed (<span class="heb">בָּרַךְ</span>)</span> <span class="t-blue">Avraham</span> in everything.</span></p>
 <div class="speaker-box-black">
-<p class="v-line"><sup class="vs"><span class="lang-pt">2</span><span class="lang-en">2</span></sup> <span class="lang-pt"><span class="k k-gray-dk">E Avraham disse ao seu servo</span>,</span><span class="lang-en"><span class="k k-gray-dk">And Avraham said to his servant</span>,</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">2</span><span class="lang-en">2</span></sup> <span class="lang-pt"><span class="k-slate-pill">E Avraham disse ao seu servo</span>,</span><span class="lang-en"><span class="k-slate-pill">And Avraham said to his servant</span>,</span></p>
 <p class="v-line"><span class="lang-pt">o mais velho da sua casa,</span><span class="lang-en">the old one of his house,</span></p>
 <p class="v-line"><span class="lang-pt">que governava sobre tudo o que lhe pertencia,</span><span class="lang-en">who ruled over all that belonged to him,</span></p>
-<p class="v-line i1"><span class="lang-pt">“</span><span class="lang-en">“</span><span class="lang-pt">Por favor, <span class="k k-green-dk">coloque a sua mão debaixo da minha coxa (<span class="heb">ירך</span>)</span>,</span><span class="lang-en">Please <span class="k k-green-dk">place your hand under my thigh (<span class="heb">ירך</span>)</span>,</span></p>
-<p class="v-line"><sup class="vs"><span class="lang-pt">3</span><span class="lang-en">3</span></sup> <span class="lang-pt">para que eu possa fazer você <span class="k k-green-lt">jurar um juramento</span> por <span class="k k-purple-lt">Yahweh, o Elohim dos céus e o Elohim da terra</span>:</span><span class="lang-en">so I can make you <span class="k k-green-lt">swear an oath</span> by <span class="k k-purple-lt">Yahweh, the Elohim of the skies and the Elohim of the land</span>:</span></p>
-<p class="v-line"><span class="lang-pt"><span class="k k-rose-lt">Você não tomará uma</span> <span class="k k-rose-dk">mulher</span> <span class="k k-rose-lt">para o meu filho</span> das filhas dos cananeus,</span><span class="lang-en"><span class="k k-rose-lt">You will not take a</span> <span class="k k-rose-dk">woman</span> <span class="k k-rose-lt">for my son</span> from the daughters of the Canaanites,</span></p>
+<p class="v-line i1"><span class="lang-pt">“</span><span class="lang-en">“</span><span class="lang-pt">Por favor, <span class="k-moss-dk">coloque a sua mão debaixo da minha coxa (<span class="heb">ירך</span>)</span>,</span><span class="lang-en">Please <span class="k-moss-dk">place your hand under my thigh (<span class="heb">ירך</span>)</span>,</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">3</span><span class="lang-en">3</span></sup> <span class="lang-pt">para que eu possa fazer você <span class="k-mint-lt">jurar um juramento</span> por <span class="k-mint-lt">Yahweh, o Elohim dos céus e o Elohim da terra</span>:</span><span class="lang-en">so I can make you <span class="k-mint-lt">swear an oath</span> by <span class="t-purple">Yahweh, the Elohim of the skies and the Elohim of the land</span>:</span></p>
+<p class="v-line"><span class="lang-pt"><span class="k-rose-lt">Você não tomará uma</span> <span class="k-rose-lt">mulher</span> <span class="k-rose-lt">para o meu filho</span> das filhas dos cananeus,</span><span class="lang-en"><span class="k-rose-lt">You will not take a</span> <span class="k-rose-dk">woman</span> <span class="k-rose-lt">for my son</span> from the daughters of the Canaanites,</span></p>
 <p class="v-line"><span class="lang-pt">em cujo meio estou habitando.</span><span class="lang-en">in whose midst I am dwelling.</span></p>
-<p class="v-line"><sup class="vs"><span class="lang-pt">4</span><span class="lang-en">4</span></sup> <span class="lang-pt">Ao contrário, <span class="k k-tan-lt">para a minha terra e para a minha família</span> você irá,</span><span class="lang-en">Rather, <span class="k k-tan-lt">to my land and to my family</span> you will go,</span></p>
-<p class="v-line"><span class="lang-pt">e <span class="k k-rose-lt">você tomará uma</span> <span class="k k-rose-dk">mulher</span> <span class="k k-rose-lt">para o meu filho, para Yitskhaq</span>.”</span><span class="lang-en">and <span class="k k-rose-lt">you will take a</span> <span class="k k-rose-dk">woman</span> <span class="k k-rose-lt">for my son, for Yitskhaq</span>.”</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">4</span><span class="lang-en">4</span></sup> <span class="lang-pt">Ao contrário, <span class="k-umber-lt">para a minha terra e para a minha família</span> você irá,</span><span class="lang-en">Rather, <span class="k-umber-lt">to my land and to my family</span> you will go,</span></p>
+<p class="v-line"><span class="lang-pt">e <span class="k-rose-lt">você tomará uma</span> <span class="k-rose-lt">mulher</span> <span class="k-rose-lt">para o meu filho, para Yitskhaq</span>.”</span><span class="lang-en">and <span class="k-rose-lt">you will take a</span> <span class="k-rose-dk">woman</span> <span class="k-rose-lt">for my son, for Yitskhaq</span>.”</span></p>
 </div>
 <div class="speaker-box-gray">
-<p class="v-line"><sup class="vs"><span class="lang-pt">5</span><span class="lang-en">5</span></sup> <span class="lang-pt"><span class="k k-gray-dk">E o servo lhe disse</span>,</span><span class="lang-en"><span class="k k-gray-dk">And the servant said to him</span>,</span></p>
-<p class="v-line i1"><span class="lang-pt">“</span><span class="lang-en">“</span><span class="lang-pt">Talvez <span class="k k-rose-dk">a mulher</span> não esteja disposta a ir atrás de mim para esta terra.</span><span class="lang-en">Perhaps <span class="k k-rose-dk">the woman</span> will not be willing to go after me to this land.</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">5</span><span class="lang-en">5</span></sup> <span class="lang-pt"><span class="k-slate-pill">E o servo lhe disse</span>,</span><span class="lang-en"><span class="k-slate-pill">And the servant said to him</span>,</span></p>
+<p class="v-line i1"><span class="lang-pt">“</span><span class="lang-en">“</span><span class="lang-pt">Talvez <span class="k-rose-dk">a mulher</span> não esteja disposta a ir atrás de mim para esta terra.</span><span class="lang-en">Perhaps <span class="k-rose-dk">the woman</span> will not be willing to go after me to this land.</span></p>
 <p class="v-line"><span class="lang-pt"><span class="t-teal">Devo eu fazer o seu filho voltar</span> para a terra de onde você saiu?</span><span class="lang-en"><span class="t-teal">Should I return your son</span> to the land which you came out from there?</span></p>
 </div>
 <div class="speaker-box-black">
-<p class="v-line"><sup class="vs"><span class="lang-pt">6</span><span class="lang-en">6</span></sup> <span class="lang-pt"><span class="k k-gray-dk">E Avraham lhe disse</span>,</span><span class="lang-en"><span class="k k-gray-dk">And Avraham said to him</span>,</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">6</span><span class="lang-en">6</span></sup> <span class="lang-pt"><span class="k-slate-pill">E Avraham lhe disse</span>,</span><span class="lang-en"><span class="k-slate-pill">And Avraham said to him</span>,</span></p>
 <p class="v-line i1"><span class="lang-pt">“</span><span class="lang-en">“</span><span class="lang-pt">Cuide de si mesmo, para que <span class="t-teal">você não faça o meu filho voltar para lá</span>.</span><span class="lang-en">Keep watch of yourself, so that <span class="t-teal">you don't return my son to there</span>.</span></p>
-<p class="v-line"><sup class="vs"><span class="lang-pt">7</span><span class="lang-en">7</span></sup> <span class="lang-pt"><span class="k k-purple-lt">Yahweh, o Elohim dos céus</span>,</span><span class="lang-en"><span class="k k-purple-lt">Yahweh the Elohim of the skies</span>,</span></p>
-<p class="v-line i1"><span class="lang-pt">que me tirou da casa do meu pai e <span class="k k-tan-lt">da terra da minha família</span>,</span><span class="lang-en">who took me from the house of my father and <span class="k k-tan-lt">from the land of my family</span>,</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">7</span><span class="lang-en">7</span></sup> <span class="lang-pt"><span class="t-purple">Yahweh, o Elohim dos céus</span>,</span><span class="lang-en"><span class="t-purple">Yahweh the Elohim of the skies</span>,</span></p>
+<p class="v-line i1"><span class="lang-pt">que me tirou da casa do meu pai e <span class="k-umber-lt">da terra da minha família</span>,</span><span class="lang-en">who took me from the house of my father and <span class="k-umber-lt">from the land of my family</span>,</span></p>
 <p class="v-line i1"><span class="lang-pt">e que falou comigo,</span><span class="lang-en">and who spoke to me,</span></p>
-<p class="v-line i1"><span class="lang-pt">e que <span class="k k-green-lt">jurou um juramento</span> para mim, dizendo,</span><span class="lang-en">and who <span class="k k-green-lt">swore an oath</span> to me, saying,</span></p>
+<p class="v-line i1"><span class="lang-pt">e que <span class="k-mint-lt">jurou um juramento</span> para mim, dizendo,</span><span class="lang-en">and who <span class="k-mint-lt">swore an oath</span> to me, saying,</span></p>
 <p class="v-line i2"><span class="lang-pt">“</span><span class="lang-en">“</span><span class="lang-pt"><span class="t-teal">À sua semente eu darei esta terra</span>.”</span><span class="lang-en"><span class="t-teal">To your seed I will give this land</span>.”</span></p>
 <p class="v-line"><span class="lang-pt">ele enviará o seu mensageiro diante de você,</span><span class="lang-en">he will send his messenger before you,</span></p>
-<p class="v-line"><span class="lang-pt"><span class="k k-rose-lt">para que você possa tomar uma</span> <span class="k k-rose-dk">mulher</span> <span class="k k-rose-lt">para o meu filho</span> de lá.</span><span class="lang-en"><span class="k k-rose-lt">so you can take a</span> <span class="k k-rose-dk">woman</span> <span class="k k-rose-lt">for my son</span> from there.</span></p>
-<p class="v-line"><sup class="vs"><span class="lang-pt">8</span><span class="lang-en">8</span></sup> <span class="lang-pt">E se <span class="k k-rose-lt">a mulher não estiver disposta a ir atrás de você de lá</span>,</span><span class="lang-en">And <span class="k k-rose-lt">if the woman is not willing to go after you from there</span>,</span></p>
-<p class="v-line"><span class="lang-pt">então você estará inocente <span class="k k-green-lt">deste juramento</span>.</span><span class="lang-en">then you are innocent from <span class="k k-green-lt">this oath</span>.</span></p>
+<p class="v-line"><span class="lang-pt"><span class="k-rose-lt">para que você possa tomar uma</span> <span class="k-rose-lt">mulher</span> <span class="k-rose-lt">para o meu filho</span> de lá.</span><span class="lang-en"><span class="k-rose-lt">so you can take a</span> <span class="k-rose-dk">woman</span> <span class="k-rose-lt">for my son</span> from there.</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">8</span><span class="lang-en">8</span></sup> <span class="lang-pt">E se <span class="t-rose">a mulher não estiver disposta a ir atrás de você de lá</span>,</span><span class="lang-en">And <span class="t-rose">if the woman is not willing to go after you from there</span>,</span></p>
+<p class="v-line"><span class="lang-pt">então você estará inocente <span class="k-mint-lt">deste juramento</span>.</span><span class="lang-en">then you are innocent from <span class="k-mint-lt">this oath</span>.</span></p>
 <p class="v-line"><span class="lang-pt">Somente <span class="t-teal">não faça o meu filho voltar para lá</span>.</span><span class="lang-en">Only <span class="t-teal">do not return my son to there</span>.</span></p>
 </div>
-<p class="v-line"><sup class="vs"><span class="lang-pt">9</span><span class="lang-en">9</span></sup> <span class="lang-pt">E o servo <span class="k k-green-dk">colocou a sua mão debaixo da coxa (ירך)</span> de Avraham, seu mestre,</span><span class="lang-en">And the servant <span class="k k-green-dk">placed his hand under the thigh (ירך)</span> of Avraham his master,</span></p>
-<p class="v-line"><span class="lang-pt">e ele <span class="k k-green-lt">jurou um juramento</span> a ele sobre este assunto.</span><span class="lang-en">and he <span class="k k-green-lt">swore an oath</span> to him about this matter.</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">9</span><span class="lang-en">9</span></sup> <span class="lang-pt">E o servo <span class="k-moss-dk">colocou a sua mão debaixo da coxa (ירך)</span> de Avraham, seu mestre,</span><span class="lang-en">And the servant <span class="k-moss-dk">placed his hand under the thigh (ירך)</span> of Avraham his master,</span></p>
+<p class="v-line"><span class="lang-pt">e ele <span class="k-mint-lt">jurou um juramento</span> a ele sobre este assunto.</span><span class="lang-en">and he <span class="k-mint-lt">swore an oath</span> to him about this matter.</span></p>
 </div>
 <p class="caption reveal"><span class="lang-pt"><em>Gênesis 24:1-28</em>. Tradução e Design Literário por Tim Mackie para a BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Genesis 24:1-28</em>. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
 <!-- ================= MACRO DESIGN GEN 24:10-28 ================= -->
@@ -157,12 +279,12 @@
 <div class="macro-outer-gray reveal">
 <span class="macro-pill-dark"><span class="lang-pt">Genesis 24:10-14</span><span class="lang-en">Genesis 24:10-14</span></span>
 <ul class="bullets pt-2">
-<li><b><span class="lang-pt">24:10</span><span class="lang-en">24:10</span></b> <span class="lang-pt">O servo monta camelos sobre os rios até <span class="k k-blue-lt">um poço</span></span><span class="lang-en">The servant rides camels over the rivers <span class="k k-blue-lt">to a well</span></span></li>
-<li><b><span class="lang-pt">24:11</span><span class="lang-en">24:11</span></b> <span class="lang-pt">O servo com seus camelos <span class="k k-blue-lt">junto a um poço</span> fora da cidade</span><span class="lang-en">The servant with his camels <span class="k k-blue-lt">by a well</span> outside the city</span></li>
+<li><b><span class="lang-pt">24:10</span><span class="lang-en">24:10</span></b> <span class="lang-pt">O servo monta camelos sobre os rios até <span class="k-azure-lt">um poço</span></span><span class="lang-en">The servant rides camels over the rivers <span class="k-azure-lt">to a well</span></span></li>
+<li><b><span class="lang-pt">24:11</span><span class="lang-en">24:11</span></b> <span class="lang-pt">O servo com seus camelos <span class="k-azure-lt">junto a um poço</span> fora da cidade</span><span class="lang-en">The servant with his camels <span class="k-azure-lt">by a well</span> outside the city</span></li>
 <li><b><span class="lang-pt">24:12-14</span><span class="lang-en">24:12-14</span></b> <span class="lang-pt">A oração do servo a Yahweh</span><span class="lang-en">The servant's prayer to Yahweh</span>
 <ul class="bullets mt-2 pl-2">
-<li><span class="lang-pt"><span class="k k-brown-dk">“O Yahweh, Elohim do meu mestre Avraham.”</span></span><span class="lang-en"><span class="k k-brown-dk">"O Yahweh, Elohim of my master Avraham."</span></span></li>
-<li><span class="lang-pt">O teste: <span class="k k-blue-lt">Conhecer</span> <span class="k k-blue-lt">mulher</span> <span class="k k-blue-lt">no poço</span> &gt; <span class="k k-blue-lt">Ela dá de beber e dá água aos camelos</span></span><span class="lang-en">The test: <span class="k k-blue-lt">Meet</span> <span class="k k-blue-lt">woman</span> <span class="k k-blue-lt">at the well</span> &gt; <span class="k k-blue-lt">She gives a drink and waters the camels</span></span></li>
+<li><span class="lang-pt"><span class="k-bark-dk2">“O Yahweh, Elohim do meu mestre Avraham.”</span></span><span class="lang-en"><span class="k-bark-dk2">"O Yahweh, Elohim of my master Avraham."</span></span></li>
+<li><span class="lang-pt">O teste: <span class="k-azure-lt">Conhecer</span> <span class="k-azure-lt">mulher</span> <span class="k-azure-lt">no poço</span> &gt; <span class="k-azure-lt">Ela dá de beber e dá água aos camelos</span></span><span class="lang-en">The test: <span class="k-azure-lt">Meet</span> <span class="k-sky-dk">woman</span> <span class="k-azure-lt">at the well</span> &gt; <span class="k-azure-lt">She gives a drink and waters the camels</span></span></li>
 </ul>
 </li>
 </ul>
@@ -170,9 +292,9 @@
 <div class="macro-outer-gray reveal">
 <span class="macro-pill-dark"><span class="lang-pt">Genesis 24:15-21</span><span class="lang-en">Genesis 24:15-21</span></span>
 <ul class="bullets pt-2">
-<li><b><span class="lang-pt">24:15-16</span><span class="lang-en">24:15-16</span></b> <span class="lang-pt"><span class="k k-blue-lt">Uma mulher aparece no poço: Rivqah, a de Avraham</span> <span class="k k-purple-lt">sobrinha-neta</span></span><span class="lang-en"><span class="k k-blue-lt">A woman appears at the well: Rivqah, Avraham's</span> <span class="k k-purple-lt">great-niece</span></span></li>
-<li><b><span class="lang-pt">24:17-20</span><span class="lang-en">24:17-20</span></b> <span class="lang-pt">O teste cumprido: <span class="k k-blue-lt">Ela dá de beber e dá água aos camelos</span></span><span class="lang-en">The test fulfilled: <span class="k k-blue-lt">She gives drink and waters the camels</span></span></li>
-<li><b><span class="lang-pt">24:21</span><span class="lang-en">24:21</span></b> <span class="lang-pt">O servo observa e espera para ver se <span class="k k-orange-lt">Yahweh tornou o seu caminho bem-sucedido</span></span><span class="lang-en">The servant watches and waits to see if <span class="k k-orange-lt">Yahweh has made his way successful</span></span></li>
+<li><b><span class="lang-pt">24:15-16</span><span class="lang-en">24:15-16</span></b> <span class="lang-pt"><span class="k-azure-lt">Uma mulher aparece no poço: Rivqah, a de Avraham</span> <span class="k-azure-lt">sobrinha-neta</span></span><span class="lang-en"><span class="k-azure-lt">A woman appears at the well: Rivqah, Avraham's</span> <span class="k-sky-dk">great-niece</span></span></li>
+<li><b><span class="lang-pt">24:17-20</span><span class="lang-en">24:17-20</span></b> <span class="lang-pt">O teste cumprido: <span class="k-azure-lt">Ela dá de beber e dá água aos camelos</span></span><span class="lang-en">The test fulfilled: <span class="k-azure-lt">She gives drink and waters the camels</span></span></li>
+<li><b><span class="lang-pt">24:21</span><span class="lang-en">24:21</span></b> <span class="lang-pt">O servo observa e espera para ver se <span class="k-peach-lt">Yahweh tornou o seu caminho bem-sucedido</span></span><span class="lang-en">The servant watches and waits to see if <span class="k-peach-lt">Yahweh has made his way successful</span></span></li>
 </ul>
 </div>
 <div class="macro-outer-gray reveal">
@@ -182,14 +304,14 @@
 <li><b><span class="lang-pt">24:23-25</span><span class="lang-en">24:23-25</span></b> <span class="lang-pt">Diálogo entre o servo e Rivqah</span><span class="lang-en">Dialogue between servant and Rivqah</span>
 <ul class="bullets mt-2 pl-2">
 <li><b><span class="lang-pt">24:23</span><span class="lang-en">24:23</span></b> <span class="lang-pt">Servo: (a) De quem você é filha? (b) Há um lugar para ficar?</span><span class="lang-en">Servant: (a) Whose daughter are you? (b) Is there a place to stay?</span></li>
-<li><b><span class="lang-pt">24:24</span><span class="lang-en">24:24</span></b> <span class="lang-pt">Rivqah: (a) Eu sou <span class="k k-blue-lt">filha</span> de Betuel, nascido para Nakhor</span><span class="lang-en">Rivqah: (a) I am <span class="k k-blue-lt">daughter</span> of Betuel, born to Nakhor</span></li>
+<li><b><span class="lang-pt">24:24</span><span class="lang-en">24:24</span></b> <span class="lang-pt">Rivqah: (a) Eu sou <span class="k-sky-dk">filha</span> de Betuel, nascido para Nakhor</span><span class="lang-en">Rivqah: (a) I am <span class="k-sky-dk">daughter</span> of Betuel, born to Nakhor</span></li>
 <li><b><span class="lang-pt">24:25</span><span class="lang-en">24:25</span></b> <span class="lang-pt">Rivqah: (b) Nós temos um lugar para ficar</span><span class="lang-en">Rivqah: (b) We have a place to stay</span></li>
 </ul>
 </li>
-<li><b><span class="lang-pt">24:26-27</span><span class="lang-en">24:26-27</span></b> <span class="lang-pt"><span class="k k-gray-lt">O servo se curva e adora Yahweh</span></span><span class="lang-en"><span class="k k-gray-lt">The servant bows and worships Yahweh</span></span>
+<li><b><span class="lang-pt">24:26-27</span><span class="lang-en">24:26-27</span></b> <span class="lang-pt"><span class="k-mist-lt">O servo se curva e adora Yahweh</span></span><span class="lang-en"><span class="k-mist-lt">The servant bows and worships Yahweh</span></span>
 <ul class="bullets mt-2 pl-2">
-<li><span class="lang-pt"><span class="k k-brown-dk">"Bendito seja Yahweh, Elohim do meu mestre Avraham."</span></span><span class="lang-en"><span class="k k-brown-dk">"Blessed be Yahweh, Elohim of my master Avraham."</span></span></li>
-<li><span class="lang-pt"><span class="k k-orange-lt">Yahweh me conduziu no caminho</span> para a casa do irmão do meu <span class="k k-purple-lt">mestre</span>.</span><span class="lang-en"><span class="k k-orange-lt">Yahweh had led me on the way</span> to the house of my <span class="k k-purple-lt">master's</span> brother."</span></li>
+<li><span class="lang-pt"><span class="k-bark-dk2">"Bendito seja Yahweh, Elohim do meu mestre Avraham."</span></span><span class="lang-en"><span class="k-bark-dk2">"Blessed be Yahweh, Elohim of my master Avraham."</span></span></li>
+<li><span class="lang-pt"><span class="k-peach-lt">Yahweh me conduziu no caminho</span> para a casa do irmão do meu <span class="k-peach-lt">mestre</span>.</span><span class="lang-en"><span class="k-peach-lt">Yahweh had led me on the way</span> to the house of my <span class="k-sky-dk">master's</span> brother."</span></li>
 </ul>
 </li>
 </ul>
@@ -198,252 +320,252 @@
 <!-- ================= TRANSLATION GEN 24:10-67 ================= -->
 <h2 class="section reveal"><span class="lang-pt">Tradução e Design Literário de Gênesis 24:10-67</span><span class="lang-en">Translation and Literary Design of Genesis 24:10-67</span></h2>
 <div class="stanza-box reveal">
-<p class="v-line"><sup class="vs"><span class="lang-pt">10</span><span class="lang-en">10</span></sup> <span class="lang-pt">E o servo tomou <span class="k k-orange-lt">dez camelos</span> dos <span class="k k-orange-lt">camelos</span> do seu mestre e ele foi</span><span class="lang-en">And the servant took <span class="k k-orange-lt">ten camels</span> from the <span class="k k-orange-lt">camels</span> of his master and he went</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">10</span><span class="lang-en">10</span></sup> <span class="lang-pt">E o servo tomou <span class="k-peach-lt">dez camelos</span> dos <span class="k-peach-lt">camelos</span> do seu mestre e ele foi</span><span class="lang-en">And the servant took <span class="k-peach-lt">ten camels</span> from the <span class="k-peach-lt">camels</span> of his master and he went</span></p>
 <p class="v-line"><span class="lang-pt">e todo o bem do seu mestre estava na sua mão</span><span class="lang-en">and all the good of his master was in his hand</span></p>
 <p class="v-line"><span class="lang-pt">e ele se levantou e ele foi</span><span class="lang-en">and he got up and he went</span></p>
-<p class="v-line i1"><span class="lang-pt">para a terra de Arã- <span class="k k-blue-lt">Naharayim</span> (= “Arã dos <span class="k k-blue-lt">Dois Rios</span>”),</span><span class="lang-en">to the land of Aram- <span class="k k-blue-lt">Naharayim</span> (= “Aram of <span class="k k-blue-lt">Two Rivers</span>”),</span></p>
-<p class="v-line i1"><span class="lang-pt">para a cidade de <span class="k k-teal-dk">Nakhor</span>.</span><span class="lang-en">to the city of <span class="k k-teal-dk">Nakhor</span>.</span></p>
+<p class="v-line i1"><span class="lang-pt">para a terra de Arã- <span class="t-indigo">Naharayim</span> (= “Arã dos <span class="t-indigo">Dois Rios</span>”),</span><span class="lang-en">to the land of Aram- <span class="t-indigo">Naharayim</span> (= “Aram of <span class="k-azure-lt">Two Rivers</span>”),</span></p>
+<p class="v-line i1"><span class="lang-pt">para a cidade de <span class="k-teal-dk">Nakhor</span>.</span><span class="lang-en">to the city of <span class="k-teal-dk">Nakhor</span>.</span></p>
 <hr class="v-div"/>
-<p class="v-line"><sup class="vs"><span class="lang-pt">11</span><span class="lang-en">11</span></sup> <span class="lang-pt">E ele fez <span class="k k-orange-lt">os camelos</span> se ajoelharem fora da cidade,</span><span class="lang-en">And he made <span class="k k-orange-lt">the camels</span> kneel outside the city,</span></p>
-<p class="v-line"><span class="lang-pt">em <span class="k k-blue-lt">um poço de água</span>,</span><span class="lang-en">at <span class="k k-blue-lt">a well of water</span>,</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">11</span><span class="lang-en">11</span></sup> <span class="lang-pt">E ele fez <span class="k-peach-lt">os camelos</span> se ajoelharem fora da cidade,</span><span class="lang-en">And he made <span class="k-peach-lt">the camels</span> kneel outside the city,</span></p>
+<p class="v-line"><span class="lang-pt">em <span class="k-azure-lt">um poço de água</span>,</span><span class="lang-en">at <span class="k-azure-lt">a well of water</span>,</span></p>
 <p class="v-line"><span class="lang-pt">na hora da tarde,</span><span class="lang-en">at the time of evening,</span></p>
-<p class="v-line"><span class="lang-pt">na hora em que as mulheres que buscam <span class="k k-blue-lt">água</span> saem.</span><span class="lang-en">at the time when the women who get <span class="k k-blue-lt">water</span> come out.</span></p>
+<p class="v-line"><span class="lang-pt">na hora em que as mulheres que buscam <span class="k-azure-lt">água</span> saem.</span><span class="lang-en">at the time when the women who get <span class="k-azure-lt">water</span> come out.</span></p>
 <hr class="v-div"/>
 <p class="v-line"><sup class="vs"><span class="lang-pt">12</span><span class="lang-en">12</span></sup> <span class="lang-pt">E ele disse,</span><span class="lang-en">And he said,</span></p>
-<p class="v-line i1"><span class="lbl"><span class="lang-pt">A</span><span class="lang-en">A</span></span><span class="lang-pt">“<span class="k k-purple-lt">Yahweh, Elohim do meu mestre Avraham</span>,</span><span class="lang-en">“<span class="k k-purple-lt">Yahweh, Elohim of my master Avraham</span>,</span></p>
+<p class="v-line i1"><span class="lbl"><span class="lang-pt">A</span><span class="lang-en">A</span></span><span class="lang-pt">“<span class="t-purple">Yahweh, Elohim do meu mestre Avraham</span>,</span><span class="lang-en">“<span class="t-purple">Yahweh, Elohim of my master Avraham</span>,</span></p>
 <p class="v-line i1"><span class="lang-pt">por favor, faça acontecer hoje diante de mim,</span><span class="lang-en">Please make it happen today before me,</span></p>
-<p class="v-line i1"><span class="lang-pt">e <span class="k k-purple-dk">aja com lealdade amorosa para com o meu mestre</span> Avraham.</span><span class="lang-en">and <span class="k k-purple-dk">act with loyal-love toward my master</span> Avraham.</span></p>
-<p class="v-line"><sup class="vs"><span class="lang-pt">13</span><span class="lang-en">13</span></sup> <span class="lang-pt">Olha, eu estou de pé <span class="k k-blue-lt">junto à fonte da água</span>,</span><span class="lang-en">Look, I am standing at the <span class="k k-blue-lt">spring of the water</span>,</span></p>
-<p class="v-line"><span class="lang-pt">e as filhas dos homens da cidade estão saindo para buscar <span class="k k-blue-lt">água</span>.</span><span class="lang-en">and the daughters of the men of the city are coming out to get <span class="k k-blue-lt">water</span>.</span></p>
+<p class="v-line i1"><span class="lang-pt">e <span class="k-purple-dk">aja com lealdade amorosa para com o meu mestre</span> Avraham.</span><span class="lang-en">and <span class="k-purple-dk">act with loyal-love toward my master</span> Avraham.</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">13</span><span class="lang-en">13</span></sup> <span class="lang-pt">Olha, eu estou de pé <span class="k-azure-lt">junto à fonte da água</span>,</span><span class="lang-en">Look, I am standing at the <span class="k-azure-lt">spring of the water</span>,</span></p>
+<p class="v-line"><span class="lang-pt">e as filhas dos homens da cidade estão saindo para buscar <span class="k-azure-lt">água</span>.</span><span class="lang-en">and the daughters of the men of the city are coming out to get <span class="k-azure-lt">water</span>.</span></p>
 <p class="v-line"><sup class="vs"><span class="lang-pt">14</span><span class="lang-en">14</span></sup> <span class="lang-pt">E que seja que a jovem a quem eu disser,</span><span class="lang-en">And may it be that the young woman to whom I say,</span></p>
-<p class="v-line i1"><span class="lbl"><span class="lang-pt">B</span><span class="lang-en">B</span></span><span class="lang-pt">“Por favor, abaixe o seu cântaro, para que eu possa <span class="k k-blue-dk">beber</span>.”</span><span class="lang-en">“Please lower your jar, so I can <span class="k k-blue-dk">drink</span>.”</span></p>
+<p class="v-line i1"><span class="lbl"><span class="lang-pt">B</span><span class="lang-en">B</span></span><span class="lang-pt">“Por favor, abaixe o seu cântaro, para que eu possa <span class="k-sky-dk">beber</span>.”</span><span class="lang-en">“Please lower your jar, so I can <span class="k-sky-dk">drink</span>.”</span></p>
 <p class="v-line"><span class="lang-pt">e ela disser,</span><span class="lang-en">and she says,</span></p>
-<p class="v-line i1"><span class="lang-pt">“<span class="k k-blue-dk">Beba</span>! E eu também darei de <span class="k k-blue-dk">beber</span> aos <span class="k k-orange-lt">seus camelos</span>!”</span><span class="lang-en">“<span class="k k-blue-dk">Drink</span>! And I will also give <span class="k k-blue-dk">drink</span> to <span class="k k-orange-lt">your camels</span>!”</span></p>
+<p class="v-line i1"><span class="lang-pt">“<span class="k-sky-dk">Beba</span>! E eu também darei de <span class="k-sky-dk">beber</span> aos <span class="k-sky-dk">seus camelos</span>!”</span><span class="lang-en">“<span class="k-sky-dk">Drink</span>! And I will also give <span class="k-sky-dk">drink</span> to <span class="k-peach-lt">your camels</span>!”</span></p>
 <p class="v-line"><span class="lang-pt">Que ela seja a que você decidiu para o seu servo, para Isaque.</span><span class="lang-en">May she be the one you've decided for your servant, for Isaac.</span></p>
-<p class="v-line i1"><span class="lbl"><span class="lang-pt">A'</span><span class="lang-en">A'</span></span><span class="lang-pt">E por meio dela, <span class="k k-brown-dk">eu saberei</span> que você <span class="k k-purple-lt">agiu com lealdade amorosa em direção ao meu mestre</span>.”</span><span class="lang-en">And by means of her, <span class="k k-brown-dk">I will know</span> that <span class="k k-purple-lt">you have acted with loyal-love toward my master</span>.”</span></p>
+<p class="v-line i1"><span class="lbl"><span class="lang-pt">A'</span><span class="lang-en">A'</span></span><span class="lang-pt">E por meio dela, <span class="k-bark-dk">eu saberei</span> que você <span class="k-bark-dk">agiu com lealdade amorosa em direção ao meu mestre</span>.”</span><span class="lang-en">And by means of her, <span class="k-bark-dk">I will know</span> that <span class="t-purple">you have acted with loyal-love toward my master</span>.”</span></p>
 </div>
 <div class="stanza-box reveal">
 <p class="v-line"><sup class="vs"><span class="lang-pt">15</span><span class="lang-en">15</span></sup> <span class="lang-pt">E aconteceu que, antes de ele terminar de falar,</span><span class="lang-en">And it came about, before he finished speaking,</span></p>
-<p class="v-line i1"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><span class="lang-pt">que olha, <span class="k k-orange-lt">Rivqah</span> saiu,</span><span class="lang-en">that look, <span class="k k-orange-lt">Rivqah</span> came out,</span></p>
-<p class="v-line i2"><span class="lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></span><span class="lang-pt">que nasceu para <span class="k k-purple-lt">Betuel filho de Milkah</span>,</span><span class="lang-en">who was born for <span class="k k-purple-lt">Betuel son of Milkah</span>,</span></p>
-<p class="v-line i2"><span class="lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></span><span class="lang-pt">esposa de <span class="k k-teal-dk">Nakhor, o irmão de Avraham</span>,</span><span class="lang-en">wife of <span class="k k-teal-dk">Nakhor, the brother of Avraham</span>,</span></p>
-<p class="v-line i1"><span class="lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><span class="lang-pt">e <span class="k k-brown-dk">o seu cântaro</span> estava no seu ombro.</span><span class="lang-en">and <span class="k k-brown-dk">her jar</span> was on her shoulder.</span></p>
-<p class="v-line"><sup class="vs"><span class="lang-pt">16</span><span class="lang-en">16</span></sup> <span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><span class="lang-pt">E a <span class="k k-orange-lt">jovem</span> era <span class="k k-blue-lt">boa de ver, muito</span>,</span><span class="lang-en">And the <span class="k k-orange-lt">young woman</span> was <span class="k k-blue-lt">good to see, very much</span>,</span></p>
+<p class="v-line i1"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><span class="lang-pt">que olha, <span class="t-rust">Rivqah</span> saiu,</span><span class="lang-en">that look, <span class="t-rust">Rivqah</span> came out,</span></p>
+<p class="v-line i2"><span class="lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></span><span class="lang-pt">que nasceu para <span class="k-plum-lt">Betuel filho de Milkah</span>,</span><span class="lang-en">who was born for <span class="k-plum-lt">Betuel son of Milkah</span>,</span></p>
+<p class="v-line i2"><span class="lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></span><span class="lang-pt">esposa de <span class="k-teal-dk">Nakhor, o irmão de Avraham</span>,</span><span class="lang-en">wife of <span class="k-teal-dk">Nakhor, the brother of Avraham</span>,</span></p>
+<p class="v-line i1"><span class="lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><span class="lang-pt">e <span class="k-umber-dk">o seu cântaro</span> estava no seu ombro.</span><span class="lang-en">and <span class="k-umber-dk">her jar</span> was on her shoulder.</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">16</span><span class="lang-en">16</span></sup> <span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><span class="lang-pt">E a <span class="t-rust">jovem</span> era <span class="t-rust">boa de ver, muito</span>,</span><span class="lang-en">And the <span class="t-rust">young woman</span> was <span class="k-sky-lt">good to see, very much</span>,</span></p>
 <p class="v-line i1"><span class="lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></span><span class="lang-pt">uma virgem,</span><span class="lang-en">a virgin,</span></p>
 <p class="v-line i1"><span class="lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></span><span class="lang-pt">e um homem não a havia conhecido,</span><span class="lang-en">and a man had not known her,</span></p>
-<p class="v-line"><span class="lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><span class="lang-pt">e ela desceu à fonte e encheu <span class="k k-brown-dk">o seu cântaro</span> e o trouxe para cima,</span><span class="lang-en">and she went down to the spring and filled <span class="k k-brown-dk">her jar</span> and she brought it up,</span></p>
+<p class="v-line"><span class="lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><span class="lang-pt">e ela desceu à fonte e encheu <span class="k-umber-dk">o seu cântaro</span> e o trouxe para cima,</span><span class="lang-en">and she went down to the spring and filled <span class="k-umber-dk">her jar</span> and she brought it up,</span></p>
 <hr class="v-div"/>
 <p class="v-line"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><sup class="vs"><span class="lang-pt">17</span><span class="lang-en">17</span></sup> <span class="lang-pt">e o servo correu para encontrá-la,</span><span class="lang-en">and the servant ran to meet her,</span></p>
 <p class="v-line i1"><span class="lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></span><span class="lang-pt">e ele disse,</span><span class="lang-en">and he said,</span></p>
-<p class="v-line i2"><span class="lang-pt">“Por favor, posso <span class="k k-blue-dk">engolir um pouco de</span> <span class="k k-blue-lt">água</span> do seu cântaro?”</span><span class="lang-en">“Please, may I <span class="k k-blue-dk">swallow a bit of</span> <span class="k k-blue-lt">water</span> from your jar?”</span></p>
+<p class="v-line i2"><span class="lang-pt">“Por favor, posso <span class="k-sky-dk">engolir um pouco de</span> <span class="k-sky-dk">água</span> do seu cântaro?”</span><span class="lang-en">“Please, may I <span class="k-sky-dk">swallow a bit of</span> <span class="k-azure-lt">water</span> from your jar?”</span></p>
 <p class="v-line i1"><span class="lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></span><span class="lang-pt">e ela disse,</span><span class="lang-en">and she said,</span></p>
-<p class="v-line i2"><sup class="vs"><span class="lang-pt">18</span><span class="lang-en">18</span></sup><span class="lang-pt"> “</span><span class="lang-en"> “</span><span class="lang-pt"><span class="k k-blue-dk">Beba</span>, meu mestre.”</span><span class="lang-en"><span class="k k-blue-dk">Drink</span>, my master.”</span></p>
-<p class="v-line"><span class="lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><span class="lang-pt">e ela se apressou e abaixou <span class="k k-brown-dk">o seu cântaro</span> na sua mão</span><span class="lang-en">and she hurried and lowered <span class="k k-brown-dk">her jar</span> in her hand</span></p>
-<p class="v-line"><span class="lang-pt">e ela o deixou <span class="k k-blue-dk">beber</span>,</span><span class="lang-en">and she let him <span class="k k-blue-dk">drink</span>,</span></p>
-<p class="v-line"><sup class="vs"><span class="lang-pt">19</span><span class="lang-en">19</span></sup> <span class="lang-pt">e ela <span class="k k-gray-lt">terminou</span> de deixá-lo <span class="k k-blue-dk">beber</span>,</span><span class="lang-en">and she <span class="k k-gray-lt">finished</span> letting him <span class="k k-blue-dk">drink</span>,</span></p>
+<p class="v-line i2"><sup class="vs"><span class="lang-pt">18</span><span class="lang-en">18</span></sup><span class="lang-pt"> “</span><span class="lang-en"> “</span><span class="lang-pt"><span class="k-sky-dk">Beba</span>, meu mestre.”</span><span class="lang-en"><span class="k-sky-dk">Drink</span>, my master.”</span></p>
+<p class="v-line"><span class="lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><span class="lang-pt">e ela se apressou e abaixou <span class="k-umber-dk">o seu cântaro</span> na sua mão</span><span class="lang-en">and she hurried and lowered <span class="k-umber-dk">her jar</span> in her hand</span></p>
+<p class="v-line"><span class="lang-pt">e ela o deixou <span class="k-sky-dk">beber</span>,</span><span class="lang-en">and she let him <span class="k-sky-dk">drink</span>,</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">19</span><span class="lang-en">19</span></sup> <span class="lang-pt">e ela <span class="t-rust">terminou</span> de deixá-lo <span class="t-rust">beber</span>,</span><span class="lang-en">and she <span class="t-rust">finished</span> letting him <span class="k-sky-dk">drink</span>,</span></p>
 <p class="v-line i1"><span class="lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></span><span class="lang-pt">e ela disse,</span><span class="lang-en">and she said,</span></p>
-<p class="v-line i2"><span class="lang-pt">“Também para os <span class="k k-orange-lt">seus camelos</span>, deixe-me buscar <span class="k k-blue-lt">água</span>,</span><span class="lang-en">“Also for <span class="k k-orange-lt">your camels</span>, let me get <span class="k k-blue-lt">water</span>,</span></p>
-<p class="v-line i2"><span class="lang-pt">até que eles terminem de <span class="k k-blue-dk">beber</span>.”</span><span class="lang-en">until they are finished <span class="k k-blue-dk">drinking</span>.”</span></p>
-<p class="v-line"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><sup class="vs"><span class="lang-pt">20</span><span class="lang-en">20</span></sup> <span class="lang-pt"><span class="k k-orange-lt">E ela se apressou</span> e esvaziou <span class="k k-brown-dk">o seu cântaro</span> no <span class="k k-blue-dk">bebedouro</span>,</span><span class="lang-en"><span class="k k-orange-lt">And she hurried</span> and emptied <span class="k k-brown-dk">her jar</span> into the <span class="k k-blue-dk">water-trough</span>,</span></p>
-<p class="v-line"><span class="lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><span class="lang-pt"><span class="k k-orange-lt">e ela correu</span> novamente <span class="k k-blue-lt">ao poço</span> para buscar <span class="k k-blue-lt">água</span>,</span><span class="lang-en"><span class="k k-orange-lt">and she ran</span> again <span class="k k-blue-lt">to the well</span> to get <span class="k k-blue-lt">water</span>,</span></p>
-<p class="v-line"><span class="lang-pt">e ela buscou <span class="k k-blue-lt">água</span> para todos os seus <span class="k k-orange-lt">camelos</span>.</span><span class="lang-en">and she got <span class="k k-blue-lt">water</span> for all his <span class="k k-orange-lt">camels</span>.</span></p>
+<p class="v-line i2"><span class="lang-pt">“Também para os <span class="k-peach-lt">seus camelos</span>, deixe-me buscar <span class="k-peach-lt">água</span>,</span><span class="lang-en">“Also for <span class="k-peach-lt">your camels</span>, let me get <span class="k-azure-lt">water</span>,</span></p>
+<p class="v-line i2"><span class="lang-pt">até que eles terminem de <span class="k-sky-dk">beber</span>.”</span><span class="lang-en">until they are finished <span class="k-sky-dk">drinking</span>.”</span></p>
+<p class="v-line"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><sup class="vs"><span class="lang-pt">20</span><span class="lang-en">20</span></sup> <span class="lang-pt"><span class="t-rust">E ela se apressou</span> e esvaziou <span class="t-rust">o seu cântaro</span> no <span class="t-rust">bebedouro</span>,</span><span class="lang-en"><span class="t-rust">And she hurried</span> and emptied <span class="k-umber-dk">her jar</span> into the <span class="k-sky-dk">water-trough</span>,</span></p>
+<p class="v-line"><span class="lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><span class="lang-pt"><span class="t-rust">e ela correu</span> novamente <span class="t-rust">ao poço</span> para buscar <span class="t-rust">água</span>,</span><span class="lang-en"><span class="t-rust">and she ran</span> again <span class="k-sky-dk">to the well</span> to get <span class="k-azure-lt">water</span>,</span></p>
+<p class="v-line"><span class="lang-pt">e ela buscou <span class="k-azure-lt">água</span> para todos os seus <span class="k-azure-lt">camelos</span>.</span><span class="lang-en">and she got <span class="k-azure-lt">water</span> for all his <span class="k-peach-lt">camels</span>.</span></p>
 <hr class="v-div"/>
-<p class="v-line"><sup class="vs"><span class="lang-pt">21</span><span class="lang-en">21</span></sup> <span class="lang-pt">E <span class="k k-blue-lt">o homem estava olhando para ela</span>,</span><span class="lang-en">And <span class="k k-blue-lt">the man was staring at her</span>,</span></p>
-<p class="v-line"><span class="lang-pt">ficando em silêncio, <span class="k k-gray-lt">para que ele pudesse saber</span> <span class="k k-purple-dk">se Yahweh tinha tornado o seu caminho bem-sucedido ou não</span>.</span><span class="lang-en">being silent, <span class="k k-gray-lt">so he could know</span> <span class="k k-purple-dk">if Yahweh had made his way successful or not</span>.</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">21</span><span class="lang-en">21</span></sup> <span class="lang-pt">E <span class="k-sky-lt">o homem estava olhando para ela</span>,</span><span class="lang-en">And <span class="k-sky-lt">the man was staring at her</span>,</span></p>
+<p class="v-line"><span class="lang-pt">ficando em silêncio, <span class="k-bark-dk">para que ele pudesse saber</span> <span class="k-bark-dk">se Yahweh tinha tornado o seu caminho bem-sucedido ou não</span>.</span><span class="lang-en">being silent, <span class="k-bark-dk">so he could know</span> <span class="k-purple-dk">if Yahweh had made his way successful or not</span>.</span></p>
 </div>
 <div class="stanza-box reveal">
-<p class="v-line"><sup class="vs"><span class="lang-pt">22</span><span class="lang-en">22</span></sup> <span class="lang-pt">E aconteceu que, quando <span class="k k-orange-lt">os camelos</span> terminaram de <span class="k k-blue-dk">beber</span>,</span><span class="lang-en">And it came about when <span class="k k-orange-lt">the camels</span> finished <span class="k k-blue-dk">drinking</span>,</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">22</span><span class="lang-en">22</span></sup> <span class="lang-pt">E aconteceu que, quando <span class="k-peach-lt">os camelos</span> terminaram de <span class="k-peach-lt">beber</span>,</span><span class="lang-en">And it came about when <span class="k-peach-lt">the camels</span> finished <span class="k-sky-dk">drinking</span>,</span></p>
 <p class="v-line"><span class="lang-pt">que o homem tomou um anel de ouro para o nariz, de meio-shekel de peso,</span><span class="lang-en">that the man took a gold nose-ring, a half-Shekel in weight,</span></p>
 <p class="v-line"><span class="lang-pt">e duas pulseiras nas suas mãos, dez de ouro era o seu peso,</span><span class="lang-en">and two bracelets on her hands, ten gold was their weight,</span></p>
 <hr class="v-div"/>
 <p class="v-line"><sup class="vs"><span class="lang-pt">23</span><span class="lang-en">23</span></sup> <span class="lang-pt">e ele disse,</span><span class="lang-en">and he said,</span></p>
-<p class="v-line i1"><span class="lang-pt">“<span class="k k-purple-lt">De quem você é filha?</span></span><span class="lang-en">“<span class="k k-purple-lt">Whose daughter are you?</span></span></p>
+<p class="v-line i1"><span class="lang-pt">“<span class="k-plum-lt">De quem você é filha?</span></span><span class="lang-en">“<span class="k-plum-lt">Whose daughter are you?</span></span></p>
 <p class="v-line i1"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><span class="lang-pt">Por favor, me diga!</span><span class="lang-en">Please tell me!</span></p>
-<p class="v-line i1"><span class="lang-pt"><span class="k k-blue-dk">Há um lugar para nós ficarmos</span> na casa do seu pai?”</span><span class="lang-en"><span class="k k-blue-dk">Is there a place for us to stay</span> in the house of your father?”</span></p>
+<p class="v-line i1"><span class="lang-pt"><span class="k-stay-dk">Há um lugar para nós ficarmos</span> na casa do seu pai?”</span><span class="lang-en"><span class="k-stay-dk">Is there a place for us to stay</span> in the house of your father?”</span></p>
 <p class="v-line"><sup class="vs"><span class="lang-pt">24</span><span class="lang-en">24</span></sup> <span class="lang-pt">E ela lhe disse,</span><span class="lang-en">And she said to him,</span></p>
-<p class="v-line i1"><span class="lang-pt">“Uma filha de <span class="k k-purple-lt">Betuel</span> eu sou,</span><span class="lang-en">“A daughter of <span class="k k-purple-lt">Betuel</span> I am,</span></p>
-<p class="v-line i1"><span class="lang-pt">o filho de <span class="k k-purple-lt">Milkah</span>,</span><span class="lang-en">the son of <span class="k k-purple-lt">Milkah</span>,</span></p>
-<p class="v-line i1"><span class="lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></span><span class="lang-pt">a quem <span class="k k-purple-lt">ela deu à luz para</span> <span class="k k-teal-dk">Nakhor</span>.”</span><span class="lang-en">whom <span class="k k-purple-lt">she birthed for</span> <span class="k k-teal-dk">Nakhor</span>.”</span></p>
+<p class="v-line i1"><span class="lang-pt">“Uma filha de <span class="k-plum-lt">Betuel</span> eu sou,</span><span class="lang-en">“A daughter of <span class="k-plum-lt">Betuel</span> I am,</span></p>
+<p class="v-line i1"><span class="lang-pt">o filho de <span class="k-plum-lt">Milkah</span>,</span><span class="lang-en">the son of <span class="k-plum-lt">Milkah</span>,</span></p>
+<p class="v-line i1"><span class="lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></span><span class="lang-pt">a quem <span class="k-plum-lt">ela deu à luz para</span> <span class="k-plum-lt">Nakhor</span>.”</span><span class="lang-en">whom <span class="k-plum-lt">she birthed for</span> <span class="k-teal-dk">Nakhor</span>.”</span></p>
 <p class="v-line"><sup class="vs"><span class="lang-pt">25</span><span class="lang-en">25</span></sup> <span class="lang-pt">E ela lhe disse,</span><span class="lang-en">And she said to him,</span></p>
-<p class="v-line i1"><span class="lbl"><span class="lang-pt">a' b'</span><span class="lang-en">a' b'</span></span><span class="lang-pt">“Nós temos muita palha e forragem, e também <span class="k k-blue-dk">um lugar para ficar</span>.</span><span class="lang-en">“We have much straw and fodder, and also <span class="k k-blue-dk">a place to stay</span>.</span></p>
+<p class="v-line i1"><span class="lbl"><span class="lang-pt">a' b'</span><span class="lang-en">a' b'</span></span><span class="lang-pt">“Nós temos muita palha e forragem, e também <span class="k-stay-dk">um lugar para ficar</span>.</span><span class="lang-en">“We have much straw and fodder, and also <span class="k-stay-dk">a place to stay</span>.</span></p>
 <hr class="v-div"/>
 <p class="v-line"><sup class="vs"><span class="lang-pt">26</span><span class="lang-en">26</span></sup> <span class="lang-pt">E o homem se curvou em adoração a Yahweh, e disse,</span><span class="lang-en">And the man bowed in worship to Yahweh, and said,</span></p>
-<p class="v-line i1"><sup class="vs"><span class="lang-pt">27</span><span class="lang-en">27</span></sup><span class="lang-pt"> “</span><span class="lang-en"> “</span><span class="lang-pt"><span class="k k-purple-lt">Que Yahweh seja bendito, Elohim do</span> <span class="k k-teal-dk">meu mestre Avraham</span>,</span><span class="lang-en"><span class="k k-purple-lt">May Yahweh be blessed, Elohim of</span> <span class="k k-teal-dk">my master Avraham</span>,</span></p>
-<p class="v-line i1"><span class="lang-pt"><span class="k k-purple-dk">que não abandonou a sua lealdade amorosa e fidelidade com</span> <span class="k k-teal-dk">meu mestre</span>.</span><span class="lang-en"><span class="k k-purple-dk">who has not abandoned his loyal-love and faithfulness with</span> <span class="k k-teal-dk">my master</span>.</span></p>
-<p class="v-line i1"><span class="lang-pt">Quanto a mim, <span class="k k-purple-dk">Yahweh me guiou no caminho</span> para <span class="k k-purple-lt">a casa do irmão de</span> <span class="k k-teal-dk">meu mestre</span>.”</span><span class="lang-en">As for me, <span class="k k-purple-dk">Yahweh has guided me on the way</span> to <span class="k k-purple-lt">the house of the brother of</span> <span class="k k-teal-dk">my master</span>.”</span></p>
+<p class="v-line i1"><sup class="vs"><span class="lang-pt">27</span><span class="lang-en">27</span></sup><span class="lang-pt"> “</span><span class="lang-en"> “</span><span class="lang-pt"><span class="t-purple">Que Yahweh seja bendito, Elohim do</span> <span class="t-purple">meu mestre Avraham</span>,</span><span class="lang-en"><span class="t-purple">May Yahweh be blessed, Elohim of</span> <span class="k-teal-dk">my master Avraham</span>,</span></p>
+<p class="v-line i1"><span class="lang-pt"><span class="k-purple-dk">que não abandonou a sua lealdade amorosa e fidelidade com</span> <span class="k-purple-dk">meu mestre</span>.</span><span class="lang-en"><span class="k-purple-dk">who has not abandoned his loyal-love and faithfulness with</span> <span class="k-teal-dk">my master</span>.</span></p>
+<p class="v-line i1"><span class="lang-pt">Quanto a mim, <span class="k-purple-dk">Yahweh me guiou no caminho</span> para <span class="k-purple-dk">a casa do irmão de</span> <span class="k-purple-dk">meu mestre</span>.”</span><span class="lang-en">As for me, <span class="k-purple-dk">Yahweh has guided me on the way</span> to <span class="k-plum-lt">the house of the brother of</span> <span class="k-teal-dk">my master</span>.”</span></p>
 <p class="v-line"><sup class="vs"><span class="lang-pt">28</span><span class="lang-en">28</span></sup> <span class="lang-pt">E a jovem correu</span><span class="lang-en">And the young woman ran</span></p>
-<p class="v-line i1"><span class="lang-pt">e relatou à <span class="k k-purple-lt">casa da sua mãe</span> sobre estas palavras.</span><span class="lang-en">and she reported to the <span class="k k-purple-lt">house of her mother</span> about these words.</span></p>
+<p class="v-line i1"><span class="lang-pt">e relatou à <span class="k-plum-lt">casa da sua mãe</span> sobre estas palavras.</span><span class="lang-en">and she reported to the <span class="k-plum-lt">house of her mother</span> about these words.</span></p>
 </div>
 <div class="stanza-box reveal">
-<p class="v-line"><sup class="vs"><span class="lang-pt">29</span><span class="lang-en">29</span></sup> <span class="lang-pt">Agora, <span class="k k-purple-lt">Rivqah tinha um irmão</span>,</span><span class="lang-en">Now, <span class="k k-purple-lt">Rivqah had a brother</span>,</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">29</span><span class="lang-en">29</span></sup> <span class="lang-pt">Agora, <span class="t-plum">Rivqah tinha um irmão</span>,</span><span class="lang-en">Now, <span class="t-plum">Rivqah had a brother</span>,</span></p>
 <p class="v-line"><span class="lang-pt">e o seu nome era Lavan,</span><span class="lang-en">and his name was Lavan,</span></p>
-<p class="v-line"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><span class="lang-pt">e Lavan correu para <span class="k k-orange-lt">o homem fora da cidade</span>, <span class="k k-blue-lt">até a fonte</span>.</span><span class="lang-en">and Lavan ran to <span class="k k-orange-lt">the man outside the city</span>, <span class="k k-blue-lt">to the spring</span>.</span></p>
-<p class="v-line i1"><span class="lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></span><sup class="vs"><span class="lang-pt">30</span><span class="lang-en">30</span></sup> <span class="lang-pt">E aconteceu que, quando ele viu o anel do nariz e as pulseiras nas mãos da <span class="k k-green-lt">sua irmã</span>,</span><span class="lang-en">And it came about when he saw the nose-ring and the bracelets on the hands of <span class="k k-green-lt">his sister</span>,</span></p>
-<p class="v-line i1"><span class="lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></span><span class="lang-pt">e quando ele ouviu as <span class="k k-gray-darker">palavras faladas</span> de Rivqah sua irmã, dizendo,</span><span class="lang-en">and when he heard the <span class="k k-gray-darker">spoken-words</span> of Rivqah his sister, saying,</span></p>
-<p class="v-line"><span class="lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><span class="lang-pt">“Isto é o que <span class="k k-orange-lt">o homem</span> <span class="k k-gray-darker">falou</span> comigo,”</span><span class="lang-en">“This is what <span class="k k-orange-lt">the man</span> <span class="k k-gray-darker">spoke</span> to me,”</span></p>
-<p class="v-line"><span class="lang-pt">que ele foi até <span class="k k-orange-lt">o homem</span> e olha, ele estava de pé junto aos <span class="k k-orange-lt">seus camelos</span>, <span class="k k-blue-lt">junto à fonte</span>.</span><span class="lang-en">that he went to <span class="k k-orange-lt">the man</span> and look, he was standing by <span class="k k-orange-lt">his camels</span>, <span class="k k-blue-lt">by the spring</span>.</span></p>
+<p class="v-line"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><span class="lang-pt">e Lavan correu para <span class="t-rust">o homem</span> <span class="t-teal">fora da cidade</span>, <span class="t-teal">até a</span> <span class="k-cyan-lt">fonte</span>.</span><span class="lang-en">and Lavan ran to <span class="t-rust">the man</span> <span class="t-teal">outside the city</span>, <span class="t-teal">to the</span> <span class="k-cyan-lt">spring</span>.</span></p>
+<p class="v-line i1"><span class="lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></span><sup class="vs"><span class="lang-pt">30</span><span class="lang-en">30</span></sup> <span class="lang-pt">E aconteceu que, quando ele viu o anel do nariz e as pulseiras nas mãos da <span class="t-green">sua irmã</span>,</span><span class="lang-en">And it came about when he saw the nose-ring and the bracelets on the hands of <span class="t-green">his sister</span>,</span></p>
+<p class="v-line i1"><span class="lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></span><span class="lang-pt">e quando ele ouviu as <span class="k-slate-dk">palavras faladas</span> de Rivqah sua irmã, dizendo,</span><span class="lang-en">and when he heard the <span class="k-slate-dk">spoken-words</span> of Rivqah his sister, saying,</span></p>
+<p class="v-line"><span class="lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><span class="lang-pt">“Isto é o que <span class="t-rust">o homem</span> <span class="t-rust">falou</span> comigo,”</span><span class="lang-en">“This is what <span class="t-rust">the man</span> <span class="k-slate-dk">spoke</span> to me,”</span></p>
+<p class="v-line"><span class="lang-pt">que ele foi até <span class="t-rust">o homem</span> e olha, ele estava de pé junto aos <span class="k-peach-lt">seus camelos</span>, <span class="t-teal">junto à</span> <span class="k-cyan-lt">fonte</span>.</span><span class="lang-en">that he went to <span class="t-rust">the man</span> and look, he was standing by <span class="k-peach-lt">his camels</span>, <span class="t-teal">by the</span> <span class="k-cyan-lt">spring</span>.</span></p>
 <hr class="v-div"/>
 <p class="v-line"><sup class="vs"><span class="lang-pt">31</span><span class="lang-en">31</span></sup> <span class="lang-pt">E ele disse,</span><span class="lang-en">And he said,</span></p>
-<p class="v-line i1"><span class="lang-pt">“<span class="k k-green-lt">Venha</span>, <span class="k k-purple-dk">bendito de Yahweh</span>!</span><span class="lang-en">“<span class="k k-green-lt">Come</span>, <span class="k k-purple-dk">blessed one of Yahweh</span>!</span></p>
+<p class="v-line i1"><span class="lang-pt">“<span class="k-mint-lt">Venha</span>, <span class="k-mint-lt">bendito de Yahweh</span>!</span><span class="lang-en">“<span class="k-mint-lt">Come</span>, <span class="k-purple-dk">blessed one of Yahweh</span>!</span></p>
 <p class="v-line i1"><span class="lang-pt">Por que você fica do lado de fora?</span><span class="lang-en">Why do you stand outside?</span></p>
-<p class="v-line i1"><span class="lang-pt">Eu preparei <span class="k k-gray-darker">a casa</span> e um lugar para <span class="k k-orange-lt">os camelos</span>!”</span><span class="lang-en">I have prepared <span class="k k-gray-darker">the house</span> and a place for <span class="k k-orange-lt">the camels</span>!”</span></p>
-<p class="v-line"><sup class="vs"><span class="lang-pt">32</span><span class="lang-en">32</span></sup> <span class="lang-pt">E o homem <span class="k k-green-lt">veio</span> para <span class="k k-gray-darker">a casa</span>,</span><span class="lang-en">And the man <span class="k k-green-lt">came</span> into <span class="k k-gray-darker">the house</span>,</span></p>
-<p class="v-line"><span class="lang-pt">e ele abriu <span class="k k-orange-lt">os camelos</span>,</span><span class="lang-en">and he opened up <span class="k k-orange-lt">the camels</span>,</span></p>
-<p class="v-line"><span class="lang-pt">e ele deu <span class="k k-purple-lt">palha e forragem</span> aos <span class="k k-orange-lt">camelos</span>,</span><span class="lang-en">and he gave <span class="k k-purple-lt">straw and fodder</span> to <span class="k k-orange-lt">the camels</span>,</span></p>
-<p class="v-line"><span class="lang-pt">e <span class="k k-blue-lt">água</span> para lavar os seus pés e os pés dos homens com ele,</span><span class="lang-en">and <span class="k k-blue-lt">water</span> for washing his feet and the feet of the men with him,</span></p>
+<p class="v-line i1"><span class="lang-pt">Eu preparei <span class="k-slate-dk">a casa</span> e um lugar para <span class="k-slate-dk">os camelos</span>!”</span><span class="lang-en">I have prepared <span class="k-slate-dk">the house</span> and a place for <span class="k-peach-lt">the camels</span>!”</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">32</span><span class="lang-en">32</span></sup> <span class="lang-pt">E o homem <span class="k-mint-lt">veio</span> para <span class="k-mint-lt">a casa</span>,</span><span class="lang-en">And the man <span class="k-mint-lt">came</span> into <span class="k-slate-dk">the house</span>,</span></p>
+<p class="v-line"><span class="lang-pt">e ele abriu <span class="k-peach-lt">os camelos</span>,</span><span class="lang-en">and he opened up <span class="k-peach-lt">the camels</span>,</span></p>
+<p class="v-line"><span class="lang-pt">e ele deu <span class="k-plum-lt">palha e forragem</span> aos <span class="k-plum-lt">camelos</span>,</span><span class="lang-en">and he gave <span class="k-plum-lt">straw and fodder</span> to <span class="k-peach-lt">the camels</span>,</span></p>
+<p class="v-line"><span class="lang-pt">e <span class="k-cyan-lt">água</span> para lavar os seus pés e os pés dos homens com ele,</span><span class="lang-en">and <span class="k-cyan-lt">water</span> for washing his feet and the feet of the men with him,</span></p>
 <hr class="v-div"/>
-<p class="v-line"><sup class="vs"><span class="lang-pt">33</span><span class="lang-en">33</span></sup> <span class="lang-pt">e foi posto diante dele <span class="k k-purple-lt">comida para comer</span>,</span><span class="lang-en">and there was set before him <span class="k k-purple-lt">food for eating</span>,</span></p>
-<p class="v-line"><span class="k k-gray-lt">e ele disse</span><span class="lang-pt">,</span><span class="lang-en">,</span></p>
-<p class="v-line i1"><span class="lang-pt">“Eu não <span class="k k-purple-lt">comerei comida</span> até eu <span class="k k-gray-darker">falar</span> as minhas <span class="k k-gray-darker">palavras</span>.”</span><span class="lang-en">“I will not <span class="k k-purple-lt">eat food</span> until I <span class="k k-gray-darker">speak</span> my <span class="k k-gray-darker">words</span>.”</span></p>
-<p class="v-line"><span class="k k-gray-lt">E ele disse</span><span class="lang-pt">,</span><span class="lang-en">,</span></p>
-<p class="v-line i1"><span class="lang-pt">“<span class="k k-gray-darker">Fale</span>!”</span><span class="lang-en">“<span class="k k-gray-darker">Speak</span>!”</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">33</span><span class="lang-en">33</span></sup> <span class="lang-pt">e foi posto diante dele <span class="k-plum-lt">comida para comer</span>,</span><span class="lang-en">and there was set before him <span class="k-plum-lt">food for eating</span>,</span></p>
+<p class="v-line"><span class="k-mist-lt">e ele disse</span><span class="lang-pt">,</span><span class="lang-en">,</span></p>
+<p class="v-line i1"><span class="lang-pt">“Eu não <span class="k-plum-lt">comerei comida</span> até eu <span class="k-plum-lt">falar</span> as minhas <span class="k-plum-lt">palavras</span>.”</span><span class="lang-en">“I will not <span class="k-plum-lt">eat food</span> until I <span class="k-slate-dk">speak</span> my <span class="k-slate-dk">words</span>.”</span></p>
+<p class="v-line"><span class="k-mist-lt">E ele disse</span><span class="lang-pt">,</span><span class="lang-en">,</span></p>
+<p class="v-line i1"><span class="lang-pt">“<span class="k-slate-dk">Fale</span>!”</span><span class="lang-en">“<span class="k-slate-dk">Speak</span>!”</span></p>
 </div>
 <div class="stanza-box reveal">
 <p class="v-line"><sup class="vs"><span class="lang-pt">34</span><span class="lang-en">34</span></sup> <span class="lang-pt">E ele disse,</span><span class="lang-en">And he said,</span></p>
 <p class="v-line i1"><span class="lang-pt">“Um servo de Avraham eu sou.</span><span class="lang-en">“A servant of Avraham I am.</span></p>
-<p class="v-line"><sup class="vs"><span class="lang-pt">35</span><span class="lang-en">35</span></sup> <span class="lang-pt">E <span class="k k-purple-dk">Yahweh abençoou</span> meu mestre muito,</span><span class="lang-en">And <span class="k k-purple-dk">Yahweh has blessed</span> my master very much,</span></p>
-<p class="v-line"><span class="lang-pt"><span class="k k-purple-dk">e ele se tornou grande</span>,</span><span class="lang-en"><span class="k k-purple-dk">and he has become great</span>,</span></p>
-<p class="v-line"><span class="lang-pt"><span class="k k-brown-dk">e ele lhe deu</span></span><span class="lang-en"><span class="k k-brown-dk">and he has given to him</span></span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">35</span><span class="lang-en">35</span></sup> <span class="lang-pt">E <span class="k-purple-dk">Yahweh abençoou</span> meu mestre muito,</span><span class="lang-en">And <span class="k-purple-dk">Yahweh has blessed</span> my master very much,</span></p>
+<p class="v-line"><span class="lang-pt"><span class="k-purple-dk">e ele se tornou grande</span>,</span><span class="lang-en"><span class="k-purple-dk">and he has become great</span>,</span></p>
+<p class="v-line"><span class="lang-pt"><span class="t-bark">e ele lhe deu</span></span><span class="lang-en"><span class="t-bark">and he has given to him</span></span></p>
 <p class="v-line i1"><span class="lang-pt">rebanhos e manadas</span><span class="lang-en">flocks and herds</span></p>
 <p class="v-line i1"><span class="lang-pt">e prata e ouro</span><span class="lang-en">and silver and gold</span></p>
 <p class="v-line i1"><span class="lang-pt">e servos e servas</span><span class="lang-en">and male and female servants</span></p>
 <p class="v-line i1"><span class="lang-pt">e camelos e jumentos,</span><span class="lang-en">and camels and donkeys,</span></p>
-<p class="v-line"><sup class="vs"><span class="lang-pt">36</span><span class="lang-en">36</span></sup> <span class="lang-pt">e Sara, a esposa do meu mestre, deu à luz para ele <span class="k k-rose-lt">um filho</span>, depois que ela se tornou velha,</span><span class="lang-en">and Sarah, the wife of my master, has birthed for him <span class="k k-rose-lt">a son</span>, after she has become old,</span></p>
-<p class="v-line"><span class="lang-pt"><span class="k k-brown-dk">e ele lhe deu</span> tudo o que lhe pertence.</span><span class="lang-en"><span class="k k-brown-dk">and he gave to him</span> everything which belongs to him.</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">36</span><span class="lang-en">36</span></sup> <span class="lang-pt">e Sara, a esposa do meu mestre, deu à luz para ele <span class="k-rose-lt">um filho</span>, depois que ela se tornou velha,</span><span class="lang-en">and Sarah, the wife of my master, has birthed for him <span class="k-rose-lt">a son</span>, after she has become old,</span></p>
+<p class="v-line"><span class="lang-pt"><span class="t-bark">e ele lhe deu</span> tudo o que lhe pertence.</span><span class="lang-en"><span class="t-bark">and he gave to him</span> everything which belongs to him.</span></p>
 <hr class="v-div"/>
-<p class="v-line"><sup class="vs"><span class="lang-pt">37</span><span class="lang-en">37</span></sup> <span class="lang-pt">E o meu mestre me fez <span class="k k-teal-dk">jurar um juramento</span>, dizendo,</span><span class="lang-en">And my master made me <span class="k k-teal-dk">swear an oath</span>, saying,</span></p>
-<p class="v-line i1"><span class="lang-pt">‘<span class="k k-rose-lt">Você não tomará</span> <span class="k k-rose-dk">uma mulher</span> <span class="k k-rose-lt">para o meu filho</span></span><span class="lang-en">‘<span class="k k-rose-lt">You will not take</span> <span class="k k-rose-dk">a woman</span> <span class="k k-rose-lt">for my son</span></span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">37</span><span class="lang-en">37</span></sup> <span class="lang-pt">E o meu mestre me fez <span class="k-teal-dk">jurar um juramento</span>, dizendo,</span><span class="lang-en">And my master made me <span class="k-teal-dk">swear an oath</span>, saying,</span></p>
+<p class="v-line i1"><span class="lang-pt">‘<span class="t-maroon">Você não tomará</span> <span class="t-maroon">uma mulher</span> <span class="t-maroon">para o meu filho</span></span><span class="lang-en">‘<span class="t-maroon">You will not take</span> <span class="k-rose-dk">a woman</span> <span class="k-rose-lt">for my son</span></span></p>
 <p class="v-line i1"><span class="lang-pt">das filhas dos cananeus,</span><span class="lang-en">from the daughters of the Canaanites,</span></p>
 <p class="v-line i1"><span class="lang-pt">em cuja terra estou habitando.</span><span class="lang-en">in whose land I am dwelling.</span></p>
-<p class="v-line"><sup class="vs"><span class="lang-pt">38</span><span class="lang-en">38</span></sup> <span class="lang-pt">Ao contrário, você irá <span class="k k-gray-darker">à casa do meu pai</span>,</span><span class="lang-en">Rather, you will go <span class="k k-gray-darker">to the house of my father</span>,</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">38</span><span class="lang-en">38</span></sup> <span class="lang-pt">Ao contrário, você irá <span class="k-slate-dk">à casa do meu pai</span>,</span><span class="lang-en">Rather, you will go <span class="k-slate-dk">to the house of my father</span>,</span></p>
 <p class="v-line"><span class="lang-pt">e ao meu clã,</span><span class="lang-en">and to my clan,</span></p>
-<p class="v-line"><span class="lang-pt">e <span class="k k-rose-lt">você tomará</span> <span class="k k-rose-dk">uma mulher</span> <span class="k k-rose-lt">para o meu filho</span>!’</span><span class="lang-en">and <span class="k k-rose-lt">you will take</span> <span class="k k-rose-dk">a woman</span> <span class="k k-rose-lt">for my son</span>!’</span></p>
+<p class="v-line"><span class="lang-pt">e <span class="k-rose-lt">você tomará</span> <span class="k-rose-lt">uma mulher</span> <span class="k-rose-lt">para o meu filho</span>!’</span><span class="lang-en">and <span class="k-rose-lt">you will take</span> <span class="k-rose-dk">a woman</span> <span class="k-rose-lt">for my son</span>!’</span></p>
 <hr class="v-div"/>
 <p class="v-line"><sup class="vs"><span class="lang-pt">39</span><span class="lang-en">39</span></sup> <span class="lang-pt">E eu disse ao meu mestre,</span><span class="lang-en">And I said to my master,</span></p>
-<p class="v-line"><span class="lang-pt">‘Talvez <span class="k k-rose-dk">a mulher</span> não venha atrás de mim.’</span><span class="lang-en">‘Perhaps <span class="k k-rose-dk">the woman</span> will not come after me.’</span></p>
+<p class="v-line"><span class="lang-pt">‘Talvez <span class="k-rose-dk">a mulher</span> não venha atrás de mim.’</span><span class="lang-en">‘Perhaps <span class="k-rose-dk">the woman</span> will not come after me.’</span></p>
 <p class="v-line"><sup class="vs"><span class="lang-pt">40</span><span class="lang-en">40</span></sup> <span class="lang-pt">E ele me disse,</span><span class="lang-en">And he said to me,</span></p>
-<p class="v-line i1"><span class="lang-pt">‘<span class="k k-purple-dk">Yahweh</span>, diante de cuja face eu tenho andado,</span><span class="lang-en">‘<span class="k k-purple-dk">Yahweh</span>, whom I have walked before his face,</span></p>
-<p class="v-line i1"><span class="lang-pt"><span class="k k-purple-dk">ele enviará o seu mensageiro com você</span>,</span><span class="lang-en"><span class="k k-purple-dk">he will send his messenger with you</span>,</span></p>
-<p class="v-line i1"><span class="lang-pt"><span class="k k-purple-dk">e ele tornará o seu caminho bem-sucedido</span>,</span><span class="lang-en"><span class="k k-purple-dk">and he will make your way successful</span>,</span></p>
-<p class="v-line i1"><span class="lang-pt">e <span class="k k-rose-lt">você tomará</span> <span class="k k-rose-dk">uma mulher</span> <span class="k k-rose-lt">para o meu filho</span>, do meu clã, e da casa do meu pai.</span><span class="lang-en">and <span class="k k-rose-lt">you will take</span> <span class="k k-rose-dk">a woman</span> <span class="k k-rose-lt">for my son</span>, from my clan, and from the house of my father.</span></p>
-<p class="v-line"><sup class="vs"><span class="lang-pt">41</span><span class="lang-en">41</span></sup> <span class="lang-pt">Então <span class="k k-purple-lt">você estará inocente do</span> <span class="k k-teal-dk">meu juramento</span>,</span><span class="lang-en">Then <span class="k k-purple-lt">you will be innocent from</span> <span class="k k-teal-dk">my oath</span>,</span></p>
+<p class="v-line i1"><span class="lang-pt">‘<span class="k-purple-dk">Yahweh</span>, diante de cuja face eu tenho andado,</span><span class="lang-en">‘<span class="k-purple-dk">Yahweh</span>, whom I have walked before his face,</span></p>
+<p class="v-line i1"><span class="lang-pt"><span class="k-purple-dk">ele enviará o seu mensageiro com você</span>,</span><span class="lang-en"><span class="k-purple-dk">he will send his messenger with you</span>,</span></p>
+<p class="v-line i1"><span class="lang-pt"><span class="k-purple-dk">e ele tornará o seu caminho bem-sucedido</span>,</span><span class="lang-en"><span class="k-purple-dk">and he will make your way successful</span>,</span></p>
+<p class="v-line i1"><span class="lang-pt">e <span class="k-rose-lt">você tomará</span> <span class="k-rose-lt">uma mulher</span> <span class="k-rose-lt">para o meu filho</span>, do meu clã, e da casa do meu pai.</span><span class="lang-en">and <span class="k-rose-lt">you will take</span> <span class="k-rose-dk">a woman</span> <span class="k-rose-lt">for my son</span>, from my clan, and from the house of my father.</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">41</span><span class="lang-en">41</span></sup> <span class="lang-pt">Então <span class="k-plum-lt">você estará inocente do</span> <span class="k-plum-lt">meu juramento</span>,</span><span class="lang-en">Then <span class="k-plum-lt">you will be innocent from</span> <span class="k-teal-dk">my oath</span>,</span></p>
 <p class="v-line"><span class="lang-pt">porque você terá ido ao meu clã.</span><span class="lang-en">because you will have gone to my clan.</span></p>
 <p class="v-line"><span class="lang-pt">E se eles não lhe derem,</span><span class="lang-en">And if they don't give you,</span></p>
-<p class="v-line"><span class="lang-pt">então <span class="k k-purple-lt">você estará inocente do</span> <span class="k k-teal-dk">meu juramento</span>.’</span><span class="lang-en">then <span class="k k-purple-lt">you will be innocent from</span> <span class="k k-teal-dk">my oath</span>.’</span></p>
+<p class="v-line"><span class="lang-pt">então <span class="k-plum-lt">você estará inocente do</span> <span class="k-plum-lt">meu juramento</span>.’</span><span class="lang-en">then <span class="k-plum-lt">you will be innocent from</span> <span class="k-teal-dk">my oath</span>.’</span></p>
 </div>
 <div class="stanza-box reveal">
 <p class="v-line"><sup class="vs"><span class="lang-pt">42</span><span class="lang-en">42</span></sup> <span class="lang-pt">E eu fui hoje à fonte,</span><span class="lang-en">And I went today to the spring,</span></p>
 <p class="v-line"><span class="lang-pt">e eu disse,</span><span class="lang-en">and I said,</span></p>
-<p class="v-line i1"><span class="lang-pt">‘<span class="k k-purple-dk">Yahweh, Elohim do meu mestre Avraham</span>,</span><span class="lang-en">‘<span class="k k-purple-dk">Yahweh, Elohim of my master Avraham</span>,</span></p>
-<p class="v-line i1"><span class="lang-pt">se você, por favor, <span class="k k-purple-dk">tornasse bem-sucedido o meu caminho</span> sobre o qual eu ando,</span><span class="lang-en">if you would <span class="k k-purple-dk">please make successful my way</span> upon which I walk,</span></p>
-<p class="v-line"><sup class="vs"><span class="lang-pt">43</span><span class="lang-en">43</span></sup> <span class="lang-pt">olha, eu estou de pé junto a uma <span class="k k-blue-lt">fonte de água</span>.</span><span class="lang-en">look, I am standing by a <span class="k k-blue-lt">spring of water</span>.</span></p>
-<p class="v-line"><span class="lang-pt">E que aconteça que a jovem que sair para buscar <span class="k k-blue-lt">água</span>,</span><span class="lang-en">And may it come about that the young woman who comes out to get <span class="k k-blue-lt">water</span>,</span></p>
+<p class="v-line i1"><span class="lang-pt">‘<span class="k-purple-dk">Yahweh, Elohim do meu mestre Avraham</span>,</span><span class="lang-en">‘<span class="k-purple-dk">Yahweh, Elohim of my master Avraham</span>,</span></p>
+<p class="v-line i1"><span class="lang-pt">se você, por favor, <span class="k-purple-dk">tornasse bem-sucedido o meu caminho</span> sobre o qual eu ando,</span><span class="lang-en">if you would <span class="k-purple-dk">please make successful my way</span> upon which I walk,</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">43</span><span class="lang-en">43</span></sup> <span class="lang-pt">olha, eu estou de pé junto a uma <span class="k-cyan-lt">fonte de água</span>.</span><span class="lang-en">look, I am standing by a <span class="k-cyan-lt">spring of water</span>.</span></p>
+<p class="v-line"><span class="lang-pt">E que aconteça que a jovem que sair para buscar <span class="k-cyan-lt">água</span>,</span><span class="lang-en">And may it come about that the young woman who comes out to get <span class="k-cyan-lt">water</span>,</span></p>
 <p class="v-line"><span class="lang-pt">e a quem eu disser,</span><span class="lang-en">and to whom I say,</span></p>
-<p class="v-line i1"><span class="lang-pt">“Por favor, dá-me um pouco de <span class="k k-blue-lt">água</span> para <span class="k k-blue-dk">beber</span> do <span class="k k-blue-lt">seu cântaro</span>.”</span><span class="lang-en">“Please, give me a little <span class="k k-blue-lt">water</span> to <span class="k k-blue-dk">drink</span> from <span class="k k-blue-lt">your jar</span>.”</span></p>
+<p class="v-line i1"><span class="lang-pt">“Por favor, dá-me um pouco de <span class="k-cyan-lt">água</span> para <span class="k-cyan-lt">beber</span> do <span class="k-cyan-lt">seu cântaro</span>.”</span><span class="lang-en">“Please, give me a little <span class="k-cyan-lt">water</span> to <span class="k-cyan-lt">drink</span> from <span class="t-blue">your jar</span>.”</span></p>
 <p class="v-line"><sup class="vs"><span class="lang-pt">44</span><span class="lang-en">44</span></sup> <span class="lang-pt">e então ela me disser,</span><span class="lang-en">and then she says to me,</span></p>
-<p class="v-line i1"><span class="lang-pt">“<span class="k k-blue-lt">A ambos eu darei</span> de <span class="k k-blue-dk">beber</span>, e eu também buscarei <span class="k k-blue-lt">água</span> para os seus camelos.”</span><span class="lang-en">“<span class="k k-blue-lt">Both you I will give</span> to <span class="k k-blue-dk">drink</span>, and I will also get <span class="k k-blue-lt">water</span> for your camels.”</span></p>
-<p class="v-line"><span class="lang-pt">Que essa seja a mulher que <span class="k k-purple-dk">Yahweh decidiu para</span> o filho do meu mestre.’</span><span class="lang-en">May that be the woman whom <span class="k k-purple-dk">Yahweh has decided for</span> the son of my master.’</span></p>
+<p class="v-line i1"><span class="lang-pt">“<span class="k-cyan-lt">A ambos eu darei</span> de <span class="k-cyan-lt">beber</span>, e eu também buscarei <span class="k-cyan-lt">água</span> para os seus camelos.”</span><span class="lang-en">“<span class="k-cyan-lt">Both you I will give</span> to <span class="k-cyan-lt">drink</span>, and I will also get <span class="k-cyan-lt">water</span> for your camels.”</span></p>
+<p class="v-line"><span class="lang-pt">Que essa seja a mulher que <span class="k-purple-dk">Yahweh decidiu para</span> o filho do meu mestre.’</span><span class="lang-en">May that be the woman whom <span class="k-purple-dk">Yahweh has decided for</span> the son of my master.’</span></p>
 <hr class="v-div"/>
 <p class="v-line"><sup class="vs"><span class="lang-pt">45</span><span class="lang-en">45</span></sup> <span class="lang-pt">Eu tinha acabado de terminar de falar com o meu coração,</span><span class="lang-en">I had just finished speaking to my heart,</span></p>
 <p class="v-line"><span class="lang-pt">e olha, Rivqah saiu!</span><span class="lang-en">and look, Rivqah came out!</span></p>
-<p class="v-line"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><span class="lang-pt">E <span class="k k-blue-lt">o seu cântaro</span> estava no seu ombro,</span><span class="lang-en">And <span class="k k-blue-lt">her jar</span> was on her shoulder,</span></p>
-<p class="v-line"><span class="lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></span><span class="lang-pt">e ela desceu à <span class="k k-blue-lt">fonte</span> e buscou <span class="k k-blue-lt">água</span>,</span><span class="lang-en">and she went down to the <span class="k k-blue-lt">spring</span> and got <span class="k k-blue-lt">water</span>,</span></p>
+<p class="v-line"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><span class="lang-pt">E <span class="t-blue">o seu cântaro</span> estava no seu ombro,</span><span class="lang-en">And <span class="t-blue">her jar</span> was on her shoulder,</span></p>
+<p class="v-line"><span class="lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></span><span class="lang-pt">e ela desceu à <span class="k-cyan-lt">fonte</span> e buscou <span class="k-cyan-lt">água</span>,</span><span class="lang-en">and she went down to the <span class="k-cyan-lt">spring</span> and got <span class="k-cyan-lt">water</span>,</span></p>
 <p class="v-line"><span class="lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><span class="lang-pt">e eu disse a ela,</span><span class="lang-en">and I said to her,</span></p>
-<p class="v-line i1"><span class="lang-pt">‘Por favor, dá-me de <span class="k k-blue-lt">beber</span>.’</span><span class="lang-en">‘Please, give me a <span class="k k-blue-lt">drink</span>.’</span></p>
-<p class="v-line"><sup class="vs"><span class="lang-pt">46</span><span class="lang-en">46</span></sup> <span class="lang-pt">E ela se apressou e trouxe o seu <span class="k k-blue-lt">cântaro</span> para baixo de cima de si,</span><span class="lang-en">And she hurried and brought down <span class="k k-blue-lt">her jar</span> from upon her,</span></p>
+<p class="v-line i1"><span class="lang-pt">‘Por favor, dá-me de <span class="k-cyan-lt">beber</span>.’</span><span class="lang-en">‘Please, give me a <span class="k-cyan-lt">drink</span>.’</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">46</span><span class="lang-en">46</span></sup> <span class="lang-pt">E ela se apressou e trouxe o seu <span class="t-blue">cântaro</span> para baixo de cima de si,</span><span class="lang-en">And she hurried and brought down <span class="t-blue">her jar</span> from upon her,</span></p>
 <p class="v-line"><span class="lang-pt">e ela disse,</span><span class="lang-en">and she said,</span></p>
-<p class="v-line i1"><span class="lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></span><span class="lang-pt">‘<span class="k k-blue-lt">Beba</span>! E eu também darei <span class="k k-blue-lt">água</span> aos seus camelos.’</span><span class="lang-en">‘<span class="k k-blue-lt">Drink</span>! And I will also <span class="k k-blue-lt">water</span> your camels.’</span></p>
-<p class="v-line"><span class="lang-pt">e eu <span class="k k-blue-lt">bebi</span>, e também ela <span class="k k-blue-lt">deu água</span> aos camelos.</span><span class="lang-en">and I <span class="k k-blue-lt">drank</span>, and also she <span class="k k-blue-lt">watered</span> the camels.</span></p>
+<p class="v-line i1"><span class="lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></span><span class="lang-pt">‘<span class="t-cyan">Beba</span>! E eu também darei <span class="t-cyan">água</span> aos seus camelos.’</span><span class="lang-en">‘<span class="t-cyan">Drink</span>! And I will also <span class="k-cyan-lt">water</span> your camels.’</span></p>
+<p class="v-line"><span class="lang-pt">e eu <span class="k-cyan-lt">bebi</span>, e também ela <span class="k-cyan-lt">deu água</span> aos camelos.</span><span class="lang-en">and I <span class="k-cyan-lt">drank</span>, and also she <span class="k-cyan-lt">watered</span> the camels.</span></p>
 <hr class="v-div"/>
 <p class="v-line"><sup class="vs"><span class="lang-pt">47</span><span class="lang-en">47</span></sup> <span class="lang-pt">E eu perguntei a ela e eu disse,</span><span class="lang-en">And I asked her and I said,</span></p>
-<p class="v-line i1"><span class="lang-pt">‘De quem <span class="k k-rose-lt">filha</span> você é?’</span><span class="lang-en">‘Whose <span class="k k-rose-lt">daughter</span> are you?’</span></p>
+<p class="v-line i1"><span class="lang-pt">‘De quem <span class="k-rose-lt">filha</span> você é?’</span><span class="lang-en">‘Whose <span class="k-rose-lt">daughter</span> are you?’</span></p>
 <p class="v-line"><span class="lang-pt">E ela disse,</span><span class="lang-en">And she said,</span></p>
-<p class="v-line i1"><span class="lang-pt">‘A <span class="k k-rose-lt">filha</span> de Betuel,</span><span class="lang-en">‘The <span class="k k-rose-lt">daughter</span> of Betuel,</span></p>
+<p class="v-line i1"><span class="lang-pt">‘A <span class="k-rose-lt">filha</span> de Betuel,</span><span class="lang-en">‘The <span class="k-rose-lt">daughter</span> of Betuel,</span></p>
 <p class="v-line i1"><span class="lang-pt">o filho de Nakhor,</span><span class="lang-en">the son of Nakhor,</span></p>
 <p class="v-line i1"><span class="lang-pt">a quem Milkah deu à luz para ele.’</span><span class="lang-en">whom Milkah birthed for him.’</span></p>
 <p class="v-line"><sup class="vs"><span class="lang-pt">48</span><span class="lang-en">48</span></sup> <span class="lang-pt">E eu me curvei em adoração a Yahweh,</span><span class="lang-en">And I bowed in worship to Yahweh,</span></p>
-<p class="v-line"><span class="lang-pt">e <span class="k k-purple-dk">eu bendisse Yahweh, o Elohim do meu mestre Avraham</span>,</span><span class="lang-en">and <span class="k k-purple-dk">I blessed Yahweh the Elohim of my master Avraham</span>,</span></p>
-<p class="v-line i1"><span class="lang-pt"><span class="k k-purple-dk">que me guiou no caminho da fidelidade</span>,</span><span class="lang-en"><span class="k k-purple-dk">who guided me on the way of faithfulness</span>,</span></p>
-<p class="v-line i1"><span class="lang-pt">para tomar <span class="k k-rose-lt">a filha do irmão do meu mestre</span> para o seu filho.</span><span class="lang-en">to take <span class="k k-rose-lt">the daughter of the brother of my master</span> for his son.</span></p>
+<p class="v-line"><span class="lang-pt">e <span class="k-purple-dk">eu bendisse Yahweh, o Elohim do meu mestre Avraham</span>,</span><span class="lang-en">and <span class="k-purple-dk">I blessed Yahweh the Elohim of my master Avraham</span>,</span></p>
+<p class="v-line i1"><span class="lang-pt"><span class="k-purple-dk">que me guiou no caminho da fidelidade</span>,</span><span class="lang-en"><span class="k-purple-dk">who guided me on the way of faithfulness</span>,</span></p>
+<p class="v-line i1"><span class="lang-pt">para tomar <span class="k-rose-lt">a filha do irmão do meu mestre</span> para o seu filho.</span><span class="lang-en">to take <span class="k-rose-lt">the daughter of the brother of my master</span> for his son.</span></p>
 <hr class="v-div"/>
-<p class="v-line"><sup class="vs"><span class="lang-pt">49</span><span class="lang-en">49</span></sup> <span class="lang-pt">E agora, se vocês todos vão agir com <span class="k k-purple-dk">lealdade amorosa e fidelidade</span> para com o meu mestre, <span class="k k-rose-lt">me digam</span>!</span><span class="lang-en">And now, if you all are going to act with <span class="k k-purple-dk">loyal-love and faithfulness</span> to my master, <span class="k k-rose-lt">tell me</span>!</span></p>
-<p class="v-line"><span class="lang-pt">E se não, <span class="k k-rose-lt">me digam</span>!</span><span class="lang-en">And if not, <span class="k k-rose-lt">tell me</span>!</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">49</span><span class="lang-en">49</span></sup> <span class="lang-pt">E agora, se vocês todos vão agir com <span class="k-purple-dk">lealdade amorosa e fidelidade</span> para com o meu mestre, <span class="k-purple-dk">me digam</span>!</span><span class="lang-en">And now, if you all are going to act with <span class="k-purple-dk">loyal-love and faithfulness</span> to my master, <span class="t-plum">tell me</span>!</span></p>
+<p class="v-line"><span class="lang-pt">E se não, <span class="t-plum">me digam</span>!</span><span class="lang-en">And if not, <span class="t-plum">tell me</span>!</span></p>
 <p class="v-line"><span class="lang-pt">Para que eu possa virar para a direita ou para a esquerda!”</span><span class="lang-en">So I can turn to the right or to the left!”</span></p>
 </div>
 <div class="stanza-box reveal">
 <p class="v-line"><sup class="vs"><span class="lang-pt">50</span><span class="lang-en">50</span></sup> <span class="lang-pt">E Lavan respondeu, e Betuel, e eles disseram,</span><span class="lang-en">And Lavan answered, and Betuel, and they said,</span></p>
-<p class="v-line i1"><span class="lang-pt">“<span class="k k-tan-lt">A</span> <span class="k k-brown-dk">palavra falada</span> <span class="k k-tan-lt">saiu de Yahweh</span>!</span><span class="lang-en">“<span class="k k-tan-lt">The</span> <span class="k k-brown-dk">spoken-word</span> <span class="k k-tan-lt">has gone out from Yahweh</span>!</span></p>
-<p class="v-line i1"><span class="lang-pt">Não somos capazes de <span class="k k-brown-dk">falar uma palavra</span> a você, boa ou má!</span><span class="lang-en">We are not able to <span class="k k-brown-dk">speak a word</span> to you, bad or good!</span></p>
+<p class="v-line i1"><span class="lang-pt">“<span class="t-tan">A</span> <span class="t-tan">palavra falada</span> <span class="t-tan">saiu de Yahweh</span>!</span><span class="lang-en">“<span class="t-tan">The</span> <span class="k-bark-dk2">spoken-word</span> <span class="k-umber-lt">has gone out from Yahweh</span>!</span></p>
+<p class="v-line i1"><span class="lang-pt">Não somos capazes de <span class="k-bark-dk2">falar uma palavra</span> a você, boa ou má!</span><span class="lang-en">We are not able to <span class="k-bark-dk2">speak a word</span> to you, bad or good!</span></p>
 <p class="v-line"><sup class="vs"><span class="lang-pt">51</span><span class="lang-en">51</span></sup> <span class="lang-pt">Olha, Rivqah está diante de você: tome e vá!</span><span class="lang-en">Look, Rivqah is before you: take and go!</span></p>
-<p class="v-line"><span class="lang-pt">E <span class="k k-rose-lt">ela pode se tornar uma esposa para o seu mestre</span>,</span><span class="lang-en">And <span class="k k-rose-lt">she can become a wife for your master</span>,</span></p>
-<p class="v-line"><span class="lang-pt"><span class="k k-tan-lt">assim como Yahweh</span> <span class="k k-brown-dk">falou uma palavra</span>.”</span><span class="lang-en"><span class="k k-tan-lt">just as Yahweh has</span> <span class="k k-brown-dk">spoken a word</span>.”</span></p>
+<p class="v-line"><span class="lang-pt">E <span class="k-rose-lt">ela pode se tornar uma esposa para o seu mestre</span>,</span><span class="lang-en">And <span class="k-rose-lt">she can become a wife for your master</span>,</span></p>
+<p class="v-line"><span class="lang-pt"><span class="k-umber-lt">assim como Yahweh</span> <span class="k-umber-lt">falou uma palavra</span>.”</span><span class="lang-en"><span class="k-umber-lt">just as Yahweh has</span> <span class="k-bark-dk2">spoken a word</span>.”</span></p>
 </div>
 <div class="stanza-box reveal">
-<p class="v-line"><sup class="vs"><span class="lang-pt">52</span><span class="lang-en">52</span></sup> <span class="lang-pt">E aconteceu que, quando o servo de Avraham ouviu as suas <span class="k k-green-lt">palavras faladas</span>,</span><span class="lang-en">And it came about when the servant of Avraham heard their <span class="k k-green-lt">spoken-words</span>,</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">52</span><span class="lang-en">52</span></sup> <span class="lang-pt">E aconteceu que, quando o servo de Avraham ouviu as suas <span class="k-mint-lt">palavras faladas</span>,</span><span class="lang-en">And it came about when the servant of Avraham heard their <span class="k-mint-lt">spoken-words</span>,</span></p>
 <p class="v-line"><span class="lang-pt">então ele se curvou ao chão em adoração a Yahweh.</span><span class="lang-en">then he bowed onto the ground in worship of Yahweh.</span></p>
 <p class="v-line"><sup class="vs"><span class="lang-pt">53</span><span class="lang-en">53</span></sup> <span class="lang-pt">E o servo trouxe para fora artigos de prata e artigos de ouro e roupas,</span><span class="lang-en">And the servant brought out articles of silver and articles of gold and clothes,</span></p>
-<p class="v-line"><span class="lang-pt">e ele deu a <span class="k k-purple-dk">Rivqah (<span class="heb">רבקה</span>)</span>,</span><span class="lang-en">and he gave to <span class="k k-purple-dk">Rivqah (<span class="heb">רבקה</span>)</span>,</span></p>
+<p class="v-line"><span class="lang-pt">e ele deu a <span class="k-purple-dk">Rivqah (<span class="heb">רבקה</span>)</span>,</span><span class="lang-en">and he gave to <span class="k-purple-dk">Rivqah (<span class="heb">רבקה</span>)</span>,</span></p>
 <p class="v-line"><span class="lang-pt">e ele deu presentes preciosos ao seu irmão e à sua mãe.</span><span class="lang-en">and he gave precious gifts to her brother and to her mother.</span></p>
 <p class="v-line"><sup class="vs"><span class="lang-pt">54</span><span class="lang-en">54</span></sup> <span class="lang-pt">E eles comeram e beberam,</span><span class="lang-en">And they ate and they drank,</span></p>
 <p class="v-line"><span class="lang-pt">ele e os homens com ele,</span><span class="lang-en">he and the men with him,</span></p>
 <p class="v-line"><span class="lang-pt">e eles passaram a noite.</span><span class="lang-en">and they stayed the night.</span></p>
 </div>
 <div class="stanza-box reveal">
-<p class="v-line"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><span class="lang-pt"><span class="k k-green-lt">E eles se levantaram de manhã</span>,</span><span class="lang-en"><span class="k k-green-lt">And they got up in the morning</span>,</span></p>
+<p class="v-line"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><span class="lang-pt">E eles se levantaram de manhã,</span><span class="lang-en">And they got up in the morning,</span></p>
 <p class="v-line"><span class="lang-pt">e ele disse,</span><span class="lang-en">and he said,</span></p>
-<p class="v-line i1"><span class="lang-pt">“<span class="k k-rose-lt">Envia-me ao meu mestre</span>!”</span><span class="lang-en">“<span class="k k-rose-lt">Send me off to my master</span>!”</span></p>
-<p class="v-line"><span class="lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></span><sup class="vs"><span class="lang-pt">55</span><span class="lang-en">55</span></sup> <span class="lang-pt"><span class="k k-green-lt">E eles disseram</span>, o seu irmão e a sua mãe,</span><span class="lang-en"><span class="k k-green-lt">And they said</span>, her brother and her mother,</span></p>
+<p class="v-line i1"><span class="lang-pt">“<span class="k-rose-lt">Envia-me ao meu mestre</span>!”</span><span class="lang-en">“<span class="k-rose-lt">Send me off to my master</span>!”</span></p>
+<p class="v-line"><span class="lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></span><sup class="vs"><span class="lang-pt">55</span><span class="lang-en">55</span></sup> <span class="lang-pt"><span class="t-green">E eles disseram</span>, o seu irmão e a sua mãe,</span><span class="lang-en"><span class="t-green">And they said</span>, her brother and her mother,</span></p>
 <p class="v-line i1"><span class="lang-pt">“Deixe a jovem habitar conosco alguns dias, ou dez;</span><span class="lang-en">“Let the young woman dwell with us a few days, or ten;</span></p>
-<p class="v-line i1"><span class="lang-pt">depois disso <span class="k k-rose-dk">ela pode ir</span>.”</span><span class="lang-en">after that <span class="k k-rose-dk">she can go</span>.”</span></p>
+<p class="v-line i1"><span class="lang-pt">depois disso <span class="k-rose-dk">ela pode ir</span>.”</span><span class="lang-en">after that <span class="k-rose-dk">she can go</span>.”</span></p>
 <hr class="v-div"/>
-<p class="v-line"><span class="lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><sup class="vs"><span class="lang-pt">56</span><span class="lang-en">56</span></sup> <span class="lang-pt"><span class="k k-green-lt">E ele lhes disse</span>,</span><span class="lang-en"><span class="k k-green-lt">And he said to them</span>,</span></p>
+<p class="v-line"><span class="lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><sup class="vs"><span class="lang-pt">56</span><span class="lang-en">56</span></sup> <span class="lang-pt"><span class="t-green">E ele lhes disse</span>,</span><span class="lang-en"><span class="t-green">And he said to them</span>,</span></p>
 <p class="v-line i1"><span class="lang-pt">“Não me faça demorar.</span><span class="lang-en">“Do not make me delay.</span></p>
-<p class="v-line i1"><span class="lang-pt"><span class="k k-blue-lt">Yahweh tornou o meu caminho bem-sucedido</span>.</span><span class="lang-en"><span class="k k-blue-lt">Yahweh has made my way successful</span>.</span></p>
-<p class="v-line i1"><span class="lang-pt"><span class="k k-rose-lt">Envia-me para que</span> <span class="k k-rose-dk">eu possa ir</span> <span class="k k-rose-lt">ao meu mestre</span>.”</span><span class="lang-en"><span class="k k-rose-lt">Send me off so</span> <span class="k k-rose-dk">I can go</span> <span class="k k-rose-lt">to my master</span>.”</span></p>
-<p class="v-line"><span class="lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></span><sup class="vs"><span class="lang-pt">57</span><span class="lang-en">57</span></sup> <span class="lang-pt"><span class="k k-green-lt">E eles disseram</span>,</span><span class="lang-en"><span class="k k-green-lt">And they said</span>,</span></p>
-<p class="v-line i1"><span class="lang-pt">“<span class="k k-gray-lt">Vamos chamar</span> a jovem,</span><span class="lang-en">“<span class="k k-gray-lt">Let us call</span> the young woman,</span></p>
+<p class="v-line i1"><span class="lang-pt"><span class="k-azure-lt">Yahweh tornou o meu caminho bem-sucedido</span>.</span><span class="lang-en"><span class="k-azure-lt">Yahweh has made my way successful</span>.</span></p>
+<p class="v-line i1"><span class="lang-pt"><span class="k-rose-lt">Envia-me para que</span> <span class="k-rose-lt">eu possa ir</span> <span class="k-rose-lt">ao meu mestre</span>.”</span><span class="lang-en"><span class="k-rose-lt">Send me off so</span> <span class="k-rose-dk">I can go</span> <span class="k-rose-lt">to my master</span>.”</span></p>
+<p class="v-line"><span class="lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></span><sup class="vs"><span class="lang-pt">57</span><span class="lang-en">57</span></sup> <span class="lang-pt"><span class="t-green">E eles disseram</span>,</span><span class="lang-en"><span class="t-green">And they said</span>,</span></p>
+<p class="v-line i1"><span class="lang-pt">“<span class="k-mist-lt">Vamos chamar</span> a jovem,</span><span class="lang-en">“<span class="k-mist-lt">Let us call</span> the young woman,</span></p>
 <p class="v-line i1"><span class="lang-pt">e podemos perguntar o que ela diz.”</span><span class="lang-en">and we can inquire what she says.”</span></p>
 <hr class="v-div"/>
-<p class="v-line"><span class="lbl"><span class="lang-pt">b''</span><span class="lang-en">b''</span></span><sup class="vs"><span class="lang-pt">58</span><span class="lang-en">58</span></sup> <span class="lang-pt">E <span class="k k-gray-darker">eles chamaram</span> <span class="k k-purple-dk">Rivqah</span></span><span class="lang-en">And <span class="k k-gray-darker">they called</span> <span class="k k-purple-dk">Rivqah</span></span></p>
-<p class="v-line"><span class="lang-pt"><span class="k k-green-lt">e eles lhe disseram</span>,</span><span class="lang-en"><span class="k k-green-lt">and they said to her</span>,</span></p>
-<p class="v-line i1"><span class="lang-pt">“<span class="k k-rose-dk">Você irá</span> com este homem?”</span><span class="lang-en">“<span class="k k-rose-dk">Will you go</span> with this man?”</span></p>
-<p class="v-line"><span class="lbl"><span class="lang-pt">a''</span><span class="lang-en">a''</span></span><span class="lang-pt"><span class="k k-green-lt">E ela disse</span>,</span><span class="lang-en"><span class="k k-green-lt">And she said</span>,</span></p>
-<p class="v-line i1"><span class="lang-pt">“<span class="k k-rose-dk">Eu irei</span>.”</span><span class="lang-en">“<span class="k k-rose-dk">I will go</span>.”</span></p>
+<p class="v-line"><span class="lbl"><span class="lang-pt">b''</span><span class="lang-en">b''</span></span><sup class="vs"><span class="lang-pt">58</span><span class="lang-en">58</span></sup> <span class="lang-pt">E <span class="k-mist-lt">eles chamaram</span> <span class="k-mist-lt">Rivqah</span></span><span class="lang-en">And <span class="k-mist-lt">they called</span> <span class="k-purple-dk">Rivqah</span></span></p>
+<p class="v-line"><span class="lang-pt"><span class="t-green">e eles lhe disseram</span>,</span><span class="lang-en"><span class="t-green">and they said to her</span>,</span></p>
+<p class="v-line i1"><span class="lang-pt">“<span class="k-rose-dk">Você irá</span> com este homem?”</span><span class="lang-en">“<span class="k-rose-dk">Will you go</span> with this man?”</span></p>
+<p class="v-line"><span class="lbl"><span class="lang-pt">a''</span><span class="lang-en">a''</span></span><span class="lang-pt"><span class="t-green">E ela disse</span>,</span><span class="lang-en"><span class="t-green">And she said</span>,</span></p>
+<p class="v-line i1"><span class="lang-pt">“<span class="k-rose-dk">Eu irei</span>.”</span><span class="lang-en">“<span class="k-rose-dk">I will go</span>.”</span></p>
 </div>
 <div class="stanza-box reveal">
-<p class="v-line"><sup class="vs"><span class="lang-pt">59</span><span class="lang-en">59</span></sup> <span class="lang-pt">E <span class="k k-rose-lt">eles enviaram</span> <span class="k k-purple-dk">Rivqah (<span class="heb">רבקה</span>)</span> sua irmã e a sua ama,</span><span class="lang-en">And <span class="k k-rose-lt">they sent</span> <span class="k k-purple-dk">Rivqah (<span class="heb">רבקה</span>)</span> their sister and her nursemaid,</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">59</span><span class="lang-en">59</span></sup> <span class="lang-pt">E <span class="k-rose-lt">eles enviaram</span> <span class="k-rose-lt">Rivqah (<span class="heb">רבקה</span>)</span> sua irmã e a sua ama,</span><span class="lang-en">And <span class="k-rose-lt">they sent</span> <span class="k-purple-dk">Rivqah (<span class="heb">רבקה</span>)</span> their sister and her nursemaid,</span></p>
 <p class="v-line"><span class="lang-pt">e o servo de Avraham e os seus homens,</span><span class="lang-en">and the servant of Avraham and his men,</span></p>
-<p class="v-line"><sup class="vs"><span class="lang-pt">60</span><span class="lang-en">60</span></sup> <span class="lang-pt">e eles <span class="k k-purple-dk">abençoaram (<span class="heb">ברך</span>)</span> <span class="k k-purple-dk">Rivqah (<span class="heb">רבקה</span>)</span>,</span><span class="lang-en">and they <span class="k k-purple-dk">blessed (<span class="heb">ברך</span>)</span> <span class="k k-purple-dk">Rivqah (<span class="heb">רבקה</span>)</span>,</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">60</span><span class="lang-en">60</span></sup> <span class="lang-pt">e eles <span class="k-purple-dk">abençoaram (<span class="heb">ברך</span>)</span> <span class="k-purple-dk">Rivqah (<span class="heb">רבקה</span>)</span>,</span><span class="lang-en">and they <span class="k-purple-dk">blessed (<span class="heb">ברך</span>)</span> <span class="k-purple-dk">Rivqah (<span class="heb">רבקה</span>)</span>,</span></p>
 <p class="v-line"><span class="lang-pt">e eles lhe disseram,</span><span class="lang-en">and they said to her,</span></p>
-<p class="v-line i1"><span class="lang-pt">“Nossa irmã, que você se torne milhares de <span class="k k-purple-dk">dezenas de milhares (<span class="heb">רבבה</span>)</span>,</span><span class="lang-en">“Our sister, may you become into thousands of <span class="k k-purple-dk">ten-thousands (<span class="heb">רבבה</span>)</span>,</span></p>
+<p class="v-line i1"><span class="lang-pt">“Nossa irmã, que você se torne milhares de <span class="k-purple-dk">dezenas de milhares (<span class="heb">רבבה</span>)</span>,</span><span class="lang-en">“Our sister, may you become into thousands of <span class="k-purple-dk">ten-thousands (<span class="heb">רבבה</span>)</span>,</span></p>
 <p class="v-line i1"><span class="lang-pt">e que a sua semente possua o portão dos seus odiadores.”</span><span class="lang-en">and may your seed possess the gate of its haters.”</span></p>
-<p class="v-line"><sup class="vs"><span class="lang-pt">61</span><span class="lang-en">61</span></sup> <span class="lang-pt">E ela se levantou, <span class="k k-purple-dk">Rivqah (<span class="heb">רבקה</span>)</span> e as suas jovens,</span><span class="lang-en">And she arose, <span class="k k-purple-dk">Rivqah (<span class="heb">רבקה</span>)</span> and her young women,</span></p>
-<p class="v-line"><span class="lang-pt">e elas <span class="k k-purple-dk">montaram (<span class="heb">רכב</span>)</span> nos camelos,</span><span class="lang-en">and they <span class="k k-purple-dk">rode (<span class="heb">רכב</span>)</span> upon the camels,</span></p>
-<p class="v-line"><span class="lang-pt">e <span class="k k-rose-lt">elas foram</span> atrás do homem</span><span class="lang-en">and <span class="k k-rose-lt">they went</span> after the man</span></p>
-<p class="v-line"><span class="lang-pt">e o servo tomou <span class="k k-purple-dk">Rivqah (<span class="heb">רבקה</span>)</span> e <span class="k k-rose-dk">ele foi</span>.</span><span class="lang-en">and the servant took <span class="k k-purple-dk">Rivqah (<span class="heb">רבקה</span>)</span> and <span class="k k-rose-dk">he went</span>.</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">61</span><span class="lang-en">61</span></sup> <span class="lang-pt">E ela se levantou, <span class="k-purple-dk">Rivqah (<span class="heb">רבקה</span>)</span> e as suas jovens,</span><span class="lang-en">And she arose, <span class="k-purple-dk">Rivqah (<span class="heb">רבקה</span>)</span> and her young women,</span></p>
+<p class="v-line"><span class="lang-pt">e elas <span class="k-purple-dk">montaram (<span class="heb">רכב</span>)</span> nos camelos,</span><span class="lang-en">and they <span class="k-purple-dk">rode (<span class="heb">רכב</span>)</span> upon the camels,</span></p>
+<p class="v-line"><span class="lang-pt">e <span class="k-rose-dk">elas foram</span> atrás do homem</span><span class="lang-en">and <span class="k-rose-dk">they went</span> after the man</span></p>
+<p class="v-line"><span class="lang-pt">e o servo tomou <span class="k-purple-dk">Rivqah (<span class="heb">רבקה</span>)</span> e <span class="k-purple-dk">ele foi</span>.</span><span class="lang-en">and the servant took <span class="k-purple-dk">Rivqah (<span class="heb">רבקה</span>)</span> and <span class="k-rose-dk">he went</span>.</span></p>
 </div>
 <div class="stanza-box reveal">
-<p class="v-line"><sup class="vs"><span class="lang-pt">62</span><span class="lang-en">62</span></sup> <span class="lang-pt">Agora, Yitskhaq estava indo da entrada de <span class="k k-blue-lt">Beer</span>-Lakhai-Roi (“<span class="k k-blue-lt">Poço</span> do Vivo que Me Vê”)</span><span class="lang-en">Now, Yitskhaq was going from the entrance of <span class="k k-blue-lt">Beer</span>-Lakhai-Roi (“<span class="k k-blue-lt">Well</span> of the Living One Who Sees Me”)</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">62</span><span class="lang-en">62</span></sup> <span class="lang-pt">Agora, Yitskhaq estava indo da entrada de <span class="k-sky-lt">Beer</span>-Lakhai-Roi (“<span class="k-sky-lt">Poço</span> do Vivo que Me Vê”)</span><span class="lang-en">Now, Yitskhaq was going from the entrance of <span class="k-sky-lt">Beer</span>-Lakhai-Roi (“<span class="t-steel">Well</span> of the Living One Who Sees Me”)</span></p>
 <p class="v-line"><span class="lang-pt">e ele estava habitando na terra do Neguev,</span><span class="lang-en">and he was dwelling in the land of the Negev,</span></p>
-<p class="v-line"><sup class="vs"><span class="lang-pt">63</span><span class="lang-en">63</span></sup> <span class="lang-pt">e Yitskhaq saiu <span class="k k-tan-lt">para urinar no campo</span> quando se voltava para a tarde,</span><span class="lang-en">and Yitskhaq went out <span class="k k-tan-lt">to urinate in the field</span> as it turned to evening,</span></p>
-<p class="v-line"><span class="lang-pt">e <span class="k k-orange-lt">ele levantou os seus olhos e ele viu</span></span><span class="lang-en">and <span class="k k-orange-lt">he lifted his eyes and he saw</span></span></p>
-<p class="v-line"><span class="lang-pt">e olha, <span class="k k-orange-lt">camelos</span> vindo;</span><span class="lang-en">and look, <span class="k k-orange-lt">camels</span> coming;</span></p>
-<p class="v-line"><sup class="vs"><span class="lang-pt">64</span><span class="lang-en">64</span></sup> <span class="lang-pt">e <span class="k k-purple-lt">Rivqah</span> levantou os seus olhos e ela viu Yitskhaq,</span><span class="lang-en">and <span class="k k-purple-lt">Rivqah</span> lifted her eyes and she saw Yitskhaq,</span></p>
-<p class="v-line"><span class="lang-pt">e ela caiu do seu <span class="k k-orange-lt">camelo</span>.</span><span class="lang-en">and she fell off her <span class="k k-orange-lt">camel</span>.</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">63</span><span class="lang-en">63</span></sup> <span class="lang-pt">e Yitskhaq saiu <span class="k-umber-lt">para urinar no campo</span> quando se voltava para a tarde,</span><span class="lang-en">and Yitskhaq went out <span class="k-umber-lt">to urinate in the field</span> as it turned to evening,</span></p>
+<p class="v-line"><span class="lang-pt">e <span class="t-rust">ele levantou os seus olhos e ele viu</span></span><span class="lang-en">and <span class="t-rust">he lifted his eyes and he saw</span></span></p>
+<p class="v-line"><span class="lang-pt">e olha, <span class="k-peach-lt">camelos</span> vindo;</span><span class="lang-en">and look, <span class="k-peach-lt">camels</span> coming;</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">64</span><span class="lang-en">64</span></sup> <span class="lang-pt">e <span class="k-purple-dk">Rivqah</span> levantou os seus olhos e ela viu Yitskhaq,</span><span class="lang-en">and <span class="k-purple-dk">Rivqah</span> lifted her eyes and she saw Yitskhaq,</span></p>
+<p class="v-line"><span class="lang-pt">e ela caiu do seu <span class="k-peach-lt">camelo</span>.</span><span class="lang-en">and she fell off her <span class="k-peach-lt">camel</span>.</span></p>
 <hr class="v-div"/>
 <p class="v-line"><sup class="vs"><span class="lang-pt">65</span><span class="lang-en">65</span></sup> <span class="lang-pt">E ela disse ao servo,</span><span class="lang-en">And she said to the servant,</span></p>
 <p class="v-line i1"><span class="lang-pt">“Quem é este homem,</span><span class="lang-en">“Who is this man,</span></p>
-<p class="v-line i1"><span class="lang-pt">que está <span class="k k-tan-lt">andando no campo</span> para nos encontrar?”</span><span class="lang-en">who is <span class="k k-tan-lt">walking in the field</span> to meet us?”</span></p>
+<p class="v-line i1"><span class="lang-pt">que está <span class="k-umber-lt">andando no campo</span> para nos encontrar?”</span><span class="lang-en">who is <span class="k-umber-lt">walking in the field</span> to meet us?”</span></p>
 <p class="v-line"><span class="lang-pt">E o servo disse,</span><span class="lang-en">And the servant said,</span></p>
 <p class="v-line i1"><span class="lang-pt">“Ele é o meu mestre.”</span><span class="lang-en">“He is my master.”</span></p>
 <p class="v-line"><span class="lang-pt">E ela tomou um véu e se cobriu.</span><span class="lang-en">And she took a veil and she covered herself.</span></p>
 <hr class="v-div"/>
 <p class="v-line"><sup class="vs"><span class="lang-pt">66</span><span class="lang-en">66</span></sup> <span class="lang-pt">E o servo recontou a Yitskhaq todas as coisas que ele fez,</span><span class="lang-en">And the servant recounted to Yitskhaq all the things that he did,</span></p>
-<p class="v-line"><sup class="vs"><span class="lang-pt">67</span><span class="lang-en">67</span></sup> <span class="lang-pt">e <span class="k k-purple-lt">Yitskhaq a trouxe (<span class="heb">וַיְבִאֶהָ</span>)</span> para dentro da tenda de <span class="k k-purple-lt">Sara, sua mãe</span>,</span><span class="lang-en">and <span class="k k-purple-lt">Yitskhaq brought her (<span class="heb">וַיְבִאֶהָ</span>)</span> into the tent of <span class="k k-purple-lt">Sarah his mother</span>,</span></p>
-<p class="v-line"><span class="lang-pt">e ele tomou <span class="k k-purple-dk">Rivqah</span>,</span><span class="lang-en">and he took <span class="k k-purple-dk">Rivqah</span>,</span></p>
-<p class="v-line"><span class="lang-pt">e <span class="k k-rose-lt">ela se tornou para ele uma esposa</span>,</span><span class="lang-en">and <span class="k k-rose-lt">she became for him a wife</span>,</span></p>
-<p class="v-line"><span class="lang-pt">e <span class="k k-purple-lt">ele a amou (<span class="heb">ויאהבה</span>)</span></span><span class="lang-en">and <span class="k k-purple-lt">he loved her (<span class="heb">ויאהבה</span>)</span></span></p>
-<p class="v-line"><span class="lang-pt">e Yitskhaq foi consolado depois da morte de <span class="k k-purple-lt">sua mãe</span>.</span><span class="lang-en">and Yitskhaq was comforted after the death of <span class="k k-purple-lt">his mother</span>.</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">67</span><span class="lang-en">67</span></sup> <span class="lang-pt">e <span class="t-purple">Yitskhaq a trouxe (<span class="heb">וַיְבִאֶהָ</span>)</span> para dentro da tenda de <span class="t-purple">Sara, sua mãe</span>,</span><span class="lang-en">and <span class="t-purple">Yitskhaq brought her (<span class="heb">וַיְבִאֶהָ</span>)</span> into the tent of <span class="k-lilac">Sarah his mother</span>,</span></p>
+<p class="v-line"><span class="lang-pt">e ele tomou <span class="k-purple-dk">Rivqah</span>,</span><span class="lang-en">and he took <span class="k-purple-dk">Rivqah</span>,</span></p>
+<p class="v-line"><span class="lang-pt">e <span class="k-plum-lt">ela se tornou para ele uma esposa</span>,</span><span class="lang-en">and <span class="k-plum-lt">she became for him a wife</span>,</span></p>
+<p class="v-line"><span class="lang-pt">e <span class="t-purple">ele a amou (<span class="heb">ויאהבה</span>)</span></span><span class="lang-en">and <span class="t-purple">he loved her (<span class="heb">ויאהבה</span>)</span></span></p>
+<p class="v-line"><span class="lang-pt">e Yitskhaq foi consolado depois da morte de <span class="k-lilac">sua mãe</span>.</span><span class="lang-en">and Yitskhaq was comforted after the death of <span class="k-lilac">his mother</span>.</span></p>
 </div>
 <p class="caption reveal"><span class="lang-pt"><em>Gênesis 24:52-67</em>. Tradução e Design Literário por Tim Mackie para a BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Genesis 24:52-67</em>. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
 <!-- ================= RIVQAH COUNTERPART ================= -->
@@ -488,39 +610,39 @@
 <div class="reveal my-12 flex flex-col md:flex-row items-stretch gap-10 relative">
 <!-- Left Column: Abraham's Blessings -->
 <div class="flex flex-col gap-8 w-full md:w-[48%] relative">
-<div class="border border-gray-800 bg-white p-6 relative z-10 shadow-sm">
-<h4 class="font-medium text-[0.95rem] mb-3 text-[#17181a]"><span class="lang-pt">A Primeira Bênção de Deus a Avraham (Gen. 12:1-3)</span><span class="lang-en">God’s First Blessing of Avraham (Gen. 12:1-3)</span></h4>
-<p class="text-[#24262a] text-[0.95rem] leading-relaxed">
+<div class="border border-[#1b1b1b] bg-white p-6 relative z-10">
+<h4 class="font-medium text-[0.95rem] mb-3 text-[#1b1b1b]"><span class="lang-pt">A Primeira Bênção de Deus a Avraham (Gen. 12:1-3)</span><span class="lang-en">God’s First Blessing of Avraham (Gen. 12:1-3)</span></h4>
+<p class="text-[#1b1b1b] text-[0.95rem] leading-relaxed">
 <span class="lang-pt">“Farei de ti uma grande nação, e te <b>bendirei</b>, e engrandecerei o teu nome, e tu serás uma <b>bênção</b> ... e em ti serão benditas todas as famílias da terra.”</span>
 <span class="lang-en">“I will make you a great nation, and I will <b>bless</b> you, and I will make your name great, and you will become a <b>blessing</b> ... <b>and in you all the families of the land will find blessing.</b>”</span>
 </p>
 </div>
 <!-- Arrow joining top box to bottom box -->
-<div class="hidden md:block absolute left-[15%] top-[125px] h-[55px] border-l border-b border-gray-800 rounded-bl-lg w-[10px]">
-<svg class="absolute -bottom-[5px] -right-[5px] w-3 h-3 text-[#24262a]" fill="currentColor" viewbox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+<div class="hidden md:block absolute left-[15%] top-[125px] h-[55px] border-l border-b border-[#1b1b1b] rounded-bl-lg w-[10px]">
+<svg class="absolute -bottom-[5px] -right-[5px] w-3 h-3 text-[#1b1b1b]" fill="currentColor" viewbox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
 </div>
-<div class="border border-gray-800 bg-white p-6 relative z-10 shadow-sm">
-<h4 class="font-medium text-[0.95rem] mb-3 text-[#17181a]"><span class="lang-pt">A Última Bênção de Deus a Avraham (Gen. 22:15-18)</span><span class="lang-en">God’s Last Blessing of Avraham (Gen. 22:15-18)</span></h4>
-<p class="text-[#24262a] text-[0.95rem] leading-relaxed">
+<div class="border border-[#1b1b1b] bg-white p-6 relative z-10">
+<h4 class="font-medium text-[0.95rem] mb-3 text-[#1b1b1b]"><span class="lang-pt">A Última Bênção de Deus a Avraham (Gen. 22:15-18)</span><span class="lang-en">God’s Last Blessing of Avraham (Gen. 22:15-18)</span></h4>
+<p class="text-[#1b1b1b] text-[0.95rem] leading-relaxed">
 <span class="lang-pt">“Eu te <b>bendirei</b> com <b>bênção</b>, certamente <b>multiplicarei (<span class="heb">הִרְבָּה</span>)</b> a tua descendência ... <b>tua descendência possuirá a porta de seus inimigos, e em tua descendência serão benditas todas as nações da terra.</b>”</span>
 <span class="lang-en">“I will <b>bless</b> you with <b>blessing</b>, I will <b>surely multiply (<span class="heb">הִרְבָּה</span>)</b> your seed ... <b>Your seed will possess the gate of their enemies, and in your seed all the nations of the land will find blessing.</b>”</span>
 </p>
 </div>
 </div>
 <!-- Center SVG connecting paths for desktop -->
-<svg class="hidden md:block absolute top-0 left-0 w-full h-full pointer-events-none z-0" style="min-height: 250px;">
+<svg class="hidden md:block absolute top-0 left-0 w-full h-full pointer-events-none z-0" style="min-height: 250px;" preserveAspectRatio="none" viewBox="0 0 100 100">
 <!-- Diagonal down arrow -->
-<line stroke="#1f2937" stroke-width="1.5" x1="48%" x2="52%" y1="20%" y2="24%"></line>
-<polygon fill="#1f2937" points="51%,24% 53%,23% 52%,25%"></polygon>
+<line stroke="#1b1b1b" stroke-width="0.4" x1="48" x2="52" y1="20" y2="24"></line>
+<polygon fill="#1b1b1b" points="51,24 53,22.6 53,25.4"></polygon>
 <!-- Diagonal up arrow -->
-<line stroke="#1f2937" stroke-width="1.5" x1="48%" x2="52%" y1="80%" y2="76%"></line>
-<polygon fill="#1f2937" points="51%,76% 53%,77% 52%,75%"></polygon>
+<line stroke="#1b1b1b" stroke-width="0.4" x1="48" x2="52" y1="80" y2="76"></line>
+<polygon fill="#1b1b1b" points="51,76 53,74.6 53,77.4"></polygon>
 </svg>
 <!-- Right Column: Rivqah's Blessing -->
 <div class="w-full md:w-[48%] flex items-center">
-<div class="border border-gray-800 bg-white p-6 h-[80%] flex flex-col justify-center relative z-10 shadow-sm w-full">
-<h4 class="font-medium text-[0.95rem] mb-3 text-[#17181a]"><span class="lang-pt">A Bênção de Rivqah (Gen. 24:60)</span><span class="lang-en">The Blessing of Rivqah (Gen. 24:60)</span></h4>
-<p class="text-[#24262a] text-[0.95rem] leading-relaxed">
+<div class="border border-[#1b1b1b] bg-white p-6 h-[80%] flex flex-col justify-center relative z-10 w-full">
+<h4 class="font-medium text-[0.95rem] mb-3 text-[#1b1b1b]"><span class="lang-pt">A Bênção de Rivqah (Gen. 24:60)</span><span class="lang-en">The Blessing of Rivqah (Gen. 24:60)</span></h4>
+<p class="text-[#1b1b1b] text-[0.95rem] leading-relaxed">
 <span class="lang-pt">And they <b>blessed Rivqah</b> and said to her, “Our sister, may you become thousands of <b>ten-thousands (<span class="heb">רִבָּבָה</span>), and may your seed possess the gate of its haters.</b>”</span>
 <span class="lang-en">And they <b>blessed Rivqah</b> and said to her,<br/>
 <i>“Our sister,<br/>
@@ -555,7 +677,7 @@ and may your seed possess the gate of its haters.</b>”</i></span>
 <td><strong>Gen. 24:67</strong> <span class="lang-pt">"E [Yitskhaq] a trouxe para a sua tenda (<span class="heb">ויבאה ... האהלה</span>)"</span><span class="lang-en">"And [Yitskhaq] brought her into his tent (<span class="heb">ויבאה ... האהלה</span>)"</span></td>
 </tr>
 <tr>
-<td><strong>Gen. 2:23</strong> <span class="lang-pt">"E o humano disse, 'Esta (<span class="heb">זאת</span>) vez: osso do meu osso, carne da minha carne, esta (<span class="heb">לזאת</span>) será chamada <span class="k k-gray-lt">mulher</span> porque do <span class="k k-gray-lt">homem</span> ela foi tomada.'"</span><span class="lang-en">"And the human said, 'This (<span class="heb">זאת</span>) time: bone from my bone, flesh from my flesh, this one (<span class="heb">לזאת</span>) will be called <span class="k k-gray-lt">wo-man</span> because from <span class="k k-gray-lt">man</span> she was taken.'"</span></td>
+<td><strong>Gen. 2:23</strong> <span class="lang-pt">"E o humano disse, 'Esta (<span class="heb">זאת</span>) vez: osso do meu osso, carne da minha carne, esta (<span class="heb">לזאת</span>) será chamada <span class="k-mist-lt">mulher</span> porque do <span class="k-mist-lt">homem</span> ela foi tomada.'"</span><span class="lang-en">"And the human said, 'This (<span class="heb">זאת</span>) time: bone from my bone, flesh from my flesh, this one (<span class="heb">לזאת</span>) will be called <span class="k-mist-lt">wo-man</span> because from <span class="k-mist-lt">man</span> she was taken.'"</span></td>
 <td><strong>Gen. 24:65</strong> <span class="lang-pt">"E [Rivqah] disse, 'Quem é o homem (<span class="heb">האיש</span>), este (<span class="heb">הלזה</span>)...?'"</span><span class="lang-en">"And [Rivqah] said, 'Who is the man (<span class="heb">האיש</span>), this one (<span class="heb">הלזה</span>)...?'"</span></td>
 </tr>
 <tr>
@@ -610,14 +732,6 @@ and may your seed possess the gate of its haters.</b>”</i></span>
 <span class="lang-pt">Anotações de Aula: Abraão</span><span class="lang-en">Class Notes: Abraham</span>
 <span class="lang-pt">Sessão 27</span><span class="lang-en">Session 27</span>
 </footer>
-<!-- conteudo adicional do PDF -->
-<p class="body reveal"><span class="lang-en">Rivqah (‫ )רבקה‬,</span></p>
-<p class="body reveal"><span class="lang-en">“He is my master.”</span></p>
-<p class="body reveal"><span class="lang-en">)‫ מולדת‬+ ‫(ארץ‬."</span></p>
-<p class="body reveal"><span class="lang-en">family )‫(ארץ מולדתי‬."</span></p>
-<p class="body reveal"><span class="lang-en">31, 35, 48, 60)</span></p>
-<p class="body reveal"><span class="lang-en">tent )‫ האהלה‬... ‫"(ויבאה‬</span></p>
-<p class="body reveal"><span class="lang-en">)‫(האיש‬, this one )‫ (הלזה‬...?'"</span></p>
 </div>
 <script src="../../js/verse-modal.js"></script>
 <script src="../../js/reading-progress.js"></script>

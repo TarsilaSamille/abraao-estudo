@@ -12,17 +12,77 @@
 <link href="../../css/shared-tutorial.css" rel="stylesheet"/>
 <style>
 @import url('../css/session-base.css');
+
+/* Paleta e formas tiradas do PDF da sessão (sessao-8.pdf) — o PDF é a autoridade.
+   Cores de texto: #1b1b1b · rótulos/citações: #4f5669 · rodapé: #2c2c2c
+   Fundo de bloco: #e4e8ed · realce: #d3f2cd #ccf1fa #f9e3de #e6e6fa #b5543a
+                    #efe8db #313c86 #b9eff7 · pílulas: #6b7384 #816f4d #5869cd */
+.page-header { border-bottom: 1px solid #c1c9d0; padding-bottom: .7rem; margin-bottom: 1.75rem; }
+h1.title, h2.section, h3.sub, .scripture-label, .mcol-title, .cx h4 { color: #1b1b1b; }
+body, p.body, .scripture-text, ul.bullets > li, .doc-table td, .v-line { color: #1b1b1b; }
+ul.bullets > li:before { color: #1b1b1b; }
+.ref { color: #1b1b1b; }
+.page-footer { color: #2c2c2c; border-top-color: #e4e8ed; }
+.caption, .cap { color: #4f5669; }
+.scripture-type { color: #4f5669; }
+.rule, hr.t-div { border-color: #e4e8ed; }
+
+/* Bloco de tradução / design literário */
+.t-box { border: 3px solid #e4e8ed; border-radius: 18px; background: #fff; padding: 1.4rem 1.5rem; margin: 1.5rem 0; }
+.v-line { display: flex; align-items: baseline; gap: .5rem; font-size: 1.05rem; line-height: 2.05; color: #1b1b1b; }
+.v-lbl { flex: 0 0 1.6rem; color: #4f5669; font-size: .72rem; font-weight: 600; letter-spacing: .04em; }
+.v-txt { flex: 1 1 auto; }
+sup.vs { color: #4f5669; font-size: .72em; font-weight: 600; }
+i1 { padding-left: 0; }
+hr.t-div { border: 0; border-top: 1px solid #e4e8ed; }
+
+/* Realces literários: fundo + cor do texto, exatamente como no PDF */
+.hl, .tx { border-radius: 4px; padding: .08em .18em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.hl-green { background: #d3f2cd; color: #2b6146; }
+.hl-blue { background: #ccf1fa; color: #245791; }
+.hl-pink { background: #f9e3de; color: #972a4e; }
+.hl-purple { background: #e6e6fa; color: #5d4897; }
+.hl-brown { background: #b5543a; color: #ffffff; }
+.hl-gray { background: #e4e8ed; color: #4f5669; }
+.hl-tan { background: #efe8db; color: #645537; }
+.hl-tan-dust { background: #efe8db; color: #816f4d; }
+.hl-dpurple { background: #313c86; color: #ffffff; }
+.hl-cyan { background: #b9eff7; color: #00626f; }
+.tx-blue { color: #245791; font-weight: 600; }
+.tx-purple { color: #7e62bc; font-weight: 600; }
+.tx-indigo { color: #5869cd; font-weight: 600; }
+
+/* Citações (bloco cinza do PDF) */
+.scripture { background: #e4e8ed; border-left: 0; padding: .9rem 1.1rem; border-radius: 0; }
+.scripture:hover { border-left-color: transparent; }
+
+/* Tabela do replay */
+.doc-table { border-color: #e4e8ed; background: #fff; }
+.doc-table td { border-color: #e4e8ed; }
+.doc-table td + td { border-left-color: #e4e8ed; }
+.doc-table tfoot td { background: #e4e8ed; border-top-color: #e4e8ed; color: #4f5669; font-style: italic; }
+.cell-fill { background: #e4e8ed; }
+.pill { display: inline-block; font-weight: 700; padding: 3px 12px; border-radius: 9px; font-size: .84rem; line-height: 1.5; }
+.pill-ink { background: #e4e8ed; color: #1b1b1b; }
+.pill-slate { background: #6b7384; color: #fff; }
+.pill-tan { background: #816f4d; color: #fff; }
+.pill-violet { background: #5869cd; color: #fff; }
+
+/* Cartões de design literário */
+.lit-card { border: 3px solid #6b7384; border-radius: 12px; padding: .8rem .9rem 1rem; background: #e8eaec; }
+.lit-card.mid { background: #fff; }
+.lit-tag { display: inline-block; background: #6b7384; color: #fff; font-weight: 700; font-size: .84rem; padding: 3px 12px; border-radius: 9px; margin-bottom: .55rem; }
 </style>
 </head>
 <body>
 <div aria-hidden="true" id="reading-progress"></div>
 <div class="fixed left-4 top-4 z-50 print:hidden">
-<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" href="index.html">
+<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" href="index.html">
 <span><span class="lang-pt">←</span><span class="lang-en">←</span></span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
 </a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
-<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" onclick="window.print()">
+<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" onclick="window.print()">
 <svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect height="8" width="12" x="6" y="14"></rect></svg>
 <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
 </button>
@@ -93,7 +153,7 @@
 <span class="lang-en">(<sup class="vs">13</sup> <span class="hl hl-pink">Now, to Yahweh the men of Sodom were bad and moral-failures, very much</span>.)</span>
 </div>
 </div>
-<hr class="my-4 border-[#d7dde5]"/>
+<hr class="my-4 t-div"/>
 <div class="v-line">
 <div class="v-lbl"></div>
 <div class="v-txt">
@@ -105,8 +165,8 @@
 <div class="v-line">
 <div class="v-lbl"></div>
 <div class="v-txt">
-<span class="lang-pt">depois que <span class="tx-purple">Ló se separou dele</span>,</span>
-<span class="lang-en">after <span class="tx-purple">Lot separated from him</span>,</span>
+<span class="lang-pt">depois que <span class="tx-indigo">Ló se separou dele</span>,</span>
+<span class="lang-en">after <span class="tx-indigo">Lot separated from him</span>,</span>
 </div>
 </div>
 <div class="v-line">
@@ -142,15 +202,15 @@
 <div class="v-lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></div>
 <div class="v-txt">
 <sup class="vs"><span class="lang-pt">16</span><span class="lang-en">16</span></sup>
-<span class="lang-pt">E eu farei a <span class="hl hl-dpurple">sua semente</span> como <span class="hl hl-tan">o pó da terra</span>,</span>
-<span class="lang-en">And I will make <span class="hl hl-dpurple">your seed</span> like <span class="hl hl-tan">the dust of the land</span>,</span>
+<span class="lang-pt">E eu farei a <span class="hl hl-dpurple">sua semente</span> como <span class="hl hl-tan-dust">o pó da terra</span>,</span>
+<span class="lang-en">And I will make <span class="hl hl-dpurple">your seed</span> like <span class="hl hl-tan-dust">the dust of the land</span>,</span>
 </div>
 </div>
 <div class="v-line">
 <div class="v-lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></div>
 <div class="v-txt i1">
-<span class="lang-pt">que, se alguém pudesse <span class="hl hl-cyan">contar</span> <span class="hl hl-tan">o pó da terra</span>,</span>
-<span class="lang-en">which, if one was able to <span class="hl hl-cyan">count</span> <span class="hl hl-tan">the dust of the land</span>,</span>
+<span class="lang-pt">que, se alguém pudesse <span class="hl hl-cyan">contar</span> <span class="hl hl-tan-dust">o pó da terra</span>,</span>
+<span class="lang-en">which, if one was able to <span class="hl hl-cyan">count</span> <span class="hl hl-tan-dust">the dust of the land</span>,</span>
 </div>
 </div>
 <div class="v-line">
@@ -182,7 +242,7 @@
 <span class="lang-en"><span class="hl hl-gray">because to you I will give</span> <span class="hl hl-tan">it</span>.”</span>
 </div>
 </div>
-<hr class="my-4 border-[#d7dde5]"/>
+<hr class="my-4 t-div"/>
 <div class="v-line">
 <div class="v-lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></div>
 <div class="v-txt">
@@ -213,7 +273,7 @@
 </div>
 </div>
 </div>
-<p style="font-style: italic; color: #6b7280; font-size: 0.875rem; margin-bottom: 2.5rem; text-align: center;">
+<p style="font-style: italic; color: #4f5669; font-size: 0.875rem; margin-bottom: 2.5rem; text-align: center;">
 <span class="lang-pt">Gênesis 13:12-18. Tradução e Design Literário por Tim Mackie para o BibleProject Classroom: Abraham (2021).</span>
 <span class="lang-en">Genesis 13:12-18. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span>
 </p>
@@ -242,7 +302,7 @@
 <span class="lang-pt">Ora, para Iavé os homens de Sodoma eram <strong>maus</strong> (<span class="heb">רע</span>) e <strong>falhos-morais</strong> (<span class="heb">חטאים</span>), muito.</span>
 <span class="lang-en">Now, to Yahweh the men of Sodom were <strong>bad</strong> (<span class="heb">רע</span>) and <strong>moral-failures</strong> (<span class="heb">חטאים</span>), very much.</span>
 </p>
-<div class="bg-[#f8fafc] border border-[#d7dde5] rounded-xl p-5 mt-4">
+<div class="bg-[#f9fafc] rounded-xl p-5 mt-4">
 <ul class="bullets text-sm" style="margin-bottom: 0;">
 <li>
 <span class="lang-pt">Adão e Eva falham na árvore do conhecimento do bem e do <strong>mal</strong> (<span class="heb">רע</span>) por causa do engano da serpente (<span class="ref" data-reference="Gn.+3:6-7">Gn. 3:6-7</span>).</span>
@@ -261,8 +321,8 @@
 </p>
 <!-- MACRO DESIGN CARDS -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-8 reveal">
-<div class="border-[3px] border-slate-300 rounded-xl p-5 bg-[#f8fafc] shadow-sm">
-<span class="inline-block bg-slate-500 text-white font-bold text-[0.875rem] px-3 py-1 rounded-full mb-3 tracking-wide"><span class="lang-pt">
+<div class="lit-card">
+<span class="lit-tag"><span class="lang-pt">
                 Genesis 12:6-9
             </span><span class="lang-en">
                 Genesis 12:6-9
@@ -274,8 +334,8 @@
 </li>
 </ul>
 </div>
-<div class="border-[2.5px] border-slate-700 rounded-xl p-5 bg-white shadow-md transform md:-translate-y-2">
-<span class="inline-block bg-slate-700 text-white font-bold text-[0.875rem] px-3 py-1 rounded-full mb-3 tracking-wide"><span class="lang-pt">
+<div class="lit-card mid">
+<span class="lit-tag"><span class="lang-pt">
                 Genesis 12:10-13:11
             </span><span class="lang-en">
                 Genesis 12:10-13:11
@@ -286,8 +346,8 @@
 <li><span class="lang-pt">13:5-11</span><span class="lang-en">13:5-11</span></li>
 </ul>
 </div>
-<div class="border-[3px] border-slate-300 rounded-xl p-5 bg-[#f8fafc] shadow-sm">
-<span class="inline-block bg-slate-500 text-white font-bold text-[0.875rem] px-3 py-1 rounded-full mb-3 tracking-wide"><span class="lang-pt">
+<div class="lit-card">
+<span class="lit-tag"><span class="lang-pt">
                 Genesis 13:18
             </span><span class="lang-en">
                 Genesis 13:18
@@ -300,7 +360,7 @@
 </ul>
 </div>
 </div>
-<p style="font-style: italic; color: #6b7280; font-size: 0.875rem; margin-top: -1rem; margin-bottom: 2.5rem; text-align: center;">
+<p style="font-style: italic; color: #4f5669; font-size: 0.875rem; margin-top: -1rem; margin-bottom: 2.5rem; text-align: center;">
 <span class="lang-pt">Gênesis 12:6-13:18. Design Literário por Tim Mackie para o BibleProject Classroom: Abraham (2021).</span>
 <span class="lang-en">Genesis 12:6-13:18. Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span>
 </p>
@@ -476,8 +536,8 @@
 <table class="doc-table w-full min-w-[760px] md reveal">
 <tbody>
 <tr>
-<td class="w-[23%]">
-<span class="inline-block bg-slate-200 text-[#17181a] font-bold px-3 py-1 rounded-full text-sm mb-3"><span class="lang-pt">
+<td class="w-[23%] cell-fill">
+<span class="pill pill-ink mb-3"><span class="lang-pt">
                             Genesis 2
                         </span><span class="lang-en">
                             Genesis 2
@@ -488,8 +548,8 @@
 <li><span class="lang-pt">Espaço sagrado da presença de Deus junto à árvore da vida no Monte Éden</span><span class="lang-en">Sacred space of God's presence by the tree of life on Mt. Eden</span></li>
 </ul>
 </td>
-<td class="w-[23%]">
-<span class="inline-block bg-slate-500 text-white font-bold px-3 py-1 rounded-full text-sm mb-3"><span class="lang-pt">
+<td class="w-[23%] cell-fill">
+<span class="pill pill-slate mb-3"><span class="lang-pt">
                             Genesis 3
                         </span><span class="lang-en">
                             Genesis 3
@@ -500,8 +560,8 @@
 <li><span class="lang-pt">Exílio do Éden</span><span class="lang-en">Exile from Eden</span></li>
 </ul>
 </td>
-<td class="w-[28%]">
-<span class="inline-block bg-[#c07060] text-white font-bold px-3 py-1 rounded-full text-sm mb-3"><span class="lang-pt">
+<td class="w-[28%] cell-fill">
+<span class="pill pill-tan mb-3"><span class="lang-pt">
                             Genesis 4-6
                         </span><span class="lang-en">
                             Genesis 4-6
@@ -513,9 +573,9 @@
 <li><span class="lang-pt">O irmão não escolhido se estabelece no leste, onde a violência ferve, levando a um dilúvio de julgamento</span><span class="lang-en">Non-chosen brother settles in the east, where violence is simmering, leading to a flood of judgment</span></li>
 </ul>
 </td>
-<td class="w-[26%] align-middle bg-[#f8fafc] border-l border-[#d7dde5]">
+<td class="w-[26%] align-middle cell-fill border-l">
 <div class="flex justify-center">
-<span class="inline-block bg-[#303880] text-white font-bold px-4 py-2 rounded-[9px] text-sm text-center shadow-sm">
+<span class="pill pill-violet text-center">
 <span class="lang-pt">Violência e Dilúvio!</span>
 <span class="lang-en">Violence and Flood!</span>
 </span>
@@ -523,8 +583,8 @@
 </td>
 </tr>
 <tr>
-<td class="w-[23%]">
-<span class="inline-block bg-slate-200 text-[#17181a] font-bold px-3 py-1 rounded-full text-sm mb-3"><span class="lang-pt">
+<td class="w-[23%] cell-fill">
+<span class="pill pill-ink mb-3"><span class="lang-pt">
                             Genesis 12:1-9
                         </span><span class="lang-en">
                             Genesis 12:1-9
@@ -536,7 +596,7 @@
 </ul>
 </td>
 <td class="w-[23%]">
-<span class="inline-block bg-slate-500 text-white font-bold px-3 py-1 rounded-full text-sm mb-3"><span class="lang-pt">
+<span class="pill pill-slate mb-3"><span class="lang-pt">
                             Genesis 12:10-20
                         </span><span class="lang-en">
                             Genesis 12:10-20
@@ -548,7 +608,7 @@
 </ul>
 </td>
 <td class="w-[28%]">
-<span class="inline-block bg-[#c07060] text-white font-bold px-3 py-1 rounded-full text-sm mb-3"><span class="lang-pt">
+<span class="pill pill-tan mb-3"><span class="lang-pt">
                             Genesis 13
                         </span><span class="lang-en">
                             Genesis 13
@@ -560,9 +620,9 @@
 <li><span class="lang-pt">O irmão não escolhido se estabelece no leste, onde a violência ferve, levando a um dilúvio de julgamento</span><span class="lang-en">Non-chosen brother settles in the east, where violence is simmering, leading up to a flood of judgment</span></li>
 </ul>
 </td>
-<td class="w-[26%] align-middle bg-[#f8fafc] border-l border-[#d7dde5]">
+<td class="w-[26%] align-middle cell-fill border-l">
 <div class="flex justify-center">
-<span class="inline-block bg-[#303880] text-white font-bold px-4 py-2 rounded-[9px] text-sm text-center shadow-sm">
+<span class="pill pill-violet text-center">
 <span class="lang-pt">Violência e Dilúvio!</span>
 <span class="lang-en">Violence and Flood!</span>
 </span>
@@ -588,77 +648,23 @@
 <span class="lang-pt">O exílio resulta em ambos os casos, embora o padrão seja mais sofisticado com Abrão: Ele primeiro se submete a um exílio autoimposto de Canaã e depois é exilado do Egito pelo Faraó. É apenas em Gênesis 13 que Abrão quebra esse padrão. Uma vez que o conflito com Ló começa, Abrão se torna um mediador para a paz e evita um conflito violento entre irmãos. Ló acaba escolhendo um lugar que é semelhante à cidade de Caim, um reino de violência (Lameque em <span class="ref" data-reference="Gn.+4:18-24">Gn. 4:18-24</span>; os guerreiros violentos de <span class="ref" data-reference="Gn.+6:4">Gn. 6:4</span>; os homens perversos e violentos de Sodoma em <span class="ref" data-reference="Gn.+13:13">Gn. 13:13</span> e <span class="ref" data-reference="14:1-10">14:1-10</span>).</span>
 <span class="lang-en">Exile results in both cases, though the pattern is more sophisticated with Avram: He first undergoes a self-imposed exile from Canaan and then is exiled from Egypt by Pharaoh. It’s only in Genesis 13 that Avram breaks that pattern. Once the conflict with Lot begins, Avram becomes a mediator for peace and avoids a violent conflict between brothers. Lot ends up choosing a place that is similar to Cain’s city, a realm of violence (Lemek in <span class="ref" data-reference="Gen.+4:18-24">Gen. 4:18-24</span>; the violent warriors of <span class="ref" data-reference="Gen.+6:4">Gen. 6:4</span>; the wicked and violent men of Sodom in <span class="ref" data-reference="Gen.+13:13">Gen. 13:13</span> and <span class="ref" data-reference="14:1-10">14:1-10</span>).</span>
 </p>
-<!-- SECTION 7 (SVG DIAGRAM) -->
+<!-- SECTION 7 (DIAGRAM) -->
 <h2 class="section">
 <span class="lang-pt">O Refúgio na Colina de Abrão</span>
 <span class="lang-en">Avram’s Hilltop Refuge</span>
 </h2>
-<div class="reveal my-10 flex flex-col items-center">
-<svg aria-label="Avram's Hilltop Refuge Diagram" role="img" style="width: 100%; max-width: 600px; height: auto;" viewbox="0 0 600 320">
-<g fill="none" stroke="#17181a" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-<!-- Main Hill Curve -->
-<path d="M 40 250 Q 220 180 400 250"></path>
-<path d="M 400 250 Q 480 280 560 250"></path>
-<!-- Tree -->
-<path d="M 280 206 L 280 120"></path>
-<path d="M 276 120 L 284 120"></path>
-<!-- Tree canopy -->
-<path d="M 250 110 C 240 100 245 80 265 80 C 270 65 295 60 305 75 C 320 70 335 85 330 100 C 340 110 330 125 315 120 C 310 130 290 130 285 120 C 275 125 260 125 250 110 Z"></path>
-<!-- Tent -->
-<path d="M 240 216 L 265 180 L 290 216 Z"></path>
-<path d="M 252 216 L 265 195 L 278 216"></path>
-<!-- Avram Figure -->
-<circle cx="215" cy="145" r="9"></circle>
-<path d="M 215 154 L 215 198"></path>
-<path d="M 215 165 C 205 165 200 180 200 195"></path>
-<path d="M 215 165 C 225 165 230 180 230 195"></path>
-<!-- Lot Figure -->
-<circle cx="115" cy="165" r="8"></circle>
-<path d="M 115 173 L 115 210"></path>
-<path d="M 115 180 C 105 180 100 195 100 210"></path>
-<path d="M 115 180 C 125 180 130 195 130 210"></path>
-<!-- Stuff Bubble -->
-<ellipse cx="165" cy="180" rx="25" ry="15"></ellipse>
-<path d="M 148 190 Q 135 195 130 190"></path>
-<!-- Box/Sodom -->
-<path d="M 450 262 L 450 230 L 465 230 L 465 240 L 480 240 L 480 230 L 495 230 L 495 240 L 510 240 L 510 230 L 525 230 L 525 262 Z"></path>
-<circle cx="487" cy="205" r="8"></circle>
-<path d="M 487 213 L 487 240"></path>
-<path d="M 487 220 L 475 235"></path>
-<path d="M 487 220 L 499 235"></path>
-</g>
-<!-- Text elements -->
-<text fill="#1f2937" font-family="Inter" font-size="12" font-weight="700" text-anchor="middle" x="215" y="125"><span class="lang-pt">AVRAM</span><span class="lang-en">AVRAM</span></text>
-<text class="lang-pt" fill="#1f2937" font-family="Inter" font-size="18" font-weight="700" text-anchor="middle" x="145" y="125">PÓ</text>
-<text class="lang-en" fill="#1f2937" font-family="Inter" font-size="18" font-weight="700" text-anchor="middle" x="145" y="125">DUST</text>
-<text fill="#1f2937" font-family="Inter" font-size="11" font-weight="700" text-anchor="middle" x="115" y="145"><span class="lang-pt">LOT</span><span class="lang-en">LOT</span></text>
-<text class="lang-pt" fill="#1f2937" font-family="Inter" font-size="10" font-weight="700" text-anchor="middle" x="165" y="184">BENS</text>
-<text class="lang-en" fill="#1f2937" font-family="Inter" font-size="10" font-weight="700" text-anchor="middle" x="165" y="184">STUFF</text>
-<text class="lang-pt" fill="#1f2937" font-family="Inter" font-size="16" font-weight="700" text-anchor="middle" x="487" y="150">MAU</text>
-<text class="lang-en" fill="#1f2937" font-family="Inter" font-size="16" font-weight="700" text-anchor="middle" x="487" y="150">BAD</text>
-<text class="lang-pt" fill="#1f2937" font-family="Inter" font-size="16" font-weight="700" text-anchor="middle" x="487" y="168">PECADO</text>
-<text class="lang-en" fill="#1f2937" font-family="Inter" font-size="16" font-weight="700" text-anchor="middle" x="487" y="168">SIN</text>
-<text class="lang-pt" fill="#1f2937" font-family="Inter" font-size="14" font-weight="700" text-anchor="middle" x="487" y="186">PARA O LESTE</text>
-<text class="lang-en" fill="#1f2937" font-family="Inter" font-size="14" font-weight="700" text-anchor="middle" x="487" y="186">EASTWARD</text>
-<text class="lang-pt" fill="#1f2937" font-family="Inter" font-size="14" font-weight="700" text-anchor="middle" x="487" y="254">SODOMA</text>
-<text class="lang-en" fill="#1f2937" font-family="Inter" font-size="14" font-weight="700" text-anchor="middle" x="487" y="254">SODOM</text>
-<text fill="#1f2937" font-family="Inter" font-size="28" font-weight="800" x="115" y="280"><span class="lang-pt">GEN 13</span><span class="lang-en">GEN 13</span></text>
-<text fill="#1f2937" font-family="Inter" font-size="26" font-weight="800" x="113" y="310"><span class="lang-pt">//GEN 4</span><span class="lang-en">//GEN 4</span></text>
-</svg>
-<p style="font-style: italic; color: #6b7280; font-size: 0.875rem; margin-top: 1.5rem; text-align: center;">
+<figure class="reveal my-10" style="margin-left:0; margin-right:0;">
+<img alt="Refúgio na Colina de Abrão / Avram's Hilltop Refuge: DUST, LOT, AVRAM, STUFF, BAD SIN EASTWARD, SODOM, GEN 13 //GEN 4" class="block mx-auto" src="img/sessao-8/page-1.jpg" style="max-width:100%; height:auto;"/>
+<figcaption class="caption" style="text-align:center;">
 <span class="lang-pt">O Refúgio na Colina de Abrão. Criado por Tim Mackie para o BibleProject Classroom: Abraham (2021).</span>
-<span class="lang-en">Avram’s Hilltop Refuge. Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</span>
-</p>
-</div>
+<span class="lang-en">Avram&#8217;s Hilltop Refuge. Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</span>
+</figcaption>
+</figure>
 <!-- REFLECTION QUESTION -->
 <h3 class="sub reveal" style="margin-top:3rem;">
 <span class="lang-pt">Pergunta para Reflexão</span>
 <span class="lang-en">Reflection Question</span>
 </h3>
-<figure class="reveal" style="margin:2rem 0;">
-<img alt="" class="block mx-auto my-4 rounded-[12px]" src="img/sessao-8/page-1.jpg" style="max-width:100%;"/>
-</figure>
-<figcaption class="caption" style="text-align:center;"><span class="lang-en">(Lemek in Gen. 4:18-24; the violent warriors of Gen. 6:4; the wicked and violent men of Sodom in Gen. 13:13</span></figcaption>
 <p class="body reveal">
 <span class="lang-pt">Quais temas e palavras-chave em Gênesis 13:14-20 recordam o jardim do Éden no topo da montanha? Como esses temas foram desenvolvidos em Gênesis 1-11?</span>
 <span class="lang-en">What themes and key words in Genesis 13:14-20 recall the mountaintop garden of Eden? How have these themes been developed in Genesis 1-11?</span>
@@ -667,9 +673,6 @@
 <span class="lang-pt">Anotações de Aula: Abraão</span><span class="lang-en">Class Notes: Abraham</span>
 <span><span class="lang-pt">Sessão 8</span><span class="lang-en">Session 8</span></span>
 </footer>
-<!-- conteudo adicional do PDF -->
-<p class="body reveal"><span class="lang-en">)‫“ = (אלון מורה‬tree of</span></p>
-<p class="body reveal"><span class="lang-en">Mamre )‫(אלני ממרא‬.</span></p>
 </div>
 <script src="../../js/verse-modal.js"></script>
 <script src="../../js/reading-progress.js"></script>

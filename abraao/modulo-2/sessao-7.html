@@ -12,17 +12,76 @@
 <link href="../../css/shared-tutorial.css" rel="stylesheet"/>
 <style>
 @import url('../css/session-base.css');
+
+/* ===== Per-session layer. Palette extracted from pdf-sessoes/sessao-7.pdf =====
+   The PDF is the authority for colour. Verified fills/strokes/text on all 7 pages:
+     ink #1b1b1b · caption #4f5669 · footer #2c2c2c · title rule #c1c9d0
+     hairline #e4e8ed · def surface #f9fafc
+     chips: lgray #e4e8ed/#4f5669 · lorange #fae4c4/#91362e · dblue #313c86/#fff
+            dindigo #5869cd/#fff · sand #efe8db/#645537 · lred #f9e3de/#972a4e
+            lteal #b9eff7/#00626f · dpurple #7e62bc/#fff · lpurple #f7e1f5/#713c92
+            lblue #d9ecfd/#404ca6 · lcyan #ccf1fa/#245791 · lgreen #d3f2cd/#2b6146
+     text-only: tpurple #7e62bc · tplum #9855af · tgreen #3a8060 · conn #816f4d */
+body { color: #1b1b1b; }
+h1.title, h2.section, h3.sub, h3.sub2 { color: #1b1b1b; }
+p.body, ul.bullets > li { color: #1b1b1b; }
+.caption { color: #4f5669; }
+.rule { border-top: 1px solid #c1c9d0 !important; }
+.page-footer { color: #2c2c2c; border-top: 1px solid #e4e8ed; }
+
+/* Literary-design box: PDF strokes it 1.5px #e4e8ed, no label pill. */
+.t-box { position: relative; border: 1.5px solid #e4e8ed; border-radius: 12px; padding: 1.1rem 1.5rem 1.2rem; background: #fff; margin: 1.6rem 0 1.1rem; }
+.v-line { display: flex; align-items: flex-start; margin-bottom: .5rem; font-size: 1.05rem; line-height: 1.85; color: #1b1b1b; }
+.v-lbl { width: 1.8rem; flex-shrink: 0; color: #4f5669; font-weight: 600; font-size: .9rem; padding-top: .15rem; }
+.v-txt { flex-grow: 1; }
+.i1 { padding-left: 1.5rem; }
+.i2 { padding-left: 3rem; }
+sup.vs { font-size: .72em; color: #1b1b1b; font-weight: 500; margin-right: 3px; }
+.v-divider { border: 0; border-top: 1.5px solid #e4e8ed; margin: 1.4rem 0; }
+
+/* Highlight chips. */
+.k { display: inline; padding: 1px 5px; border-radius: 6px; font-weight: 600; color: #fff; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.k-lgray   { background: #e4e8ed; color: #4f5669; }
+.k-lorange { background: #fae4c4; color: #91362e; }
+.k-dblue   { background: #313c86; color: #fff; }
+.k-dindigo { background: #5869cd; color: #fff; }
+.k-sand    { background: #efe8db; color: #645537; }
+.k-lred    { background: #f9e3de; color: #972a4e; }
+.k-lteal   { background: #b9eff7; color: #00626f; }
+.k-dpurple { background: #7e62bc; color: #fff; }
+.k-lpurple { background: #f7e1f5; color: #713c92; }
+.k-lblue   { background: #d9ecfd; color: #404ca6; }
+.k-lcyan   { background: #ccf1fa; color: #245791; }
+.k-lgreen  { background: #d3f2cd; color: #2b6146; }
+.k-tpurple { color: #7e62bc; font-weight: 700; }
+.k-tplum   { color: #9855af; font-weight: 700; }
+.k-tgreen  { color: #3a8060; font-weight: 700; }
+.k-conn    { color: #816f4d; font-weight: 700; }
+
+/* Instructor's Translation block: PDF = white card, 4px #e4e8ed left band. */
+.instr { background: #fff; border-left: 4px solid #e4e8ed; border-radius: 0 12px 12px 0; padding: 1.2rem 1.4rem; margin: 1.3rem 0; }
+.instr-label { font-weight: 800; color: #1b1b1b; font-size: 1.05rem; }
+.instr-type { color: #4f5669; font-weight: 700; font-size: .95rem; margin-left: .5rem; }
+.instr p { font-size: 1.02rem; line-height: 1.85; color: #1b1b1b; margin-bottom: .35rem; }
+.instr .def { font-size: .95rem; color: #4f5669; margin-top: .5rem; background: #f9fafc; border-radius: 8px; padding: .5rem .9rem; }
+.instr .def b { font-style: italic; }
+
+.sub2 { font-weight: 800; font-size: 1.12rem; margin-top: 2.4rem; margin-bottom: .9rem; letter-spacing: -0.005em; }
+
+@media print {
+  .t-box, .instr { break-inside: avoid; }
+}
 </style>
 </head>
 <body>
 <div aria-hidden="true" id="reading-progress"></div>
 <div class="fixed left-4 top-4 z-50 print:hidden">
-<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" href="index.html">
+<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" href="index.html">
 <span><span class="lang-pt">←</span><span class="lang-en">←</span></span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
 </a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
-<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" onclick="window.print()">
+<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" onclick="window.print()">
 <svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect height="8" width="12" x="6" y="14"></rect></svg>
 <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
 </button>
@@ -42,12 +101,8 @@
 <li><span class="lang-pt">O motivo da separação dos irmãos é o modo da Bíblia de explorar o pecado comunitário.</span><span class="lang-en">The separation of the brothers motif is the Bible’s way of exploring communal sin.</span></li>
 </ul>
 <!-- ================= TRANSLATION GENESIS 13:1-4 ================= -->
-<h2 class="section reveal" style="margin-top:1.5rem;"><span class="lang-pt">Tradução e Design Literário de Gênesis 13:1</span><span class="lang-en">Translation and Literary Design of Genesis 13:1</span></h2>
+<h2 class="section reveal" style="margin-top:1.5rem;"><span class="lang-pt">Tradução e Design Literário de Gênesis 13:1-4</span><span class="lang-en">Translation and Literary Design of Genesis 13:1-4</span></h2>
 <div class="t-box reveal">
-<div class="t-pill">
-<span class="lang-pt">A saída de Abrão do Egito … com Ló</span>
-<span class="lang-en">Avram’s Exodus From Egypt … With Lot</span>
-</div>
 <div class="v-line">
 <div class="v-lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></div>
 <div class="v-txt"><sup class="vs"><span class="lang-pt">1</span><span class="lang-en">1</span></sup><span class="lang-pt">E Abrão subiu do Egito,</span><span class="lang-en">And Avram went up out of Egypt,</span></div>
@@ -58,11 +113,11 @@
 </div>
 <div class="v-line">
 <div class="v-lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></div>
-<div class="v-txt i1"><span class="lang-pt">e <span class="k k-lpurple">tudo o que lhe pertencia</span>,</span><span class="lang-en">and <span class="k k-lpurple">all that belonged to him</span>,</span></div>
+<div class="v-txt i1"><span class="lang-pt">e <span class="k k-lgray">tudo o que lhe pertencia</span>,</span><span class="lang-en">and <span class="k k-lgray">all that belonged to him</span>,</span></div>
 </div>
 <div class="v-line">
 <div class="v-lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></div>
-<div class="v-txt i1"><span class="lang-pt">e <span class="k k-tpurple">Ló</span> com ele,</span><span class="lang-en">and <span class="k k-tpurple">Lot</span> with him,</span></div>
+<div class="v-txt i1"><span class="lang-pt">e <span class="k k-tplum">Ló</span> com ele,</span><span class="lang-en">and <span class="k k-tplum">Lot</span> with him,</span></div>
 </div>
 <div class="v-line">
 <div class="v-lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></div>
@@ -75,39 +130,40 @@
 </div>
 <div class="v-line">
 <div class="v-lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></div>
-<div class="v-txt i1"><span class="lang-pt">com <span class="k k-lpurple">rebanhos</span></span><span class="lang-en">with <span class="k k-lpurple">herds</span></span></div>
+<div class="v-txt i1"><span class="lang-pt">com <span class="k k-lgray">rebanhos</span></span><span class="lang-en">with <span class="k k-lgray">herds</span></span></div>
 </div>
 <div class="v-line">
 <div class="v-lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></div>
-<div class="v-txt i1"><span class="lang-pt">e com <span class="k k-lpurple">prata</span></span><span class="lang-en">and with <span class="k k-lpurple">silver</span></span></div>
+<div class="v-txt i1"><span class="lang-pt">e com <span class="k k-lgray">prata</span></span><span class="lang-en">and with <span class="k k-lgray">silver</span></span></div>
 </div>
 <div class="v-line">
 <div class="v-lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></div>
-<div class="v-txt i1"><span class="lang-pt">e com <span class="k k-lpurple">ouro</span>,</span><span class="lang-en">and with <span class="k k-lpurple">gold</span>,</span></div>
+<div class="v-txt i1"><span class="lang-pt">e com <span class="k k-lgray">ouro</span>,</span><span class="lang-en">and with <span class="k k-lgray">gold</span>,</span></div>
 </div>
 <hr class="v-divider"/>
 <div class="v-line">
 <div class="v-lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></div>
-<div class="v-txt"><sup class="vs"><span class="lang-pt">3</span><span class="lang-en">3</span></sup><span class="lang-pt">e ele seguiu <span class="k k-lorange">as suas jornadas desde o Neguebe</span> e até <span class="k k-dblue">Bet-El (= casa de El)</span></span><span class="lang-en">and he went on <span class="k k-lorange">his journeys from the Negev</span> and unto <span class="k k-dblue">Beth-El (= house of El)</span></span></div>
+<div class="v-txt"><sup class="vs"><span class="lang-pt">3</span><span class="lang-en">3</span></sup><span class="lang-pt">e ele seguiu <span class="k k-lorange">as suas jornadas desde o Neguebe</span> e <span class="k k-conn">até</span> <span class="k k-dblue">Bet-El (= casa de El)</span></span><span class="lang-en">and he went on <span class="k k-lorange">his journeys from the Negev</span> and <span class="k k-conn">unto</span> <span class="k k-dblue">Beth-El (= house of El)</span></span></div>
 </div>
 <div class="v-line">
 <div class="v-lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></div>
-<div class="v-txt i1"><span class="lang-pt">até <span class="k k-sand">o lugar</span> onde estava <span class="k k-dblue">a sua tenda</span> <span class="k k-lred">antes</span>,</span><span class="lang-en">unto <span class="k k-sand">the place</span> where <span class="k k-dblue">his tent</span> was there <span class="k k-lred">at the first</span>,</span></div>
+<div class="v-txt i1"><span class="lang-pt"><span class="k k-conn">até</span> <span class="k k-sand">o lugar</span> onde estava <span class="k k-dindigo">a sua tenda</span> <span class="k k-lred">antes</span>,</span><span class="lang-en"><span class="k k-conn">unto</span> <span class="k k-sand">the place</span> where <span class="k k-dindigo">his tent</span> was there <span class="k k-lred">at the first</span>,</span></div>
 </div>
 <div class="v-line">
 <div class="v-lbl"><span class="lang-pt">c</span><span class="lang-en">c</span></div>
-<div class="v-txt i2"><span class="lang-pt">entre <span class="k k-dblue">Bet-El</span> e entre Ai,</span><span class="lang-en">between <span class="k k-dblue">Beth-El</span> and between Ai,</span></div>
+<div class="v-txt i2"><span class="lang-pt"><span class="k k-conn">entre</span> <span class="k k-dblue">Bet-El</span> e entre Ai,</span><span class="lang-en"><span class="k k-conn">between</span> <span class="k k-dblue">Beth-El</span> and between Ai,</span></div>
 </div>
 <div class="v-line">
 <div class="v-lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></div>
-<div class="v-txt i1"><sup class="vs"><span class="lang-pt">4</span><span class="lang-en">4</span></sup><span class="lang-pt">até <span class="k k-sand">o lugar</span> <span class="k k-dblue">do altar</span> que ele tinha edificado <span class="k k-lteal">ali</span> <span class="k k-lred">no princípio</span>,</span><span class="lang-en">to <span class="k k-sand">the place</span> of <span class="k k-dblue">the altar</span> which he built <span class="k k-lteal">there</span> <span class="k k-lred">at the beginning</span>,</span></div>
+<div class="v-txt i1"><sup class="vs"><span class="lang-pt">4</span><span class="lang-en">4</span></sup><span class="lang-pt"><span class="k k-conn">até</span> <span class="k k-sand">o lugar</span> <span class="k k-dindigo">do altar</span> que ele tinha edificado <span class="k k-lteal">ali</span> <span class="k k-lred">no princípio</span>,</span><span class="lang-en"><span class="k k-conn">to</span> <span class="k k-sand">the place</span> of <span class="k k-dindigo">the altar</span> which he built <span class="k k-lteal">there</span> <span class="k k-lred">at the beginning</span>,</span></div>
 </div>
 <div class="v-line">
 <div class="v-lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></div>
-<div class="v-txt"><span class="lang-pt">e Abrão invocou <span class="k k-lteal">ali</span> <span class="k k-dblue">o nome de Iavé</span>.</span><span class="lang-en">and Avram called <span class="k k-lteal">there</span> on <span class="k k-dblue">the name of Yahweh</span>.</span></div>
+<div class="v-txt"><span class="lang-pt">e Abrão invocou <span class="k k-lteal">ali</span> <span class="k k-dindigo">o nome de Iavé</span>.</span><span class="lang-en">and Avram called <span class="k k-lteal">there</span> on <span class="k k-dindigo">the name of Yahweh</span>.</span></div>
 </div>
 </div>
-<p class="caption reveal"><span class="lang-pt"><em>Gênesis 13:1</em>. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Genesis 13:1</em>. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
+<p class="caption reveal"><span class="lang-pt"><em>Gênesis 13:1-4</em>. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Genesis 13:1-4</em>. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
+<h2 class="section reveal" style="margin-top:1.5rem;"><span class="lang-pt">A Saída de Abrão do Egito … com Ló</span><span class="lang-en">Avram’s Exodus From Egypt … With Lot</span></h2>
 <p class="body reveal"><span class="lang-pt">A cena se abre com a subida de Abrão (literalmente “ele subiu” [<span class="heb">עלה</span>] do Egito com muita riqueza. Múltiplos elos de volta a 12:5-9 nos mostram que a libertação de Iavé o restaurou à sua posição anterior.</span><span class="lang-en">The scene opens with Avram’s ascent (literally “he went up” [<span class="heb">עלה</span>] from Egypt with much wealth. Multiple links back to 12:5-9 show us that Yahweh’s deliverance has restored him to his former estate.</span></p>
 <h3 class="sub reveal"><span class="lang-pt">A Entrada de Abrão na Terra</span><span class="lang-en">Avram’s Entry Into the Land</span></h3>
 <div class="instr reveal">
@@ -144,12 +200,8 @@
 <p class="body reveal"><span class="lang-pt">A presença de Ló com a companhia de Abrão foi mencionada em 12:5, e ele permaneceu em segundo plano durante todo o 12:6-9 e 12:10-20. A problemática presença de Ló é reintroduzida aqui porque ele desempenhará o papel-chave na narrativa que se segue.</span><span class="lang-en">Lot’s presence with Avram’s company was mentioned back in 12:5, and he remained in the background for all of 12:6-9 and 12:10-20. Lot’s problematic presence is reintroduced here because he will play the key role in the narrative to follow.</span></p>
 <p class="body reveal"><span class="lang-pt">Há outra diferença fundamental entre a descida e a subida de Abrão do Egito. Abrão agora é extremamente rico, e essa riqueza, obtida por meio do seu engano ao Faraó, também desempenhará um papel importante na próxima narrativa.</span><span class="lang-en">There is another key difference between Avram’s descent and ascent from Egypt. Avram is extremely wealthy now, and that wealth, gained from his deception of Pharaoh, is also going to play a major role in the next narrative.</span></p>
 <!-- ================= TRANSLATION GENESIS 13:5-11 ================= -->
-<h2 class="section reveal"><span class="lang-pt">Tradução e Design Literário de Gênesis 13:5</span><span class="lang-en">Translation and Literary Design of Genesis 13:5</span></h2>
+<h2 class="section reveal"><span class="lang-pt">Tradução e Design Literário de Gênesis 13:5-11</span><span class="lang-en">Translation and Literary Design of Genesis 13:5-11</span></h2>
 <div class="t-box reveal">
-<div class="t-pill">
-<span class="lang-pt">Gênesis 13:5-11</span>
-<span class="lang-en">Genesis 13:5-11</span>
-</div>
 <div class="v-line">
 <div class="v-lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></div>
 <div class="v-txt"><sup class="vs"><span class="lang-pt">5</span><span class="lang-en">5</span></sup><span class="lang-pt">Ora, também <span class="k k-dpurple">pertencente a Ló</span>,</span><span class="lang-en">Now, also <span class="k k-dpurple">belonging to Lot</span>,</span></div>
@@ -164,7 +216,7 @@
 </div>
 <div class="v-line">
 <div class="v-lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></div>
-<div class="v-txt"><sup class="vs"><span class="lang-pt">6</span><span class="lang-en">6</span></sup><span class="lang-pt">e <span class="k k-sand">a terra</span> não os podia levar para <span class="k k-lblue">habitarem juntos como um</span> (<span class="heb">יחדיו</span>),</span><span class="lang-en">and <span class="k k-sand">the land</span> could not carry them for <span class="k k-lblue">dwelling together as one</span> (<span class="heb">יחדיו</span>),</span></div>
+<div class="v-txt"><sup class="vs"><span class="lang-pt">6</span><span class="lang-en">6</span></sup><span class="lang-pt">e <span class="k k-sand">a terra</span> <span class="k k-conn">não os podia levar para</span> <span class="k k-lblue">habitarem juntos como um</span> (<span class="heb">יחדיו</span>),</span><span class="lang-en">and <span class="k k-sand">the land</span> <span class="k k-conn">could not carry them for</span> <span class="k k-lblue">dwelling together as one</span> (<span class="heb">יחדיו</span>),</span></div>
 </div>
 <div class="v-line">
 <div class="v-lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></div>
@@ -172,7 +224,7 @@
 </div>
 <div class="v-line">
 <div class="v-lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></div>
-<div class="v-txt i1"><span class="lang-pt">e não podiam <span class="k k-lblue">habitar juntos como um</span> (<span class="heb">יחדיו</span>).</span><span class="lang-en">and they were not able to <span class="k k-lblue">dwell together as one</span> (<span class="heb">יחדיו</span>).</span></div>
+<div class="v-txt i1"><span class="lang-pt"><span class="k k-conn">e não podiam</span> <span class="k k-lblue">habitar juntos como um</span> (<span class="heb">יחדיו</span>).</span><span class="lang-en"><span class="k k-conn">and they were not able to</span> <span class="k k-lblue">dwell together as one</span> (<span class="heb">יחדיו</span>).</span></div>
 </div>
 <div class="v-line">
 <div class="v-lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></div>
@@ -230,15 +282,15 @@
 <hr class="v-divider"/>
 <div class="v-line">
 <div class="v-lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></div>
-<div class="v-txt"><sup class="vs"><span class="lang-pt">10</span><span class="lang-en">10</span></sup><span class="lang-pt">E <span class="k k-tpurple">Ló</span> <span class="k k-lpurple">levantou os seus olhos</span>,</span><span class="lang-en">And <span class="k k-tpurple">Lot</span> <span class="k k-lpurple">lifted his eyes</span>,</span></div>
+<div class="v-txt"><sup class="vs"><span class="lang-pt">10</span><span class="lang-en">10</span></sup><span class="lang-pt">E Ló <span class="k k-tpurple">levantou os seus olhos</span>,</span><span class="lang-en">And Lot <span class="k k-tpurple">lifted his eyes</span>,</span></div>
 </div>
 <div class="v-line">
 <div class="v-lbl"></div>
-<div class="v-txt"><span class="lang-pt"><span class="k k-tpurple">e viu</span> todo o <span class="k k-lgreen">vale do</span> <span class="k k-lblue">Jordão</span>,</span><span class="lang-en"><span class="k k-tpurple">and he saw</span> all the <span class="k k-lgreen">valley of the</span> <span class="k k-lblue">Jordan</span>,</span></div>
+<div class="v-txt"><span class="lang-pt"><span class="k k-tpurple">e viu</span> todo o <span class="k k-lgreen">vale do</span> <span class="k k-lcyan">Jordão</span>,</span><span class="lang-en"><span class="k k-tpurple">and he saw</span> all the <span class="k k-lgreen">valley of the</span> <span class="k k-lcyan">Jordan</span>,</span></div>
 </div>
 <div class="v-line">
 <div class="v-lbl"></div>
-<div class="v-txt"><span class="lang-pt"><span class="k k-tpurple">que estava</span> <span class="k k-tgreen">por completo</span> <span class="k k-lteal">regado</span></span><span class="lang-en"><span class="k k-tpurple">that it was</span> <span class="k k-tgreen">entirely</span> <span class="k k-lteal">watered</span></span></div>
+<div class="v-txt"><span class="lang-pt"><span class="k k-tpurple">que estava</span> <span class="k k-tgreen">por completo</span> <span class="k k-lcyan">regado</span></span><span class="lang-en"><span class="k k-tpurple">that it was</span> <span class="k k-tgreen">entirely</span> <span class="k k-lcyan">watered</span></span></div>
 </div>
 <div class="v-line">
 <div class="v-lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></div>
@@ -246,7 +298,7 @@
 </div>
 <div class="v-line">
 <div class="v-lbl"></div>
-<div class="v-txt"><span class="lang-pt"><span class="k k-tgreen">semelhante ao</span> <span class="k k-lteal">jardim</span> de Iavé,</span><span class="lang-en">it was <span class="k k-tgreen">like the</span> <span class="k k-lteal">garden</span> of Yahweh,</span></div>
+<div class="v-txt"><span class="lang-pt"><span class="k k-tgreen">semelhante ao</span> <span class="k k-lcyan">jardim</span> <span class="k k-tgreen">de Iavé</span>,</span><span class="lang-en">it was <span class="k k-tgreen">like the</span> <span class="k k-lcyan">garden</span> <span class="k k-tgreen">of Yahweh</span>,</span></div>
 </div>
 <div class="v-line">
 <div class="v-lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></div>
@@ -258,18 +310,18 @@
 </div>
 <div class="v-line">
 <div class="v-lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></div>
-<div class="v-txt"><sup class="vs"><span class="lang-pt">11</span><span class="lang-en">11</span></sup><span class="lang-pt">E Ló escolheu para si todo o <span class="k k-lgreen">vale do</span> <span class="k k-lblue">Jordão</span>,</span><span class="lang-en">And Lot chose for himself all the <span class="k k-lgreen">valley of the</span> <span class="k k-lblue">Jordan</span>,</span></div>
+<div class="v-txt"><sup class="vs"><span class="lang-pt">11</span><span class="lang-en">11</span></sup><span class="lang-pt">E Ló escolheu para si todo o <span class="k k-lgreen">vale do</span> <span class="k k-lcyan">Jordão</span>,</span><span class="lang-en">And Lot chose for himself all the <span class="k k-lgreen">valley of the</span> <span class="k k-lcyan">Jordan</span>,</span></div>
 </div>
 <div class="v-line">
 <div class="v-lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></div>
-<div class="v-txt i1"><span class="lang-pt">e Ló caminhou <span class="k k-lgreen">para o oriente</span>,</span><span class="lang-en">and Lot journeyed <span class="k k-lgreen">eastward</span>,</span></div>
+<div class="v-txt i1"><span class="lang-pt">e Ló caminhou <span class="k k-tgreen">para o oriente</span>,</span><span class="lang-en">and Lot journeyed <span class="k k-lgreen">eastward</span>,</span></div>
 </div>
 <div class="v-line">
 <div class="v-lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></div>
 <div class="v-txt i1"><span class="lang-pt">e <span class="k k-lblue">cada homem se separou de seu irmão</span>.</span><span class="lang-en">and <span class="k k-lblue">each man separated from his brother</span>.</span></div>
 </div>
 </div>
-<p class="caption reveal"><span class="lang-pt"><em>Gênesis 13:5</em>. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Genesis 13:5</em>. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
+<p class="caption reveal"><span class="lang-pt"><em>Gênesis 13:5-11</em>. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Genesis 13:5-11</em>. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
 <h2 class="section reveal"><span class="lang-pt">A Divisão dos Irmãos</span><span class="lang-en">The Division of the Brothers</span></h2>
 <p class="body reveal"><span class="lang-pt">O conflito que se desenvolve entre Abrão e Ló acontece em etapas cuidadosamente marcadas na progressão do texto.</span><span class="lang-en">The developing conflict between Avram and Lot happens in steps that are carefully marked in the text’s progression.</span></p>
 <p class="body reveal"><span class="lang-pt">Somos informados de que Ló também tem muitos rebanhos, ao lado dos muitos rebanhos de Abrão. Isso leva a um problema de capacidade. A terra simplesmente não pode sustentar todo o seu gado pastando. “Ela não pode levá-los para habitarem juntos como um.”</span><span class="lang-en">We’re told that Lot also has many herds, alongside Avram’s many herds. This leads to a problem of capacity. The land simply can’t sustain all of their grazing cattle. “It cannot carry them for dwelling together as one.”</span></p>
@@ -372,12 +424,12 @@
 <p style="margin-bottom:.9rem;"><span class="instr-label"><span class="lang-pt">Gênesis 10:32 <a class="verse-link hover:underline" data-reference="Gênesis+10:32" href="#">(Gênesis 10:32)</a></span><span class="lang-en">Genesis 10:32 <a class="verse-link hover:underline" data-reference="Genesis+10:32" href="#">(Genesis 10:32)</a></span></span><span class="instr-type"><span class="lang-pt">Tradução do Instrutor</span><span class="lang-en">Instructor’s Translation</span></span></p>
 <p style="margin-bottom:0;"><span class="lang-pt">Estas são as famílias dos filhos de Noé … e destas <strong>se espalharam as nações</strong> pela terra depois do dilúvio.</span><span class="lang-en">These are the families of the sons of Noah … and out of these <strong>the nations were separated</strong> on the land after the flood.</span></p>
 </div>
-<h3 class="sub2 reveal"><span class="lang-pt">Irmãos se Separam</span><span class="lang-en">Brothers Separate</span></h3>
-<h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
+<h2 class="section reveal"><span class="lang-pt">Irmãos se Separam</span><span class="lang-en">Brothers Separate</span></h2>
 <figure class="reveal" style="margin:2rem 0;">
-<img alt="" class="block mx-auto my-4 rounded-[12px]" src="img/sessao-7/page-1.jpg" style="max-width:100%;"/>
+<img alt="" class="block mx-auto my-4 rounded-[12px]" src="img/sessao-7/page-1.png" style="max-width:100%;"/>
+<figcaption class="caption" style="text-align:center;"><span class="lang-pt"><em>Abrão e Ló se Separam</em>. Criado por Tim Mackie para BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Avram and Lot Separating</em>. Created by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></figcaption>
 </figure>
-<figcaption class="caption" style="text-align:center;"><span class="lang-en">How does the narrative tell us that Lot makes a foolish decision?</span></figcaption>
+<h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
 <p class="body reveal"><span class="lang-pt">Como a narrativa nos mostra que Ló toma uma decisão tola?</span><span class="lang-en">How does the narrative tell us that Lot makes a foolish decision?</span></p>
 <footer class="page-footer">
 <span class="lang-pt">Sessão 7</span><span class="lang-en">Session 7</span>

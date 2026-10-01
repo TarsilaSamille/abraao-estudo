@@ -13,17 +13,89 @@
 <link href="../../css/shared-tutorial.css" rel="stylesheet"/>
 <style>
 @import url('../css/session-base.css');
+
+/* ===== sessao-28: paleta e caixas extraidas de pdf-sessoes/sessao-28.pdf =====
+   O PDF e a autoridade para cor e caixa. A base (DESIGN.md) continua valendo
+   para escala tipografica, max-w-4xl e hierarquia. */
+
+/* --- texto: o PDF e quase monocromatico --- */
+body, h1.title, h2.section, h3.sub, p.body, p.v-line,
+ul.bullets > li, .doc-table td { color: #1b1b1b; }
+.caption, .lbl, .doc-table tfoot td { color: #4f5669; }
+.page-footer { color: #2c2c2c; border-top: 1px solid #e4e8ed; }
+sup.vs { color: #1b1b1b; font-size: .8em; }
+.rule { border-top: 1px solid #c1c9d0 !important; }
+ul.bullets ul.bullets > li { padding-left: 1.15rem; }
+
+/* --- chips: fundo claro + texto escuro --- */
+.k { padding: 2px 6px; border-radius: 4px; }
+.k-rose-lt  { background: #f9e3de; color: #972a4e; }
+.k-tan-lt   { background: #fae4c4; color: #91362e; }
+.k-orange-lt { background: #fae4c4; color: #91362e; }
+.k-green-lt { background: #d3f2cd; color: #2b6146; }
+.k-blue-lt  { background: #ccf1fa; color: #245791; }
+.k-gray-lt  { background: #e4e8ed; color: #4f5669; }
+.k-sand-lt  { background: #efe8db; color: #645537; }
+
+/* --- chips: fundo escuro + texto branco --- */
+.k-rose-dk   { background: #be4967; color: #fff; }
+.k-maroon-dk { background: #751f40; color: #fff; }
+.k-purple-dk { background: #7e62bc; color: #fff; }
+.k-purple-lt { background: #9855af; color: #fff; }
+.k-teal-dk   { background: #097d8d; color: #fff; }
+.k-green-dk  { background: #3a8060; color: #fff; }
+.k-orange-dk { background: #b5543a; color: #fff; }
+.k-indigo-dk { background: #d9ecfd; color: #404ca6; }
+.k-gray-dk   { background: #3e4054; color: #fff; }
+
+/* --- realce so de cor, sem fundo (como no PDF) --- */
+.t-blue   { color: #5869cd; font-weight: 700; }
+.t-blue2  { color: #3678b4; font-weight: 700; }
+.t-green  { color: #3a8060; font-weight: 700; }
+.t-rose   { color: #b5543a; font-weight: 700; }
+.t-tan    { color: #816f4d; font-weight: 700; }
+.t-purple { color: #7e62bc; font-weight: 700; }
+.t-gray   { color: #4f5669; font-weight: 700; }
+
+/* --- painel do Macro Design --- */
+.macro-outer-gray { border: 1.5px solid #6b7384; border-radius: 8px; background: #fff;
+  padding: .7rem .95rem .85rem; margin: 0 0 1.15rem; }
+.macro-pill-dark { display: inline-block; background: #6b7384; color: #fff;
+  font-size: .82rem; font-weight: 700; padding: 1px 7px; border-radius: 4px;
+  margin-bottom: .3rem; }
+
+/* --- caixas literarias: no PDF o miolo e branco, so o contorno e #e4e8ed --- */
+.stanza-box { border: 1.5px solid #e4e8ed; background: #fff; border-radius: 12px;
+  padding: 1.1rem 1.3rem; margin: 1.4rem 0; }
+.stanza-box-black { border: 2px solid #1b1b1b; background: #fff; border-radius: 12px;
+  padding: 1.1rem 1.3rem; margin: 1.4rem 0; }
+.v-div { border-top: 1px solid #e4e8ed; }
+
+/* --- citacoes: no PDF sao texto corrido, com so o rotulo em negrito --- */
+.quote-block { margin: 1.5rem 0; }
+.quote-label { font-weight: 800; font-size: .95rem; color: #1b1b1b; margin-bottom: .4rem; }
+.quote-label .qtype { color: #4f5669; font-weight: 400; font-size: .92rem; }
+
+/* --- tabelas: cabecalho #e4e8ed, corpo branco com filete #e4e8ed --- */
+.doc-table { border: 0; border-radius: 10px; overflow: hidden; background: #fff; }
+.doc-table th { background: #e4e8ed; border: 1.5px solid #e4e8ed; color: #1b1b1b; }
+.doc-table td { background: #fff; border: 1px solid #e4e8ed; }
+.doc-table td + td { border-left: 1px solid #e4e8ed; }
+.doc-table tfoot td { background: #fff; border: 0; border-top: 1px solid #e4e8ed;
+  color: #4f5669; font-size: .9rem; }
+.doc-table-nohead tbody td:nth-child(1) { width: 30%; }
+.doc-table-nohead tbody td:nth-child(2) { width: 70%; }
 </style>
 </head>
 <body>
 <div aria-hidden="true" id="reading-progress"></div>
 <div class="fixed left-4 top-4 z-50 print:hidden">
-<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" href="index.html">
+<a class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" href="index.html">
 <span><span class="lang-pt">←</span><span class="lang-en">←</span></span><span class="lang-pt">Voltar</span><span class="lang-en">Back</span>
 </a>
 </div>
 <div class="fixed right-4 top-4 z-50 print:hidden flex items-center gap-2">
-<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#f1f5f9]" onclick="window.print()">
+<button class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 backdrop-blur-xs px-4 py-1.5 text-sm font-semibold text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-colors hover:bg-[#e4e8ed]" onclick="window.print()">
 <svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect height="8" width="12" x="6" y="14"></rect></svg>
 <span class="lang-pt">Imprimir</span><span class="lang-en">Print</span>
 </button>
@@ -138,23 +210,23 @@
 <!-- ================= TRANSLATION GEN 25 ================= -->
 <h2 class="section reveal"><span class="lang-pt">Tradução e Design Literário de Gênesis 25:1-18</span><span class="lang-en">Translation and Literary Design of Genesis 25:1-18</span></h2>
 <div class="stanza-box-black reveal">
-<p class="v-line"><sup class="vs"><span class="lang-pt">1</span><span class="lang-en">1</span></sup> <span class="lang-pt"><span class="k k-blue-lt">E Avraham</span> fez isso de novo,</span><span class="lang-en"><span class="k k-blue-lt">And Avraham</span> did it again,</span></p>
-<p class="v-line"><span class="lang-pt">e ele tomou uma <span class="k k-purple-dk">esposa</span>,</span><span class="lang-en">and he took a <span class="k k-purple-dk">wife</span>,</span></p>
-<p class="v-line"><span class="lang-pt">e o nome dela era <span class="k k-purple-dk">Qeturah</span>.</span><span class="lang-en">and her name was <span class="k k-purple-dk">Qeturah</span>.</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">1</span><span class="lang-en">1</span></sup> <span class="lang-pt"><span class="t-blue">E Avraham</span> fez isso de novo,</span><span class="lang-en"><span class="t-blue">And Avraham</span> did it again,</span></p>
+<p class="v-line"><span class="lang-pt">e ele tomou uma <span class="k k-maroon-dk">esposa</span>,</span><span class="lang-en">and he took a <span class="k k-maroon-dk">wife</span>,</span></p>
+<p class="v-line"><span class="lang-pt">e o nome dela era <span class="k k-maroon-dk">Qeturah</span>.</span><span class="lang-en">and her name was <span class="k k-maroon-dk">Qeturah</span>.</span></p>
 </div>
 <div class="stanza-box reveal">
-<p class="v-line"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><sup class="vs"><span class="lang-pt">2</span><span class="lang-en">2</span></sup> <span class="lang-pt">E <span class="k k-purple-dk">ela</span> <span class="k k-rose-dk">deu à luz</span> para ele</span><span class="lang-en">And <span class="k k-purple-dk">she</span> <span class="k k-rose-dk">birthed</span> for him</span></p>
-<p class="v-line i1"><span class="lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></span><span class="lang-pt">Zimran e <span class="k k-blue-lt">Yoqshan</span> e Medan e <span class="k k-blue-lt">Midyan</span> e Yishbaq e Shuakh,</span><span class="lang-en">Zimran and <span class="k k-blue-lt">Yoqshan</span> and Medan and <span class="k k-blue-lt">Midyan</span> and Yishbaq and Shuakh,</span></p>
+<p class="v-line"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><sup class="vs"><span class="lang-pt">2</span><span class="lang-en">2</span></sup> <span class="lang-pt">E <span class="k k-maroon-dk">ela</span> <span class="k k-rose-dk">deu à luz</span> para ele</span><span class="lang-en">And <span class="k k-maroon-dk">she</span> <span class="k k-rose-dk">birthed</span> for him</span></p>
+<p class="v-line i1"><span class="lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></span><span class="lang-pt">Zimran e <span class="k k-blue-lt">Yoqshan</span> e Medan e <span class="t-blue2">Midyan</span> e Yishbaq e Shuakh,</span><span class="lang-en">Zimran and <span class="k k-blue-lt">Yoqshan</span> and Medan and <span class="t-blue2">Midyan</span> and Yishbaq and Shuakh,</span></p>
 <p class="v-line i2"><span class="lbl"><span class="lang-pt">c</span><span class="lang-en">c</span></span><sup class="vs"><span class="lang-pt">3</span><span class="lang-en">3</span></sup> <span class="lang-pt">e <span class="k k-blue-lt">Yoqshan</span> deu à luz Sheva e <span class="k k-teal-dk">Dedan</span>,</span><span class="lang-en">and <span class="k k-blue-lt">Yoqshan</span> birthed Sheva and <span class="k k-teal-dk">Dedan</span>,</span></p>
-<p class="v-line i2"><span class="lbl"><span class="lang-pt">c'</span><span class="lang-en">c'</span></span><span class="lang-pt">e os filhos de <span class="k k-teal-dk">Dedan</span> foram <span class="k k-gray-lt">Ashuritas</span>, Letushitas e Leumitas;</span><span class="lang-en">and the sons of <span class="k k-teal-dk">Dedan</span> were <span class="k k-gray-lt">Ashurites</span>, Letushites, and Leummites;</span></p>
-<p class="v-line i1"><span class="lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></span><sup class="vs"><span class="lang-pt">4</span><span class="lang-en">4</span></sup> <span class="lang-pt">e os filhos de <span class="k k-blue-lt">Midyan</span> foram Ephah e Epher e Enoch e Avida e Eldaah.</span><span class="lang-en">and the sons of <span class="k k-blue-lt">Midyan</span> were Ephah and Epher and Enoch and Avida and Eldaah.</span></p>
-<p class="v-line"><span class="lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><span class="lang-pt">Todos estes são <span class="k k-rose-dk">os filhos de</span> <span class="k k-purple-dk">Qeturah</span>.</span><span class="lang-en">All these are <span class="k k-rose-dk">the sons of</span> <span class="k k-purple-dk">Qeturah</span>.</span></p>
+<p class="v-line i2"><span class="lbl"><span class="lang-pt">c'</span><span class="lang-en">c'</span></span><span class="lang-pt">e os filhos de <span class="k k-teal-dk">Dedan</span> foram <span class="t-gray">Ashuritas</span>, Letushitas e Leumitas;</span><span class="lang-en">and the sons of <span class="k k-teal-dk">Dedan</span> were <span class="t-gray">Ashurites</span>, Letushites, and Leummites;</span></p>
+<p class="v-line i1"><span class="lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></span><sup class="vs"><span class="lang-pt">4</span><span class="lang-en">4</span></sup> <span class="lang-pt">e os filhos de <span class="t-blue2">Midyan</span> foram Ephah e Epher e Enoch e Avida e Eldaah.</span><span class="lang-en">and the sons of <span class="t-blue2">Midyan</span> were Ephah and Epher and Enoch and Avida and Eldaah.</span></p>
+<p class="v-line"><span class="lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><span class="lang-pt">Todos estes são <span class="k k-rose-dk">os filhos de</span> <span class="k k-maroon-dk">Qeturah</span>.</span><span class="lang-en">All these are <span class="k k-rose-dk">the sons of</span> <span class="k k-maroon-dk">Qeturah</span>.</span></p>
 </div>
 <div class="stanza-box-black reveal">
-<p class="v-line"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><sup class="vs"><span class="lang-pt">5</span><span class="lang-en">5</span></sup> <span class="lang-pt"><span class="k k-blue-lt">E Avraham</span> <span class="k k-blue-lt">deu tudo</span> o que lhe pertence</span><span class="lang-en"><span class="k k-blue-lt">And Avraham</span> <span class="k k-blue-lt">gave all</span> that belong to him</span></p>
+<p class="v-line"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><sup class="vs"><span class="lang-pt">5</span><span class="lang-en">5</span></sup> <span class="lang-pt"><span class="t-blue">E Avraham</span> <span class="k k-indigo-dk">deu tudo</span> o que lhe pertence</span><span class="lang-en"><span class="t-blue">And Avraham</span> <span class="k k-indigo-dk">gave all</span> that belong to him</span></p>
 <p class="v-line i1"><span class="lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></span><span class="lang-pt"><span class="t-rose">para Yitskhaq</span>,</span><span class="lang-en"><span class="t-rose">to Yitskhaq</span>,</span></p>
-<p class="v-line i1"><span class="lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></span><sup class="vs"><span class="lang-pt">6</span><span class="lang-en">6</span></sup> <span class="lang-pt"><span class="k k-rose-dk">e para</span> <span class="k k-rose-dk">os filhos das</span> <span class="k k-purple-dk">concubinas</span> de Avraham,</span><span class="lang-en"><span class="k k-rose-dk">and to</span> <span class="k k-rose-dk">the sons of the</span> <span class="k k-purple-dk">concubines</span> of Avraham,</span></p>
-<p class="v-line"><span class="lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><span class="lang-pt"><span class="k k-blue-lt">Avraham</span> <span class="k k-blue-lt">deu presentes</span>,</span><span class="lang-en"><span class="k k-blue-lt">Avraham</span> <span class="k k-blue-lt">gave gifts</span>,</span></p>
+<p class="v-line i1"><span class="lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></span><sup class="vs"><span class="lang-pt">6</span><span class="lang-en">6</span></sup> <span class="lang-pt"><span class="t-rose">e para</span> <span class="k k-rose-dk">os filhos das</span> <span class="k k-maroon-dk">concubinas</span> de Avraham,</span><span class="lang-en"><span class="t-rose">and to</span> <span class="k k-rose-dk">the sons of the</span> <span class="k k-maroon-dk">concubines</span> of Avraham,</span></p>
+<p class="v-line"><span class="lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><span class="lang-pt"><span class="t-blue">Avraham</span> <span class="k k-indigo-dk">deu presentes</span>,</span><span class="lang-en"><span class="t-blue">Avraham</span> <span class="k k-indigo-dk">gave gifts</span>,</span></p>
 <p class="v-line"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><span class="lang-pt">e ele os enviou de Yitskhaq, seu filho,</span><span class="lang-en">and he sent them away from Yitskhaq his son,</span></p>
 <p class="v-line i1"><span class="lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></span><span class="lang-pt">enquanto ele ainda estava vivo,</span><span class="lang-en">while he was still alive,</span></p>
 <p class="v-line"><span class="lbl"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><span class="lang-pt"><span class="k k-orange-lt">para o leste (קדמה)</span>, <span class="k k-orange-lt">para a terra do leste (קדם)</span>.</span><span class="lang-en"><span class="k k-orange-lt">to the east (קדמה)</span>, <span class="k k-orange-lt">to the land of the east (קדם)</span>.</span></p>
@@ -169,34 +241,34 @@
 <hr class="v-div"/>
 <p class="v-line"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><sup class="vs"><span class="lang-pt">9</span><span class="lang-en">9</span></sup> <span class="lang-pt">E eles o enterraram, <span class="k k-rose-lt">Yitskhaq e Yishmael, seus filhos</span>,</span><span class="lang-en">And they buried him, <span class="k k-rose-lt">Yitskhaq and Yishmael, his sons</span>,</span></p>
 <p class="v-line i1"><span class="lbl"><span class="lang-pt">b</span><span class="lang-en">b</span></span><span class="lang-pt">na caverna de Macpelah,</span><span class="lang-en">in the cave of Macpelah,</span></p>
-<p class="v-line i2"><span class="lbl"><span class="lang-pt">c</span><span class="lang-en">c</span></span><span class="lang-pt">em <span class="k k-tan-lt">o campo</span> de Ephron filho de Zohar aquele <span class="k k-tan-lt">Hitita</span>,</span><span class="lang-en">in <span class="k k-tan-lt">the field</span> of Ephron son of Zohar that <span class="k k-tan-lt">Hethite</span>,</span></p>
+<p class="v-line i2"><span class="lbl"><span class="lang-pt">c</span><span class="lang-en">c</span></span><span class="lang-pt">em <span class="k k-sand-lt">o campo</span> de Ephron filho de Zohar aquele <span class="k k-sand-lt">Hitita</span>,</span><span class="lang-en">in <span class="k k-sand-lt">the field</span> of Ephron son of Zohar that <span class="k k-sand-lt">Hethite</span>,</span></p>
 <p class="v-line i1"><span class="lbl"><span class="lang-pt">b'</span><span class="lang-en">b'</span></span><span class="lang-pt">que é oposto a Mamre,</span><span class="lang-en">which is opposite Mamre,</span></p>
-<p class="v-line i2"><span class="lbl"><span class="lang-pt">c'</span><span class="lang-en">c'</span></span><sup class="vs"><span class="lang-pt">10</span><span class="lang-en">10</span></sup> <span class="lang-pt"><span class="k k-tan-lt">o campo</span> que Avraham comprou dos filhos de <span class="k k-tan-lt">Heth</span>,</span><span class="lang-en"><span class="k k-tan-lt">the field</span> which Avraham purchased from the sons of <span class="k k-tan-lt">Heth</span>,</span></p>
-<p class="v-line"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><span class="lang-pt">lá <span class="k k-tan-lt">foram enterrados Avraham</span> e Sara sua esposa.</span><span class="lang-en">there <span class="k k-tan-lt">were buried Avraham</span> and Sarah his wife.</span></p>
+<p class="v-line i2"><span class="lbl"><span class="lang-pt">c'</span><span class="lang-en">c'</span></span><sup class="vs"><span class="lang-pt">10</span><span class="lang-en">10</span></sup> <span class="lang-pt"><span class="k k-sand-lt">o campo</span> que Avraham comprou dos filhos de <span class="k k-sand-lt">Heth</span>,</span><span class="lang-en"><span class="k k-sand-lt">the field</span> which Avraham purchased from the sons of <span class="k k-sand-lt">Heth</span>,</span></p>
+<p class="v-line"><span class="lbl"><span class="lang-pt">a</span><span class="lang-en">a</span></span><span class="lang-pt">lá <span class="t-tan">foram enterrados Avraham</span> e Sara sua esposa.</span><span class="lang-en">there <span class="t-tan">were buried Avraham</span> and Sarah his wife.</span></p>
 <hr class="v-div"/>
 <p class="v-line"><sup class="vs"><span class="lang-pt">11</span><span class="lang-en">11</span></sup> <span class="lang-pt">E aconteceu depois de <span class="k k-green-dk">morte de Avraham</span>,</span><span class="lang-en">And it came about after the <span class="k k-green-dk">death of Avraham</span>,</span></p>
 <p class="v-line"><span class="lang-pt">que Elohim <span class="k k-purple-lt">abençoou</span> <span class="k k-rose-lt">Yitskhaq seu filho</span>,</span><span class="lang-en">that Elohim <span class="k k-purple-lt">blessed</span> <span class="k k-rose-lt">Yitskhaq his son</span>,</span></p>
-<p class="v-line"><span class="lang-pt"><span class="k k-rose-dk">e</span> <span class="k k-rose-lt">Yitskhaq</span> <span class="k k-rose-lt">habitou</span> no Poço do Vivo que Me Vê.</span><span class="lang-en"><span class="k k-rose-dk">and</span> <span class="k k-rose-lt">Yitskhaq</span> <span class="k k-rose-lt">dwelt</span> at Well of the Living One Who Sees Me.</span></p>
+<p class="v-line"><span class="lang-pt"><span class="k k-orange-dk">e</span> <span class="k k-rose-lt">Yitskhaq</span> <span class="k k-orange-dk">habitou</span> no Poço do Vivo que Me Vê.</span><span class="lang-en"><span class="k k-orange-dk">and</span> <span class="k k-rose-lt">Yitskhaq</span> <span class="k k-orange-dk">dwelt</span> at Well of the Living One Who Sees Me.</span></p>
 </div>
 <div class="stanza-box reveal">
 <p class="v-line"><sup class="vs"><span class="lang-pt">12</span><span class="lang-en">12</span></sup> <span class="lang-pt"><span class="k k-rose-lt">E estas são as</span> <span class="k k-rose-dk">gerações de nascimento</span> de <span class="k k-rose-lt">Yishmael, filho de Avraham</span>,</span><span class="lang-en"><span class="k k-rose-lt">And these are the</span> <span class="k k-rose-dk">birth-generations</span> of <span class="k k-rose-lt">Yishmael, son of Avraham</span>,</span></p>
 <p class="v-line"><span class="lang-pt">a quem <span class="k k-rose-dk">ela deu à luz</span>, Hagar a Egípcia, a escrava de Sara, para Avraham.</span><span class="lang-en">whom <span class="k k-rose-dk">she birthed</span>, Hagar the Egyptian, the slave-girl of Sarah, for Avraham.</span></p>
 <p class="v-line"><sup class="vs"><span class="lang-pt">13</span><span class="lang-en">13</span></sup> <span class="lang-pt"><span class="k k-rose-lt">Estes são os nomes dos</span> <span class="k k-rose-lt">filhos de Yishmael</span>,</span><span class="lang-en"><span class="k k-rose-lt">These are the names of the</span> <span class="k k-rose-lt">sons of Yishmael</span>,</span></p>
-<p class="v-line"><span class="lang-pt"><span class="k k-purple-lt">pelos seus nomes de suas</span> <span class="k k-rose-dk">gerações de nascimento</span>:</span><span class="lang-en"><span class="k k-purple-lt">by their names of their</span> <span class="k k-rose-dk">birth-generations</span>:</span></p>
+<p class="v-line"><span class="lang-pt"><span class="t-purple">pelos seus nomes de suas</span> <span class="k k-rose-dk">gerações de nascimento</span>:</span><span class="lang-en"><span class="t-purple">by their names of their</span> <span class="k k-rose-dk">birth-generations</span>:</span></p>
 <p class="v-line"><span class="lang-pt">o primogênito de Yishmael: Nevayot</span><span class="lang-en">the firstborn of Yishmael: Nevayot</span></p>
 <p class="v-line"><span class="lang-pt">e Qedar e Adbeel e Mivsam,</span><span class="lang-en">and Qedar and Adbeel and Mivsam,</span></p>
 <p class="v-line"><sup class="vs"><span class="lang-pt">14</span><span class="lang-en">14</span></sup> <span class="lang-pt">e Mishma e Dumah e Massa,</span><span class="lang-en">and Mishma and Dumah and Massa,</span></p>
 <p class="v-line"><sup class="vs"><span class="lang-pt">15</span><span class="lang-en">15</span></sup> <span class="lang-pt">Khadad e Tema, Yetur, Naphish, e <span class="k k-orange-lt">Qedmah (קדמה)</span>.</span><span class="lang-en">Khadad and Tema, Yetur, Naphish, and <span class="k k-orange-lt">Qedmah (קדמה)</span>.</span></p>
 <p class="v-line"><sup class="vs"><span class="lang-pt">16</span><span class="lang-en">16</span></sup> <span class="lang-pt"><span class="k k-rose-lt">Estes são os</span> <span class="k k-rose-lt">filhos de Yishmael</span> <span class="k k-rose-lt">e estes são os seus nomes</span>,</span><span class="lang-en"><span class="k k-rose-lt">These are the</span> <span class="k k-rose-lt">sons of Yishmael</span> <span class="k k-rose-lt">and these are their names</span>,</span></p>
-<p class="v-line"><span class="lang-pt"><span class="k k-purple-lt">por suas vilas e acampamentos,</span></span><span class="lang-en"><span class="k k-purple-lt">by their villages and encampments,</span></span></p>
-<p class="v-line"><span class="lang-pt"><span class="k k-purple-lt">doze príncipes de acordo com seus clãs.</span></span><span class="lang-en"><span class="k k-purple-lt">twelve princes according to their clans.</span></span></p>
+<p class="v-line"><span class="lang-pt"><span class="t-purple">por suas vilas e acampamentos,</span></span><span class="lang-en"><span class="t-purple">by their villages and encampments,</span></span></p>
+<p class="v-line"><span class="lang-pt"><span class="t-purple">doze príncipes de acordo com seus clãs.</span></span><span class="lang-en"><span class="t-purple">twelve princes according to their clans.</span></span></p>
 <hr class="v-div"/>
 <p class="v-line"><sup class="vs"><span class="lang-pt">17</span><span class="lang-en">17</span></sup> <span class="lang-pt"><span class="k k-green-lt">E estes são</span> <span class="k k-green-lt">os anos de</span> <span class="k k-green-dk">vida</span> <span class="k k-green-lt">de Yishmael</span>:</span><span class="lang-en"><span class="k k-green-lt">And these are</span> <span class="k k-green-lt">the years of the</span> <span class="k k-green-dk">life</span> <span class="k k-green-lt">of Yishmael</span>:</span></p>
 <p class="v-line"><span class="lang-pt">Cem anos e trinta anos e <span class="k k-purple-dk">sete (שבע)</span> anos.</span><span class="lang-en">One hundred years and thirty years and <span class="k k-purple-dk">seven (שבע)</span> years.</span></p>
 <p class="v-line"><span class="lang-pt">E <span class="k k-green-lt">ele expirou e ele morreu, e ele foi reunido ao seu povo</span>.</span><span class="lang-en">And <span class="k k-green-lt">he expired and he died, and he was gathered to his people</span>.</span></p>
 <hr class="v-div"/>
-<p class="v-line"><sup class="vs"><span class="lang-pt">18</span><span class="lang-en">18</span></sup> <span class="lang-pt"><span class="k k-rose-dk">E</span> <span class="k k-rust-dk">eles</span> <span class="k k-orange-lt">habitaram</span> <span class="k k-orange-lt">de Havilah até Shur</span>,</span><span class="lang-en"><span class="k k-rose-dk">And</span> <span class="k k-rust-dk">they</span> <span class="k k-orange-lt">dwelt</span> <span class="k k-orange-lt">from Havilah unto Shur</span>,</span></p>
-<p class="v-line"><span class="lang-pt">que é oposto ao Egito enquanto você vai a <span class="k k-gray-lt">Ashur</span>,</span><span class="lang-en">which is opposite Egypt as you go to <span class="k k-gray-lt">Ashur</span>,</span></p>
+<p class="v-line"><sup class="vs"><span class="lang-pt">18</span><span class="lang-en">18</span></sup> <span class="lang-pt"><span class="k k-orange-dk">E</span> <span class="k k-rose-lt">eles</span> <span class="k k-orange-dk">habitaram</span> <span class="k k-orange-lt">de Havilah até Shur</span>,</span><span class="lang-en"><span class="k k-orange-dk">And</span> <span class="k k-rose-lt">they</span> <span class="k k-orange-dk">dwelt</span> <span class="k k-orange-lt">from Havilah unto Shur</span>,</span></p>
+<p class="v-line"><span class="lang-pt">que é oposto ao Egito enquanto você vai a <span class="t-gray">Ashur</span>,</span><span class="lang-en">which is opposite Egypt as you go to <span class="t-gray">Ashur</span>,</span></p>
 <p class="v-line"><span class="lang-pt">contra a face de todos os seus irmãos ele caiu.</span><span class="lang-en">against the face of all his brothers he fell.</span></p>
 </div>
 <p class="caption reveal"><span class="lang-pt"><em>Gênesis 25:1-18</em>. Tradução e Design Literário por Tim Mackie para a BibleProject Classroom: Abraham (2021).</span><span class="lang-en"><em>Genesis 25:1-18</em>. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
@@ -209,15 +281,15 @@
 <tbody>
 <tr>
 <td class="w-1/3">
-<span class="lang-pt"><strong>Gen. 25:6b</strong> E ele <span class="k k-tan-lt">enviou</span> <span class="k k-tan-lt">eles embora (וישלחם)</span></span>
-<span class="lang-en"><strong>Gen. 25:6b</strong> And he <span class="k k-tan-lt">sent</span> <span class="k k-tan-lt">them away (וישלחם)</span></span>
+<span class="lang-pt"><strong>Gen. 25:6b</strong> E ele <span class="k k-sand-lt">enviou</span> <span class="k k-sand-lt">eles embora (וישלחם)</span></span>
+<span class="lang-en"><strong>Gen. 25:6b</strong> And he <span class="k k-sand-lt">sent</span> <span class="k k-sand-lt">them away (וישלחם)</span></span>
 </td>
 <td class="w-2/3">
-<span class="lang-pt"><span class="k k-gray-dk">Adão:</span> <strong>Gen. 3:23a</strong> E Yahweh <span class="k k-tan-lt">enviou [humano] embora (וישלחהו)</span></span>
-<span class="lang-en"><span class="k k-gray-dk">Adam:</span> <strong>Gen. 3:23a</strong> And Yahweh <span class="k k-tan-lt">sent [human] away (וישלחהו)</span></span>
+<span class="lang-pt"><span class="k k-gray-dk">Adão:</span> <strong>Gen. 3:23a</strong> E Yahweh <span class="k k-sand-lt">enviou [humano] embora (וישלחהו)</span></span>
+<span class="lang-en"><span class="k k-gray-dk">Adam:</span> <strong>Gen. 3:23a</strong> And Yahweh <span class="k k-sand-lt">sent [human] away (וישלחהו)</span></span>
 <br/><br/>
-<span class="lang-pt"><span class="k k-gray-dk">Caim:</span> <strong>Gen. 4:14</strong> Eis que você <span class="k k-tan-lt">me baniu (גרשת אתי)</span></span>
-<span class="lang-en"><span class="k k-gray-dk">Cain:</span> <strong>Gen. 4:14</strong> Behold you <span class="k k-tan-lt">have banished me (גרשת אתי)</span></span>
+<span class="lang-pt"><span class="k k-gray-dk">Caim:</span> <strong>Gen. 4:14</strong> Eis que você <span class="k k-sand-lt">me baniu (גרשת אתי)</span></span>
+<span class="lang-en"><span class="k k-gray-dk">Cain:</span> <strong>Gen. 4:14</strong> Behold you <span class="k k-sand-lt">have banished me (גרשת אתי)</span></span>
 </td>
 </tr>
 <tr>
@@ -239,11 +311,11 @@
 <span class="lang-en"><span class="k k-blue-lt">to the east (קדמה)</span>, <span class="k k-blue-lt">to the land of the east (קדם)</span></span>
 </td>
 <td>
-<span class="lang-pt"><span class="k k-gray-dk">Adão:</span> <strong>Gen. 3:24</strong> E ele posicionou <span class="k k-blue-lt">no leste (מקדם)</span>, os querubins ... para guardar o caminho para a árvore da <span class="k k-tan-lt">vida (חי)</span></span>
-<span class="lang-en"><span class="k k-gray-dk">Adam:</span> <strong>Gen. 3:24</strong> And he stationed <span class="k k-blue-lt">on the east (מקדם)</span>, the cherubim ... to guard the way to the tree of <span class="k k-tan-lt">life (חי)</span></span>
+<span class="lang-pt"><span class="k k-gray-dk">Adão:</span> <strong>Gen. 3:24</strong> E ele posicionou <span class="k k-blue-lt">no leste (מקדם)</span>, os querubins ... para guardar o caminho para a árvore da <span class="k k-sand-lt">vida (חי)</span></span>
+<span class="lang-en"><span class="k k-gray-dk">Adam:</span> <strong>Gen. 3:24</strong> And he stationed <span class="k k-blue-lt">on the east (מקדם)</span>, the cherubim ... to guard the way to the tree of <span class="k k-sand-lt">life (חי)</span></span>
 <br/><br/>
-<span class="lang-pt"><span class="k k-gray-dk">Caim:</span> <strong>Gen. 4:16</strong> E Caim saiu (<span class="k k-tan-lt">ויצא</span>) ... e habitou na terra de Nod (<span class="k k-green-lt">נוד</span>) // (<span class="k k-green-lt">עדן</span>), <span class="k k-blue-lt">leste</span> <span class="k k-green-lt">do Éden</span> (<span class="k k-blue-lt">קדמת עדן</span>)</span>
-<span class="lang-en"><span class="k k-gray-dk">Cain:</span> <strong>Gen. 4:16</strong> And Cain went out (<span class="k k-tan-lt">ויצא</span>) ... and dwelt in the land of Nod (<span class="k k-green-lt">נוד</span>) // (<span class="k k-green-lt">עדן</span>), <span class="k k-blue-lt">east</span> <span class="k k-green-lt">of Eden</span> (<span class="k k-blue-lt">קדמת עדן</span>)</span>
+<span class="lang-pt"><span class="k k-gray-dk">Caim:</span> <strong>Gen. 4:16</strong> E Caim saiu (<span class="k k-sand-lt">ויצא</span>) ... e habitou na terra de Nod (<span class="k k-green-lt">נוד</span>) // (<span class="k k-green-lt">עדן</span>), <span class="k k-blue-lt">leste</span> <span class="k k-green-lt">do Éden</span> (<span class="k k-blue-lt">קדמת עדן</span>)</span>
+<span class="lang-en"><span class="k k-gray-dk">Cain:</span> <strong>Gen. 4:16</strong> And Cain went out (<span class="k k-sand-lt">ויצא</span>) ... and dwelt in the land of Nod (<span class="k k-green-lt">נוד</span>) // (<span class="k k-green-lt">עדן</span>), <span class="k k-blue-lt">east</span> <span class="k k-green-lt">of Eden</span> (<span class="k k-blue-lt">קדמת עדן</span>)</span>
 </td>
 </tr>
 </tbody>
@@ -274,11 +346,11 @@
 <h2 class="section reveal"><span class="lang-pt">Não Escolhido, mas Abençoado</span><span class="lang-en">Non-Chosen but Blessed</span></h2>
 <p class="body reveal"><span class="lang-pt">Lembre-se que em Gênesis 16-17, Avraham pediu a Deus que favorecesse Yishmael como o filho escolhido. Deus respondeu que Yishmael de fato experimentaria a bênção do Éden, mas ele não seria escolhido como o veículo da linhagem prometida.</span><span class="lang-en">Remember that in Genesis 16-17, Avraham asked God to favor Yishmael as the chosen son. God responded that Yishmael would indeed experience the Eden blessing, but he would not be chosen as the vehicle of promised lineage.</span></p>
 <div class="quote-block reveal">
-<div class="quote-label"><span class="lang-pt">Gênesis 17:18-20 Tradução do Instrutor</span><span class="lang-en">Genesis 17:18-20 Instructor’s Translation</span></div>
+<div class="quote-label"><span class="lang-pt">Gênesis 17:18-20 <span class="qtype">Tradução do Instrutor</span></span><span class="lang-en">Genesis 17:18-20 <span class="qtype">Instructor’s Translation</span></span></div>
 <p class="body"><span class="lang-pt"><sup>18</sup> E Avraham disse a Deus, "Oh, que Yishmael possa viver diante de você!" <sup>19</sup> Mas Deus disse, "Não. Sara sua esposa lhe dará um filho, e você o chamará de Isaque; e eu estabelecerei minha aliança com ele para uma aliança eterna para a semente dele depois dele. <sup>20</sup> Quanto a Yishmael, eu o ouvi; olha, eu o abençoarei, e o farei frutífero e o multiplicarei muito; <b>ele se tornará o pai de doze governantes</b>, e eu farei dele uma grande nação."</span><span class="lang-en"><sup>18</sup> And Avraham said to God, "Oh that Yishmael might live before you!" <sup>19</sup> But God said, "No. Sarah your wife will bear you a son, and you shall call his name Isaac; and I will establish my covenant with him for an everlasting covenant for his seed after him. <sup>20</sup> As for Yishmael, I have heard you; look, I will bless him, and will make him fruitful and will multiply very much; <b>he shall become the father of twelve rulers</b>, and I will make him a great nation."</span></p>
 </div>
 <div class="quote-block reveal">
-<div class="quote-label"><span class="lang-pt">Gênesis 25:12-16 Tradução do Instrutor</span><span class="lang-en">Genesis 25:12-16 Instructor’s Translation</span></div>
+<div class="quote-label"><span class="lang-pt">Gênesis 25:12-16 <span class="qtype">Tradução do Instrutor</span></span><span class="lang-en">Genesis 25:12-16 <span class="qtype">Instructor’s Translation</span></span></div>
 <p class="body"><span class="lang-pt"><sup>12</sup> E estas são as gerações de nascimento de Yishmael, filho de Avraham, a quem ela deu à luz, Hagar a Egípcia, a escrava de Sara, para Avraham. <sup>13</sup> Estes são os nomes dos filhos de Yishmael, por seus nomes de suas gerações de nascimento:<br/>
     o primogênito de Yishmael:<br/>
 <b>Nevayot e Qedar e Adbeel e Mivsam, <sup>14</sup> e Mishma e Dumah e Massa, <sup>15</sup> Khadad e Tema, Yetur, Naphish, e Qedmah.</b><br/>
@@ -293,9 +365,6 @@
 <span class="lang-pt">Anotações de Aula: Abraão</span><span class="lang-en">Class Notes: Abraham</span>
 <span class="lang-pt">Sessão 28</span><span class="lang-en">Session 28</span>
 </footer>
-<!-- conteudo adicional do PDF -->
-<p class="body reveal"><span class="lang-en">Nod ( ‫ נוד‬// ‫) עדן‬, east</span></p>
-<p class="body reveal"><span class="lang-en">of Eden ( ‫עדן‬</span></p>
 </div>
 <script src="../../js/verse-modal.js"></script>
 <script src="../../js/reading-progress.js"></script>
