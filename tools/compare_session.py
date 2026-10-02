@@ -25,6 +25,33 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 COURSE = os.path.join(ROOT, "abraao")
 
 
+SHOT_JS = r'''
+const { chromium } = require('playwright');
+const path = require('path');
+(async () => {
+  const [htmlArg, outDir] = process.argv.slice(2);
+  const b = await chromium.launch({ channel: 'chrome' });
+  const p = await b.newPage({ viewport: { width: 1400, height: 1000 } });
+  await p.goto('file://' + path.resolve(htmlArg), { waitUntil: 'domcontentloaded' });
+  await p.waitForTimeout(2500);
+  // fatias de viewport: a pagina inteira pode ter >13000px e um PNG unico
+  // ficaria ilegivel para comparar com a pagina do PDF.
+  const h = await p.evaluate(() => document.documentElement.scrollHeight);
+  const STEP = 1100, OVERLAP = 60;
+  let i = 1, y = 0;
+  while (y < h) {
+    await p.evaluate(v => window.scrollTo(0, v), y);
+    await p.waitForTimeout(350);
+    const n = String(i++).padStart(2, '0');
+    await p.screenshot({ path: path.join(outDir, `html-${n}.png`) });
+    y += STEP - OVERLAP;
+  }
+  await b.close().catch(() => {});
+  process.exit(0);
+})();
+'''
+
+
 def hexof(rgb):
     if rgb is None:
         return None
@@ -202,8 +229,22 @@ def report(n, tmp, render, top):
         os.makedirs(out, exist_ok=True)
         subprocess.run(["pdftoppm", "-png", "-r", "90", pdf, f"{out}/pdf"],
                        capture_output=True)
-        subprocess.run(["node", os.path.join(ROOT, "tools", ".shot.tmp.js"),
-                        os.path.abspath(html), out], capture_output=True)
+        # --render precisa do screenshot do HTML: sem isso a comparação fica
+        # só com o PDF e o passo "olhe as imagens" fica impossível.
+        # Este script escrevia .collect.tmp.js mas chamava .shot.tmp.js sem
+        # nunca cria-lo, entao --render falhava em silencio. Agora ele mesmo
+        # gera o helper e apaga no fim.
+        shot = os.path.join(ROOT, "tools", ".shot.tmp.js")
+        with open(shot, "w") as fh:
+            fh.write(SHOT_JS)
+        try:
+            subprocess.run(["node", shot, os.path.abspath(html), out],
+                           capture_output=True)
+        finally:
+            try:
+                os.unlink(shot)
+            except OSError:
+                pass
         print(f"  imagens em {out}/")
 
 

@@ -14,8 +14,20 @@
     @import url('../css/session-base.css');
     h1.title, h2.section, h3.sub { color:#1b1b1b; }
     p, li { color:#1b1b1b; }
+    /* session-base.css usa p.body e ul.bullets>li (seletores de classe), que
+       vencem o `p, li` acima por especificidade. O PDF nao tem #24262a. */
+    p.body, ul.bullets > li { color:#1b1b1b; }
     ul.bullets > li:before { color:#1b1b1b !important; }
     .ref { color:#1b1b1b; }
+    /* --- Cores vindas de session-base.css (tokens do DESIGN.md) que nao
+       existem no PDF. Medidas no PDF: o rotulo da referencia e o numero do
+       verso sao #1b1b1b (10.5pt / 9.0pt), o tipo ("Instructor's
+       Translation") e #4f5669 (9.75pt) e o corpo da citacao #1b1b1b.
+       Os tokens herdados eram #17181a, #5b7285 e #24262a. ----------- */
+    .scripture-label { color:#1b1b1b; }
+    .scripture-type { color:#4f5669; }
+    .scripture-text { color:#1b1b1b; }
+    .adapt { color:#4f5669; }
     .rule { border-top-color:#c1c9d0 !important; }
     .page-footer { color:#2c2c2c; border-top-color:#e4e8ed; }
 
@@ -68,8 +80,10 @@
     .book-title {
       color:#0000ee;text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px;
     }
-    /* #e4e8ed e a cor de grade/cabeçalho/chip no PDF (2090 ocorrencias nos 30
-       teacher-notes). #e4e8ed nao existe em nenhum deles. */
+    /* #e4e8ed e a cor de grade/cabecalho/chip no PDF (2090 ocorrencias nos 30
+       teacher-notes). E tambem o fill a 0.15 das caixas B/B' do macro e das
+       respostas 12:4-6 / 12:8. O que NAO existe no PDF sao os tokens do
+       DESIGN.md: #24262a, #17181a, #5b7285, #e3e7ec, #a9b1be. */
     /* --- Quadro do design literário (PDF pag. 2, 6 e 7) ------------------
        Todas as caixas de tradução do PDF têm o MESMO desenho:
        · moldura de traco fino em #e4e8ed, cantos arredondados (~12px);
@@ -85,9 +99,17 @@
       border:1.5px solid #e4e8ed;
       border-radius:12px; background:#fff;
     }
-    .design-card::before {
-      content:''; position:absolute; left:-14px; top:34px; bottom:14px;
-      width:4.5px; border-radius:4px; background:#816f4d;
+    /* PDF pag. 2 (content stream): barra #816f4d em x 48.0..51.0 = 3.0pt de
+       largura, y 69.8..363.7 contra um quadro de y 69.0..364.5 -> recua
+       0.8pt do topo E da base, ou seja, percorre quase toda a altura do
+       quadro (3.0pt = 4px a 96dpi; 0.8pt = 1px). A borda direita da barra
+       fica 3.7pt (~5px) a esquerda da moldura.
+       A barra so existe nos quadros de traducao (pag. 2, 6, 7 e 11). O macro
+       da pag. 1 e o quadro "A Promessa da Terra" da pag. 10 nao tem #816f4d
+       em nenhum dos seus desenhos, entao ficam de fora por :not(). */
+    .design-card:not(.emphasis):not(.ml-8)::before {
+      content:''; position:absolute; left:-9px; top:1px; bottom:1px;
+      width:4px; border-radius:0; background:#816f4d;
     }
     .design-card .label {
       position:absolute; left:-0.7px; bottom:calc(100% - 11px);
@@ -98,15 +120,21 @@
     }
     .design-card.accent-gold { margin-top:2.1rem; }
     .design-card.accent-gold .body { padding:.9rem 1.1rem .9rem 1rem; }
-    .design-card .vno { font-size:.82em; color:#4f5669; font-weight:700; }
+    .design-card .vno { font-size:.82em; color:#1b1b1b; font-weight:700; }
     .design-card .body { padding:.75rem 1rem 1rem; }
     /* Caixa A/A' do macro: #6b7384 a fill_opacity 0.15 (content stream). */
-    .design-card.emphasis { border:2px solid #a9b1be; background:rgba(107,115,132,.15); overflow:visible; }
+    .design-card.emphasis { border:2px solid #6b7384; background:rgba(107,115,132,.15); overflow:visible; }
     .design-card.emphasis .label { background:#6b7384;color:#fff; }
-    .design-card.emphasis.dark { border:2px solid #3e4054; }
+    .design-card.emphasis.dark { border:2px solid #3e4054; background:none; }
     .design-card.emphasis.dark .label { background:#3e4054;color:#fff; }
     .design-card.subtle { border:2px solid #6b7384; }
     .design-card.subtle .label { background:#6b7384;color:#fff; }
+    /* PDF pag. 10 (A Promessa da Terra): os quadros "Divine Promise" #1/#2
+       (12:1-3 e 12:7) tem SO traco #3e4054 e fill=None -> ficam brancos.
+       Os quadros de resposta (12:4-6 e 12:8) tem fill #6b7384 a 0.15.
+       Sem estas duas regras o papel se invertia: os escuros recebiam o
+       degrade e os claros ficavam sem nada. */
+    .design-card.subtle.ml-8 { background:rgba(107,115,132,.15); }
 
     /* --- Macro 12:1-9: geometria medida no PDF (pagina 1) --------------
        caixa A/A'  x 42.7..570.0 = 527.2pt  (bloco a 6.7pt da margem x=36)
@@ -124,9 +152,11 @@
          proximo de 1.5pt. */
       border-width:2px; border-radius:5px;
     }
-    .design-card.ml-8 { margin-left:18px; border:2px solid #e4e8ed; background:rgba(227,231,236,.15); overflow:visible; }
+    /* O fill real do PDF e #e4e8ed a 0.15 (as caixas B/B' do macro). O valor
+       antigo #e3e7ec veio do DESIGN.md e nao existe no PDF. */
+    .design-card.ml-8 { margin-left:18px; border:2px solid #e4e8ed; background:rgba(228,232,237,.15); overflow:visible; }
     .design-card.ml-8 .label { background:#e4e8ed; }
-    .design-card.emphasis { border:2px solid #a9b1be; background:rgba(107,115,132,.15); overflow:visible; }
+    .design-card.emphasis { border:2px solid #6b7384; background:rgba(107,115,132,.15); overflow:visible; }
     .design-card.emphasis .label { background:#6b7384; color:#fff; }
     /* display:block tira o leading que o inline-block criava acima da pilula
        (pillTop saia 18px em vez de 7.5px). */
