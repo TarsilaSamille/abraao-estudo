@@ -4,7 +4,7 @@
 - HTML: `abraao/modulo-<M>/sessao-<N>.html`
 - PDF:  `abraao/pdf-sessoes/sessao-<N>.pdf`
 (`abraao/pdf-images/` são PNGs do livro inteiro de 230 páginas — **não** é a fonte por sessão.
-Use `pdf-sessoes/`.)
+Use `pdf-sessoes/`.) 
 
 ## REGRA CENTRAL: O PDF É A AUTORIDADE
 Isto é o que mais importa e é onde trabalho anterior errou o rumo.
@@ -30,7 +30,7 @@ Isto é o que mais importa e é onde trabalho anterior errou o rumo.
    Compare **diagrama por diagrama**: nº de painéis, cor de cada painel, textos das
    caixas, ordem, tamanho relativo, formato dos bullets, itálico em legenda.
 5. Corrija o que divergir, nesta ordem de prioridade:
-   a) **Cores** de diagramas/tabelas/citações/texto que divergem do PDF
+   a) **Cores** de diagramas/tabelas/citações/texto/ tamanho  se um texto é maior q. o outro que divergem do PDF
    b) **Citações**: referência, tradução (NASB / Tradução do Instrutor / NIV), ordem,
       e se a citação existe no PDF
    c) **Diagramas**: painéis faltando, caixas, rótulos, cores
@@ -41,12 +41,6 @@ Isto é o que mais importa e é onde trabalho anterior errou o rumo.
 ## Regras
 - **NÃO** edite nenhum `.css` nem o `DESIGN.md`. Só este HTML.
 - Corra local no `<style>` do próprio HTML quando precisar sobrescrever a base.
-- **NÃO** altere traduções PT/EN. Só cores, tamanhos, e o que estiver
-  genuinamente faltando/errado frente ao PDF.
-- **NÃO** quebre o toggle PT/EN, `#reading-progress`, `verse-modal.js`.
-- Se houver `diagram-viewport`/`diagram-canvas`, não quebre o `fitDiagrams()`.
-- Se um par de cores ficar ilegível, escolha o do PDF que mantém contraste e
-  **reporte** a escolha.
 
 ## Se já estiver fiel
 Pare. Não faça churn cosmetics. Diga "já está fiel" e liste o que você conferiu
