@@ -116,6 +116,48 @@
   ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; font-weight: bold; }
   
   .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+    /* ===== Macro Design of Genesis 37 (sessao-5.pdf, pag. 1-2) ==============
+       Cores medidas no PDF com get_drawings() e CONFIRMADAS por pixel no
+       raster — o atributo `fill` do PyMuPDF mente em path so-tracejado (o
+       painel B aparece como fill #3e4054 mas e so o traco; o interior e
+       branco). Escala: 1pt = 1.333px a 96dpi.
+         moldura do painel ....... #3e4054  traco 1.5pt  = 2px
+         a  37:2-4 ............... #be4967 a 15%
+         b  37:5-11 .............. #b5543a a 15%   (recuado 18pt = 24px)
+         a' 37:12-14 ............. sem fill, so moldura #e4e8ed
+         a  37:15-17 ............. #e4e8ed a 15%
+         pilula de etiqueta ...... 15pt = 20px de altura, raio 3pt = 4px */
+    .m37 { margin: 2.4rem 0 1.6rem; }
+    .m37-panel { position: relative; border: 2px solid #3e4054; border-radius: 10px;
+                 background: #fff; padding: 1.7rem .9rem 1rem; }
+    .m37-panel + .m37-panel { margin-top: 1.9rem; margin-left: 24px; }
+    .m37-tag { position: absolute; left: -1px; top: -1px; transform: translateY(-100%);
+               display: inline-block; height: 20px; line-height: 20px; padding: 0 8px;
+               border-radius: 4px; background: #3e4054; color: #fff;
+               font-size: .82rem; font-weight: 800; white-space: nowrap; }
+    .m37-sub { position: relative; border: 2px solid; border-radius: 8px;
+               padding: 1.5rem .85rem .7rem; }
+    /* a pílula fica ACIMA da caixa (translateY -100%), entao o espaco entre
+       paineis precisa comportar 20px da pílula + folga, senao ela invade o
+       painel de cima — foi o que aconteceu na primeira versao. */
+    .m37-sub + .m37-sub { margin-top: 1.75rem; }
+    .m37-sub .m37-tag { left: -1px; top: -1px; color: #fff; }
+    .m37-sub.a-rose   { border-color: #be4967; background: rgba(190,73,103,.15); }
+    .m37-sub.a-rose   .m37-tag { background: #be4967; }
+    .m37-sub.b-rust   { border-color: #b5543a; background: rgba(181,84,58,.15); margin-left: 24px; }
+    .m37-sub.b-rust   .m37-tag { background: #b5543a; }
+    .m37-sub.plain    { border-color: #e4e8ed; background: none; }
+    .m37-sub.plain    .m37-tag { background: #e4e8ed; color: #4f5669; }
+    .m37-sub > ul { list-style: none; padding: 0; margin: 0; }
+    .m37-sub > ul > li { position: relative; padding-left: 1.15rem; margin-bottom: .45rem;
+                        line-height: 1.6; font-size: 1rem; color: #1b1b1b; }
+    .m37-sub > ul > li:before { content: "\2022"; position: absolute; left: .3rem;
+                               color: #1b1b1b; font-weight: 700; }
+    /* destaques de cor medidos no PDF */
+    .m37-em-purple { color: #9855af; }
+    .m37-em-blue   { color: #5869cd; }
+    .m37-em-grey   { color: #4f5669; }
+
   .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .875rem; color: #5b6472; font-weight: 600; letter-spacing: .06em; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
   .keylabel { font-weight: 700; color: #17181a; }
   .quote .cite { display:block; font-style: normal; color:#5b6472; font-size:.92rem; margin-top:.6rem; }
@@ -163,13 +205,44 @@
       <li><span class="lang-pt">Os autores bíblicos ligam a história de Yoseph a um padrão de irmãos se separando em Gênesis.</span><span class="lang-en">The biblical authors link Yoseph’s story to a pattern of brothers separating in Genesis including Cain and Abel, Abraham and Lot, and Yaaqov and Esau.</span></li>
       <li><span class="lang-pt">Imagens do Éden permeiam os sonhos de Yoseph, fazendo eco e expandindo a promessa de uma semente real.</span><span class="lang-en">Eden imagery fills Yoseph’s dreams, echoing and expanding the promise of a royal seed of the woman.</span></li>
     </ul>
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">Gênesis 37: Design Macro</span><span class="lang-en">Genesis 37: Macro Design</span></li>
-      <li><span class="lang-pt">A - Gênesis 37:2-14</span><span class="lang-en">A - Genesis 37:2-14</span></li>
-      <li><span class="lang-pt">a - 37:2-4</span><span class="lang-en">a - 37:2-4</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">Yoseph é pastor do rebanho com seus irmãos. Yoseph recebe o manto real. Yisrael amou Yoseph mais do que seus filhos, e não podiam falar em paz com ele. b - 37:5-11 Diálogo entre os irmãos e Yoseph: dois sonhos sobre governar seus irmãos. a' - 37:12-14 Yoseph é enviado para pastorear o rebanho com seus irmãos. Ele é enviado para “ver a paz de seus irmãos” e trazer de volta uma palavra a Yaaqov. B - Gênesis 37:15-30. a - 37:15-17 Um homem encontra Yoseph vagando no campo, procurando seus irmãos. “Onde eles estão...?”</span><span class="lang-en">Yoseph is a shepherd of the flock with his brothers Yoseph is given the royal garment Yisrael loved Yoseph more than his sons, and they could not speak )(דבר peace )(שלום to him b - 37:5-11 Dialogue between brothers and Yoseph: two dreams about ruling his brothers a' - 37:12-14 Yoseph sent to shepherd the flock with his brothers He is sent to "see the peace )(שלום of your brothers” and return a word )(דבר to Yaaqov B - Genesis 37:15-30 a - 37:15-17 A man finds Yoseph wandering in the field, looking for his brothers "Where are they ...?"</span></p>
-<p class="body reveal"><span class="lang-pt">Gênesis 37. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 37. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022). This opening chapter has a large-scale, three-part design (Gen. 37:2-14, 37:15-30, 37:31-36), and each part is framed by its own small-scale repetitions that create a network of symmetrical analogies. Genesis 37:2-14: Yaaqov, Yoseph, and the Brothers Yoseph is more beloved than his brothers, and his brothers cannot speak peace to him (v. 2-4). // Yoseph is sent by his father with a spoken word of peace (v. 12-14).</span></p>
+    <figure class="m37 reveal">
+      <div class="m37-panel">
+        <span class="m37-tag"><span class="lang-pt">A - Gênesis 37:2-14</span><span class="lang-en">A - Genesis 37:2-14</span></span>
+        <div class="m37-sub a-rose">
+          <span class="m37-tag"><span class="lang-pt">a - 37:2-4</span><span class="lang-en">a - 37:2-4</span></span>
+          <ul>
+            <li><span class="lang-pt">Yoseph é pastor do rebanho com seus irmãos</span><span class="lang-en">Yoseph is a shepherd of the flock with his brothers</span></li>
+            <li><span class="lang-pt"><span class="m37-em-purple">Yoseph recebe o manto real</span></span><span class="lang-en"><span class="m37-em-purple">Yoseph is given the royal garment</span></span></li>
+            <li><span class="lang-pt">Yisrael amou Yoseph mais do que seus filhos, e não podiam falar <span class="m37-em-blue">)(דבר paz )(שלום</span> com ele</span><span class="lang-en">Yisrael loved Yoseph more than his sons, and <span class="m37-em-blue">they could not speak</span> <span class="m37-em-blue">)(דבר</span> <span class="m37-em-blue">peace</span> <span class="m37-em-blue">)(שלום</span> <span class="m37-em-blue">to him</span></span></li>
+          </ul>
+        </div>
+        <div class="m37-sub b-rust">
+          <span class="m37-tag"><span class="lang-pt">b - 37:5-11</span><span class="lang-en">b - 37:5-11</span></span>
+          <ul>
+            <li><span class="lang-pt"><span class="m37-em-grey">Diálogo</span> entre os irmãos e Yoseph: dois sonhos sobre governar seus irmãos</span><span class="lang-en"><span class="m37-em-grey">Dialogue</span> between brothers and Yoseph: two dreams about ruling his brothers</span></li>
+          </ul>
+        </div>
+        <div class="m37-sub plain">
+          <span class="m37-tag"><span class="lang-pt">a' - 37:12-14</span><span class="lang-en">a' - 37:12-14</span></span>
+          <ul>
+            <li><span class="lang-pt">Yoseph é enviado para pastorear o rebanho com seus irmãos</span><span class="lang-en">Yoseph sent to shepherd the flock with his brothers</span></li>
+            <li><span class="lang-pt">É enviado para "<span class="m37-em-blue">ver a paz</span> <span class="m37-em-blue">)(שלום</span> <span class="m37-em-blue">de seus irmãos</span>" e <span class="m37-em-blue">trazer uma palavra</span> <span class="m37-em-blue">)(דבר</span> a Yaaqov</span><span class="lang-en">He is sent to "<span class="m37-em-blue">see the peace</span> <span class="m37-em-blue">)(שלום</span> <span class="m37-em-blue">of your brothers</span>" and <span class="m37-em-blue">return a word</span> <span class="m37-em-blue">)(דבר</span> to Yaaqov</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="m37-panel">
+        <span class="m37-tag"><span class="lang-pt">B - Gênesis 37:15-30</span><span class="lang-en">B - Genesis 37:15-30</span></span>
+        <div class="m37-sub plain">
+          <span class="m37-tag"><span class="lang-pt">a - 37:15-17</span><span class="lang-en">a - 37:15-17</span></span>
+          <ul>
+            <li><span class="lang-pt">Um homem encontra Yoseph vagando pelo campo, procurando seus irmãos</span><span class="lang-en">A man finds Yoseph wandering in the field, looking for his brothers</span></li>
+            <li><span class="lang-pt"><span class="m37-em-grey">"Onde eles estão…?"</span></span><span class="lang-en"><span class="m37-em-grey">"Where are they ...?"</span></span></li>
+          </ul>
+        </div>
+      </div>
+      <figcaption class="caption"><span class="lang-pt"><em>Gênesis 37.</em> Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en"><em>Genesis 37.</em> Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></figcaption>
+    </figure>
+
     <h2 class="section reveal"><span class="lang-pt">b - 37:18-24</span><span class="lang-en">b - 37:18-24</span></h2>
     <p class="body reveal"><span class="lang-pt">Yoseph se aproxima: o plano de Reuven de lançá-lo na cova “Não derrame seu sangue... ou estenda a mão contra ele. ... Joguem-no nesta cova!” Yoseph é despojado de seu manto real. b' - 37:25-28 Yoseph na cova: o plano de Yehudah de vendê-lo como escravo “Qual a vantagem de matar nosso irmão? Vendamo-lo, e nossas mãos não o tocarão.” a' - 37:29-30 Reuven não encontra Yoseph na cova “Onde irei eu?”</span><span class="lang-en">Yoseph approaches: Reuven's plan to throw him into the pit "Don't spill his blood ... or send a hand against him. ... Throw him into this pit!" Yoseph is stripped of his royal garment b' - 37: 25-28 Yoseph in the pit: Yehudah’s plan to sell him as a slave "What’s the gain in murdering our brother? Let’s sell him, and don’t our hands touch him.” a' - 37:29-30 Reuven cannot find Yoseph in the pit “The boy is no more, and I, where am I to go?” A' - Genesis 37:31-36 From Jacob to His 12 Sons and 70 Descendants a - 37:31-32a Brothers dip stolen royal garment in blood of a slaughtered )(שחט goat from the flock Yaaqov is shown Yoseph’s robe b - 37:32b-33 Dialogue between brothers and Yaaqov “This is the garment of my son, an animal has eaten him!” a' - 37:34-36 Yaaqov tears his own robes while Yoseph is taken to Egypt, to the captain of the butchers )(טבח</span></p>
 <p class="body reveal"><span class="lang-pt">Estas partes externas cercam um diálogo entre Yoseph e seus irmãos sobre seus sonhos, o que exacerba a hostilidade criada pelo favoritismo de Yaaqov.</span><span class="lang-en">These outer parts surround a dialogue between Yoseph and his brothers about his dreams which exacerbate the hostility created by Yaaqov’s favoritism.</span></p>
