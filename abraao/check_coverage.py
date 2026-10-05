@@ -10,7 +10,7 @@ TXT = "/tmp/pdftxt"
 
 # map session number -> module html path
 def html_for(n):
-    for m in ["modulo-1", "modulo-2", "modulo-3", "modulo-4"]:
+    for m in ["modulo-1", "modulo-2", "modulo-3", "modulo-4", "modulo-5", "modulo-6"]:
         p = os.path.join(ROOT, m, f"sessao-{n}.html")
         if os.path.exists(p):
             return p
@@ -18,7 +18,7 @@ def html_for(n):
 
 # find the module dir that actually holds a given session (for prev/back logic)
 def module_of(n):
-    for m in ["modulo-1", "modulo-2", "modulo-3", "modulo-4"]:
+    for m in ["modulo-1", "modulo-2", "modulo-3", "modulo-4", "modulo-5", "modulo-6"]:
         if os.path.exists(os.path.join(ROOT, m, f"sessao-{n}.html")):
             return m
     return None
