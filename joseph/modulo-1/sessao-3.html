@@ -38,6 +38,40 @@
   .mcol.dark { margin-top: 0;}
   .mbox, .mbox.s2, .mbox.s3 { min-height: 7.5rem; margin-top: 0;}
   }
+/* ===== The Literary Design of Genesis 1-50 — sessao-3.pdf, pag. 1-2 =====
+     Mesma familia de componentes da sessao 1 (painel + pilula + sub-caixas),
+     com as cores deste PDF. Medido em pt (1pt = 1.3333px):
+       painel ...... moldura 1.5pt, raio 5.3pt,Movement 1 e 4 #5869cc,
+                     Movement 2 e 3 #be4966. NENHUM painel tem preenchimento
+                     (o `fill` do PyMuPDF mente: reporta #be4966 no M2, mas o
+                     pixel e branco — 3a vez nesta sessao)
+       pilula ...... 15pt = 20px, raio 3pt = 4px, texto BRANCO e NEGRITO
+                     (fonte Type3 110, a mesma dos destaques da sessao 1)
+       sub-caixa ... moldura #e3e7ec 1.5pt, 48pt = 66px de altura
+       vao entre sub-caixas 7.5pt = 10px; painel -> 1a sub-caixa 48pt = 64px
+       nome e descricao tambem em Type3 110, portanto NEGRITO
+       figura ...... 540pt = 720px; Movement 2/3 recuados 17.2pt = 23px */
+  .mg { margin: 2.4rem 0 1.6rem; }
+  .mg-box { width: 720px; max-width: 100%; margin: 0 auto; }
+  /* PDF: painel com 6.8pt de folga lateral (526.5pt dentro de 540pt) */
+  .mg-panel { position: relative; border: 2px solid var(--c); border-radius: 7px;
+              background: #fff; padding: 32px 9px 10px; margin: 0 9px; }
+  .mg-panel + .mg-panel { margin-top: 10px; }
+  /* Movement 2/3: x=60 e x=60.8 (24pt da margem) em vez de 42.8 */
+  .mg-panel.ind { margin-left: 32px; margin-right: 8px; }
+  .mg-tag { position: absolute; top: 7px; left: 7px; height: 20px; line-height: 20px;
+            padding: 0 3px; border-radius: 4px; background: var(--c); color: #fff;
+            font-size: 14px; font-weight: 700; white-space: nowrap; }
+  .mg-name { font-size: 14px; font-weight: 700; line-height: 1.45; color: #1b1b1b;
+             margin-bottom: 10px; }
+  .mg-sub { position: relative; border: 2px solid #e3e7ec; border-radius: 7px;
+            background: #fff; padding: 30px 9px 10px; }
+  .mg-sub + .mg-sub { margin-top: 10px; }
+  .mg-ref { position: absolute; top: 7px; left: 7px; height: 20px; line-height: 20px;
+            padding: 0 4px; border-radius: 4px; background: #e3e7ec; color: #4f5669;
+            font-size: 12px; font-weight: 600; white-space: nowrap; }
+  .mg-desc { font-size: 14px; font-weight: 700; line-height: 1.45; color: #1b1b1b; }
+
   .cx { border: 3px solid; border-radius: 12px; padding: 1.35rem 1.5rem 1.2rem; margin: 1.15rem 0; transition: box-shadow .25s, transform .25s;}
   .cx:hover { box-shadow: 0 12px 26px -16px rgba(23,24,26,.45); transform: translateY(-2px);}
   .cx-tag { display: inline-block; font-size: .95rem; font-weight: 700; color: #fff; padding: 1px 13px; border-radius: 6px; margin-bottom: .7rem;}
@@ -157,46 +191,40 @@
     </ul>
 
     <h2 class="section reveal"><span class="lang-pt">O Desenho Literário de Gênesis 1-50</span><span class="lang-en">The Literary Design of Genesis 1-50</span></h2>
-    <div class="cx cx-slate reveal">
-      <span class="cx-tag"><span class="lang-pt">Movimento 1 — Gn 1:1-11:26</span><span class="lang-en">Movement 1 — Gen 1:1-11:26</span></span>
-      <h4><span class="lang-pt">De Adão a Noé a Seus 70 Descendentes</span><span class="lang-en">From Adam to Noah to His 70 Descendants</span></h4>
-      <ul class="bullets">
-        <li><span class="lang-pt">1:1-5:32 Humanidade = a imagem exaltada de Elohim; exílio e morte do escolhido.</span><span class="lang-en">1:1-5:32 Humanity = The exalted image of Elohim; Exile and death of the chosen.</span></li>
-        <li><span class="lang-pt">6:1-9:17 Deus traz um dilúvio de justiça, mas salva um remanescente justo.</span><span class="lang-en">6:1-9:17 God brings a flood of justice, but saves a righteous remnant.</span></li>
-        <li><span class="lang-pt">9:18-11:26 Irmãos se dividem após o dilúvio.</span><span class="lang-en">9:18-11:26 Brothers divide after the flood.</span></li>
-      </ul>
-    </div>
-    <div class="cx cx-rust reveal">
-      <span class="cx-tag"><span class="lang-pt">Movimento 2 — Gn 11:27-25:18</span><span class="lang-en">Movement 2 — Gen 11:27-25:18</span></span>
-      <h4><span class="lang-pt">De Abraão a Isaque</span><span class="lang-en">From Abraham to Isaac</span></h4>
-      <ul class="bullets">
-        <li><span class="lang-pt">11:27-19:38 Deus escolhe o filho mais novo para bênção e concerto.</span><span class="lang-en">11:27-19:38 God chooses the younger son for blessing and covenant.</span></li>
-        <li><span class="lang-pt">20:1-22:19 Deus requer e devolve a vida do filho escolhido.</span><span class="lang-en">20:1-22:19 God requires and gives back the life of the chosen son.</span></li>
-        <li><span class="lang-pt">22:20-25:18 Morte, bênção e separação dos irmãos.</span><span class="lang-en">22:20-25:18 Death, blessing, and the separation of the brothers.</span></li>
-      </ul>
-    </div>
-    <div class="cx cx-green reveal">
-      <span class="cx-tag"><span class="lang-pt">Movimento 3 — Gn 25:19-37:1</span><span class="lang-en">Movement 3 — Gen 25:19-37:1</span></span>
-      <h4><span class="lang-pt">De Isaque a Yaaqov</span><span class="lang-en">From Isaac to Jacob</span></h4>
-      <ul class="bullets">
-        <li><span class="lang-pt">25:19-28:9 Deus escolhe o filho mais novo para bênção e concerto.</span><span class="lang-en">25:19-28:9 God chooses the younger son for blessing and covenant.</span></li>
-        <li><span class="lang-pt">28:10-31:52 Deus requer e devolve a vida do filho escolhido.</span><span class="lang-en">28:10-31:52 God requires and gives back the life of the chosen son.</span></li>
-        <li><span class="lang-pt">32:1-37:1 Quase-morte, bênção e separação dos irmãos.</span><span class="lang-en">32:1-37:1 Near-death, blessing, and the separation of the brothers.</span></li>
-      </ul>
-    </div>
-    <div class="cx cx-blue reveal">
-      <span class="cx-tag"><span class="lang-pt">Movimento 4 — Gn 37:2-50:26</span><span class="lang-en">Movement 4 — Gen 37:2-50:26</span></span>
-      <h4><span class="lang-pt">De Yaaqov a Seus 12 Filhos e 70 Descendentes</span><span class="lang-en">From Jacob to His 12 Sons and 70 Descendants</span></h4>
-      <ul class="bullets">
-        <li><span class="lang-pt">37:2-41:57 Yoseph = a imagem exaltada de Faraó; exílio e morte do escolhido.</span><span class="lang-en">37:2-41:57 Yoseph = The exalted image of Pharaoh; Exile and death of the chosen.</span></li>
-        <li><span class="lang-pt">42:1-45:25a Deus traz uma fome de justiça, mas salva um remanescente.</span><span class="lang-en">42:1-45:25a God brings a flood of famine, but saves a remnant.</span></li>
-        <li><span class="lang-pt">45:25b-50:26 Irmãos se reconciliam após a fome.</span><span class="lang-en">45:25b-50:26 Brothers are reconciled after the famine.</span></li>
-      </ul>
-    </div>
-    <p class="caption reveal"><span class="lang-pt">Gênesis 1-50. Tradução e Desenho Literário por Tim Mackie para a BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 1-50. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
-    <figure class="reveal my-4">
-      <img src="img/sessao-3/genesis-1-50-movements.png" alt="Desenho literário de Gênesis 1-50 com os quatro movimentos | The literary design of Genesis 1-50 with the four movements" class="w-full rounded-[12px] border border-[#d7dde5]" />
-    </figure>
+<figure class="mg reveal">
+<div class="mg-box">
+<div class="mg-panel" style="--c:#5869cc">
+<span class="mg-tag"><span class="lang-pt">Movimento 1 — Gn 1:1-11:26</span><span class="lang-en">Movement 1—Genesis 1:1-11:26</span></span>
+<div class="mg-name"><span class="lang-pt">De Adão a Noé a Seus 70 Descendentes</span><span class="lang-en">From Adam to Noah to His 70 Descendants</span></div>
+<div class="mg-sub"><span class="mg-ref">1:1-5:32</span><div class="mg-desc"><span class="lang-pt">Humanidade = a imagem exaltada de Elohim; exílio e morte do escolhido.</span><span class="lang-en">Humanity = The exalted image of Elohim; Exile and death of the chosen.</span></div></div>
+<div class="mg-sub"><span class="mg-ref">6:1-9:17</span><div class="mg-desc"><span class="lang-pt">Deus traz um dilúvio de justiça, mas salva um remanescente justo.</span><span class="lang-en">God brings a flood of justice, but saves a righteous remnant.</span></div></div>
+<div class="mg-sub"><span class="mg-ref">9:18-11:26</span><div class="mg-desc"><span class="lang-pt">Irmãos se dividem após o dilúvio.</span><span class="lang-en">Brothers divide after the flood.</span></div></div>
+</div>
+<div class="mg-panel ind" style="--c:#be4966">
+<span class="mg-tag"><span class="lang-pt">Movimento 2 — Gn 11:27-25:18</span><span class="lang-en">Movement 2—Genesis 11:27-25:18</span></span>
+<div class="mg-name"><span class="lang-pt">De Abraão a Isaque</span><span class="lang-en">From Abraham to Isaac</span></div>
+<div class="mg-sub"><span class="mg-ref">11:27-19:38</span><div class="mg-desc"><span class="lang-pt">Deus escolhe o filho mais novo para bênção e concerto.</span><span class="lang-en">God chooses the younger son for blessing and covenant.</span></div></div>
+<div class="mg-sub"><span class="mg-ref">20:1-22:19</span><div class="mg-desc"><span class="lang-pt">Deus requer e devolve a vida do filho escolhido.</span><span class="lang-en">God requires and gives back the life of the chosen son.</span></div></div>
+<div class="mg-sub"><span class="mg-ref">22:20-25:18</span><div class="mg-desc"><span class="lang-pt">Morte, bênção e separação dos irmãos.</span><span class="lang-en">Death, blessing, and the separation of the brothers.</span></div></div>
+</div>
+<div class="mg-panel ind" style="--c:#be4966">
+<span class="mg-tag"><span class="lang-pt">Movimento 3 — Gn 25:19-37:1</span><span class="lang-en">Movement 3—Genesis 25:19-37:1</span></span>
+<div class="mg-name"><span class="lang-pt">De Isaque a Yaaqov</span><span class="lang-en">From Isaac to Jacob</span></div>
+<div class="mg-sub"><span class="mg-ref">25:19-28:9</span><div class="mg-desc"><span class="lang-pt">Deus escolhe o filho mais novo para bênção e concerto.</span><span class="lang-en">God chooses the younger son for blessing and covenant.</span></div></div>
+<div class="mg-sub"><span class="mg-ref">28:10-31:52</span><div class="mg-desc"><span class="lang-pt">Deus requer e devolve a vida do filho escolhido.</span><span class="lang-en">God requires and gives back the life of the chosen son.</span></div></div>
+<div class="mg-sub"><span class="mg-ref">32:1-37:1</span><div class="mg-desc"><span class="lang-pt">Quase-morte, bênção e separação dos irmãos.</span><span class="lang-en">Near-death, blessing, and the separation of the brothers.</span></div></div>
+</div>
+<div class="mg-panel" style="--c:#5869cc">
+<span class="mg-tag"><span class="lang-pt">Movimento 4 — Gn 37:2-50:26</span><span class="lang-en">Movement 4—Genesis 37:2-50:26</span></span>
+<div class="mg-name"><span class="lang-pt">De Yaaqov a Seus 12 Filhos e 70 Descendentes</span><span class="lang-en">From Jacob to His 12 Sons and 70 Descendants</span></div>
+<div class="mg-sub"><span class="mg-ref">37:2-41:57</span><div class="mg-desc"><span class="lang-pt">Yoseph = a imagem exaltada de Faraó; exílio e morte do escolhido.</span><span class="lang-en">Yoseph = The exalted image of Pharaoh; Exile and death of the chosen.</span></div></div>
+<div class="mg-sub"><span class="mg-ref">42:1-45:25a</span><div class="mg-desc"><span class="lang-pt">Deus traz uma fome de justiça, mas salva um remanescente.</span><span class="lang-en">God brings a flood of famine, but saves a remnant.</span></div></div>
+<div class="mg-sub"><span class="mg-ref">45:25b-50:26</span><div class="mg-desc"><span class="lang-pt">Irmãos se reconciliam após a fome.</span><span class="lang-en">Brothers are reconciled after the famine.</span></div></div>
+</div>
+</div>
+<figcaption class="caption"><span class="lang-pt"><em>Gênesis 1-50.</em> Tradução e Desenho Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en"><em>Genesis 1-50.</em> Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></figcaption>
+</figure>
+
     <p class="body reveal"><span class="lang-pt">Embora cada parte do rolo de Gênesis seja modelada segundo partes anteriores, há uma rede de vocabulário e temas compartilhados entre estes quatro grandes movimentos que indicam um arranjo simétrico em grande escala.</span><span class="lang-en">While every part of the Genesis scroll is patterned after earlier parts, there is a network of vocabulary and themes shared between these four larger movements that indicate a large-scale symmetrical arrangement.</span></p>
 
     <h3 class="sub reveal"><span class="lang-pt">As Convenções-Chave de Desenho na Literatura Bíblica</span><span class="lang-en">The Key Design Conventions in Biblical Literature</span></h3>
@@ -211,7 +239,7 @@
     <h3 class="sub reveal"><span class="lang-pt">Cogni&ccedil;&atilde;o Anal&oacute;gica</span><span class="lang-en">Analogical Cognition</span></h3>
     <p class="body reveal"><span class="lang-pt">Mas primeiro, um desvio sobre &ldquo;cogni&ccedil;&atilde;o anal&oacute;gica&rdquo;. A cogni&ccedil;&atilde;o humana &eacute; constru&iacute;da sobre um processo aprendido de agrupar, comparar e contrastar toda a entrada sensorial que nos chega. Isto &eacute; como aquilo, aquilo &eacute; como isto // Isto n&atilde;o &eacute; como aquilo, aquilo n&atilde;o &eacute; como isto. Uma das maneiras mais b&aacute;sicas de apresentar uma compara&ccedil;&atilde;o ou contraste significativo &eacute; colocar duas ou tr&ecirc;s coisas lado a lado e meditar sobre suas semelhan&ccedil;as ou diferen&ccedil;as.</span><span class="lang-en">But first, an aside on &ldquo;analogical cognition.&rdquo; Human cognition is built on a learned process of grouping, comparing, and contrasting all the sensory input that comes our way. This is like that, that is like this // This is not like that, that is not like this. One of the most basic ways to present a meaningful comparison or contrast is to place two or three things next to each other and meditate on their similarities or differences.</span></p>
     <p class="body reveal"><span class="lang-pt">Por exemplo, minha esposa agrupou tr&ecirc;s plantas juntas num r&aacute;dio antigo que usamos como prateleira decorativa perto da mesa de jantar.</span><span class="lang-en">For example, my wife has grouped three plants together on an old radio that we use as a decorative shelf by our dinner table.</span></p>
-    <img src="img/sessao-3/plants.png" alt="Tr&ecirc;s plantas agrupadas num r&aacute;dio antigo, usadas como analogia para cogni&ccedil;&atilde;o anal&oacute;gica | Three plants grouped on an old radio, used as an analogy for analogical cognition" class="w-full rounded-[12px] border border-[#d7dde5] my-4 reveal" />
+    <img src="img/sessao-3/plants.png" alt="Tr&ecirc;s plantas agrupadas num r&aacute;dio antigo, usadas como analogia para cogni&ccedil;&atilde;o anal&oacute;gica | Three plants grouped on an old radio, used as an analogy for analogical cognition" class="block mx-auto rounded-[12px] border border-[#d7dde5] my-4 reveal" style="max-width:188px" />
     <p class="caption reveal"><span class="lang-pt">© BibleProject</span><span class="lang-en">© BibleProject</span></p>
     <ul class="bullets">
       <li class="reveal"><span class="lang-pt">Todas as tr&ecirc;s s&atilde;o verdes.</span><span class="lang-en">All three are green.</span></li>
