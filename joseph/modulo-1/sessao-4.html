@@ -40,6 +40,238 @@
   .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .875rem; color: #5b6472; font-weight: 600; letter-spacing: .06em; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
   #reading-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; background: #17181a; transform-origin: 0 50%; transform: scaleX(0); z-index: 60; }
   @media print { #reading-progress { display: none !important; } }
+
+
+  /* ==================== diagramas (medidos no PDF) ==================== */
+/* ==========================================================================
+     DIAGRAMAS DA SESSAO 4  (reconstruidos de joseph/pdf-sessoes/sessao-4.pdf)
+     --------------------------------------------------------------------------
+     Medidas no PDF (1pt = 1.3333px). As figuras ocupam 537.75pt de largura
+     (39.40 -> 577.15). O canvas e' fixo em 1600px, portanto NESTE canvas:
+         1pt do PDF = 1600 / 537.75 = 2.9755 px
+     Molduras : traco de 0.7563pt (medida = centro do traco) -> 2.25px
+                => CSS border 2px
+     Pílulas  : raio 1.51pt -> 4.5px | altura 7.56pt -> 22.5px
+     Recuo    : 3.41pt do traco -> 10.1px => padding 10px
+     Vão      : 3.78pt entre caixas -> 11.2px => gap 11px
+     Raio da moldura : 2.65pt -> 7.9px => 8px (caixa: 6px)
+     Entrelinha do corpo : 7.94pt -> 23.6px | corpo 5.29pt -> 15.7px
+     Figuras "toledot" (p.3): moldura 1.156pt / 1.471pt -> 2px, recuo
+       5.2pt / 6.6pt -> 16px / 20px, raio 4.04pt -> 12px, pílula 11.56pt /
+       15.03pt -> 34px / 45px, corpo 8.09pt -> 24.1px e 10.30pt -> 30.6px,
+       entrelinha 12.13pt / 15.45pt -> 36px / 46px.
+     Alturas dos clusters: 119.50 / 150.97 / 122.95 / 113.23 / 135.20 /
+       160.37pt -> 356 / 449 / 366 / 337 / 402 / 477px (min-height; o PT
+       e' mais longo que o EN e pode esticar a caixa).
+
+     CORES — todas confirmadas por pixel (get_pixmap Matrix(6,6)) e por span:
+       #3e4054 moldura+pílula do cluster | #3678b4 moldura+pílula azul
+       #9855af violeta | #b5543a ferrugem | #6b7384 cinza
+       #5869cd / #be4967 / #3a8060 : caixa preenchida com a MESMA cor a 15%
+         de opacidade (medido: #5869cd@15% -> #e6e8f7, #be4967@15% ->
+         #f5e3e8, #b5543a@15% -> #f3e5e1, #3a8060@15% -> #e1ece7 —
+         TODOS confirmados por pixel)
+       realces : #ccf1fa  #f7e1f5  #fae4c4  #f9e3de  #d3f2cd
+       texto   : #245791  #713c92  #91362e  #972a4e  #2b6146  #5869cd
+     ========================================================================== */
+  .diagram-scroll {
+    width: 100%;
+    margin: 1.5rem 0;
+    padding: 0.75rem;
+    background: #fff;
+    overflow: hidden;
+  }
+
+  #sessao-4 > .diagram-scroll {
+    width: 100vw;
+    margin-left: calc((100% - 100vw) / 2);
+  }
+
+  .diagram-viewport { position: relative; width: 100%; overflow: hidden; }
+
+  .diagram-canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    height: auto;
+    transform-origin: top left;
+    will-change: transform;
+    width: 1600px;
+  }
+
+  .d4-h119 { min-height: 356px; }   /* cluster 119.50pt */
+  .d4-h151 { min-height: 449px; }   /* cluster 150.97pt */
+  .d4-h123 { min-height: 366px; }   /* cluster 122.95pt */
+  .d4-h113 { min-height: 337px; }   /* cluster 113.23pt */
+  .d4-h135 { min-height: 402px; }   /* caixa toledot 135.20pt */
+  .d4-h160 { min-height: 477px; }   /* caixa toledot 160.37pt */
+
+  .d4-row { display: flex; align-items: stretch; }
+  /* vao entre as caixas: 3.78pt -> 11.2px */
+  .d4-row-outer,
+  .d4-cluster > .d4-row { gap: 11px; }
+  .d4-row-outer { height: 100%; }
+  /* vao das fileiras "toledot" (p.3): 5.77pt -> 17px e 7.36pt -> 22px */
+  .d4-gap17 { gap: 17px; }
+  .d4-gap22 { gap: 22px; }
+
+  .d4-cluster {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 2px solid #3e4054;
+    border-radius: 8px;
+    padding: 10px;
+  }
+
+  .d4-badge,
+  .d4-ref {
+    display: inline-block;
+    align-self: flex-start;
+    color: #fff;
+    font-size: 15.7px;
+    font-weight: 700;
+    line-height: 22.5px;
+    padding: 0 5px;
+    border-radius: 4.5px;
+    margin-bottom: 10px;
+  }
+  .d4-b-dark       { background: #3e4054; }   /* pílula do cluster */
+  .d4-b-blue       { background: #3678b4; }
+  .d4-b-violet     { background: #9855af; }
+  .d4-b-rust       { background: #b5543a; }
+  .d4-b-slate      { background: #6b7384; }
+  .d4-b-tint-indigo { background: #5869cd; }
+  .d4-b-tint-rose   { background: #be4967; }
+  .d4-b-tint-rust   { background: #b5543a; }
+  .d4-b-tint-green  { background: #3a8060; }
+  .d4-b-tint-slate  { background: #6b7384; }
+
+  .d4-desc {
+    font-size: 15.7px;
+    font-weight: 700;
+    line-height: 23.6px;
+    color: #1b1b1b;
+    margin-bottom: 10px;
+  }
+
+  .d4-box {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 2px solid #6b7384;
+    border-radius: 6px;
+    padding: 10px;
+  }
+
+  /* moldura por família de cor; "tint-*" = preenchimento da MESMA cor a 15% */
+  .d4-k-blue        { border-color: #3678b4; }
+  .d4-k-violet      { border-color: #9855af; }
+  .d4-k-rust        { border-color: #b5543a; }
+  .d4-k-slate       { border-color: #6b7384; }
+  .d4-k-rose        { border-color: #be4967; }
+  .d4-k-tint-indigo { border-color: #5869cd; background: rgba(88, 105, 205, 0.15); }
+  .d4-k-tint-rose   { border-color: #be4967; background: rgba(190, 73, 103, 0.15); }
+  .d4-k-tint-rust   { border-color: #b5543a; background: rgba(181, 84, 58, 0.15); }
+  .d4-k-tint-green  { border-color: #3a8060; background: rgba(58, 128, 96, 0.15); }
+  .d4-k-tint-slate  { border-color: #6b7384; background: rgba(107, 115, 132, 0.15); }
+
+  .d4-line {
+    overflow-wrap: anywhere;
+    font-size: 15.7px;
+    line-height: 23.6px;
+    color: #1b1b1b;
+  }
+  .d4-li {
+    overflow-wrap: anywhere;
+    position: relative;
+    padding-left: 14px;
+    font-size: 15.7px;
+    line-height: 23.6px;
+    color: #1b1b1b;
+  }
+  .d4-li::before { content: "\2022"; position: absolute; left: 0; }
+
+  /* pílulas de realce: retângulos de 7.57pt de altura no PDF */
+  .d4-hl {
+    display: inline-block;
+    padding: 0 4px;
+    border-radius: 4.5px;
+    line-height: 22.5px;
+    font-weight: 700;
+  }
+  .d4-h-blue        { background: #ccf1fa; color: #245791; }
+  .d4-h-violet      { background: #f7e1f5; color: #713c92; }
+  .d4-h-orange      { background: #fae4c4; color: #b5543a; }
+  .d4-h-rose        { background: #f9e3de; color: #972a4e; }
+  .d4-h-green       { background: #d3f2cd; color: #2b6146; }
+  .d4-h-solidviolet { background: #9855af; color: #fff; }
+  .d4-h-solidslate  { background: #6b7384; color: #fff; }
+
+  .d4-t-blue   { color: #245791; }
+  .d4-t-violet { color: #713c92; }
+  .d4-t-rust   { color: #b5543a; }
+  .d4-t-brown  { color: #91362e; }
+  .d4-t-indigo { color: #972a4e; }
+  .d4-t-green  { color: #2b6146; }
+  .d4-t-sea    { color: #5869cd; }
+
+  /* --- diagramas "toledot" (p.3 do PDF) ------------------------------- */
+  .d4-tbox {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 2px solid #3e4054;
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .d4-tboxlg { padding: 20px; border-radius: 15px; }
+
+  /* no PDF as pílulas de 2 linhas quebram (ex.: "Genesis 11:27-" / "22:19") */
+  .d4-tbox .d4-badge {
+    font-size: 24.1px;
+    line-height: 34px;
+    border-radius: 7px;
+    padding: 0 8px;
+    white-space: normal;
+  }
+  .d4-tboxlg .d4-badge { font-size: 30.6px; line-height: 45px; border-radius: 9px; }
+  .d4-tbox .d4-desc { font-size: 24.1px; line-height: 36px; }
+  .d4-tboxlg .d4-desc { font-size: 30.6px; line-height: 46px; }
+  .d4-tlist { list-style: none; margin: 0; padding: 0; }
+  .d4-tlist li {
+    overflow-wrap: anywhere;
+    position: relative;
+    padding-left: 24px;
+    font-size: 24.1px;
+    line-height: 36px;
+    color: #1b1b1b;
+  }
+  .d4-tboxlg .d4-tlist li { font-size: 30.6px; line-height: 46px; }
+  .d4-tlist li::before { content: "\2022"; position: absolute; left: 0; }
+
+  @media (max-width: 767px) {
+    #sessao-4 > .diagram-scroll {
+      width: 100vw;
+      margin-left: calc((100% - 100vw) / 2);
+    }
+
+    .diagram-canvas {
+      position: relative;
+      width: 100%;
+      height: auto;
+      transform: none !important;
+    }
+
+    .d4-row-outer { flex-direction: column; height: auto; gap: 12px; }
+    .d4-cluster > .d4-row { flex-direction: column; gap: 8px; }
+    .d4-cluster, .d4-box, .d4-tbox { width: 100%; }
+    .d4-box { min-height: 5rem; }
+  }
 </style>
 </head>
 <body class="bg-white">
@@ -59,7 +291,7 @@
     <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
   </div>
 </div>
-<div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
+<div class="max-w-4xl mx-auto px-5 py-12 md:py-16" id="sessao-4">
     <h1 class="title reveal"><span class="lang-pt">Sessão 4: Um Conto de Duas Sementes</span><span class="lang-en">Session 4: A Tale of Two Seeds</span></h1>
     <hr class="rule">
     <h3 class="sub takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
@@ -71,61 +303,106 @@
 
     <h2 class="section reveal"><span class="lang-pt">O Design Literário da História de Yoseph: Gênesis 37:2-50:26</span><span class="lang-en">The Literary Design of the Yoseph Story: Genesis 37:2-50:26</span></h2>
 
-    <h3 class="sub reveal"><span class="lang-pt">Parte 1: Gênesis 37:2-41:57</span><span class="lang-en">Part 1: Genesis 37:2-41:57</span></h3>
-    <div class="rounded-xl overflow-hidden border border-slate-300">
-<table class="w-full text-left text-[#24262a] md reveal">
-      <tr><th><span class="lang-pt">Gênesis 37:2-36<br>O Beloved Yoseph é Preso pelos Irmãos Rivais</span><span class="lang-en">Genesis 37:2-36<br>Beloved Yoseph Is Trapped by Rival Brothers</span></th><th><span class="lang-pt">Gênesis 38:1-30<br>A Família de Yehudah é Salva pelo Engano</span><span class="lang-en">Genesis 38:1-30<br>Yehudah's Family Is Saved Through Deception</span></th><th><span class="lang-pt">Gênesis 39:1-41:57<br>Yoseph Preso no Egito e Elevado Acima do Egito</span><span class="lang-en">Genesis 39:1-41:57<br>Yoseph Imprisoned in Egypt and Elevated Over Egypt</span></th></tr>
-      <tr><td><span class="lang-pt">37:2-14 — Os dois sonhos de Yoseph sobre elevação, e o recebimento do manto real</span><span class="lang-en">37:2-14 — Yoseph's two dreams about elevation, and given royal robe</span></td><td><span class="lang-pt">38:1-11 — Dois filhos morrem, e Yehudah engana Tamar</span><span class="lang-en">38:1-11 — Two sons die, and Yehudah deceives Tamar</span></td><td><span class="lang-pt">39:1-23 — Yoseph é pego e aprisionado no Egito, e o engano do manto</span><span class="lang-en">39:1-23 — Yoseph trapped and imprisoned in Egypt, and robe deception</span></td></tr>
-      <tr><td><span class="lang-pt">37:15-30 — Os irmãos de Yoseph o prendem e o vendem como escravo</span><span class="lang-en">37:15-30 — Yoseph's brothers trap and sell him as a slave</span></td><td><span class="lang-pt">38:12-23 — Tamar contra-engana</span><span class="lang-en">38:12-23 — Tamar counter-deceives</span></td><td><span class="lang-pt">40:1-23 — Yoseph interpreta dois sonhos na prisão</span><span class="lang-en">40:1-23 — Yoseph interprets two dreams in prison</span></td></tr>
-      <tr><td><span class="lang-pt">37:31-36 — Yaaqov é enganado pelos filhos, e o engano do manto</span><span class="lang-en">37:31-36 — Yaaqov deceived by sons, and robe deception</span></td><td><span class="lang-pt">38:24-30 — Yehudah confessa seu engano, e dois filhos nascem</span><span class="lang-en">38:24-30 — Yehudah confesses his deceit, and two sons born</span></td><td><span class="lang-pt">41:1-57 — Os dois sonhos de Faraó sobre 2x7 anos; Yoseph é elevado acima do Egito e recebe o manto real; Dois filhos nascem</span><span class="lang-en">41:1-57 — Pharaoh's two dreams about 2x7 years; Yoseph elevated over Egypt and given royal robe; Two sons born</span></td></tr>
-    </table>
-</div>
+    <h3 class="sub reveal"><span class="lang-pt">Parte 1: Gênesis 37:2-41:57</span><span class="lang-en">Part 1: Genesis 37:2-41:57</span></h3>    <div class="diagram-scroll">
+      <div class="diagram-viewport">
+        <div class="diagram-canvas d4-h119">
+          <div class="d4-row d4-row-outer">          <div class="d4-cluster d4-c-slate " style="flex:1 1 510px">
+            <span class="d4-badge d4-b-dark" data-reference="Genesis 37:2-36"><span class="lang-pt">Gênesis 37:2-36</span><span class="lang-en">Genesis 37:2-36</span></span>
+            <div class="d4-desc"><span class="d4-tx "><span class="lang-pt">O Beloved Yoseph é Preso pelos Irmãos Rivais</span><span class="lang-en">Beloved Yoseph Is Trapped by Rival Brothers</span></span></div>
+            <div class="d4-row">            <div class="d4-box d4-k-blue" style="flex:1"><span class="d4-ref d4-b-blue" data-reference="37:2-14"><span class="lang-pt">37:2-14</span><span class="lang-en">37:2-14</span></span><div class="d4-line"><span class="d4-hl d4-h-blue"><span class="lang-pt">Os dois sonhos de Yoseph</span><span class="lang-en">Yoseph's two</span></span></div><div class="d4-line"><span class="d4-hl d4-h-blue"><span class="lang-pt">sonhos de Yoseph sobre</span><span class="lang-en">dreams about</span></span></div><div class="d4-line"><span class="d4-hl d4-h-blue"><span class="lang-pt">elevação</span><span class="lang-en">elevation</span></span><span class="d4-tx "><span class="lang-pt">, e</span><span class="lang-en">, and</span></span></div><div class="d4-line"><span class="d4-hl d4-h-solidviolet"><span class="lang-pt">o recebimento do manto real</span><span class="lang-en">given royal robe</span></span></div></div>            <div class="d4-box d4-k-slate" style="flex:1"><span class="d4-ref d4-b-slate" data-reference="37:15-30"><span class="lang-pt">37:15-30</span><span class="lang-en">37:15-30</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Os irmãos de Yoseph</span><span class="lang-en">Yoseph's brothers</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">o prendem e o vendem</span><span class="lang-en">trap and</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">como escravo</span><span class="lang-en">sell him as a slave</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">no Egito, e o</span><span class="lang-en">in Egypt, and the</span></span></div><div class="d4-line"><span class="d4-hl d4-h-violet"><span class="lang-pt">mantos reais</span><span class="lang-en">royal robe taken</span></span></div></div>            <div class="d4-box d4-k-violet" style="flex:1"><span class="d4-ref d4-b-violet" data-reference="37:31-36"><span class="lang-pt">37:31-36</span><span class="lang-en">37:31-36</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Yaaqov é enganado</span><span class="lang-en">Yaaqov deceived</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">pelos filhos, e o</span><span class="lang-en">by sons, and</span></span></div><div class="d4-line"><span class="d4-hl d4-h-violet"><span class="lang-pt">engano do manto</span><span class="lang-en">robe deception</span></span></div></div></div>
+          </div>          <div class="d4-cluster d4-c-slate " style="flex:1 1 510px">
+            <span class="d4-badge d4-b-dark" data-reference="Genesis 38:1-30"><span class="lang-pt">Gênesis 38:1-30</span><span class="lang-en">Genesis 38:1-30</span></span>
+            <div class="d4-desc"><span class="d4-tx d4-t-brown"><span class="lang-pt">A Família de Yehudah</span><span class="lang-en">Yehudah's</span></span><span class="d4-tx "><span class="lang-pt">é Salva pelo Engano</span><span class="lang-en"> Family Is Saved Through Deception</span></span></div>
+            <div class="d4-row">            <div class="d4-box d4-k-rust" style="flex:1"><span class="d4-ref d4-b-rust" data-reference="38:1-11"><span class="lang-pt">38:1-11</span><span class="lang-en">38:1-11</span></span><div class="d4-line"><span class="d4-hl d4-h-orange"><span class="lang-pt">Dois filhos morrem</span><span class="lang-en">Two sons die</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">, e</span><span class="lang-en">, and</span></span></div><div class="d4-line"><span class="d4-hl d4-h-orange"><span class="lang-pt">Yehudah</span><span class="lang-en">Yehudah</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">engana Tamar</span><span class="lang-en">deceives Tamar</span></span></div></div>            <div class="d4-box d4-k-violet" style="flex:1"><span class="d4-ref d4-b-violet" data-reference="38:12-23"><span class="lang-pt">38:12-23</span><span class="lang-en">38:12-23</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Tamar contra-engana</span><span class="lang-en">Tamar counter-</span></span></div><div class="d4-line"><span class="d4-hl d4-h-violet"><span class="lang-pt">engana</span><span class="lang-en">deceives</span></span></div><div class="d4-line"><span class="d4-tx d4-t-brown"><span class="lang-pt">Yehudah</span><span class="lang-en">Yehudah</span></span><span class="d4-tx "><span class="lang-pt"> com</span><span class="lang-en"> with</span></span></div><div class="d4-line"><span class="d4-hl d4-h-violet"><span class="lang-pt">mantos</span><span class="lang-en">robes</span></span></div></div>            <div class="d4-box d4-k-rust" style="flex:1"><span class="d4-ref d4-b-rust" data-reference="38:24-30"><span class="lang-pt">38:24-30</span><span class="lang-en">38:24-30</span></span><div class="d4-line"><span class="d4-tx d4-t-brown"><span class="lang-pt">Yehudah</span><span class="lang-en">Yehudah</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">confessa seu</span><span class="lang-en">confesses his</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">engano, e</span><span class="lang-en">deceit, and</span></span></div><div class="d4-line"><span class="d4-hl d4-h-orange"><span class="lang-pt">dois</span><span class="lang-en">two</span></span></div><div class="d4-line"><span class="d4-tx d4-t-rust"><span class="lang-pt">filhos nascem</span><span class="lang-en">sons born</span></span></div></div></div>
+          </div>          <div class="d4-cluster d4-c-slate " style="flex:1 1 556px">
+            <span class="d4-badge d4-b-dark" data-reference="Genesis 39:1-41:57"><span class="lang-pt">Gênesis 39:1-41:57</span><span class="lang-en">Genesis 39:1-41:57</span></span>
+            <div class="d4-desc"><span class="d4-tx "><span class="lang-pt">Yoseph Preso no Egito e Elevado Acima do Egito</span><span class="lang-en">Yoseph Imprisoned in Egypt and Elevated Over Egypt</span></span></div>
+            <div class="d4-row">            <div class="d4-box d4-k-violet" style="flex:1"><span class="d4-ref d4-b-violet" data-reference="39:1-23"><span class="lang-pt">39:1-23</span><span class="lang-en">39:1-23</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Yoseph é pego e</span><span class="lang-en">Yoseph trapped</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">aprisionado no Egito,</span><span class="lang-en">and imprisoned</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">e o engano do</span><span class="lang-en">in Egypt, and</span></span></div><div class="d4-line"><span class="d4-hl d4-h-violet"><span class="lang-pt">manto</span><span class="lang-en">robe deception</span></span></div></div>            <div class="d4-box d4-k-blue" style="flex:1"><span class="d4-ref d4-b-blue" data-reference="40:1-23"><span class="lang-pt">40:1-23</span><span class="lang-en">40:1-23</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Yoseph interpreta</span><span class="lang-en">Yoseph interprets</span></span></div><div class="d4-line"><span class="d4-hl d4-h-blue"><span class="lang-pt">dois sonhos</span><span class="lang-en">two dreams</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">na prisão</span><span class="lang-en">in prison</span></span></div></div>            <div class="d4-box d4-k-blue" style="flex:1"><span class="d4-ref d4-b-blue" data-reference="41:1-57"><span class="lang-pt">41:1-57</span><span class="lang-en">41:1-57</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Os dois sonhos de Faraô</span><span class="lang-en">Pharaoh's</span></span></div><div class="d4-line"><span class="d4-hl d4-h-blue"><span class="lang-pt">de Faraô</span><span class="lang-en">two dreams</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">sobre 2x7 anos</span><span class="lang-en">about 2x7 years</span></span></div><div class="d4-li"><span class="d4-hl d4-h-blue"><span class="lang-pt">Yoseph é elevado</span><span class="lang-en">Yoseph elevated</span></span></div><div class="d4-li"><span class="d4-tx "><span class="lang-pt">acima do Egito e</span><span class="lang-en">over Egypt and</span></span><span class="d4-hl d4-h-solidviolet"><span class="lang-pt">recebe</span><span class="lang-en">given</span></span></div><div class="d4-li"><span class="d4-hl d4-h-solidviolet"><span class="lang-pt">o manto real</span><span class="lang-en">royal robe</span></span></div><div class="d4-li"><span class="d4-tx d4-t-rust"><span class="lang-pt">Dois filhos nascem</span><span class="lang-en">Two sons born</span></span></div></div></div>
+          </div></div>
+        </div>
+      </div>
+    </div>
     <p class="caption reveal"><span class="lang-pt">Gênesis 37:2-41:57. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 37:2-41:57. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
 
-    <h3 class="sub reveal"><span class="lang-pt">Parte 2: Gênesis 42:1-45:25a</span><span class="lang-en">Part 2: Genesis 42:1-45:25a</span></h3>
-    <div class="rounded-xl overflow-hidden border border-slate-300">
-<table class="w-full text-left text-[#24262a] md reveal">
-      <tr><th><span class="lang-pt">Gênesis 42:1-38<br>Yoseph Encontra e Testa Seus Irmãos</span><span class="lang-en">Genesis 42:1-38<br>Yoseph Meets and Tests His Brothers</span></th><th><span class="lang-pt">Gênesis 43:1-44:34<br>Yoseph Testa Seus Irmãos Novamente + o Sacrifício de Yehudah</span><span class="lang-en">Genesis 43:1-44:34<br>Yoseph Tests His Brothers Again + Yehudah's Sacrifice</span></th><th><span class="lang-pt">Gênesis 45:1-25a<br>Yoseph Convida Sua Família a Morar no Egito</span><span class="lang-en">Genesis 45:1-25a<br>Yoseph Invites His Family To Live in Egypt</span></th></tr>
-      <tr><td><span class="lang-pt">42:1-5 — Os irmãos descem ao Egito + Binyamin não pode ir</span><span class="lang-en">42:1-5 — Brothers go down to Egypt + Binyamin cannot go</span></td><td><span class="lang-pt">43:1-15 — Yehudah interpõe-se + Binyamin não pode ir</span><span class="lang-en">43:1-15 — Yehudah intercedes + Binyamin cannot go</span></td><td><span class="lang-pt">45:1-3 — Yoseph se revela a seus irmãos</span><span class="lang-en">45:1-3 — Yoseph reveals himself to his brothers</span></td></tr>
-      <tr><td><span class="lang-pt">42:6-28 — Os irmãos encontram Yoseph, governador do Egito + Yoseph testa seus irmãos + Shim'on é levado</span><span class="lang-en">42:6-28 — Brothers meet Yoseph, ruler of Egypt + Yoseph tests his brothers + Shimon is taken</span></td><td><span class="lang-pt">43:15-44:13 — Yoseph testa seus irmãos novamente + Binyamin não pode ir</span><span class="lang-en">43:15-44:13 — Yoseph tests his brothers again + Binyamin cannot go</span></td><td><span class="lang-pt">45:4-13 — O Discurso de Yoseph: Sou o governador do Egito + Vinde morar em Goshen</span><span class="lang-en">45:4-13 — Yoseph's Speech: I am ruler of Egypt + Come live in Goshen</span></td></tr>
-      <tr><td><span class="lang-pt">42:29-38 — Os irmãos voltam a Canaã + Binyamin não pode ir</span><span class="lang-en">42:29-38 — Brothers return to Canaan + Binyamin cannot go</span></td><td><span class="lang-pt">44:14-34 — Yehudah interpõe-se e se oferece no lugar de Binyamin</span><span class="lang-en">44:14-34 — Yehudah intercedes and offers himself in place of Binyamin</span></td><td><span class="lang-pt">45:1-25a — Faraô convida a família a morar em Goshen + Os irmãos voltam a Canaã com Binyamin</span><span class="lang-en">45:1-25a — Pharaoh invites the family to live in Goshen + Brothers return to Canaan with Binyamin</span></td></tr>
-    </table>
-</div>
+    <h3 class="sub reveal"><span class="lang-pt">Parte 2: Gênesis 42:1-45:25a</span><span class="lang-en">Part 2: Genesis 42:1-45:25a</span></h3>    <div class="diagram-scroll">
+      <div class="diagram-viewport">
+        <div class="diagram-canvas d4-h151">
+          <div class="d4-row d4-row-outer">          <div class="d4-cluster d4-c-slate " style="flex:1 1 510px">
+            <span class="d4-badge d4-b-dark" data-reference="Genesis 42:1-38"><span class="lang-pt">Gênesis 42:1-38</span><span class="lang-en">Genesis 42:1-38</span></span>
+            <div class="d4-desc"><span class="d4-tx "><span class="lang-pt">Yoseph Encontra e Testa Seus Irmãos</span><span class="lang-en">Yoseph Meets and Tests His Brothers</span></span></div>
+            <div class="d4-row">            <div class="d4-box d4-k-tint-indigo" style="flex:1"><span class="d4-ref d4-b-tint-indigo" data-reference="42:1-5"><span class="lang-pt">42:1-5</span><span class="lang-en">42:1-5</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Os irmãos descem ao Egito</span><span class="lang-en">Brothers go down to Egypt</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">+</span><span class="lang-en">+</span></span></div><div class="d4-line"><span class="d4-hl d4-h-solidslate"><span class="lang-pt">Binyamin</span><span class="lang-en">Binyamin</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">não pode ir</span><span class="lang-en">cannot go</span></span></div></div>            <div class="d4-box d4-k-rose" style="flex:1"><span class="d4-ref d4-b-rose" data-reference="42:6-28"><span class="lang-pt">42:6-28</span><span class="lang-en">42:6-28</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Os irmãos encontram</span><span class="lang-en">Brothers meet</span></span></div><div class="d4-line"><span class="d4-hl d4-h-rose"><span class="lang-pt">Yoseph, governador do</span><span class="lang-en">Yoseph, ruler of</span></span></div><div class="d4-line"><span class="d4-hl d4-h-rose"><span class="lang-pt">Egito</span><span class="lang-en">Egypt</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">+</span><span class="lang-en">+</span></span></div><div class="d4-line"><span class="d4-tx d4-t-green"><span class="lang-pt">Yoseph testa seus irmãos</span><span class="lang-en">Yoseph tests his brothers</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">+ Shim'on é levado</span><span class="lang-en">+ Shimon is taken</span></span></div></div>            <div class="d4-box d4-k-tint-indigo" style="flex:1"><span class="d4-ref d4-b-tint-indigo" data-reference="42:29-38"><span class="lang-pt">42:29-38</span><span class="lang-en">42:29-38</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Os irmãos voltam a Canaã</span><span class="lang-en">Brothers return to Canaan</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">+</span><span class="lang-en">+</span></span></div><div class="d4-line"><span class="d4-hl d4-h-solidslate"><span class="lang-pt">Binyamin</span><span class="lang-en">Binyamin</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">não pode ir</span><span class="lang-en">cannot go</span></span></div></div></div>
+          </div>          <div class="d4-cluster d4-c-slate " style="flex:1 1 510px">
+            <span class="d4-badge d4-b-dark" data-reference="Genesis 43:1-44:34"><span class="lang-pt">Gênesis 43:1-44:34</span><span class="lang-en">Genesis 43:1-44:34</span></span>
+            <div class="d4-desc"><span class="d4-tx "><span class="lang-pt">Yoseph Testa Seus Irmãos Novamente</span><span class="lang-en">Yoseph Tests His Brothers Again</span></span> <span class="d4-hl d4-h-orange"><span class="lang-pt">+ o Sacrifício de Yehudah</span><span class="lang-en">+ Yehudah's Sacrifice</span></span></div>
+            <div class="d4-row">            <div class="d4-box d4-k-slate" style="flex:1"><span class="d4-ref d4-b-slate" data-reference="43:1-15"><span class="lang-pt">43:1-15</span><span class="lang-en">43:1-15</span></span><div class="d4-line"><span class="d4-tx d4-t-brown"><span class="lang-pt">Yehudah interpõe-se</span><span class="lang-en">Yehudah intercedes</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">+</span><span class="lang-en">+</span></span></div><div class="d4-line"><span class="d4-hl d4-h-solidslate"><span class="lang-pt">Binyamin</span><span class="lang-en">Binyamin</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">não pode ir</span><span class="lang-en">cannot go</span></span></div></div>            <div class="d4-box d4-k-rose" style="flex:1"><span class="d4-ref d4-b-rose" data-reference="43:15-44:13"><span class="lang-pt">43:15-44:13</span><span class="lang-en">43:15-44:13</span></span><div class="d4-line"><span class="d4-tx d4-t-green"><span class="lang-pt">Yoseph testa seus irmãos novamente</span><span class="lang-en">Yoseph tests his brothers again</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">+</span><span class="lang-en">+</span></span></div><div class="d4-line"><span class="d4-hl d4-h-solidslate"><span class="lang-pt">Binyamin</span><span class="lang-en">Binyamin</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">não pode ir</span><span class="lang-en">cannot go</span></span></div></div>            <div class="d4-box d4-k-slate" style="flex:1"><span class="d4-ref d4-b-slate" data-reference="44:14-34"><span class="lang-pt">44:14-34</span><span class="lang-en">44:14-34</span></span><div class="d4-line"><span class="d4-tx d4-t-brown"><span class="lang-pt">Yehudah interpõe-se</span><span class="lang-en">Yehudah intercedes</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">e se oferece no lugar de</span><span class="lang-en">and offers himself in place of</span></span></div><div class="d4-line"><span class="d4-hl d4-h-solidslate"><span class="lang-pt">Binyamin</span><span class="lang-en">Binyamin</span></span></div></div></div>
+          </div>          <div class="d4-cluster d4-c-slate " style="flex:1 1 510px">
+            <span class="d4-badge d4-b-dark" data-reference="Genesis 45:1-25a"><span class="lang-pt">Gênesis 45:1-25a</span><span class="lang-en">Genesis 45:1-25a</span></span>
+            <div class="d4-desc"><span class="d4-tx "><span class="lang-pt">Yoseph Convida Sua Família a Morar no Egito</span><span class="lang-en">Yoseph Invites His Family To Live in Egypt</span></span></div>
+            <div class="d4-row">            <div class="d4-box d4-k-slate" style="flex:1"><span class="d4-ref d4-b-slate" data-reference="45:1-3"><span class="lang-pt">45:1-3</span><span class="lang-en">45:1-3</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Yoseph se revela a seus irmãos</span><span class="lang-en">Yoseph reveals himself to his brothers</span></span></div></div>            <div class="d4-box d4-k-slate" style="flex:1"><span class="d4-ref d4-b-slate" data-reference="45:4-13"><span class="lang-pt">45:4-13</span><span class="lang-en">45:4-13</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">O Discurso de Yoseph: Sou o governador do Egito</span><span class="lang-en">Yoseph's Speech: I am ruler of Egypt</span></span></div><div class="d4-line"><span class="d4-hl d4-h-rose"><span class="lang-pt">+ Vinde</span><span class="lang-en">+ Come</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">morar em Goshen</span><span class="lang-en">live in Goshen</span></span></div></div>            <div class="d4-box d4-k-tint-indigo" style="flex:1"><span class="d4-ref d4-b-tint-indigo" data-reference="45:1-25a"><span class="lang-pt">45:1-25a</span><span class="lang-en">45:1-25a</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Faraô convida a família a morar em Goshen</span><span class="lang-en">Pharaoh invites the family to live in Goshen</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">+ Os irmãos voltam a Canaã com</span><span class="lang-en">+ Brothers return to Canaan with</span></span></div><div class="d4-line"><span class="d4-hl d4-h-solidslate"><span class="lang-pt">Binyamin</span><span class="lang-en">Binyamin</span></span></div></div></div>
+          </div></div>
+        </div>
+      </div>
+    </div>
     <p class="caption reveal"><span class="lang-pt">Gênesis 42:1-45:25. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 42:1-45:25. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
 
-    <h3 class="sub reveal"><span class="lang-pt">Parte 3: Gênesis 45:25b-50:26</span><span class="lang-en">Part 3: Genesis 45:25b-50:26</span></h3>
-    <div class="rounded-xl overflow-hidden border border-slate-300">
-<table class="w-full text-left text-[#24262a] md reveal">
-      <tr><th><span class="lang-pt">Gênesis 45:25b-47:31<br>O Remanescente de Yaaqov É Resgatado no Egito</span><span class="lang-en">Genesis 45:25b-47:31<br>The Remnant of Yaaqov Is Rescued in Egypt</span></th><th><span class="lang-pt">Gênesis 48:1-49:28<br>Yaaqov Abençoa Sua Semente</span><span class="lang-en">Genesis 48:1-49:28<br>Yaaqov Blesses His Seed</span></th><th><span class="lang-pt">Gênesis 49:29-50:26<br>Morte no Egito, Perdão e a Ascensão a Canaã</span><span class="lang-en">Genesis 49:29-50:26<br>Death in Egypt, Forgiveness, and the Ascent to Canaan</span></th></tr>
-      <tr><td><span class="lang-pt">45:25b-46:30 — Yaaqov e 70 da família descem ao Egito</span><span class="lang-en">45:25b-46:30 — Yaaqov and 70 family go down to Egypt</span></td><td><span class="lang-pt">48:1-22 — Yaaqov adota e abençoa os 2 filhos de Yoseph + Inversão da ordem de nascimento</span><span class="lang-en">48:1-22 — Yaaqov adopts and blesses Yoseph's 2 sons + Inversion of birth order</span></td><td><span class="lang-pt">49:29-50:14 — Yaaqov pede sepultura em Canaã + 70 dias de choro + Yoseph "sobe" para enterrar Yaaqov em Canaã</span><span class="lang-en">49:29-50:14 — Yaaqov requests burial in Canaan + 70 days of weeping + Yoseph "goes up" to bury Yaaqov in Canaan</span></td></tr>
-      <tr><td><span class="lang-pt">46:31-47:11 — Faraô e Yosep assentam a família de Yaaqov em Goshen durante a fome de 7 anos</span><span class="lang-en">46:31-47:11 — Pharaoh and Yoseph settle Yaaqov's family in Goshen during the 7-year famine</span></td><td><span class="lang-pt">49:1-28 — Yaaqov abençoa ou amaldiçoa 12 filhos + Inversão da ordem de nascimento + Yehudah é feito governante</span><span class="lang-en">49:1-28 — Yaaqov blesses or curses 12 sons + Inversion of birth order + Yehudah made ruler</span></td><td><span class="lang-pt">50:15-21 — Yoseph perdoa e se reconcilia com os irmãos</span><span class="lang-en">50:15-21 — Yoseph forgives and reconciles with brothers</span></td></tr>
-      <tr><td><span class="lang-pt">47:12-27 — Yoseph mantém a família e as nações vivas durante a fome de 7 anos</span><span class="lang-en">47:12-27 — Yoseph keeps family and nations alive during the 7-year famine</span></td><td></td><td><span class="lang-pt">50:22-26 — Yoseph pede sepultura em Canaã + Jura um juramento</span><span class="lang-en">50:22-26 — Yoseph requests burial in Canaan + Swears an oath</span></td></tr>
-      <tr><td><span class="lang-pt">47:28-31 — Yaaqov vive mais de 10 anos no Egito, pede sepultura em Canaã</span><span class="lang-en">47:28-31 — Yaaqov lives 10+ years in Egypt, requests burial in Canaan</span></td><td></td><td></td></tr>
-    </table>
-</div>
+    <h3 class="sub reveal"><span class="lang-pt">Parte 3: Gênesis 45:25b-50:26</span><span class="lang-en">Part 3: Genesis 45:25b-50:26</span></h3>    <div class="diagram-scroll">
+      <div class="diagram-viewport">
+        <div class="diagram-canvas d4-h123">
+          <div class="d4-row d4-row-outer">          <div class="d4-cluster d4-c-slate " style="flex:1 1 697px">
+            <span class="d4-badge d4-b-dark" data-reference="Genesis 45:25b-47:31"><span class="lang-pt">Gênesis 45:25b-47:31</span><span class="lang-en">Genesis 45:25b-47:31</span></span>
+            <div class="d4-desc"><span class="d4-tx "><span class="lang-pt">O Remanescente de Yaaqov É Resgatado no Egito</span><span class="lang-en">The Remnant of Yaaqov Is Rescued in Egypt</span></span></div>
+            <div class="d4-row">            <div class="d4-box d4-k-slate" style="flex:1"><span class="d4-ref d4-b-slate" data-reference="45:25b-46:30"><span class="lang-pt">45:25b-46:30</span><span class="lang-en">45:25b-46:30</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Yaaqov e</span><span class="lang-en">Yaaqov and</span></span><span class="d4-hl d4-h-green"><span class="lang-pt">70</span><span class="lang-en">70</span></span><span class="d4-tx "><span class="lang-pt">da família descem ao Egito</span><span class="lang-en">family go down to Egypt</span></span></div></div>            <div class="d4-box d4-k-slate" style="flex:1"><span class="d4-ref d4-b-slate" data-reference="46:31-47:11"><span class="lang-pt">46:31-47:11</span><span class="lang-en">46:31-47:11</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Faraô e Yosep assentam a família de Yaaqov em Goshen</span><span class="lang-en">Pharaoh and Joseph settle Yaaqov's family in Goshen</span></span></div><div class="d4-line"><span class="d4-tx d4-t-rust"><span class="lang-pt">durante a fome de </span><span class="lang-en">during the </span></span><span class="d4-hl d4-h-green"><span class="lang-pt">7 anos</span><span class="lang-en">7-year</span></span></div><div class="d4-line"><span class="d4-tx d4-t-rust"><span class="lang-pt">fame</span><span class="lang-en">famine</span></span></div></div>            <div class="d4-box d4-k-slate" style="flex:1"><span class="d4-ref d4-b-slate" data-reference="47:12-27"><span class="lang-pt">47:12-27</span><span class="lang-en">47:12-27</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Yoseph mantém a família e as nações vivas</span><span class="lang-en">Yoseph keeps family and nations alive</span></span></div><div class="d4-line"><span class="d4-tx d4-t-rust"><span class="lang-pt">durante a fome de </span><span class="lang-en">during the </span></span><span class="d4-hl d4-h-green"><span class="lang-pt">7 anos</span><span class="lang-en">7-year</span></span></div><div class="d4-line"><span class="d4-tx d4-t-rust"><span class="lang-pt">fame</span><span class="lang-en">famine</span></span></div></div>            <div class="d4-box d4-k-slate" style="flex:1"><span class="d4-ref d4-b-slate" data-reference="47:28-31"><span class="lang-pt">47:28-31</span><span class="lang-en">47:28-31</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Yaaqov vive</span><span class="lang-en">Yaaqov lives</span></span><span class="d4-hl d4-h-green"><span class="lang-pt">mais de 10</span><span class="lang-en">10+</span></span><span class="d4-tx "><span class="lang-pt">anos no Egito,</span><span class="lang-en">years in Egypt,</span></span></div><div class="d4-line"><span class="d4-tx d4-t-sea"><span class="lang-pt">pede sepultura em Canaã</span><span class="lang-en">requests burial in Canaan</span></span></div></div></div>
+          </div>          <div class="d4-cluster d4-c-slate " style="flex:1 1 354px">
+            <span class="d4-badge d4-b-dark" data-reference="Genesis 48:1-49:28"><span class="lang-pt">Gênesis 48:1-49:28</span><span class="lang-en">Genesis 48:1-49:28</span></span>
+            <div class="d4-desc"><span class="d4-tx "><span class="lang-pt">Yaaqov Abençoa Sua Semente</span><span class="lang-en">Yaaqov Blesses His Seed</span></span></div>
+            <div class="d4-row">            <div class="d4-box d4-k-rose" style="flex:1"><span class="d4-ref d4-b-rose" data-reference="48:1-22"><span class="lang-pt">48:1-22</span><span class="lang-en">48:1-22</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Yaaqov adota e</span><span class="lang-en">Yaaqov adopts and</span></span></div><div class="d4-line"><span class="d4-tx d4-t-indigo"><span class="lang-pt">abençoa</span><span class="lang-en">blesses</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">os 2 filhos de Yoseph</span><span class="lang-en">Yoseph's 2 sons</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">+</span><span class="lang-en">+</span></span></div><div class="d4-line"><span class="d4-hl d4-h-rose"><span class="lang-pt">Inversão da ordem de nascimento</span><span class="lang-en">Inversion of birth order</span></span></div></div>            <div class="d4-box d4-k-rose" style="flex:1"><span class="d4-ref d4-b-rose" data-reference="49:1-28"><span class="lang-pt">49:1-28</span><span class="lang-en">49:1-28</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Yaaqov </span><span class="lang-en">Yaaqov </span></span><span class="d4-tx d4-t-indigo"><span class="lang-pt">abençoa</span><span class="lang-en">blesses</span></span><span class="d4-tx "><span class="lang-pt"> ou amaldiçoa 12 filhos</span><span class="lang-en"> or curses 12 sons</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">+</span><span class="lang-en">+</span></span></div><div class="d4-line"><span class="d4-hl d4-h-rose"><span class="lang-pt">Inversão da ordem de nascimento</span><span class="lang-en">Inversion of birth order</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">+</span><span class="lang-en">+</span></span></div><div class="d4-line"><span class="d4-tx d4-t-brown"><span class="lang-pt">Yehudah</span><span class="lang-en">Yehudah</span></span><span class="d4-tx "><span class="lang-pt"> é feito governante</span><span class="lang-en"> made ruler</span></span></div></div></div>
+          </div>          <div class="d4-cluster d4-c-slate " style="flex:1 1 526px">
+            <span class="d4-badge d4-b-dark" data-reference="Genesis 49:29-50:26"><span class="lang-pt">Gênesis 49:29-50:26</span><span class="lang-en">Genesis 49:29-50:26</span></span>
+            <div class="d4-desc"><span class="d4-tx "><span class="lang-pt">Morte no Egito, Perdão e a Ascensão a Canaã</span><span class="lang-en">Death in Egypt, Forgiveness, and the Ascent to Canaan</span></span></div>
+            <div class="d4-row">            <div class="d4-box d4-k-slate" style="flex:1"><span class="d4-ref d4-b-slate" data-reference="49:29-50:14"><span class="lang-pt">49:29-50:14</span><span class="lang-en">49:29-50:14</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Yaaqov </span><span class="lang-en">Yaaqov </span></span><span class="d4-tx d4-t-sea"><span class="lang-pt">pede sepultura em Canaã</span><span class="lang-en">requests burial in Canaan</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">+</span><span class="lang-en">+</span></span></div><div class="d4-line"><span class="d4-hl d4-h-green"><span class="lang-pt">70</span><span class="lang-en">70</span></span><span class="d4-tx "><span class="lang-pt">dias de choro</span><span class="lang-en">days of weeping</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">+</span><span class="lang-en">+</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Yoseph "sobe"</span><span class="lang-en">Yoseph "goes up"</span></span></div><div class="d4-line"><span class="d4-tx d4-t-sea"><span class="lang-pt">para enterrar Yaaqov em Canaã</span><span class="lang-en">to bury Yaaqov in Canaan</span></span></div></div>            <div class="d4-box d4-k-slate" style="flex:1"><span class="d4-ref d4-b-slate" data-reference="50:15-21"><span class="lang-pt">50:15-21</span><span class="lang-en">50:15-21</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Yoseph perdoa e se reconcilia com os irmãos</span><span class="lang-en">Yoseph forgives and reconciles with brothers</span></span></div></div>            <div class="d4-box d4-k-slate" style="flex:1"><span class="d4-ref d4-b-slate" data-reference="50:22-26"><span class="lang-pt">50:22-26</span><span class="lang-en">50:22-26</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Yoseph </span><span class="lang-en">Yoseph </span></span><span class="d4-tx d4-t-sea"><span class="lang-pt">pede sepultura em Canaã</span><span class="lang-en">requests burial in Canaan</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">+</span><span class="lang-en">+</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Jura um </span><span class="lang-en">Swears an </span></span><span class="d4-hl d4-h-green"><span class="lang-pt">juramento</span><span class="lang-en">oath</span></span></div></div></div>
+          </div></div>
+        </div>
+      </div>
+    </div>
     <p class="caption reveal"><span class="lang-pt">Gênesis 45:25-50:26. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 45:25-50:26. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
 
-    <p class="body reveal"><span class="lang-pt">Quando afastamos o zoom para abranger Gênesis 37-50 como um todo, um novo conjunto de relações se apresenta.</span><span class="lang-en">When we zoom out to take in Genesis 37-50 as a whole, a new set of relationships present themselves.</span></p>
-
-    <div class="rounded-xl overflow-hidden border border-slate-300">
-<table class="w-full text-left text-[#24262a] md reveal">
-      <tr><th><span class="lang-pt">Gênesis 37:2-41:57</span><span class="lang-en">Genesis 37:2-41:57</span></th><th><span class="lang-pt">Gênesis 42:1-45:25a</span><span class="lang-en">Genesis 42:1-45:25a</span></th><th><span class="lang-pt">Gênesis 45:25b-50:26</span><span class="lang-en">Genesis 45:25b-50:26</span></th></tr>
-      <tr><td><span class="lang-pt">37:2-36 — Yoseph e Yaaqov descem ao Egito/cova/sepultura por causa do engano dos irmãos</span><span class="lang-en">37:2-36 — Yoseph and Yaaqov descend to Egypt/pit/grave because of brothers' deception</span></td><td><span class="lang-pt">42:1-38 — Os irmãos descem ao Egito + Testados por Yoseph</span><span class="lang-en">42:1-38 — Brothers descend to Egypt + Tested by Yoseph</span></td><td><span class="lang-pt">45:25b-47:31 — Yoseph, governador do Egito, executa o plano de resgate de 7 anos de fome + Dividir a terra em quintos</span><span class="lang-en">45:25b-47:31 — Yoseph ruler of Egypt enacts plan to rescue from 7 years of famine + Divide land into fifths</span></td></tr>
-      <tr><td><span class="lang-pt">38:1-30 — Os 2 filhos de Yehudah morrem, 2 filhos nascem + o "cajado" real</span><span class="lang-en">38:1-30 — Yehudah's 2 sons die, 2 sons born + Royal "staff"</span></td><td><span class="lang-pt">43:1-44:34 — Os irmãos são testados por Yoseph + Binyamin é levado + Yehudah se oferece como sacrifício</span><span class="lang-en">43:1-44:34 — Brothers tested by Yoseph + Binyamin taken + Yehudah offers himself as a sacrifice</span></td><td><span class="lang-pt">48:1-49:28 — Yaaqov adota 2 filhos + Abençoa muitos</span><span class="lang-en">48:1-49:28 — Yaaqov adopts 2 sons + Blesses many</span></td></tr>
-      <tr><td><span class="lang-pt">39:1-41:57 — Yoseph é elevado como governador do Egito + Plano de resgate de 7 anos de fome + Dividir a terra em quintos</span><span class="lang-en">39:1-41:57 — Yoseph elevated as ruler of Egypt + Plan to rescue from 7 years of famine + Divide land into fifths</span></td><td><span class="lang-pt">45:1-25a — Yoseph envia os irmãos de volta a Yaaqov</span><span class="lang-en">45:1-25a — Yoseph sends brothers back to Yaaqov</span></td><td><span class="lang-pt">49:29-50:26 — Os irmãos são perdoados + Yaaqov sobe da sepultura para Canaã + Yoseph espera subir</span><span class="lang-en">49:29-50:26 — Brothers forgiven + Yaaqov ascends from grave to Canaan + Yoseph hopes to ascend</span></td></tr>
-    </table>
-</div>
+    <p class="body reveal"><span class="lang-pt">Quando afastamos o zoom para abranger Gênesis 37-50 como um todo, um novo conjunto de relações se apresenta.</span><span class="lang-en">When we zoom out to take in Genesis 37-50 as a whole, a new set of relationships present themselves.</span></p>    <div class="diagram-scroll">
+      <div class="diagram-viewport">
+        <div class="diagram-canvas d4-h113">
+          <div class="d4-row d4-row-outer">          <div class="d4-cluster d4-c-slate d4-nobadge" style="flex:1 1 510px">
+            <span class="d4-badge d4-b-dark" data-reference="Genesis 37:2-41:57"><span class="lang-pt">Gênesis 37:2-41:57</span><span class="lang-en">Genesis 37:2-41:57</span></span>
+            <div class="d4-row">            <div class="d4-box d4-k-tint-rust" style="flex:1"><span class="d4-ref d4-b-tint-rust" data-reference="37:2-36"><span class="lang-pt">37:2-36</span><span class="lang-en">37:2-36</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Yoseph e Yaaqov descem ao Egito/cova/sepultura por causa do engano dos irmãos</span><span class="lang-en">Yoseph and Yaaqov descend to Egypt/pit/grave because of brothers' deception</span></span></div></div>            <div class="d4-box d4-k-tint-rose" style="flex:1"><span class="d4-ref d4-b-tint-rose" data-reference="38:1-30"><span class="lang-pt">38:1-30</span><span class="lang-en">38:1-30</span></span><div class="d4-line"><span class="d4-tx d4-t-brown"><span class="lang-pt">Os 2 filhos de Yehudah</span><span class="lang-en">Yehudah</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">morrem, 2 filhos</span><span class="lang-en">'s 2 sons die, 2 sons</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">nascem +</span><span class="lang-en">born +</span></span></div><div class="d4-line"><span class="d4-hl d4-h-orange"><span class="lang-pt">o "cajado" real</span><span class="lang-en">Royal "staff"</span></span></div></div>            <div class="d4-box d4-k-tint-indigo" style="flex:1"><span class="d4-ref d4-b-tint-indigo" data-reference="39:1-41:57"><span class="lang-pt">39:1-41:57</span><span class="lang-en">39:1-41:57</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Yoseph é elevado como governador do Egito</span><span class="lang-en">Yoseph elevated as ruler of Eqypt</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">+ Plano de resgate de 7 anos de fome</span><span class="lang-en">+ Plan to rescue from 7 years of famine</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">+ Dividir a terra em quintos</span><span class="lang-en">+ Divide land into fifths</span></span></div></div></div>
+          </div>          <div class="d4-cluster d4-c-slate d4-nobadge" style="flex:1 1 510px">
+            <span class="d4-badge d4-b-dark" data-reference="Genesis 42:1-45:25a"><span class="lang-pt">Gênesis 42:1-45:25a</span><span class="lang-en">Genesis 42:1-45:25a</span></span>
+            <div class="d4-row">            <div class="d4-box d4-k-tint-green" style="flex:1"><span class="d4-ref d4-b-tint-green" data-reference="42:1-38"><span class="lang-pt">42:1-38</span><span class="lang-en">42:1-38</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Os irmãos descem ao Egito + Testados por Yoseph</span><span class="lang-en">Brothers descend to Egypt + Tested by Yoseph</span></span></div></div>            <div class="d4-box d4-k-slate" style="flex:1"><span class="d4-ref d4-b-slate" data-reference="43:1-44:34"><span class="lang-pt">43:1-44:34</span><span class="lang-en">43:1-44:34</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Os irmãos são testados por Yoseph + Binyamin é levado</span><span class="lang-en">Brothers tested by Yoseph + Binyamin taken</span></span></div><div class="d4-line"><span class="d4-tx d4-t-brown"><span class="lang-pt">Yehudah se oferece</span><span class="lang-en">Yehudah</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">como sacrifício</span><span class="lang-en">offers himself as a sacrifice</span></span></div></div>            <div class="d4-box d4-k-tint-green" style="flex:1"><span class="d4-ref d4-b-tint-green" data-reference="45:1-25a"><span class="lang-pt">45:1-25a</span><span class="lang-en">45:1-25a</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Yoseph envia os irmãos de volta a Yaaqov</span><span class="lang-en">Yoseph sends brothers back to Yaaqov</span></span></div></div></div>
+          </div>          <div class="d4-cluster d4-c-slate d4-nobadge" style="flex:1 1 510px">
+            <span class="d4-badge d4-b-dark" data-reference="Genesis 45:25b-50:26"><span class="lang-pt">Gênesis 45:25b-50:26</span><span class="lang-en">Genesis 45:25b-50:26</span></span>
+            <div class="d4-row">            <div class="d4-box d4-k-tint-indigo" style="flex:1"><span class="d4-ref d4-b-tint-indigo" data-reference="45:25b-47:31"><span class="lang-pt">45:25b-47:31</span><span class="lang-en">45:25b-47:31</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Yoseph, governador do Egito, executa o plano de resgate de 7 anos de fome + Dividir a terra em quintos</span><span class="lang-en">Yoseph ruler of Egypt enacts plan to rescue from 7 years of famine + Divide land into fifths</span></span></div></div>            <div class="d4-box d4-k-tint-rose" style="flex:1"><span class="d4-ref d4-b-tint-rose" data-reference="48:1-49:28"><span class="lang-pt">48:1-49:28</span><span class="lang-en">48:1-49:28</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Yaaqov adota 2 filhos +</span><span class="lang-en">Yaaqov adopts 2 sons +</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Abençoa muitos</span><span class="lang-en">Blesses many</span></span></div></div>            <div class="d4-box d4-k-tint-rust" style="flex:1"><span class="d4-ref d4-b-tint-rust" data-reference="49:29-50:26"><span class="lang-pt">49:29-50:26</span><span class="lang-en">49:29-50:26</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Os irmãos são perdoados +</span><span class="lang-en">Brothers forgiven +</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Yaaqov sobe da sepultura para Canaã</span><span class="lang-en">Yaaqov ascends from grave to Canaan</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">+ Yoseph espera subir</span><span class="lang-en">+ Yoseph hopes to ascend</span></span></div></div></div>
+          </div></div>
+        </div>
+      </div>
+    </div>
     <p class="caption reveal"><span class="lang-pt">Gênesis 37:2-50:26. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 37:2-50:26. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
 
-    <h2 class="section reveal"><span class="lang-pt">Parte 1: A Descida e Ascensão de Yoseph</span><span class="lang-en">Part 1: Yoseph’s Descent and Ascent</span></h2>
-    <div class="rounded-xl overflow-hidden border border-slate-300">
-<table class="w-full text-left text-[#24262a] md reveal">
-      <tr><th><span class="lang-pt">Gênesis 37:2-36<br>O Beloved Yoseph é Preso pelos Irmãos Rivais</span><span class="lang-en">Genesis 37:2-36<br>Beloved Yoseph Is Trapped by Rival Brothers</span></th><th><span class="lang-pt">Gênesis 38:1-30<br>A Família de Yehudah é Salva pelo Engano</span><span class="lang-en">Genesis 38:1-30<br>Yehudah's Family Is Saved Through Deception</span></th><th><span class="lang-pt">Gênesis 39:1-41:57<br>Yoseph Preso no Egito e Elevado Acima do Egito</span><span class="lang-en">Genesis 39:1-41:57<br>Yoseph Imprisoned in Egypt and Elevated Over Egypt</span></th></tr>
-      <tr><td><span class="lang-pt">37:2-14 — Os dois sonhos de Yoseph sobre elevação, e o recebimento do manto real</span><span class="lang-en">37:2-14 — Yoseph's two dreams about elevation, and given royal robe</span></td><td><span class="lang-pt">38:1-11 — Dois filhos morrem, e Yehudah engana Tamar</span><span class="lang-en">38:1-11 — Two sons die, and Yehudah deceives Tamar</span></td><td><span class="lang-pt">39:1-23 — Yoseph é pego e aprisionado no Egito, e o engano do manto</span><span class="lang-en">39:1-23 — Yoseph trapped and imprisoned in Egypt, and robe deception</span></td></tr>
-      <tr><td><span class="lang-pt">37:15-30 — Os irmãos de Yoseph o prendem e o vendem como escravo</span><span class="lang-en">37:15-30 — Yoseph's brothers trap and sell him as a slave</span></td><td><span class="lang-pt">38:12-23 — Tamar contra-engana</span><span class="lang-en">38:12-23 — Tamar counter-deceives</span></td><td><span class="lang-pt">40:1-23 — Yoseph interpreta dois sonhos na prisão</span><span class="lang-en">40:1-23 — Yoseph interprets two dreams in prison</span></td></tr>
-      <tr><td><span class="lang-pt">37:31-36 — Yaaqov é enganado pelos filhos, e o engano do manto</span><span class="lang-en">37:31-36 — Yaaqov deceived by sons, and robe deception</span></td><td><span class="lang-pt">38:24-30 — Yehudah confessa seu engano, e dois filhos nascem</span><span class="lang-en">38:24-30 — Yehudah confesses his deceit, and two sons born</span></td><td><span class="lang-pt">41:1-57 — Os dois sonhos de Faraó sobre 2x7 anos; Yoseph é elevado acima do Egito e recebe o manto real; Dois filhos nascem</span><span class="lang-en">41:1-57 — Pharaoh's two dreams about 2x7 years; Yoseph elevated over Egypt and given royal robe; Two sons born</span></td></tr>
-    </table>
-</div>
+    <h2 class="section reveal"><span class="lang-pt">Parte 1: A Descida e Ascensão de Yoseph</span><span class="lang-en">Part 1: Yoseph’s Descent and Ascent</span></h2>    <div class="diagram-scroll">
+      <div class="diagram-viewport">
+        <div class="diagram-canvas d4-h119">
+          <div class="d4-row d4-row-outer">          <div class="d4-cluster d4-c-slate " style="flex:1 1 510px">
+            <span class="d4-badge d4-b-dark" data-reference="Genesis 37:2-36"><span class="lang-pt">Gênesis 37:2-36</span><span class="lang-en">Genesis 37:2-36</span></span>
+            <div class="d4-desc"><span class="d4-tx "><span class="lang-pt">O Beloved Yoseph é Preso pelos Irmãos Rivais</span><span class="lang-en">Beloved Yoseph Is Trapped by Rival Brothers</span></span></div>
+            <div class="d4-row">            <div class="d4-box d4-k-blue" style="flex:1"><span class="d4-ref d4-b-blue" data-reference="37:2-14"><span class="lang-pt">37:2-14</span><span class="lang-en">37:2-14</span></span><div class="d4-line"><span class="d4-hl d4-h-blue"><span class="lang-pt">Os dois sonhos de Yoseph</span><span class="lang-en">Yoseph's two</span></span></div><div class="d4-line"><span class="d4-hl d4-h-blue"><span class="lang-pt">sonhos de Yoseph sobre</span><span class="lang-en">dreams about</span></span></div><div class="d4-line"><span class="d4-hl d4-h-blue"><span class="lang-pt">elevação</span><span class="lang-en">elevation</span></span><span class="d4-tx "><span class="lang-pt">, e</span><span class="lang-en">, and</span></span></div><div class="d4-line"><span class="d4-hl d4-h-solidviolet"><span class="lang-pt">o recebimento do manto real</span><span class="lang-en">given royal robe</span></span></div></div>            <div class="d4-box d4-k-slate" style="flex:1"><span class="d4-ref d4-b-slate" data-reference="37:15-30"><span class="lang-pt">37:15-30</span><span class="lang-en">37:15-30</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Os irmãos de Yoseph</span><span class="lang-en">Yoseph's brothers</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">o prendem e o vendem</span><span class="lang-en">trap and</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">como escravo</span><span class="lang-en">sell him as a slave</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">no Egito, e o</span><span class="lang-en">in Egypt, and the</span></span></div><div class="d4-line"><span class="d4-hl d4-h-violet"><span class="lang-pt">mantos reais</span><span class="lang-en">royal robe taken</span></span></div></div>            <div class="d4-box d4-k-violet" style="flex:1"><span class="d4-ref d4-b-violet" data-reference="37:31-36"><span class="lang-pt">37:31-36</span><span class="lang-en">37:31-36</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Yaaqov é enganado</span><span class="lang-en">Yaaqov deceived</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">pelos filhos, e o</span><span class="lang-en">by sons, and</span></span></div><div class="d4-line"><span class="d4-hl d4-h-violet"><span class="lang-pt">engano do manto</span><span class="lang-en">robe deception</span></span></div></div></div>
+          </div>          <div class="d4-cluster d4-c-slate " style="flex:1 1 510px">
+            <span class="d4-badge d4-b-dark" data-reference="Genesis 38:1-30"><span class="lang-pt">Gênesis 38:1-30</span><span class="lang-en">Genesis 38:1-30</span></span>
+            <div class="d4-desc"><span class="d4-tx d4-t-brown"><span class="lang-pt">A Família de Yehudah</span><span class="lang-en">Yehudah's</span></span><span class="d4-tx "><span class="lang-pt">é Salva pelo Engano</span><span class="lang-en"> Family Is Saved Through Deception</span></span></div>
+            <div class="d4-row">            <div class="d4-box d4-k-rust" style="flex:1"><span class="d4-ref d4-b-rust" data-reference="38:1-11"><span class="lang-pt">38:1-11</span><span class="lang-en">38:1-11</span></span><div class="d4-line"><span class="d4-hl d4-h-orange"><span class="lang-pt">Dois filhos morrem</span><span class="lang-en">Two sons die</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">, e</span><span class="lang-en">, and</span></span></div><div class="d4-line"><span class="d4-hl d4-h-orange"><span class="lang-pt">Yehudah</span><span class="lang-en">Yehudah</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">engana Tamar</span><span class="lang-en">deceives Tamar</span></span></div></div>            <div class="d4-box d4-k-violet" style="flex:1"><span class="d4-ref d4-b-violet" data-reference="38:12-23"><span class="lang-pt">38:12-23</span><span class="lang-en">38:12-23</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Tamar contra-engana</span><span class="lang-en">Tamar counter-</span></span></div><div class="d4-line"><span class="d4-hl d4-h-violet"><span class="lang-pt">engana</span><span class="lang-en">deceives</span></span></div><div class="d4-line"><span class="d4-tx d4-t-brown"><span class="lang-pt">Yehudah</span><span class="lang-en">Yehudah</span></span><span class="d4-tx "><span class="lang-pt"> com</span><span class="lang-en"> with</span></span></div><div class="d4-line"><span class="d4-hl d4-h-violet"><span class="lang-pt">mantos</span><span class="lang-en">robes</span></span></div></div>            <div class="d4-box d4-k-rust" style="flex:1"><span class="d4-ref d4-b-rust" data-reference="38:24-30"><span class="lang-pt">38:24-30</span><span class="lang-en">38:24-30</span></span><div class="d4-line"><span class="d4-tx d4-t-brown"><span class="lang-pt">Yehudah</span><span class="lang-en">Yehudah</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">confessa seu</span><span class="lang-en">confesses his</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">engano, e</span><span class="lang-en">deceit, and</span></span></div><div class="d4-line"><span class="d4-hl d4-h-orange"><span class="lang-pt">dois</span><span class="lang-en">two</span></span></div><div class="d4-line"><span class="d4-tx d4-t-rust"><span class="lang-pt">filhos nascem</span><span class="lang-en">sons born</span></span></div></div></div>
+          </div>          <div class="d4-cluster d4-c-slate " style="flex:1 1 556px">
+            <span class="d4-badge d4-b-dark" data-reference="Genesis 39:1-41:57"><span class="lang-pt">Gênesis 39:1-41:57</span><span class="lang-en">Genesis 39:1-41:57</span></span>
+            <div class="d4-desc"><span class="d4-tx "><span class="lang-pt">Yoseph Preso no Egito e Elevado Acima do Egito</span><span class="lang-en">Yoseph Imprisoned in Egypt and Elevated Over Egypt</span></span></div>
+            <div class="d4-row">            <div class="d4-box d4-k-violet" style="flex:1"><span class="d4-ref d4-b-violet" data-reference="39:1-23"><span class="lang-pt">39:1-23</span><span class="lang-en">39:1-23</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Yoseph é pego e</span><span class="lang-en">Yoseph trapped</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">aprisionado no Egito,</span><span class="lang-en">and imprisoned</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">e o engano do</span><span class="lang-en">in Egypt, and</span></span></div><div class="d4-line"><span class="d4-hl d4-h-violet"><span class="lang-pt">manto</span><span class="lang-en">robe deception</span></span></div></div>            <div class="d4-box d4-k-blue" style="flex:1"><span class="d4-ref d4-b-blue" data-reference="40:1-23"><span class="lang-pt">40:1-23</span><span class="lang-en">40:1-23</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Yoseph interpreta</span><span class="lang-en">Yoseph interprets</span></span></div><div class="d4-line"><span class="d4-hl d4-h-blue"><span class="lang-pt">dois sonhos</span><span class="lang-en">two dreams</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">na prisão</span><span class="lang-en">in prison</span></span></div></div>            <div class="d4-box d4-k-blue" style="flex:1"><span class="d4-ref d4-b-blue" data-reference="41:1-57"><span class="lang-pt">41:1-57</span><span class="lang-en">41:1-57</span></span><div class="d4-line"><span class="d4-tx "><span class="lang-pt">Os dois sonhos de Faraô</span><span class="lang-en">Pharaoh's</span></span></div><div class="d4-line"><span class="d4-hl d4-h-blue"><span class="lang-pt">de Faraô</span><span class="lang-en">two dreams</span></span></div><div class="d4-line"><span class="d4-tx "><span class="lang-pt">sobre 2x7 anos</span><span class="lang-en">about 2x7 years</span></span></div><div class="d4-li"><span class="d4-hl d4-h-blue"><span class="lang-pt">Yoseph é elevado</span><span class="lang-en">Yoseph elevated</span></span></div><div class="d4-li"><span class="d4-tx "><span class="lang-pt">acima do Egito e</span><span class="lang-en">over Egypt and</span></span><span class="d4-hl d4-h-solidviolet"><span class="lang-pt">recebe</span><span class="lang-en">given</span></span></div><div class="d4-li"><span class="d4-hl d4-h-solidviolet"><span class="lang-pt">o manto real</span><span class="lang-en">royal robe</span></span></div><div class="d4-li"><span class="d4-tx d4-t-rust"><span class="lang-pt">Dois filhos nascem</span><span class="lang-en">Two sons born</span></span></div></div></div>
+          </div></div>
+        </div>
+      </div>
+    </div>
     <p class="caption reveal"><span class="lang-pt">Gênesis 37:2-41:57. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 37:2-41:57. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
     <p class="body reveal"><span class="lang-pt">Este ato de abertura da história de Yoseph e Yehudah é desenhado de forma simétrica para mostrar como os eventos colocados em movimento pelos irmãos no capítulo 37 são revertidos e completam o ciclo no capítulo 41. O conflito central da trama gira em torno dos sonhos de Yoseph de se tornar governante do mundo e de sua família (Gn 37:2-14), e, na cena final deste ato, esses sonhos começam a se tornar realidade (Gn 41:1-57).</span><span class="lang-en">This opening act of the Yoseph and Yehudah story is designed in a symmetrical way to show how the events set in motion by the brothers in chapter 37 are reversed and come full circle in chapter 41. The key plot conflict revolves around Yoseph’s dreams of becoming ruler of the world and of his family (Gen. 37:2-14), and by the final scene of this act, those dreams start becoming reality (Gen. 41:1-57).</span></p>
     <ul class="bullets reveal">
@@ -140,24 +417,20 @@
 
     <h2 class="section reveal"><span class="lang-pt">Seção 1: Os Sonhos de Yoseph e Irmãos Hostis</span><span class="lang-en">Section 1: Yoseph’s Dreams and Hostile Brothers</span></h2>
     <p class="body reveal"><span class="lang-pt">Gênesis 37:2a NASB — "E estas são as gerações de nascimento de Yaaqov." "Gerações de nascimento" = hebraico <em>toledot</em> / תולדות, que é um substantivo formado da raiz "dar à luz", significando "as coisas que procederam de" ou "as coisas que nasceram de".</span><span class="lang-en">Genesis 37:2a NASB — "And these are the birth-generations of Yaaqov." "Birth-generations" = Hebrew <em>toledot</em> / תולדות, which is a noun built from the root "to birth," meaning "the things that issued from" or "the things that were birthed from"</span></p>
-    <p class="body reveal"><span class="lang-pt">Com esta frase introdutória, o movimento literário final de Gênesis começa e amarra este bloco particular de narrativas aos temas mais amplos de todo o rolo. Este título "Estas são as gerações de nascimento de…" aparece 12 vezes no rolo de Gênesis, seis em Gênesis 1:1-11:26 e seis vezes em Gênesis 11:27-50:26. Em 10 desses 12 casos, a frase tem a mesma função, pois introduz os novos descendentes de cada geração, um dos quais será escolhido pela bênção e eleição de Deus.</span><span class="lang-en">With this introductory phrase, the final literary movement of Genesis begins and ties this particular block of narratives into the wider themes of the entire scroll. This heading "These are the birth-generations of …" appears 12 times in the Genesis scroll, six in Genesis 1:1-11:26, and six times in Genesis 11:27-50:26. In 10 of those 12 cases, the phrase has the same function, as it introduces the new descendants of each generation, one of whom will be singled out by God’s blessing and election.</span></p>
-
-    <div class="rounded-xl overflow-hidden border border-slate-300">
-<table class="w-full text-left text-[#24262a] md reveal">
-      <tr><th><span class="lang-pt">Gênesis 1:1-4:17<br>Narrativas de Adão e Eva</span><span class="lang-en">Genesis 1:1-4:17<br>Adam and Eve Narratives</span></th><th><span class="lang-pt">Gênesis 6:1-9:27<br>A Narrativa de Noé</span><span class="lang-en">Genesis 6:1-9:27<br>Noah's Narrative</span></th><th><span class="lang-pt">Gênesis 11:10-26<br>A Narrativa dos Filhos de Sem</span><span class="lang-en">Genesis 11:10-26<br>Narrative of Shem's Sons</span></th></tr>
-      <tr><td><span class="lang-pt">• 2:4 "Estas são as gerações de nascimento dos céus e da terra"</span><span class="lang-en">• 2:4 "These are the birth-generations of the skies and land"</span></td><td><span class="lang-pt">• 6:9 "Estas são as gerações de nascimento de Noé"</span><span class="lang-en">• 6:9 "These are the birth-generations of Noah"</span></td><td><span class="lang-pt">• 11:10 "Estas são as gerações de nascimento de Sem"</span><span class="lang-en">• 11:10 "These are the birth-generations of Shem"</span></td></tr>
-      <tr><td><span class="lang-pt">Gênesis 4:17-26 + 5:1-32<br>Genealogias Separadas dos Escolhidos e Não Escolhidos: Caim e Sete</span><span class="lang-en">Genesis 4:17-26 + 5:1-32<br>Separate Genealogies of Chosen and Non-Chosen: Cain &amp; Seth</span></td><td><span class="lang-pt">Genealogias Separadas dos Escolhidos e Não Escolhidos</span><span class="lang-en">Separate Genealogies of Chosen and Non-Chosen</span></td><td></td></tr>
-      <tr><td><span class="lang-pt">• 5:1 "Estas são as gerações de nascimento de Adão"</span><span class="lang-en">• 5:1 "These are the birth-generations of Adam"</span></td><td><span class="lang-pt">Gênesis 10:1-11:9</span><span class="lang-en">Genesis 10:1-11:9</span></td><td></td></tr>
-      <tr><td></td><td><span class="lang-pt">• 10:1 "Estas são as gerações de nascimento de Sem, Cam e Jafete"</span><span class="lang-en">• 10:1 "These are the birth-generations of Shem, Ham, and Japheth"</span></td><td></td></tr>
-    </table>
-</div>
-    <p class="caption reveal"><span class="lang-pt">Gênesis 1:1-11:26 (Gerações de Nascimento). Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 1:1-11:26 (Birth Generations). Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
-
-<div class="rounded-xl overflow-hidden border border-slate-300">
-<table class="w-full text-left text-[#24262a] md reveal">
-      <tr><th><span class="lang-pt">Gênesis 11:27-22:19<br>Narrativas de Avraham</span><span class="lang-en">Genesis 11:27-22:19<br>Avraham Narratives</span></th><th><span class="lang-pt">Gênesis 22:20-25:18<br>Morte e Sepultura; Genealogia Não Escolhida</span><span class="lang-en">Genesis 22:20-25:18<br>Death &amp; Burial; Non-chosen Genealogy</span></th><th><span class="lang-pt">Gênesis 25:19-35:15<br>Narrativas de Yaaqov</span><span class="lang-en">Genesis 25:19-35:15<br>Yaaqov Narratives</span></th><th><span class="lang-pt">Gênesis 35:16-36:43<br>Morte e Sepultura; Genealogia Não Escolhida</span><span class="lang-en">Genesis 35:16-36:43<br>Death &amp; Burial; Non-chosen Genealogy</span></th><th><span class="lang-pt">Gênesis 37:1-50:20<br>Narrativas dos Filhos de Yaaqov</span><span class="lang-en">Genesis 37:1-50:20<br>Yaaqov's Sons' Narratives</span></th></tr>
-</table>
-</div>
+    <p class="body reveal"><span class="lang-pt">Com esta frase introdutória, o movimento literário final de Gênesis começa e amarra este bloco particular de narrativas aos temas mais amplos de todo o rolo. Este título "Estas são as gerações de nascimento de…" aparece 12 vezes no rolo de Gênesis, seis em Gênesis 1:1-11:26 e seis vezes em Gênesis 11:27-50:26. Em 10 desses 12 casos, a frase tem a mesma função, pois introduz os novos descendentes de cada geração, um dos quais será escolhido pela bênção e eleição de Deus.</span><span class="lang-en">With this introductory phrase, the final literary movement of Genesis begins and ties this particular block of narratives into the wider themes of the entire scroll. This heading "These are the birth-generations of …" appears 12 times in the Genesis scroll, six in Genesis 1:1-11:26, and six times in Genesis 11:27-50:26. In 10 of those 12 cases, the phrase has the same function, as it introduces the new descendants of each generation, one of whom will be singled out by God’s blessing and election.</span></p>    <div class="diagram-scroll">
+      <div class="diagram-viewport">
+        <div class="diagram-canvas d4-h135">
+          <div class="d4-row d4-row-outer d4-gap17">          <div class="d4-tbox d4-k-slate" style="flex:1 1 306px"><span class="d4-badge d4-b-dark" data-reference="Genesis 1:1-4:17"><span class="lang-pt">Gênesis 1:1-4:17</span><span class="lang-en">Genesis 1:1-4:17</span></span><div class="d4-desc"><span class="d4-tx "><span class="lang-pt">Narrativas de Adão e Eva</span><span class="lang-en">Adam and Eve Narratives</span></span></div><ul class="d4-tlist"><li><span class="lang-pt">2:4 "Estas são as gerações de nascimento dos céus e da terra"</span><span class="lang-en">2:4 "These are the birth-generations of the skies and land"</span></li></ul></div>          <div class="d4-tbox d4-k-tint-slate" style="flex:1 1 306px"><span class="d4-badge d4-b-slate" data-reference="Genesis 4:17-26 + 5:1-32"><span class="lang-pt">Gênesis 4:17-26 + 5:1-32</span><span class="lang-en">Genesis 4:17-26 + 5:1-32</span></span><div class="d4-desc"><span class="d4-tx "><span class="lang-pt">Genealogias Separadas dos Escolhidos e Não Escolhidos: Caim e Sete</span><span class="lang-en">Separate Genealogies of Chosen and Non-Chosen: Cain &amp;amp; Seth</span></span></div><ul class="d4-tlist"><li><span class="lang-pt">5:1 "Estas são as gerações de nascimento de Adão"</span><span class="lang-en">5:1 "These are the birth-generations of Adam"</span></li></ul></div>          <div class="d4-tbox d4-k-slate" style="flex:1 1 306px"><span class="d4-badge d4-b-dark" data-reference="Genesis 6:1-9:27"><span class="lang-pt">Gênesis 6:1-9:27</span><span class="lang-en">Genesis 6:1-9:27</span></span><div class="d4-desc"><span class="d4-tx "><span class="lang-pt">A Narrativa de Noé</span><span class="lang-en">Noah's Narrative</span></span></div><ul class="d4-tlist"><li><span class="lang-pt">6:9 "Estas são as gerações de nascimento de Noé"</span><span class="lang-en">6:9 "These are the birth-generations of Noah"</span></li></ul></div>          <div class="d4-tbox d4-k-tint-slate" style="flex:1 1 306px"><span class="d4-badge d4-b-slate" data-reference="Genesis 10:1-11:9"><span class="lang-pt">Gênesis 10:1-11:9</span><span class="lang-en">Genesis 10:1-11:9</span></span><div class="d4-desc"><span class="d4-tx "><span class="lang-pt">Genealogias Separadas dos Escolhidos e Não Escolhidos</span><span class="lang-en">Separate Genealogies of the Chosen and Non-Chosen</span></span></div><ul class="d4-tlist"><li><span class="lang-pt">10:1 "Estas são as gerações de nascimento de Sem, Cam e Jafete"</span><span class="lang-en">10:1 "These are the birth-generations of Shem, Ham, and Japheth"</span></li></ul></div>          <div class="d4-tbox d4-k-slate" style="flex:1 1 306px"><span class="d4-badge d4-b-dark" data-reference="Genesis 11:10-26"><span class="lang-pt">Gênesis 11:10-26</span><span class="lang-en">Genesis 11:10-26</span></span><div class="d4-desc"><span class="d4-tx "><span class="lang-pt">A Narrativa dos Filhos de Sem</span><span class="lang-en">Narrative of Shem's Sons</span></span></div><ul class="d4-tlist"><li><span class="lang-pt">11:10 "Estas são as gerações de nascimento de Sem"</span><span class="lang-en">11:10 "These are the birth-generations of Shem"</span></li></ul></div></div>
+        </div>
+      </div>
+    </div>
+    <p class="caption reveal"><span class="lang-pt">Gênesis 1:1-11:26 (Gerações de Nascimento). Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 1:1-11:26 (Birth Generations). Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>    <div class="diagram-scroll">
+      <div class="diagram-viewport">
+        <div class="diagram-canvas d4-h160">
+          <div class="d4-row d4-row-outer d4-gap22">          <div class="d4-tbox d4-tboxlg d4-k-slate" style="flex:1 1 302px"><span class="d4-badge d4-b-dark" data-reference="Genesis 11:27-22:19"><span class="lang-pt">Gênesis 11:27-22:19</span><span class="lang-en">Genesis 11:27-22:19</span></span><div class="d4-desc"><span class="d4-tx "><span class="lang-pt">Narrativas de Avraham</span><span class="lang-en">Avraham Narratives</span></span></div><ul class="d4-tlist"></ul></div>          <div class="d4-tbox d4-tboxlg d4-k-tint-slate" style="flex:1 1 302px"><span class="d4-badge d4-b-slate" data-reference="Genesis 22:20-25:18"><span class="lang-pt">Gênesis 22:20-25:18</span><span class="lang-en">Genesis 22:20-25:18</span></span><div class="d4-desc"><span class="d4-tx "><span class="lang-pt">Morte e Sepultura; Genealogia Não Escolhida</span><span class="lang-en">Death &amp;amp; Burial; Non-chosen Genealogy</span></span></div><ul class="d4-tlist"></ul></div>          <div class="d4-tbox d4-tboxlg d4-k-slate" style="flex:1 1 302px"><span class="d4-badge d4-b-dark" data-reference="Genesis 25:19-35:15"><span class="lang-pt">Gênesis 25:19-35:15</span><span class="lang-en">Genesis 25:19-35:15</span></span><div class="d4-desc"><span class="d4-tx "><span class="lang-pt">Narrativas de Yaaqov</span><span class="lang-en">Yaaqov Narratives</span></span></div><ul class="d4-tlist"></ul></div>          <div class="d4-tbox d4-tboxlg d4-k-tint-slate" style="flex:1 1 302px"><span class="d4-badge d4-b-slate" data-reference="Genesis 35:16-36:43"><span class="lang-pt">Gênesis 35:16-36:43</span><span class="lang-en">Genesis 35:16-36:43</span></span><div class="d4-desc"><span class="d4-tx "><span class="lang-pt">Morte e Sepultura; Genealogia Não Escolhida</span><span class="lang-en">Death &amp;amp; Burial; Non-chosen Genealogy</span></span></div><ul class="d4-tlist"></ul></div>          <div class="d4-tbox d4-tboxlg d4-k-slate" style="flex:1 1 302px"><span class="d4-badge d4-b-dark" data-reference="Genesis 37:1-50:20"><span class="lang-pt">Gênesis 37:1-50:20</span><span class="lang-en">Genesis 37:1-50:20</span></span><div class="d4-desc"><span class="d4-tx "><span class="lang-pt">Narrativas dos Filhos de Yaaqov</span><span class="lang-en">Yaaqov's Sons' Narratives</span></span></div><ul class="d4-tlist"></ul></div></div>
+        </div>
+      </div>
+    </div>
     <p class="caption reveal"><span class="lang-pt">Gênesis 11:27-50:20. Design Literário por Tim Mackie para BibleProject Classroom: Abraão (2021).</span><span class="lang-en">Genesis 11:27-50:20. Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
 
     <img src="img/sessao-4/illu-001-000.jpg" alt="Diagrama estrutural do livro de Gênesis mostrando suas seções principais e figuras-chave | Structural diagram of the book of Genesis showing its major sections and key figures" class="w-full rounded-[12px] border border-[#d7dde5] my-4 reveal" />
@@ -180,6 +453,57 @@
 </div>
 
   <script src="../../js/reading-progress.js"></script>
+  <script>
+(function () {
+  /* AUTO-FIT: canvas fixo de 1600px escalado para a largura da viewport
+     (desktop) / empilhamento vertical (mobile). */
+  function fitDiagrams() {
+    document.querySelectorAll('.diagram-viewport').forEach((viewport) => {
+      const canvas = viewport.querySelector('.diagram-canvas');
+      if (!canvas) return;
+
+      const naturalWidth = canvas.offsetWidth;
+      const naturalHeight = canvas.offsetHeight;
+      const availableWidth = viewport.clientWidth;
+
+      if (!naturalWidth || !naturalHeight || !availableWidth) return;
+
+      if (window.innerWidth <= 767) {
+        canvas.style.position = 'relative';
+        canvas.style.width = '100%';
+        canvas.style.height = 'auto';
+        canvas.style.transform = 'none';
+        canvas.style.left = '0px';
+        canvas.style.top = '0px';
+        viewport.style.height = canvas.scrollHeight + 'px';
+        return;
+      }
+
+      const scale = Math.min(1, availableWidth / naturalWidth);
+      const renderedWidth = naturalWidth * scale;
+      const renderedHeight = naturalHeight * scale;
+
+      canvas.style.transform = 'scale(' + scale + ')';
+      canvas.style.left = Math.max(0, (availableWidth - renderedWidth) / 2) + 'px';
+      canvas.style.top = '0px';
+      viewport.style.height = renderedHeight + 'px';
+    });
+  }
+
+  let resizeFrame = null;
+  function scheduleFit() {
+    if (resizeFrame) cancelAnimationFrame(resizeFrame);
+    resizeFrame = requestAnimationFrame(fitDiagrams);
+  }
+
+  window.addEventListener('resize', scheduleFit, { passive: true });
+  window.addEventListener('orientationchange', scheduleFit, { passive: true });
+  window.addEventListener('load', scheduleFit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleFit);
+
+  fitDiagrams();
+})();
+  </script>
   <script src="../../js/lang-toggle.js"></script>
   <script src="../../js/reveal.js"></script>
   <script>

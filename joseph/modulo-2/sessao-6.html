@@ -130,7 +130,274 @@
   
   table.md tbody tr:hover td { background: #f8fafc; }
   
-  .takeaways-h { font-weight: 800; font-size: 1.3rem; line-height: 1.25; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; color: #17181a; }</style>
+  .takeaways-h { font-weight: 800; font-size: 1.3rem; line-height: 1.25; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; color: #17181a; }
+
+  /* ==================== diagramas (medidos no PDF) ==================== */
+/* ==========================================================================
+     DIAGRAMAS DA SESSAO 6  (reconstruidos de joseph/pdf-sessoes/sessao-6.pdf)
+     --------------------------------------------------------------------------
+     D6-1 "Overview of Genesis 37:15-30" (p.0). A figura mede 526.50pt
+          (42.75 -> 569.25); canvas 1600px => 1pt = 1600/526.50 = 3.0394px:
+          moldura 1.5pt -> 4.56px => 4.5px | raio 5.25pt -> 16px
+          pílula: raio 3pt -> 9px, altura 15pt -> 45.6px
+          recuo 6.75pt -> 20.5px | vão entre painéis 7.5pt -> 22.8px
+          recuo dos painéis internos 18pt -> 54.7px
+          entrelinha 15.79pt -> 48px | corpo 10.5pt -> 31.9px
+          recuo da lista 12pt -> 36.5px
+     D6-2 "Genesis 37:15-30. Translation and Literary Design" (p.1-3).
+          A figura mede 538.50pt (36.75 -> 575.25); canvas 1600px =>
+          1pt = 1600/538.50 = 2.9712px:
+          moldura 1.5pt -> 4.46px => 4.5px
+          recuo do grupo 10.5pt -> 31px (topo 19.5pt -> 58px)
+          vão entre painéis 10.5pt -> 31px
+          recuo do painel 9.75pt -> 29px | recuo da citação 18pt -> 53.5px
+          entrelinha 15.75pt -> 46.8px | corpo 10.49pt -> 31.2px
+          pílula de realce 15pt -> 44.6px | nº do versículo 9pt -> 26.7px
+     Tabelas: moldura externa #e4e8ed 1.5pt -> 4.5px, separadores 0.75pt ->
+          2px, faixa do cabeçalho #e4e8ed (CONFIRMADA por pixel: #e3e7ec),
+          faixa da legenda NÃO é pintada (o `fill` do PyMuPDF mente: reporta
+          #e4e8ed e o pixel dá ffffff) -> legenda fica em branco.
+     CORES confirmadas por pixel e por span:
+       #3e4054 moldura do grupo / pílula "the dreams" | #e4e8ed painel claro,
+       separadores e pílula #4f5669 | #1b1b1b painel escuro
+       pílulas: #6b7384 (branco), #f9e3de, #ccf1fa, #fae4c4, #751f40,
+                #b5543a, #d3f2cd, #3e4054, #6b7384
+       texto: #b5543a #91362e #9869cd #7e62bc #816f4d #972a4e #245791
+              #9855af #3a8060 #2b6146 #5869cd #4f5669 #097d8d #be4967
+     ========================================================================== */
+  .diagram-scroll {
+    width: 100%;
+    margin: 1.5rem 0;
+    padding: 0.75rem;
+    background: #fff;
+    overflow: hidden;
+  }
+
+  #sessao-6 > .diagram-scroll {
+    width: 100vw;
+    margin-left: calc((100% - 100vw) / 2);
+  }
+
+  .diagram-viewport { position: relative; width: 100%; overflow: hidden; }
+
+  .diagram-canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    height: auto;
+    transform-origin: top left;
+    will-change: transform;
+    width: 1600px;
+  }
+
+  /* ---------------- D6-1: visao geral de Gn 37:15-30 ---------------- */
+  .d6-ov { padding-bottom: 23px; }
+
+  .d6-ov-panel {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 4.5px solid #3e4054;
+    border-radius: 16px;
+    padding: 20.5px;
+    margin-bottom: 22.8px;
+  }
+  .d6-ov-panel:last-child { margin-bottom: 0; }
+  /* painéis B e B' recuam 18pt -> 54.7px */
+  .d6-ov-panel.d6-indent { width: calc(100% - 54.7px); margin-left: 54.7px; }
+
+  .d6-ov-badge {
+    display: inline-block;
+    align-self: flex-start;
+    background: #3e4054;
+    color: #fff;
+    font-size: 31.9px;
+    font-weight: 700;
+    line-height: 45.6px;
+    padding: 0 12px;
+    border-radius: 9px;
+    margin-bottom: 16px;
+  }
+
+  .d6-ov-list { list-style: none; margin: 0; padding: 0 0 0 36.5px; }
+  .d6-ov-list li {
+    position: relative;
+    font-size: 31.9px;
+    line-height: 48px;
+    color: #1b1b1b;
+  }
+  .d6-ov-list li::before {
+    content: "\2022";
+    position: absolute;
+    left: -36.5px;
+  }
+
+  .d6-ov-mk {
+    display: inline-block;
+    padding: 0 9px;
+    border-radius: 9px;
+    line-height: 45.6px;
+    font-weight: 700;
+  }
+  .d6-c-mute { background: #e4e8ed; color: #4f5669; }
+
+  /* ---------------- D6-2: Gn 37:15-30, traducao e design ------------ */
+  .d6-scripture { padding-bottom: 31px; }
+
+  .d6-grp {
+    display: flex;
+    flex-direction: column;
+    gap: 31px;
+    border: 4.5px solid #e4e8ed;
+    border-radius: 16px;
+    padding: 58px 31px 31px;
+    margin-bottom: 31px;
+  }
+  .d6-grp:last-child { margin-bottom: 0; }
+
+  .d6-panel {
+    min-width: 0;
+    background: #fff;
+    border-radius: 14px;
+    padding: 29px;
+    border: 4.5px solid #e4e8ed;
+  }
+  .d6-b-dark  { border-color: #1b1b1b; }
+  .d6-b-light { border-color: #e4e8ed; }
+
+  .d6-v {
+    font-size: 31.2px;
+    line-height: 46.8px;
+    color: #1b1b1b;
+  }
+  .d6-q { padding-left: 53.5px; }
+
+  .d6-num {
+    font-size: 26.7px;
+    vertical-align: super;
+    line-height: 0;
+  }
+
+  .d6-mk {
+    display: inline-block;
+    padding: 0 10px;
+    border-radius: 9px;
+    line-height: 44.6px;
+    font-weight: 700;
+  }
+  /* texto colorido, sem pílula */
+  .d6-c-rust    { color: #b5543a; }
+  .d6-c-brown   { color: #91362e; }
+  .d6-c-rose    { color: #be4967; }
+  .d6-c-indigo  { color: #972a4e; }
+  .d6-c-green   { color: #3a8060; }
+  .d6-c-forest  { color: #2b6146; }
+  .d6-c-sea     { color: #5869cd; }
+  .d6-c-violet  { color: #9855af; }
+  .d6-c-violet2 { color: #7e62bc; }
+  .d6-c-teal    { color: #097d8d; }
+  /* pílulas */
+  .d6-p-mute   { background: #e4e8ed; color: #4f5669; }
+  .d6-p-mute2  { background: #fae4c4; color: #4f5669; }
+  .d6-p-slate  { background: #6b7384; color: #fff; }
+  .d6-p-dark   { background: #3e4054; color: #fff; }
+  .d6-p-rust   { background: #b5543a; color: #fff; }
+  .d6-p-blue   { background: #ccf1fa; color: #245791; }
+  .d6-p-rose2  { background: #f9e3de; color: #be4967; }
+  .d6-p-wine   { background: #751f40; color: #fff; }
+
+  .d6-rule {
+    border: 0;
+    border-top: 2px solid #e4e8ed;
+    margin: 16px 0;
+  }
+
+
+  /* ---- painel "Juízes e Isaías em Gênesis 25" (p.7 do PDF) ----------
+     Medido: moldura externa #e4e8ed (borda de 1.5pt), fundo BRANCO — o
+     `fill` #e4e8ed que o PyMuPDF reporta nas células NÃO é pintado
+     (pixel = ffffff). Só as linhas divisórias são #e4e8ed.
+     Célula 1 (Juízes) ocupa a largura toda (36 -> 576pt);
+     abaixo, coluna esquerda 36 -> 306pt (Isaías) e direita 306 -> 576pt
+     (Gênesis 25:2-4 e Gênesis 25:13); legenda em baixo, largura toda. */
+  .d6-jdg {
+    display: grid;
+    grid-template-columns: 270fr 270fr;
+    margin: 1.5rem 0;
+    border: 4.5px solid #e4e8ed;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .d6-jdg-cell { padding: 16px 18px; }
+  .d6-jdg-wide { grid-column: 1 / -1; }
+  .d6-jdg-col { display: flex; flex-direction: column; }
+  .d6-jdg-col:first-child { border-right: 4.5px solid #e4e8ed; }
+  .d6-jdg-col .d6-jdg-cell + .d6-jdg-cell { border-top: 4.5px solid #e4e8ed; }
+  .d6-jdg-wide:not(:first-child) { border-top: 4.5px solid #e4e8ed; }
+  .d6-jdg-h { font-weight: 800; margin-bottom: .45rem; color: #17181a; }
+  .d6-jdg-b { font-size: .97rem; line-height: 1.6; color: #1b1b1b; }
+  .d6-jdg-cap {
+    font-style: italic;
+    color: #4f5669;
+    font-size: .95rem;
+  }
+
+  @media (max-width: 767px) {
+    .d6-jdg { grid-template-columns: 1fr; }
+    .d6-jdg-col:first-child { border-right: 0; border-top: 4.5px solid #e4e8ed; }
+  }
+
+  /* ---------------- tabelas do PDF ---------------------------------- */
+  .d6-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #1b1b1b;
+    table-layout: fixed;
+  }
+  .d6-table caption {
+    caption-side: bottom;
+    text-align: left;
+    padding: 14px 16px 6px;
+    font-style: italic;
+    color: #4f5669;
+    font-size: .95rem;
+  }
+  .d6-table th,
+  .d6-table td {
+    border: 2px solid #e4e8ed;
+    padding: 12px 14px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .d6-table thead th {
+    background: #e4e8ed;
+    font-weight: 700;
+    border-width: 4.5px;
+  }
+  .d6-table tbody tr:last-child td { border-bottom: 4.5px solid #e4e8ed; }
+
+  @media (max-width: 767px) {
+    #sessao-6 > .diagram-scroll {
+      width: 100vw;
+      margin-left: calc((100% - 100vw) / 2);
+    }
+
+    .diagram-canvas {
+      position: relative;
+      width: 100%;
+      height: auto;
+      transform: none !important;
+    }
+
+    .d6-ov-panel { width: 100%; margin-left: 0; }
+    .d6-ov-panel.d6-indent { width: 100%; }
+  }
+</style>
 </head>
 <body class="bg-white">
 <div id="reading-progress" aria-hidden="true"></div>
@@ -149,7 +416,7 @@
     <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
   </div>
 </div>
-<div class="max-w-4xl mx-auto px-5 py-12 md:py-16">    <h1 class="title reveal"><span class="lang-pt">Um Homem no Campo</span><span class="lang-en">A Man in the Field</span></h1>
+<div class="max-w-4xl mx-auto px-5 py-12 md:py-16" id="sessao-6">    <h1 class="title reveal"><span class="lang-pt">Um Homem no Campo</span><span class="lang-en">A Man in the Field</span></h1>
     <hr class="rule">
     
         <h2 class="section reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h2>
@@ -159,53 +426,53 @@
     <li><span class="lang-pt">Os midianitas e os ismaelitas se envolvem no plano dos irmãos de se livrar de Yoseph. É como se todos os filhos não-escolhidos de Abraão conspirassem para se opor ao filho escolhido.</span><span class="lang-en">The Midianites and Ishmaelites become entagled in the brothers’ plot to get rid of Yoseph. It’s as if all of Abraham’s non-chosen children conspire to oppose the chosen son.</span></li>
     </ul>
     <h2 class="section reveal"><span class="lang-pt">Visão Geral de Gênesis 37:15-30</span><span class="lang-en">Overview of Genesis 37:15-30</span></h2>
-    <p class="body reveal"><span class="lang-pt">Gênesis 37:15-30. Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 37:15-30. Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
-    <ul class="bullets reveal">
-    <li><span class="lang-pt"><strong>A – Gênesis 37:15-17</strong></span><span class="lang-en"><strong>A – Genesis 37:15-17</strong></span></li>
-    <li><span class="lang-pt">Yoseph vai procurar os irmãos, não os encontra, encontra um homem no campo</span><span class="lang-en">Yoseph goes to seek brothers, cannot find, meets a man in the field</span></li>
-    <li><span class="lang-pt">Onde estão os irmãos?</span><span class="lang-en">Where are the brothers?</span></li>
-    <li><span class="lang-pt"><strong>B – Gênesis 37:18-25a</strong></span><span class="lang-en"><strong>B – Genesis 37:18-25a</strong></span></li>
-    <li><span class="lang-pt">Os irmãos veem Yoseph se aproximando</span><span class="lang-en">Brothers see Yoseph coming</span></li>
-    <li><span class="lang-pt">Reuven intercede para salvar Yoseph: "Não derrame sangue … nem deixe nossa mão contra ele."</span><span class="lang-en">Reuven intercedes to save Yoseph: "Don’t spill blood … or let our hand be against him."</span></li>
-    <li><span class="lang-pt">Yoseph é jogado dentro do poço</span><span class="lang-en">Yoseph thrown down into pit</span></li>
-    <li><span class="lang-pt"><strong>B' – Gênesis 37:25b-28</strong></span><span class="lang-en"><strong>B' – Genesis 37:25b-28</strong></span></li>
-    <li><span class="lang-pt">Os irmãos veem os comerciantes chegando</span><span class="lang-en">Brothers see traders coming</span></li>
-    <li><span class="lang-pt">Yehudah intercede para poupar Yoseph: "Qual a vantagem de matar? … Não deixe nossa mão contra ele."</span><span class="lang-en">Yehudah intercedes to spare Yoseph: "What’s the gain of murder? ... Don’t let our hand be against him."</span></li>
-    <li><span class="lang-pt">Yoseph é tirado do poço, levado para o Egito</span><span class="lang-en">Yoseph taken up from pit, taken down to Egypt</span></li>
-    <li><span class="lang-pt"><strong>A' – 37:29-30</strong></span><span class="lang-en"><strong>A' – 37:29-30</strong></span></li>
-    <li><span class="lang-pt">Reuven procura o irmão, não o encontra</span><span class="lang-en">Reuven seeks brother, cannot find</span></li>
-    <li><span class="lang-pt">"Para onde irei?"</span><span class="lang-en">"Where will I go?"</span></li>
-    </ul>
+    <div class="diagram-scroll">
+      <div class="diagram-viewport">
+        <div class="diagram-canvas d6-ov">
+      <div class="d6-ov-panel">
+        <span class="d6-ov-badge"><span class="lang-pt">A – Gênesis 37:15-17</span><span class="lang-en">A – Genesis 37:15-17</span></span>
+        <ul class="d6-ov-list"><li><span class="lang-pt">Yoseph vai procurar os irmãos, não os encontra, encontra um homem no campo</span><span class="lang-en">Yoseph goes to seek brothers, cannot find, meets a man in the field</span></li><li><span class="d6-ov-mk d6-c-mute"><span class="lang-pt">Onde</span><span class="lang-en">Where</span></span><span class="lang-pt"> estão os irmãos?</span><span class="lang-en"> are the brothers?</span></li></ul>
+      </div>      <div class="d6-ov-panel d6-indent">
+        <span class="d6-ov-badge"><span class="lang-pt">B – Gênesis 37:18-25a</span><span class="lang-en">B – Genesis 37:18-25a</span></span>
+        <ul class="d6-ov-list"><li><span class="lang-pt">Os irmãos veem Yoseph se aproximando</span><span class="lang-en">Brothers see Yoseph coming</span></li><li><span class="d6-ov-mk d6-c-mute"><span class="lang-pt">Reuven</span><span class="lang-en">Reuven</span></span><span class="lang-pt"> intercede para salvar Yoseph: "Não derrame sangue … nem deixe nossa mão contra ele."</span><span class="lang-en"> intercedes to save Yoseph: “Don’t spill blood … or let our hand be against him.”</span></li><li><span class="lang-pt">Yoseph é jogado dentro do poço</span><span class="lang-en">Yoseph thrown down into pit</span></li></ul>
+      </div>      <div class="d6-ov-panel d6-indent">
+        <span class="d6-ov-badge"><span class="lang-pt">B' – Gênesis 37:25b-28</span><span class="lang-en">B' – Genesis 37:25b-28</span></span>
+        <ul class="d6-ov-list"><li><span class="lang-pt">Os irmãos veem os comerciantes chegando</span><span class="lang-en">Brothers see traders coming</span></li><li><span class="d6-ov-mk d6-c-mute"><span class="lang-pt">Yehudah</span><span class="lang-en">Yehudah</span></span><span class="lang-pt"> intercede para poupar Yoseph: "Qual a vantagem de matar? … Não deixe nossa mão contra ele."</span><span class="lang-en"> intercedes to spare Yoseph: “What’s the gain of murder? … Don’t let our hand be against him.”</span></li><li><span class="lang-pt">Yoseph é tirado do poço, levado para o Egito</span><span class="lang-en">Yoseph taken up from pit, taken down to Egypt</span></li></ul>
+      </div>      <div class="d6-ov-panel">
+        <span class="d6-ov-badge"><span class="lang-pt">A' – 37:29-30</span><span class="lang-en">A' – 37:29-30</span></span>
+        <ul class="d6-ov-list"><li><span class="lang-pt">Reuven procura o irmão, não o encontra</span><span class="lang-en">Reuven seeks brother, cannot find</span></li><li><span class="lang-pt">"</span><span class="lang-en">“</span><span class="d6-ov-mk d6-c-mute"><span class="lang-pt">Onde</span><span class="lang-en">Where</span></span><span class="lang-pt"> irei?"</span><span class="lang-en"> will I go?”</span></li></ul>
+      </div>      </div>
+      </div>
+    </div>
+    <p class="caption reveal"><span class="lang-pt">Gênesis 37:15-30. Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 37:15-30. Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
     <p class="body reveal"><span class="lang-pt">Este parágrafo central do capítulo 37 é desenhado como uma simetria de três partes, com painéis externos correspondentes (37:15-17 e 37:29-30) e painéis internos correspondentes (37:18-25a e 37:25b-28). As partes que correspondem criam comparações e contrastes importantes que serão desenvolvidos nas narrativas seguintes.</span><span class="lang-en">This central paragraph of chapter 37 is designed as a three-part symmetry, with matching outer panels (37:15-17 and 37:29-30) and matching inner panels (37:18-25a and 37:25b-28). The matching parts create important comparisons and contrasts that will be further developed in the following narratives.</span></p>
-    <p class="body reveal"><span class="lang-pt">15 E um homem o encontrou, e eis que ele andava errante num campo, e o homem perguntou, dizendo: "O que procuras?"</span><span class="lang-en">15 And a man found him, and look, he was wandering about in a field, and the man asked, saying, "What are you looking for?"</span></p>
-    <p class="body reveal"><span class="lang-pt">16 E ele disse: "Estou procurando meus irmãos. Dize-me, peço-te, onde estão pastoreando?"</span><span class="lang-en">16 And he said, "I am looking for my brothers. Tell me, please, where are they shepherding?"</span></p>
-    <p class="body reveal"><span class="lang-pt">17 E o homem disse: "Partiram daqui, pois ouvi-os dizer: 'Vamos a Dotã.'" E Yoseph foi após seus irmãos e os encontrou em Dotã.</span><span class="lang-en">17 And the man said, "They journeyed on from here. Indeed, I heard them saying, 'Let’s go to Dothan.'" And Yoseph went after his brothers, and he found them in Dothan.</span></p>
-    <p class="body reveal"><span class="lang-pt">18 E viram-no de longe, e antes que se aproximasse, tramaram enganosamente matá-lo. 19 E disseram, cada um a seu irmão: "Olhai, aquele senhor dos sonhos vem aí! 20 Ora, vinde, matemo-lo e lancemo-lo num dos poços, e diremos: 'Uma fera o devorou!' E veremos no que darão os seus sonhos!"</span><span class="lang-en">18 And they saw him from afar, and before he came near to them, they made a deceitful plan to kill him. 19 And they said, each to his brother, "Look, this master of the dreams, he comes! 20 And now, come, let’s murder him, and let’s throw him into one of the pits, and we will say, 'A terrible animal ate him!' and we will see what comes of his dreams!"</span></p>
-    <p class="body reveal"><span class="lang-pt">21 E Reuven ouviu, e o livrou de suas mãos, e disse: "Não tireis a sua vida!" 22 E Reuven lhes disse: "Não derrameis sangue! Lançai-o neste poço que está no deserto, mas não estendais a mão contra ele."</span><span class="lang-en">21 And Reuven heard, and he delivered him from their hand, and he said, "Don’t strike his life!" 22 And Reuven said to them, "Don’t spill blood! Throw him into this pit that’s in the wilderness. But don’t send out a hand against him."</span></p>
-    <p class="body reveal"><span class="lang-pt">Foi para livrá-lo de suas mãos, para devolvê-lo a seu pai. 23 E aconteceu que, quando Yoseph chegou a seus irmãos, despiram-lhe a túnica, a túnica de várias cores que estava sobre ele; 24 e tomaram-no e lançaram-no no poço, e o poço estava vazio, sem água. 25a E assentaram-se para comer pão.</span><span class="lang-en">It was in order to deliver him from their hand, to return him to his father. 23 And it came about when Yoseph came to his brothers, that they stripped Yoseph of his robe, the robe of many colors that was on him, 24 and they took him and they threw him into the pit, and the pit was empty, with no water in it. 25a And they sat down to eat bread.</span></p>
-    <p class="body reveal"><span class="lang-pt">25b E levantaram os olhos e viram, e eis uma caravana de ismaelitas vindo de Gileade, e seus camelos levavam resina aromática, bálsamo e mirra; vinham descendo para o Egito.</span><span class="lang-en">25b And they lifted their eyes and they saw, and look, a caravan of Yishma’elites coming from Gil’ad, and their camels were carrying spice-gum, balm, and myrrh, they were coming to go down to Egypt.</span></p>
-    <p class="body reveal"><span class="lang-pt">26 E Yehudah disse a seus irmãos: "Que proveito há se matarmos nosso irmão e encobrirmos o seu sangue? 27 Vinde, e vendamo-lo aos ismaelitas, e não ponhamos nossa mão sobre ele, porque é nosso irmão e nossa carne." E seus irmãos o ouviram.</span><span class="lang-en">26 And Yehudah said to his brothers, "What profit is there if we murder our brother, and cover up his blood? 27 Come, and let’s sell him to the Yishma’elites, and don’t let our hand be upon him, because, he is our brother and our flesh." And his brothers listened.</span></p>
-    <p class="body reveal"><span class="lang-pt">28 E homens midianitas, traficantes, passaram por perto, e tiraram e subiram Yoseph do poço, e venderam Yoseph aos ismaelitas por vinte peças de prata; e trouxeram Yoseph ao Egito.</span><span class="lang-en">28 And Midianite men, traders, passed by, and they drew up and brought Yoseph up from the pit, and they sold Yoseph to the Yishma’elites for twenty silver pieces, and they brought Yoseph to Egypt.</span></p>
-    <p class="body reveal"><span class="lang-pt">29 E Reuven voltou ao poço, e eis que Yoseph não estava no poço, e rasgou suas vestes. 30 E voltou a seus irmãos e disse: "O menino, já não existe (איננו)! E quanto a mim, para onde irei?!"</span><span class="lang-en">29 And Reuven returned to the pit, and look, Yoseph was not (אין) in the pit, and he tore his clothes. 30 And he returned to his brothers, and he said, "The child, he is no more (איננו)! And as for me, where am I to go?!"</span></p>
-    <p class="body reveal"><span class="lang-pt">Gênesis 37:15-30. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 37:15-30. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
+    <div class="diagram-scroll">
+      <div class="diagram-viewport">
+        <div class="diagram-canvas d6-scripture">
+      <div class="d6-grp">        <div class="d6-panel d6-b-dark"><div class="d6-v"><span class="d6-num"><span class="lang-pt">15</span><span class="lang-en">15</span></span><span class="lang-pt"> E um homem </span><span class="lang-en"> And a man </span><span class="d6-mk d6-c-slate"><span class="lang-pt">encontrou</span><span class="lang-en">found</span></span><span class="lang-pt"> o,</span><span class="lang-en"> him,</span></div><div class="d6-v"><span class="lang-pt">e eis que ele andava errante num campo,</span><span class="lang-en">and look, he was wandering about in a field,</span></div></div>        <div class="d6-panel d6-b-light"><div class="d6-v"><span class="d6-mk d6-c-mute"><span class="lang-pt">e o homem perguntou, dizendo</span><span class="lang-en">and the man asked, saying</span></span><span class="lang-pt">:</span><span class="lang-en"> ,</span></div><div class="d6-v d6-q"><span class="lang-pt">"O que procurais?"</span><span class="lang-en">“What are you looking for?”</span></div><div class="d6-v"><span class="d6-num"><span class="lang-pt">16</span><span class="lang-en">16</span></span><span class="lang-pt"> E ele disse,</span><span class="lang-en"> And he said,</span></div><div class="d6-v d6-q"><span class="lang-pt">"Estou procurando </span><span class="lang-en">“I am looking for </span><span class="d6-mk d6-c-rust"><span class="lang-pt">meus irmãos</span><span class="lang-en">my brothers</span></span><span class="lang-pt">."</span><span class="lang-en">.</span></div><div class="d6-v d6-q"><span class="lang-pt">Dize-me, peço-te,</span><span class="lang-en">Tell me, please,</span></div><div class="d6-v d6-q"><span class="d6-mk d6-c-violet2"><span class="lang-pt">onde estão</span><span class="lang-en">where are they</span></span><span class="d6-mk d6-c-brown"><span class="lang-pt">pastoreando</span><span class="lang-en">shepherding</span></span><span class="lang-pt">?"</span><span class="lang-en">?”</span></div><div class="d6-v"><span class="d6-num"><span class="lang-pt">17</span><span class="lang-en">17</span></span><span class="d6-mk d6-c-mute"><span class="lang-pt">E o homem disse</span><span class="lang-en">And the man said</span></span><span class="lang-pt">,</span><span class="lang-en"> ,</span></div><div class="d6-v d6-q"><span class="lang-pt">"Partiram daqui,</span><span class="lang-en">“They journeyed on from here.</span></div><div class="d6-v d6-q"><span class="lang-pt">pois ouvi-os dizer,</span><span class="lang-en">Indeed, I heard them saying,</span></div><div class="d6-v d6-q"><span class="d6-mk d6-p-rose2"><span class="lang-pt">'</span><span class="lang-en">‘</span><span class="d6-mk d6-c-rose"><span class="lang-pt">Vamos</span><span class="lang-en">Let’s go</span></span><span class="lang-pt"> a </span><span class="lang-en"> to </span><span class="d6-mk d6-c-indigo"><span class="lang-pt">Dotã</span><span class="lang-en">Dothan</span></span><span class="lang-pt">."</span><span class="lang-en"> .”</span></span></div></div>        <div class="d6-panel d6-b-dark"><div class="d6-v"><span class="lang-pt">E Yoseph </span><span class="lang-en">And Yoseph </span><span class="d6-mk d6-c-rose"><span class="lang-pt">foi</span><span class="lang-en">went</span></span><span class="lang-pt"> após seus </span><span class="lang-en"> after </span><span class="d6-mk d6-c-rust"><span class="lang-pt">irmãos</span><span class="lang-en">his brothers</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></div><div class="d6-v"><span class="lang-pt">e o </span><span class="lang-en">and he </span><span class="d6-mk d6-c-slate"><span class="lang-pt">encontrou</span><span class="lang-en">found</span></span><span class="lang-pt"> em </span><span class="lang-en"> them in </span><span class="d6-mk d6-c-rose2"><span class="lang-pt">Dotã</span><span class="lang-en">Dothan</span></span><span class="lang-pt">.</span><span class="lang-en"> .</span></div></div>        <div class="d6-panel d6-b-dark"><div class="d6-v"><span class="d6-num"><span class="lang-pt">18</span><span class="lang-en">18</span></span><span class="lang-pt"> E viram-no de longe,</span><span class="lang-en"> And they saw him from afar,</span></div><div class="d6-v"><span class="d6-mk d6-c-blue"><span class="lang-pt">e antes que se aproximasse</span><span class="lang-en">and before he came near to</span></span><span class="d6-mk d6-c-rust"><span class="lang-pt">deles</span><span class="lang-en">them</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></div><div class="d6-v"><span class="lang-pt">tramaram enganosamente matá-lo.</span><span class="lang-en">they made a deceitful plan to kill him.</span></div><div class="d6-v"><span class="d6-num"><span class="lang-pt">19</span><span class="lang-en">19</span></span><span class="lang-pt"> E disseram, cada um a seu </span><span class="lang-en"> And they said, each to </span><span class="d6-mk d6-c-rust"><span class="lang-pt">irmão</span><span class="lang-en">his brother</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></div><div class="d6-v d6-q"><span class="lang-pt">"Olhai, </span><span class="lang-en">“Look, </span><span class="d6-mk d6-c-violet"><span class="lang-pt">aquele senhor</span><span class="lang-en">this master</span></span><span class="lang-pt"> dos </span><span class="lang-en"> of </span><span class="d6-mk d6-p-dark"><span class="lang-pt">sonhos</span><span class="lang-en">the dreams</span></span><span class="lang-pt">, vem aí!</span><span class="lang-en">, he comes!</span></div><div class="d6-v d6-q"><span class="d6-num"><span class="lang-pt">20</span><span class="lang-en">20</span></span><span class="lang-pt"> Ora, vinde, </span><span class="lang-en"> And now, come, </span><span class="d6-mk d6-c-rose"><span class="lang-pt">matemo-lo</span><span class="lang-en">let’s murder him</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></div><div class="d6-v d6-q"><span class="lang-pt">e lancemo-</span><span class="lang-en">and let’s </span><span class="d6-mk d6-c-green"><span class="lang-pt">lo num dos poços</span><span class="lang-en">throw him into one of the pits</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></div><div class="d6-v d6-q"><span class="lang-pt">e diremos:</span><span class="lang-en">and we will say,</span></div><div class="d6-v d6-q"><span class="lang-pt">‘Uma fera </span><span class="lang-en">‘A terrible </span><span class="d6-mk d6-c-teal"><span class="lang-pt">o devorou</span><span class="lang-en">animal ate him</span></span><span class="lang-pt">!</span><span class="lang-en">!’</span></div><div class="d6-v d6-q"><span class="lang-pt">e veremos no que darão os seus </span><span class="lang-en">and we will see what comes of </span><span class="d6-mk d6-p-dark"><span class="lang-pt">sonhos</span><span class="lang-en">his dreams</span></span><span class="lang-pt">!"</span><span class="lang-en"> !”</span></div></div>        <div class="d6-panel d6-b-light"><div class="d6-v"><span class="d6-num"><span class="lang-pt">21</span><span class="lang-en">21</span></span><span class="lang-pt"> E </span><span class="lang-en"> And </span><span class="d6-mk d6-c-brown"><span class="lang-pt">Reuven</span><span class="lang-en">Reuven</span></span><span class="lang-pt"> ouviu,</span><span class="lang-en"> heard,</span></div><div class="d6-v"><span class="d6-mk d6-c-sea"><span class="lang-pt">e o livrou de suas mãos</span><span class="lang-en">and he delivered him from their hand</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></div><div class="d6-v"><hr class="d6-rule"></div><div class="d6-v"><span class="d6-mk d6-p-mute2"><span class="lang-pt">e disse</span><span class="lang-en">and he said</span></span><span class="lang-pt">:</span><span class="lang-en"> ,</span></div><div class="d6-v d6-q"><span class="lang-pt">"</span><span class="lang-en">“</span><span class="d6-mk d6-p-rose2"><span class="lang-pt">Não tireis a sua vida</span><span class="lang-en">Don’t strike his life</span></span><span class="lang-pt">!"</span><span class="lang-en">!”</span></div><div class="d6-v"><span class="d6-num"><span class="lang-pt">22</span><span class="lang-en">22</span></span><span class="lang-pt"> E </span><span class="lang-en"> And </span><span class="d6-mk d6-c-brown"><span class="lang-pt">Reuven</span><span class="lang-en">Reuven</span></span><span class="lang-pt"> lhes disse,</span><span class="lang-en"> said to them,</span></div><div class="d6-v d6-q"><span class="lang-pt">"</span><span class="lang-en">“</span><span class="d6-mk d6-p-rose2"><span class="lang-pt">Não derrameis sangue</span><span class="lang-en">Don’t spill blood</span></span><span class="lang-pt">!</span><span class="lang-en">!</span></div><div class="d6-v d6-q"><span class="d6-mk d6-c-green"><span class="lang-pt">Lançai-o neste poço</span><span class="lang-en">Throw him into this pit</span></span><span class="lang-pt"> que está no deserto.</span><span class="lang-en"> that’s in the wilderness.</span></div><div class="d6-v d6-q"><span class="lang-pt">Mas </span><span class="lang-en">But </span><span class="d6-mk d6-p-slate"><span class="lang-pt">não estendais a mão</span><span class="lang-en">don’t send out a hand</span></span><span class="lang-pt"> contra ele."</span><span class="lang-en"> against him.”</span></div><div class="d6-v"><hr class="d6-rule"></div><div class="d6-v"><span class="lang-pt">Foi </span><span class="lang-en">It was </span><span class="d6-mk d6-c-sea"><span class="lang-pt">para livrá-lo de suas mãos</span><span class="lang-en">in order to deliver him from their hand</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></div><div class="d6-v"><span class="lang-pt">para devolvê-lo a seu pai.</span><span class="lang-en">to return him to his father.</span></div></div>        <div class="d6-panel d6-b-dark"><div class="d6-v"><span class="d6-num"><span class="lang-pt">23</span><span class="lang-en">23</span></span><span class="lang-pt"> E aconteceu que, </span><span class="lang-en"> And it came about </span><span class="d6-mk d6-c-blue"><span class="lang-pt">quando Yoseph chegou a</span><span class="lang-en">when Yoseph came to</span></span><span class="d6-mk d6-c-rust"><span class="lang-pt">seus irmãos</span><span class="lang-en">his brothers</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></div><div class="d6-v d6-q"><span class="lang-pt">despiram-lhe a túnica,</span><span class="lang-en">that they stripped Yoseph of </span><span class="d6-mk d6-c-violet"><span class="lang-pt">a túnica</span><span class="lang-en">his robe</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></div><div class="d6-v d6-q"><span class="d6-mk d6-c-violet"><span class="lang-pt">a túnica</span><span class="lang-en">the robe</span></span><span class="lang-pt"> de várias cores que estava sobre ele,</span><span class="lang-en"> of many colors that was on him,</span></div><div class="d6-v"><span class="d6-num"><span class="lang-pt">24</span><span class="lang-en">24</span></span><span class="lang-pt"> e tomaram-no e </span><span class="lang-en"> and they took him and </span><span class="d6-mk d6-c-green"><span class="lang-pt">lançaram-no no poço</span><span class="lang-en">they threw him into the pit</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></div><div class="d6-v d6-q"><span class="lang-pt">e </span><span class="lang-en">and </span><span class="d6-mk d6-c-green"><span class="lang-pt">o poço</span><span class="lang-en">the pit</span></span><span class="lang-pt"> estava vazio, sem água.</span><span class="lang-en"> was empty, with no water in it.</span></div><div class="d6-v"><span class="d6-num"><span class="lang-pt">25a</span><span class="lang-en">25a</span></span><span class="lang-pt"> E assentaram-se </span><span class="lang-en"> And they sat down </span><span class="d6-mk d6-c-teal"><span class="lang-pt">para comer</span><span class="lang-en">to eat</span></span><span class="lang-pt"> pão.</span><span class="lang-en"> bread.</span></div></div>        <div class="d6-panel d6-b-dark"><div class="d6-v"><span class="d6-num"><span class="lang-pt">25b</span><span class="lang-en">25b</span></span><span class="lang-pt"> E levantaram os olhos e viram,</span><span class="lang-en"> And they lifted their eyes and they saw</span></div><div class="d6-v"><span class="lang-pt">e eis uma caravana de </span><span class="lang-en">and look, a caravan of </span><span class="d6-mk d6-p-rust"><span class="lang-pt">ismaelitas</span><span class="lang-en">Yishma’elites</span></span><span class="d6-mk d6-p-blue"><span class="lang-pt">vindo</span><span class="lang-en">coming</span></span><span class="lang-pt"> de Gileade,</span><span class="lang-en"> from Gil’ad,</span></div><div class="d6-v"><span class="lang-pt">e seus camelos levavam resina aromática, bálsamo e mirra,</span><span class="lang-en">and their camels were carrying spice-gum, balm, and myrrh,</span></div><div class="d6-v"><span class="d6-mk d6-p-blue"><span class="lang-pt">vinham descendo</span><span class="lang-en">they were coming</span></span><span class="d6-mk d6-p-mute"><span class="lang-pt">para o Egito</span><span class="lang-en">to go down to Egypt</span></span><span class="lang-pt">.</span><span class="lang-en"> .</span></div></div>        <div class="d6-panel d6-b-light"><div class="d6-v"><span class="d6-num"><span class="lang-pt">26</span><span class="lang-en">26</span></span><span class="lang-pt"> E </span><span class="lang-en"> And </span><span class="d6-mk d6-c-brown"><span class="lang-pt">Yehudah</span><span class="lang-en">Yehudah</span></span><span class="lang-pt"> disse a seus </span><span class="lang-en"> said to </span><span class="d6-mk d6-c-rust"><span class="lang-pt">irmãos</span><span class="lang-en">his brothers</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></div><div class="d6-v d6-q"><span class="lang-pt">"Que proveito há se matarmos </span><span class="lang-en">“What profit is there if we murder </span><span class="d6-mk d6-c-rose"><span class="lang-pt">nosso irmão</span><span class="lang-en">our brother</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></div><div class="d6-v d6-q"><span class="lang-pt">e encobrirmos </span><span class="lang-en">and cover up </span><span class="d6-mk d6-p-wine"><span class="lang-pt">o seu sangue</span><span class="lang-en">his blood</span></span><span class="lang-pt">?"</span><span class="lang-en"> ?</span></div><div class="d6-v d6-q"><span class="d6-num"><span class="lang-pt">27</span><span class="lang-en">27</span></span><span class="d6-mk d6-p-blue"><span class="lang-pt">Vinde</span><span class="lang-en">Come</span></span><span class="lang-pt">, e </span><span class="lang-en"> , and </span><span class="d6-mk d6-c-forest"><span class="lang-pt">vendamo-lo</span><span class="lang-en">let’s sell him</span></span><span class="lang-pt"> aos </span><span class="lang-en"> to the </span><span class="d6-mk d6-p-rust"><span class="lang-pt">ismaelitas</span><span class="lang-en">Yishma’elites</span></span><span class="lang-pt">,</span><span class="lang-en"> ,</span></div><div class="d6-v d6-q"><span class="lang-pt">e </span><span class="lang-en">and </span><span class="d6-mk d6-p-wine"><span class="lang-pt">não ponhamos nossa mão sobre ele</span><span class="lang-en">don’t let our hand be upon him</span></span><span class="lang-pt">,</span><span class="lang-en"> ,</span></div><div class="d6-v d6-q"><span class="lang-pt">porque é </span><span class="lang-en">because, he is </span><span class="d6-mk d6-c-rose"><span class="lang-pt">nosso irmão</span><span class="lang-en">our brother</span></span><span class="lang-pt"> e </span><span class="lang-en"> and </span><span class="d6-mk d6-p-wine"><span class="lang-pt">nossa carne</span><span class="lang-en">our flesh</span></span><span class="lang-pt">."</span><span class="lang-en"> .”</span></div><div class="d6-v"><span class="lang-pt">E </span><span class="lang-en">And </span><span class="d6-mk d6-c-rust"><span class="lang-pt">seus irmãos</span><span class="lang-en">his brothers</span></span><span class="lang-pt"> o ouviram.</span><span class="lang-en"> listened.</span></div></div>        <div class="d6-panel d6-b-dark"><div class="d6-v"><span class="d6-num"><span class="lang-pt">28</span><span class="lang-en">28</span></span><span class="lang-pt"> E </span><span class="lang-en"> And </span><span class="d6-mk d6-p-rust"><span class="lang-pt">homens midianitas</span><span class="lang-en">Midianite</span></span><span class="lang-pt">, traficantes, passaram por perto,</span><span class="lang-en"> men, traders, passed by,</span></div><div class="d6-v d6-q"><span class="lang-pt">e </span><span class="lang-en">and </span><span class="d6-mk d6-c-forest"><span class="lang-pt">[os irmãos]</span><span class="lang-en">they</span></span><span class="lang-pt">tiraram e levantaram Yoseph do </span><span class="lang-en"> drew up and brought Yoseph up from </span><span class="d6-mk d6-c-green"><span class="lang-pt">poço</span><span class="lang-en">the pit</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></div><div class="d6-v d6-q"><span class="lang-pt">e </span><span class="lang-en">and </span><span class="d6-mk d6-c-forest"><span class="lang-pt">venderam Yoseph</span><span class="lang-en">they sold Yoseph</span></span><span class="lang-pt"> aos </span><span class="lang-en"> to the </span><span class="d6-mk d6-p-rust"><span class="lang-pt">ismaelitas</span><span class="lang-en">Yishma’elites</span></span><span class="lang-pt"> por vinte peças de prata,</span><span class="lang-en"> for twenty silver pieces,</span></div><div class="d6-v d6-q"><span class="d6-mk d6-p-blue"><span class="lang-pt">e trouxeram</span><span class="lang-en">and they brought</span></span><span class="d6-mk d6-p-mute"><span class="lang-pt">Yoseph ao Egito</span><span class="lang-en">Yoseph to Egypt</span></span><span class="lang-pt">.</span><span class="lang-en"> .</span></div></div>        <div class="d6-panel d6-b-dark"><div class="d6-v"><span class="d6-num"><span class="lang-pt">29</span><span class="lang-en">29</span></span><span class="lang-pt"> E Reuven </span><span class="lang-en"> And Reuven </span><span class="d6-mk d6-p-mute"><span class="lang-pt">voltou</span><span class="lang-en">returned</span></span><span class="lang-pt"> ao </span><span class="lang-en"> to </span><span class="d6-mk d6-c-green"><span class="lang-pt">poço</span><span class="lang-en">the pit</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></div><div class="d6-v"><span class="lang-pt">e eis que Yoseph </span><span class="lang-en">and look, Yoseph </span><span class="d6-mk d6-p-mute2"><span class="lang-pt">não estava (אין)</span><span class="lang-en">was not (אין)</span></span><span class="lang-pt"> no </span><span class="lang-en"> in </span><span class="d6-mk d6-c-green"><span class="lang-pt">poço</span><span class="lang-en">the pit</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></div></div>        <div class="d6-panel d6-b-light"><div class="d6-v"><span class="lang-pt">e rasgou suas vestes.</span><span class="lang-en">and he tore his clothes.</span></div></div>        <div class="d6-panel d6-b-dark"><div class="d6-v"><span class="d6-num"><span class="lang-pt">30</span><span class="lang-en">30</span></span><span class="d6-mk d6-p-mute"><span class="lang-pt">E voltou a seus </span><span class="lang-en">And he returned to</span></span><span class="d6-mk d6-c-rust"><span class="lang-pt">irmãos</span><span class="lang-en">his brothers</span></span><span class="lang-pt">,</span><span class="lang-en">,</span></div><div class="d6-v"><span class="lang-pt">e disse,</span><span class="lang-en">and he said,</span></div><div class="d6-v d6-q"><span class="lang-pt">"O menino, </span><span class="lang-en">“The child, he is </span><span class="d6-mk d6-p-mute2"><span class="lang-pt">já não existe (איננו)</span><span class="lang-en">no more (איננו)</span></span><span class="lang-pt">!</span><span class="lang-en"> !</span></div><div class="d6-v d6-q"><span class="lang-pt">E quanto a mim, </span><span class="lang-en">And as for me, </span><span class="d6-mk d6-c-violet2"><span class="lang-pt">para onde irei</span><span class="lang-en">where am I to go</span></span><span class="lang-pt">?!"</span><span class="lang-en">?!”</span></div></div></div>      </div>
+      </div>
+    </div>
+    <p class="caption reveal"><span class="lang-pt">Gênesis 37:15-30. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 37:15-30. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
     <h2 class="section reveal"><span class="lang-pt">O Homem Misterioso no Campo</span><span class="lang-en">The Mysterious Man in the Field</span></h2>
     <p class="body reveal"><span class="lang-pt">Esta cena de Yoseph encontrando um homem aleatório no campo não é aleatória, mas uma parte-chave da mensagem narrativa em ação na história maior de Yoseph. Se não fosse por este homem, Yoseph não teria encontrado seus irmãos, e não teria sido sequestrado, vendido como escravo e levado ao Egito. Sem ir ao Egito, Yoseph não teria sido descoberto por Faraó e elevado como governante do Egito, capaz de salvar sua família da fome.</span><span class="lang-en">This scene of Yoseph encountering a random man in the field is not random at all, but a key part of the narrative message at work in the larger story of Yoseph. If it were not for this man, Yoseph would not have found his brothers, and he would not have been kidnapped, sold as a slave, and taken to Egypt. Without going to Egypt, Yoseph would not have been discovered by Pharaoh and elevated as ruler of Egypt able to save his family from the famine.</span></p>
     <p class="body reveal"><span class="lang-pt">Se Yoseph não tivesse encontrado este homem, ele e toda a sua família teriam morrido na fome.</span><span class="lang-en">If Yoseph had not met this man, he and his entire family would have died in the famine.</span></p>
     <p class="body reveal"><span class="lang-pt">Não pode ser coincidência, então, que Yoseph encontre um "homem" (איש) que o orienta para a verdadeira localização de seus irmãos. Devemos ver uma semelhança aqui com o encontro de Abraão com os "homens" (אנשים) que passam por sua tenda (Gn 18:1-5), e com o "homem" (איש) que vem a Yaaqov no Jaboque e briga com ele (Gn 32:23-32). Certamente devemos ver este homem como mais um mensageiro divino disfarçado (é assim que os homens que Abraão encontrou são chamados em Gn 19:1-3) que guia Yoseph para seu destino. Deus intencionalmente conduz o amado Yoseph ao perigo como parte de seu plano paradoxal de exaltá-lo.</span><span class="lang-en">It cannot be a coincidence, then, that Yoseph encounters a "man" (איש) who directs him toward his brothers’ true location. We are meant to see a similarity here with Abraham’s encounter with the "men" (אנשים) who walk by his tent (Gen. 18:1-5), and with the "man" (איש) who comes to Yaaqov at the Yabbok and picks a fight with him (Gen. 32:23-32). We are surely meant to see this man as yet another disguised divine messenger (that is what the men Abraham encountered are called in Gen. 19:1-3) who guides Yoseph toward his destiny. God intentionally leads the beloved Yoseph into danger as part of his paradoxical plan to exalt him.</span></p>
-    <div class="rounded-xl overflow-hidden border border-slate-300">
-<table class="w-full text-left text-[#24262a] md reveal">
+    <div>
+<table class="d6-table reveal">
+      <caption><span class="lang-pt">Homens em Gênesis 18-37. Criado por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Men in Genesis 18-37. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></caption>
+
       <tr><th><span class="lang-pt">O "Homem" em Gênesis 37:15-17</span><span class="lang-en">The "Man" in Genesis 37:15-17</span></th><th><span class="lang-pt">Os "Homens" em Gênesis 18, 21 e 32</span><span class="lang-en">The "Men" in Genesis 18, 21 and 32</span></th></tr>
       <tr><td><span class="lang-pt">Gn 37:15 E um homem (איש) o encontrou, e eis que andava errante (תעה) no campo, e o homem (איש) perguntou-lhe (שאל), dizendo: "O que (מה) procuras?"</span><span class="lang-en">Gen. 37:15 And a man (איש) found him, and behold he was wandering (תעה) in the field, and the man (איש) asked him (שאל), saying, " What (מה) do you seek?"</span></td><td><span class="lang-pt">Gn 18:2 E Avraham levantou seus olhos, e eis três homens (איש) em pé diante dele. Gn 21:14 … e [Hagar] foi e andou errante (תעה) no deserto. Gn 21:17 … e o anjo de Deus chamou a Hagar do céu e lhe disse: "Que (מה) tens, Hagar?" Gn 32:24 E Yaaqov ficou sozinho, e um homem (איש) lutou com ele.</span><span class="lang-en">Gen. 18:2 And Avraham lifted his eyes, and behold, three men (איש) standing over him Gen. 21:14 … and [Hagar] went and wandered (תעה) in the wilderness Gen. 21:17 … and the angel of God called to Hagar from heaven and said to her, " What (מה) to you, Hagar?" Gen. 32:24 And Yaaqov was left alone, and a man (איש) struggled with him</span></td></tr>
     </table>
-</div>
-    <p class="caption"><span class="lang-pt">Homens em Gênesis 18-37. Criado por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Men in Genesis 18-37. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
-    <p class="body reveal"><span class="lang-pt">Yoseph provavelmente está aludindo a essa mesma cena quando fala com seus irmãos no Egito.</span><span class="lang-en">Yoseph is likely alluding to this very scene when he speaks with his brothers in Egypt.</span></p>
+</div>    <p class="body reveal"><span class="lang-pt">Yoseph provavelmente está aludindo a essa mesma cena quando fala com seus irmãos no Egito.</span><span class="lang-en">Yoseph is likely alluding to this very scene when he speaks with his brothers in Egypt.</span></p>
     <h3 class="sub reveal"><span class="lang-pt">Gênesis 45:7-8 — Tradução do Instrutor</span><span class="lang-en">Genesis 45:7-8 Instructor's Translation</span></h3>
     <p class="body reveal"><span class="lang-pt">7 Elohim me enviou adiante de vós, para preservar-vos um remanescente na terra, e para conservar-vos vivos por uma grande livração. 8 Agora, pois, não fostes vós que me enviastes para cá, mas Elohim; e ele me constituiu pai de Faraó, e senhor de toda a sua casa, e governador sobre toda a terra do Egito.</span><span class="lang-en">7 Elohim sent me before you, to preserve for you a remnant in the earth, and to keep you alive by a great deliverance. 8 Now, therefore, it was not you all who sent me here, but Elohim; and he has made me a father to Pharaoh and lord of all his household and ruler over all the land of Egypt.</span></p>
     <h2 class="section reveal"><span class="lang-pt">Irmãos Assassinos e Planos de Resgate</span><span class="lang-en">Murderous Brothers and Rescue Plans</span></h2>
     <p class="body reveal"><span class="lang-pt">A ira ciumenta dos irmãos de Yoseph recorda um motivo que se repetiu em cada geração de personagens. Quando Deus eleva o seu escolhido, os não-escolhidos consistentemente respondem com raiva e ciúme que levam a conflito violento e engano. Menos frequentemente, os não-escolhidos respondem com humildade e reconhecimento da bênção de Deus.</span><span class="lang-en">The jealous anger of Yoseph’s brothers recalls a motif that has repeated in every generation of characters. When God elevates his chosen one, the non-chosen people consistently respond with anger and jealousy that leads to violent conflict and deception. Less often, the non-chosen people respond with humility and a recognition of God’s blessing.</span></p>
-    <div class="rounded-xl overflow-hidden border border-slate-300">
-<table class="w-full text-left text-[#24262a] md reveal">
+    <div>
+<table class="d6-table reveal">
+      <caption><span class="lang-pt">O Escolhido e as Respostas do Não-Escolhido. Criado por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">The Chosen and Non-Chosen’s Responses. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></caption>
+
       <tr><th><span class="lang-pt">O Escolhido</span><span class="lang-en">The Chosen</span></th><th><span class="lang-pt">A Resposta Negativa do Não-Escolhido</span><span class="lang-en">The Non-Chosen's Negative Response</span></th><th><span class="lang-pt">Referência</span><span class="lang-en">Reference</span></th></tr>
       <tr><td><span class="lang-pt">Humanidade</span><span class="lang-en">Humanity</span></td><td><span class="lang-pt">Animais terrestres, incluindo a serpente</span><span class="lang-en">Land animals, including the snake</span></td><td><span class="lang-pt">Gênesis 1, 3</span><span class="lang-en">Genesis 1, 3</span></td></tr>
       <tr><td><span class="lang-pt">Abel</span><span class="lang-en">Abel</span></td><td><span class="lang-pt">Caim: ira e violência</span><span class="lang-en">Cain: anger and violence</span></td><td><span class="lang-pt">Gênesis 4</span><span class="lang-en">Genesis 4</span></td></tr>
@@ -215,21 +482,19 @@
       <tr><td><span class="lang-pt">Isaque</span><span class="lang-en">Isaac</span></td><td><span class="lang-pt">Abimeleque: ciumento e irado</span><span class="lang-en">Abimelech: jealous and angry</span></td><td><span class="lang-pt">Gênesis 26</span><span class="lang-en">Genesis 26</span></td></tr>
       <tr><td><span class="lang-pt">Jacó</span><span class="lang-en">Jacob</span></td><td><span class="lang-pt">Esaú: Jacó é enganoso, Esaú está violentamente irado</span><span class="lang-en">Esau: Jacob is deceptive, Esau is violently angry</span></td><td><span class="lang-pt">Gênesis 25, 27</span><span class="lang-en">Genesis 25, 27</span></td></tr>
     </table>
-</div>
-    <p class="caption"><span class="lang-pt">O Escolhido e as Respostas do Não-Escolhido. Criado por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">The Chosen and Non-Chosen’s Responses. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
-    <p class="body reveal"><span class="lang-pt">Essas narrativas pintam um retrato acumulativo de uma humanidade que não compreende, ou se sente ameaçada pelo propósito de Deus de elevar uma família humana entre as muitas para ser o veículo do governo e da bênção divinos para todas as outras. É precisamente isso que os irmãos resistem: a elevação de seu irmão mais novo ao lugar de governo sobre a família.</span><span class="lang-en">These narratives paint an accumulative portrait of a humanity that does not understand, or feels threatened by, God’s purpose to raise up one human family among the many to be the vehicle of divine rule and blessing for all the others. This is precisely what the brothers resist: the elevation of their youngest brother to the place of rule over the family.</span></p>
+</div>    <p class="body reveal"><span class="lang-pt">Essas narrativas pintam um retrato acumulativo de uma humanidade que não compreende, ou se sente ameaçada pelo propósito de Deus de elevar uma família humana entre as muitas para ser o veículo do governo e da bênção divinos para todas as outras. É precisamente isso que os irmãos resistem: a elevação de seu irmão mais novo ao lugar de governo sobre a família.</span><span class="lang-en">These narratives paint an accumulative portrait of a humanity that does not understand, or feels threatened by, God’s purpose to raise up one human family among the many to be the vehicle of divine rule and blessing for all the others. This is precisely what the brothers resist: the elevation of their youngest brother to the place of rule over the family.</span></p>
     <h2 class="section reveal"><span class="lang-pt">Reuven e Yehudah como Rivais</span><span class="lang-en">Reuven and Yehudah as Rivals</span></h2>
     <p class="body reveal"><span class="lang-pt">Observe como o design literário deste parágrafo contrasta o plano fracassado de Reuven, o primogênito de Leia, com o plano bem-sucedido de Yehudah, o quarto filho de Leia. Esta é uma parte-chave do design da maior história de Yoseph para elevar Yehudah como o verdadeiro líder entre os irmãos. Esta cena se corresponde com a cena posterior quando Reuven e Yehudah propõem planos a Yaaqov para voltar ao Egito buscar mais comida (em Gn 43), e o plano de Yehudah sucede.</span><span class="lang-en">Notice how the literary design of this paragraph contrasts the unsuccessful plan of Reuven, the firstborn of Leah, with the successful plan of Yehudah, the fourth-born of Leah. This is a key part of the design of the larger Yoseph story to elevate Yehudah as the real leader among the brothers. This scene is matched by the later scene when Reuven and Yehudah propose plans to Yaaqov for returning to Egypt to get more food (in Gen. 43), and Yehudah’s plan succeeds.</span></p>
-    <div class="rounded-xl overflow-hidden border border-slate-300">
-<table class="w-full text-left text-[#24262a] md reveal">
+    <div>
+<table class="d6-table reveal">
+      <caption><span class="lang-pt">Gênesis 37 conduzindo a Gênesis 49. Criado por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 37 Leading to Genesis 49. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></caption>
+
       <tr><th><span class="lang-pt">Gênesis 37</span><span class="lang-en">Genesis 37</span></th><th><span class="lang-pt">Gênesis 43</span><span class="lang-en">Genesis 43</span></th><th><span class="lang-pt">Gênesis 49</span><span class="lang-en">Genesis 49</span></th></tr>
       <tr><td><span class="lang-pt">O plano de Reuven para resgatar Yoseph falha</span><span class="lang-en">Reuven’s plan to rescue Yoseph fails</span></td><td><span class="lang-pt">O plano de Reuven de oferecer seus filhos falha</span><span class="lang-en">Reuven’s plan to offer his sons fails</span></td><td><span class="lang-pt">Reuven é amaldiçoado por sua egoísmo</span><span class="lang-en">Reuven is cursed for his selfishness</span></td></tr>
       <tr><td><span class="lang-pt">O plano de Yehudah de vender Yoseph sucede</span><span class="lang-en">Yehudah’s plan to sell Yoseph succeeds</span></td><td><span class="lang-pt">O plano de Yehudah de oferecer a si mesmo sucede</span><span class="lang-en">Yehudah’s plan to offer himself succeeds</span></td><td><span class="lang-pt">Yehudah é designado líder real de seus irmãos</span><span class="lang-en">Yehudah appointed as the royal leader of his brothers</span></td></tr>
       <tr><td><span class="lang-pt">Yoseph vendido como escravo</span><span class="lang-en">Yoseph sold into slavery</span></td><td><span class="lang-pt">Yoseph se torna governante do Egito</span><span class="lang-en">Yoseph becomes ruler of Egypt</span></td><td><span class="lang-pt">Yoseph é abençoado mais do que seus irmãos</span><span class="lang-en">Yoseph is blessed more than his brothers</span></td></tr>
     </table>
-</div>
-    <p class="caption"><span class="lang-pt">Gênesis 37 conduzindo a Gênesis 49. Criado por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 37 Leading to Genesis 49. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
-    <h2 class="section reveal"><span class="lang-pt">Os Filhos de Abraão Conspiram Contra o Filho Escolhido</span><span class="lang-en">The Sons of Abraham Conspire Against the Chosen Son</span></h2>
+</div>    <h2 class="section reveal"><span class="lang-pt">Os Filhos de Abraão Conspiram Contra o Filho Escolhido</span><span class="lang-en">The Sons of Abraham Conspire Against the Chosen Son</span></h2>
     <p class="body reveal"><span class="lang-pt">A narrativa destaca claramente como todos os irmãos estão na conspiração para resistir à elevação de Yoseph por Yaaqov e impedir que seus sonhos se concretizem. Mas há outros parentes mais distantes que também se envolvem na trama. A presença dos ismaelitas amplia o círculo de culpa, de modo que toda a família de Abraão desempenha um papel na perda do filho amado.</span><span class="lang-en">The narrative clearly highlights how all the brothers are in the plot to resist Yaaqov’s elevation of Yoseph and to prevent his dreams from coming true. But there are other, more distant relative brothers who also become entangled in the plot. The presence of the Yishmaelites widens the circle of culpability, so that the entire family of Abraham plays a role in the loss of the beloved son.</span></p>
     <h3 class="sub reveal"><span class="lang-pt">Gênesis 37:25b — Tradução do Instrutor</span><span class="lang-en">Genesis 37:25b Instructor's Translation</span></h3>
     <p class="body reveal"><span class="lang-pt">E eis que uma caravana de ismaelitas (ישמעאלים) veio de Gileade</span><span class="lang-en">And behold, a caravan of Yishmaelites (ישמעאלים) came from Gilead</span></p>
@@ -245,15 +510,29 @@
     <h3 class="sub reveal"><span class="lang-pt">Gênesis 25:12-13, 18 — Tradução do Instrutor</span><span class="lang-en">Genesis 25:12-13, 18 Instructor's Translation</span></h3>
     <p class="body reveal"><span class="lang-pt">12 Ora, estas são as gerações de Yishmael, filho de Avraham, que Hagar, a egípcia, escrava de Sara, deu à luz a Avraham; 13 e estes são os nomes dos filhos de Yishmael, por seus nomes, conforme a ordem de seu nascimento: Nebaioth, o primogênito de Yishmael, e Quedar, Adbeel e Mibsã … 18 Eles se estabeleceram desde Havilá até Sur, que fica a leste do Egito, no caminho de Assíria; ele se estabeleceu em defesa de todos os seus parentes. Estas diferentes tribos descendentes de Abraão têm origens distintas. Medã e Midiã vêm de Keturah, enquanto Yishmael vem de Hagar. Contudo, o título ismaelitas em Gênesis 37:25 é usado para se referir a uma categoria mais ampla de comerciantes tribais do oriente, que pode incluir vários sub-clãs como Medã e Midiã.</span><span class="lang-en">12 Now these are the generations of Yishmael, Avraham’s son, whom Hagar the Egyptian, Sarah’s slave, bore to Avraham; 13 and these are the names of the sons of Yishmael, by their names, in the order of their birth: Nebaioth, the firstborn of Yishmael, and Kedar and Adbeel and Mibsam … 18 They settled from Havilah to Shur which is east of Egypt as one goes toward Assyria; he settled in defiance of all his relatives. These different tribes descending from Abraham have distinct origins. Medan and Midian come from Keturah, while Yishmael comes from Hagar. However, the title Yishmaelites in Genesis 37:25 is used to refer to a broader category of tribal merchants from the east, which can include various sub-clans as Medan and Midian.</span></p>
     <p class="body reveal"><span class="lang-pt">Essa mesma associação destas tribos aparece em Juízes 8:22-24 e em Isaías 60:5b-7.</span><span class="lang-en">This same association of these tribes appears in Judges 8:22-24 and in Isaiah 60:5b-7.</span></p>
-    <h3 class="sub reveal"><span class="lang-pt">Juízes 8:12, 21-24</span><span class="lang-en">Judges 8:12, 21-24</span></h3>
-    <p class="body reveal"><span class="lang-pt">12 Quando Zebá e Zalmuna fugiram, ele os perseguiu e capturou os dois reis de Midiã, Zebá e Zalmuna, e desbaratou todo o exército. … 21b Então Gideão se levantou e matou Zebá e Zalmuna, e tomou os ornamentos crescentes que estavam nos pescoços de seus camelos. 22 Então os homens de Israel disseram a Gideão: "Governa sobre nós, tanto tu como teu filho, e também o filho de teu filho, pois livraste-nos da mão de Midiã." 23 Mas Gideão lhes disse: "Não governarei sobre vós, nem meu filho governará sobre vós; o SENHOR governará sobre vós." 24 Todavia Gideão lhes disse: "Pedir-vos-ia que cada um me desse uma argola de suas presas." (Pois tinham argolas de ouro, porque eram ismaelitas.)</span><span class="lang-en">12 When Zebah and Zalmunna fled, he pursued them and captured the two kings of Midian, Zebah and Zalmunna, and routed the whole army. … 21b So Gideon arose and killed Zebah and Zalmunna, and took the crescent ornaments which were on their camels’ necks. 22 Then the men of Israel said to Gideon, "Rule over us, both you and your son, also your son’s son, for you have delivered us from the hand of Midian." 23 But Gideon said to them, "I will not rule over you, nor shall my son rule over you; the LORD shall rule over you." 24 Yet Gideon said to them, "I would request of you, that each of you give me an earring from his spoil." (For they had gold earrings, because they were Yishmaelites.)</span></p>
-    <h3 class="sub reveal"><span class="lang-pt">Isaías 60:5b-7</span><span class="lang-en">Isaiah 60:5b-7</span></h3>
-    <p class="body reveal"><span class="lang-pt">5b A riqueza das nações virá a ti. 6 Uma multidão de camelos te cobrirá, os camelos novos de Midiã e Efa; todos os de Seba virão; trarão ouro e incenso, e proclamarão os louvores do SENHOR. 7 Todos os rebanhos de Quedar se congregarão a ti; os carneiros de Nebaioth te ministrarão; subirão com aceitação no meu altar, e eu glorificarei a minha casa gloriosa.</span><span class="lang-en">5b The wealth of the nations will come to you. 6 A multitude of camels will cover you, the young camels of Midian and Ephah; all those from Sheba will come; They will bring gold and frankincense, and will bear good news of the praises of the LORD. 7 All the flocks of Kedar will be gathered together to you, the rams of Nebaioth will minister to you; they will go up with acceptance on my altar, and I shall glorify my glorious house.</span></p>
-    <h3 class="sub reveal"><span class="lang-pt">Gênesis 25:2-4 – Filhos de Keturah</span><span class="lang-en">Genesis 25:2-4 – Sons of Keturah</span></h3>
-    <p class="body reveal"><span class="lang-pt">2 Keturah deu à luz a [Avraham] Zimran e Jocsã e Medã e Midiã e Isbaque e Shuá. 3 Jocsã foi pai de Seba e Dedã. 4 … Os filhos de Midiã foram Efa e Efer.</span><span class="lang-en">2 Keturah bore to [Avraham] Zimran and Jokshan and Medan and Midian and Ishbak and Shuah. 3 Jokshan became the father of Sheba and Dedan. 4 … The sons of Midian were Ephah and Epher.</span></p>
-    <h3 class="sub reveal"><span class="lang-pt">Gênesis 25:13 – Filhos de Yishmael</span><span class="lang-en">Genesis 25:13 – Sons of Yishmael</span></h3>
-    <p class="body reveal"><span class="lang-pt">Os nomes dos filhos de Yishmael, por seus nomes, conforme a ordem de seu nascimento: Nebaioth, o primogênito de Yishmael, e Quedar, Adbeel e Mibsã.</span><span class="lang-en">The names of the sons of Yishmael, by their names, in the order of their birth: Nebaioth, the firstborn of Yishmael, and Kedar and Adbeel and Mibsam.</span></p>
-    <p class="caption"><span class="lang-pt">Juízes e Isaías em Gênesis 25. Criado por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Judges and Isaiah in Genesis 25. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
+    <div class="d6-jdg reveal">
+      <div class="d6-jdg-cell d6-jdg-wide">
+        <div class="d6-jdg-h"><span class="lang-pt">Juízes 8:12, 21-24</span><span class="lang-en">Judges 8:12, 21-24</span></div>
+        <div class="d6-jdg-b"><span class="lang-pt">12 Quando Zebá e Zalmuna fugiram, ele os perseguiu e capturou os dois reis de Midiã, Zebá e Zalmuna, e desbaratou todo o exército. … 21b Então Gideão se levantou e matou Zebá e Zalmuna, e tomou os ornamentos crescentes que estavam nos pescoços de seus camelos. 22 Então os homens de Israel disseram a Gideão: "Governa sobre nós, tanto tu como teu filho, e também o filho de teu filho, pois livraste-nos da mão de Midiã." 23 Mas Gideão lhes disse: "Não governarei sobre vós, nem meu filho governará sobre vós; o SENHOR governará sobre vós." 24 Todavia Gideão lhes disse: "Pedir-vos-ia que cada um me desse uma argola de suas presas." (Pois tinham argolas de ouro, porque eram ismaelitas.)</span><span class="lang-en">12 When Zebah and Zalmunna fled, he pursued them and captured the two kings of Midian, Zebah and Zalmunna, and routed the whole army. … 21b So Gideon arose and killed Zebah and Zalmunna, and took the crescent ornaments which were on their camels’ necks. 22 Then the men of Israel said to Gideon, "Rule over us, both you and your son, also your son’s son, for you have delivered us from the hand of Midian." 23 But Gideon said to them, "I will not rule over you, nor shall my son rule over you; the LORD shall rule over you." 24 Yet Gideon said to them, "I would request of you, that each of you give me an earring from his spoil." (For they had gold earrings, because they were Yishmaelites.)</span></div>
+      </div>
+      <div class="d6-jdg-col">
+        <div class="d6-jdg-cell">
+          <div class="d6-jdg-h"><span class="lang-pt">Isaías 60:5b-7</span><span class="lang-en">Isaiah 60:5b-7</span></div>
+          <div class="d6-jdg-b"><span class="lang-pt">5b A riqueza das nações virá a ti. 6 Uma multidão de camelos te cobrirá, os camelos novos de Midiã e Efa; todos os de Seba virão; trarão ouro e incenso, e proclamarão os louvores do SENHOR. 7 Todos os rebanhos de Quedar se congregarão a ti; os carneiros de Nebaioth te ministrarão; subirão com aceitação no meu altar, e eu glorificarei a minha casa gloriosa.</span><span class="lang-en">5b The wealth of the nations will come to you. 6 A multitude of camels will cover you, the young camels of Midian and Ephah; all those from Sheba will come; They will bring gold and frankincense, and will bear good news of the praises of the LORD. 7 All the flocks of Kedar will be gathered together to you, the rams of Nebaioth will minister to you; they will go up with acceptance on my altar, and I shall glorify my glorious house.</span></div>
+        </div>
+      </div>
+      <div class="d6-jdg-col">
+        <div class="d6-jdg-cell">
+          <div class="d6-jdg-h"><span class="lang-pt">Gênesis 25:2-4 – Filhos de Keturah</span><span class="lang-en">Genesis 25:2-4 – Sons of Keturah</span></div>
+          <div class="d6-jdg-b"><span class="lang-pt">2 Keturah deu à luz a [Avraham] Zimran e Jocsã e Medã e Midiã e Isbaque e Shuá. 3 Jocsã foi pai de Seba e Dedã. 4 … Os filhos de Midiã foram Efa e Efer.</span><span class="lang-en">2 Keturah bore to [Avraham] Zimran and Jokshan and Medan and Midian and Ishbak and Shuah. 3 Jokshan became the father of Sheba and Dedan. 4 … The sons of Midian were Ephah and Epher.</span></div>
+        </div>
+        <div class="d6-jdg-cell">
+          <div class="d6-jdg-h"><span class="lang-pt">Gênesis 25:13 – Filhos de Yishmael</span><span class="lang-en">Genesis 25:13 – Sons of Yishmael</span></div>
+          <div class="d6-jdg-b"><span class="lang-pt">Os nomes dos filhos de Yishmael, por seus nomes, conforme a ordem de seu nascimento: Nebaioth, o primogênito de Yishmael, e Quedar, Adbeel e Mibsã.</span><span class="lang-en">The names of the sons of Yishmael, by their names, in the order of their birth: Nebaioth, the firstborn of Yishmael, and Kedar and Adbeel and Mibsam.</span></div>
+        </div>
+      </div>
+      <div class="d6-jdg-cell d6-jdg-wide d6-jdg-cap"><span class="lang-pt">Juízes e Isaías em Gênesis 25. Criado por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Judges and Isaiah in Genesis 25. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></div>
+    </div>
     <h2 class="section reveal"><span class="lang-pt">Conclusão</span><span class="lang-en">Conclusion</span></h2>
     <p class="body reveal"><span class="lang-pt">Gênesis 37 retrata todos os filhos de Yaaqov reencenando as falhas de seus pais, um ato intensificado de traição contra o filho amado da promessa de Deus. O aparecimento dos ismaelitas e midianitas inclui a família mais ampla de Abraão na traição, de modo que toda a linhagem abençoada de Abraão é envolvida (intencional ou unintentionalmente) na traição que fraturará a família, apenas para reuní-la na reunificação final sob o reinado de Yoseph.</span><span class="lang-en">Genesis 37 portrays all the sons of Yaaqov as replaying their fathers' failures, an intensified act of betrayal against the beloved son of God’s promise. The appearance of the Yishmaelites and Midianites includes the wider family of Abraham in the betrayal, so that the entire line of Abraham’s blessed lineage is caught up (intentionally or unintentionally) in the betrayal that will fracture the family, only to bring it together in the ultimate reunification under Yoseph’s reign.</span></p>
 
@@ -263,6 +542,57 @@
     </div>
 
   <script src="../../js/reading-progress.js"></script>
+  <script>
+(function () {
+  /* AUTO-FIT: canvas fixo de 1600px escalado para a largura da viewport
+     (desktop) / empilhamento vertical (mobile). */
+  function fitDiagrams() {
+    document.querySelectorAll('.diagram-viewport').forEach((viewport) => {
+      const canvas = viewport.querySelector('.diagram-canvas');
+      if (!canvas) return;
+
+      const naturalWidth = canvas.offsetWidth;
+      const naturalHeight = canvas.offsetHeight;
+      const availableWidth = viewport.clientWidth;
+
+      if (!naturalWidth || !naturalHeight || !availableWidth) return;
+
+      if (window.innerWidth <= 767) {
+        canvas.style.position = 'relative';
+        canvas.style.width = '100%';
+        canvas.style.height = 'auto';
+        canvas.style.transform = 'none';
+        canvas.style.left = '0px';
+        canvas.style.top = '0px';
+        viewport.style.height = canvas.scrollHeight + 'px';
+        return;
+      }
+
+      const scale = Math.min(1, availableWidth / naturalWidth);
+      const renderedWidth = naturalWidth * scale;
+      const renderedHeight = naturalHeight * scale;
+
+      canvas.style.transform = 'scale(' + scale + ')';
+      canvas.style.left = Math.max(0, (availableWidth - renderedWidth) / 2) + 'px';
+      canvas.style.top = '0px';
+      viewport.style.height = renderedHeight + 'px';
+    });
+  }
+
+  let resizeFrame = null;
+  function scheduleFit() {
+    if (resizeFrame) cancelAnimationFrame(resizeFrame);
+    resizeFrame = requestAnimationFrame(fitDiagrams);
+  }
+
+  window.addEventListener('resize', scheduleFit, { passive: true });
+  window.addEventListener('orientationchange', scheduleFit, { passive: true });
+  window.addEventListener('load', scheduleFit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleFit);
+
+  fitDiagrams();
+})();
+  </script>
   <script src="../../js/lang-toggle.js"></script>
   <script src="../../js/reveal.js"></script>
   <script>

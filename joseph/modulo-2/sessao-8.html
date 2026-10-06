@@ -121,7 +121,184 @@
   .keylabel { font-weight: 700; color: #17181a; }
   .quote .cite { display:block; font-style: normal; color:#5b6472; font-size:.92rem; margin-top:.6rem; }
   
-  .takeaways-h { font-weight: 800; font-size: 1.3rem; line-height: 1.25; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; color: #17181a; }</style>
+  .takeaways-h { font-weight: 800; font-size: 1.3rem; line-height: 1.25; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; color: #17181a; }
+  /* ===================================================================
+     D8 — diagramas da sessao 8.
+
+     ESCALA: a area util do PDF vai de x=36 a x=576 (540pt) e o canvas e
+     fixo em 1600px, logo 1pt = 2.963px (= 1.3333px do 96dpi x 2.2222).
+     Todos os numeros abaixo ja estao nessa escala.
+
+     MEDIDAS no PDF (1pt = 1.3333px a 96dpi):
+       moldura 1.5pt .............. 4.4px
+       pílula 15pt de altura .... 44.4px, raio 3pt = 8.9px,
+                                  recuo lateral 3pt = 8.9px
+       texto 10.5pt ............. 31.1px
+       entrelinha 15.75pt ....... 46.7px
+       versiculo 9pt (sobrescrito) 26.7px
+       painel A  (p0) 42.75..569.25 x 318..409.5   -> 1560 x 271px
+       painel B  (p0) 60.75..569.25 x 417..524.25  -> 1506 x 318px
+         (recuo de 18pt a esquerda, como no PDF)
+       painel A' (p0) 42.75..569.25 x 531.75..654.75 -> 1560 x 364px
+       badge: x = moldura.x0 + 6.75pt = 20px; recuo topo 6.75pt
+       marcador a/b: x = moldura.x0 + 12.75pt = 37.8px
+       referencia "38:1-2": x = moldura.x0 + 24.75pt = 73.4px
+       continuacao: recuo extra de 12pt = 35.6px
+       painel (p5) 54.75..575.25 x 287.25..645.75 -> 1543 x 1063px
+       painel B (p5) 72.75..575.25 x 120.75..255     -> 1489 x 398px
+
+     CORES CONFIRMADAS por pixel (matriz 8x), NAO pelo `fill` do PyMuPDF:
+       molduras            #3e4053  #6b7384  #e4e8ec
+       pílulas pagina 0    #3e4053/#ffffff   (badge)
+                            #e4e8ec/#4f5669   (Canaanite wife, come out,
+                                               comes out)
+                            #efe7da/#645437   (pledge)
+       pílulas pagina 1    #3e4053/#ffffff, #e4e8ec/#4f5669, #6b7384/#ffffff
+       pílulas pagina 5    #be4966/#ffffff   (Yehudah saw there, Er, Onan,
+                                               Shelah, And he took her,
+                                               And it was evil...)
+                            #e3e7ec/#4f5669   (was evil in the eyes...)
+                            #6a7383/#ffffff   (He too may die..., widow...)
+       pílulas pagina 3    #d9ecfd/#404ba6  #f9e3de/#972a4e
+                            #f6e1f5/#703c91  #fae3c3/#90362e
+       texto sem pílula     #be4967 (vermelho)  #3a8060 (verde)
+                            #5869cd (azul)     #ffffff (sobre pílula escura)
+       legenda              #4f5669
+     =================================================================== */
+  .diagram-scroll {
+    width: 100%;
+    margin: 1.5rem 0;
+    padding: 0.75rem;
+    background: #fff;
+    overflow: hidden;
+  }
+  #sessao-8 > .diagram-scroll {
+    width: 100vw;
+    margin-left: calc((100% - 100vw) / 2);
+  }
+  .diagram-viewport { position: relative; width: 100%; overflow: hidden; }
+  .diagram-canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    transform-origin: top left;
+    will-change: transform;
+    width: 1600px;
+  }
+
+  /* ---- D8-1: paineis A / B / A' de Gn 38:1-11 (pagina 0) ---- */
+  .d8-panel {
+    min-width: 0;
+    background: #fff;
+    border: 4.4px solid #3e4053;
+    border-radius: 15.6px;          /* raio 5.25pt no PDF */
+    padding: 20px 20px 20px 37.8px;/* badge/marcador a 12.75pt da borda */
+    margin-bottom: 22.3px;         /* vao 7.5pt entre molduras */
+  }
+  .d8-panel:last-child { margin-bottom: 0; }
+  .d8-panel.d8-b { border-color: #6b7384; margin-left: 53.3px; width: calc(100% - 53.3px); }
+
+  .d8-badge {
+    display: inline-block;
+    background: #3e4053;
+    color: #fff;
+    font-size: 31.1px;
+    font-weight: 700;
+    line-height: 44.4px;
+    padding: 0 8.9px;
+    border-radius: 8.9px;
+    margin: 0 0 8.9px -17.8px;    /* badge em x = moldura.x0 + 6.75pt */
+  }
+  .d8-panel.d8-b .d8-badge { background: #6b7384; }
+
+  .d8-row {
+    font-size: 31.1px;
+    line-height: 46.7px;
+    color: #1b1b1b;
+    margin: 0;
+  }
+  .d8-mark { display: inline-block; width: 35.6px; }   /* coluna a/b */
+  .d8-ref  { font-weight: 700; }                        /* 38:1-2 */
+  .d8-cont { padding-left: 71.2px; }                    /* continuacao +12pt */
+
+  .d8-num {
+    font-size: 26.7px;
+    vertical-align: super;
+    line-height: 0;
+  }
+
+  .d8-pill {
+    display: inline-block;
+    padding: 0 8.9px;
+    border-radius: 8.9px;
+    line-height: 44.4px;
+    font-weight: 700;
+  }
+  .d8-c-slate { background: #6a7383; color: #fff; }
+  .d8-c-mute  { background: #e4e8ec; color: #4f5669; }
+  .d8-c-tan   { background: #efe7da; color: #645437; }
+  .d8-c-rose  { background: #be4966; color: #fff; }
+  .d8-c-grey  { background: #e3e7ec; color: #4e5669; }
+  .d8-c-blue  { background: #d9ecfd; color: #404ba6; }
+  .d8-c-peach { background: #f9e3de; color: #972a4e; }
+  .d8-c-lilac { background: #f6e1f5; color: #703c91; }
+  .d8-c-sand  { background: #fae3c3; color: #90362e; }
+
+  .d8-c-red { color: #be4967; }   /* texto, sem pílula */
+  .d8-c-grn { color: #3a8060; }
+  .d8-c-blu { color: #5869cd; }
+  .d8-c-wht { color: #fff; }
+
+  /* ---- D8-2: Gn 37:36 / 38:1 / 39:1 (pagina 1) ---- */
+  .d8-sc { margin-bottom: 22.3px; }
+  .d8-sc:last-child { margin-bottom: 0; }
+  .d8-sc .d8-panel { margin-bottom: 0; }
+  /* o painel do meio tem fundo cinza e recuo, como no PDF */
+  .d8-sc-mid {
+    border-color: #6b7384;
+    margin-left: 53.3px;
+    width: calc(100% - 53.3px);
+  }
+
+  /* ---- D8-3: Gn 38:1-11 Design Literario (paginas 4-5) ---- */
+  .d8-lit { border-color: #1b1b1b; }
+  .d8-lit-lit { border-color: #e4e8ec; }
+  .d8-lit-badge {
+    display: inline-block;
+    background: #1b1b1b;
+    color: #fff;
+    border-radius: 8.9px;
+    padding: 0 8.9px;
+    line-height: 44.4px;
+    font-size: 31.1px;
+    font-weight: 700;
+  }
+  .d8-lit-l { font-size: 24px; color: #4f5669; margin-right: 15px; }
+
+  @media (max-width: 767px) {
+    #sessao-8 > .diagram-scroll {
+      width: 100vw;
+      margin-left: calc((100% - 100vw) / 2);
+    }
+    .diagram-canvas {
+      position: relative;
+      width: 100%;
+      height: auto;
+      transform: none !important;
+    }
+    .d8-panel { padding: 12px 12px 12px 20px; margin-bottom: 14px; }
+    .d8-panel.d8-b,
+    .d8-sc-mid { margin-left: 0; width: 100%; }
+    .d8-badge { margin-left: 0; }
+    .d8-row { font-size: 16px; line-height: 25px; }
+    .d8-num { font-size: 13px; }
+    .d8-pill { line-height: 22px; border-radius: 5px; padding: 0 5px; }
+    .d8-mark { width: 20px; }
+    .d8-cont { padding-left: 40px; }
+    .d8-lit-badge { font-size: 16px; line-height: 22px; }
+  }
+</style>
 </head>
 <body class="bg-white">
 <div id="reading-progress" aria-hidden="true"></div>
@@ -140,7 +317,7 @@
     <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
   </div>
 </div>
-<div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
+<div class="max-w-4xl mx-auto px-5 py-12 md:py-16" id="sessao-8">
 <h1 class="title reveal"><span class="lang-pt">Sessão 8: Judá e Tamar</span><span class="lang-en">Session 8: Judah and Tamar</span></h1>
 <hr class="rule">
 <p class="body reveal"><span class="lang-pt">Anotações de Aula: José</span><span class="lang-en">Class Notes: Joseph</span></p>
@@ -153,29 +330,37 @@
   <li><span class="lang-pt">Yehudah e seus filhos reencenam a falha de Adão e Eva.</span><span class="lang-en">Yehudah and his sons replay the failure of Adam and Eve.</span></li>
 </ul>
 <h2 class="section reveal"><span class="lang-pt">A Semente de Yehudah É Salva por Tamar</span><span class="lang-en">The Seed of Yehudah Is Saved by Tamar</span></h2>
-<ul class="bullets reveal">
-  <li><span class="lang-pt">A — Gênesis 38:1-11 · a — 38:1-2 Yehudah casa-se com uma esposa cananeia · b — 38:3-5 Ela dá à luz três filhos para Yehudah · a’ — 38:6-11 Os dois filhos de Yehudah morrem; ele engana Tamar, a esposa cananeia de seus filhos</span><span class="lang-en">A - Genesis 38:1-11 · a - 38:1-2 Yehudah marries a Canaanite wife · b - 38:3-5 She births three sons for Yehudah · a' - 38:6-11 Yehudah's two sons die; he deceives Tamar, the Canaanite wife of his sons</span></li>
-  <li><span class="lang-pt">B — Gênesis 38:12-23 · a — 38:12-13 Yehudah e Hirah sobem para tosquiar o rebanho de cabras · b — 38:14-19 O contra-engano de Tamar: disfarçada de prostituta, ela resgata a semente de Yehudah e toma seu selo, cordão e cajado como penhor · a’ — 38:20-23 Yehudah envia Hirah buscar o penhor com um cabrito, mas não encontra Tamar</span><span class="lang-en">B - Genesis 38:12-23 · a - 38:12-13 Yehudah and Hirah go up to shear the flock of goats · b - 38:14-19 Tamar's Counter-Deception: Disguised as a sex-worker, she rescues the seed of Yehudah and takes his seal, cord, and staff as a pledge · a' - 38:20-23 Yehudah sends Hirah to get the pledge with a goat, but cannot find Tamar</span></li>
-  <li><span class="lang-pt">A’ — 38:24-30 · a — 38:24-26 Tamar, jovem e grávida, é feita sair; ela exibe o penhor, e o idoso Yehudah confessa seu engano · b — 38:27 Tamar está grávida de gêmeos · a’ — 38:28-30 Tamar dá à luz os filhos gêmeos e rivais de Yehudah; o mais novo sai tentando usurpar o mais velho</span><span class="lang-en">A' - 38:24-30 · a - 38:24-26 Young, pregnant Tamar is made to come out; she displays the pledge, older Yehudah confesses his deception · b - 38:27 Tamar is pregnant with twins · a' - 38:28-30 Tamar gives birth to Yehudah's twin, rival sons; the younger comes out trying to usurp the older</span></li>
-</ul>
-<p class="body reveal"><span class="lang-pt">Gênesis 38. Design Literário por Tim Mackie para BibleProject Classroom: Abraão (2021).</span><span class="lang-en">Genesis 38. Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
+    <div class="diagram-scroll">
+      <div class="diagram-viewport">
+        <div class="diagram-canvas">
+          <div class="d8-panel"><span class="d8-badge"><span class="lang-pt">A - Gênesis 38:1-11</span><span class="lang-en">A - Genesis 38:1-11</span></span><div class="d8-row"><span class="d8-mark"><span class="lang-pt">a</span><span class="lang-en">a</span></span><span class="d8-ref"><span class="lang-pt">38:1-2</span><span class="lang-en">38:1-2</span></span> <span><span class="lang-pt">Yehudah casa-se com uma </span><span class="lang-en">Yehudah marries a </span></span><span class="d8-pill d8-c-mute"><span class="lang-pt">esposa cananeia</span><span class="lang-en">Canaanite wife</span></span></div><div class="d8-row"><span class="d8-mark"><span class="lang-pt">b</span><span class="lang-en">b</span></span><span class="d8-ref"><span class="lang-pt">38:3-5</span><span class="lang-en">38:3-5</span></span> <span><span class="lang-pt">Ela </span><span class="lang-en">She </span></span><span class="d8-c-blu"><span class="lang-pt">dá à luz três filhos para Yehudah</span><span class="lang-en">births three sons for Yehudah</span></span></div><div class="d8-row"><span class="d8-mark"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><span class="d8-ref"><span class="lang-pt">38:6-11</span><span class="lang-en">38:6-11</span></span> <span><span class="lang-pt">Os dois filhos de Yehudah morrem; </span><span class="lang-en">Yehudah's two sons die; </span></span><span class="d8-c-red"><span class="lang-pt">ele engana Tamar</span><span class="lang-en">he deceives Tamar</span></span><span><span class="lang-pt">, a </span><span class="lang-en">, the </span></span><span class="d8-pill d8-c-mute"><span class="lang-pt">esposa cananeia</span><span class="lang-en">Canaanite wife</span></span><span><span class="lang-pt"> de seus filhos</span><span class="lang-en"> of his sons</span></span></div></div>
+          <div class="d8-panel d8-b"><span class="d8-badge"><span class="lang-pt">B - Gênesis 38:12-23</span><span class="lang-en">B - Genesis 38:12-23</span></span><div class="d8-row"><span class="d8-mark"><span class="lang-pt">a</span><span class="lang-en">a</span></span><span class="d8-ref"><span class="lang-pt">38:12-13</span><span class="lang-en">38:12-13</span></span> <span><span class="lang-pt">Yehudah e Hirah sobem para tosquiar o rebanho de cabras</span><span class="lang-en">Yehudah and Hirah go up to shear the flock of goats</span></span></div><div class="d8-row"><span class="d8-mark"><span class="lang-pt">b</span><span class="lang-en">b</span></span><span class="d8-ref"><span class="lang-pt">38:14-19</span><span class="lang-en">38:14-19</span></span> <span class="d8-c-red"><span class="lang-pt">O contra-engano de Tamar</span><span class="lang-en">Tamar's Counter-Deception</span></span><span><span class="lang-pt">: disfarçada de prostituta, ela resgata a semente de</span><span class="lang-en">: Disguised as a sex-worker, she rescues the seed of</span></span></div><div class="d8-row"><span class="d8-cont"></span><span><span class="lang-pt">Yehudah e toma seu selo, cordão e cajado como </span><span class="lang-en">Yehudah and takes his seal, cord, and staff as a </span></span><span class="d8-pill d8-c-tan"><span class="lang-pt">penhor</span><span class="lang-en">pledge</span></span></div><div class="d8-row"><span class="d8-mark"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><span class="d8-ref"><span class="lang-pt">38:20-23</span><span class="lang-en">38:20-23</span></span> <span><span class="lang-pt">Yehudah envia Hirah buscar o </span><span class="lang-en">Yehudah sends Hirah to get the </span></span><span class="d8-pill d8-c-tan"><span class="lang-pt">penhor</span><span class="lang-en">pledge</span></span><span><span class="lang-pt"> com um cabrito, mas não encontra Tamar</span><span class="lang-en"> with a goat, but cannot find Tamar</span></span></div></div>
+          <div class="d8-panel"><span class="d8-badge"><span class="lang-pt">A’ - 38:24-30</span><span class="lang-en">A’ - 38:24-30</span></span><div class="d8-row"><span class="d8-mark"><span class="lang-pt">a</span><span class="lang-en">a</span></span><span class="d8-ref"><span class="lang-pt">38:24-26</span><span class="lang-en">38:24-26</span></span> <span><span class="lang-pt">Tamar, jovem e grávida, é feita </span><span class="lang-en">Young, pregnant Tamar is made to </span></span><span class="d8-pill d8-c-mute"><span class="lang-pt">sair</span><span class="lang-en">come out</span></span><span><span class="lang-pt">; ela exibe o </span><span class="lang-en">; she displays the </span></span><span class="d8-pill d8-c-tan"><span class="lang-pt">penhor</span><span class="lang-en">pledge</span></span><span><span class="lang-pt">, o </span><span class="lang-en">, </span></span><span class="d8-c-grn"><span class="lang-pt">idoso</span><span class="lang-en">older</span></span></div><div class="d8-row"><span class="d8-cont"></span><span><span class="lang-pt">Yehudah confessa seu </span><span class="lang-en">Yehudah confesses his </span></span><span class="d8-c-red"><span class="lang-pt">engano</span><span class="lang-en">deception</span></span></div><div class="d8-row"><span class="d8-mark"><span class="lang-pt">b</span><span class="lang-en">b</span></span><span class="d8-ref"><span class="lang-pt">38:27</span><span class="lang-en">38:27</span></span> <span><span class="lang-pt">Tamar está grávida de </span><span class="lang-en">Tamar is pregnant with </span></span><span class="d8-c-blu"><span class="lang-pt">gêmeos</span><span class="lang-en">twins</span></span></div><div class="d8-row"><span class="d8-mark"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><span class="d8-ref"><span class="lang-pt">38:28-30</span><span class="lang-en">38:28-30</span></span> <span><span class="lang-pt">Tamar dá à luz os filhos gêmeos e rivais de Yehudah; o </span><span class="lang-en">Tamar gives birth to Yehudah's twin, rival sons; the </span></span><span class="d8-c-grn"><span class="lang-pt">mais novo</span><span class="lang-en">younger</span></span> <span class="d8-pill d8-c-mute"><span class="lang-pt">sai</span><span class="lang-en">comes out</span></span><span><span class="lang-pt"> tentando usurpar o </span><span class="lang-en"> trying to usurp the </span></span><span class="d8-c-grn"><span class="lang-pt">mais velho</span><span class="lang-en">older</span></span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="caption reveal"><span class="lang-pt">Gênesis 38. Design Literário por Tim Mackie para BibleProject Classroom: Abraão (2021).</span><span class="lang-en">Genesis 38. Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
 <p class="body reveal"><span class="lang-pt">Esta história sobre a morte e restauração da linhagem familiar de Yehudah começa com uma frase-chave que a liga à história de Yoseph que a cerca, a qual também tratará da morte e restauração da linhagem familiar de Yaaqov.</span><span class="lang-en">This story about the death and restoration of Yehudah’s family line begins with a key phrase that links it to the surrounding Yoseph story, which is also going to be about the death and restoration of Yaaqov’s family line.</span></p>
 <h3 class="sub reveal"><span class="lang-pt">Os Versículos Iniciais Conectam as Histórias</span><span class="lang-en">The Opening Verses Connect the Stories</span></h3>
-<p class="body reveal"><span class="lang-pt">Anotações de Aula: José — 43 de 215 · Gênesis 37:36-39:1. Design Literário por Tim Mackie para BibleProject Classroom: Abraão (2021).</span><span class="lang-en">Class Notes: Joseph — 43 of 215 · Genesis 37:36-39:1. Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
-<div class="scripture reveal">
-  <div><span class="scripture-label lang-pt">Gênesis 37:36</span><span class="scripture-label lang-en">Genesis 37:36</span><span class="scripture-type lang-pt">Tradução do Instrutor</span><span class="scripture-type lang-en">Instructor's Translation</span></div>
-    <div class="scripture-text"><span class="lang-pt">Enquanto isso, os midianitas o venderam no Egito a Potifar, oficial de Faraó, o capitão dos açougueiros.</span><span class="lang-en">“Meanwhile, the Midianites sold him in Egypt to Potiphar, Pharaoh's officer, the captain of the butchers.”</span></div>
-</div>
-<div class="scripture reveal">
-  <div><span class="scripture-label lang-pt">Gênesis 38:1</span><span class="scripture-label lang-en">Genesis 38:1</span><span class="scripture-type lang-pt">Tradução do Instrutor</span><span class="scripture-type lang-en">Instructor's Translation</span></div>
-    <div class="scripture-text"><span class="lang-pt">E aconteceu naquele tempo, que Judá desceu (ירד) de seus irmãos e visitou um certo adulamita, cujo nome era Hira.</span><span class="lang-en">“And it came about at that time, that Judah went down (ירד) from his brothers and visited a certain Adullamite, whose name was Hirah.”</span></div>
-</div>
-<div class="scripture reveal">
-  <div><span class="scripture-label lang-pt">Gênesis 39:1</span><span class="scripture-label lang-en">Genesis 39:1</span><span class="scripture-type lang-pt">Tradução do Instrutor</span><span class="scripture-type lang-en">Instructor's Translation</span></div>
-    <div class="scripture-text"><span class="lang-pt">Ora, José havia sido feito descer (ירד) para o Egito; e Potifar, oficial egípcio de Faraó, o capitão dos açougueiros, o comprou dos ismaelitas, que o tinham levado para baixo (ירד) para lá.</span><span class="lang-en">a - “Now Yoseph had been made to go down (ירד) to Egypt; b - and Potiphar, an Egyptian officer of Pharaoh, the captain of the butchers, bought him from the Yishmaelites, a' - who had taken him down (ירד) there.”</span></div>
-</div>
+    <div class="diagram-scroll">
+      <div class="diagram-viewport">
+        <div class="diagram-canvas">
+          <div class="d8-sc"><div class="d8-panel"><span class="d8-badge"><span class="lang-pt">Gênesis 37:36</span><span class="lang-en">Genesis 37:36</span></span><div class="d8-row">• <span><span class="lang-pt">“Enquanto isso, os midianitas </span><span class="lang-en">“Meanwhile, the Midianites </span></span><span class="d8-pill d8-c-mute"><span class="lang-pt">o venderam no Egito a Potifar, oficial de Faraó, o capitão dos açougueiros</span><span class="lang-en">sold him in Egypt to Potiphar, Pharaoh’s officer, the captain of the butchers</span></span><span><span class="lang-pt">”.</span><span class="lang-en">”.</span></span></div></div></div>
+          <div class="d8-sc"><div class="d8-panel d8-sc-mid"><span class="d8-badge"><span class="lang-pt">Gênesis 38:1</span><span class="lang-en">Genesis 38:1</span></span><div class="d8-row">• <span><span class="lang-pt">“E aconteceu naquele tempo, que Judá </span><span class="lang-en">“And it came about at that time, that Judah </span></span><span class="d8-c-red"><span class="lang-pt">desceu</span><span class="lang-en">went down</span></span><span><span class="lang-pt"> (ירד) de seus irmãos e visitou um certo adulamita, cujo nome era Hira.”</span><span class="lang-en"> (ירד) from his brothers and visited a certain Adullamite, whose name was Hirah.”</span></span></div></div></div>
+          <div class="d8-sc"><div class="d8-panel"><span class="d8-badge"><span class="lang-pt">Gênesis 39:1</span><span class="lang-en">Genesis 39:1</span></span><div class="d8-row"><span class="d8-mark"><span class="lang-pt">a</span><span class="lang-en">a</span></span><span><span class="lang-pt">“Agora, </span><span class="lang-en">“Now </span></span><span class="d8-c-red"><span class="lang-pt">Yoseph havia sido feito descer</span><span class="lang-en">Yoseph had been made to go down</span></span><span><span class="lang-pt"> (ירד) para o Egito;</span><span class="lang-en"> (ירד) to Egypt;</span></span></div><div class="d8-row"><span class="d8-mark"><span class="lang-pt">b</span><span class="lang-en">b</span></span><span><span class="lang-pt">e </span><span class="lang-en">and </span></span><span class="d8-pill d8-c-mute"><span class="lang-pt">Potifar, oficial egípcio de Faraó, o capitão dos açougueiros, o comprou dos ismaelitas</span><span class="lang-en">Potiphar, an Egyptian officer of Pharaoh, the captain of the butchers, bought him from the Yishmaelites</span></span><span><span class="lang-pt">,</span><span class="lang-en">,</span></span></div><div class="d8-row"><span class="d8-mark"><span class="lang-pt">a'</span><span class="lang-en">a'</span></span><span><span class="lang-pt">que o </span><span class="lang-en">who </span></span><span class="d8-c-red"><span class="lang-pt">tinham levado para baixo</span><span class="lang-en">had taken him down</span></span><span><span class="lang-pt"> (ירד) para lá.”</span><span class="lang-en"> (ירד) there.”</span></span></div></div></div>
+        </div>
+      </div>
+    </div>
+    <p class="caption reveal"><span class="lang-pt">Gênesis 37:36-39:1. Design Literário por Tim Mackie para BibleProject Classroom: Abraão (2021).</span><span class="lang-en">Genesis 37:36-39:1. Literary Design by Tim Mackie for BibleProject Classroom: Abraham (2021).</span></p>
+
+
+
 <p class="body reveal"><span class="lang-pt">Essas ligações literárias convidam-nos a fazer uma comparação deliberada entre Yoseph, que desce de seus irmãos para o Egito, e Yehudah, que também desce de seus irmãos em Gênesis 38. Devemos aplicar o que aprendemos sobre o "descer" de Yehudah à nossa compreensão da história mais ampla de Yoseph e seus irmãos.</span><span class="lang-en">These literary links invite us to make a deliberate comparison between Yoseph, who goes down from his brothers into Egypt, and Yehudah, who also goes down from his brothers in Genesis 38. We are meant to apply what we learn about Yehudah's "going down" to our understanding of the wider story of Yoseph and his brothers.</span></p>
 <h2 class="section reveal"><span class="lang-pt">A História Dentro da História</span><span class="lang-en">The Story Within the Story</span></h2>
+    <figure class="reveal" style="margin:2rem 0;">
+    <img src="img/sessao-8/page-1.jpg" alt="" width="360" height="450" class="block mx-auto my-4 rounded-[12px]" style="max-width:100%;">
+  </figure>
 <p class="body reveal"><span class="lang-pt">Rakozay (2019). Exemplo de Mis en Abyme. Stack Exchange</span><span class="lang-en">Rakozay (2019). Example of Mis en Abyme. Stack Exchange</span></p>
     
 <p class="body reveal"><span class="lang-pt">Gênesis 38 é o que teóricos literários chamam de "mise en abyme". Este termo francês refere-se à técnica artística de colocar uma versão em miniatura da obra maior em algum lugar dentro da própria obra. Na literatura, um autor pode realizar isso colocando uma história menor dentro de uma maior, e essa história menor condensa e resume os temas e motivos da narrativa ao redor. Em Gênesis 38, a história de Yaaqov, Yoseph, Yehudah e os irmãos é espelhada no drama de Yehudah, Shelah e Tamar. Como o conflito da trama de Gênesis 38 espelha o de Gênesis 37, o leitor reentra na história de Yoseph antecipando que Gênesis 39-45 progredirá em linhas semelhantes às de Gênesis 38.</span><span class="lang-en">Genesis 38 is what literary theorists call a “mise en abyme.” This French term refers to the artistic technique of placing a miniature version of the larger work somewhere inside of the work itself. In literature, an author can accomplish this by placing a smaller story within a larger one, and that smaller story condenses and summarizes the themes and motifs of the surrounding narrative. In Genesis 38, the story of Yaaqov, Yoseph, Yehudah, and the brothers is mirrored in the drama of Yehudah, Shelah, and Tamar. Because the plot conflict of Genesis 38 mirrors that of Genesis 37, the reader reenters the Yoseph story anticipating that Genesis 39-45 will progress along similar lines as Genesis 38.</span></p>
@@ -225,18 +410,17 @@
 <p class="body reveal"><span class="lang-pt">A esposa de Potifar convida Yoseph a ter relações sexuais e então usa uma vestimenta enganosa para mentir ao marido. Ela é uma inversão de Tamar, que usa vestimentas enganosas para fazer Yehudah deitar-se com ela, porque ele mentiu a ela sobre seu filho Shelah.</span><span class="lang-en">Potiphar’s wife invites Yoseph to have sex and then uses a deceptive garment to lie to her husband. She is an inversion of Tamar, who uses deceptive garments to get Yehudah to sleep with her, because he lied to her about his son Shelah.</span></p>
 <h2 class="section reveal"><span class="lang-pt">Gênesis 38:1-11: Design Literário</span><span class="lang-en">Genesis 38:1-11: Literary Design</span></h2>
 <h3 class="sub reveal"><span class="lang-pt">Yehudah Toma para Si uma Esposa Cananeia</span><span class="lang-en">Yehudah Takes a Canaanite Wife for Himself</span></h3>
-<ul class="bullets reveal">
-  <li><span class="lang-pt">1 E aconteceu naquele tempo,</span><span class="lang-en">1 And it came about at that time,</span></li>
-  <li><span class="lang-pt">a e Yehudah desceu de seus irmãos</span><span class="lang-en">a and Yehudah went down from his brothers</span></li>
-  <li><span class="lang-pt">a’ e ele se desviou para um homem, um adulamita,</span><span class="lang-en">a’ and he turned aside unto a man, an Adullamite,</span></li>
-  <li><span class="lang-pt">b e o seu nome era Hirah,</span><span class="lang-en">b and his name was Hirah,</span></li>
-  <li><span class="lang-pt">2 e Yehudah viu ali a filha de um homem, uma cananeia,</span><span class="lang-en">2 and Yehudah saw there a daughter of a man, a Canaanite,</span></li>
-  <li><span class="lang-pt">b’ e o seu nome era Shua;</span><span class="lang-en">b’ and his name was Shua;</span></li>
-  <li><span class="lang-pt">c’ e ele a tomou</span><span class="lang-en">c’ and he took her</span></li>
-  <li><span class="lang-pt">d e ele se uniu a ela.</span><span class="lang-en">d and he went in to her.</span></li>
-  <li><span class="lang-pt">d’</span><span class="lang-en">d’</span></li>
-</ul>
-<p class="body reveal"><span class="lang-pt">Anotações de Aula: José — 47 de 215 · Gênesis 38:1-11. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Class Notes: Joseph — 47 of 215 · Genesis 38:1-11. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
+    <div class="diagram-scroll">
+      <div class="diagram-viewport">
+        <div class="diagram-canvas">
+          <div class="d8-panel d8-lit"><span class="d8-lit-badge"><span class="lang-pt">Yehudah Toma para Si uma Esposa Cananeia</span><span class="lang-en">Yehudah Takes a Canaanite Wife for Himself</span></span><div class="d8-row"><span class="d8-lit-l">a</span><span class="d8-num"><span class="lang-pt">1</span><span class="lang-en">1</span></span><span><span class="lang-pt"> E aconteceu naquele tempo,</span><span class="lang-en"> And it came about at that time,</span></span></div><div class="d8-row"><span class="d8-lit-l">a’</span><span><span class="lang-pt">e </span><span class="lang-en">and </span></span><span class="d8-c-red"><span class="lang-pt">Yehudah desceu</span><span class="lang-en">Yehudah went down</span></span><span><span class="lang-pt"> de seus irmãos</span><span class="lang-en"> from his brothers</span></span></div><div class="d8-row"><span class="d8-lit-l">b</span><span><span class="lang-pt">e </span><span class="lang-en">and </span></span><span><span class="lang-pt">ele se desviou para um homem, um adulamita,</span><span class="lang-en">he turned aside unto a man, an Adullamite,</span></span></div><div class="d8-row"><span class="d8-lit-l">c</span><span><span class="lang-pt">e o seu nome era Hira,</span><span class="lang-en">and his name was Hirah,</span></span></div><div class="d8-row"><span class="d8-lit-l">b’</span><span><span class="lang-pt">2 e Yehudah viu ali a filha de um homem, uma cananeia,</span><span class="lang-en">2 and Yehudah saw there a daughter of a man, a Canaanite,</span></span></div><div class="d8-row"><span class="d8-lit-l">c’</span><span><span class="lang-pt">e o seu nome era Shua;</span><span class="lang-en">and his name was Shua;</span></span></div><div class="d8-row"><span class="d8-lit-l">d’</span><span class="d8-c-grn"><span class="lang-pt">e ele a tomou</span><span class="lang-en">and he took her</span></span></div><div class="d8-row"><span class="d8-lit-l">d’</span><span class="d8-c-blu"><span class="lang-pt">e ele se uniu a ela.</span><span class="lang-en">and he went in to her.</span></span></div></div>
+          <div class="d8-panel d8-lit-lit"><span class="d8-lit-badge"><span class="lang-pt">B</span><span class="lang-en">B</span></span><div class="d8-row"><span class="d8-lit-l">a</span><span class="d8-num"><span class="lang-pt">3</span><span class="lang-en">3</span></span><span class="d8-c-red"><span class="lang-pt"> E ela concebeu e deu à luz um filho</span><span class="lang-en"> And she conceived and bore a son</span></span></div><div class="d8-row"><span class="d8-lit-l">b</span><span class="d8-pill d8-c-rose"><span class="lang-pt">e ele chamou o seu nome de Er</span><span class="lang-en">and he called his name Er</span></span></div><div class="d8-row"><span class="d8-lit-l">a</span><span class="d8-num"><span class="lang-pt">4</span><span class="lang-en">4</span></span><span class="d8-c-red"><span class="lang-pt"> E ela concebeu outra vez e deu à luz um filho</span><span class="lang-en"> And she conceived again and bore a son</span></span></div><div class="d8-row"><span class="d8-lit-l">b</span><span class="d8-pill d8-c-rose"><span class="lang-pt">e ela chamou o seu nome de Onan</span><span class="lang-en">and she called his name Onan</span></span></div><div class="d8-row"><span class="d8-lit-l">a</span><span class="d8-num"><span class="lang-pt">5</span><span class="lang-en">5</span></span><span class="d8-c-red"><span class="lang-pt"> E outra vez ela deu à luz outro filho</span><span class="lang-en"> And again she bore another son</span></span></div><div class="d8-row"><span class="d8-lit-l">b</span><span class="d8-pill d8-c-rose"><span class="lang-pt">e ela chamou o seu nome de Shelah;</span><span class="lang-en">and she called his name Shelah;</span></span></div><div class="d8-row"><span class="d8-lit-l">c</span><span><span class="lang-pt">e foi em Chezib que ela o deu à luz.</span><span class="lang-en">and it was at Chezib that she bore him.</span></span></div></div>
+          <div class="d8-panel d8-lit"><span class="d8-lit-badge"><span class="lang-pt">Yehudah Toma uma Esposa Cananeia para Seu(s) Filho(s)</span><span class="lang-en">Yehudah Takes a Canaanite Wife for His Son(s)</span></span><div class="d8-row"><span class="d8-lit-l">A</span><span class="d8-num"><span class="lang-pt">6</span><span class="lang-en">6</span></span><span class="d8-c-grn"><span class="lang-pt"> E Yehudah tomou uma esposa para </span><span class="lang-en"> And Yehudah took a wife</span></span><span><span class="lang-pt"> para </span><span class="lang-en"> for </span></span><span class="d8-pill d8-c-rose"><span class="lang-pt">Er, seu primogênito</span><span class="lang-en">Er his firstborn</span></span><span><span class="lang-pt">, e o seu nome era Tamar.</span><span class="lang-en">, and her name was Tamar.</span></span></div><div class="d8-row"><span class="d8-lit-l">B</span><span class="d8-num"><span class="lang-pt">7</span><span class="lang-en">7</span></span><span><span class="lang-pt"> E </span><span class="lang-en"> And </span></span><span class="d8-pill d8-c-rose"><span class="lang-pt">Er, o primogênito de Yehudah</span><span class="lang-en">Er, Yehudah’s firstborn</span></span>,</div><div class="d8-row"><span class="d8-lit-l"></span><span class="d8-pill d8-c-grey"><span class="lang-pt">era mau aos olhos de Yahweh, e Yahweh o fez morrer.</span><span class="lang-en">was evil in the eyes of Yahweh, and Yahweh put him to death.</span></span></div><div class="d8-row"><span class="d8-lit-l">C</span><span class="d8-num"><span class="lang-pt">8</span><span class="lang-en">8</span></span><span><span class="lang-pt"> E Yehudah disse a </span><span class="lang-en"> And Yehudah said to </span></span><span class="d8-pill d8-c-rose"><span class="lang-pt">Onan</span><span class="lang-en">Onan</span></span>,</div><div class="d8-row"><span class="d8-lit-l">1</span><span><span class="lang-pt">“Vá à </span><span class="lang-en">“Go in to the </span></span><span class="d8-c-blu"><span class="lang-pt">esposa de seu irmão</span><span class="lang-en"> of your brother</span></span>,</div><div class="d8-row"><span class="d8-lit-l">2</span><span><span class="lang-pt">e cumpra para com ela o dever de cunhado,</span><span class="lang-en">and perform the brother-in-law-duty to her,</span></span></div><div class="d8-row"><span class="d8-lit-l">3</span><span><span class="lang-pt">e </span><span class="lang-en">and </span></span><span class="d8-c-grn"><span class="lang-pt">suscita semente para seu irmão</span><span class="lang-en">raise up seed for your brother</span></span>.”</div><div class="d8-row"><span class="d8-lit-l">4</span></div><div class="d8-row"><span class="d8-lit-l">C'</span><span class="d8-num"><span class="lang-pt">9</span><span class="lang-en">9</span></span><span><span class="lang-pt"> E </span><span class="lang-en"> And </span></span><span class="d8-pill d8-c-rose"><span class="lang-pt">Onan</span><span class="lang-en">Onan</span></span><span><span class="lang-pt"> sabia que a </span><span class="lang-en"> knew that the </span></span><span class="d8-c-grn"><span class="lang-pt">semente</span><span class="lang-en">seed</span></span><span><span class="lang-pt"> não seria sua;</span><span class="lang-en"> would not be his;</span></span></div><div class="d8-row"><span class="d8-lit-l">1</span><span><span class="lang-pt">e quando ia à </span><span class="lang-en">and when </span></span><span class="d8-c-blu"><span class="lang-pt">esposa de seu irmão</span><span class="lang-en">he went in to the wife</span></span>,</div><div class="d8-row"><span class="d8-lit-l">2</span><span><span class="lang-pt">ele causava ruína sobre a terra</span><span class="lang-en">he caused ruin on the ground</span></span></div><div class="d8-row"><span class="d8-lit-l">3</span><span><span class="lang-pt">para não dar </span><span class="lang-en">in order not to </span></span><span class="d8-c-grn"><span class="lang-pt">semente a seu irmão</span><span class="lang-en">give seed to his brother</span></span>.</div><div class="d8-row"><span class="d8-lit-l">4</span></div><div class="d8-row"><span class="d8-lit-l">B'</span><span class="d8-num"><span class="lang-pt">10</span><span class="lang-en">10</span></span><span class="d8-pill d8-c-grey"><span class="lang-pt"> E foi mau aos olhos do Senhor o que ele fez, e também a ele o fez morrer.</span><span class="lang-en"> And it was evil in the eyes of the Lord, what he did, and he put to death also him.</span></span></div><div class="d8-row"><span class="d8-lit-l">B'</span><span class="d8-num"><span class="lang-pt">11</span><span class="lang-en">11</span></span><span><span class="lang-pt"> E </span><span class="lang-en"> And </span></span><span class="d8-c-grn"><span class="lang-pt">Yehudah disse</span><span class="lang-en">Yehudah said</span></span> a Tamar, sua nora,</div><div class="d8-row"><span class="d8-lit-l">“</span><span class="d8-pill d8-c-slate"><span class="lang-pt">Assenta-te como viúva na casa de teu pai até que meu filho Shelah cresça”</span><span class="lang-en"> Sit as a widow in your father’s house until my son Shelah grows up”</span></span></div><div class="d8-row"><span class="d8-lit-l">A'</span><span><span class="lang-pt">porque ele disse:</span><span class="lang-en">because he said,</span></span></div><div class="d8-row"><span class="d8-lit-l">“</span><span class="d8-pill d8-c-slate"><span class="lang-pt">Ele</span><span class="lang-en"> He</span></span><span class="d8-c-grey"><span class="lang-pt"> também pode morrer como seus </span><span class="lang-en"> too may die like his </span></span>.”</div><div class="d8-row"><span class="d8-lit-l">A'</span><span><span class="lang-pt">E Tamar foi e </span><span class="lang-en">And Tamar went and </span></span><span class="d8-pill d8-c-slate"><span class="lang-pt">assentou-se na casa de seu pai</span><span class="lang-en">sat in her father’s house</span></span>.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="caption reveal"><span class="lang-pt">Gênesis 38:1-11. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 38:1-11. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
 <p class="body reveal"><span class="lang-pt">Gênesis 38:1-11 consiste em três painéis de abertura que estão arranjados em uma simetria ABA que estabelece uma analogia comparativa entre Yehudah e seus filhos.</span><span class="lang-en">Genesis 38:1-11 consists of three opening panels that are arranged in a ABA symmetry that sets up a comparative analogy between Yehudah and his sons.</span></p>
 <p class="body reveal"><span class="lang-pt">A falha de Yehudah ao tomar uma esposa cananeia (A) é repetida e intensificada pelas ações perversas de seus filhos (A’) não apenas tomando outra esposa cananeia (Er), mas então prejudicando o irmão por não suscitar semente.</span><span class="lang-en">Yehudah’s failure by taking a Canaanite wife (A) is repeated and intensified by his sons’ evil actions (A’) in not just taking another Canaanite wife (Er), but then wronging one’s brother by not raising up seed.</span></p>
 <h3 class="sub reveal"><span class="lang-pt">Yehudah Toma uma Esposa Cananeia para Seu(s) Filho(s)</span><span class="lang-en">Yehudah Takes a Canaanite Wife for His Son(s)</span></h3>
@@ -297,12 +481,6 @@
 <p class="body reveal"><span class="lang-pt">Por meio de um hiperlink voltado para o futuro, Yehudah está sendo criticado por sua falta de cuidado com o futuro de sua própria linhagem, e é comparado àquele "cuja sandália é removida". E assim se abre uma oportunidade para Tamar, a esposa do filho falecido, tomar a iniciativa e contrariar a falha de seu sogro.</span><span class="lang-en">By means of a forward-facing hyperlink, Yehudah is being criticized for his lack of care for the future of his own family line, and he is compared to the “one whose sandal is removed.” And so this opens an opportunity for Tamar, the wife of the deceased son, to take the initiative and counteract her father-in-law’s failure.</span></p>
 <h2 class="section reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h2>
     
-    <figure class="reveal" style="margin:2rem 0;">
-    <img src="img/sessao-8/page-1.jpg" alt="" class="block mx-auto my-4 rounded-[12px]" style="max-width:100%;">
-  </figure>
-
-  
-
 <p class="body reveal"><span class="lang-pt">À primeira vista, a história de Yehudah e Tamar parece ser uma intrusão estranha na narrativa de Yoseph. Quais são algumas das maneiras pelas quais os autores bíblicos ligam Gênesis 38 ao resto da história de Yoseph e de Gênesis como um todo?</span><span class="lang-en">At first glance, the story of Yehudah and Tamar seems to be an odd intrusion into the Yoseph narrative. What are some of the ways that the biblical authors link Genesis 38 to the rest of the Yoseph story and Genesis as a whole?</span></p>
 
 <footer class="page-footer">
@@ -318,6 +496,49 @@
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <script src="../../js/verse-modal.js"></script>
 <script src="../../js/reading-progress.js"></script>
+  <script>
+(function () {
+  /* AUTO-FIT: canvas fixo de 1600px escalado para a largura da viewport
+     (desktop) / empilhamento vertical (mobile). */
+  function fitDiagrams() {
+    document.querySelectorAll('.diagram-viewport').forEach((viewport) => {
+      const canvas = viewport.querySelector('.diagram-canvas');
+      if (!canvas) return;
+      const naturalWidth = canvas.offsetWidth;
+      const naturalHeight = canvas.offsetHeight;
+      const availableWidth = viewport.clientWidth;
+      if (!naturalWidth || !naturalHeight || !availableWidth) return;
+      if (window.innerWidth <= 767) {
+        canvas.style.position = 'relative';
+        canvas.style.width = '100%';
+        canvas.style.height = 'auto';
+        canvas.style.transform = 'none';
+        canvas.style.left = '0px';
+        canvas.style.top = '0px';
+        viewport.style.height = canvas.scrollHeight + 'px';
+        return;
+      }
+      const scale = Math.min(1, availableWidth / naturalWidth);
+      const renderedWidth = naturalWidth * scale;
+      const renderedHeight = naturalHeight * scale;
+      canvas.style.transform = 'scale(' + scale + ')';
+      canvas.style.left = Math.max(0, (availableWidth - renderedWidth) / 2) + 'px';
+      canvas.style.top = '0px';
+      viewport.style.height = renderedHeight + 'px';
+    });
+  }
+  let resizeFrame = null;
+  function scheduleFit() {
+    if (resizeFrame) cancelAnimationFrame(resizeFrame);
+    resizeFrame = requestAnimationFrame(fitDiagrams);
+  }
+  window.addEventListener('resize', scheduleFit, { passive: true });
+  window.addEventListener('orientationchange', scheduleFit, { passive: true });
+  window.addEventListener('load', scheduleFit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleFit);
+  fitDiagrams();
+})();
+  </script>
 <script src="../../js/lang-toggle.js"></script>
 <script src="../../js/reveal.js"></script>
 <script>

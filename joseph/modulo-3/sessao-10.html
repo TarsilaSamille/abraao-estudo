@@ -120,7 +120,266 @@
   .keylabel { font-weight: 700; color: #17181a; }
   .quote .cite { display:block; font-style: normal; color:#5b6472; font-size:.92rem; margin-top:.6rem; }
   
-  .takeaways-h { font-weight: 800; font-size: 1.3rem; line-height: 1.25; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; color: #17181a; }</style>
+  .takeaways-h { font-weight: 800; font-size: 1.3rem; line-height: 1.25; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; color: #17181a; }
+  /* ===================================================================
+     D10 — diagramas da sessao 10.
+
+     ESCALA: a area util do PDF vai de x=36 a x=576 (540pt) e o canvas e
+     fixo em 1600px, logo 1pt = 2.963px (= 1.3333px do 96dpi x 2.2222).
+     Todos os numeros abaixo ja estao nessa escala.
+
+     MEDIDAS no PDF (1pt = 1.3333px a 96dpi):
+       moldura 1.5pt ................ 4.4px
+       raio moldura visao geral .... 15.6px (5.25pt)
+       raio moldura traducao ....... 24.4px (8.25pt)
+       pílula 15pt de altura ....... 44.4px, raio 3pt = 8.9px,
+                                     recuo lateral 3pt = 8.9px
+       texto 10.5pt ............... 31.1px
+       entrelinha 15.75pt ......... 46.7px
+       versiculo 9pt (sobrescrito) . 26.7px
+       marcador a/b/c 9.75pt ....... 28.9px
+       recuo de nivel 18pt ......... 53.3px
+       padding da moldura 7.5pt .... 22.2px
+       recuo do badge 6.75pt ....... 20px
+       painel externo 42.75..569.25 = 1560px
+       painel interno 50.25..561.75 = 1516px, recuo de 18pt = 53.3px
+
+     CORES CONFIRMADAS por pixel (matriz 6x/8x), NAO pelo `fill` do PyMuPDF:
+       molduras            #3e4053  #6b7384  #e4e8ec  #1b1b1b
+       badges              #3d4053/#ffffff   #6a7383/#ffffff
+       pílulas pagina 0    #d3f1cc/#2a6145   #ccf1fa/#245790
+                            #f9e3de/#97294e   #efe7da/#645437
+       pílulas pagina 1    #fae3c3/#90362e   #efe7da/#645437
+                            #d3f1cc/#2a6145   #ccf1fa/#245790
+                            #f9e3de/#97294e
+       pílulas pagina 2    #f6e1f5/#703c91   #ccf1fa/#245790
+                            #d3f1cc/#2a6145   #f9e3de/#97294e
+       pílulas paginas 3-5 #816f4d/#ffffff   #741f40/#ffffff
+                            #b9eff6/#00616f   #be4966/#ffffff
+                            #d9ecfd/#404ba6   #f9e3de/#97294e
+                            #e3e7ec/#4e5669   #f6e1f5/#703c91
+                            #fae3c3/#90362e
+       pílulas paginas 6-8 #d9ecfd/#404ba6   #f9e3de/#97294e
+                            #fae3c3/#90362e   #d3f1cc/#2a6145
+                            #f6e1f5/#703c91
+       fundo cabecalho de tabela  #e4e8ec
+       texto biblico         #1b1b1b  #4f5669  #3a8060  #91362e
+                             #be4967  #097d8d  #b5543a  #9855af
+                             #713c92  #5869cd  #00626f  #3678b4
+                             #404ca6  #181d36  #7e62bc  #972a4e
+                             #2b6146
+     =================================================================== */
+  .diagram-scroll {
+    width: 100%;
+    margin: 1.5rem 0;
+    padding: 0.75rem;
+    background: #fff;
+    overflow: hidden;
+  }
+  #sessao-10 > .diagram-scroll {
+    width: 100vw;
+    margin-left: calc((100% - 100vw) / 2);
+  }
+  .diagram-viewport { position: relative; width: 100%; overflow: hidden; }
+  .diagram-canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    transform-origin: top left;
+    will-change: transform;
+    width: 1600px;
+  }
+
+  /* ---- D10-A: visao geral, molduras de 5.25pt (paginas 0, 1 e 2) ---- */
+  .d10-frame {
+    background: #fff;
+    border: 4.4px solid #3e4053;
+    border-radius: 15.6px;
+    padding: 20px 22.2px 22.2px 22.2px;
+    margin-bottom: 22.3px;
+  }
+  .d10-frame:last-child { margin-bottom: 0; }
+  .d10-frame.d10-mid { border-color: #6b7384; }
+  .d10-frame.d10-inset { margin-left: 53.3px; width: calc(100% - 53.3px); }
+
+  .d10-badge {
+    display: inline-block;
+    background: #3d4053;
+    color: #fff;
+    font-size: 31.1px;
+    font-weight: 700;
+    line-height: 44.4px;
+    padding: 0 8.9px;
+    border-radius: 8.9px;
+    margin-bottom: 8.9px;
+  }
+  .d10-badge.d10-ref { background: #6a7383; }
+
+  .d10-panel {
+    border: 4.4px solid #6b7384;
+    border-radius: 15.6px;
+    padding: 20px 22.2px 22.2px 22.2px;
+    margin-bottom: 22.3px;
+  }
+  .d10-panel:last-child { margin-bottom: 0; }
+  .d10-panel.d10-inset { margin-left: 53.3px; width: calc(100% - 53.3px); }
+  .d10-panel.d10-fill { background: #e8eaec; }
+
+  .d10-h {
+    font-size: 31.1px;
+    font-weight: 800;
+    line-height: 46.7px;
+    color: #1b1b1b;
+  }
+  .d10-li {
+    font-size: 31.1px;
+    line-height: 46.7px;
+    color: #1b1b1b;
+    padding-left: 15.4px;
+    position: relative;
+  }
+  .d10-li:before {
+    content: "\2022";
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+  }
+
+  /* ---- D10-B: traducao e design literary, molduras de 8.25pt --------- */
+  .d10-t {
+    --base: 28.9px;
+    background: #fff;
+    border: 4.4px solid #1b1b1b;
+    border-radius: 24.4px;
+    padding: 22.2px 22.2px 22.2px 28.9px;
+    margin-bottom: 22.3px;
+    position: relative;
+  }
+  .d10-t:last-child { margin-bottom: 0; }
+  .d10-t.d10-light { border-color: #e4e8ec; }
+  .d10-t.d10-inset { margin-left: 53.3px; width: calc(100% - 53.3px); }
+  .d10-t.d10-b27 { --base: 82.2px; }
+
+  .d10-tag {
+    position: absolute;
+    left: 14.4px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 28.9px;
+    font-weight: 700;
+    color: #4f5669;
+  }
+
+  .d10-l {
+    display: flex;
+    align-items: baseline;
+    font-size: 31.1px;
+    line-height: 46.7px;
+    color: #1b1b1b;
+    padding-left: calc(var(--base) + var(--lvl, 0) * 53.3px);
+  }
+  .d10-mk, .d10-vn {
+    flex: 0 0 auto;
+    min-width: 15.7px;
+    margin-right: 17.8px;
+    text-align: right;
+    font-weight: 700;
+    color: #4f5669;
+    font-size: 28.9px;
+    line-height: 1.6;
+  }
+  /* versiculos de dois digitos (10, 11, 22...) precisam da mesma folga que
+     o PDF deixa entre o numero e o texto */
+  .d10-vn { font-size: 26.7px; color: #1b1b1b; margin-right: 22.2px; }
+  .d10-tx { flex: 1 1 auto; min-width: 0; }
+  .d10-rule {
+    border: 0;
+    border-top: 4.4px solid #e4e8ec;
+    margin: 8.9px 0;
+  }
+
+  /* ---- D10-C: tabelas comparativas (paginas 6, 7 e 8) --------------- */
+  .d10-tbl {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #fff;
+    table-layout: fixed;
+  }
+  .d10-tbl th {
+    background: #e4e8ec;
+    color: #1b1b1b;
+    font-size: 31.1px;
+    font-weight: 800;
+    text-align: left;
+    padding: 14.8px 31.1px;
+    border: 4.4px solid #e4e8ec;
+  }
+  .d10-tbl td {
+    border: 4.4px solid #e4e8ec;
+    padding: 14.8px 31.1px;
+    font-size: 31.1px;
+    line-height: 46.7px;
+    color: #1b1b1b;
+    vertical-align: top;
+  }
+  .d10-cap {
+    border: 4.4px solid #e4e8ec;
+    background: #e4e8ec;
+    font-size: 26.7px;
+    font-style: italic;
+    line-height: 46.7px;
+    color: #4f5669;
+    padding: 8.9px 31.1px;
+    text-align: left;
+  }
+
+  /* ---- D10-D: cores de texto e pílulas ------------------------------- */
+  .d10-pill {
+    display: inline;
+    padding: 3px 8.9px;
+    border-radius: 8.9px;
+    font-weight: 700;
+    line-height: 1.85;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+  .d10-g   { background: #d3f1cc; color: #2a6145; }
+  .d10-b   { background: #ccf1fa; color: #245790; }
+  .d10-r   { background: #f9e3de; color: #97294e; }
+  .d10-tan { background: #efe7da; color: #645437; }
+  .d10-lil { background: #f6e1f5; color: #703c91; }
+  .d10-rust{ background: #fae3c3; color: #90362e; }
+  .d10-br  { background: #816f4d; color: #fff; }
+  .d10-dr  { background: #741f40; color: #fff; }
+  .d10-cy  { background: #b9eff6; color: #00616f; }
+  .d10-cr  { background: #be4966; color: #fff; }
+  .d10-lb  { background: #d9ecfd; color: #404ba6; }
+  .d10-sl  { background: #e3e7ec; color: #4e5669; }
+
+  .d10-ink  { color: #1b1b1b; font-weight: 700; }
+  .d10-gray { color: #4f5669; font-weight: 700; }
+  .d10-grn  { color: #3a8060; font-weight: 700; }
+  .d10-rst  { color: #91362e; font-weight: 700; }
+  .d10-red  { color: #be4967; font-weight: 700; }
+  .d10-teal { color: #097d8d; font-weight: 700; }
+  .d10-brn  { color: #b5543a; font-weight: 700; }
+  .d10-vio  { color: #9855af; font-weight: 700; }
+  .d10-pur  { color: #713c92; font-weight: 700; }
+  .d10-blu  { color: #5869cd; font-weight: 700; }
+  .d10-dteal{ color: #00626f; font-weight: 700; }
+  .d10-mblu { color: #3678b4; font-weight: 700; }
+  .d10-navy { color: #404ca6; font-weight: 700; }
+  .d10-nv2  { color: #181d36; font-weight: 700; }
+  .d10-lvio { color: #7e62bc; font-weight: 700; }
+  .d10-mag  { color: #972a4e; font-weight: 700; }
+  .d10-dgrn { color: #2b6146; font-weight: 700; }
+
+  @media (max-width: 900px) {
+    #sessao-10 > .diagram-scroll { padding: 0.5rem; }
+  }
+</style>
 </head>
 <body class="bg-white">
 <div id="reading-progress" aria-hidden="true"></div>
@@ -139,222 +398,412 @@
     <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
   </div>
 </div>
-<div class="max-w-4xl mx-auto px-5 py-12 md:py-16">    
+<div class="max-w-4xl mx-auto px-5 py-12 md:py-16" id="sessao-10">
+    <h1 class="title reveal"><span><span class="lang-pt">Sessão 10: José e a Mulher de Potifar</span><span class="lang-en">Session 10: Joseph and Potiphar’s Wife</span></span></h1>
+    <hr class="rule">
+    <h3 class="sub reveal"><span><span class="lang-pt">Pontos-Chave</span><span class="lang-en">Key Takeaways</span></span></h3>
     <ul class="bullets reveal">
-      <li><span class="lang-pt">Class Notes: Joseph</span><span class="lang-en">Class Notes: Joseph</span></li>
-      <li><span class="lang-pt">61 of 215</span><span class="lang-en">61 of 215</span></li>
-      <li><span class="lang-pt">Sessão 10: José e a Mulher de Potifar</span><span class="lang-en">Session 10: Joseph and Potiphar’s Wife</span></li>
-      <li><span class="lang-pt">Key Takeaways</span><span class="lang-en">Key Takeaways</span></li>
+      <li><span><span class="lang-pt">Yoseph atua tanto como a árvore proibida quanto como o humano que deve ouvir a voz de Deus e passar no teste.</span><span class="lang-en">Yoseph acts as both the forbidden tree and the human who must listen to God’s voice and pass the test.</span></span></li>
+      <li><span><span class="lang-pt">Os autores bíblicos usam palavras-chave para evocar histórias anteriores, sendo dinâmicos em como formam as analogias.</span><span class="lang-en">Biblical authors use keywords to evoke earlier stories while being dynamic in how they form the analogies.</span></span></li>
+      <li><span><span class="lang-pt">A mulher de Potifar, que busca sexo ilícito para prazer pessoal, é posta em justaposição significativa com Tamar, que se engaja em sexo ilícito para buscar justiça e preservar a vida no capítulo anterior.</span><span class="lang-en">Potiphar’s wife, who seeks illicit sex for personal pleasure, is set in meaningful juxtaposition with Tamar, who engages in illicit sex to seek justice and preserve life in the previous chapter.</span></span></li>
+      <li><span><span class="lang-pt">Yoseph discerne corretamente que o pecado contra outro humano, imagem de Deus, é pecado contra o próprio Deus.</span><span class="lang-en">Yoseph rightly discerns that sin against another human, an image of God, is sin against God himself.</span></span></li>
+      <li><span><span class="lang-pt">A repetição de “rir”, o nome de Isaque como verbo, no relato do engano da mulher de Potifar continua o padrão de ligar Yoseph ao sacrifício de Isaque.</span><span class="lang-en">Repetition of “laugh,” Isaac’s name as a verb, in the account of Potiphar’s wife’s deception continues the pattern of linking Yoseph to the binding of Isaac.</span></span></li>
     </ul>
-    <p class="body reveal"><span class="lang-pt">Yoseph atua tanto como a árvore proibida quanto como o humano que deve ouvir a voz de Deus e passar no teste. Os autores bíblicos usam palavras-chave para evocar histórias anteriores, sendo dinâmicos em como formam as analogias. A mulher de Potifar, que busca sexo ilícito para prazer pessoal, é posta em justaposição significativa com Tamar, que se engaja em sexo ilícito para buscar justiça e preservar a vida no capítulo anterior. Yoseph discerne corretamente que o pecado contra outro humano, imagem de Deus, é pecado contra o próprio Deus. A repetição de “rir”, o nome de Isaque como verbo, no relato do engano da mulher de Potifar continua o padrão de ligar Yoseph ao sacrifício de Isaque.</span><span class="lang-en">Yoseph acts as both the forbidden tree and the human who must listen to God’s voice and pass the test. Biblical authors use keywords to evoke earlier stories while being dynamic in how they form the analogies. Potiphar’s wife, who seeks illicit sex for personal pleasure, is set in meaningful juxtaposition with Tamar, who engages in illicit sex to seek justice and preserve life in the previous chapter. Yoseph rightly discerns that sin against another human, an image of God, is sin against God himself. Repetition of “laugh,” Isaac’s name as a verb, in the account of Potiphar’s wife’s deception continues the pattern of linking Yoseph to the binding of Isaac.</span></p>
+    <h2 class="section reveal"><span class="lang-pt">A Ascensão, Queda e Ascensão de Yoseph</span><span class="lang-en">Yoseph’s Rise and Fall and Rise</span></h2>
+    <div class="diagram-scroll">
+      <div class="diagram-viewport">
+        <div class="diagram-canvas">
+          <div class="d10-frame ">
+<span class="d10-badge "><span><span class="lang-pt">Gênesis 39:1-23</span><span class="lang-en">Genesis 39:1-23</span></span></span>
+<div class="d10-panel ">
+<span class="d10-badge d10-ref"><span><span class="lang-pt">39:1-6</span><span class="lang-en">39:1-6</span></span></span>
+<div class="d10-h"><span><span class="lang-pt">A – Yoseph Escravizado, mas Elevado Sobre a Casa de Potifar</span><span class="lang-en">A – Yoseph Enslaved, but Elevated Over Potiphar’s House</span></span></div>
+<div class="d10-li"><span><span class="lang-pt">39:2 </span><span class="lang-en">39:2 </span></span><span class="d10-pill d10-g"><span><span class="lang-pt">“Yahweh estava com Yoseph, e ele prosperava”</span><span class="lang-en">“Yahweh was with Yoseph, and he was successful”</span></span></span></div>
+<div class="d10-li"><span><span class="lang-pt">39:4 </span><span class="lang-en">39:4 </span></span><span class="d10-pill d10-b"><span><span class="lang-pt">“E o pôs sobre sua casa e deu tudo o que tinha em sua mão”</span><span class="lang-en">“And he appointed him over his house and gave everything of his into his hand”</span></span></span></div>
+</div>
+<div class="d10-panel d10-inset">
+<span class="d10-badge d10-ref"><span><span class="lang-pt">39:7-19</span><span class="lang-en">39:7-19</span></span></span>
+<div class="d10-h"><span><span class="lang-pt">B – A Mulher de Potifar Armadilha Yoseph e Engana Seu Marido</span><span class="lang-en">B – Potiphar’s Wife Traps Yoseph and Deceives Her Husband</span></span></div>
+<div class="d10-li"><span><span class="lang-pt">39:9 </span><span class="lang-en">39:9 </span></span><span class="d10-pill d10-r"><span><span class="lang-pt">“Não há ninguém maior nesta casa do que eu … como poderia eu pecar contra Deus?!”</span><span class="lang-en">“There is no one greater in this house than me … how could I sin against God?!”</span></span></span></div>
+<div class="d10-li"><span><span class="lang-pt">39:12 “E ele deixou </span><span class="lang-en">39:12 “And he left </span></span><span class="d10-pill d10-tan"><span><span class="lang-pt">sua veste</span><span class="lang-en">his garment</span></span></span><span><span class="lang-pt"> na mão dela, e fugiu para fora”</span><span class="lang-en"> in her hand, and he fled outside”</span></span></div>
+</div>
+<div class="d10-panel ">
+<span class="d10-badge d10-ref"><span><span class="lang-pt">39:20-23</span><span class="lang-en">39:20-23</span></span></span>
+<div class="d10-h"><span><span class="lang-pt">A’ – Yoseph Preso, mas Elevado Sobre os Prisioneiros</span><span class="lang-en">A’ – Yoseph Imprisoned, but Elevated Over the Prisoners</span></span></div>
+<div class="d10-li"><span><span class="lang-pt">39:21 </span><span class="lang-en">39:21 </span></span><span class="d10-pill d10-g"><span><span class="lang-pt">“Yahweh estava com Yoseph”</span><span class="lang-en">“Yahweh was with Yoseph”</span></span></span></div>
+<div class="d10-li"><span><span class="lang-pt">39:22 </span><span class="lang-en">39:22 </span></span><span class="d10-pill d10-b"><span><span class="lang-pt">“O capitão da prisão entregou todos os prisioneiros na mão de Yoseph”</span><span class="lang-en">“The captain of the prison gave all the prisoners into the hand of Yoseph”</span></span></span></div>
+</div>
+</div>
+          <div class="d10-frame d10-inset d10-mid">
+<span class="d10-badge "><span><span class="lang-pt">Gênesis 40:1-23</span><span class="lang-en">Genesis 40:1-23</span></span></span>
+<div class="d10-panel ">
+<span class="d10-badge d10-ref"><span><span class="lang-pt">40:1-8</span><span class="lang-en">40:1-8</span></span></span>
+<div class="d10-h"><span><span class="lang-pt">O Padeiro e o Copeiro de Faraó São Presos Junto com Yoseph</span><span class="lang-en">Pharaoh’s Baker and Cup-Bearer Are Imprisoned Along With Yoseph</span></span></div>
+<div class="d10-li"><span><span class="lang-pt">Os dois homens </span><span class="lang-en">The two men </span></span><span class="d10-pill d10-rust"><span><span class="lang-pt">cada tem um sonho</span><span class="lang-en">each have a dream</span></span></span><span><span class="lang-pt"> e pedem a Yoseph que interprete</span><span class="lang-en"> and ask Yoseph to interpret</span></span></div>
+<div class="d10-li"><span><span class="lang-pt">40:8 “Não pertencem as interpretações a Elohim?”</span><span class="lang-en">40:8 “Do not interpretations belong to Elohim?”</span></span></div>
+</div>
+<div class="d10-panel ">
+<span class="d10-badge d10-ref"><span><span class="lang-pt">40:9-19</span><span class="lang-en">40:9-19</span></span></span>
+<div class="d10-h"><span><span class="lang-pt">Os Dois Homens Contam Seus Sonhos e Yoseph Interpreta o Seu Significado</span><span class="lang-en">The Two Men Recount Their Dreams and Yoseph Interprets Their Meaning</span></span></div>
+</div>
+<div class="d10-panel ">
+<span class="d10-badge d10-ref"><span><span class="lang-pt">40:20-23</span><span class="lang-en">40:20-23</span></span></span>
+<div class="d10-h"><span><span class="lang-pt">As Interpretações Se Cumprem, mas o Copeiro Não Se Lembra de Yoseph</span><span class="lang-en">The Interpretations Come to Pass, but the Cup-Bearer Doesn’t Remember Yoseph</span></span></div>
+</div>
+</div>
+          <div class="d10-frame ">
+<span class="d10-badge "><span><span class="lang-pt">Gênesis 41:1-54</span><span class="lang-en">Genesis 41:1-54</span></span></span>
+<div class="d10-panel d10-fill">
+<span class="d10-badge d10-ref"><span><span class="lang-pt">41:1-16</span><span class="lang-en">41:1-16</span></span></span>
+<div class="d10-h"><span><span class="lang-pt">A – Faraó Tem </span><span class="lang-en">A – Pharaoh Has </span></span><span class="d10-pill d10-rust"><span><span class="lang-pt">Dois Sonhos</span><span class="lang-en">Two Dreams</span></span></span><span><span class="lang-pt"> Sobre 2x7 Vacas e Molhos de Trigo e Yoseph Interpreta</span><span class="lang-en"> About 2x7 Cows and Sheaves of Grain and Yoseph Interprets</span></span></div>
+<div class="d10-li"><span><span class="lang-pt">41:9 “Hoje eu farei que meu pecado seja lembrado …”</span><span class="lang-en">41:9 “Today I will make my sin remembered …”</span></span></div>
+<div class="d10-li"><span><span class="lang-pt">41:14 “Faraó chamou Yoseph … e </span><span class="lang-en">41:14 “Pharaoh summoned Yoseph … and </span></span><span class="d10-pill d10-tan"><span><span class="lang-pt">mudou suas vestes</span><span class="lang-en">he changed his garments</span></span></span><span><span class="lang-pt"> e veio até Faraó”</span><span class="lang-en"> and came to Pharaoh”</span></span></div>
+<div class="d10-li"><span><span class="lang-pt">41:16 Yoseph a Faraó: “</span><span class="lang-en">41:16 Yoseph to Pharaoh: “</span></span><span class="d10-pill d10-g"><span><span class="lang-pt">Não eu! Elohim dará a Faraó uma resposta”</span><span class="lang-en">“Not me! Elohim will give Pharaoh a response”</span></span></span></div>
+</div>
+<div class="d10-panel d10-inset">
+<span class="d10-badge d10-ref"><span><span class="lang-pt">41:17-36</span><span class="lang-en">41:17-36</span></span></span>
+<div class="d10-h"><span><span class="lang-pt">B – Yoseph Interpreta os Dois Sonhos de Faraó a Respeito de 2x7 Anos de Abundância e Fome</span><span class="lang-en">B – Yoseph Interprets Pharaoh’s Two Dreams Regarding 2x7 Years of Abundance and Famine</span></span></div>
+<div class="d10-li"><span><span class="lang-pt">41:29-30 “Vêm 7 anos de abundância … e depois virão 7 anos de fome”</span><span class="lang-en">41:29-30 “7 years of abundance are coming … followed by 7 years of famine afterward”</span></span></div>
+</div>
+<div class="d10-panel ">
+<span class="d10-badge d10-ref"><span><span class="lang-pt">41:37-54</span><span class="lang-en">41:37-54</span></span></span>
+<div class="d10-h"><span><span class="lang-pt">A’ – Faraó Eleva Yoseph para se Tornar Governador de Todo o Egito</span><span class="lang-en">A’ – Pharaoh Elevates Yoseph to Become Ruler Over All of Egypt</span></span></div>
+<div class="d10-li"><span><span class="lang-pt">41:38 “</span><span class="lang-en">41:38 “</span></span><span class="d10-pill d10-g"><span><span class="lang-pt">Pode se achar outro homem como este, em quem esteja o Espírito de Elohim?”</span><span class="lang-en">Can another man be found like this, in whom is the Spirit of Elohim?”</span></span></span></div>
+<div class="d10-li"><span><span class="lang-pt">41:40 “</span><span class="lang-en">41:40 “</span></span><span class="d10-pill d10-b"><span><span class="lang-pt">Você estará sobre a minha casa</span><span class="lang-en">You will be over my house</span></span></span><span><span class="lang-pt"> … </span><span class="lang-en"> … </span></span><span class="d10-pill d10-r"><span><span class="lang-pt">somente no trono serei maior que você”</span><span class="lang-en">only in the throne will I be greater than you”</span></span></span></div>
+<div class="d10-li"><span><span class="lang-pt">41:41 “</span><span class="lang-en">41:41 “</span></span><span class="d10-pill d10-b"><span><span class="lang-pt">Olha, eu te ponho sobre todo o Egito,” e Faraó pôs o seu anel na mão de Yoseph”</span><span class="lang-en">‘Look, I set you over all of Egypt,’ and Pharaoh put his ring onto the hand of Yoseph”</span></span></span></div>
+</div>
+</div>
+        </div>
+      </div>
+    </div>
+    <p class="caption reveal"><span class="lang-pt">Gênesis 39:1-41:57. Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 39:1-41:57. Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
+    <p class="body reveal"><span class="lang-pt">Estes três capítulos levam a história ao seu primeiro clímax, quando os sonhos e a escravidão de Yoseph chegam a um ponto culminante. A seção tem três grandes partes desenhadas em ordem simétrica, e cada uma dessas partes tem uma simetria de três partes.</span><span class="lang-en">These three chapters bring the story to its first plot climax, as Yoseph’s dreams and enslavement come to a culminating point. The section has three large parts designed with symmetrical order, and each of those parts has a three-part symmetry.</span></p>
     <ul class="bullets reveal">
-      <li><span class="lang-pt">A Ascensão, Queda e Ascensão de Yoseph</span><span class="lang-en">Yoseph’s Rise and Fall and Rise</span></li>
-      <li><span class="lang-pt">Gênesis 39:1-23</span><span class="lang-en">Genesis 39:1-23</span></li>
-      <li><span class="lang-pt">39:1-6</span><span class="lang-en">39:1-6</span></li>
+      <li><span><span class="lang-pt">A Parte 1 (Gn. 39:1-23) trata da elevação de Yoseph na casa de Potifar, de como Yahweh estava com ele, e de como Potifar o pôs como um segundo-si mesmo no comando da casa. Também trata de uma queda adicional por causa do engano da mulher de Potifar, e de outra perda de uma veste que marca seu descenso mais profundo para a prisão.</span><span class="lang-en">Part 1 (Gen. 39:1-23) is about Yoseph’s elevation in Potiphar’s house, how Yahweh was with him, and how Potiphar placed him as a second-self in command of the household. It’s also about a further downfall due to the deception of Potiphar’s wife, and another loss of a garment that marks his further descent into prison.</span></span></li>
+      <li><span><span class="lang-pt">A Parte 2 (Gn. 40:1-23) retoma o tema do sonho duplo de Gênesis 37, e Yoseph interpreta os dois sonhos dos oficiais de Faraó, o que abre a porta para ele interpretar os sonhos de Faraó na parte seguinte.</span><span class="lang-en">Part 2 (Gen. 40:1-23) picks up the double-dream theme of Genesis 37, and Yoseph interprets the two dreams of Pharaoh’s officials, which opens the door for him to interpret Pharaoh’s dreams in the next part.</span></span></li>
+      <li><span><span class="lang-pt">A Parte 3 (Gn. 41:1-54) trata da elevação de Yoseph na casa de Faraó por causa da presença de Elohim com ele, que lhe permite interpretar sonhos. Yoseph é elevado a segundo-em-comando debaixo de Faraó e recebe novas vestes que marcam sua subida ao governo real.</span><span class="lang-en">Part 3 (Gen. 41:1-54) is about Yoseph’s elevation in the house of Pharaoh because of Elohim’s presence with him that enables him to interpret dreams. Yoseph is elevated to second-in-command under Pharaoh and given new garments that mark his ascent to royal rule.</span></span></li>
     </ul>
-    <p class="body reveal"><span class="lang-pt">A – Yoseph Escravizado, mas Elevado Sobre a Casa de Potifar • 39:2 “Yahweh estava com Yoseph, e ele prosperava” • 39:4 “E o pôs sobre sua casa e deu tudo o que tinha em sua mão” 39:7-19 B – A Mulher de Potifar Armadilha Yoseph e Engana Seu Marido • 39:9 “Não há ninguém maior nesta casa do que eu … como poderia eu pecar contra Deus?!” • 39:12 “E ele deixou sua veste em sua mão, e fugiu para fora” 39:20-23 A’ – Yoseph Preso, mas Elevado Sobre os Prisioneiros • 39:21 “Yahweh estava com Yoseph” • 39:22 “O capitão da prisão entregou todos os prisioneiros na mão de Yoseph” Gênesis 40:1-23</span><span class="lang-en">A – Yoseph Enslaved, but Elevated Over Potiphar’s House • 39:2 “Yahweh was with Yoseph, and he was successful” • 39:4 “And he appointed him over his house and gave everything of his into his hand” 39:7-19 B – Potiphar’s Wife Traps Yoseph and Deceives Her Husband • 39:9 “There is no one greater in this house than me … how could I sin against God?!” • 39:12 “And he left his garment in her hand, and he fled outside” 39:20-23 A' – Yoseph Imprisoned, but Elevated Over the Prisoners • 39:21 “Yahweh was with Yoseph” • 39:22 “The captain of the prison gave all the prisoners into the hand of Yoseph” Genesis 40:1-23</span><footer class="page-footer">
+    <h2 class="section reveal"><span class="lang-pt">Yoseph Inocente É Enganado pela Mulher de Potifar</span><span class="lang-en">Innocent Yoseph Is Deceived by Potiphar’s Wife</span></h2>
+    <div class="diagram-scroll">
+      <div class="diagram-viewport">
+        <div class="diagram-canvas">
+          <div class="d10-frame ">
+<span class="d10-badge "><span><span class="lang-pt">Gênesis 39:1-6</span><span class="lang-en">Genesis 39:1-6</span></span></span>
+<div class="d10-h"><span><span class="lang-pt">José Exaltado na Casa de Potifar</span><span class="lang-en">Joseph Elevated in Potiphar’s House</span></span></div>
+<div class="d10-li"><span><span class="lang-pt">39:2 </span><span class="lang-en">39:2 </span></span><span class="d10-pill d10-lil"><span><span class="lang-pt">“Yahweh estava com José e ele prosperava”</span><span class="lang-en">“Yahweh was with Joseph and he was successful”</span></span></span></div>
+<div class="d10-li"><span><span class="lang-pt">39:3 “tudo o que José estava fazendo (כל אשר הוא עשה), </span><span class="lang-en">39:3 “everything Joseph was doing (כל אשר הוא עשה), </span></span><span class="d10-pill d10-lil"><span><span class="lang-pt">Yahweh fazia prosperar”</span><span class="lang-en">Yahweh made successful”</span></span></span></div>
+<div class="d10-li"><span><span class="lang-pt">39:4 Potifar </span><span class="lang-en">39:4 Potiphar </span></span><span class="d10-pill d10-b"><span><span class="lang-pt">“nomeou José sobre sua casa e deu tudo o que tinha na mão dele”</span><span class="lang-en">“appointed Joseph over his house, and gave everything into his hand”</span></span></span></div>
+<div class="d10-li"><span><span class="lang-pt">39:5 </span><span class="lang-en">39:5 </span></span><span class="d10-pill d10-g"><span><span class="lang-pt">“Yahweh abençoou a casa do egípcio por causa de José”</span><span class="lang-en">“Yahweh blessed the house of the Egyptian on account of Joseph”</span></span></span></div>
+</div>
+          <div class="d10-frame d10-inset">
+<span class="d10-badge "><span><span class="lang-pt">Gênesis 39:7-19</span><span class="lang-en">Genesis 39:7-19</span></span></span>
+<div class="d10-panel ">
+<span class="d10-badge d10-ref"><span><span class="lang-pt">39:7-10</span><span class="lang-en">39:7-10</span></span></span>
+<div class="d10-h"><span><span class="lang-pt">José Recusa a Mulher de Potifar 2x + o Discurso Honesto de José</span><span class="lang-en">Joseph Refuses Potiphar’s Wife 2x + Joseph’s Honest Speech</span></span></div>
+<div class="d10-li"><span><span class="lang-pt">39:7 E ela disse: “</span><span class="lang-en">39:7 And she said, “</span></span><span class="d10-pill d10-r"><span><span class="lang-pt">Deita comigo!</span><span class="lang-en">Lay down with me!</span></span></span><span><span class="lang-pt">”</span><span class="lang-en">”</span></span></div>
+<div class="d10-li"><span><span class="lang-pt">39:8, 10 “E ele recusou … e não a quis ouvir”</span><span class="lang-en">39:8, 10 “And he refused ... and he didn’t listen to her”</span></span></div>
+</div>
+<div class="d10-panel d10-inset">
+<span class="d10-badge d10-ref"><span><span class="lang-pt">39:11-12</span><span class="lang-en">39:11-12</span></span></span>
+<div class="d10-h"><span><span class="lang-pt">A Recusa e a Fuga de José</span><span class="lang-en">Joseph’s Refusal and Flight</span></span></div>
+<div class="d10-li"><span><span class="lang-pt">“Ela o agarrou pela sua veste, dizendo ‘</span><span class="lang-en">“She seized him by his garment, saying ‘</span></span><span class="d10-pill d10-r"><span><span class="lang-pt">Deita comigo!!</span><span class="lang-en">Lay down with me!!</span></span></span><span><span class="lang-pt">’ ”</span><span class="lang-en">”</span></span></div>
+<div class="d10-li"><span><span class="lang-pt">39:12 E ele deixou sua veste na mão dela.</span><span class="lang-en">39:12 And he abandoned his garment in her hand.</span></span></div>
+</div>
+<div class="d10-panel ">
+<span class="d10-badge d10-ref"><span><span class="lang-pt">39:13-19</span><span class="lang-en">39:13-19</span></span></span>
+<div class="d10-h"><span><span class="lang-pt">A Mulher de Potifar Relata o “Incidente” 2x + o Discurso Enganoso da Esposa</span><span class="lang-en">Potiphar’s Wife Reports the “Incident” 2x + the Wife’s Deceptive Speech</span></span></div>
+<div class="d10-li"><span><span class="lang-pt">39:14 “Ele entrou para deitar comigo”</span><span class="lang-en">39:14 “He came in to lay down with me”</span></span></div>
+<div class="d10-li"><span><span class="lang-pt">39:17 “Ele veio até mim, para brincar comigo”</span><span class="lang-en">39:17 “He came to me, to play with me”</span></span></div>
+</div>
+</div>
+          <div class="d10-frame ">
+<span class="d10-badge "><span><span class="lang-pt">Gênesis 39:20-23</span><span class="lang-en">Genesis 39:20-23</span></span></span>
+<div class="d10-h"><span><span class="lang-pt">José Exaltado na Casa de Detenção</span><span class="lang-en">Joseph Elevated in the Prison House</span></span></div>
+<div class="d10-li"><span><span class="lang-pt">39:21 </span><span class="lang-en">39:21 </span></span><span class="d10-pill d10-g"><span><span class="lang-pt">Yahweh estendeu amor leal a José, e lhe deu graça aos olhos do capitão.</span><span class="lang-en">Yahweh extended loyal-love to Joseph, and gave him favor in the eyes of the captain.</span></span></span></div>
+<div class="d10-li"><span><span class="lang-pt">39:22 </span><span class="lang-en">39:22 </span></span><span class="d10-pill d10-b"><span><span class="lang-pt">O capitão deu todos os prisioneiros na mão de José.</span><span class="lang-en">The captain gave all the prisoners into the hand of Joseph.</span></span></span></div>
+</div>
+        </div>
+      </div>
+    </div>
+    <p class="caption reveal"><span class="lang-pt">Gênesis 39:1-23. Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 39:1-23. Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
+    <ul class="bullets reveal">
+      <li><span><span class="lang-pt">39:22 “Tudo o que eles faziam (כל אשר עשים), ele fazia (הוא היה עשה)”</span><span class="lang-en">39:22 “Everything they were doing (כל אשר עשים), he was doing (הוא היה עשה)”</span></span></li>
+      <li><span><span class="lang-pt">39:23 “Yahweh estava com José … e o fez prosperar”</span><span class="lang-en">39:23 “Yahweh was with Joseph … Yahweh made him successful”</span></span></li>
+    </ul>
+    <p class="body reveal"><span class="lang-pt">Este capítulo é desenhado como uma enorme simetria de três partes, com as partes externas correspondentes (Gn. 39:1-6 e 39:20-23) e um grande centro que ele próprio tem três partes simetricamente dispostas (Gn. 39:7-19).</span><span class="lang-en">This chapter is designed as a massive three-part symmetry with matching outer parts (Gen. 39:1-6 and 39:20-23) and a large center that itself has three symmetrically arranged parts (Gen. 39:7-19).</span></p>
+    <ul class="bullets reveal">
+      <li><span><span class="lang-pt">A Parte 1 (Gn. 39:1-6) narra o sucesso e a elevação de Yoseph na casa de Potifar por causa da presença de Yahweh com ele. Como resultado, Yoseph é exalçado a um lugar de segundo-em-comando sobre a casa de seu senhor.</span><span class="lang-en">Part 1 (Gen. 39:1-6) narrates Yoseph’s success and elevation in the house of Potiphar because of Yahweh’s presence with him. As a result, Yoseph is exalted to a place of second-in-command over his master’s house.</span></span></li>
+      <li><span><span class="lang-pt">A Parte 2 (Gn. 39:7-19) reconta a queda de Yoseph na casa de Potifar, por causa de sua esposa enganosa. Há três cenas aqui, começando com sua primeira recusa das investidas da esposa (Gn. 39:7-10), e isso é correspondido pelo discurso dela que torce a história a seu favor (Gn. 39:13-19). No centro (Gn. 39:11-12) está o momento definidor de Yoseph, onde ele vence o teste e tem que fugir nu.</span><span class="lang-en">Part 2 (Gen. 39:7-19) recounts Yoseph’s downfall in Potiphar’s house, due to his deceptive wife. There are three scenes here, beginning with his first refusal of the wife’s advances (Gen. 39:7-10), and this is matched by her speech that twists the story to her own advantage (Gen. 39:13-19). In the center (Gen. 39:11-12) is Yoseph’s defining moment, where he overcomes his test and has to flee naked.</span></span></li>
+      <li><span><span class="lang-pt">A Parte 3 (Gn. 39:20-23) narra o sucesso e a elevação de Yoseph na prisão. O capitão da prisão vê as habilidades de Yoseph por causa da presença de Yahweh, e o põe sobre a prisão assim como Potifar havia feito.</span><span class="lang-en">Part 3 (Gen. 39:20-23) narrates Yoseph’s success and elevation in the prison. The prison captain sees Yoseph’s abilities due to Yahweh’s presence, and he places Yoseph over the prison just as Potiphar did.</span></span></li>
+    </ul>
+    <div class="diagram-scroll">
+      <div class="diagram-viewport">
+        <div class="diagram-canvas">
+          <div class="d10-t d10-b27">
+<span class="d10-tag">A</span>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk">a</span><span class="d10-vn">1</span><span class="d10-tx"><span><span class="lang-pt">Agora Josof fora </span><span class="lang-en">Now Yoseph had been </span></span><span class="d10-gray"><span><span class="lang-pt">levado</span><span class="lang-en">taken down</span></span></span><span><span class="lang-pt"> ao Egito;</span><span class="lang-en"> to Egypt;</span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk">b</span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">e </span><span class="lang-en">and </span></span><span class="d10-grn"><span><span class="lang-pt">Potipar</span><span class="lang-en">Potiphar</span></span></span><span><span class="lang-pt"> comprou-o:</span><span class="lang-en"> bought him:</span></span></span></div>
+<div class="d10-l" style="--lvl:2"><span class="d10-mk">c</span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">um oficial de Faraó,</span><span class="lang-en">an officer of Pharaoh,</span></span></span></div>
+<div class="d10-l" style="--lvl:2"><span class="d10-mk">c’</span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">o capitão dos açougueiros,</span><span class="lang-en">the captain of the butchers,</span></span></span></div>
+<div class="d10-l" style="--lvl:2"><span class="d10-mk">c’’</span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">um </span><span class="lang-en">an </span></span><span class="d10-brn"><span><span class="lang-pt">egípcio</span><span class="lang-en">Egyptian</span></span></span><span><span class="lang-pt"> (איש מצרי)</span><span class="lang-en"> (איש מצרי)</span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk">b’</span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">das </span><span class="lang-en">from </span></span><span class="d10-pill d10-br"><span><span class="lang-pt">mãos</span><span class="lang-en">the hand</span></span></span><span><span class="lang-pt"> dos Ismaelitas,</span><span class="lang-en"> of the Yishmaelites,</span></span></span></div>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk">a’</span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">que o </span><span class="lang-en">who had </span></span><span class="d10-gray"><span><span class="lang-pt">levou</span><span class="lang-en">taken him down</span></span></span><span><span class="lang-pt"> para lá.</span><span class="lang-en"> there.</span></span></span></div>
+</div>
+          <div class="d10-t d10-light d10-inset d10-b27">
+<span class="d10-tag">B</span>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk"></span><span class="d10-vn">2</span><span class="d10-tx"><span><span class="lang-pt">E </span><span class="lang-en">And </span></span><span class="d10-vio"><span><span class="lang-pt">Yahweh estava com José,</span><span class="lang-en">Yahweh was with Yoseph,</span></span></span></span></div>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">e ele se tornou um </span><span class="lang-en">and he became a </span></span><span class="d10-red"><span><span class="lang-pt">homem próspero (איש מצליח)</span><span class="lang-en">successful man (איש מצליח)</span></span></span><span><span class="lang-pt">.</span><span class="lang-en">.</span></span></span></div>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">E estava na </span><span class="lang-en">And he was in </span></span><span class="d10-teal"><span><span class="lang-pt">casa</span><span class="lang-en">the house</span></span></span><span><span class="lang-pt"> de </span><span class="lang-en"> of </span></span><span class="d10-grn"><span><span class="lang-pt">seu senhor</span><span class="lang-en">his master</span></span></span><span><span class="lang-pt"> o </span><span class="lang-en"> the </span></span><span class="d10-brn"><span><span class="lang-pt">egípcio</span><span class="lang-en">Egyptian</span></span></span><span><span class="lang-pt">.</span><span class="lang-en">.</span></span></span></div>
+</div>
+          <div class="d10-t d10-b27">
+<span class="d10-tag">A’</span>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk">a</span><span class="d10-vn">3</span><span class="d10-tx"><span><span class="lang-pt">E </span><span class="lang-en">And </span></span><span class="d10-grn"><span><span class="lang-pt">seu senhor</span><span class="lang-en">his master</span></span></span> <span class="d10-rst"><span><span class="lang-pt">viu (ראה)</span><span class="lang-en">saw (ראה)</span></span></span> <span class="d10-vio"><span><span class="lang-pt">que Yahweh estava com ele</span><span class="lang-en">that Yahweh was with him</span></span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk">b</span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">e que </span><span class="lang-en">and that </span></span><span class="d10-blu"><span><span class="lang-pt">tudo o que ele fazia (כל אשר הוא עשה)</span><span class="lang-en">everything that he was doing (כל אשר הוא עשה)</span></span></span><span class="d10-red"><span><span class="lang-pt">Yahweh fazia prosperar (מצליח)</span><span class="lang-en">Yahweh made successful (מצליח)</span></span></span><span><span class="lang-pt"> na </span><span class="lang-en"> in </span></span><span class="d10-pill d10-br"><span><span class="lang-pt">mão</span><span class="lang-en">his hand</span></span></span><span><span class="lang-pt">.</span><span class="lang-en">.</span></span></span></div>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk">a’</span><span class="d10-vn">4</span><span class="d10-tx"><span><span class="lang-pt">E José achou </span><span class="lang-en">And Yoseph found </span></span><span class="d10-pill d10-rust"><span><span class="lang-pt">graça em seus olhos (חן בעיניו)</span><span class="lang-en">favor in his eyes (חן בעיניו)</span></span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk">b’</span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">e ele o servia,</span><span class="lang-en">and he attended him,</span></span></span></div>
+<hr class="d10-rule"><div class="d10-l" style="--lvl:2"><span class="d10-mk">a</span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">e </span><span class="lang-en">and </span></span><span class="d10-gray"><span><span class="lang-pt">o nomeou sobre</span><span class="lang-en">he appointed him over</span></span></span><span class="d10-teal"><span><span class="lang-pt"> sua casa</span><span class="lang-en"> his house</span></span></span><span><span class="lang-pt">,</span><span class="lang-en">,</span></span></span></div>
+<div class="d10-l" style="--lvl:2"><span class="d10-mk">b</span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">e </span><span class="lang-en">and </span></span><span class="d10-blu"><span><span class="lang-pt">tudo o que era dele (כל יש לו)</span><span class="lang-en">everything that was his (כל יש לו)</span></span></span><span><span class="lang-pt">,</span><span class="lang-en">,</span></span></span></div>
+<div class="d10-l" style="--lvl:2"><span class="d10-mk">a’</span><span class="d10-vn"></span><span class="d10-tx"><span class="d10-gray"><span><span class="lang-pt">deu</span><span class="lang-en">he</span></span></span><span><span class="lang-pt"> na </span><span class="lang-en"> gave into </span></span><span class="d10-pill d10-br"><span><span class="lang-pt">mão</span><span class="lang-en">his hand</span></span></span><span><span class="lang-pt">.</span><span class="lang-en">.</span></span></span></div>
+<div class="d10-l" style="--lvl:2"><span class="d10-mk">a</span><span class="d10-vn">5</span><span class="d10-tx"><span><span class="lang-pt">E aconteceu </span><span class="lang-en">And it came about </span></span><span class="d10-gray"><span><span class="lang-pt">desde o tempo em que o nomeou em</span><span class="lang-en">from the time he appointed him in</span></span></span><span class="d10-teal"><span><span class="lang-pt"> sua casa</span><span class="lang-en"> his house</span></span></span><span><span class="lang-pt">,</span><span class="lang-en">,</span></span></span></div>
+<div class="d10-l" style="--lvl:2"><span class="d10-mk">b</span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">e sobre </span><span class="lang-en">and over </span></span><span class="d10-blu"><span><span class="lang-pt">tudo o que era dele (כל אשר יש לו)</span><span class="lang-en">everything that was his (כל אשר יש לו)</span></span></span><span><span class="lang-pt">,</span><span class="lang-en">,</span></span></span></div>
+<div class="d10-l" style="--lvl:2"><span class="d10-mk">a’</span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">Yahweh </span><span class="lang-en">Yahweh </span></span><span class="d10-pill d10-lil"><span><span class="lang-pt">abençoou</span><span class="lang-en">blessed</span></span></span><span class="d10-teal"><span><span class="lang-pt"> a casa</span><span class="lang-en"> the house</span></span></span><span><span class="lang-pt"> do </span><span class="lang-en"> of the </span></span><span class="d10-brn"><span><span class="lang-pt">egípcio</span><span class="lang-en">Egyptian</span></span></span><span><span class="lang-pt"> por causa de José;</span><span class="lang-en"> on account of Yoseph;</span></span></span></div>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk">a’</span><span class="d10-vn">1</span><span class="d10-tx"><span><span class="lang-pt">e a </span><span class="lang-en">and Yahweh’s </span></span><span class="d10-pill d10-lil"><span><span class="lang-pt">bênção</span><span class="lang-en">blessing</span></span></span><span><span class="lang-pt"> de </span><span class="lang-en"> was on </span></span><span class="d10-blu"><span><span class="lang-pt">tudo o que era dele (כל אשר יש לו)</span><span class="lang-en">everything that was his (כל אשר יש לו)</span></span></span><span><span class="lang-pt">,</span><span class="lang-en">,</span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">na </span><span class="lang-en">in </span></span><span class="d10-teal"><span><span class="lang-pt">casa</span><span class="lang-en">the house</span></span></span><span><span class="lang-pt"> e no campo.</span><span class="lang-en"> and in the field.</span></span></span></div>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk">a</span><span class="d10-vn">2</span><span class="d10-tx"><span><span class="lang-pt">E </span><span class="lang-en">And </span></span><span class="d10-mblu"><span><span class="lang-pt">deixou (עזב)</span><span class="lang-en">he abandoned (עזב)</span></span></span><span class="d10-blu"><span><span class="lang-pt">tudo o que era dele (כל אשר לו)</span><span class="lang-en">everything that was his (כל אשר לו)</span></span></span><span><span class="lang-pt"> na </span><span class="lang-en"> into the </span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span class="d10-pill d10-br"><span><span class="lang-pt">mão</span><span class="lang-en">hand</span></span></span><span><span class="lang-pt"> de José;</span><span class="lang-en"> of Yoseph;</span></span></span></div>
+<div class="d10-l" style="--lvl:2"><span class="d10-mk"></span><span class="d10-vn">3</span><span class="d10-tx"><span><span class="lang-pt">e ele não sabia nada com ele,</span><span class="lang-en">and he did not know anything with him,</span></span></span></div>
+<div class="d10-l" style="--lvl:3"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">exceto o pão que comia.</span><span class="lang-en">except the bread which he ate.</span></span></span></div>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk">+1</span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">E José (ויהי) era </span><span class="lang-en">And Yoseph (ויהי) was </span></span><span class="d10-pill d10-rust"><span><span class="lang-pt">formoso de forma (תאר)</span><span class="lang-en">beautiful of form (תאר)</span></span></span><span><span class="lang-pt">,</span><span class="lang-en">,</span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span class="d10-pill d10-rust"><span><span class="lang-pt">e formoso de aspecto (מראה)</span><span class="lang-en">and beautiful of sight (מראה)</span></span></span><span><span class="lang-pt">.</span><span class="lang-en">.</span></span></span></div>
+</div>
+        </div>
+      </div>
+    </div>
+    <p class="caption reveal"><span class="lang-pt">Gênesis 39:1-6. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 39:1-6. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
+    <div class="diagram-scroll">
+      <div class="diagram-viewport">
+        <div class="diagram-canvas">
+          <div class="d10-t ">
+<span class="d10-badge "><span><span class="lang-pt">As Duas Recusas e o Discurso Honesto de José</span><span class="lang-en">Yoseph’s Two Refusals and Honest Speech</span></span></span>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk"></span><span class="d10-vn">7</span><span class="d10-tx"><span><span class="lang-pt">E aconteceu depois destas coisas</span><span class="lang-en">And it came about after these things</span></span></span></div>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">e </span><span class="lang-en">and </span></span><span class="d10-red"><span><span class="lang-pt">a mulher</span><span class="lang-en">the wife</span></span></span> <span class="d10-pill d10-cy"><span><span class="lang-pt">de seu senhor</span><span class="lang-en">of his master</span></span></span><span class="d10-red"><span><span class="lang-pt"> levantou os olhos para José</span><span class="lang-en"> lifted her eyes toward Yoseph</span></span></span></span></div>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">e </span><span class="lang-en">and </span></span><span class="d10-red"><span><span class="lang-pt">disse</span><span class="lang-en">she said</span></span></span><span class="d10-pill d10-cr"><span><span class="lang-pt">“</span><span class="lang-en">“</span></span></span><span class="d10-mag"><span><span class="lang-pt">Deita comigo</span><span class="lang-en">Lie with me</span></span></span><span><span class="lang-pt"> .”</span><span class="lang-en"> .”</span></span></span></div>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk"></span><span class="d10-vn">8</span><span class="d10-tx"><span><span class="lang-pt">e ele recusou.</span><span class="lang-en">and he refused.</span></span></span></div>
+<hr class="d10-rule"><div class="d10-l" style="--lvl:1"><span class="d10-mk">a</span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">E disse à </span><span class="lang-en">And he said to </span></span><span class="d10-dteal"><span><span class="lang-pt">mulher de seu senhor</span><span class="lang-en">the wife of his master</span></span></span><span><span class="lang-pt">,</span><span class="lang-en">,</span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk">b</span><span class="d10-vn">9</span><span class="d10-tx"><span><span class="lang-pt">“ Eis que meu senhor </span><span class="lang-en">“Behold, my master </span></span><span class="d10-dteal"><span><span class="lang-pt">senhor</span><span class="lang-en">my master</span></span></span><span><span class="lang-pt"> não sabe, comigo, o que </span><span class="lang-en"> does not know, with me, what is </span></span><span class="d10-teal"><span><span class="lang-pt">está na casa</span><span class="lang-en">in the house</span></span></span><span><span class="lang-pt">,</span><span class="lang-en">,</span></span></span></div>
+<div class="d10-l" style="--lvl:2"><span class="d10-mk">c</span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">e </span><span class="lang-en">and </span></span><span class="d10-blu"><span><span class="lang-pt">tudo o que era dele (כל אשר יש לו)</span><span class="lang-en">everything that is his (כל אשר יש לו)</span></span></span><span class="d10-blu"><span><span class="lang-pt">ele deu na</span><span class="lang-en">he has given into</span></span></span> <span class="d10-pill d10-br"><span><span class="lang-pt">mão</span><span class="lang-en">my hand</span></span></span><span><span class="lang-pt">.</span><span class="lang-en">.</span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk">b’</span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">Não há ninguém maior </span><span class="lang-en">There is no one greater </span></span><span class="d10-teal"><span><span class="lang-pt">na casa</span><span class="lang-en">in the house</span></span></span><span><span class="lang-pt"> do que eu,</span><span class="lang-en"> than me,</span></span></span></div>
+<div class="d10-l" style="--lvl:2"><span class="d10-mk">c’</span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">e </span><span class="lang-en">and </span></span><span class="d10-blu"><span><span class="lang-pt">não me negou coisa alguma</span><span class="lang-en">he has not withheld anything from me</span></span></span><span><span class="lang-pt"> exceto a ti, porque você é sua mulher.</span><span class="lang-en"> except you, because you are his wife.</span></span></span></div>
+<div class="d10-l" style="--lvl:3"><span class="d10-mk">d’</span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">E como poderia eu fazer este grande mal e pecar contra Deus?”</span><span class="lang-en">And how could I do this great evil and sin against God?”</span></span></span></div>
+<hr class="d10-rule"><div class="d10-l" style="--lvl:0"><span class="d10-mk"></span><span class="d10-vn">10</span><span class="d10-tx"><span><span class="lang-pt">E aconteceu, enquanto </span><span class="lang-en">And it came about as </span></span><span class="d10-pill d10-cr"><span><span class="lang-pt">ela falava</span><span class="lang-en">she spoke</span></span></span><span class="d10-red"><span><span class="lang-pt"> a José dia após dia</span><span class="lang-en"> to Yoseph day after day</span></span></span><span><span class="lang-pt">,</span><span class="lang-en">,</span></span></span></div>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span class="d10-red"><span><span class="lang-pt">ele não a quis ouvir</span><span class="lang-en">he would not listen to her</span></span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">para deitar </span><span class="lang-en">to lie </span></span><span class="d10-pill d10-dr"><span><span class="lang-pt">com ela</span><span class="lang-en">next to her</span></span></span><span><span class="lang-pt">,</span><span class="lang-en">,</span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">para estar com ela.</span><span class="lang-en">to be with her.</span></span></span></div>
+</div>
+          <div class="d10-t d10-light d10-inset">
+<span class="d10-badge d10-ref"><span><span class="lang-pt">O “Incidente”</span><span class="lang-en">The “Incident”</span></span></span>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk"></span><span class="d10-vn">11</span><span class="d10-tx"><span><span class="lang-pt">E aconteceu neste dia</span><span class="lang-en">And it came about on this day</span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">que ele entrou na </span><span class="lang-en">that </span></span><span class="d10-navy"><span><span class="lang-pt">casa (הביתה)</span><span class="lang-en">he went into the house (הביתה)</span></span></span><span><span class="lang-pt"> para fazer seu trabalho,</span><span class="lang-en"> to do his work,</span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">e nenhum homem dos homens da </span><span class="lang-en">and no man from the men of </span></span><span class="d10-teal"><span><span class="lang-pt">casa</span><span class="lang-en">the house</span></span></span><span><span class="lang-pt"> estava ali </span><span class="lang-en"> was there </span></span><span class="d10-teal"><span><span class="lang-pt">na casa</span><span class="lang-en">in the house</span></span></span><span><span class="lang-pt">.</span><span class="lang-en">.</span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn">12</span><span class="d10-tx"><span><span class="lang-pt">E ela o pegou pela </span><span class="lang-en">And she seized him by </span></span><span class="d10-gray"><span><span class="lang-pt">sua veste</span><span class="lang-en">his garment</span></span></span><span><span class="lang-pt">,</span><span class="lang-en">,</span></span></span></div>
+<div class="d10-l" style="--lvl:2"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">dizendo, “</span><span class="lang-en">saying, “</span></span><span class="d10-mag"><span><span class="lang-pt">Deita comigo</span><span class="lang-en">Lie with me</span></span></span><span><span class="lang-pt"> !”</span><span class="lang-en"> !”</span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">e </span><span class="lang-en">and </span></span><span class="d10-grn"><span><span class="lang-pt">deixou (עזב)</span><span class="lang-en">he abandoned (עזב)</span></span></span><span class="d10-gray"><span><span class="lang-pt"> sua veste</span><span class="lang-en"> his garment</span></span></span><span><span class="lang-pt"> na </span><span class="lang-en"> in </span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span class="d10-pill d10-br"><span><span class="lang-pt">mão dela</span><span class="lang-en">her hand</span></span></span></span></div>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">e fugiu,</span><span class="lang-en">and he fled,</span></span></span></div>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">e </span><span class="lang-en">and </span></span><span class="d10-navy"><span><span class="lang-pt">saiu para fora (החוצה)</span><span class="lang-en">he went outside (החוצה)</span></span></span><span><span class="lang-pt">.</span><span class="lang-en">.</span></span></span></div>
+</div>
+        </div>
+      </div>
+    </div>
+    <p class="caption reveal"><span class="lang-pt">Gênesis 39:7-19. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 39:7-19. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
+    <div class="diagram-scroll">
+      <div class="diagram-viewport">
+        <div class="diagram-canvas">
+          <div class="d10-t ">
+<span class="d10-badge "><span><span class="lang-pt">O “Incidente” Recontado nos Dois Discursos Enganosos da Esposa</span><span class="lang-en">The “Incident” Recounted in the Wife’s Two Deceptive Speeches</span></span></span>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk">a</span><span class="d10-vn">13</span><span class="d10-tx"><span><span class="lang-pt">E aconteceu quando (ויהי כ • -) </span><span class="lang-en">And it came about when (ויהי כ • -) </span></span><span class="d10-gray"><span><span class="lang-pt">viu que</span><span class="lang-en">she saw that</span></span></span> <span class="d10-grn"><span><span class="lang-pt">ele deixou (עזב)</span><span class="lang-en">he abandoned (עזב)</span></span></span> <span class="d10-gray"><span><span class="lang-pt">sua veste</span><span class="lang-en">his garment</span></span></span><span><span class="lang-pt"> na </span><span class="lang-en"> in </span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span class="d10-pill d10-br"><span><span class="lang-pt">mão dela</span><span class="lang-en">her hand</span></span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span class="d10-gray"><span><span class="lang-pt">e fugiu para fora</span><span class="lang-en">and he fled outside</span></span></span><span><span class="lang-pt">,</span><span class="lang-en">,</span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk">b</span><span class="d10-vn">14</span><span class="d10-tx"><span><span class="lang-pt">então </span><span class="lang-en">then </span></span><span class="d10-red"><span><span class="lang-pt">gritou</span><span class="lang-en">she called out</span></span></span><span><span class="lang-pt"> aos homens da </span><span class="lang-en"> to the men of </span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span class="d10-teal"><span><span class="lang-pt">casa</span><span class="lang-en">her house</span></span></span><span><span class="lang-pt">, e </span><span class="lang-en">, and </span></span><span class="d10-pill d10-cr"><span><span class="lang-pt">disse-lhes</span><span class="lang-en">she said to them</span></span></span><span><span class="lang-pt">, dizendo: “</span><span class="lang-en">, saying “</span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk">c</span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">“ Eis, </span><span class="lang-en">“See, </span></span><span class="d10-vio"><span><span class="lang-pt">trouxe (הביא ל • -) um hebreu</span><span class="lang-en">he has brought in (הביא ל • -) a Hebrew man</span></span></span><span><span class="lang-pt"> para conosco para brincar conosco;</span><span class="lang-en"> to us to play with us;</span></span></span></div>
+<div class="d10-l" style="--lvl:2"><span class="d10-mk">c’</span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">e veio até mim para </span><span class="lang-en">he came to me to </span></span><span class="d10-mag"><span><span class="lang-pt">deitar comigo</span><span class="lang-en">lie with me</span></span></span><span><span class="lang-pt">,</span><span class="lang-en">,</span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk">b’</span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">e </span><span class="lang-en">and </span></span><span class="d10-red"><span><span class="lang-pt">chamei com grande voz</span><span class="lang-en">I called out with a great voice</span></span></span><span><span class="lang-pt">,</span><span class="lang-en">,</span></span></span></div>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk">a’</span><span class="d10-vn">15</span><span class="d10-tx"><span><span class="lang-pt">e aconteceu quando (ויהי כ • -) </span><span class="lang-en">and it came about when (ויהי כ • -) </span></span><span class="d10-red"><span><span class="lang-pt">que ele ouviu que eu levantei minha voz</span><span class="lang-en">he heard that I raised my voice and called out</span></span></span><span><span class="lang-pt">, então </span><span class="lang-en">, then </span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span class="d10-grn"><span><span class="lang-pt">deixou (עזב)</span><span class="lang-en">he abandoned (עזב)</span></span></span><span class="d10-gray"><span><span class="lang-pt"> sua veste</span><span class="lang-en"> his garment</span></span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span class="d10-pill d10-dr"><span><span class="lang-pt">perto de mim</span><span class="lang-en">next to me</span></span></span><span><span class="lang-pt">,</span><span class="lang-en">,</span></span></span></div>
+<div class="d10-l" style="--lvl:2"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span class="d10-gray"><span><span class="lang-pt">e fugiu e saiu para fora .”</span><span class="lang-en">and he fled and he went outside .”</span></span></span></span></div>
+<hr class="d10-rule"><div class="d10-l" style="--lvl:0"><span class="d10-mk"></span><span class="d10-vn">16</span><span class="d10-tx"><span><span class="lang-pt">E ela deixou </span><span class="lang-en">And she rested </span></span><span class="d10-gray"><span><span class="lang-pt">sua veste</span><span class="lang-en">his garment</span></span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span class="d10-pill d10-dr"><span><span class="lang-pt">junto dela</span><span class="lang-en">next to her</span></span></span><span><span class="lang-pt">, até </span><span class="lang-en">, until </span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span class="d10-pill d10-cy"><span><span class="lang-pt">senhor</span><span class="lang-en">his master</span></span></span><span><span class="lang-pt"> chegar </span><span class="lang-en"> came to </span></span><span class="d10-teal"><span><span class="lang-pt">casa</span><span class="lang-en">his house</span></span></span><span><span class="lang-pt">.</span><span class="lang-en">.</span></span></span></div>
+<hr class="d10-rule"><div class="d10-l" style="--lvl:0"><span class="d10-mk"></span><span class="d10-vn">17</span><span class="d10-tx"><span><span class="lang-pt">E ela falou </span><span class="lang-en">And </span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span class="d10-pill d10-cr"><span><span class="lang-pt">com ele</span><span class="lang-en">she spoke to him</span></span></span> <span class="d10-pill d10-cr"><span><span class="lang-pt">estas palavras</span><span class="lang-en">these words</span></span></span><span><span class="lang-pt">, dizendo: “Ele veio até mim (בא אל), o </span><span class="lang-en">, saying “He came to me (בא אל), the </span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span class="d10-vio"><span><span class="lang-pt">escravo hebreu</span><span class="lang-en">Hebrew slave</span></span></span><span><span class="lang-pt">,</span><span class="lang-en">,</span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">que você fez </span><span class="lang-en">whom you made </span></span><span class="d10-vio"><span><span class="lang-pt">vir para nós (הביא ל)</span><span class="lang-en">come to us (הביא ל)</span></span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span class="d10-vio"><span><span class="lang-pt">para brincar comigo</span><span class="lang-en">to play with me</span></span></span><span><span class="lang-pt">;</span><span class="lang-en">;</span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn">18</span><span class="d10-tx"><span><span class="lang-pt">e quando </span><span class="lang-en">and when </span></span><span class="d10-red"><span><span class="lang-pt">eu levantei minha voz</span><span class="lang-en">I raised my voice and I called out</span></span></span><span><span class="lang-pt">,</span><span class="lang-en">,</span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">e </span><span class="lang-en">then </span></span><span class="d10-grn"><span><span class="lang-pt">deixou (עזב)</span><span class="lang-en">he abandoned (עזב)</span></span></span><span class="d10-gray"><span><span class="lang-pt"> sua veste</span><span class="lang-en"> his garment</span></span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span class="d10-pill d10-dr"><span><span class="lang-pt">perto de mim</span><span class="lang-en">next to me</span></span></span><span><span class="lang-pt">,</span><span class="lang-en">,</span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span class="d10-gray"><span><span class="lang-pt">e fugiu para fora .”</span><span class="lang-en">and he fled outside .”</span></span></span></span></div>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk"></span><span class="d10-vn">19</span><span class="d10-tx"><span><span class="lang-pt">E aconteceu quando (ויהי כ • -) </span><span class="lang-en">And it came about when (ויהי כ • -) </span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span class="d10-pill d10-cy"><span><span class="lang-pt">senhor</span><span class="lang-en">his master</span></span></span><span class="d10-red"><span><span class="lang-pt"> ouviu </span><span class="lang-en"> heard </span></span></span> <span class="d10-pill d10-cr"><span><span class="lang-pt">as palavras</span><span class="lang-en">the words</span></span></span><span><span class="lang-pt"> da </span><span class="lang-en"> of </span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span class="d10-pill d10-cy"><span><span class="lang-pt">esposa</span><span class="lang-en">his wife</span></span></span><span><span class="lang-pt">, que </span><span class="lang-en">, </span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span class="d10-pill d10-cr"><span><span class="lang-pt">falou</span><span class="lang-en">she spoke to him</span></span></span><span><span class="lang-pt"> a ele, dizendo: “Segundo estas </span><span class="lang-en"> he said, saying, “According to these </span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span class="d10-pill d10-cr"><span><span class="lang-pt">palavras</span><span class="lang-en">spoken-words</span></span></span> <span class="d10-vio"><span><span class="lang-pt">teu servo</span><span class="lang-en">your slave</span></span></span><span><span class="lang-pt"> fez isso comigo,”</span><span class="lang-en"> did it to me,”</span></span></span></div>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">e a ira dele acendeu.</span><span class="lang-en">then his anger burned hot.</span></span></span></div>
+</div>
+          <div class="d10-t ">
+<div class="d10-l" style="--lvl:0"><span class="d10-mk"></span><span class="d10-vn">20</span><span class="d10-tx"><span><span class="lang-pt">E o senhor de José o tomou </span><span class="lang-en">And Yoseph’s master took him </span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">e </span><span class="lang-en">and </span></span><span class="d10-grn"><span><span class="lang-pt">deu (ויתן) na</span><span class="lang-en">he gave (ויתן) him into</span></span></span><span class="d10-teal"><span><span class="lang-pt"> casa de detenção</span><span class="lang-en"> the round-house</span></span></span><span><span class="lang-pt">,</span><span class="lang-en">,</span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">o lugar onde estavam os </span><span class="lang-en">the place </span></span><span class="d10-brn"><span><span class="lang-pt">prisioneiros</span><span class="lang-en">prisoners</span></span></span><span><span class="lang-pt"> do rei;</span><span class="lang-en"> the king’s prisoners were;</span></span></span></div>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">e ele estava ali na </span><span class="lang-en">and he was there in </span></span><span class="d10-teal"><span><span class="lang-pt">casa de detenção</span><span class="lang-en">the round-house</span></span></span><span><span class="lang-pt">.</span><span class="lang-en">.</span></span></span></div>
+</div>
+          <div class="d10-t d10-light d10-inset">
+<div class="d10-l" style="--lvl:0"><span class="d10-mk"></span><span class="d10-vn">21</span><span class="d10-tx"><span><span class="lang-pt">E </span><span class="lang-en">And </span></span><span class="d10-lvio"><span><span class="lang-pt">Yahweh estava com José</span><span class="lang-en">Yahweh was with Yoseph</span></span></span></span></div>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">e lhe estendeu amor leal a ele,</span><span class="lang-en">and he extended loyal-love to him,</span></span></span></div>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">e lhe deu graça aos olhos (חנו בעיני) de </span><span class="lang-en">and gave him favor in the eyes (חנו בעיני) of </span></span><span class="d10-gray"><span><span class="lang-pt">o capitão (שר)</span><span class="lang-en">the captain (שר)</span></span></span><span class="d10-teal"><span><span class="lang-pt"> da casa de detenção</span><span class="lang-en"> of the round-house</span></span></span><span><span class="lang-pt">.</span><span class="lang-en">.</span></span></span></div>
+</div>
+          <div class="d10-t ">
+<div class="d10-l" style="--lvl:0"><span class="d10-mk"></span><span class="d10-vn">22</span><span class="d10-tx"><span><span class="lang-pt">E </span><span class="lang-en">And </span></span><span class="d10-gray"><span><span class="lang-pt">o capitão (שר)</span><span class="lang-en">the captain (שר)</span></span></span><span><span class="lang-pt"> da </span><span class="lang-en"> of </span></span><span class="d10-teal"><span><span class="lang-pt">casa de detenção</span><span class="lang-en">the round-house</span></span></span><span class="d10-grn"><span><span class="lang-pt"> deu (ויתן)</span><span class="lang-en"> gave (ויתן)</span></span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">na mão de José todos os </span><span class="lang-en"> into the hand of Yoseph all the </span></span><span class="d10-brn"><span><span class="lang-pt">prisioneiros</span><span class="lang-en">prisoners</span></span></span><span><span class="lang-pt"> que estavam na </span><span class="lang-en"> who were in the </span></span><span class="d10-teal"><span><span class="lang-pt">casa de detenção</span><span class="lang-en">round-house</span></span></span><span><span class="lang-pt">,</span><span class="lang-en">,</span></span></span></div>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">e </span><span class="lang-en">and </span></span><span class="d10-blu"><span><span class="lang-pt">tudo o que faziam ali</span><span class="lang-en">everything they were doing there</span></span></span><span><span class="lang-pt">,</span><span class="lang-en">,</span></span></span></div>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span class="d10-blu"><span><span class="lang-pt">ele fazia (כל אשר עשים … הוא היה עשה)</span><span class="lang-en">he was doing (כל אשר עשים … הוא היה עשה)</span></span></span><span><span class="lang-pt">.</span><span class="lang-en">.</span></span></span></div>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk"></span><span class="d10-vn">23</span><span class="d10-tx"><span><span class="lang-pt">E </span><span class="lang-en">And </span></span><span class="d10-gray"><span><span class="lang-pt">o capitão (שר)</span><span class="lang-en">the captain (שר)</span></span></span><span><span class="lang-pt"> da </span><span class="lang-en"> of </span></span><span class="d10-teal"><span><span class="lang-pt">casa de detenção</span><span class="lang-en">the round-house</span></span></span><span><span class="lang-pt"> não via nada na </span><span class="lang-en"> did not see anything in </span></span></span></div>
+<div class="d10-l" style="--lvl:1"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span class="d10-pill d10-br"><span><span class="lang-pt">mão</span><span class="lang-en">his hand</span></span></span></span></div>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span><span class="lang-pt">na medida em que </span><span class="lang-en">in as much as </span></span><span class="d10-lvio"><span><span class="lang-pt">Yahweh estava com ele</span><span class="lang-en">Yahweh was with him</span></span></span><span><span class="lang-pt">, e </span><span class="lang-en">, and </span></span></span></div>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span class="d10-blu"><span><span class="lang-pt">tudo o que ele fazia (כל אשר הוא עשה)</span><span class="lang-en">whatever he was doing (כל אשר הוא עשה)</span></span></span><span><span class="lang-pt">,</span><span class="lang-en">,</span></span></span></div>
+<div class="d10-l" style="--lvl:0"><span class="d10-mk"></span><span class="d10-vn"></span><span class="d10-tx"><span class="d10-red"><span><span class="lang-pt">Yahweh o fazia prosperar (מצליח)</span><span class="lang-en">Yahweh made it successful (מצליח)</span></span></span><span><span class="lang-pt">.</span><span class="lang-en">.</span></span></span></div>
+</div>
+        </div>
+      </div>
+    </div>
+    <p class="caption reveal"><span class="lang-pt">Gênesis 39:20-23. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 39:20-23. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
+    <h2 class="section reveal"><span class="lang-pt">Mais Vestes Enganosas</span><span class="lang-en">More Deceptive Garments</span></h2>
+    <p class="body reveal"><span class="lang-pt">A veste de Yoseph é tirada dele pela esposa mentirosa de Potifar e usada para “provar” a culpa dele. // A veste de Yoseph é tirada dele pelos irmãos mentirosos e usada para “provar” a morte dele. // As “vestes enganosas” de Tamar são usadas para enganar Yehudah.</span><span class="lang-en">Yoseph’s garment is taken from him by Potiphar’s lying wife and used to “prove” his guilt. // Yoseph’s coat is taken from him by his lying brothers and used to “prove” his death. // Tamar’s “deceptive garments” are used to trick Yehudah.</span></p>
+    <div class="diagram-scroll">
+      <div class="diagram-viewport">
+        <div class="diagram-canvas">
+          <table class="d10-tbl">
+            <thead>
+              <tr>
+                <th style="width:25%"><span><span class="lang-pt">Gênesis 27</span><span class="lang-en">Genesis 27</span></span></th><th style="width:25%"><span><span class="lang-pt">Gênesis 37</span><span class="lang-en">Genesis 37</span></span></th><th style="width:25%"><span><span class="lang-pt">Gênesis 38</span><span class="lang-en">Genesis 38</span></span></th><th style="width:25%"><span><span class="lang-pt">Gênesis 39</span><span class="lang-en">Genesis 39</span></span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span><span class="lang-pt">Yaaqov </span><span class="lang-en">Yaaqov </span></span><span class="d10-pill d10-sl"><span><span class="lang-pt">engana</span><span class="lang-en">deceives</span></span></span><span><span class="lang-pt"> seu pai Yitskhaq com a </span><span class="lang-en"> his father Yitskhaq with the </span></span><span class="d10-pill d10-sl"><span><span class="lang-pt">veste</span><span class="lang-en">garment</span></span></span><span><span class="lang-pt"> (בגד) de seu irmão mais velho</span><span class="lang-en"> (בגד) of his older brother</span></span></td><td><span><span class="lang-pt">Os filhos de Yaaqov </span><span class="lang-en">Yaaqov’s sons </span></span><span class="d10-pill d10-sl"><span><span class="lang-pt">enganam</span><span class="lang-en">deceive</span></span></span><span><span class="lang-pt"> seu pai com a </span><span class="lang-en"> their father with the </span></span><span class="d10-pill d10-sl"><span><span class="lang-pt">túnica</span><span class="lang-en">robe</span></span></span><span><span class="lang-pt"> (כתנת) de seu filho mais novo</span><span class="lang-en"> (כתנת) of his youngest son</span></span></td><td><span><span class="lang-pt">Tamar </span><span class="lang-en">Tamar </span></span><span class="d10-pill d10-sl"><span><span class="lang-pt">engana</span><span class="lang-en">deceives</span></span></span><span><span class="lang-pt"> Yehudah com </span><span class="lang-en"> Yehudah with </span></span><span class="d10-pill d10-sl"><span><span class="lang-pt">vestes</span><span class="lang-en">garments</span></span></span><span><span class="lang-pt"> (בגד) em ordem de gerar um filho</span><span class="lang-en"> (בגד) in order to produce a son</span></span></td><td><span><span class="lang-pt">A mulher de Potifar </span><span class="lang-en">Potiphar’s wife </span></span><span class="d10-pill d10-sl"><span><span class="lang-pt">engana</span><span class="lang-en">deceives</span></span></span><span><span class="lang-pt"> seu marido com as </span><span class="lang-en"> her husband with the </span></span><span class="d10-pill d10-sl"><span><span class="lang-pt">vestes</span><span class="lang-en">garments</span></span></span><span><span class="lang-pt"> (בגד) do filho amado de Yaakov</span><span class="lang-en"> (בגד) of Yaakov’s beloved son</span></span></td></tr>
+          </tbody>
+            <tfoot>
+              <tr>
+                <td class="d10-cap" colspan="4"><span><span class="lang-pt">Gênesis 27 Refletido em Gênesis 37-39. Criado por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 27 Reflected in Genesis 37-39. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></span></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+    <h2 class="section reveal"><span class="lang-pt">Yoseph: A Imagem Exaltada e Exilada de Elohim</span><span class="lang-en">Yoseph: The Exalted and Exiled Image of Elohim</span></h2>
+    <p class="body reveal"><span class="lang-pt">Esta narrativa está repleta de hiperlinks para Gênesis 1-3 que colocam Yoseph em analogia com a imagem de Elohim, que é posto para governar como segundo-em-comando. Mas ele é injustamente acusado por causa de uma mulher enganosa e exilado ainda mais para dentro de um poço egípcio de morte.</span><span class="lang-en">This narrative is riddled with hyperlinks to Genesis 1-3 that set Yoseph on analogy to the image of Elohim who is appointed to rule as second-in-command. But he is wrongly accused because of a deceiving woman and exiled even further down into an Egyptian pit of death.</span></p>
+    <div class="diagram-scroll">
+      <div class="diagram-viewport">
+        <div class="diagram-canvas">
+          <table class="d10-tbl">
+            <thead>
+              <tr>
+                <th><span><span class="lang-pt">Yoseph em Gênesis 39</span><span class="lang-en">Yoseph in Genesis 39</span></span></th><th><span><span class="lang-pt">Humanos em Gênesis 1-3</span><span class="lang-en">Humans in Genesis 1-3</span></span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span><span class="lang-pt">Yoseph acha graça com Potifar e é posto como segundo-em-comando sobre tudo o que pertence a ele.</span><span class="lang-en">Yoseph finds favor with Potiphar and is placed as second-in-command over all that belongs to him.</span></span></td><td><span><span class="lang-pt">Elohim constitui o homem e a mulher como a imagem divina sobre toda a criação que em última instância pertence a Elohim.</span><span class="lang-en">Elohim appoints man and woman as the divine image over all creation that ultimately belongs to Elohim.</span></span></td></tr>
+          <tr><td><span><span class="lang-pt">Gn. 39:6a Potifar não “sabe” de nada em sua casa, exceto “o pão que ele comeu” (que, na narrativa, acaba sendo sua mulher, a comida proibida).</span><span class="lang-en">Gen. 39:6a Potiphar doesn’t “know” anything in his house except “the bread which he ate” (which in the narrative, turns out to be his wife, the forbidden food).</span></span></td><td><span><span class="lang-pt">Adão e Eva ainda não têm o “conhecimento” do bem e do mal, mas devem “comer” de nenhuma outra árvore do jardim.</span><span class="lang-en">Adam and Eve do not yet have the “knowledge” of good and bad, but are to “eat” from any other trees in the garden.</span></span></td></tr>
+          <tr><td><span><span class="lang-pt">Gn. 39:6b José era “formoso de </span><span class="lang-en">Gen. 39:6b Yoseph was “beautiful </span></span><span class="d10-pill d10-lb"><span><span class="lang-pt">aspecto (יפה מראה)</span><span class="lang-en">of sight (יפה מראה)</span></span></span></td><td><span><span class="lang-pt">Gn. 3:5-6 “a mulher </span><span class="lang-en">Gen. 3:5-6 “the woman saw </span></span><span class="d10-pill d10-lb"><span><span class="lang-pt">viu (רא׳׳ה)</span><span class="lang-en">the woman saw (רא׳׳ה)</span></span></span><span><span class="lang-pt"> que a árvore era … desejável </span><span class="lang-en"> that the tree was … desirable </span></span><span class="d10-pill d10-lb"><span><span class="lang-pt">aos olhos</span><span class="lang-en">to the eyes</span></span></span><span><span class="lang-pt"> .”</span><span class="lang-en"> .”</span></span></td></tr>
+          <tr><td><span><span class="lang-pt">Gn. 39:9 “Como (איך) poderia eu fazer (עשה) </span><span class="lang-en">Gen. 39:9 “How )(איך could I do )(עשה</span></span><span class="d10-pill d10-r"><span><span class="lang-pt">este grande mal (רעה)</span><span class="lang-en">this great evil (רעה)</span></span></span><span><span class="lang-pt"> e </span><span class="lang-en"> and </span></span><span class="d10-pill d10-r"><span><span class="lang-pt">pecar contra Deus (חטאתי לאלהים)</span><span class="lang-en">sin against God (חטאתי לאלהים)</span></span></span><span><span class="lang-pt">”?</span><span class="lang-en">” ?</span></span></td><td><span><span class="lang-pt">Gn. 3:13 “Que coisa é essa que você fez (עשה)?”</span><span class="lang-en">Gen. 3:13 “What is this thing that you have done (עשה)?”</span></span></td></tr>
+          <tr><td><span><span class="lang-pt">Gn. 39:10 “Enquanto ela falava a José dia após dia, </span><span class="lang-en">Gen. 39:10 “As she spoke to Yoseph day after day, </span></span><span class="d10-pill d10-lil"><span><span class="lang-pt">ele não quis ouvir (לא שמע)</span><span class="lang-en">he would not listen (לא שמע)</span></span></span><span><span class="lang-pt"> a ela”</span><span class="lang-en"> to her”</span></span></td><td><span><span class="lang-pt">Gn. 3:17 “porque você </span><span class="lang-en">Gen. 3:17 “because you </span></span><span class="d10-pill d10-lil"><span><span class="lang-pt">ouviu a voz de sua mulher</span><span class="lang-en">listened to the voice of your wife</span></span></span><span><span class="lang-pt"> …”</span><span class="lang-en"> …”</span></span></td></tr>
+          <tr><td><span><span class="lang-pt">Gn. 39:13 “E </span><span class="lang-en">Gen. 39:13 “And </span></span><span class="d10-pill d10-rust"><span><span class="lang-pt">quando ela viu</span><span class="lang-en">when she saw</span></span></span><span><span class="lang-pt"> …”</span><span class="lang-en"> …”</span></span></td><td><span><span class="lang-pt">Gn. 3:6 “e a mulher viu que a árvore era boa …”</span><span class="lang-en">Gen. 3:6 “and the woman saw that the tree was good …”</span></span></td></tr>
+          <tr><td><span><span class="lang-pt">Gn. 39:15 “E aconteceu </span><span class="lang-en">Gen. 39:15 “And it came about </span></span><span class="d10-pill d10-g"><span><span class="lang-pt">quando ele ouviu (שמע)</span><span class="lang-en">when he heard (שמע)</span></span></span><span><span class="lang-pt"> que eu levantei </span><span class="lang-en"> that I raised </span></span><span class="d10-pill d10-g"><span><span class="lang-pt">minha voz (קול)</span><span class="lang-en">my voice (קול)</span></span></span><span><span class="lang-pt"> e fugi para fora.”</span><span class="lang-en"> he ran outside.”</span></span></td><td><span><span class="lang-pt">Gn. 3:8 “E </span><span class="lang-en">Gen. 3:8 “And </span></span><span class="d10-pill d10-g"><span><span class="lang-pt">eles ouviram (שמע) o som (קול)</span><span class="lang-en">they heard (שמע) the sound (קול)</span></span></span><span><span class="lang-pt"> de Yahweh andando … e se esconderam”</span><span class="lang-en"> of Yahweh walking … and they hid themselves”</span></span></td></tr>
+          </tbody>
+            <tfoot>
+              <tr>
+                <td class="d10-cap" colspan="2"><span><span class="lang-pt">Comparando José e Adão e Eva. Criado por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Comparing Joseph and Adam and Eve. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></span></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+    <p class="body reveal"><span class="lang-pt">Yoseph é um contraste a Adão porque ele não quis ouvir a voz da mulher (Adão em Gn. 3:17) dormindo com ela. Nesta história, Yoseph se torna o fruto proibido que é desejado aos olhos da mulher de Potifar (a mulher de Potifar = “pão” em Gn. 39:6). Ele é injustamente agarrado pela mulher, que então engana seu marido, resultando na expulsão de Yoseph, o que o leva de volta para “o poço”, desta vez uma “casa de prisão” (בית הסהר). Yoseph se torna um Adão exilado, não por nenhuma culpa própria, mas por causa do pecado da mulher de Potifar. Deste modo, a história de Gênesis 3 é uma narrativa de contraste com Yoseph como um anti-Adão.</span><span class="lang-en">Yoseph is a contrast to Adam because he won’t listen to the voice of the woman (Adam in Gen. 3:17) by sleeping with her. In this story, Yoseph becomes the forbidden fruit who is desirable to the eyes of Potiphar’s wife (Potiphar’s wife = “bread” in Gen. 39:6). He is wrongly seized by the woman, who then deceives her husband, resulting in Yoseph’s expulsion, which leads him back into “the pit,” this time a “house of prison” (בית הסהר). Yoseph becomes an exiled Adam, not for any wrongdoing of his own, but because of the sin of Potiphar’s wife. In this way, the Genesis 3 story is a contrast narrative with Yoseph as an anti-Adam.</span></p>
+    <h2 class="section reveal"><span class="lang-pt">Yoseph como um Novo Noé</span><span class="lang-en">Yoseph as a New Noah</span></h2>
+    <p class="body reveal"><span class="lang-pt">Gênesis 39:16 diz: “E ela deixou (ותנח) sua veste junto a si” comparado a Gênesis 8:4 que diz: “e a arca descansou (ותנח) … sobre os montes de Arará.” Esta é uma pequena pista de que, como Noé, Deus não se esqueceu de Yoseph em seu ponto mais baixo, mas vai “lembrar” e livrá-lo.</span><span class="lang-en">Genesis 39:16 says, “And she rested (ותנח) his garment beside her” compared to Genesis 8:4 that says, “And the ark rested (ותנח) … upon the mountains of Ararat.” This is a small hint that, like Noah, God has not forgotten Yoseph at his low point but will “remember” and deliver him.</span></p>
+    <p class="body reveal"><span class="lang-pt">Gênesis 39:21 diz: “E Yahweh … lhe deu graça (חן) aos olhos do capitão da casa de confinamento” comparado a Gênesis 6:8 que diz: “Noé achou graça aos olhos de Yahweh.”</span><span class="lang-en">Geneis 39:21 says, “And Yahweh … gave him favor (חן) in the eyes of the captain of the house of confinement” compared to Genesis 6:8 that says, “Noah found favor in the eyes of Yahweh.”</span></p>
+    <p class="body reveal"><span class="lang-pt">As pistas do padrão do dilúvio continuam, nos preparando para ver a fome como um “dilúvio” de desordem do qual Deus livrará um remanescente, a família de Yaaqov, através de Yoseph, que é a figura de Noé.</span><span class="lang-en">The flood pattern hints continue, preparing us to view the famine as a “flood” of disorder out of which God will deliver a remnant, the family of Yaaqov, through Yoseph, who is the Noah figure.</span></p>
+    <h2 class="section reveal"><span class="lang-pt">Yoseph como um Novo Isaque</span><span class="lang-en">Yoseph as a New Isaac</span></h2>
+    <div class="diagram-scroll">
+      <div class="diagram-viewport">
+        <div class="diagram-canvas">
+          <table class="d10-tbl">
+            <thead>
+              <tr>
+                <th><span><span class="lang-pt">Gênesis 39</span><span class="lang-en">Genesis 39</span></span></th><th><span><span class="lang-pt">Gênesis 22</span><span class="lang-en">Genesis 22</span></span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span><span class="lang-pt">Gn. 39:7 “E a mulher de seu senhor </span><span class="lang-en">Gen. 39:7 “And the wife of his master </span></span><span class="d10-pill d10-lb"><span><span class="lang-pt">ergueu os olhos</span><span class="lang-en">lifted her eyes</span></span></span><span><span class="lang-pt"> para José”</span><span class="lang-en"> toward Yoseph”</span></span></td><td><span><span class="lang-pt">Gn. 22:4 No terceiro dia Avraham </span><span class="lang-en">Gen. 22:4 On the third day Abraham </span></span><span class="d10-pill d10-lb"><span><span class="lang-pt">ergueu seus olhos</span><span class="lang-en">raised his eyes</span></span></span><span><span class="lang-pt"> e viu o lugar de longe.</span><span class="lang-en"> and saw the place from a distance.</span></span></td></tr>
+          <tr><td><span><span class="lang-pt">Gn. 39:8-9 “Meu senhor não sabe (ידע) o que está na casa … Não há ninguém maior nesta casa do que eu, e </span><span class="lang-en">Gen. 39:8-9 “My master doesn’t know (ידע) what is in the house … There is not one greater in this house than I, and </span></span><span class="d10-pill d10-r"><span><span class="lang-pt">não me negou coisa alguma (לא חשך ממני מאומה)</span><span class="lang-en">he has not withheld from me anything (לא חשך ממני מאומה)</span></span></span><span><span class="lang-pt"> exceto você”</span><span class="lang-en"> except you”</span></span></td><td><span><span class="lang-pt">Gn. 22:12 “Não façais ao menino </span><span class="lang-en">Gen. 22:12 “Don’t do to the boy </span></span><span class="d10-pill d10-r"><span><span class="lang-pt">coisa alguma (מאומה)</span><span class="lang-en">anything (מאומה)</span></span></span><span><span class="lang-pt">, porque eu </span><span class="lang-en">, for I know (ידעתי) that you fear God, and </span></span><span class="d10-pill d10-r"><span><span class="lang-pt">não me negastes coisa (לא חשכת ממני)</span><span class="lang-en">you have not withheld from me (לא חשכת ממני)</span></span></span><span><span class="lang-pt"> alguma, vosso único filho.”</span><span class="lang-en"> your only son.”</span></span></td></tr>
+          <tr><td><span><span class="lang-pt">Gn. 39:14 “Olha, trouxe até nós um hebreu </span><span class="lang-en">Gen. 39:14 “Look, he has brought to us a Hebrew man </span></span><span class="d10-pill d10-lil"><span><span class="lang-pt">para brincar/zombar (לצחק בנו)</span><span class="lang-en">to play/laugh at us (לצחק בנו)</span></span></span><span><span class="lang-pt"> de nós”</span><span class="lang-en">”</span></span></td><td><span><span class="lang-pt">Gn. 21:9 Sara vê o Ismaelita egípcio “brincando/ri (צחק)”, e o exila em favor de Yitskhaq/Riso, que deve ser sacrificado em Gn. 22.</span><span class="lang-en">Gen. 21:9 Sarah sees the Egyptian Yishmael “playing/laughing” (צחק), and exiles him to favor Yitskhaq/Laughter, who is to be sacrificed in Gen. 22.</span></span></td></tr>
+          <tr><td><span><span class="lang-pt">Gn. 39:14 “E </span><span class="lang-en">Gen. 39:14 “And </span></span><span class="d10-pill d10-rust"><span><span class="lang-pt">ela gritou (ותקרא)</span><span class="lang-en">she cried out (ותקרא)</span></span></span><span><span class="lang-pt"> …”</span><span class="lang-en"> …”</span></span></td><td><span><span class="lang-pt">Gn. 22:11 “E o anjo de Yahweh gritou </span><span class="lang-en">Gen. 22:11 “And the angel of Yahweh </span></span><span class="d10-pill d10-rust"><span><span class="lang-pt">gritou (ויקרא)</span><span class="lang-en">cried out (ויקרא)</span></span></span><span><span class="lang-pt">”</span><span class="lang-en">”</span></span></td></tr>
+          <tr><td><span><span class="lang-pt">Gn. 39:10 “Enquanto ela falava a José dia após dia, </span><span class="lang-en">Gen. 39:10 “As she spoke to Yoseph day after day, </span></span><span class="d10-pill d10-g"><span><span class="lang-pt">ele não quis ouvir (לא שמע)</span><span class="lang-en">he would not listen (לא שמע)</span></span></span><span><span class="lang-pt"> a ela.”</span><span class="lang-en"> to her.”</span></span></td><td><span><span class="lang-pt">Gn. 22:18 “porque </span><span class="lang-en">Gen. 22:18 “because </span></span><span class="d10-pill d10-g"><span><span class="lang-pt">ouviste a minha voz (שמעת בקולי)</span><span class="lang-en">you listened to my voice (שמעת בקולי)</span></span></span><span><span class="lang-pt">”</span><span class="lang-en">”</span></span></td></tr>
+          <tr><td><span><span class="lang-pt">Gn. 39:15 “E aconteceu </span><span class="lang-en">Gen. 39:15 “And it came about </span></span><span class="d10-pill d10-g"><span><span class="lang-pt">quando ele ouviu</span><span class="lang-en">when he heard</span></span></span><span><span class="lang-pt"> que eu levantei </span><span class="lang-en"> that I raised </span></span><span class="d10-pill d10-g"><span><span class="lang-pt">minha voz (כשמעו … קולי)</span><span class="lang-en">that I raised my voice (כשמעו … קולי)</span></span></span><span><span class="lang-pt">”</span><span class="lang-en">”</span></span></td><td></td></tr>
+          </tbody>
+            <tfoot>
+              <tr>
+                <td class="d10-cap" colspan="2"><span><span class="lang-pt">Comparando Gênesis 39 e Gênesis 22. Criado por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Comparing Genesis 39 and Genesis 22. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></span></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+    <p class="body reveal"><span class="lang-pt">O ponto destas analogias: Yoseph, o filho amado da velhice de Yaaqov, foi entregue ao sofrimento e à aflição por causa de propósitos humanos maus, contrariam providencialmente por Deus. A elevação de Yoseph sobre seus irmãos era uma promessa divina, mas se tornou uma causa de arrogância adolescente. E assim o status de Yoseph lhe foi tirado, como Isaque foi tirado de Avraham, só para que ambos recebessem de volta o que perderam. A mulher de Potifar se torna uma figura “Sara” invertida (mulher egípcia vs. israelita). Este claro padrão da Aqedah em funcionamento na história de Yoseph corresponde de perto aos mesmos padrões no capítulo 37, onde a cabra é substituída por Yoseph para pôr sangue na veste dele.</span><span class="lang-en">The point of these analogies: Yoseph, the beloved son of Yaaqov’s old age, has been handed over to suffering and hardship because of evil human purposes providentially countered by God. Yoseph’s exaltation over his brothers was a divine promise, but it became a cause of teenage arrogance. And so Yoseph’s status was taken from him, as Isaac was taken from Abraham, only for both of them to receive back what they lost. Potiphar’s wife becomes an inverted “Sarah” figure (Egyptian woman vs. Israelite). This clear Aqedah pattern at work in the Yoseph story maps closely onto the same patterns in chapter 37, where the goat is substituted for Yoseph to put blood on his coat.</span></p>
+    <h2 class="section reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h2>
+    <p class="body reveal"><span class="lang-pt">A quais histórias anteriores de Gênesis os autores bíblicos se ligam em Gênesis 39?</span><span class="lang-en">What earlier stories in Genesis do the biblical authors link to in Genesis 39?</span></p>
+
+  <footer class="page-footer">
     <span class="lang-pt">Anotações de Aula: José</span><span class="lang-en">Class Notes: Joseph</span>
     <span class="lang-pt">Sessão 10</span><span class="lang-en">Session 10</span>
-  </footer></p>
-        
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">Class Notes: Joseph</span><span class="lang-en">Class Notes: Joseph</span></li>
-      <li><span class="lang-pt">62 of 215</span><span class="lang-en">62 of 215</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">Gênesis 39:1-41:57. Design Literário por Tim Mackie para BibleProject Classroom: José</span><span class="lang-en">Genesis 39:1-41:57. Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022). These three chapters bring the story to its first plot climax, as Yoseph’s dreams and enslavement come to a culminating point. The section has three large parts designed with symmetrical order, and each of those parts has a three-part symmetry. Part 1 (Gen. 39:1-23) is about Yoseph’s elevation in Potiphar’s house, how Yahweh was with him, and how Potiphar placed him as a second-self in command of the household. It’s also about a further downfall due to the deception of Potiphar’s wife, and another loss of a garment that marks his further descent into prison.</span></p>
-    <h2 class="section reveal"><span class="lang-pt">40:1-8</span><span class="lang-en">40:1-8</span></h2>
-    <p class="body reveal"><span class="lang-pt">O Padeiro e o Copeiro de Faraó São Presos Junto com Yoseph • Os dois homens</span><span class="lang-en">Pharaoh’s Baker and Cup-Bearer Are Imprisoned Along With Yoseph • The two men each have a dream and ask Yoseph to interpret • 40:8 “Do not interpretations belong to Elohim?” 40:9-19 The Two Men Recount Their Dreams and Yoseph Interprets Their Meaning 40:20-23 The Interpretations Come to Pass, but the Cup-Bearer Doesn’t Remember Yoseph Genesis 41:1-54 41:1-16 A – Pharaoh Has Two Dreams About 2x7 Cows and Sheaves of Grain and Yoseph Interprets • 41:9 “Today I will make my sin remembered …” • 41:14 “Pharaoh summoned Yoseph … and he changed his garments and came to Pharaoh” • 41:16 Yoseph to Pharaoh: “Not me! Elohim will give Pharaoh a response” 41:17-36 B – Yoseph Interprets Pharaoh’s Two Dreams Regarding 2x7 Years of Abundance and Famine • 41:29-30 “7 years of abundance are coming … followed by 7 years of famine afterward” 41:37-54 A' – Pharaoh Elevates Yoseph to Become Ruler Over All of Egypt • 41:38 “Can another man be found like this, in whom is the Spirit of Elohim?” • 41:40 “You will be over my house … only in the throne will I be greater than you” • 41:41 “‘Look, I set you over all of Egypt,’ and Pharaoh put his ring onto the hand of Yoseph”</span></p>
-        
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">Class Notes: Joseph</span><span class="lang-en">Class Notes: Joseph</span></li>
-      <li><span class="lang-pt">63 of 215</span><span class="lang-en">63 of 215</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">Parte 2 (Gn. 40:1-23) retoma o tema do sonho duplo de Gênesis 37, e Yoseph</span><span class="lang-en">Part 2 (Gen. 40:1-23) picks up the double-dream theme of Genesis 37, and Yoseph interprets the two dreams of Pharaoh’s officials, which opens the door for him to interpret Pharaoh’s dreams in the next part. Part 3 (Gen. 41:1-54) is about Yoseph’s elevation in the house of Pharaoh because of Elohim’s presence with him that enables him to interpret dreams. Yoseph is elevated to second-in-command under Pharaoh and given new garments that mark his ascent to royal rule.</span></p>
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">Yoseph Inocente É Enganado pela Mulher de Potifar</span><span class="lang-en">Innocent Yoseph Is Deceived by Potiphar's Wife</span></li>
-      <li><span class="lang-pt">Gênesis 39:1-6</span><span class="lang-en">Genesis 39:1-6</span></li>
-      <li><span class="lang-pt">José Exaltado na Casa de Potifar</span><span class="lang-en">Joseph Elevated in Potiphar’s House</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">• 39:2 “Yahweh estava com José e ele prosperava” • 39:3 “tudo o que José</span><span class="lang-en">• 39:2 “Yahweh was with Joseph and he was successful” • 39:3 “everything Joseph was doing )(כל אשר הוא עשה, Yahweh made successful” • 39:4 Potiphar “appointed Joseph over his house, and gave everything into his hand” • 39:5 “Yahweh blessed the house of the Egyptian on account of Joseph” Genesis 39:7-19 39:7-10 Joseph Refuses Potiphar’s Wife 2x + Joseph’s Honest Speech • 39:7 And she said, “Lay down with me!” • 39:8, 10 “And he refused ... and he didn’t listen to her” 39:11-12 Joseph’s Refusal and Flight • “She seized him by his garment, saying ‘Lay down with me!!’ ” • 39:12 And he abandoned his garment in her hand.</span></p>
-    <h2 class="section reveal"><span class="lang-pt">39:13-19</span><span class="lang-en">39:13-19</span></h2>
-    <p class="body reveal"><span class="lang-pt">A Mulher de Potifar Relata o “Incidente” 2x + o Discurso Enganoso da Esposa • 39:14</span><span class="lang-en">Potiphar’s Wife Reports the “Incident” 2x + the Wife’s Deceptive Speech • 39:14 “He came in to lay down with me” • 39:17 “He came to me, to play with me” Genesis 39:20-23 Joseph Elevated in the Prison House • 39:21 Yahweh extended loyal-love to Joseph, and gave him favor in the eyes of the captain. • 39:22 The captain gave all the prisoners into the hand of Joseph.</span></p>
-        
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">Class Notes: Joseph</span><span class="lang-en">Class Notes: Joseph</span></li>
-      <li><span class="lang-pt">64 of 215</span><span class="lang-en">64 of 215</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">Gênesis 39:1-23. Design Literário por Tim Mackie para BibleProject Classroom: José</span><span class="lang-en">Genesis 39:1-23. Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022). This chapter is designed as a massive three-part symmetry with matching outer parts (Gen. 39:1-6 and 39:20-23) and a large center that itself has three symmetrically arranged parts (Gen. 39:7-19). Part 1 (Gen. 39:1-6) narrates Yoseph’s success and elevation in the house of Potiphar because of Yahweh’s presence with him. As a result, Yoseph is exalted to a place of second-in-command over his master’s house. Part 2 (Gen. 39:7-19) recounts Yoseph’s downfall in Potiphar’s house, due to his deceptive wife. There are three scenes here, beginning with his first refusal of the wife’s advances (Gen. 39:7-10), and this is matched by her speech that twists the story to her own advantage (Gen. 39:13-19). In the center (Gen. 39:11-12) is Yoseph’s defining moment, where he overcomes his test and has to flee naked. Part 3 (Gen. 39:20-23) narrates Yoseph’s success and elevation in the prison. The prison captain sees Yoseph’s abilities due to Yahweh’s presence, and he places Yoseph over the prison just as Potiphar did. • 39:22 “Everything they were doing )(כל אשר עשים, he was doing )(הוא היה עשה” • 39:23 “Yahweh was with Joseph … Yahweh made him successful” A 1 Now Yoseph had been taken down to Egypt; a and Potiphar bought him: b an officer of Pharaoh, c the captain of the butchers, c' an Egyptian man  (איש מצרי) c'' from the hand of the Yishmaelites, b' who had taken him down there.</span></p>
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">a'</span><span class="lang-en">a'</span></li>
-      <li><span class="lang-pt">B</span><span class="lang-en">B</span></li>
-      <li><span class="lang-pt">2 E Yahweh estava com Yoseph,</span><span class="lang-en">2 And Yahweh was with Yoseph,</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">e se tornou um homem próspero (איש מצליח). E estava na casa de seu senhor</span><span class="lang-en">and he became a successful man  (איש מצליח). And he was in the house of his master the Egyptian.</span></p>
-    <h2 class="section reveal"><span class="lang-pt">A'</span><span class="lang-en">A'</span></h2>
-    <p class="body reveal"><span class="lang-pt">3 E seu senhor viu (ראה) que Yahweh estava com ele e que tudo o que</span><span class="lang-en">3 And his master saw  (ראה) that Yahweh was with him a and that everything that he was doing  (כל אשר הוא עשה) Yahweh made successful  (מצליח) in his hand .</span></p>
-    <h2 class="section reveal"><span class="lang-pt">b</span><span class="lang-en">b</span></h2>
-    <p class="body reveal"><span class="lang-pt">4 E Yoseph achou graça aos seus olhos (חן בעיניו) e o servia, e</span><span class="lang-en">4 And Yoseph found favor in his eyes  (חן בעיניו) a’ and he attended him, b’ and he appointed him over his house, a and everything that was his  (כל יש לו), b he gave into his hand .</span></p>
-    <h2 class="section reveal"><span class="lang-pt">a’</span><span class="lang-en">a’</span></h2>
-    <p class="body reveal"><span class="lang-pt">5 E aconteceu desde o tempo em que o pôs sobre sua casa e sobre tudo</span><span class="lang-en">5 And it came about from the time he appointed him in his house a and over everything that was his  (כל אשר יש לו), b Yahweh blessed the house of the Egyptian on account of Yoseph; a’</span></p>
-        
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">Class Notes: Joseph</span><span class="lang-en">Class Notes: Joseph</span></li>
-      <li><span class="lang-pt">65 of 215</span><span class="lang-en">65 of 215</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">Gênesis 39:1-6</span><span class="lang-en">Genesis 39:1-6. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022). and Yahweh’s  (ויהי) blessing was on everything that was his  (כל אשר יש לו), 1 in the house and in the field. 6 And he abandoned  (עזב) everything that was his  (כל אשר לו) 2 into the hand of Yoseph; and he did not know anything with him, 3 except the bread which he ate. And Yoseph  (ויהי) was beautiful of form  (תאר) +1 and beautiful of sight  (מראה) .</span></p>
-    <h2 class="section reveal"><span class="lang-pt">7 E aconteceu depois destas coisas</span><span class="lang-en">7 And it came about after these things</span></h2>
-    <p class="body reveal"><span class="lang-pt">e a mulher de seu senhor levantou os olhos para Yoseph e disse: “Deita</span><span class="lang-en">and the wife of his master lifted her eyes toward Yoseph and she said , “ Lie with me .” 8 and he refused.</span></p>
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">E disse à mulher de seu senhor:</span><span class="lang-en">And he said to the wife of his master ,</span></li>
-      <li><span class="lang-pt">a</span><span class="lang-en">a</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">9 “Eis que meu senhor não sabe, comigo, o que há na casa, e tudo</span><span class="lang-en">9 “Behold, my master does not know, with me, what is in the house, b and everything that is his  (כל אשר יש לו) he has given into my hand .</span></p>
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">c</span><span class="lang-en">c</span></li>
-      <li><span class="lang-pt">Não há ninguém maior na casa do que eu,</span><span class="lang-en">There is no one greater in the house than me,</span></li>
-      <li><span class="lang-pt">b’</span><span class="lang-en">b’</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">e não me negou coisa alguma, exceto a ti, porquanto és sua mulher.</span><span class="lang-en">and he has not withheld anything from me except you, because you are his wife.</span></p>
-    <h2 class="section reveal"><span class="lang-pt">c’</span><span class="lang-en">c’</span></h2>
-    <p class="body reveal"><span class="lang-pt">E como poderia eu fazer este grande mal e pecar contra Deus?” d' 10 E aconteceu</span><span class="lang-en">And how could I do this great evil and sin against God?” d’ 10 And it came about as she spoke to Yoseph day after day, he did not listen to her to lie next to her , to be with her.</span></p>
-    <h2 class="section reveal"><span class="lang-pt">11 E aconteceu nesse dia</span><span class="lang-en">11 And it came about on this day</span></h2>
-    <p class="body reveal"><span class="lang-pt">que ele entrou na casa (הביתה) para fazer seu trabalho, e nenhum homem dos</span><span class="lang-en">that he went into the house  (הביתה) to do his work, and no man from the men of the house was there in the house.</span></p>
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">12 E ela o pegou pela sua veste,</span><span class="lang-en">12 And she seized him by his garment,</span></li>
-      <li><span class="lang-pt">dizendo: “Deita comigo!”</span><span class="lang-en">saying, “ Lie with me !”</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">e deixou (עזב) sua veste na mão dela e fugiu, e saiu para fora</span><span class="lang-en">and he abandoned  (עזב) his garment in her hand and he fled, and he went outside  (החוצה) .</span></p>
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">As Duas Recusas e o Discurso Honesto de Yoseph</span><span class="lang-en">Yoseph’s Two Refusals and Honest Speech</span></li>
-      <li><span class="lang-pt">O “Incidente”</span><span class="lang-en">The “Incident”</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">O “Incidente” Recontado nos Dois Discursos Enganosos da Esposa</span><span class="lang-en">The “Incident” Recounted in the Wife’s Two Deceptive Speeches</span></p>
-        
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">Class Notes: Joseph</span><span class="lang-en">Class Notes: Joseph</span></li>
-      <li><span class="lang-pt">66 of 215</span><span class="lang-en">66 of 215</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">Gênesis 39</span><span class="lang-en">Genesis 39:7-19. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
-    <h2 class="section reveal"><span class="lang-pt">a</span><span class="lang-en">a</span></h2>
-    <p class="body reveal"><span class="lang-pt">13 E aconteceu que (ויהי כ • -), quando ela viu que ele deixara (עזב) sua ves</span><span class="lang-en">13 And it came about when  (ויהי כ • -) she saw that he abandoned  (עזב) his garment in her hand and he fled outside , b 14 then she called out to the men of her house and she said to them , saying “See, he has brought in  (הביא ל • -) a Hebrew man to us to play with us; c he came to  (בא אל) me to lie with me , c’ and I called out with a great voice, b’ a' 15 and it came about when  (ויהי כ • -) he heard that I raised my voice and called out, then he abandoned  (עזב) his garment next to me , and he fled and he went outside .” 16 And she rested his garment next to her , until his master came to his house. 17 And she spoke to him with these words , saying “He came to me  (בא אל), the Hebrew slave, whom you made come to us  (הביא ל), to play with me; 18 and when I raised my voice and I called out, then he abandoned  (עזב) his garment next to me , and fled outside .” 19 And it came about when  (ויהי כ • -) his master heard the words of his wife , which she spoke to him , saying, “According to these these spoken-words your slave did it to me,” then his anger burned hot.</span></p>
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">20 E o senhor de Yoseph o tomou</span><span class="lang-en">20 And Yoseph’s master took him</span></li>
-      <li><span class="lang-pt">e o entregou (ויתן) à casa de detenção,</span><span class="lang-en">and he gave  (ויתן) him into the round-house,</span></li>
-      <li><span class="lang-pt">o lugar onde estavam os presos do rei;</span><span class="lang-en">the place the king’s prisoners were;</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">e ele estava ali na casa de detenção.</span><span class="lang-en">and he was there in the round-house.</span></p>
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">21 E Yahweh estava com Yoseph</span><span class="lang-en">21 And Yahweh was with Yoseph</span></li>
-      <li><span class="lang-pt">e lhe estendeu misericórdia,</span><span class="lang-en">and he extended loyal-love to him,</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">e lhe deu graça aos olhos (חנו בעיני) do capitão (שר) da casa de deten</span><span class="lang-en">and gave him favor in the eyes  (חנו בעיני) of the captain  (שר) of the round-house. 22 And the captain  (שר) of the round-house gave  (ויתן) into the hand of Yoseph all the prisoners who were in the round-house, and everything they were doing there, he was doing  (כל אשר עשים … הוא היה עשה). 23 And the captain  (שר) of the round-house did not see anything in his hand</span></p>
-        
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">Class Notes: Joseph</span><span class="lang-en">Class Notes: Joseph</span></li>
-      <li><span class="lang-pt">67 of 215</span><span class="lang-en">67 of 215</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">Gênesis 39</span><span class="lang-en">Genesis 39:20-23. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
-    <h2 class="section reveal"><span class="lang-pt">Mais Vestes Enganosas</span><span class="lang-en">More Deceptive Garments</span></h2>
-    <p class="body reveal"><span class="lang-pt">A veste de Yoseph é tirada dele pela esposa mentirosa de Potifar e usada para “provar”</span><span class="lang-en">Yoseph’s garment is taken from him by Potiphar’s lying wife and used to “prove” his guilt. // Yoseph’s coat is taken from him by his lying brothers and used to “prove” his death. // Tamar’s “deceptive garments” are used to trick Yehudah.</span></p>
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">Gênesis 27</span><span class="lang-en">Genesis 27</span></li>
-      <li><span class="lang-pt">Gênesis 37</span><span class="lang-en">Genesis 37</span></li>
-      <li><span class="lang-pt">Gênesis 38</span><span class="lang-en">Genesis 38</span></li>
-      <li><span class="lang-pt">Gênesis 39</span><span class="lang-en">Genesis 39</span></li>
-      <li><span class="lang-pt">Yaaqov engana seu</span><span class="lang-en">Yaaqov deceives his</span></li>
-      <li><span class="lang-pt">pai Yitskhaq com</span><span class="lang-en">father Yitskhaq with</span></li>
-      <li><span class="lang-pt">a veste (בגד) de</span><span class="lang-en">the garment (בגד) of</span></li>
-      <li><span class="lang-pt">seu irmão mais velho</span><span class="lang-en">his older brother</span></li>
-      <li><span class="lang-pt">Os filhos de Yaaqov</span><span class="lang-en">Yaaqov’s sons</span></li>
-      <li><span class="lang-pt">enganam seu pai</span><span class="lang-en">deceive their father</span></li>
-      <li><span class="lang-pt">com a túnica (כתנת)</span><span class="lang-en">with the robe (כתנת)</span></li>
-      <li><span class="lang-pt">de seu filho mais novo</span><span class="lang-en">of his youngest son</span></li>
-      <li><span class="lang-pt">Tamar engana</span><span class="lang-en">Tamar deceives</span></li>
-      <li><span class="lang-pt">Yehudah com</span><span class="lang-en">Yehudah with</span></li>
-      <li><span class="lang-pt">vestes (בגד) em</span><span class="lang-en">garments (בגד) in</span></li>
-      <li><span class="lang-pt">ordem de gerar um filho</span><span class="lang-en">order to produce a son</span></li>
-      <li><span class="lang-pt">A mulher de Potifar</span><span class="lang-en">Potiphar’s wife</span></li>
-      <li><span class="lang-pt">engana seu</span><span class="lang-en">deceives her</span></li>
-      <li><span class="lang-pt">marido com as</span><span class="lang-en">husband with the</span></li>
-      <li><span class="lang-pt">vestes (בגד) de</span><span class="lang-en">garments (בגד) of</span></li>
-      <li><span class="lang-pt">o filho amado de Yaakov</span><span class="lang-en">Yaakov’s beloved son</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">Gênesis 27 Refletido em Gênesis 37-39. Criado por Tim Mackie para BibleProject</span><span class="lang-en">Genesis 27 Reflected in Genesis 37-39. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
-    <h2 class="section reveal"><span class="lang-pt">Yoseph: A Imagem Exaltada e Exilada de Elohim</span><span class="lang-en">Yoseph: The Exalted and Exiled Image of Elohim</span></h2>
-    <p class="body reveal"><span class="lang-pt">Esta narrativa está repleta de hiperlinks para Gênesis 1-3 que colocam Yoseph em</span><span class="lang-en">This narrative is riddled with hyperlinks to Genesis 1-3 that set Yoseph on analogy to the image of Elohim who is appointed to rule as second-in-command. But he is wrongly accused because of a deceiving woman and exiled even further down into an Egyptian pit of death.</span></p>
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">Yoseph em Gênesis 39</span><span class="lang-en">Yoseph in Genesis 39</span></li>
-      <li><span class="lang-pt">Humanos em Gênesis 1-3</span><span class="lang-en">Humans in Genesis 1-3</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">Yoseph acha graça com Potifar e é posto como segundo-em-comando sobre tudo</span><span class="lang-en">Yoseph finds favor with Potiphar and is placed as second-in-command over all that belongs to him.</span></p>
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">Elohim constitui o homem e a mulher como a</span><span class="lang-en">Elohim appoints man and woman as the</span></li>
-      <li><span class="lang-pt">imagem divina sobre toda a criação que em última</span><span class="lang-en">divine image over all creation that ultimately</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">pertence a Elohim. Gn. 39:6a Potifar não “sabe” de nada em sua casa, exceto</span><span class="lang-en">belongs to Elohim. Gen. 39:6a Potiphar doesn’t “know” anything in his house except “the bread which he ate” (which in the narrative, turns out to be his wife, the forbidden food).</span></p>
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">Adão e Eva ainda não têm o</span><span class="lang-en">Adam and Eve do not yet have the</span></li>
-      <li><span class="lang-pt">“conhecimento” do bem e do mal, mas devem</span><span class="lang-en">“knowledge” of good and bad, but are to</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">“comer” de nenhuma outra árvore do jardim. Gn. 39:6b Yoseph era “formoso de</span><span class="lang-en">“eat” from any other trees in the garden. Gen. 39:6b Yoseph was “beautiful of sight” )(יפה מראהGen. 3:5-6 “the woman saw )(רא׳׳ה that the tree was … desirable to the eyes .” Comparing Joseph and Adam and Eve. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
-    <h2 class="section reveal"><span class="lang-pt">visto que Yahweh estava com ele,</span><span class="lang-en">in as much as Yahweh was with him,</span></h2>
-    <p class="body reveal"><span class="lang-pt">e tudo o que ele fazia (כל אשר הוא עשה), Yahweh fazia prosperar (מצליח).</span><span class="lang-en">and whatever he was doing  (כל אשר הוא עשה), Yahweh made it successful  (מצליח).</span></p>
-        
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">Class Notes: Joseph</span><span class="lang-en">Class Notes: Joseph</span></li>
-      <li><span class="lang-pt">68 of 215</span><span class="lang-en">68 of 215</span></li>
-      <li><span class="lang-pt">Yoseph em Gênesis 39</span><span class="lang-en">Yoseph in Genesis 39</span></li>
-      <li><span class="lang-pt">Humanos em Gênesis 1-3</span><span class="lang-en">Humans in Genesis 1-3</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">Gn. 39:9 “Como (איך) poderia eu fazer (עשה) este grande mal (רעה) e pecar contra Deus</span><span class="lang-en">Gen. 39:9 “How )(איך could I do )(עשהthis great evil )(רעה and sin against God )(חטאתי לאלהים?” Gen. 3:13 “What is this thing that you have done )(עשה?” Gen. 39:10 “As she spoke to Yoseph day after day, he would not listen )(לא שמע to her” Gen. 3:17 “because you listened to the voice of your wife …” Gen. 39:13 “And when she saw ...” Gen. 3:6 “and the woman saw that the tree was good …” Gen. 39:15 “And it came about when he heard )(שמע that I raised my voice )(קול he ran outside.” Gen. 3:8 “And they heard )(שמע the sound )(קול of Yahweh walking … and they hid themselves” Comparing Joseph and Adam and Eve. Created by Tim Mackie for BibleProject Classroom: Joseph (2022). Yoseph is a contrast to Adam because he won’t listen to the voice of the woman (Adam in Gen. 3:17) by sleeping with her. In this story, Yoseph becomes the forbidden fruit who is desirable to the eyes of Potiphar’s wife (Potiphar’s wife = “bread” in Gen. 39:6). He is wrongly seized by the woman, who then deceives her husband, resulting in Yoseph’s expulsion, which leads him back into “the pit,” this time a “house of prison” )(בית הסהר. Yoseph becomes an exiled Adam, not for any wrongdoing of his own, but because of the sin of Potiphar’s wife. In this way, the Genesis 3 story is a contrast narrative with Yoseph as an anti-Adam.</span></p>
-    <h2 class="section reveal"><span class="lang-pt">Yoseph como um Novo Noé</span><span class="lang-en">Yoseph as a New Noah</span></h2>
-    <p class="body reveal"><span class="lang-pt">Gênesis 39:16 diz: “E ela deixou (ותנח) sua veste junto a si” comparado a G</span><span class="lang-en">Genesis 39:16 says, “And she rested )(ותנח his garment beside her” compared to Genesis 8:4 that says, “And the ark rested )(ותנח … upon the mountains of Ararat.” This is a small hint that, like Noah, God has not forgotten Yoseph at his low point but will “remember” and deliver him. Geneis 39:21 says, “And Yahweh … gave him favor )(חן in the eyes of the captain of the house of confinement” compared to Genesis 6:8 that says, “Noah found favor in the eyes of Yahweh.” The flood pattern hints continue, preparing us to view the famine as a “flood” of disorder out of which God will deliver a remnant, the family of Yaaqov, through Yoseph, who is the Noah figure.</span></p>
-    <h2 class="section reveal"><span class="lang-pt">Yoseph como um Novo Isaque</span><span class="lang-en">Yoseph as a New Isaac</span></h2>
-        
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">Class Notes: Joseph</span><span class="lang-en">Class Notes: Joseph</span></li>
-      <li><span class="lang-pt">69 of 215</span><span class="lang-en">69 of 215</span></li>
-      <li><span class="lang-pt">Gênesis 39</span><span class="lang-en">Genesis 39</span></li>
-      <li><span class="lang-pt">Gênesis 22</span><span class="lang-en">Genesis 22</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">Gn. 39:7 “E a mulher de seu senhor levantou os olhos para Yoseph” Gn. 22:4 O</span><span class="lang-en">Gen. 39:7 “And the wife of his master lifted her eyes toward Yoseph” Gen. 22:4 On the third day Abraham raised his eyes and saw the place from a distance.</span></p>
-    <h2 class="section reveal"><span class="lang-pt">Gn. 39:8-9 “Meu senhor não sabe (ידע) o que</span><span class="lang-en">Gen. 39:8-9 “My master doesn’t know )(ידע what</span></h2>
-    <p class="body reveal"><span class="lang-pt">está na casa... não há ninguém maior nesta casa do que eu, e ele não</span><span class="lang-en">is in the house … There is not one greater in this house than I, and he has not withheld from me anything )(לא חשך ממני מאומה except you” Gen. 22:12 “Don’t do to the boy anything )(מאומה , for I know )(ידעתי that you fear God, and you have not withheld from me )(לא חשכת ממני your only son.” Gen. 39:14 “Look, he has brought to us a Hebrew man to play/laugh at us )(לצחק בנו” Gen. 21:9 Sarah sees the Egyptian Yishmael “playing/laughing” )(צחק, and exiles him to favor Yitskhaq/Laughter, who is to be sacrificed in Gen. 22.</span></p>
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">Gn. 39:14 “E ela gritou (ותקרא)….”</span><span class="lang-en">Gen. 39:14 “And she cried out )(ותקרא …”</span></li>
-      <li><span class="lang-pt">Gn. 22:11 “E o anjo de Yahweh gritou</span><span class="lang-en">Gen. 22:11 “And the angel of Yahweh cried out )(ויקרא”</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">Gn. 39:10 “Como ela falasse a Yoseph dia após dia, ele não a quis ouvir (לא שמע)</span><span class="lang-en">Gen. 39:10 “As she spoke to Yoseph day after day, he would not listen )(לא שמע to her.” Gen. 39:15 “And it came about when he heard that I raised my voice )(כשמעו … קולי” Gen. 22:18 “because you listened to my voice )(שמעת בקולי” Comparing Genesis 39 and Genesis 22. Created by Tim Mackie for BibleProject Classroom: Joseph (2022). The point of these analogies: Yoseph, the beloved son of Yaaqov's old age, has been handed over to suffering and hardship because of evil human purposes providentially countered by God. Yoseph’s exaltation over his brothers was a divine promise, but it became a cause of teenage arrogance. And so Yoseph’s status was taken from him, as Isaac was taken from Abraham, only for both of them to receive back what they lost. Potiphar’s wife becomes an inverted "Sarah" figure (Egyptian woman vs. Israelite). This clear Aqedah pattern at work in the Yoseph story maps closely onto the same patterns in chapter 37, where the goat is substituted for Yoseph to put blood on his coat.</span></p>
-    <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
-    <p class="body reveal"><span class="lang-pt">A quais histórias anteriores de Gênesis os autores bíblicos se ligam em Gênesis 39?</span><span class="lang-en">What earlier stories in Genesis do the biblical authors link to in Genesis 39?
-</span></p>
-
-
-    <p class="body reveal"><span class="lang-pt">Esses ciclos temáticos estabelecem um padrão narrativo, uma melodia temática, que se recicla a cada geração, desenvolvendo e avançando a melodia. A melodia básica é assim.</span><span class="lang-en">These thematic cycles set up a narrative pattern, a thematic melody, that re-cycles with each generation, developing and advancing the melody. The basic melody goes like this.</span></p>
-
-    <h3 class="sub reveal"><span class="lang-pt">1. Criação e bênção</span><span class="lang-en">1. Creation and blessing</span></h3>
-    <p class="body reveal"><span class="lang-pt">Deus traz ordem/vida/bênção para fora do caos/águas/morte/maldição.</span><span class="lang-en">God brings order/life/blessing out of chaos/waters/death/curse.</span></p>
-    <p class="body reveal"><span class="lang-pt"><span class="keylabel">Palavras-chave</span><br>Vida, bênção, criar, estabelecer, semente, brotar, crescer, fruto, frutífero, multiplicar<br>Sete, plenitude, juramento (todos grafados שבע)<br>Imagens-chave: terra seca, refúgio, segurança, ordem</span><span class="lang-en"><span class="keylabel">Key words</span><br>Life, blessing, create, establish, seed, sprout, grow, fruit, fruitful, multiply<br>Seven, fullness, oath (all spelled שבע)<br>Key images: dry land, refuge, safety, order</span></p>
-
-    <h3 class="sub reveal"><span class="lang-pt">2. Loucura, teste e fracasso (também chamado de "a queda tola")</span><span class="lang-en">2. Folly, test, and failure (a.k.a. "the foolish fall")</span></h3>
-    <p class="body reveal"><span class="lang-pt">Deus convida um parceiro humano escolhido a compartilhar da ordem/vida/bênção, o que coloca uma decisão/teste de sua confiabilidade sobre a mesa.</span><span class="lang-en">God invites a chosen human partner to share in the order/life/blessing, which places a decision/test of their trustworthiness on the table.</span></p>
-    <p class="body reveal"><span class="lang-pt">O parceiro escolhido de Deus falha/passa no teste, geralmente envolvendo decepção/divisão/violência.</span><span class="lang-en">God's chosen partner fails/succeeds the test, usually involving deception/division/violence.</span></p>
-    <p class="body reveal"><span class="lang-pt">A mesma pessoa/próxima geração enfrenta sua própria oportunidade e teste, e falha/passa, geralmente envolvendo uma expressão intensificada de decepção/divisão/violência.</span><span class="lang-en">The same person/next generation faces their own opportunity and test and fails/succeeds, usually involving an intensified expression of deception/division/violence.</span></p>
-    <p class="body reveal"><span class="lang-pt">A sequência escalada de testes e fracassos leva a uma separação entre os personagens-chave, de modo que uma pessoa ou família se separa do resto e é escolhida por Deus para um novo futuro.</span><span class="lang-en">The escalating sequence of tests and failures leads to a separation between the key characters so that one person or family splits off from the rest and is chosen by God for a new future.</span></p>
-    <p class="body reveal"><span class="lang-pt">Palavras-chave encontradas em Gênesis 2-3, 4-5, 6:1-4.</span><span class="lang-en">Key words found in Genesis 2-3, 4-5, 6:1-4.</span></p>
-
-    <h3 class="sub reveal"><span class="lang-pt">3. Des-criação e re-criação</span><span class="lang-en">3. De-creation and re-creation</span></h3>
-    <p class="body reveal"><span class="lang-pt">Des-criação: Deus provoca uma inversão do nº 1 acima, geralmente uma escalada de caos/morte/maldição.</span><span class="lang-en">De-creation: God brings about an inversion of #1 above, usually an escalation of chaos/death/curse.</span></p>
-    <p class="body reveal"><span class="lang-pt">A partir dessa des-criação, Deus escolhe/preserva um remanescente/semente e inicia um novo movimento de re-criação através dele, muitas vezes marcado por alianças e trocadilhos sobre a raiz hebraica שבע, "sete/plenitude/juramento" ou "aliança" (ברית).</span><span class="lang-en">Out of that de-creation, God chooses/preserves a remnant/seed and begins a new movement of re-creation through them, often marked by covenants and wordplays on the Hebrew root שבע, "seven/fullness/oath" or "covenant" (ברית).</span></p>
-    <p class="body reveal"><span class="lang-pt">Palavras-chave encontradas em Gênesis 6:5-9:17.</span><span class="lang-en">Key words found in Genesis 6:5-9:17.</span></p>
-
-    <h3 class="sub reveal"><span class="lang-pt">4. Repita</span><span class="lang-en">4. Repeat</span></h3>
-    <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
-    <p class="body reveal"><span class="lang-pt">De que maneiras você vê a história de Yoseph reencenando eventos dos capítulos iniciais de Gênesis?</span><span class="lang-en">In what ways do you see Yoseph's story replaying events from the early chapters of Genesis?</span></p>
-    </div>
+  </footer>
+</div>
 
   <script src="../../js/reading-progress.js"></script>
-  <script src="../../js/lang-toggle.js"></script>
+  <script>
+/* D10 — auto-fit dos diagramas: escala o canvas de 1600px para a largura
+   disponivel, mantendo a proporcao do PDF. */
+(function () {
+  function fitDiagrams() {
+    document.querySelectorAll('.diagram-scroll').forEach(function (box) {
+      var vp = box.querySelector('.diagram-viewport');
+      var cv = box.querySelector('.diagram-canvas');
+      if (!vp || !cv) return;
+      var w = cv.offsetWidth;
+      var h = cv.offsetHeight;
+      if (!w || !h) return;
+      var s = Math.min(1, vp.clientWidth / w);
+      cv.style.transform = 'scale(' + s + ')';
+      vp.style.height = Math.ceil(h * s) + 'px';
+    });
+  }
+  window.fitDiagrams = fitDiagrams;
+  window.addEventListener('resize', fitDiagrams);
+  window.addEventListener('load', function () {
+    setTimeout(fitDiagrams, 0);
+    setTimeout(fitDiagrams, 400);
+  });
+  document.addEventListener('DOMContentLoaded', fitDiagrams);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () { setTimeout(fitDiagrams, 0); });
+  }
+  fitDiagrams();
+})();
+</script>
+<script src="../../js/lang-toggle.js"></script>
   <script src="../../js/reveal.js"></script>
   <script>
     setLang(localStorage.getItem('bp_lang')||'pt');

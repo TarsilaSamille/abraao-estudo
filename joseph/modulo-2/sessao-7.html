@@ -130,7 +130,200 @@
   
   table.md tbody tr:hover td { background: #f8fafc; }
   
-  .takeaways-h { font-weight: 800; font-size: 1.3rem; line-height: 1.25; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; color: #17181a; }</style>
+  .takeaways-h { font-weight: 800; font-size: 1.3rem; line-height: 1.25; margin-top: 1.75rem; margin-bottom: .75rem; letter-spacing: -0.01em; color: #17181a; }
+  /* ===================================================================
+     D7 — diagramas da sessao 7.
+
+     ESCALA: a area util do PDF vai de x=36 a x=576 (540pt). O canvas e
+     fixo em 1600px, entao 540pt -> 1600px, isto e, 1pt = 2.963px
+     (= 1.3333px do 96dpi vezes 2.2222 de ampliacao). Todos os numeros
+     abaixo ja estao convertidos para essa escala.
+
+     MEDIDAS no PDF (1pt = 1.3333px a 96dpi):
+       moldura 1.5pt .............. 4.4px
+       raio das molduras 8.25pt .... 24.4px  (medido no pixel: a curva
+         externa so alcanca x=36.0 em y=344.9, ou seja 8.15pt abaixo do
+         topo 336.75)
+       recuo do grupo .............. painel em x=47.25 vs moldura em 36
+                                     = 11.25pt = 33.3px; topo 357 vs
+                                     336.75 = 20.25pt = 60px
+       vao entre paineis 10.5pt .... 31.1px
+       recuo do texto 9.75pt ...... 28.9px
+       texto 10.49pt .............. 31.1px
+       entrelinha 15.8pt .......... 46.8px
+       recuo das falas 18pt ....... 53.3px
+       pílula 15pt de altura ...... 44.4px, raio 3pt = 8.9px,
+                                     recuo lateral 3pt = 8.9px
+       algarismo do versiculo 9pt . 26.7px (sobrescrito)
+       tabela: coluna 268.5pt ..... 795.6px; cabecalho 455.25..495
+                                     = 39.75pt = 117.8px; texto do
+                                     cabecalho em y=470.1, logo 14.85pt
+                                     = 44px de recuo superior
+
+     CORES CONFIRMADAS por pixel (matriz 6x), NAO pelo `fill` do PyMuPDF:
+       moldura externa / painel claro / pílula neutra  #e4e8ec
+       moldura escura / painel escuro                    #1b1b1b
+       pílulas do texto biblico
+           #ccf1fa/#245791  slaughtered, butchers
+           #fae3c3/#90362e  hairy goat, animal
+           #6b7384/#ffffff  their father, your son, my son,
+                             grieving, his father wept for him
+           #b4533a/#ffffff  Medanim
+           #e4e8ec/#4f5669  Recognize it, recognized it
+       texto sem pílula
+           #9855af (violeta) the robe, his clothes, sackcloth
+           #3a8060 (verde)   comfort, comforted
+       pílulas das tabelas (pagina 2 do PDF)
+           #d9ecfd/#404ba6  saw, from afar
+           #f9e3de/#972a4e  ate him, took him, to eat, knife/eater
+           #f6e1f5/#703c91  hand against him / sent out his hand
+           #fae3c3/#90362e  lifted ... eyes and looked
+           #d3f1cc/#2a6145  and slay it, to slay
+       legenda das tabelas #4f5669
+     =================================================================== */
+  .diagram-scroll {
+    width: 100%;
+    margin: 1.5rem 0;
+    padding: 0.75rem;
+    background: #fff;
+    overflow: hidden;
+  }
+  #sessao-7 > .diagram-scroll {
+    width: 100vw;
+    margin-left: calc((100% - 100vw) / 2);
+  }
+  .diagram-viewport { position: relative; width: 100%; overflow: hidden; }
+  .diagram-canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    transform-origin: top left;
+    will-change: transform;
+    width: 1600px;
+  }
+
+  /* ---- D7-1: Gn 37:31-36, traducao e design (paginas 0-1 do PDF) ---- */
+  .d7-grp {
+    border: 4.4px solid #e4e8ec;   /* moldura externa, 1.5pt no PDF */
+    border-radius: 24.4px;
+    background: #fff;
+    padding: 60px 33.3px 33.3px;
+  }
+  .d7-panel {
+    min-width: 0;
+    background: #fff;
+    border: 4.4px solid #1b1b1b;   /* PDF 1.5pt */
+    border-radius: 24.4px;
+    padding: 28.9px;                /* recuo do texto, 9.75pt */
+    margin-bottom: 31.1px;          /* vao entre paineis, 10.5pt */
+  }
+  .d7-panel:last-child { margin-bottom: 0; }
+  .d7-panel.d7-light { border-color: #e4e8ec; }
+
+  .d7-v { font-size: 31.1px; line-height: 46.8px; color: #1b1b1b; }
+  .d7-q { padding-left: 53.3px; }   /* x=75 vs x=57 -> 18pt */
+
+  .d7-num {
+    font-size: 26.7px;
+    vertical-align: super;
+    line-height: 0;
+    color: #1b1b1b;
+  }
+
+  .d7-mk {
+    display: inline-block;
+    padding: 0 8.9px;
+    border-radius: 8.9px;
+    line-height: 44.4px;
+    font-weight: 700;
+  }
+  .d7-c-violet { color: #9855af; }              /* sem pílula */
+  .d7-c-green  { color: #3a8060; }              /* sem pílula */
+  .d7-p-blue   { background: #ccf1fa; color: #245791; }
+  .d7-p-tan    { background: #fae3c3; color: #91362e; }
+  .d7-p-slate  { background: #6b7384; color: #fff; }
+  .d7-p-rust   { background: #b4533a; color: #fff; }
+  .d7-p-mute   { background: #e4e8ec; color: #4f5669; }
+
+  /* ---- D7-2: "Rams and Goats in Genesis" (paginas 1-2 do PDF) ----------
+     Duas colunas iguais de 268.5pt (795.6px). Cabecalho com fundo #e4e8ec
+     (confirmado por pixel), moldura 1.5pt, raio 8.25pt. Legenda numa
+     faixa de largura total. */
+  .d7-compare {
+    border: 4.4px solid #e4e8ec;
+    border-radius: 24.4px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .d7-compare-h {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4.4px;                      /* PDF: 306.75-305.25 = 1.5pt */
+    background: #e4e8ec;
+    padding: 4.4px;
+  }
+  .d7-compare-h > div {
+    background: #e4e8ec;
+    font-size: 31.1px;
+    font-weight: 700;
+    line-height: 44px;
+    padding: 36px 29px;              /* texto em y=470.1, celula em 455.25 */
+    color: #1b1b1b;
+  }
+  .d7-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 4.4px solid #e4e8ec;
+  }
+  .d7-row > div {
+    padding: 34px 29px;
+    font-size: 31.1px;
+    line-height: 44px;
+    color: #1b1b1b;
+  }
+  .d7-row > div + div { border-left: 4.4px solid #e4e8ec; }
+  .d7-cap {
+    border-top: 4.4px solid #e4e8ec;
+    font-style: italic;
+    color: #4f5669;
+    font-size: 31.1px;
+    line-height: 44px;
+    padding: 34px 29px;
+  }
+
+  /* pílulas das tabelas (cores por pixel, pagina 2) */
+  .d7-t-blue  { background: #d9ecfd; color: #404ba6; }
+  .d7-t-rose  { background: #f9e3de; color: #972a4e; }
+  .d7-t-lilac { background: #f6e1f5; color: #703c91; }
+  .d7-t-tan   { background: #fae3c3; color: #90362e; }
+  .d7-t-green { background: #d3f1cc; color: #2a6145; }
+
+  @media (max-width: 767px) {
+    #sessao-7 > .diagram-scroll {
+      width: 100vw;
+      margin-left: calc((100% - 100vw) / 2);
+    }
+    .diagram-canvas {
+      position: relative;
+      width: 100%;
+      height: auto;
+      transform: none !important;
+    }
+    .d7-grp { padding: 24px 14px 14px; }
+    .d7-panel { padding: 14px; margin-bottom: 16px; }
+    .d7-v { font-size: 17px; line-height: 26px; }
+    .d7-q { padding-left: 26px; }
+    .d7-num { font-size: 14px; }
+    .d7-mk { line-height: 24px; border-radius: 5px; padding: 0 5px; }
+    .d7-compare-h,
+    .d7-row { grid-template-columns: 1fr; }
+    .d7-compare-h > div,
+    .d7-row > div { font-size: 16px; line-height: 24px; padding: 12px 14px; }
+    .d7-row > div + div { border-left: 0; border-top: 4.4px solid #e4e8ec; }
+    .d7-cap { font-size: 16px; line-height: 24px; padding: 12px 14px; }
+  }
+</style>
 </head>
 <body class="bg-white">
 <div id="reading-progress" aria-hidden="true"></div>
@@ -149,7 +342,7 @@
     <button id="lang-en" onclick="setLang('en')" class="px-3.5 py-1.5 text-sm font-semibold transition-colors">EN</button>
   </div>
 </div>
-<div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
+<div class="max-w-4xl mx-auto px-5 py-12 md:py-16" id="sessao-7">
     <h1 class="title reveal"><span class="lang-pt">Sessão 7: Descendo para o Poço</span><span class="lang-en">Session 7: Down Into the Pit</span></h1>
     <hr class="rule"><p class="body reveal"><span class="lang-pt">Anotações de Aula: José</span><span class="lang-en">Class Notes: Joseph</span></p>
 <p class="body reveal"><span class="lang-pt">37 de 215</span><span class="lang-en">37 of 215</span></p>
@@ -162,26 +355,18 @@
 <p class="body reveal"><span class="lang-pt">O mal humano leva à morte do amado, mas Deus provê um takhat (um substituto, alguém que</span><span class="lang-en">Human evil leads to the death of the beloved one, but God provides a takhat (a substitute, one who</span></p>
 <p class="body reveal"><span class="lang-pt">fica no lugar de outro).</span><span class="lang-en">stands in the place of another).</span></p>
 <p class="body reveal"><span class="lang-pt">Parágrafo 3: Gênesis 37:31-36</span><span class="lang-en">Paragraph 3: Genesis 37:31-36</span></p>
-<p class="body reveal"><span class="lang-pt">31 E eles tomaram a túnica de Yoseph,</span><span class="lang-en">31 And they took the robe of Yoseph,</span></p>
-<p class="body reveal"><span class="lang-pt">e abateram uma cabra peluda ,</span><span class="lang-en">and they slaughtered a hairy goat ,</span></p>
-<p class="body reveal"><span class="lang-pt">e mergulharam a túnica no sangue,</span><span class="lang-en">and they dipped the robe in the blood,</span></p>
-<p class="body reveal"><span class="lang-pt">32 e enviaram a túnica de muitas cores,</span><span class="lang-en">32 and they sent the robe of many colors,</span></p>
-<p class="body reveal"><span class="lang-pt">e a levaram a seu pai .</span><span class="lang-en">and they brought it to their father .</span></p>
-<p class="body reveal"><span class="lang-pt">E disseram,</span><span class="lang-en">And they said,</span></p>
-<p class="body reveal"><span class="lang-pt">“Encontramos isto!</span><span class="lang-en">“We found this!</span></p>
-<p class="body reveal"><span class="lang-pt">Examina, por favor!</span><span class="lang-en">Recognize it , please!</span></p>
-<p class="body reveal"><span class="lang-pt">É a túnica de seu filho , ou não?”</span><span class="lang-en">Is it the robe of your son , or not?”</span></p>
-<p class="body reveal"><span class="lang-pt">33 E ele a reconheceu ,</span><span class="lang-en">33 And he recognized it ,</span></p>
-<p class="body reveal"><span class="lang-pt">e disse,</span><span class="lang-en">and he said,</span></p>
-<p class="body reveal"><span class="lang-pt">“A túnica de meu filho !</span><span class="lang-en">“The robe of my son !</span></p>
-<p class="body reveal"><span class="lang-pt">Um animal terrível o devorou!</span><span class="lang-en">A terrible animal ate him!</span></p>
-<p class="body reveal"><span class="lang-pt">Yoseph certamente foi despedaçado!”</span><span class="lang-en">Yoseph has certainly been torn apart!”</span></p>
-<p class="body reveal"><span class="lang-pt">34 E Ya’akov rasgou suas vestes,</span><span class="lang-en">34 And Ya’akov tore his clothes,</span></p>
-<p class="body reveal"><span class="lang-pt">e pôs pano de saco sobre seus quadris,</span><span class="lang-en">and he placed sackcloth on his thighs,</span></p>
-<p class="body reveal"><span class="lang-pt">e chorou seu filho por muitos dias.</span><span class="lang-en">and he grieved over his son for many days.</span></p>
-<p class="body reveal"><span class="lang-pt">35 E todos os seus filhos e todas as suas filhas se levantaram para consolá-lo,</span><span class="lang-en">35 And all his sons and all his daughters got up to comfort him,</span></p>
-<p class="body reveal"><span class="lang-pt">e ele recusou ser consolado,</span><span class="lang-en">and he refused to be comforted,</span></p>
-<p class="body reveal"><span class="lang-pt">e disse,</span><span class="lang-en">and he said,</span></p>
+    <div class="diagram-scroll">
+      <div class="diagram-viewport">
+        <div class="diagram-canvas">
+          <div class="d7-grp">
+            <div class="d7-panel"><div class="d7-v"><span class="d7-num"><span class="lang-pt">31</span><span class="lang-en">31</span></span><span><span class="lang-pt"> E eles tomaram </span><span class="lang-en"> And they took </span></span><span class="d7-mk d7-c-violet"><span class="lang-pt">a túnica</span><span class="lang-en">the robe</span></span><span><span class="lang-pt"> de Yoseph,</span><span class="lang-en"> of Yoseph,</span></span></div><div class="d7-v"><span><span class="lang-pt">e abateram </span><span class="lang-en">and they </span></span><span class="d7-mk d7-p-blue"><span class="lang-pt">uma</span><span class="lang-en">slaughtered</span></span><span><span class="lang-pt"> </span><span class="lang-en"> </span></span><span class="d7-mk d7-p-tan"><span class="lang-pt">cabra peluda</span><span class="lang-en">hairy goat</span></span><span><span class="lang-pt"> ,</span><span class="lang-en"> ,</span></span></div><div class="d7-v"><span><span class="lang-pt">e mergulharam </span><span class="lang-en">and they dipped </span></span><span class="d7-mk d7-c-violet"><span class="lang-pt">a túnica</span><span class="lang-en">the robe</span></span><span><span class="lang-pt"> no sangue,</span><span class="lang-en"> in the blood,</span></span></div><div class="d7-v"><span class="d7-num"><span class="lang-pt">32</span><span class="lang-en">32</span></span><span><span class="lang-pt"> e enviaram </span><span class="lang-en"> and they sent </span></span><span class="d7-mk d7-c-violet"><span class="lang-pt">a túnica</span><span class="lang-en">the robe</span></span><span><span class="lang-pt"> de muitas cores,</span><span class="lang-en"> of many colors,</span></span></div><div class="d7-v"><span><span class="lang-pt">e a levaram a </span><span class="lang-en">and they brought it to </span></span><span class="d7-mk d7-p-slate"><span class="lang-pt">seu pai</span><span class="lang-en">their father</span></span><span><span class="lang-pt"> .</span><span class="lang-en"> .</span></span></div></div>
+            <div class="d7-panel d7-light"><div class="d7-v"><span><span class="lang-pt">E disseram,</span><span class="lang-en">And they said,</span></span></div><div class="d7-v d7-q"><span><span class="lang-pt">“Encontramos isto!</span><span class="lang-en">“We found this!</span></span></div><div class="d7-v d7-q"><span class="d7-mk d7-p-mute"><span class="lang-pt">Examina</span><span class="lang-en">Recognize it</span></span><span><span class="lang-pt">, por favor!</span><span class="lang-en">, please!</span></span></div><div class="d7-v d7-q"><span><span class="lang-pt">É a túnica de </span><span class="lang-en">Is it </span></span><span class="d7-mk d7-c-violet"><span class="lang-pt">a túnica</span><span class="lang-en">the robe</span></span><span><span class="lang-pt"> de </span><span class="lang-en"> of </span></span><span class="d7-mk d7-p-slate"><span class="lang-pt">seu filho</span><span class="lang-en">your son</span></span><span><span class="lang-pt">, ou não?”</span><span class="lang-en">, or not?”</span></span></div><div class="d7-v"><span class="d7-num"><span class="lang-pt">33</span><span class="lang-en">33</span></span><span><span class="lang-pt"> E ele </span><span class="lang-en"> And he </span></span><span class="d7-mk d7-p-mute"><span class="lang-pt">a reconheceu</span><span class="lang-en">recognized it</span></span><span><span class="lang-pt">,</span><span class="lang-en">,</span></span></div><div class="d7-v"><span><span class="lang-pt">e disse,</span><span class="lang-en">and he said,</span></span></div><div class="d7-v d7-q"><span><span class="lang-pt">“A túnica de </span><span class="lang-en">“The robe of </span></span><span class="d7-mk d7-p-slate"><span class="lang-pt">meu filho</span><span class="lang-en">my son</span></span><span><span class="lang-pt">!</span><span class="lang-en">!</span></span></div><div class="d7-v d7-q"><span><span class="lang-pt">Um </span><span class="lang-en">A terrible </span></span><span class="d7-mk d7-p-tan"><span class="lang-pt">animal</span><span class="lang-en">animal</span></span><span><span class="lang-pt"> terrível o devorou!</span><span class="lang-en"> ate him!</span></span></div><div class="d7-v d7-q"><span><span class="lang-pt">Yoseph certamente foi despedaçado!”</span><span class="lang-en">Yoseph has certainly been torn apart!”</span></span></div></div>
+            <div class="d7-panel"><div class="d7-v"><span class="d7-num"><span class="lang-pt">34</span><span class="lang-en">34</span></span><span><span class="lang-pt"> E Ya’akov rasgou </span><span class="lang-en"> And Ya’akov tore </span></span><span class="d7-mk d7-c-violet"><span class="lang-pt">suas vestes,</span><span class="lang-en">his clothes</span></span></div><div class="d7-v"><span><span class="lang-pt">e pôs </span><span class="lang-en">and he placed </span></span><span class="d7-mk d7-c-violet"><span class="lang-pt">pano de saco</span><span class="lang-en">sackcloth</span></span><span><span class="lang-pt"> sobre seus quadris,</span><span class="lang-en"> on his thighs,</span></span></div><div class="d7-v"><span><span class="lang-pt">e </span><span class="lang-en">and </span></span><span class="d7-mk d7-p-slate"><span class="lang-pt">chorou seu filho</span><span class="lang-en">he grieved over his son</span></span><span><span class="lang-pt"> por muitos dias.</span><span class="lang-en"> for many days.</span></span></div><div class="d7-v"><span class="d7-num"><span class="lang-pt">35</span><span class="lang-en">35</span></span><span><span class="lang-pt"> E todos os seus filhos e todas as suas filhas se levantaram para </span><span class="lang-en"> And all his sons and all his daughters got up to </span></span><span class="d7-mk d7-c-green"><span class="lang-pt">consolá-lo,</span><span class="lang-en">comfort</span></span></div><div class="d7-v"><span><span class="lang-pt">e ele recusou ser </span><span class="lang-en">and he refused to be </span></span><span class="d7-mk d7-c-green"><span class="lang-pt">consolado,</span><span class="lang-en">comforted</span></span></div><div class="d7-v"><span><span class="lang-pt">e disse,</span><span class="lang-en">and he said,</span></span></div><div class="d7-v d7-q"><span><span class="lang-pt">“Certamente, descerei ao </span><span class="lang-en">“Surely, I will go down to </span></span><span class="d7-mk d7-p-slate"><span class="lang-pt">meu filho</span><span class="lang-en">my son</span></span><span><span class="lang-pt">, </span><span class="lang-en">, </span></span><span class="d7-mk d7-p-slate"><span class="lang-pt">lamentando-me</span><span class="lang-en">grieving</span></span><span><span class="lang-pt">, até She’ol!”</span><span class="lang-en">, to She’ol!”</span></span></div><div class="d7-v"><span><span class="lang-pt">E </span><span class="lang-en">And </span></span><span class="d7-mk d7-p-slate"><span class="lang-pt">seu pai chorou por ele</span><span class="lang-en">his father wept for him</span></span><span><span class="lang-pt">,</span><span class="lang-en">,</span></span></div><div class="d7-v"><span class="d7-num"><span class="lang-pt">36</span><span class="lang-en">36</span></span><span><span class="lang-pt"> mas quanto aos </span><span class="lang-en"> but as for the </span></span><span class="d7-mk d7-p-rust"><span class="lang-pt">Medanim</span><span class="lang-en">Medanim</span></span><span><span class="lang-pt">, eles o venderam ao Egito,</span><span class="lang-en">, they sold him to Egypt,</span></span></div><div class="d7-v"><span><span class="lang-pt">a Potiphar, oficial de Phar’oh,</span><span class="lang-en">to Potiphar, official of Phar’oh,</span></span></div><div class="d7-v"><span><span class="lang-pt">capitão dos </span><span class="lang-en">captain of the </span></span><span class="d7-mk d7-p-blue"><span class="lang-pt">açougueiros</span><span class="lang-en">butchers</span></span><span><span class="lang-pt"> .</span><span class="lang-en"> .</span></span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="caption reveal"><span class="lang-pt">Gênesis 37:31-36. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 37:31-36. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
 <p class="body reveal"><span class="lang-pt">Anotações de Aula: José</span><span class="lang-en">Class Notes: Joseph</span></p>
 <p class="body reveal"><span class="lang-pt">38 de 215</span><span class="lang-en">38 of 215</span></p>
 <p class="body reveal"><span class="lang-pt">Gênesis 37:31-36. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 37:31-36. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
@@ -310,62 +495,111 @@
 <p class="body reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></p>
 <p class="body reveal"><span class="lang-pt">Como os autores bíblicos antecipam sutilmente a libertação esperadora que vem ao fim da história de Yoseph</span><span class="lang-en">How do the biblical authors subtly foreshadow the hopeful deliverance coming at the end of the Yoseph story</span></p>
 <p class="body reveal"><span class="lang-pt">quando os irmãos lançam Yoseph ao poço?</span><span class="lang-en">as the brothers cast Yoseph into the pit?</span></p>
-<div class="rounded-xl overflow-hidden border border-slate-300">
-<table class="w-full text-left text-[#24262a] md reveal">
-  <tr><th><span class="lang-pt">Yaaqov, Yoseph e uma Cabra em Gênesis 37</span><span class="lang-en">Yaaqov, Yoseph, and a Goat in Genesis 37</span></th><th><span class="lang-pt">Avraham, Yitskhaq e um Carneiro em Gênesis 22</span><span class="lang-en">Avraham, Yitskhaq, and a Ram in Genesis 22</span></th></tr>
-  <tr><td><span class="lang-pt">Gn. 37:18 “E eles [os irmãos] viram )(ראה<br>a ele [Yoseph] de longe )(מרחק”</span><span class="lang-en">Gen. 37:18 “And they [the brothers] saw )(ראה<br>him [Yoseph] from afar )(מרחק”</span></td><td><span class="lang-pt">Gn. 22:4 “E Avraham viu )(ראה o lugar<br>de longe )(מרחק”</span><span class="lang-en">Gen. 22:4 “And Avraham saw )(ראה the place<br>from afar )(מרחק”</span></td></tr>
-  <tr><td><span class="lang-pt">Gn. 37:20 “Digamos que um animal maligno o comeu )(אכל<br>…”</span><span class="lang-en">Gen. 37:20 “Let’s say an evil beast ate him )(אכל<br>…”</span></td><td><span class="lang-pt">Gn. 22:6 “E Avraham tomou )(לקח … a<br>faca/comedor )(מאכלת”</span><span class="lang-en">Gen. 22:6 “And Avraham took )(לקח … the<br>knife/eater )(מאכלת”</span></td></tr>
-  <tr><td><span class="lang-pt">Gn. 37:24-25 “E o tomaram )(לקח … e<br>se sentaram para comer )(אכל pão …”</span><span class="lang-en">Gen. 37:24-25 “And they took him )(לקח … and<br>they sat down to eat )(אכל bread …”</span></td><td><span class="lang-pt">Gn. 22:10 “E Avraham estendeu a sua mão</span><span class="lang-en">Gen. 22:10 “And Avraham sent out his hand</span></td></tr>
-  <tr><td><span class="lang-pt">Gn. 37:22 Reuven aos irmãos: “Não estendeis a<br>mão contra ele )(ויד אל תשלחו בו”</span><span class="lang-en">Gen. 37:22 Reuven to brothers: “Don’t send out a<br>hand against him )(ויד אל תשלחו בו”</span></td><td><span class="lang-pt">)(וישלח … את ידו e tomou a faca …”</span><span class="lang-en">)(וישלח … את ידו and he took the knife …”</span></td></tr>
-  <tr><td><span class="lang-pt">Gn. 37:27 Yehudah aos irmãos: “E a nossa mão,<br>não esteja contra ele )(וידני אל תהי בו”</span><span class="lang-en">Gen. 37:27 Yehudah to brothers: “And our hand,<br>don’t let it be against him )(וידני אל תהי בו”</span></td><td><span class="lang-pt">Gn. 22:12 O Anjo a Avraham: “Não estendas<br>a tua mão contra o jovem )(אל תשלח ידך אל הנער”</span><span class="lang-en">Gen. 22:12 Angel to Avraham: “Don’t send out<br>your hand against the lad )(אל תשלח ידך אל הנער”</span></td></tr>
-  <tr><td><span class="lang-pt">Gn. 37:25 Os irmãos “levantaram os olhos e<br>olharam, e eis os Yishmaelitas”</span><span class="lang-en">Gen. 37:25 The brothers “lifted their eyes and<br>looked, and behold, Yishmaelites”</span></td><td><span class="lang-pt">Gn. 22:4 “E Avraham levantou os olhos e<br>olhou para o lugar de longe.”</span><span class="lang-en">Gen. 22:4 “And Avraham lifted his eyes and<br>looked at the place from afar.”</span></td></tr>
-  <tr><td><span class="lang-pt">Gn. 37:31-32 Os irmãos tomam uma cabra e a abatem</span><span class="lang-en">Gen. 37:31-32 The brothers take a goat and slay it</span></td><td><span class="lang-pt">Gn. 22:13 “E Avraham levantou os olhos e<br>olhou, e eis um carneiro distante, preso no<br>matagal.”</span><span class="lang-en">Gen. 22:13 “And Avraham lifted his eyes and<br>looked, and behold, a ram afar, caught in the<br>thicket.”</span></td></tr>
-  <tr><td><span class="lang-pt">)(שחט como substituta de seu irmão, e levam<br>o sangue a seu pai.</span><span class="lang-en">)(שחט as a substitute for their brother, and bring<br>its blood to their father.</span></td><td><span class="lang-pt">Gn. 22:10, 13 Avraham está a ponto de abater )(שחט seu<br>filho, mas consegue oferecer um carneiro “como substituto de<br>seu filho”</span><span class="lang-en">Gen. 22:10, 13 Avraham is about to slay )(שחט his<br>son, but is able to offer a ram “as a substitute for<br>his son”</span></td></tr>
-</table>
-</div>
-  <p class="caption"><span class="lang-pt">Diagrama da página 2</span><span class="lang-en">Diagram from page 2</span></p>
+    <div class="diagram-scroll">
+      <div class="diagram-viewport">
+        <div class="diagram-canvas">
+          <div class="d7-compare">
+          <div class="d7-compare-h">
+            <div><span><span class="lang-pt">Yaaqov, Yoseph e uma Cabra em Gênesis 37</span><span class="lang-en">Yaaqov, Yoseph, and a Goat in Genesis 37</span></span></div>
+            <div><span><span class="lang-pt">Avraham, Yitskhaq e um Carneiro em Gênesis 22</span><span class="lang-en">Avraham, Yitskhaq, and a Ram in Genesis 22</span></span></div>
+          </div>
+          <div class="d7-row">
+            <div><span><span class="lang-pt">Gn. 37:3 Yoseph é o “filho da velhice” de Yaaqov (בן זקנים), a quem ele ama (אהב) mais do que seus irmãos.</span><span class="lang-en">Gen. 37:3 Yoseph is Yaaqov’s “son of old age” (בן זקנים), whom he loves (אהב) more than his brothers.</span></span></div>
+            <div><span><span class="lang-pt">Gn. 21:2, 7; 22:2 Yitskhaq é o “filho da velhice” de Avraham (בן לזקניו), a quem ele ama (אהב)</span><span class="lang-en">Gen. 21:2, 7; 22:2 Yitskhaq is Avraham’s “son of old age” (בן לזקניו), whom he loves (אהב)</span></span></div>
+          </div>
+          <div class="d7-row">
+            <div><span><span class="lang-pt">Gn. 37:13 Yaaqov chama por Yoseph, “e disse, ‘Aqui estou’ (הנני)”</span><span class="lang-en">Gen. 37:13 Yaaqov calls for Yoseph, “and he said, ‘Here I am’ (הנני)”</span></span></div>
+            <div><span><span class="lang-pt">Gn. 22:1 Deus chama por Avraham, “e disse, ‘Aqui estou’ (הנני)” · Gn. 22:7 Yitskhaq chama por Avraham, “e disse, ‘Aqui estou’ (הנני)” · Gn. 22:11 O Anjo de Raquel chama por Avraham, “e disse, ‘Aqui estou’ (הנני)</span><span class="lang-en">Gen. 22:1 God calls for Avraham, “and he said, ‘Here I am’ (הנני)” · Gen. 22:7 Yitskhaq calls for Avraham, “and he said, ‘Here I am’ (הנני)” · Gen. 22:11 The Angel of Yahweh calls for Avraham, “and he said, ‘Here I am’ (הנני)</span></span></div>
+          </div>
+          <div class="d7-cap"><span class="lang-pt">Rams and Goats in Genesis. Criado por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Rams and Goats in Genesis. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="diagram-scroll">
+      <div class="diagram-viewport">
+        <div class="diagram-canvas">
+          <div class="d7-compare">
+          <div class="d7-compare-h">
+            <div><span><span class="lang-pt">Yaaqov, Yoseph e uma Cabra em Gênesis 37</span><span class="lang-en">Yaaqov, Yoseph, and a Goat in Genesis 37</span></span></div>
+            <div><span><span class="lang-pt">Avraham, Yitskhaq e um Carneiro em Gênesis 22</span><span class="lang-en">Avraham, Yitskhaq, and a Ram in Genesis 22</span></span></div>
+          </div>
+          <div class="d7-row">
+            <div><span><span class="lang-pt">Gn. 37:18 “E eles [os irmãos] <span class="d7-mk d7-t-blue">saw</span> (ראה) a ele [Yoseph] de longe (מרחק)”</span><span class="lang-en">Gen. 37:18 “And they [the brothers] <span class="d7-mk d7-t-blue">saw</span> (ראה) him [Yoseph] <span class="d7-mk d7-t-blue">from afar</span> (מרחק)”</span></span></div>
+            <div><span><span class="lang-pt">Gn. 22:4 “E Avraham <span class="d7-mk d7-t-blue">saw</span> (ראה) o lugar <span class="d7-mk d7-t-blue">from afar</span> (מרחק)”</span><span class="lang-en">Gen. 22:4 “And Avraham <span class="d7-mk d7-t-blue">saw</span> (ראה) the place <span class="d7-mk d7-t-blue">from afar</span> (מרחק)”</span></span></div>
+          </div>
+          <div class="d7-row">
+            <div><span><span class="lang-pt">Gn. 37:20 “Digamos que um animal maligno <span class="d7-mk d7-t-rose">ate him</span> (אכל) …” · Gn. 37:24-25 “E o <span class="d7-mk d7-t-rose">took him</span> (לקח) … e se sentaram <span class="d7-mk d7-t-rose">to eat</span> (אכל) pão …”</span><span class="lang-en">Gen. 37:20 “Let’s say an evil beast <span class="d7-mk d7-t-rose">ate him</span> (אכל) …” · Gen. 37:24-25 “And they <span class="d7-mk d7-t-rose">took him</span> (לקח) … and they sat down <span class="d7-mk d7-t-rose">to eat</span> (אכל) bread …”</span></span></div>
+            <div><span><span class="lang-pt">Gn. 22:6 “E Avraham <span class="d7-mk d7-t-rose">took</span> (לקח) … a <span class="d7-mk d7-t-rose">knife/eater</span> (מאכלת)”</span><span class="lang-en">Gen. 22:6 “And Avraham <span class="d7-mk d7-t-rose">took</span> (לקח) … the <span class="d7-mk d7-t-rose">knife/eater</span> (מאכלת)”</span></span></div>
+          </div>
+          <div class="d7-row">
+            <div><span><span class="lang-pt">Gn. 37:22 Reuven aos irmãos: “<span class="d7-mk d7-t-lilac">Don’t send out a hand against him</span> (ויד אל תשלחו בו)” · Gn. 37:27 Yehudah aos irmãos: “<span class="d7-mk d7-t-lilac">And our hand, don’t let it be against him</span> (וידני אל תהי בו)”</span><span class="lang-en">Gen. 37:22 Reuven to brothers: “<span class="d7-mk d7-t-lilac">Don’t send out a hand against him</span> (ויד אל תשלחו בו)” · Gen. 37:27 Yehudah to brothers: “<span class="d7-mk d7-t-lilac">And our hand, don’t let it be against him</span> (וידני אל תהי בו)”</span></span></div>
+            <div><span><span class="lang-pt">Gn. 22:10 “E Avraham <span class="d7-mk d7-t-lilac">sent out his hand</span> (וישלח … את ידו) e tomou a faca …” · Gn. 22:12 O Anjo a Avraham: “<span class="d7-mk d7-t-lilac">Don’t send out your hand against the lad</span> (אל תשלח ידך אל הנער)”</span><span class="lang-en">Gen. 22:10 “And Avraham <span class="d7-mk d7-t-lilac">sent out his hand</span> (וישלח … את ידו) and he took the knife …” · Gen. 22:12 Angel to Avraham: “<span class="d7-mk d7-t-lilac">Don’t send out your hand against the lad</span> (אל תשלח ידך אל הנער)”</span></span></div>
+          </div>
+          <div class="d7-row">
+            <div><span><span class="lang-pt">Gn. 37:25 Os irmãos “<span class="d7-mk d7-t-tan">lifted their eyes and looked, and behold,</span> Yishmaelitas”</span><span class="lang-en">Gen. 37:25 The brothers “<span class="d7-mk d7-t-tan">lifted their eyes and looked, and behold,</span> Yishmaelites”</span></span></div>
+            <div><span><span class="lang-pt">Gn. 22:4 “E Avraham <span class="d7-mk d7-t-tan">lifted his eyes and looked</span> para o lugar de longe.” · Gn. 22:13 “E Avraham <span class="d7-mk d7-t-tan">lifted his eyes and looked,</span> e eis um carneiro distante, preso no matagal.”</span><span class="lang-en">Gen. 22:4 “And Avraham <span class="d7-mk d7-t-tan">lifted his eyes and looked</span> at the place from afar.” · Gen. 22:13 “And Avraham <span class="d7-mk d7-t-tan">lifted his eyes and looked,</span> and behold, a ram afar, caught in the thicket.”</span></span></div>
+          </div>
+          <div class="d7-row">
+            <div><span><span class="lang-pt">Gn. 37:31-32 Os irmãos tomam uma cabra e <span class="d7-mk d7-t-green">and slay it</span> (שחט) como substituta de seu irmão, e levam o sangue a seu pai.</span><span class="lang-en">Gen. 37:31-32 The brothers take a goat and <span class="d7-mk d7-t-green">and slay it</span> (שחט) as a substitute for their brother, and bring its blood to their father.</span></span></div>
+            <div><span><span class="lang-pt">Gn. 22:10, 13 Avraham está a ponto de abater <span class="d7-mk d7-t-green">to slay</span> (שחט) seu filho, mas consegue oferecer um carneiro “como substituto de seu filho”</span><span class="lang-en">Gen. 22:10, 13 Avraham is about to <span class="d7-mk d7-t-green">to slay</span> (שחט) his son, but is able to offer a ram “as a substitute for his son”</span></span></div>
+          </div>
+          <div class="d7-cap"><span class="lang-pt">Rams and Goats in Genesis. Criado por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Rams and Goats in Genesis. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
 <footer class="page-footer">
     <span class="lang-pt">Anotações de Aula: José</span><span class="lang-en">Class Notes: Joseph</span>
     <span class="lang-pt">Sessão 7</span><span class="lang-en">Session 7</span>
   </footer>
-
-  <!-- conteudo adicional do PDF -->
-  <p class="body reveal"><span class="lang-en">age” )‫(בן לזקניו‬, whom he loves )‫(אהב‬</span></p>
-  <p class="body reveal"><span class="lang-en">‘Here I am’ )‫”(הנני‬</span></p>
-  <p class="body reveal"><span class="lang-en">‘Here I am’ )‫”(הנני‬</span></p>
-  <p class="body reveal"><span class="lang-en">‘Here I am’ )‫”(הנני‬</span></p>
-  <p class="body reveal"><span class="lang-en">from afar )‫” (מרחק‬</span></p>
-  <p class="body reveal"><span class="lang-en">knife/eater )‫” (מאכלת‬</span></p>
-  <p class="body reveal"><span class="lang-en">hand against him )‫”(ויד אל תשלחו בו‬</span></p>
-  <p class="body reveal"><span class="lang-en">don’t let it be against him )‫”(וידני אל תהי בו‬</span></p>
-  <p class="body reveal"><span class="lang-en">your hand against the lad )‫”(אל תשלח ידך אל הנער‬</span></p>
-  <p class="body reveal"><span class="lang-en">Yoseph is thrown into a pit )‫( (בור‬Gen. 37:20, 22, 24, 28, 29).</span></p>
 </div>
 
-    <p class="body reveal"><span class="lang-pt">Esses ciclos temáticos estabelecem um padrão narrativo, uma melodia temática, que se recicla a cada geração, desenvolvendo e avançando a melodia. A melodia básica é assim.</span><span class="lang-en">These thematic cycles set up a narrative pattern, a thematic melody, that re-cycles with each generation, developing and advancing the melody. The basic melody goes like this.</span></p>
-
-    <h3 class="sub reveal"><span class="lang-pt">1. Criação e bênção</span><span class="lang-en">1. Creation and blessing</span></h3>
-    <p class="body reveal"><span class="lang-pt">Deus traz ordem/vida/bênção para fora do caos/águas/morte/maldição.</span><span class="lang-en">God brings order/life/blessing out of chaos/waters/death/curse.</span></p>
-    <p class="body reveal"><span class="lang-pt"><span class="keylabel">Palavras-chave</span><br>Vida, bênção, criar, estabelecer, semente, brotar, crescer, fruto, frutífero, multiplicar<br>Sete, plenitude, juramento (todos grafados שבע)<br>Imagens-chave: terra seca, refúgio, segurança, ordem</span><span class="lang-en"><span class="keylabel">Key words</span><br>Life, blessing, create, establish, seed, sprout, grow, fruit, fruitful, multiply<br>Seven, fullness, oath (all spelled שבע)<br>Key images: dry land, refuge, safety, order</span></p>
-
-    <h3 class="sub reveal"><span class="lang-pt">2. Loucura, teste e fracasso (também chamado de "a queda tola")</span><span class="lang-en">2. Folly, test, and failure (a.k.a. "the foolish fall")</span></h3>
-    <p class="body reveal"><span class="lang-pt">Deus convida um parceiro humano escolhido a compartilhar da ordem/vida/bênção, o que coloca uma decisão/teste de sua confiabilidade sobre a mesa.</span><span class="lang-en">God invites a chosen human partner to share in the order/life/blessing, which places a decision/test of their trustworthiness on the table.</span></p>
-    <p class="body reveal"><span class="lang-pt">O parceiro escolhido de Deus falha/passa no teste, geralmente envolvendo decepção/divisão/violência.</span><span class="lang-en">God's chosen partner fails/succeeds the test, usually involving deception/division/violence.</span></p>
-    <p class="body reveal"><span class="lang-pt">A mesma pessoa/próxima geração enfrenta sua própria oportunidade e teste, e falha/passa, geralmente envolvendo uma expressão intensificada de decepção/divisão/violência.</span><span class="lang-en">The same person/next generation faces their own opportunity and test and fails/succeeds, usually involving an intensified expression of deception/division/violence.</span></p>
-    <p class="body reveal"><span class="lang-pt">A sequência escalada de testes e fracassos leva a uma separação entre os personagens-chave, de modo que uma pessoa ou família se separa do resto e é escolhida por Deus para um novo futuro.</span><span class="lang-en">The escalating sequence of tests and failures leads to a separation between the key characters so that one person or family splits off from the rest and is chosen by God for a new future.</span></p>
-    <p class="body reveal"><span class="lang-pt">Palavras-chave encontradas em Gênesis 2-3, 4-5, 6:1-4.</span><span class="lang-en">Key words found in Genesis 2-3, 4-5, 6:1-4.</span></p>
-
-    <h3 class="sub reveal"><span class="lang-pt">3. Des-criação e re-criação</span><span class="lang-en">3. De-creation and re-creation</span></h3>
-    <p class="body reveal"><span class="lang-pt">Des-criação: Deus provoca uma inversão do nº 1 acima, geralmente uma escalada de caos/morte/maldição.</span><span class="lang-en">De-creation: God brings about an inversion of #1 above, usually an escalation of chaos/death/curse.</span></p>
-    <p class="body reveal"><span class="lang-pt">A partir dessa des-criação, Deus escolhe/preserva um remanescente/semente e inicia um novo movimento de re-criação através dele, muitas vezes marcado por alianças e trocadilhos sobre a raiz hebraica שבע, "sete/plenitude/juramento" ou "aliança" (ברית).</span><span class="lang-en">Out of that de-creation, God chooses/preserves a remnant/seed and begins a new movement of re-creation through them, often marked by covenants and wordplays on the Hebrew root שבע, "seven/fullness/oath" or "covenant" (ברית).</span></p>
-    <p class="body reveal"><span class="lang-pt">Palavras-chave encontradas em Gênesis 6:5-9:17.</span><span class="lang-en">Key words found in Genesis 6:5-9:17.</span></p>
-
-    <h3 class="sub reveal"><span class="lang-pt">4. Repita</span><span class="lang-en">4. Repeat</span></h3>
-    <h3 class="sub reveal"><span class="lang-pt">Pergunta de Reflexão</span><span class="lang-en">Reflection Question</span></h3>
-    <p class="body reveal"><span class="lang-pt">De que maneiras você vê a história de Yoseph reencenando eventos dos capítulos iniciais de Gênesis?</span><span class="lang-en">In what ways do you see Yoseph's story replaying events from the early chapters of Genesis?</span></p>
-
   <script src="../../js/reading-progress.js"></script>
+    <script>
+(function () {
+  /* AUTO-FIT: canvas fixo de 1600px escalado para a largura da viewport
+     (desktop) / empilhamento vertical (mobile). */
+  function fitDiagrams() {
+    document.querySelectorAll('.diagram-viewport').forEach((viewport) => {
+      const canvas = viewport.querySelector('.diagram-canvas');
+      if (!canvas) return;
+      const naturalWidth = canvas.offsetWidth;
+      const naturalHeight = canvas.offsetHeight;
+      const availableWidth = viewport.clientWidth;
+      if (!naturalWidth || !naturalHeight || !availableWidth) return;
+      if (window.innerWidth <= 767) {
+        canvas.style.position = 'relative';
+        canvas.style.width = '100%';
+        canvas.style.height = 'auto';
+        canvas.style.transform = 'none';
+        canvas.style.left = '0px';
+        canvas.style.top = '0px';
+        viewport.style.height = canvas.scrollHeight + 'px';
+        return;
+      }
+      const scale = Math.min(1, availableWidth / naturalWidth);
+      const renderedWidth = naturalWidth * scale;
+      const renderedHeight = naturalHeight * scale;
+      canvas.style.transform = 'scale(' + scale + ')';
+      canvas.style.left = Math.max(0, (availableWidth - renderedWidth) / 2) + 'px';
+      canvas.style.top = '0px';
+      viewport.style.height = renderedHeight + 'px';
+    });
+  }
+  let resizeFrame = null;
+  function scheduleFit() {
+    if (resizeFrame) cancelAnimationFrame(resizeFrame);
+    resizeFrame = requestAnimationFrame(fitDiagrams);
+  }
+  window.addEventListener('resize', scheduleFit, { passive: true });
+  window.addEventListener('orientationchange', scheduleFit, { passive: true });
+  window.addEventListener('load', scheduleFit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleFit);
+  fitDiagrams();
+})();
+  </script>
   <script src="../../js/lang-toggle.js"></script>
   <script src="../../js/reveal.js"></script>
   <script>
