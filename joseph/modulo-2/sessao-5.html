@@ -13,76 +13,36 @@
   <style>
   .reveal.visible { opacity: 1 !important; transform: none !important; }  .ref { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; color: #1a1a1a; cursor: pointer; transition: color .15s;}
   .ref:hover { color: #2563eb;}
-  .scripture { border-left: 4px solid #dfe4ea; padding: .25rem 0 .25rem 1.25rem; margin: 1.5rem 0; transition: border-color .2s;}
-  .scripture:hover { border-left-color: #9aa7b8;}
-  .scripture-label { font-weight: 800; color: #17181a; font-size: 1.05rem;}
-  .scripture-type { color: #5b7285; font-weight: 700; font-size: .95rem; margin-left: .5rem;}
-  .scripture-text { margin-top: .55rem; font-size: 1.05rem; line-height: 1.8; color: #24262a;}
-  .scripture .innerbox { background: #f6f8fa; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1rem;}
-  .adapt { color: #5b7285; font-size: .95rem; margin-top: .6rem;}
-  .macro { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; align-items: start; margin: 2rem 0 .75rem;}
-  .mcol { border: 3px solid #2e7d4e; border-radius: 12px; padding: .9rem .9rem 1rem; background: #fff;}
-  .mcol.dark { border-color: #3d4453; margin-top: 1.3rem;}
-  .mtag { display: inline-block; font-size: .95rem; font-weight: 700; color: #fff; padding: 3px 10px; border-radius: 5px;}
-  .mtag-green { background: #2e7d4e;}
-  .mtag-dark { background: #3d4453;}
-  .mcol-title { font-size: 1.05rem; font-weight: 800; color: #17181a; margin: .55rem 0 .8rem; line-height: 1.3;}
-  .mboxes { display: flex; gap: .55rem;}
-  .mbox { flex: 1; border: 3px solid #b9c2cf; border-radius: 9px; background: #fff; min-height: 15.5rem; position: relative; transition: box-shadow .25s, transform .25s;}
-  .mbox:hover { box-shadow: 0 8px 20px -10px rgba(30,41,59,.4); transform: translateY(-3px);}
-  .mbox .mhdr { position: absolute; top: .55rem; left: .55rem; right: .55rem; background: #7d8697; color: #fff; font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 5px;}
-  .mbox.s1 { margin-top: 0;}
-  .mbox.s2 { margin-top: 2.4rem; min-height: 13rem;}
-  .mbox.s3 { margin-top: 2.4rem; min-height: 13rem;}
-  @media (max-width: 860px) { .macro { grid-template-columns: 1fr;}
-  .mcol.dark { margin-top: 0;}
-  .mbox, .mbox.s2, .mbox.s3 { min-height: 7.5rem; margin-top: 0;}
-  .cx { border: 3px solid; border-radius: 12px; padding: 1.35rem 1.5rem 1.2rem; margin: 1.15rem 0; transition: box-shadow .25s, transform .25s;}
-  .cx:hover { box-shadow: 0 12px 26px -16px rgba(23,24,26,.45); transform: translateY(-2px);}
-  .cx-tag { display: inline-block; font-size: .95rem; font-weight: 700; color: #fff; padding: 1px 13px; border-radius: 6px; margin-bottom: .7rem;}
-  .cx h4 { font-weight: 800; font-size: 1.05rem; color: #17181a; margin-bottom: .7rem;}
-  .cx ul.bullets > li { font-size: .99rem; margin-bottom: .45rem;}
-  .cx-slate  { border-color: #6b7280; background: #e9ebee;}
-  .cx-slate  .cx-tag { background: #6b7280;}
-  .cx-rust   { border-color: #c0562f; background: #f7e6dd;}
-  .cx-rust   .cx-tag { background: #c0562f;}
-  .cx-rose   { border-color: #c04a63; background: #f7e0e5;}
-  .cx-rose   .cx-tag { background: #c04a63;}
-  .cx-blue   { border-color: #5468d4; background: #e4e8f9;}
-  .cx-blue   .cx-tag { background: #5468d4;}
-  .cx-green  { border-color: #2e7d4e; background: #dfeee2;}
-  .cx-green  .cx-tag { background: #2e7d4e;}
-  .cx-purple { border-color: #8b5cf6; background: #efe2f8;}
-  .cx-purple .cx-tag { background: #8b5cf6;}
-  .cx-tan    { border-color: #8a6d3b; background: #ece7dc;}
-  .cx-tan    .cx-tag { background: #8a6d3b;}
-  .k { display: inline; padding: 3px 9px; border-radius: 6px; font-weight: 700; color: #fff; line-height: 1.85; -webkit-box-decoration-break: clone; box-decoration-break: clone;}
-  .k-blue   { background: #3b82c4;}
-  .k-green  { background: #2e7d4e;}
-  .k-rose { background: #c04a63;}
-  .k-gray   { background: #6b7280;}
-  .k-rust   { background: #bf5a2b;}
-  .k-teal { background: #0d7d8c;}
-  .k-purple { background: #7c5ad0;}
-  .k-brown  { background: #8a6d3b;}
-  .t-teal { color: #0d8aa0; font-weight: 700;}
-  .v-outer { border: 3px solid #e3e7ee; border-radius: 20px; padding: 1.4rem 1.5rem; margin: 1.4rem 0;}
-  .v-black { border: 3px solid #17181a; border-radius: 16px; padding: 1.3rem 1.5rem; margin: 1.1rem 0;}
-  .v-light { border: 3px solid #e3e7ee; border-radius: 16px; padding: 1.2rem 1.4rem; margin: 1.1rem 0;}
-  .v-line { font-size: 1.05rem; line-height: 2.1; color: #1f2937;}
-  .v-div { border: 0; border-top: 1px solid #e6eaf0; margin: 1.1rem 0;}
-  .vbar-b { border-left: 4px solid #5468d4; padding-left: .8rem;}
-  .lbl { color: #5b6472; font-weight: 600; font-size: .875rem; letter-spacing: .06em; margin-right: .2rem;}
-  sup.vs { font-size: .72em; color: #333; font-weight: 500; margin-right: 2px;}
-  .i1 { padding-left: 1.6rem;}
-  .i2 { padding-left: 3.2rem;}
-  .i3 { padding-left: 4.8rem;}
-  .doc-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 3px solid #d9dee6; border-radius: 14px; overflow: hidden; background: #fff;}
-  .doc-table th { background: #e2e6eb; text-align: left; padding: 1rem 1.3rem; font-weight: 800; font-size: 1.05rem; color: #17181a;}
-  .doc-table td { padding: 1.1rem 1.3rem; border-top: 1px solid #e5e7eb; vertical-align: top; line-height: 1.78; font-size: .97rem; color: #24262a; transition: background .2s;}
-  .doc-table tbody tr:hover td { background: #f8fafc;}
-  .doc-table tfoot td { border-top: 1px solid #d1d5db; background: #fbfcfd; color: #5b6472; font-size: .92rem;}
-  .kblue-soft { background: #cddcf5; color: #2b5fb0; padding: 2px 8px; border-radius: 6px; font-weight: 700;}
+  /* ===== Bloco de escritura (sessao-5.pdf, pag. 5 e 7) =====================
+     Medido no PDF: barra vertical 2pt = 2.67px em #e4e8ed (pixel 36.0-38.0pt
+     confirmado no raster a 6x), recuo do texto 10pt = 13px a partir da barra
+     (texto comeca em x=48.0pt). Rotulo em negrito 10.5pt #1b1b1b + tipo de
+     traducao 9.8pt #4f5669 (mesma linha). Corpo 10.5pt #1b1b1b com
+     entrelinha aberta (1.8) e numero de verso em 8.7pt (sup). A nota
+     "*Key Words Adapted by Teacher" e um rotulo 9.8pt #4f5669 DEPOIS do
+     bloco — nunca um bullet dentro dele. */
+  .scripture { border-left: 3px solid #e4e8ed; padding: .1rem 0 .1rem 13px; margin: 1.4rem 0 .3rem; transition: border-color .2s;}
+  .scripture:hover { border-left-color: #c6cedb;}
+  .scripture-label { font-weight: 800; color: #1b1b1b; font-size: 1.05rem;}
+  .scripture-type { color: #4f5669; font-weight: 400; font-size: .92rem; margin-left: .4rem;}
+  .scripture-text { margin-top: .5rem; font-size: 1.05rem; line-height: 1.8; color: #1b1b1b;}
+  .rotulo { font-size: .92rem; font-weight: 400; color: #4f5669; margin: .45rem 0 1.35rem;}
+  /* Realce de "palavra-chave adaptada pelo professor". No PDF o retangulo de
+     realce tem 15pt = 20px de altura e raio 3pt = 4px, e a palavra e sempre
+     NEGRITO (fonte Type3 401 / 111 / 164 — as flags nao reportam isso).
+     Cores de fundo e de texto medidas e confirmadas por pixel:
+       #e4e8ed / #4f5669   #f9e3de / #972a4e   #fae4c4 / #91362e
+       #efe8db / #645537   #6b7384 / #ffffff   #f7e1f5 / #713c92 */
+  .kw { font-weight: 700; border-radius: 4px; padding: 0 .25rem;
+        -webkit-box-decoration-break: clone; box-decoration-break: clone;}
+  .kw-grey  { background: #e4e8ed; color: #4f5669;}
+  .kw-rose  { background: #f9e3de; color: #972a4e;}
+  .kw-cream { background: #fae4c4; color: #91362e;}
+  .kw-tan   { background: #efe8db; color: #645537;}
+  .kw-lilac { background: #f7e1f5; color: #713c92;}
+  .kw-dark  { background: #6b7384; color: #ffffff;}
+  /* numero de verso: 9pt / 8.7pt no PDF, alinhado como <sup> */
+  sup.vs { font-size: .72em; color: #1b1b1b; font-weight: 500; margin-right: 2px;}
   .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1);}
   @media print {
     @page { margin: 14mm 12mm;}
@@ -91,9 +51,8 @@
   * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important;}
   .max-w-4xl { max-width: 100% !important; padding: 0 !important; margin: 0 !important;}
   h1.title, h2.section, h3.sub { break-after: avoid-page;}
-  .cx, .v-outer, .v-black, .v-light, .doc-table tr, .scripture, .mcol { break-inside: avoid;}
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none;}
-  .cx, .mbox { transition: none;}}}}
+  .m37-panel, .m37-sub, .scripture, .lit37-frame, .lit37-box, .lit37-table tr { break-inside: avoid;}
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none;}}}
 
   
   
@@ -115,33 +74,43 @@
   
   ul.bullets > li:before { content: "•"; position: absolute; left: .55rem; color: #1a1a1a; font-weight: bold; }
   
-  .caption { font-style: italic; color: #5b6472; font-size: .92rem; margin-top: .7rem; }
+  .caption { font-style: italic; color: #4f5669; font-size: .92rem; margin-top: .7rem; }
     /* ===== Macro Design of Genesis 37 (sessao-5.pdf, pag. 1-2) ==============
+       O PDF tem TRES paineis de grande escala — A (37:2-14), B (37:15-30) e
+       A' (37:31-36) — e cada um com suas repeticoes de pequena escala
+       a / b / a' (e b' no painel B). A versao anterior do HTML so tinha A e
+       parte de B; o resto foi para um paragrafo corrido.
        Cores medidas no PDF com get_drawings() e CONFIRMADAS por pixel no
        raster — o atributo `fill` do PyMuPDF mente em path so-tracejado (o
        painel B aparece como fill #3e4054 mas e so o traco; o interior e
        branco). Escala: 1pt = 1.333px a 96dpi.
          moldura do painel ....... #3e4054  traco 1.5pt  = 2px
-         a  37:2-4 ............... #be4967 a 15%
+         a  37:2-4 ............... #be4967 a 15%   (pag. 1)
          b  37:5-11 .............. #b5543a a 15%   (recuado 18pt = 24px)
          a' 37:12-14 ............. sem fill, so moldura #e4e8ed
-         a  37:15-17 ............. #e4e8ed a 15%
-         pilula de etiqueta ...... 15pt = 20px de altura, raio 3pt = 4px */
+         a  37:15-17 ............. #e4e8ed a 15%   (painel B: preenchido)
+         b  37:18-24 ............. #6b7384 a 15%   (recuado 18pt = 24px)
+         b' 37:25-28 ............. #6b7384 a 15%   (recuado 18pt = 24px)
+         a' 37:29-30 ............. #e4e8ed a 15%   (painel B: preenchido)
+         a  37:31-32a ............ #be4967 a 15%   (painel A', pag. 2)
+         b  37:32b-33 ............ #b5543a a 15%
+         a' 37:34-36 ............. sem fill, so moldura #e4e8ed
+         pilula de etiqueta ...... 15pt = 20px de altura, raio 3pt = 4px
+         texto do corpo .......... #1b1b1b (NUNCA #1a1a1a: o PDF pinta
+                                    #1b1b1b em 312+ spans; #1a1a1a e o token
+                                    `ink` do DESIGN.md e nao existe no PDF)
+         destaques ................ #9855af roxo, #5869cd azul, #4f5669 cinza,
+                                    #3a8060 verde, #be4967 rosa */
     .m37 { margin: 2.4rem 0 1.6rem; }
     .m37-panel { position: relative; border: 2px solid #3e4054; border-radius: 10px;
-                 background: #fff; padding: 1.7rem .9rem 1rem; }
-    .m37-panel + .m37-panel { margin-top: 1.9rem; margin-left: 24px; }
-    .m37-tag { position: absolute; left: -1px; top: -1px; transform: translateY(-100%);
-               display: inline-block; height: 20px; line-height: 20px; padding: 0 8px;
-               border-radius: 4px; background: #3e4054; color: #fff;
+                 background: #fff; padding: 1rem .9rem 1rem; }
+    .m37-panel + .m37-panel { margin-top: 1.25rem; margin-left: 24px; }
+    .m37-tag { display: inline-block; height: 20px; line-height: 20px; padding: 0 8px;
+               border-radius: 4px; background: #3e4054; color: #fff; margin-bottom: .6rem;
                font-size: .82rem; font-weight: 800; white-space: nowrap; }
-    .m37-sub { position: relative; border: 2px solid; border-radius: 8px;
-               padding: 1.5rem .85rem .7rem; }
-    /* a pílula fica ACIMA da caixa (translateY -100%), entao o espaco entre
-       paineis precisa comportar 20px da pílula + folga, senao ela invade o
-       painel de cima — foi o que aconteceu na primeira versao. */
-    .m37-sub + .m37-sub { margin-top: 1.75rem; }
-    .m37-sub .m37-tag { left: -1px; top: -1px; color: #fff; }
+    .m37-sub { border: 2px solid; border-radius: 8px; padding: .9rem .85rem .7rem; }
+    .m37-sub + .m37-sub { margin-top: .9rem; }
+    .m37-sub .m37-tag { color: #fff; }
     .m37-sub.a-rose   { border-color: #be4967; background: rgba(190,73,103,.15); }
     .m37-sub.a-rose   .m37-tag { background: #be4967; }
     .m37-sub.b-rust   { border-color: #b5543a; background: rgba(181,84,58,.15); margin-left: 24px; }
@@ -153,10 +122,121 @@
                         line-height: 1.6; font-size: 1rem; color: #1b1b1b; }
     .m37-sub > ul > li:before { content: "\2022"; position: absolute; left: .3rem;
                                color: #1b1b1b; font-weight: 700; }
-    /* destaques de cor medidos no PDF */
-    .m37-em-purple { color: #9855af; }
-    .m37-em-blue   { color: #5869cd; }
-    .m37-em-grey   { color: #4f5669; }
+    /* destaques de cor medidos no PDF (span["color"] do PyMuPDF) */
+    .m37-em-purple { color: #9855af; font-weight: 700; }
+    .m37-em-blue   { color: #5869cd; font-weight: 700; }
+    .m37-em-grey   { color: #4f5669; font-weight: 700; }
+    .m37-em-green  { color: #3a8060; font-weight: 700; }
+    .m37-em-rose   { color: #be4967; font-weight: 700; }
+    /* realce de fundo: retangulo #e4e8ed atras das falas destacadas
+       (sessao-5.pdf pag. 1: (85.5,698.2)-(194.2,713.2); pag. 2:
+       (219.0,258.8)-(319.5,273.8) — CONFIRMADO por pixel) */
+    .m37-hl { background: #e4e8ed; border-radius: 3px; padding: 0 .2rem; }
+    /* subtitulo do painel A' ("From Jacob to His 12 Sons and 70 Descendants",
+       sessao-5.pdf pag. 2, y=330.6, 10.5pt, negrito #1b1b1b). O vao abaixo e
+       de 26px (medido: 350.2 - 330.6 = 19.6pt) + os 20px da pílula da
+       sub-caixa seguinte, senao a pílula "a - 37:31-32a" cobre o subtitulo. */
+    .m37-panel-sub { font-size: .95rem; font-weight: 800; color: #1b1b1b;
+                     margin: 0 0 1.65rem; }
+    /* O painel B troca as cores das sub-caixas em relacao ao painel A: as
+       caixas b/b' usam #6b7384 a 15% (e nao #b5543a) e as caixas a/a' tem
+       preenchimento #e4e8ed a 15% (e nao so a moldura). Medido em
+       sessao-5.pdf pag. 2 (get_drawings) e confirmado por pixel. */
+    .m37-sub.b-grey  { border-color: #6b7384; background: rgba(107,115,132,.15); margin-left: 24px; }
+    .m37-sub.b-grey  .m37-tag { background: #6b7384; }
+    .m37-sub.greyfill { border-color: #e4e8ed; background: rgba(228,232,237,.15); }
+    .m37-sub.greyfill .m37-tag { background: #e4e8ed; color: #4f5669; }
+
+    /* ===== "Paragraph 1: A Favored Son and a Hated Brother" ================
+       sessao-5.pdf, pag. 3 (37:2-4), pag. 4 (37:5-11) e pag. 5 (37:12-14).
+       A figura e UMA moldura clara (#e4e8ed) que envolve 11 caixas
+       aninhadas, em escada: 3 niveis de recuo (47.2 / 65.2 / 83.2pt) com
+       passos de 18pt. A quebra entre pag. 3-4-5 e um artefato de paginacao
+       do PDF (a moldura e redesenhada na pag. 5), nao uma segunda figura.
+
+       Medido no PDF com get_drawings()/get_text("dict") e CONFIRMADO por pixel
+       no raster a 6x. Escala: 1pt = 1.3333px.
+         moldura externa ..... traco #e4e8ed 1.5pt = 2px, raio 8.3pt = 11px
+                              recuo lateral 10.4pt = 14px, topo 19.4pt = 26px
+                              (36.8 -> 47.2 = 10.4; 345.8 -> 365.2 = 19.4)
+         caixa preta ......... traco #1b1b1b 1.5pt = 2px, raio 8.3pt = 11px
+         caixa clara ......... traco #e4e8ed 1.5pt = 2px, raio 8.3pt = 11px
+                              recuo interno 10.4pt = 14px (texto em caixa+9.8pt)
+         degrau de aninhamento  18pt = 24px por nivel
+         vao entre caixas .... 10.4pt = 14px (a pilula de 21.8pt cabe nesse vao)
+         pilula .............. 21.8pt = 29px, raio 9pt = 12px, recuo 6pt = 8px,
+                              texto 10.5pt negrito; preta #1b1b1b (texto #fff)
+                              nas 3 x "Hatred/Jealousy", #e4e8ed (texto #1b1b1b)
+                              nas 2 x "Dream"
+         rotulo da margem .... 9.8pt #4f5669, alinhado a direita, 5.2pt = 7px a
+                              esquerda da caixa, centralizado na altura dela
+         texto ............... 10.5pt #1b1b1b, entrelinha 15.75pt = 21px
+         numero de verso ..... 9pt (sup)
+         recuo de continuacao . 18pt = 24px (linhas que nao comecam um paragrafo)
+       O `fill` do PyMuPDF MENTE na ultima caixa (37:11): ela aparece como
+       fill #1b1b1b mas o pixel do interior e #ffffff — e uma caixa preta de
+       traco, igual as outras. */
+    .lit37 { margin: 1.6rem 0 .9rem; }
+    .lit37-frame { border: 2px solid #e4e8ed; border-radius: 11px;
+                   background: #fff; padding: 26px 14px 14px; }
+    .lit37-frame + .lit37-frame { margin-top: 14px; }
+    .lit37-frame.g2 { padding-top: 14px; }
+    .lit37-box { position: relative; border: 2px solid #e4e8ed; border-radius: 11px;
+                 background: #fff; padding: 12px 14px; margin-bottom: 14px; }
+    .lit37-box.black { border-color: #1b1b1b; }
+    .lit37-box.n1 { margin-left: 0; }
+    .lit37-box.n2 { margin-left: 24px; }
+    .lit37-box.n3 { margin-left: 48px; }
+    /* a pílula de 29px fica ACIMA da caixa (translateY(-100%)), entao a caixa
+       que a carrega precisa abrir 30px de vao no topo: no PDF a distancia
+       entre a caixa anterior e a caixa com pílula e de 32.3pt = 43px
+       (137.2 -> 169.5), contra 10.4pt = 14px entre caixas sem pílula. */
+    .lit37-box.haspill { margin-top: 30px; }
+    .lit37-box:last-child { margin-bottom: 0; }
+    .lit37-pill { position: absolute; left: -1px; top: -1px; transform: translateY(-100%);
+                  display: inline-block; height: 29px; line-height: 29px;
+                  padding: 0 8px; border-radius: 12px; font-size: .875rem;
+                  font-weight: 600; white-space: nowrap; }
+    .lit37-pill.dark  { background: #1b1b1b; color: #fff; }
+    .lit37-pill.light { background: #e4e8ed; color: #1b1b1b; }
+    .lit37-mar { position: absolute; top: 50%; transform: translateY(-50%);
+                 right: calc(100% + 7px); font-size: 13px; line-height: 1;
+                 color: #4f5669; white-space: nowrap; }
+    .lit37-p { margin: 0; font-size: .875rem; line-height: 21px; color: #1b1b1b; }
+    .lit37-p.c { padding-left: 24px; }
+    .lit37-p sup.vs { font-size: 9pt; color: #1b1b1b; margin-right: 3px; }
+    /* cores de enfase sem realce de fundo (span["color"] + fonte Type3 401 =
+       NEGRITO; as flags nao reportam negrito neste PDF) */
+    .lit37-e-rust   { color: #b5543a; font-weight: 700; }
+    .lit37-e-drust  { color: #91362e; font-weight: 700; }
+    .lit37-e-rose   { color: #be4967; font-weight: 700; }
+    .lit37-e-drose  { color: #972a4e; font-weight: 700; }
+    .lit37-e-grey   { color: #4f5669; font-weight: 700; }
+    .lit37-e-green  { color: #3a8060; font-weight: 700; }
+    .lit37-e-purple { color: #713c92; font-weight: 700; }
+    .lit37-e-sepia  { color: #816f4d; font-weight: 700; }
+    .lit37-e-olive  { color: #645537; font-weight: 700; }
+    @media (max-width: 640px) {
+      .lit37-box.n2 { margin-left: 10px; } .lit37-box.n3 { margin-left: 20px; }
+      .lit37-p.c { padding-left: 14px; }
+    }
+
+    /* ===== Tabela "Comparing Day 4 and Day 6" (sessao-5.pdf, pag. 7) =======
+       Medido no PDF: DUAS linhas, sem linha de cabecalho (o cabecalho nao
+       existe). Divisor de colunas em x=167.2pt (131.2pt / 408.8pt = 24.3% /
+       75.7%), divisores de linha em y=177.8 e y=317.2pt, fundo branco,
+       tracos #e4e8ed de 2pt (confirmado por pixel), recuo interno 10.5pt =
+       14pt = 14px, entrelinha 14.2pt = 19px, rodape (linha 3) com a legenda
+       em #4f5669. "Gen. 1:14-18" abre a coluna DIREITA em negrito. */
+    .lit37-table { width: 100%; border-collapse: separate; border-spacing: 0;
+                   border: 2px solid #e4e8ed; border-radius: 11px; overflow: hidden;
+                   background: #fff; margin: 1.4rem 0 .8rem; }
+    .lit37-table td { padding: 13px 14px; vertical-align: top; font-size: .875rem;
+                      line-height: 19px; color: #1b1b1b; }
+    .lit37-table tbody td + td { border-left: 2px solid #e4e8ed; }
+    .lit37-table tbody tr + tr td { border-top: 2px solid #e4e8ed; }
+    .lit37-table tfoot td { border-top: 2px solid #e4e8ed; color: #4f5669;
+                            font-size: .92rem; line-height: 1.5; padding: 12px 14px; }
 
   .page-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .875rem; color: #5b6472; font-weight: 600; letter-spacing: .06em; border-top: 1px solid #e5e7eb; padding-top: 1rem; margin-top: 3.5rem; }
   .keylabel { font-weight: 700; color: #17181a; }
@@ -196,15 +276,16 @@
   </div>
 </div>
 <div class="max-w-4xl mx-auto px-5 py-12 md:py-16">
-    <h1 class="title reveal"><span class="lang-pt">Sessão 5: O Sonho de José</span><span class="lang-en">Session 5: Joseph\'s Dream</span></h1>
+    <h1 class="title reveal"><span class="lang-pt">Sessão 5: O Sonho de José</span><span class="lang-en">Session 5: Joseph’s Dream</span></h1>
     <hr class="rule">
-    <h2 class="section reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h2>
+    <h3 class="sub takeaways-h reveal"><span class="lang-pt">Principais Lições</span><span class="lang-en">Key Takeaways</span></h3>
     <ul class="bullets reveal">
       <li><span class="lang-pt">O favoritismo de Yaaqov por Raquel em detrimento de Leia ressurge em sua preferência por Yoseph. Em ambos os casos, esse favoritismo gera conflito e divisão.</span><span class="lang-en">Yaaqov’s favoritism toward Rachel over Leah resurfaces in his preference for Yoseph. In both scenarios, this favoritism leads to strife and division.</span></li>
       <li><span class="lang-pt">O significado da palavra hebraica passim, frequentemente traduzida como “muitas cores,” é incerto.</span><span class="lang-en">The meaning of the Hebrew word passim, often translated as “many colors,” is unclear.</span></li>
-      <li><span class="lang-pt">Os autores bíblicos ligam a história de Yoseph a um padrão de irmãos se separando em Gênesis.</span><span class="lang-en">The biblical authors link Yoseph’s story to a pattern of brothers separating in Genesis including Cain and Abel, Abraham and Lot, and Yaaqov and Esau.</span></li>
+      <li><span class="lang-pt">Os autores bíblicos ligam a história de Yoseph a um padrão de irmãos se separando em Gênesis, incluindo Caim e Abel, Abraão e Ló, e Yaaqov e Esaú.</span><span class="lang-en">The biblical authors link Yoseph’s story to a pattern of brothers separating in Genesis including Cain and Abel, Abraham and Lot, and Yaaqov and Esau.</span></li>
       <li><span class="lang-pt">Imagens do Éden permeiam os sonhos de Yoseph, fazendo eco e expandindo a promessa de uma semente real.</span><span class="lang-en">Eden imagery fills Yoseph’s dreams, echoing and expanding the promise of a royal seed of the woman.</span></li>
     </ul>
+    <h2 class="section reveal"><span class="lang-pt">Gênesis 37: Macro Design</span><span class="lang-en">Genesis 37: Macro Design</span></h2>
     <figure class="m37 reveal">
       <div class="m37-panel">
         <span class="m37-tag"><span class="lang-pt">A - Gênesis 37:2-14</span><span class="lang-en">A - Genesis 37:2-14</span></span>
@@ -213,103 +294,210 @@
           <ul>
             <li><span class="lang-pt">Yoseph é pastor do rebanho com seus irmãos</span><span class="lang-en">Yoseph is a shepherd of the flock with his brothers</span></li>
             <li><span class="lang-pt"><span class="m37-em-purple">Yoseph recebe o manto real</span></span><span class="lang-en"><span class="m37-em-purple">Yoseph is given the royal garment</span></span></li>
-            <li><span class="lang-pt">Yisrael amou Yoseph mais do que seus filhos, e não podiam falar <span class="m37-em-blue">)(דבר paz )(שלום</span> com ele</span><span class="lang-en">Yisrael loved Yoseph more than his sons, and <span class="m37-em-blue">they could not speak</span> <span class="m37-em-blue">)(דבר</span> <span class="m37-em-blue">peace</span> <span class="m37-em-blue">)(שלום</span> <span class="m37-em-blue">to him</span></span></li>
+            <li><span class="lang-pt">Yisrael amou Yoseph mais do que seus filhos, e <span class="m37-em-blue">não podiam falar (<span class="heb" dir="rtl">דבר</span>) paz (<span class="heb" dir="rtl">שלום</span>) com ele</span></span><span class="lang-en">Yisrael loved Yoseph more than his sons, and <span class="m37-em-blue">they could not speak (<span class="heb" dir="rtl">דבר</span>) peace (<span class="heb" dir="rtl">שלום</span>) to him</span></span></li>
           </ul>
         </div>
         <div class="m37-sub b-rust">
           <span class="m37-tag"><span class="lang-pt">b - 37:5-11</span><span class="lang-en">b - 37:5-11</span></span>
           <ul>
-            <li><span class="lang-pt"><span class="m37-em-grey">Diálogo</span> entre os irmãos e Yoseph: dois sonhos sobre governar seus irmãos</span><span class="lang-en"><span class="m37-em-grey">Dialogue</span> between brothers and Yoseph: two dreams about ruling his brothers</span></li>
+            <li><span class="lang-pt"><span class="m37-em-grey m37-hl">Diálogo</span> entre os irmãos e Yoseph: dois sonhos sobre governar seus irmãos</span><span class="lang-en"><span class="m37-em-grey m37-hl">Dialogue</span> between brothers and Yoseph: two dreams about ruling his brothers</span></li>
           </ul>
         </div>
         <div class="m37-sub plain">
           <span class="m37-tag"><span class="lang-pt">a' - 37:12-14</span><span class="lang-en">a' - 37:12-14</span></span>
           <ul>
             <li><span class="lang-pt">Yoseph é enviado para pastorear o rebanho com seus irmãos</span><span class="lang-en">Yoseph sent to shepherd the flock with his brothers</span></li>
-            <li><span class="lang-pt">É enviado para "<span class="m37-em-blue">ver a paz</span> <span class="m37-em-blue">)(שלום</span> <span class="m37-em-blue">de seus irmãos</span>" e <span class="m37-em-blue">trazer uma palavra</span> <span class="m37-em-blue">)(דבר</span> a Yaaqov</span><span class="lang-en">He is sent to "<span class="m37-em-blue">see the peace</span> <span class="m37-em-blue">)(שלום</span> <span class="m37-em-blue">of your brothers</span>" and <span class="m37-em-blue">return a word</span> <span class="m37-em-blue">)(דבר</span> to Yaaqov</span></li>
+            <li><span class="lang-pt">É enviado para "<span class="m37-em-blue">ver a paz (<span class="heb" dir="rtl">שלום</span>) de seus irmãos</span>" e <span class="m37-em-blue">trazer uma palavra (<span class="heb" dir="rtl">דבר</span>)</span> a Yaaqov</span><span class="lang-en">He is sent to "<span class="m37-em-blue">see the peace (<span class="heb" dir="rtl">שלום</span>) of your brothers</span>" and <span class="m37-em-blue">return a word (<span class="heb" dir="rtl">דבר</span>)</span> to Yaaqov</span></li>
           </ul>
         </div>
       </div>
       <div class="m37-panel">
         <span class="m37-tag"><span class="lang-pt">B - Gênesis 37:15-30</span><span class="lang-en">B - Genesis 37:15-30</span></span>
-        <div class="m37-sub plain">
+        <div class="m37-sub greyfill">
           <span class="m37-tag"><span class="lang-pt">a - 37:15-17</span><span class="lang-en">a - 37:15-17</span></span>
           <ul>
             <li><span class="lang-pt">Um homem encontra Yoseph vagando pelo campo, procurando seus irmãos</span><span class="lang-en">A man finds Yoseph wandering in the field, looking for his brothers</span></li>
-            <li><span class="lang-pt"><span class="m37-em-grey">"Onde eles estão…?"</span></span><span class="lang-en"><span class="m37-em-grey">"Where are they ...?"</span></span></li>
+            <li><span class="lang-pt"><span class="m37-em-grey m37-hl">"Onde eles estão…?"</span></span><span class="lang-en"><span class="m37-em-grey m37-hl">"Where are they ...?"</span></span></li>
+          </ul>
+        </div>
+        <div class="m37-sub b-grey">
+          <span class="m37-tag"><span class="lang-pt">b - 37:18-24</span><span class="lang-en">b - 37:18-24</span></span>
+          <ul>
+            <li><span class="lang-pt">Yoseph se aproxima: <span class="m37-em-green">o plano de Reuven</span> de lançá-lo na cova</span><span class="lang-en">Yoseph approaches: <span class="m37-em-green">Reuven's plan</span> to throw him into the pit</span></li>
+            <li><span class="lang-pt">"Não derrame seu sangue... nem estenda a mão contra ele. ... Joguem-no nesta cova!"</span><span class="lang-en">"Don't spill his blood ... or send a hand against him. ... Throw him into this pit!"</span></li>
+            <li><span class="lang-pt"><span class="m37-em-purple">Yoseph é despojado de seu manto real</span></span><span class="lang-en"><span class="m37-em-purple">Yoseph is stripped of his royal garment</span></span></li>
+          </ul>
+        </div>
+        <div class="m37-sub b-grey">
+          <span class="m37-tag"><span class="lang-pt">b' - 37:25-28</span><span class="lang-en">b' - 37:25-28</span></span>
+          <ul>
+            <li><span class="lang-pt">Yoseph na cova: <span class="m37-em-green">o plano de Yehudah</span> de vendê-lo como escravo</span><span class="lang-en">Yoseph in the pit: <span class="m37-em-green">Yehudah's plan</span> to sell him as a slave</span></li>
+            <li><span class="lang-pt">"Qual a vantagem de matar nosso irmão? Vendamo-lo, e nossas mãos não o tocarão."</span><span class="lang-en">"What’s the gain in murdering our brother? Let’s sell him, and don’t our hands touch him."</span></li>
+          </ul>
+        </div>
+        <div class="m37-sub greyfill">
+          <span class="m37-tag"><span class="lang-pt">a' - 37:29-30</span><span class="lang-en">a' - 37:29-30</span></span>
+          <ul>
+            <li><span class="lang-pt">Reuven não encontra Yoseph na cova</span><span class="lang-en">Reuven cannot find Yoseph in the pit</span></li>
+            <li><span class="lang-pt">"O menino não está mais, e eu, <span class="m37-em-grey m37-hl">para onde irei?</span>"</span><span class="lang-en">"The boy is no more, and I, <span class="m37-em-grey m37-hl">where am I to go?</span>"</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="m37-panel">
+        <span class="m37-tag"><span class="lang-pt">A' - Gênesis 37:31-36</span><span class="lang-en">A' - Genesis 37:31-36</span></span>
+        <p class="m37-panel-sub"><span class="lang-pt">De Yaaqov aos seus 12 filhos e 70 descendentes</span><span class="lang-en">From Jacob to His 12 Sons and 70 Descendants</span></p>
+        <div class="m37-sub a-rose">
+          <span class="m37-tag"><span class="lang-pt">a - 37:31-32a</span><span class="lang-en">a - 37:31-32a</span></span>
+          <ul>
+            <li><span class="lang-pt"><span class="m37-em-purple">Os irmãos mergulham o manto real roubado</span> no sangue de uma <span class="m37-em-rose">cabra abatida (<span class="heb" dir="rtl">שחט</span>)</span> do rebanho</span><span class="lang-en"><span class="m37-em-purple">Brothers dip stolen royal garment</span> in blood of a <span class="m37-em-rose">slaughtered (<span class="heb" dir="rtl">שחט</span>)</span> goat from the flock</span></li>
+            <li><span class="lang-pt">O manto de Yoseph é mostrado a Yaaqov</span><span class="lang-en">Yaaqov is shown Yoseph's robe</span></li>
+          </ul>
+        </div>
+        <div class="m37-sub b-rust">
+          <span class="m37-tag"><span class="lang-pt">b - 37:32b-33</span><span class="lang-en">b - 37:32b-33</span></span>
+          <ul>
+            <li><span class="lang-pt"><span class="m37-em-grey">Diálogo</span> entre os irmãos e Yaaqov</span><span class="lang-en"><span class="m37-em-grey">Dialogue</span> between brothers and Yaaqov</span></li>
+            <li><span class="lang-pt">"Esta é a túnica de meu filho, um animal o devorou!"</span><span class="lang-en">"This is the garment of my son, an animal has eaten him!"</span></li>
+          </ul>
+        </div>
+        <div class="m37-sub plain">
+          <span class="m37-tag"><span class="lang-pt">a' - 37:34-36</span><span class="lang-en">a' - 37:34-36</span></span>
+          <ul>
+            <li><span class="lang-pt"><span class="m37-em-purple">Yaaqov rasga suas próprias vestes</span> enquanto Yoseph é levado ao Egito, ao capitão <span class="m37-em-rose">dos carniceiros (<span class="heb" dir="rtl">טבח</span>)</span></span><span class="lang-en"><span class="m37-em-purple">Yaaqov tears his own robes</span> while Yoseph is taken to Egypt, to the captain of <span class="m37-em-rose">the butchers (<span class="heb" dir="rtl">טבח</span>)</span></span></li>
           </ul>
         </div>
       </div>
       <figcaption class="caption"><span class="lang-pt"><em>Gênesis 37.</em> Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en"><em>Genesis 37.</em> Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></figcaption>
     </figure>
-
-    <h2 class="section reveal"><span class="lang-pt">b - 37:18-24</span><span class="lang-en">b - 37:18-24</span></h2>
-    <p class="body reveal"><span class="lang-pt">Yoseph se aproxima: o plano de Reuven de lançá-lo na cova “Não derrame seu sangue... ou estenda a mão contra ele. ... Joguem-no nesta cova!” Yoseph é despojado de seu manto real. b' - 37:25-28 Yoseph na cova: o plano de Yehudah de vendê-lo como escravo “Qual a vantagem de matar nosso irmão? Vendamo-lo, e nossas mãos não o tocarão.” a' - 37:29-30 Reuven não encontra Yoseph na cova “Onde irei eu?”</span><span class="lang-en">Yoseph approaches: Reuven's plan to throw him into the pit "Don't spill his blood ... or send a hand against him. ... Throw him into this pit!" Yoseph is stripped of his royal garment b' - 37: 25-28 Yoseph in the pit: Yehudah’s plan to sell him as a slave "What’s the gain in murdering our brother? Let’s sell him, and don’t our hands touch him.” a' - 37:29-30 Reuven cannot find Yoseph in the pit “The boy is no more, and I, where am I to go?” A' - Genesis 37:31-36 From Jacob to His 12 Sons and 70 Descendants a - 37:31-32a Brothers dip stolen royal garment in blood of a slaughtered )(שחט goat from the flock Yaaqov is shown Yoseph’s robe b - 37:32b-33 Dialogue between brothers and Yaaqov “This is the garment of my son, an animal has eaten him!” a' - 37:34-36 Yaaqov tears his own robes while Yoseph is taken to Egypt, to the captain of the butchers )(טבח</span></p>
-<p class="body reveal"><span class="lang-pt">Estas partes externas cercam um diálogo entre Yoseph e seus irmãos sobre seus sonhos, o que exacerba a hostilidade criada pelo favoritismo de Yaaqov.</span><span class="lang-en">These outer parts surround a dialogue between Yoseph and his brothers about his dreams which exacerbate the hostility created by Yaaqov’s favoritism.</span></p>
-    <h2 class="section reveal"><span class="lang-pt">Gênesis 37:15-30: Yoseph e os Irmãos</span><span class="lang-en">Genesis 37:15-30: Yoseph and the Brothers</span></h2>
+    <p class="body reveal"><span class="lang-pt">Este capítulo de abertura tem um design de grande escala em três partes (Gn. 37:2-14, 37:15-30, 37:31-36), e cada parte é emoldurada por suas próprias repetições de pequena escala, que criam uma rede de analogias simétricas.</span><span class="lang-en">This opening chapter has a large-scale, three-part design (Gen. 37:2-14, 37:15-30, 37:31-36), and each part is framed by its own small-scale repetitions that create a network of symmetrical analogies.</span></p>
+    <h3 class="sub reveal"><span class="lang-pt">Gênesis 37:2-14: Yaaqov, Yoseph e os Irmãos</span><span class="lang-en">Genesis 37:2-14: Yaaqov, Yoseph, and the Brothers</span></h3>
+    <p class="body reveal"><span class="lang-pt">Yoseph é mais amado do que seus irmãos, e seus irmãos não podem falar paz com ele (v. 2-4). // Yoseph é enviado por seu pai com uma palavra de paz (v. 12-14).</span><span class="lang-en">Yoseph is more beloved than his brothers, and his brothers cannot speak peace to him (v. 2-4). // Yoseph is sent by his father with a spoken word of peace (v. 12-14).</span></p>
+    <p class="body reveal"><span class="lang-pt">Estas partes externas cercam um diálogo entre Yoseph e seus irmãos sobre seus sonhos, o que exacerba a hostilidade criada pelo favoritismo de Yaaqov.</span><span class="lang-en">These outer parts surround a dialogue between Yoseph and his brothers about his dreams which exacerbate the hostility created by Yaaqov’s favoritism.</span></p>
+    <h3 class="sub reveal"><span class="lang-pt">Gênesis 37:15-30: Yoseph e os Irmãos</span><span class="lang-en">Genesis 37:15-30: Yoseph and the Brothers</span></h3>
     <p class="body reveal"><span class="lang-pt">Yoseph é enviado aos seus irmãos, e não os encontra (“Onde eles estão?” v. 15-17). // Reuven chega à cova mas não encontra Yoseph (“Onde irei eu?” v. 29-30). Quando os irmãos planejam matar Yoseph, dois irmãos promovem um plano alternativo. O plano de Reuven para resgatar Yoseph envolve lançá-lo numa cova (v. 18-24), enquanto o plano de Yehudah envolve vendê-lo como escravo (v. 25-28).</span><span class="lang-en">Yoseph is sent to his brothers, and he cannot find them (“Where are they?” v. 15-17). // Reuven comes to the pit but cannot find Yoseph (“Where am I to go?” v. 29-30). When the brothers plan to kill Yoseph, two brothers enact an alternate plan. Reuven’s plan to rescue Yoseph involves throwing him into a pit (v. 18-24), while Yehudah’s plan involves selling him as a slave (v. 25-28).</span></p>
-    <h2 class="section reveal"><span class="lang-pt">Gênesis 37:31-36: Os Irmãos e Yaaqov</span><span class="lang-en">Genesis 37:31-36: The Brothers and Yaaqov</span></h2>
-    <p class="body reveal"><span class="lang-pt">Os irmãos tomam a túnica de seu irmão Yoseph e a mergulham no sangue de um animal (וְשָׁחַט) abatido (v. 31-32a). // Yaaqov rasga suas próprias vestes enquanto Yoseph é levado ao Egito e vendido ao capitão dos carniceiros (טָבַח). Nesta analogia, Yoseph é comparado ao bode abatido!</span><span class="lang-en">The brothers take the robe of their brother Yoseph and dip it in the blood of a slaughtered )(שחט animal (v. 31-32a). // Yaaqov tears his own robes while Yoseph is taken to Egypt and sold to the captain of the butchers )(טבח. In this analogy, Yoseph is compared to the slaughtered goat!</span></p>
+    <h3 class="sub reveal"><span class="lang-pt">Gênesis 37:31-36: Os Irmãos e Yaaqov</span><span class="lang-en">Genesis 37:31-36: The Brothers and Yaaqov</span></h3>
+    <p class="body reveal"><span class="lang-pt">Os irmãos tomam a túnica de seu irmão Yoseph e a mergulham no sangue de um animal (<span class="heb" dir="rtl">וְשָׁחַט</span>) abatido (v. 31-32a). // Yaaqov rasga suas próprias vestes enquanto Yoseph é levado ao Egito e vendido ao capitão dos carniceiros (<span class="heb" dir="rtl">טָבַח</span>). Nesta analogia, Yoseph é comparado ao bode abatido!</span><span class="lang-en">The brothers take the robe of their brother Yoseph and dip it in the blood of a slaughtered (<span class="heb" dir="rtl">שחט</span>) animal (v. 31-32a). // Yaaqov tears his own robes while Yoseph is taken to Egypt and sold to the captain of the butchers (<span class="heb" dir="rtl">טבח</span>). In this analogy, Yoseph is compared to the slaughtered goat!</span></p>
     <h2 class="section reveal"><span class="lang-pt">Parágrafo 1: Um Filho Favorecido e um Irmão Odiado</span><span class="lang-en">Paragraph 1: A Favored Son and a Hated Brother</span></h2>
-    <p class="body reveal"><span class="lang-pt">2 Yoseph era um filho de dezessete anos. Ele pastoreava (רעה) o rebanho com seus irmãos.</span><span class="lang-en">2 Yoseph was a son of seventeen years. He was shepherding  (רעה) the flock with his brothers.</span></p>
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">E ele era um jovem,</span><span class="lang-en">And he was a young man,</span></li>
-      <li><span class="lang-pt">com os filhos</span><span class="lang-en">with the sons</span></li>
-      <li><span class="lang-pt">de Bilhá ,</span><span class="lang-en">of Bilhah ,</span></li>
-      <li><span class="lang-pt">e com os filhos</span><span class="lang-en">and with the sons</span></li>
-      <li><span class="lang-pt">de Zilpá ,</span><span class="lang-en">of Zilphah ,</span></li>
-      <li><span class="lang-pt">as esposas de seu pai,</span><span class="lang-en">the wives of his father,</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">e Yoseph trouxe um mau (רעה) relatório (דְּבָתָם) sobre eles a seu pai. 3 Ora, Yisra’el amava Yoseph mais do que a todos os seus filhos, porque era para ele um filho da sua velhice; e fez-lhe uma túnica de várias cores.</span><span class="lang-en">and Yoseph brought a bad  (רעה) report  (דבתם) about them to their father. 3 Now, Yisra’el loved Yoseph more than all of his sons , because he was for him a son of old age , and he made for him a robe of many colors.</span></p>
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">4 E seus irmãos viram</span><span class="lang-en">4 And his brothers saw</span></li>
-      <li><span class="lang-pt">que seu pai o amava,</span><span class="lang-en">that their father loved him ,</span></li>
-      <li><span class="lang-pt">mais do que a todos os seus irmãos,</span><span class="lang-en">more than all of his brothers,</span></li>
-      <li><span class="lang-pt">e o odiaram,</span><span class="lang-en">and they hated him ,</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">e não podiam falar com ele (דִּבְּרוּ) em paz.</span><span class="lang-en">and they were not able to speak to him  (דברו) in peace.</span></p>
-<ul class="bullets reveal">
-      <li><span class="lang-pt">A</span><span class="lang-en">A</span></li>
-      <li><span class="lang-pt">5 E Yoseph sonhou um sonho,</span><span class="lang-en">5 And Yoseph dreamed a dream ,</span></li>
-      <li><span class="lang-pt">e o contou a seus irmãos,</span><span class="lang-en">and he told his brothers,</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">e o odiaram ainda mais.</span><span class="lang-en">and they continued to hate him even more.</span></p>
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">B</span><span class="lang-en">B</span></li>
-      <li><span class="lang-pt">6 E ele lhes disse,</span><span class="lang-en">6 And he said to them,</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">“Ouvi, peço, o sonho que sonhei! 7 E eis que estávamos atando feixes no meio do campo, e eis que meu feixe se levantou e ficou em pé, e eis que vossos feixes vieram ao redor e se prostraram ao meu feixe.” 8 E seus irmãos lhe disseram: “Porventura reinarás como rei sobre nós?!”</span><span class="lang-en">“Please listen to the dream that I dreamed ! 7 And look, we were gathering sheaves in the midst of the field, and look, my sheaf got up and then it stood, and look, your sheaves came around, and they bowed down to my sheaf.” 8 And his brothers said to him, “Are you actually going to reign as a king over us?!</span></p>
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">Ou, porventura governarás de fato sobre nós?!”</span><span class="lang-en">Or, will you actually rule us?!”</span></li>
-      <li><span class="lang-pt">A'</span><span class="lang-en">A'</span></li>
-      <li><span class="lang-pt">E o odiaram ainda mais,</span><span class="lang-en">And they continued to hate him even more,</span></li>
-      <li><span class="lang-pt">A'</span><span class="lang-en">A'</span></li>
-      <li><span class="lang-pt">por causa de seus sonhos,</span><span class="lang-en">because of his dreams ,</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">e por causa de suas palavras (דְּבָרָיו).</span><span class="lang-en">and because of his words  (דבריו).</span></p>
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">B'</span><span class="lang-en">B'</span></li>
-      <li><span class="lang-pt">9 E Yoseph sonhou ainda outro sonho</span><span class="lang-en">9 And Yoseph dreamed again, another dream</span></li>
-      <li><span class="lang-pt">e o relatou a seus irmãos,</span><span class="lang-en">and he recounted it to his brothers,</span></li>
-      <li><span class="lang-pt">e disse,</span><span class="lang-en">and he said,</span></li>
-      <li><span class="lang-pt">“Eis que sonhei outro sonho,</span><span class="lang-en">“Look, I dreamed a dream again ,</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">e eis que o sol, e a lua, e onze estrelas se inclinavam a mim. 10 E ele o contou a seu pai e a seus irmãos; e seu pai o repreendeu, e lhe disse: “Que sonho é este que sonhaste? Haveremos de vir, eu e tua mãe e teus irmãos, a prostrar-nos por terra diante de ti?!” A'' 11 E seus irmãos tinham inveja dele. Os Irmãos Odeiam Yoseph. 1º Sonho de Yoseph. Ódio dos Irmãos.</span><span class="lang-en">and look, the sun and the moon and eleven stars were bowing down to me. 10 And he recounted to his father and to his brothers, and his father rebuked him, and he said to him, “What is this dream that you have dreamed ? Will we really, I and your mother and your brothers, come to bow down to you on the ground?!” A'' 11 And his brothers were jealous of him , Brothers' Hatred Yoseph's 1st Dream Brothers' Hatred Yoseph's 2nd Dream Brothers’ Jealousy</span></p>
-<p class="body reveal"><span class="lang-pt">Gênesis 37:2-14. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 37:2-14. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></p>
-    <h2 class="section reveal"><span class="lang-pt">O Favoritismo de um Pai e Irmãos Rivais</span><span class="lang-en">A Father’s Favoritism and Rival Brothers</span></h2>
+    <figure class="lit37 reveal">
+      <div class="lit37-frame">
+        <div class="lit37-box black n1">
+          <p class="lit37-p"><sup class="vs">2</sup><span class="lang-pt"> Yoseph era um filho de dezessete anos.</span><span class="lang-en"> Yoseph was a son of seventeen years.</span></p>
+          <p class="lit37-p c"><span class="lang-pt">Ele <span class="lit37-e-sepia">pastoreava (<span class="heb" dir="rtl">רעה</span>)</span> o rebanho com <span class="lit37-e-rust">seus irmãos</span>.</span><span class="lang-en">He was <span class="lit37-e-sepia">shepherding (<span class="heb" dir="rtl">רעה</span>)</span> the flock with <span class="lit37-e-rust">his brothers</span>.</span></p>
+          <p class="lit37-p c"><span class="lang-pt">E ele era um jovem,</span><span class="lang-en">And he was a young man,</span></p>
+          <p class="lit37-p c"><span class="lang-pt">com os <span class="lit37-e-drose">filhos</span> <span class="kw kw-grey">de Bilhá</span>,</span><span class="lang-en">with the <span class="lit37-e-drose">sons</span> <span class="kw kw-grey">of Bilhah</span>,</span></p>
+          <p class="lit37-p c"><span class="lang-pt">e com os <span class="lit37-e-drose">filhos</span> <span class="kw kw-grey">de Zilpá</span>,</span><span class="lang-en">and with the <span class="lit37-e-drose">sons</span> <span class="kw kw-grey">of Zilphah</span>,</span></p>
+          <p class="lit37-p c"><span class="lang-pt">as esposas de <span class="lit37-e-rose">seu pai</span>,</span><span class="lang-en">the wives of <span class="lit37-e-rose">his father</span>,</span></p>
+          <p class="lit37-p"><span class="lang-pt">e Yoseph trouxe um <span class="lit37-e-sepia">mau (<span class="heb" dir="rtl">רעה</span>)</span> <span class="lit37-e-green">relatório (<span class="heb" dir="rtl">דְּבָתָם</span>)</span> sobre eles a <span class="lit37-e-rose">seu pai</span>.</span><span class="lang-en">and Yoseph brought a <span class="lit37-e-sepia">bad (<span class="heb" dir="rtl">רעה</span>)</span> <span class="lit37-e-green">report (<span class="heb" dir="rtl">דְּבָתָם</span>)</span> about them to <span class="lit37-e-rose">their father</span>.</span></p>
+        </div>
+        <div class="lit37-box n2">
+          <p class="lit37-p c"><sup class="vs">3</sup><span class="lang-pt"> Ora, <span class="lit37-e-rose">Yisra’el</span> <span class="kw kw-rose">amava Yoseph mais do que a todos os seus filhos</span>,</span><span class="lang-en"> Now, <span class="lit37-e-rose">Yisra’el</span> <span class="kw kw-rose">loved Yoseph more than all of his sons</span>,</span></p>
+          <p class="lit37-p c c"><span class="lang-pt">porque era para ele um <span class="kw kw-rose">filho</span> <span class="kw kw-grey">de sua velhice</span>,</span><span class="lang-en">because he was for him a <span class="kw kw-rose">son</span> <span class="kw kw-grey">of old age</span>,</span></p>
+          <p class="lit37-p c"><span class="lang-pt">e fez-lhe uma túnica de várias cores.</span><span class="lang-en">and he made for him a robe of many colors.</span></p>
+        </div>
+        <div class="lit37-box black n1">
+          <p class="lit37-p"><sup class="vs">4</sup><span class="lang-pt"> E <span class="lit37-e-rust">seus irmãos</span> viram</span><span class="lang-en"> And <span class="lit37-e-rust">his brothers</span> saw</span></p>
+          <p class="lit37-p c"><span class="lang-pt">que <span class="kw kw-rose"><span class="lit37-e-rose">seu pai</span> <span class="lit37-e-drose">o amava</span></span>,</span><span class="lang-en">that <span class="kw kw-rose"><span class="lit37-e-rose">their father</span> <span class="lit37-e-drose">loved him</span></span>,</span></p>
+          <p class="lit37-p c"><span class="lang-pt"><span class="kw kw-rose">mais do que a todos os</span> <span class="lit37-e-rust">seus irmãos</span>,</span><span class="lang-en"><span class="kw kw-rose">more than all of</span> <span class="lit37-e-rust">his brothers</span>,</span></p>
+          <p class="lit37-p c"><span class="lang-pt"><span class="kw kw-cream"><span class="lit37-e-drust">e o odiaram</span></span>,</span><span class="lang-en"><span class="kw kw-cream"><span class="lit37-e-drust">and they hated him</span></span>,</span></p>
+          <p class="lit37-p"><span class="lang-pt">e não podiam <span class="lit37-e-green">falar com ele (<span class="heb" dir="rtl">דִּבְּרוּ</span>)</span> em paz.</span><span class="lang-en">and they were not able <span class="lit37-e-green">to speak to him (<span class="heb" dir="rtl">דְּבְּרוּ</span>)</span> in peace.</span></p>
+        </div>
+      </div>
+      <div class="lit37-frame g2">
+        <div class="lit37-box black n2 haspill">
+          <span class="lit37-mar"><span class="lang-pt">A</span><span class="lang-en">A</span></span>
+          <span class="lit37-pill dark"><span class="lang-pt">Ódio dos Irmãos</span><span class="lang-en">Brothers’ Hatred</span></span>
+          <p class="lit37-p"><sup class="vs">5</sup><span class="lang-pt"> E Yoseph <span class="kw kw-dark">sonhou um sonho</span>,</span><span class="lang-en"> And Yoseph <span class="kw kw-dark">dreamed a dream</span>,</span></p>
+          <p class="lit37-p"><span class="lang-pt">e o contou a <span class="lit37-e-rust">seus irmãos</span>,</span><span class="lang-en">and he told <span class="lit37-e-rust">his brothers</span>,</span></p>
+          <p class="lit37-p"><span class="lang-pt"><span class="kw kw-cream"><span class="lit37-e-drust">e o odiaram ainda mais</span></span>.</span><span class="lang-en"><span class="kw kw-cream"><span class="lit37-e-drust">and they continued to hate him</span></span> even more.</span></p>
+        </div>
+        <div class="lit37-box n3 haspill">
+          <span class="lit37-mar"><span class="lang-pt">B</span><span class="lang-en">B</span></span>
+          <span class="lit37-pill light"><span class="lang-pt">1º Sonho de Yoseph</span><span class="lang-en">Yoseph’s 1st Dream</span></span>
+          <p class="lit37-p c"><sup class="vs">6</sup><span class="lang-pt"> E ele lhes disse,</span><span class="lang-en"> And he said to them,</span></p>
+          <p class="lit37-p c c"><span class="lang-pt">“Ouvi, peço, <span class="kw kw-dark">o sonho que sonhei</span>!</span><span class="lang-en">“Please listen to <span class="kw kw-dark">the dream that I dreamed</span>!</span></p>
+          <p class="lit37-p c c"><sup class="vs">7</sup><span class="lang-pt"> E eis que estávamos atando feixes no meio do campo,</span><span class="lang-en"> And look, we were gathering sheaves in the midst of the field,</span></p>
+          <p class="lit37-p c c"><span class="lang-pt">e eis que meu feixe se levantou e ficou em pé,</span><span class="lang-en">and look, my sheaf got up and then it stood,</span></p>
+          <p class="lit37-p c c"><span class="lang-pt">e eis que vossos feixes vieram ao redor,</span><span class="lang-en">and look, your sheaves came around,</span></p>
+          <p class="lit37-p c c"><span class="lang-pt">e <span class="kw kw-lilac"><span class="lit37-e-purple">se prostraram</span></span> ao meu feixe.”</span><span class="lang-en">and <span class="kw kw-lilac"><span class="lit37-e-purple">they bowed down</span></span> to my sheaf.”</span></p>
+          <p class="lit37-p c c"><sup class="vs">8</sup><span class="lang-pt"> E <span class="lit37-e-rust">seus irmãos</span> lhe disseram,</span><span class="lang-en"> And <span class="lit37-e-rust">his brothers</span> said to him,</span></p>
+          <p class="lit37-p c c"><span class="lang-pt">“Porventura <span class="kw kw-lilac"><span class="lit37-e-purple">reinarás como rei</span></span> sobre nós?!</span><span class="lang-en">“Are you actually going to <span class="kw kw-lilac"><span class="lit37-e-purple">reign as a king</span></span> over us?!</span></p>
+          <p class="lit37-p c c"><span class="lang-pt">Ou, porventura <span class="kw kw-lilac"><span class="lit37-e-purple">governarás</span></span> de fato sobre nós?!”</span><span class="lang-en">Or, will you actually <span class="kw kw-lilac"><span class="lit37-e-purple">rule</span></span> us?!”</span></p>
+        </div>
+        <div class="lit37-box black n2 haspill">
+          <span class="lit37-mar"><span class="lang-pt">A'</span><span class="lang-en">A'</span></span>
+          <span class="lit37-pill dark"><span class="lang-pt">Ódio dos Irmãos</span><span class="lang-en">Brothers’ Hatred</span></span>
+          <p class="lit37-p"><span class="lang-pt"><span class="kw kw-cream"><span class="lit37-e-drust">E o odiaram ainda mais</span></span>,</span><span class="lang-en"><span class="kw kw-cream"><span class="lit37-e-drust">And they continued to hate him</span></span> even more,</span></p>
+          <p class="lit37-p"><span class="lang-pt">por causa de <span class="kw kw-dark">seus sonhos</span>,</span><span class="lang-en">because of <span class="kw kw-dark">his dreams</span>,</span></p>
+          <p class="lit37-p"><span class="lang-pt">e por causa de <span class="lit37-e-green">suas palavras (<span class="heb" dir="rtl">דְּבָרָיו</span>)</span>.</span><span class="lang-en">and because of <span class="lit37-e-green">his words (<span class="heb" dir="rtl">דְּבָרָיו</span>)</span>.</span></p>
+        </div>
+        <div class="lit37-box n3 haspill">
+          <span class="lit37-mar"><span class="lang-pt">B'</span><span class="lang-en">B'</span></span>
+          <span class="lit37-pill light"><span class="lang-pt">2º Sonho de Yoseph</span><span class="lang-en">Yoseph’s 2nd Dream</span></span>
+          <p class="lit37-p c"><sup class="vs">9</sup><span class="lang-pt"> E Yoseph <span class="kw kw-dark">sonhou ainda outro sonho</span></span><span class="lang-en"> And Yoseph <span class="kw kw-dark">dreamed again, another dream</span></span></p>
+          <p class="lit37-p"><span class="lang-pt">e o relatou a <span class="lit37-e-rust">seus irmãos</span>,</span><span class="lang-en">and he recounted it to <span class="lit37-e-rust">his brothers</span>,</span></p>
+          <p class="lit37-p"><span class="lang-pt">e disse,</span><span class="lang-en">and he said,</span></p>
+          <p class="lit37-p c"><span class="lang-pt">“Eis que <span class="kw kw-dark">sonhei outro sonho</span>,</span><span class="lang-en">“Look, I <span class="kw kw-dark">dreamed a dream again</span>,</span></p>
+          <p class="lit37-p c"><span class="lang-pt">e eis que o sol, e a lua, e onze estrelas <span class="kw kw-lilac"><span class="lit37-e-purple">se inclinavam</span></span> a mim.</span><span class="lang-en">and look, the sun and the moon and eleven stars were <span class="kw kw-lilac"><span class="lit37-e-purple">bowing down</span></span> to me.</span></p>
+          <p class="lit37-p c"><sup class="vs">10</sup><span class="lang-pt"> E ele o contou a <span class="lit37-e-rose">seu pai</span> e a <span class="lit37-e-rust">seus irmãos</span>;</span><span class="lang-en"> And he recounted to <span class="lit37-e-rose">his father</span> and to <span class="lit37-e-rust">his brothers</span>;</span></p>
+          <p class="lit37-p"><span class="lang-pt">e <span class="lit37-e-rose">seu pai</span> o repreendeu,</span><span class="lang-en">and <span class="lit37-e-rose">his father</span> rebuked him,</span></p>
+          <p class="lit37-p"><span class="lang-pt">e lhe disse,</span><span class="lang-en">and he said to him,</span></p>
+          <p class="lit37-p c"><span class="lang-pt">“Que sonho é este que <span class="kw kw-dark">sonhaste</span>?</span><span class="lang-en">“What is <span class="kw kw-dark">this dream that you have dreamed</span>?</span></p>
+          <p class="lit37-p c"><span class="lang-pt">Haveremos de vir, <span class="lit37-e-rose">eu e tua mãe</span> e <span class="lit37-e-rust">teus irmãos</span>,</span><span class="lang-en">Will we really, <span class="lit37-e-rose">I and your mother</span> and <span class="lit37-e-rust">your brothers</span>,</span></p>
+          <p class="lit37-p c"><span class="lang-pt">a <span class="kw kw-lilac"><span class="lit37-e-purple">nos prostrar</span></span> por terra diante de ti?!”</span><span class="lang-en">come to <span class="kw kw-lilac"><span class="lit37-e-purple">bow down</span></span> to you on the ground?!”</span></p>
+        </div>
+        <div class="lit37-box black n2 haspill">
+          <span class="lit37-mar"><span class="lang-pt">A''</span><span class="lang-en">A''</span></span>
+          <span class="lit37-pill dark"><span class="lang-pt">Inveja dos Irmãos</span><span class="lang-en">Brothers’ Jealousy</span></span>
+          <p class="lit37-p"><sup class="vs">11</sup><span class="lang-pt"> E <span class="lit37-e-rust">seus irmãos</span> <span class="kw kw-cream"><span class="lit37-e-drust">tiveram inveja dele</span></span>,</span><span class="lang-en"> And <span class="lit37-e-rust">his brothers</span> <span class="kw kw-cream"><span class="lit37-e-drust">were jealous of him</span></span>,</span></p>
+          <p class="lit37-p"><span class="lang-pt">mas <span class="lit37-e-rose">seu pai</span> guardou <span class="lit37-e-green">a palavra (<span class="heb" dir="rtl">הדבר</span>)</span>.</span><span class="lang-en">but <span class="lit37-e-rose">his father</span> kept <span class="lit37-e-green">the word (<span class="heb" dir="rtl">הדבר</span>)</span>.</span></p>
+        </div>
+      </div>
+      <div class="lit37-frame">
+        <div class="lit37-box black n1">
+          <p class="lit37-p"><sup class="vs">12</sup><span class="lang-pt"> E <span class="lit37-e-rust">seus irmãos</span> foram <span class="lit37-e-sepia">pastorear</span> o rebanho de seu pai em <span class="kw kw-tan"><span class="lit37-e-olive">Sh’khem</span></span>,</span><span class="lang-en"> And <span class="lit37-e-rust">his brothers</span> went to <span class="lit37-e-sepia">shepherd</span> the flock of their father in <span class="kw kw-tan"><span class="lit37-e-olive">Sh’khem</span></span>,</span></p>
+        </div>
+        <div class="lit37-box n2">
+          <p class="lit37-p c"><sup class="vs">13</sup><span class="lang-pt"> e Yisra’el disse a Yoseph,</span><span class="lang-en"> and Yisra’el said to Yoseph,</span></p>
+          <p class="lit37-p c c"><span class="lang-pt">“Não estão <span class="lit37-e-rust">seus irmãos</span> <span class="lit37-e-sepia">pastoreando</span> em <span class="kw kw-tan"><span class="lit37-e-olive">Sh’khem</span></span>?</span><span class="lang-en">“Aren’t your <span class="lit37-e-rust">brothers</span> <span class="lit37-e-sepia">shepherding</span> in <span class="kw kw-tan"><span class="lit37-e-olive">Sh’khem</span></span>?</span></p>
+          <p class="lit37-p c c"><span class="lang-pt">Vai, <span class="kw kw-grey">eu te enviarei</span> até eles.”</span><span class="lang-en">Go, <span class="kw kw-grey">let me</span> send you to them.”</span></p>
+          <p class="lit37-p c c"><span class="lang-pt">E ele disse a ele,</span><span class="lang-en">And he said to him,</span></p>
+          <p class="lit37-p c c"><span class="lang-pt">“Olhem, sou eu.”</span><span class="lang-en">“Look, it’s me.”</span></p>
+          <p class="lit37-p c"><sup class="vs">14</sup><span class="lang-pt"> E ele lhe disse,</span><span class="lang-en"> And he said to him,</span></p>
+          <p class="lit37-p c c"><span class="lang-pt">“Vai, peço-te.</span><span class="lang-en">“Go, please.</span></p>
+          <p class="lit37-p c c"><span class="lang-pt">Vê a paz de <span class="lit37-e-rust">teus irmãos</span>, e a paz do rebanho,</span><span class="lang-en">Look after the peace of <span class="lit37-e-rust">your brothers</span>, and the peace of the flock,</span></p>
+          <p class="lit37-p c c"><span class="lang-pt">e volta a mim com <span class="lit37-e-green">uma palavra (<span class="heb" dir="rtl">דָּבָר</span>)</span>.”</span><span class="lang-en">and return to me <span class="lit37-e-green">a word (<span class="heb" dir="rtl">דָּבָר</span>)</span>.”</span></p>
+        </div>
+        <div class="lit37-box black n1">
+          <p class="lit37-p"><span class="lang-pt">E <span class="kw kw-grey">enviou-o</span> do vale de Hebrom,</span><span class="lang-en">And <span class="kw kw-grey">he sent him</span> from the valley of Hebron,</span></p>
+          <p class="lit37-p"><span class="lang-pt">e ele chegou a <span class="kw kw-tan"><span class="lit37-e-olive">Sh’khem</span></span>.</span><span class="lang-en">and he came to <span class="kw kw-tan"><span class="lit37-e-olive">Sh’khem</span></span>.</span></p>
+        </div>
+      </div>
+      <figcaption class="caption"><span class="lang-pt">Gênesis 37:2-14. Tradução e Design Literário por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en">Genesis 37:2-14. Translation and Literary Design by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></figcaption>
+    </figure>
+    <h3 class="sub reveal"><span class="lang-pt">O Favoritismo de um Pai e Irmãos Rivais</span><span class="lang-en">A Father’s Favoritism and Rival Brothers</span></h3>
     <p class="body reveal"><span class="lang-pt">A história começa destacando Yoseph, filho de Raquel, entre os outros filhos e esposas de Yaaqov. Isso recorda o favoritismo que Yaaqov demonstrou pela mãe de Yoseph, declarado nas mesmíssimas palavras.</span><span class="lang-en">The story begins by highlighting Yoseph, son of Rachel, among Yaaqov’s other sons and wives. This recalls the favoritism Yaaqov showed for Yoseph’s mother, which was stated in exactly the same language.</span></p>
-    <h2 class="section reveal"><span class="lang-pt">Gênesis 29:16-18 Tradução do Instrutor</span><span class="lang-en">Genesis 29:16-18 Instructor's Translation</span></h2>
-    <p class="body reveal"><span class="lang-pt">16 Ora, Laban tinha duas filhas; o nome da mais velha era Leia, e o nome da mais nova era Raquel. 17 E os olhos de Leia eram tenros, mas Raquel era formosa de porte e de semblante. 18 Ora, Yaaqov amava Raquel, pelo que disse: “Servir-te-ei sete anos pela tua filha menor, Raquel.” Gênesis 29:30-31 Tradução do Instrutor. 30 Assim Yaaqov também entrou com Raquel, e de fato amava Raquel mais do que a Leia.</span><span class="lang-en">16 Now Laban had two daughters; the name of the older was Leah, and the name of the younger was Rakhel. 17 And Leah’s eyes were weak, but Rakhel was beautiful of form and face. 18 Now Yaaqov loved Rakhel, so he said, “I will serve you seven years for your younger daughter Rakhel.” Genesis 29:30-31 Instructor's Translation 30 So Yaaqov went in to Rakhel also, and indeed he loved Rakhel more than Leah, and he served with Laban for another seven years. 31 Now the Lord saw that Leah was hated, and he opened her womb, but Rakhel was barren. And this favoritism that Yaaqov displayed toward his wives, a favoritism that introduced division and jealousy between the sisters, was itself a replay of how Yaaqov’s parents treated him and his brother.</span></p>
-    <h2 class="section reveal"><span class="lang-pt">Gênesis 25:28 Tradução do Instrutor</span><span class="lang-en">Genesis 25:28 Instructor's Translation</span></h2>
-    <p class="body reveal"><span class="lang-pt">Ora, Isaque amava a Esaú, porque caçava para ele; mas Rebeca amava a Yaaqov.</span><span class="lang-en">Now Isaac loved Esau, because he had a taste for game, but Rebekah loved Yaaqov. but his father kept the word  (הדבר). 12 And his brothers went to shepherd the flock of their father in Sh’khem , 13 and Yisra’el said to Yoseph, “Aren’t your brothers shepherding in Sh’khem ?</span></p>
+    <div class="scripture reveal">
+      <div class="scripture-label"><span class="lang-pt">Gênesis 29:16-18 <span class="scripture-type">Tradução do Instrutor</span></span><span class="lang-en">Genesis 29:16-18 <span class="scripture-type">Instructor’s Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt"><sup class="vs">16</sup> Ora, Laban tinha duas filhas; o nome da mais velha era Leia, e o nome da mais nova era Raquel. <sup class="vs">17</sup> E os olhos de Leia eram tenros, mas Raquel era formosa de porte e de semblante. <sup class="vs">18</sup> Ora, <span class="kw">Yaaqov amava Raquel,</span> pelo que disse: “Servir-te-ei sete anos pela tua filha menor, Raquel.”</span><span class="lang-en"><sup class="vs">16</sup> Now Laban had two daughters; the name of the older was Leah, and the name of the younger was Rakhel. <sup class="vs">17</sup> And Leah’s eyes were weak, but Rakhel was beautiful of form and face. <sup class="vs">18</sup> Now <span class="kw">Yaaqov loved Rakhel,</span> so he said, “I will serve you seven years for your younger daughter Rakhel.”</span></div>
+    </div>
+    <div class="scripture reveal">
+      <div class="scripture-label"><span class="lang-pt">Gênesis 29:30-31 <span class="scripture-type">Tradução do Instrutor</span></span><span class="lang-en">Genesis 29:30-31 <span class="scripture-type">Instructor’s Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt"><sup class="vs">30</sup> Assim Yaaqov também entrou com Raquel, e de fato <span class="kw">amava Raquel mais do que a Leia,</span> e serviu a Labão por mais sete anos. <sup class="vs">31</sup> E o SENHOR viu que <span class="kw">Leia era desprezada,</span> e lhe abriu o ventre, mas Raquel era estéril.</span><span class="lang-en"><sup class="vs">30</sup> So Yaaqov went in to Rakhel also, and indeed <span class="kw">he loved Rakhel more than Leah,</span> and he served with Laban for another seven years. <sup class="vs">31</sup> Now the Lord saw that <span class="kw">Leah was hated,</span> and he opened her womb, but Rakhel was barren.</span></div>
+    </div>
+    <p class="body reveal"><span class="lang-pt">E esse favoritismo que Yaaqov exerceu sobre suas esposas — um favoritismo que introduziu divisão e ciúme entre as irmãs — foi ele próprio uma repetição de como os pais de Yaaqov trataram a ele e a seu irmão.</span><span class="lang-en">And this favoritism that Yaaqov displayed toward his wives, a favoritism that introduced division and jealousy between the sisters, was itself a replay of how Yaaqov’s parents treated him and his brother.</span></p>
+    <div class="scripture reveal">
+      <div class="scripture-label"><span class="lang-pt">Gênesis 25:28 <span class="scripture-type">Tradução do Instrutor</span></span><span class="lang-en">Genesis 25:28 <span class="scripture-type">Instructor’s Translation</span></span></div>
+      <div class="scripture-text"><span class="lang-pt">Ora, <span class="kw">Isaque amava a Esaú,</span> porque tinha gosto de caça; mas <span class="kw">Rebeca amava a Yaaqov</span>.</span><span class="lang-en">Now <span class="kw">Isaac loved Esau,</span> because he had a taste for game, but <span class="kw">Rebekah loved Yaaqov</span>.</span></div>
+    </div>
+<p class="body reveal"><span class="lang-pt">Este favoritismo foi o que dividiu Yaaqov e Esaú e, em última instância, causou sua separação e alienação mútua. E estas histórias de favor humano são elas mesmas um espelho distorcido que ecoa os muitos momentos de favor divino dado a um escolhido, o que também causa divisão entre irmãos.</span><span class="lang-en">This favoritism was what divided Yaaqov and Esau and ultimately caused their separation and alienation from one another. And these stories of human favor are themselves a distorted mirror that echoes the many moments of divine favor given to a chosen one that also causes division between siblings.</span></p>
     <ul class="bullets reveal">
-      <li><span class="lang-pt">“Vai, peço-te. Vê a paz de teus irmãos, e a paz do rebanho, e traze-me novas.” E ele o enviou do vale de Hebrom, e ele veio a Siquém.</span><span class="lang-en">Go, let me send you to them.”</span></li>
-      <li><span class="lang-pt">E ele disse a ele,</span><span class="lang-en">And he said to him,</span></li>
-      <li><span class="lang-pt">“Olhem, sou eu.”</span><span class="lang-en">“Look, it’s me.”</span></li>
-      <li><span class="lang-pt">14 E ele lhe disse,</span><span class="lang-en">14 And he said to him,</span></li>
+      <li><span class="lang-pt">A humanidade é escolhida para governar sobre os animais (Gn. 1).</span><span class="lang-en">Humanity is chosen to rule over the animals (Gen. 1).</span></li>
+      <li><span class="lang-pt">O sacrifício de Abel é favorecido acima do de Caim, o primogênito (Gn. 4).</span><span class="lang-en">Abel’s sacrifice is favored over that of Cain, the firstborn (Gen. 4).</span></li>
+      <li><span class="lang-pt">Sem é elevado e abençoado acima de seus irmãos Jafete e Ham (Gn. 9:24-27).</span><span class="lang-en">Shem is elevated and blessed over his brothers Japheth and Ham (Gen. 9:24-27).</span></li>
+      <li><span class="lang-pt">Abrão é escolhido acima de seus irmãos Nacor e Harã (Gn. 11:26-32).</span><span class="lang-en">Abram is chosen over his brothers Nahor and Haran (Gen. 11:26-32).</span></li>
+      <li><span class="lang-pt">Sara e Isaque são escolhidos acima de Agar e Ismael (Gn. 16-17, 21).</span><span class="lang-en">Sarah and Isaac chosen over Hagar and Ishmael (Gen. 16-17, 21).</span></li>
     </ul>
-    <p class="body reveal"><span class="lang-pt">“Vai, peço-te, vê a paz de teus irmãos e a paz do rebanho, e volta a mim com uma palavra (דָּבָר).” E enviou-o do vale de Hebrom, e ele chegou a Siquém.</span><span class="lang-en">“Go, please. Look after the peace of your brothers, and the peace of the flock, and return to me a word  (דבר).” And he sent him from the valley of Hebron, and he came to Sh’khem .</span></p>
-<p class="body reveal"><span class="lang-pt">Este favoritismo foi o que dividiu Yaaqov e Esaú e, em última instância, causou sua separação e alienação mútua. E estas histórias de favor humano são elas mesmas um espelho distorcido que ecoa os muitos momentos de favor divino dado a um escolhido, o que também causa divisão entre irmãos. A humanidade é escolhida para governar sobre os animais (Gn. 1). O sacrifício de Abel é favorecido acima do de Caim.</span><span class="lang-en">This favoritism was what divided Yaaqov and Esau and ultimately caused their separation and alienation from one another. And these stories of human favor are themselves a distorted mirror that echoes the many moments of divine favor given to a chosen one that also causes division between siblings. Humanity is chosen to rule over the animals (Gen. 1). Abel’s sacrifice is favored over that of Cain, the firstborn (Gen. 4). Shem is elevated and blessed over his brothers Japheth and Ham (Gen. 9:24-27). Abram is chosen over his brothers Nahor and Haran (Gen. 11:26-32). Sarah and Isaac chosen over Hagar and Ishmael (Gen. 16-17, 21). In each case, the divine/fatherly favor creates a division among siblings, which then generates jealousy and hostility between family members. The author wants us to bring all those stories to bear upon this final story about the favored Yoseph and his brothers.</span></p>
+    <p class="body reveal"><span class="lang-pt">Em cada caso, o favor divino/paterno cria uma divisão entre irmãos, o que por sua vez gera ciúme e hostilidade entre membros da família. O autor quer que levemos todas essas histórias a bear sobre esta história final sobre o favorecido Yoseph e seus irmãos.</span><span class="lang-en">In each case, the divine/fatherly favor creates a division among siblings, which then generates jealousy and hostility between family members. The author wants us to bring all those stories to bear upon this final story about the favored Yoseph and his brothers.</span></p>
     <h2 class="section reveal"><span class="lang-pt">O Manto Real e Sonhador de um Filho</span><span class="lang-en">A Son’s Dreamy Royal Robe</span></h2>
     <p class="body reveal"><span class="lang-pt">Os termos usados para descrever a túnica de Yoseph combinam uma palavra comum e uma palavra única.</span><span class="lang-en">The terms used to describe Yoseph’s robe combine a common word and a unique word.</span></p>
     <ul class="bullets reveal">
@@ -320,37 +508,42 @@
       <li><span class="lang-pt">Túnica de mangas compridas (NRSV)</span><span class="lang-en">Robe with long sleeves (NRSV)</span></li>
       <li><span class="lang-pt">Túnica de muitas cores (KJV)</span><span class="lang-en">Coat of many colors (KJV)</span></li>
     </ul>
-    <p class="body reveal"><span class="lang-pt">A palavra hebraica é ketonet passim, כְּתֹנֶת פַּסִּים. O Grego Antigo (Septuaginta) usa khitona poikilon, χιτῶνα ποικίλον. Esta frase é usada apenas mais uma vez na Bíblia Hebraica, para descrever a túnica de Tamar, filha de Davi, violentada por seu irmão (2 Sm. 13:18-19). Esta história é um hiperlink deliberado de volta à história de Yoseph, que foi abusado por seus irmãos, e nenhuma das duas histórias foca no</span><span class="lang-en">The Hebrew word is ketonet passim, כתנת פסים. The Old Greek (Septuagint) uses khitona poikilon, χιτωνα ποικιλον. This phrase is only used one other time in the Hebrew Bible, to describe the coat of Tamar, the daughter of David who is raped by her brother (2 Sam. 13:18-19). That story is a deliberate hyperlink back to the story of Yoseph, who was abused by his brothers, and neither story focuses on the shape or appearance of the garment. The translation “many colors” in the KJV was derived not from the meaning of the Hebrew word passim, but from the choice made by the Septuagint translators to use poikilos, which means “diverse, multi-part.” Yoseph’s Dreams of Royal Rule Yoseph's royal dreams connect to a major theme that has quietly been running throughout the Genesis scroll about humanity’s calling to rule creation as the image of Elohim. This theme first appears in the image of Elohim poem found in day six of the first creation story (Gen. 1:26-28). Here, humanity’s earthly rule corresponds to that of the heavenly rulers appointed in day four (see Gen. 1:14).</span></p>
-<ul class="bullets reveal">
-      <li><span class="lang-pt">Dia 4:</span><span class="lang-en">Day 4:</span></li>
-      <li><span class="lang-pt">as luzes celestiais</span><span class="lang-en">The heavenly lights</span></li>
-      <li><span class="lang-pt">governar (משל) o dia e</span><span class="lang-en">rule )(משל the day and</span></li>
-      <li><span class="lang-pt">noite</span><span class="lang-en">night</span></li>
-      <li><span class="lang-pt">Gn. 1:14–18</span><span class="lang-en">Gen. 1:14–18</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">Então disse Deus: “Haja luminares na expansão dos céus para separar o dia da noite, e sirvam de sinais. ... Deus fez os dois grandes luminares: o luminar maior para governar (משל) o dia, e o luminar menor para governar (משל) a noite; fez também as estrelas. ... Deus os pôs na expansão dos céus para alumiar sobre a terra, e para governar (משל) o dia e a noite, e para separar</span><span class="lang-en">Then God said, “Let there be lights in the expanse of the heavens to separate the day from the night, and let them be for signs. … God made the two great lights, the greater light to rule )(משל the day, and the lesser light to rule )(משל the night; he made the stars also. … God placed them in the expanse of the heavens to give light on the earth, and to rule )(משל the day and the night, and to separate the light from the darkness; and God saw that it was good.</span></p>
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">Dia 6</span><span class="lang-en">Day 6</span></li>
-      <li><span class="lang-pt">os humanos terrenos para</span><span class="lang-en">The earthly humans to</span></li>
-      <li><span class="lang-pt">governar (רָדָה) sobre o</span><span class="lang-en">rule )(רדה over the</span></li>
-      <li><span class="lang-pt">criaturas terrestres</span><span class="lang-en">land creatures</span></li>
-      <li><span class="lang-pt">Gn. 1:26–28</span><span class="lang-en">Gen. 1:26–28</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">Então disse Deus: “Façamos o ser humano à nossa imagem, conforme a nossa semelhança; e dominem (רָדָה) sobre os peixes do mar, e sobre as aves dos céus, e sobre o gado, e sobre toda a terra, e sobre todo o réptil que rasteja sobre a terra.” ... Deus os abençoou; e Deus lhes disse: “Frutificai e multiplicai-vos, e enchei a terra, e sujeitai-a; e dominai (רָדָה) sobre os peixes do mar</span><span class="lang-en">Then God said, “Let us make human in our image, according to our likeness; and let them rule )(רדה over the fish of the sea and over the birds of the sky and over the cattle and over all the earth, and over every creeping thing that creeps on the earth.” ... God blessed them; and God said to them, “Be fruitful and multiply, and fill the earth, and subdue it; and rule )(רדה over the fish of the sea and over the birds of the sky and over every living thing that moves on the earth.” Comparing Day 4 and Day 6 of Creation. Created by Tim Mackie for BibleProject Classroom: Joseph (2022). Humanity’s calling is to rule over the land creatures, but as Psalm 8 and Daniel 7 make clear, this was part of a larger plan to exalt humanity as a cosmic ruler over Heaven and Earth together. After humanity’s exile from Eden and the promise of a snake-crushing seed of the woman (Gen. 3:15, 3:21-24), the lineage is followed throughout Genesis, with promises of future kings peppering the story.</span></p>
-    <h2 class="section reveal"><span class="lang-pt">Gênesis 17:5-6 NASB*</span><span class="lang-en">Genesis 17:5-6 NASB*</span></h2>
-    <p class="body reveal"><span class="lang-pt">5 Não mais será o teu nome chamado Abrão, mas o teu nome será Abraão; porque te farei pai de uma multidão de nações. 6 E te tornarei excessivamente fecundo, e de ti farei nações, e reis sairão de ti.</span><span class="lang-en">5 No longer shall your name be called Abram, But your name shall be Abraham; for I will make you the father of a multitude of nations. 6 I have made you exceedingly fruitful, and I will make nations of you, and kings will come forth from you.</span></p>
-    <ul class="bullets reveal">
-      <li><span class="lang-pt">*Palavras-Chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></li>
-      <li><span class="lang-pt">Gênesis 17:15-16 NASB</span><span class="lang-en">Genesis 17:15-16 NASB</span></li>
-    </ul>
-    <p class="body reveal"><span class="lang-pt">15 Disse Deus a Abraão: “Quanto a Sarai, tua mulher, não lhe chamarás Sarai, porém Sara será o seu nome. 16 E a abençoarei, e também te darei dela um filho; e a abençoarei, e ela será mãe de nações; reis de povos sairão dela.” Gênesis 35:10-11 NASB*. 10 Disse Deus a ele: “O teu nome é Yaaqov; não mais serás chamado Yaaqov, porém Yisrael será</span><span class="lang-en">15 Then God said to Abraham, “As for Sarai your wife, you shall not call her name Sarai, but Sarah shall be her name. 16 I will bless her, and indeed I will give you a son by her. Then I will bless her, and she shall be a mother of nations; kings of peoples will come from her.” Genesis 35:10-11 NASB* 10 God said to him, “Your name is Yaaqov; you shall no longer be called Yaaqov, but Yisrael shall be your name.” Thus he called him Yisrael. 11 God also said to him, “I am God Almighty; be fruitful and multiply; a nation and a company of nations shall come from you, and kings shall come forth from you.” *Key Words Adapted by Teacher</span></p>
-    <div class="rounded-xl overflow-hidden border border-slate-300">
-<table class="w-full text-left text-[#24262a] md reveal">
-      <thead><tr><th><span class="lang-pt">Dia 4</span><span class="lang-en">Day 4</span></th><th><span class="lang-pt">Dia 6</span><span class="lang-en">Day 6</span></th></tr></thead>
-      <tbody><tr><td><span class="lang-pt">Dia 4: As luzes celestiais <b>governam</b> (מָשַׁל) o dia e a noite<br><br>Gen. 1:14-18 “Haja luzes… para separar o dia da noite… Deus fez as duas grandes luzes, a maior para <b>governar</b> (מָשַׁל) o dia, e a menor para <b>governar</b> (מָשַׁל) a noite… para <b>governar</b> (מָשַׁל) o dia e a noite…”</span><span class="lang-en">Day 4: The heavenly lights <b>rule</b> (מָשַׁל) the day and night<br><br>Gen. 1:14-18 “Let there be lights… to separate the day from the night… God made the two great lights, the greater light to <b>rule</b> (מָשַׁל) the day, and the lesser light to <b>rule</b> (מָשַׁל) the night… to <b>rule</b> (מָשַׁל) the day and the night…”</span></td><td><span class="lang-pt">Dia 6: Os humanos terrestres <b>governam</b> (רָדָה) sobre os animais da terra<br><br>Gen. 1:26-28 “Façamos humano à nossa imagem… e <b>governem</b> (רָדָה) sobre os peixes do mar… e sobre toda a terra… sede frutíferos… e <b>governai</b> (רָדָה) sobre tudo que se move na terra.”</span><span class="lang-en">Day 6: The earthly humans <b>rule</b> (רָדָה) over the land creatures<br><br>Gen. 1:26-28 “Let us make human in our image… and let them <b>rule</b> (רָדָה) over the fish of the sea… and over the cattle and over all the earth… Be fruitful and multiply… and <b>rule</b> (רָדָה) over every living thing that moves on the earth.”</span></td></tr></tbody>
-      <tfoot><tr><td colspan="2"><span class="lang-pt">Comparing Day 4 and Day 6 of Creation. Created by Tim Mackie for BibleProject Classroom: José (2022).</span><span class="lang-en">Comparing Day 4 and Day 6 of Creation. Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></td></tr></tfoot>
+    <p class="body reveal"><span class="lang-pt">A palavra hebraica é <em>ketonet passim</em>, <span class="heb" dir="rtl">כתנת פסים</span>.</span><span class="lang-en">The Hebrew word is <em>ketonet passim</em>, <span class="heb" dir="rtl">כתנת פסים</span>.</span></p>
+    <p class="body reveal"><span class="lang-pt">O Grego Antigo (Septuaginta) usa <em>khitona poikilon</em>, χιτωνα ποικιλον.</span><span class="lang-en">The Old Greek (Septuagint) uses <em>khitona poikilon</em>, χιτωνα ποικιλον.</span></p>
+    <p class="body reveal"><span class="lang-pt">Esta frase é usada apenas mais uma vez na Bíblia Hebraica, para descrever a túnica de Tamar, filha de Davi, violentada por seu irmão (2 Sm. 13:18-19). Esta história é um hiperlink deliberado de volta à história de Yoseph, que foi abusado por seus irmãos, e nenhuma das duas histórias foca na forma ou aparência da peça de vestuário.</span><span class="lang-en">This phrase is only used one other time in the Hebrew Bible, to describe the coat of Tamar, the daughter of David who is raped by her brother (2 Sam. 13:18-19). That story is a deliberate hyperlink back to the story of Yoseph, who was abused by his brothers, and neither story focuses on the shape or appearance of the garment.</span></p>
+    <p class="body reveal"><span class="lang-pt">A tradução “muitas cores” na KJV não veio do significado da palavra hebraica <em>passim</em>, mas da escolha feita pelos tradutores da Septuaginta ao usar <em>poikilos</em>, que significa “diverso, de múltiplas partes”.</span><span class="lang-en">The translation “many colors” in the KJV was derived not from the meaning of the Hebrew word <em>passim</em>, but from the choice made by the Septuagint translators to use <em>poikilos</em>, which means “diverse, multi-part.”</span></p>
+    <h3 class="sub reveal"><span class="lang-pt">Os Sonhos de Yoseph sobre o Reinado</span><span class="lang-en">Yoseph’s Dreams of Royal Rule</span></h3>
+    <p class="body reveal"><span class="lang-pt">Os sonhos reais de Yoseph se conectam a um tema maior que vem correndo discretamente por todo o rolo de Gênesis a respeito do chamado da humanidade a governar a criação como imagem de Elohim. Este tema aparece primeiro no poema de imagem de Elohim encontrado no dia seis da primeira história da criação (Gn. 1:26-28). Aqui, o governo terrestre da humanidade corresponde ao dos governantes celestes nomeados no dia quatro (ver Gn. 1:14).</span><span class="lang-en">Yoseph's royal dreams connect to a major theme that has quietly been running throughout the Genesis scroll about humanity’s calling to rule creation as the image of Elohim. This theme first appears in the image of Elohim poem found in day six of the first creation story (Gen. 1:26-28). Here, humanity’s earthly rule corresponds to that of the heavenly rulers appointed in day four (see Gen. 1:14).</span></p>
+    <table class="lit37-table reveal">
+      <colgroup><col style="width:24.3%"><col style="width:75.7%"></colgroup>
+      <tbody>
+        <tr>
+          <td><span class="lang-pt">Dia 4:<br>As luzes celestiais governam (<span class="heb" dir="rtl">משל</span>) o dia e a noite</span><span class="lang-en">Day 4:<br>The heavenly lights rule (<span class="heb" dir="rtl">משל</span>) the day and night</span></td>
+          <td><span class="lang-pt"><b>Gn. 1:14–18</b><br>Então disse Deus: “Haja luminares na expansão dos céus para separar o dia da noite, e sirvam de sinais. … Deus fez os dois grandes luminares: o luminar maior para <span class="kw kw-rose">governar (<span class="heb" dir="rtl">משל</span>)</span> o dia, e o luminar menor para <span class="kw kw-rose">governar (<span class="heb" dir="rtl">משל</span>)</span> a noite; fez também as estrelas. … Deus os pôs na expansão dos céus para alumiar sobre a terra, e para <span class="kw kw-rose">governar (<span class="heb" dir="rtl">משל</span>)</span> o dia e a noite, e para separar a luz das trevas; e Deus viu que era bom.</span><span class="lang-en"><b>Gen. 1:14–18</b><br>Then God said, “Let there be lights in the expanse of the heavens to separate the day from the night, and let them be for signs. … God made the two great lights, the greater light <span class="kw kw-rose">to rule (<span class="heb" dir="rtl">משל</span>)</span> the day, and the lesser light <span class="kw kw-rose">to rule (<span class="heb" dir="rtl">משל</span>)</span> the night; he made the stars also. … God placed them in the expanse of the heavens to give light on the earth, and <span class="kw kw-rose">to rule (<span class="heb" dir="rtl">משל</span>)</span> the day and the night, and to separate the light from the darkness; and God saw that it was good.</span></td>
+        </tr>
+        <tr>
+          <td><span class="lang-pt">Dia 6<br>Os humanos terrenos governam (<span class="heb" dir="rtl">רדה</span>) sobre as criaturas terrestres</span><span class="lang-en">Day 6<br>The earthly humans to rule (<span class="heb" dir="rtl">רדה</span>) over the land creatures</span></td>
+          <td><span class="lang-pt"><b>Gn. 1:26–28</b><br>Então disse Deus: “Façamos o ser humano à nossa imagem, conforme a nossa semelhança; e <span class="kw kw-rose">dominem (<span class="heb" dir="rtl">רדה</span>)</span> sobre os peixes do mar, e sobre as aves dos céus, e sobre o gado, e sobre toda a terra, e sobre todo o réptil que rasteja sobre a terra.” … Deus os abençoou; e Deus lhes disse: “Frutificai e multiplicai-vos, e enchei a terra, e sujeitai-a; e <span class="kw kw-rose">dominai (<span class="heb" dir="rtl">רדה</span>)</span> sobre os peixes do mar, e sobre as aves dos céus, e sobre todo o ser vivente que se move sobre a terra.”</span><span class="lang-en"><b>Gen. 1:26–28</b><br>Then God said, “Let us make human in our image, according to our likeness; and <span class="kw kw-rose">let them rule (<span class="heb" dir="rtl">רדה</span>)</span> over the fish of the sea and over the birds of the sky and over the cattle and over all the earth, and over every creeping thing that creeps on the earth.” … God blessed them; and God said to them, “Be fruitful and multiply, and fill the earth, and subdue it; and <span class="kw kw-rose">rule (<span class="heb" dir="rtl">רדה</span>)</span> over the fish of the sea and over the birds of the sky and over every living thing that moves on the earth.”</span></td>
+        </tr>
+      </tbody>
+      <tfoot><tr><td colspan="2"><span class="lang-pt"><em>Comparando o Dia 4 e o Dia 6 da Criação.</em> Criado por Tim Mackie para BibleProject Classroom: José (2022).</span><span class="lang-en"><em>Comparing Day 4 and Day 6 of Creation.</em> Created by Tim Mackie for BibleProject Classroom: Joseph (2022).</span></td></tr></tfoot>
     </table>
-</div>
+    <p class="body reveal"><span class="lang-pt">O chamado da humanidade é governar sobre as criaturas terrestres, mas como o Salmo 8 e Daniel 7 deixam claro, isto era parte de um plano maior para exaltar a humanidade como um governante cósmico sobre o Céu e a Terra juntos.</span><span class="lang-en">Humanity’s calling is to rule over the land creatures, but as Psalm 8 and Daniel 7 make clear, this was part of a larger plan to exalt humanity as a cosmic ruler over Heaven and Earth together.</span></p>
+    <p class="body reveal"><span class="lang-pt">Depois do exílio da humanidade do Éden e da promessa de uma semente da mulher que esmaga a serpente (Gn. 3:15, 3:21-24), a linhagem é seguida por todo o livro de Gênesis, com promessas de futuros reis entremeadas na história.</span><span class="lang-en">After humanity’s exile from Eden and the promise of a snake-crushing seed of the woman (Gen. 3:15, 3:21-24), the lineage is followed throughout Genesis, with promises of future kings peppering the story.</span></p>
+    <div class="scripture reveal">
+      <div class="scripture-label"><span class="lang-pt">Gênesis 17:5-6 <span class="scripture-type">NASB*</span></span><span class="lang-en">Genesis 17:5-6 <span class="scripture-type">NASB*</span></span></div>
+      <div class="scripture-text"><span class="lang-pt"><sup class="vs">5</sup> Não mais será o teu nome chamado Abrão, mas o teu nome será Abraão; porque te farei pai de uma multidão de nações. <sup class="vs">6</sup> E te tornarei excessivamente fecundo, e <span class="kw kw-grey">de ti farei nações,</span> e <span class="kw kw-rose">reis sairão de ti.</span></span><span class="lang-en"><sup class="vs">5</sup> No longer shall your name be called Abram, But your name shall be Abraham; for I will make you the father of a multitude of nations. <sup class="vs">6</sup> I have made you exceedingly fruitful, and <span class="kw kw-grey">I will make nations of you,</span> and <span class="kw kw-rose">kings will come forth from you.</span></span></div>
+    </div>
+    <p class="rotulo reveal"><span class="lang-pt">*Palavras-Chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
+    <div class="scripture reveal">
+      <div class="scripture-label"><span class="lang-pt">Gênesis 17:15-16 <span class="scripture-type">NASB</span></span><span class="lang-en">Genesis 17:15-16 <span class="scripture-type">NASB</span></span></div>
+      <div class="scripture-text"><span class="lang-pt"><sup class="vs">15</sup> Disse Deus a Abraão: “Quanto a Sarai, tua mulher, não lhe chamarás Sarai, porém Sara será o seu nome. <sup class="vs">16</sup> E a abençoarei, e também te darei dela um filho; e a abençoarei, e <span class="kw kw-grey">ela será mãe de nações;</span> <span class="kw kw-rose">reis de povos sairão dela.”</span></span><span class="lang-en"><sup class="vs">15</sup> Then God said to Abraham, “As for Sarai your wife, you shall not call her name Sarai, but Sarah shall be her name. <sup class="vs">16</sup> I will bless her, and indeed I will give you a son by her. Then I will bless her, and <span class="kw kw-grey">she shall be a mother of nations;</span> <span class="kw kw-rose">kings of peoples will come from her.”</span></span></div>
+    </div>
+    <div class="scripture reveal">
+      <div class="scripture-label"><span class="lang-pt">Gênesis 35:10-11 <span class="scripture-type">NASB*</span></span><span class="lang-en">Genesis 35:10-11 <span class="scripture-type">NASB*</span></span></div>
+      <div class="scripture-text"><span class="lang-pt"><sup class="vs">10</sup> Disse Deus a ele: “O teu nome é Yaaqov; não mais serás chamado Yaaqov, porém Yisrael será o teu nome.” E assim o chamou Yisrael. <sup class="vs">11</sup> E Deus lhe disse também: “Eu sou Deus Todo-Poderoso; frutificai e multiplicai-vos; de ti sairá uma nação e <span class="kw kw-grey">uma companhia de nações,</span> e <span class="kw kw-rose">reis sairão de ti.”</span></span><span class="lang-en"><sup class="vs">10</sup> God said to him, “Your name is Yaaqov; you shall no longer be called Yaaqov, but Yisrael shall be your name.” Thus he called him Yisrael. <sup class="vs">11</sup> God also said to him, “I am God Almighty; be fruitful and multiply; a nation and <span class="kw kw-grey">a company of nations shall come from you,</span> and <span class="kw kw-rose">kings shall come forth from you.”</span></span></div>
+    </div>
+    <p class="rotulo reveal"><span class="lang-pt">*Palavras-Chave Adaptadas pelo Professor</span><span class="lang-en">*Key Words Adapted by Teacher</span></p>
     <p class="body reveal"><span class="lang-pt">E assim, ao começarmos a história de Yoseph, perguntamo-nos se esta antiga promessa de uma semente real se cumprirá através deste filho favorecido. Acontece que este tema se tornará um pouco mais complicado, pois tanto Yoseph quanto Yehudah participarão desta promessa.</span><span class="lang-en">And so, as we begin the Yoseph story, we wonder if this ancient promise of a royal seed will be fulfilled through this favored son. It turns out that this theme will get a bit more complicated, as both Yoseph and Yehudah will participate in this promise.</span></p>
     <h3 class="sub reveal"><span class="lang-pt">Pergunta para Reflexão</span><span class="lang-en">Reflection Question</span></h3>
     <p class="body reveal"><span class="lang-pt">Que pistas literárias, ligadas a histórias anteriores em Gênesis, os autores bíblicos usam para preparar o cenário para o conflito vindouro na história de Yoseph?</span><span class="lang-en">What literary clues, linked to earlier stories in Genesis, do the biblical authors use to set the stage for the coming conflict in Yoseph’s story?</span></p>
